@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ifcengine">
+      <UniqueIdentifier>{5e38adfb-52ca-4686-a265-42a2fb9f7620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ifcengine\include">
+      <UniqueIdentifier>{c1ea0506-dfef-4f58-8180-8b05bed179ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ifccreation">
+      <UniqueIdentifier>{72eed716-5187-4592-b717-7b269bd1fa9b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="XTR2IFC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XTR2IFCDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ifcengine\include\engdef.h">
+      <Filter>Header Files\ifcengine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ifcengine\include\engine.h">
+      <Filter>Header Files\ifcengine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ifcengine\include\ifcengine.h">
+      <Filter>Header Files\ifcengine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\baseIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\baseIfcObject.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\boundingBoxIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\brepIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\extrudedPolygonIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\materialIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\propertiesIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+    <ClInclude Include="parseXTR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ifccreation\alignmentIfc.h">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="XTR2IFC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XTR2IFCDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\baseIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\baseIfcObject.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\boundingBoxIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\brepIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\extrudedPolygonIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\materialIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\propertiesIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+    <ClCompile Include="parseXTR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ifccreation\alignmentIfc.cpp">
+      <Filter>Header Files\ifccreation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XTR2IFC.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\XTR2IFC.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\XTR2IFC.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
