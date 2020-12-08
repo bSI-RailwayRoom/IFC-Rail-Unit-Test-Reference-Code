@@ -6,5 +6,5 @@ The repository to maintain IFC4x3_RC2 production schema, including the EXPRESS s
 | Item          | Change        | Description  |
 | ------------- |:-------------|:--------------------------------------|
 | IfcCurveSegment      |  |  |
-|* Placement      | MODIFIED | StartPlacement is changed name to Placement |
-|* SegmentStart      | ADDED | New attribute SegmentStart is added to IfcCurveSegment |
+|- Placement      | MODIFIED | StartPlacement is changed name to Placement |
+|- SegmentStart      | ADDED | New attribute SegmentStart is added to IfcCurveSegment |
