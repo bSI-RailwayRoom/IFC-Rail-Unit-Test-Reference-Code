@@ -1,0 +1,100 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ProtectiveDeviceBreakerUnitI2TCurve</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 4 index3 4 index4 42 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.4.4.43");
+//-->
+</script>
+
+<h4 class="std">7.4.4.43 Pset_ProtectiveDeviceBreakerUnitI2TCurve</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcelectricaldomain/lexical/ifcprotectivedevice.htm">IfcProtectiveDevice</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Protective Device Breaker Unit I2 TCurve</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/2hgeW0qVWHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ProtectiveDeviceBreakerUnitI2TCurve.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>VoltageLevel</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_voltagelevels.htm">PEnum_VoltageLevels</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Voltage Level</b></td><td>The voltage levels of the protective device for which the data of the instance is valid. More than one value may be selected in the enumeration.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>電圧レベル</b></td><td>保護装置が作動する電圧レベルを選択。
+[U230,U400,U525,U690,U1000,その他,不明,無]
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NominalCurrent</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Nominal Current</b></td><td>A set of nominal currents in [A] for which the data of this instance is valid. At least one value shall be provided. Any value in the set shall not exceed the value of the
+UltimateRatedCurrent associated with the same breaker unit.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>定格電流</b></td><td>定格電流[A]を少なくても1つ値をセットしなければならない。
+セット内の任意の値の値を超えてはならない。
+定格電流は、同じブレーカ部に関連付けられている。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BreakerUnitCurve</td><td>
+<span class="self-ref">P_TABLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Breaker Unit Curve</b></td><td>A curve that establishes the let through energy of a breaker unit when a particular prospective current is applied.  Note that the breaker unit curve is defined within a Cartesian coordinate system and this fact must be asserted within the property set:
+(1) Defining value: ProspectiveCurrent: A list of minimum 2 and maximum 16 numbers providing the currents in [A] for points in the current/I2t log/log coordinate space. The curve is drawn as a straight line between two consecutive points.
+(2) Defined value: LetThroughEnergy: A list of minimum 2 and maximum 16 numbers providing the let-through energy, I2t, in [A2s] for points in the current/I2t log/log coordinate space. The curve is drawn as a straight line between two consecutive points.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>遮断機曲線</b></td><td>適用された電流と通過する遮断機のエネルギーを示した曲線
+（1）定義値：ProspectiveCurrent（固有電流）：
+電流/I2tで示される最小2から最大8のリストで電流[A]を定義します。
+カーブが連続する2つの点を結ぶ直線として描かれています。
+（2）定義値：LetThroughEnergy：
+電流/I2tで示される最小2から最大8のリストで通過エネルギー電流[[A2s]を定義します。
+カーブが連続する2つの点を結ぶ直線として描かれています。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_protectivedevicebreakeruniti2tcurve.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

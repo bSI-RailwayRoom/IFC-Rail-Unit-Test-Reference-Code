@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ControllerTypeTwoPosition</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 2 index3 4 index4 15 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.2.4.16");
+//-->
+</script>
+
+<h4 class="std">7.2.4.16 Pset_ControllerTypeTwoPosition</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcbuildingcontrolsdomain/lexical/ifccontroller.htm">IfcController</a>
+ / <span class="self-ref">TWOPOSITION</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Controller Type Two Position</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3zYUY0qSqHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ControllerTypeTwoPosition.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>ControlType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_controllertwopositiontype.htm">PEnum_ControllerTwoPositionType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Control Type</b></td><td>The type of signal modification effected and applicable ports:
+LOWERLIMITSWITCH: Single analog input is read and if less than Value.LowerBound then True is written to the output value.
+UPPERLIMITSWITCH: Single analog input is read and if more than Value.UpperBound then True is written to the output value.
+LOWERBANDSWITCH: Single analog input is read and if less than Value.LowerBound+BandWidth then True is written to the output value.
+UPPERBANDSWITCH: Single analog input is read and if more than Value.UpperBound-BandWidth then True is written to the output value.
+NOT: Single binary input is read and the opposite value is written to the output value.
+AND: Two binary inputs are read and if both are True then True is written to the output value.
+OR: Two binary inputs are read and if either is True then True is written to the output value.
+XOR: Two binary inputs are read and if one is true then True is written to the output value.
+CALENDAR: No inputs; the current time is compared with an IfcWorkCalendar to which the IfcController is assigned and True is written if active.
+INPUT: Controller element is a dedicated input.
+OUTPUT: Controller element is a dedicated output.
+VARIABLE: Controller element is an in-memory variable.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Labels</td><td>
+<span class="self-ref">P_TABLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Labels</b></td><td>Table mapping values to labels, where such labels indicate the meanings of True and False, such as 'Open' and 'Closed'
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Polarity</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Polarity</b></td><td>True indicates normal polarity; False indicates reverse polarity.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Value</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Value</b></td><td>The default value such as normally-closed or normally-open.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_controllertypetwoposition.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

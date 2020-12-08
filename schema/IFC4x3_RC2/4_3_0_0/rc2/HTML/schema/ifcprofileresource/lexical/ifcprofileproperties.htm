@@ -1,0 +1,122 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcProfileProperties</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 15 index3 3 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.15.3.17");
+//-->
+</script>
+
+<h4 class="num">IfcProfileProperties</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Profil - Merkmale</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Profile Properties</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Propriétés de section de profil</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a></td><td></td><td></td><td>MODIFIED</td><td>Schema changed from <i>IFCPROFILEPROPERTYRESOURCE</i> to <i>IFCPROFILERESOURCE</i>. <br/>Instantiation changed from <i>ABSTRACT</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>ProfileName</i> to <i>Name</i>. <br/>Type changed from <i>IfcLabel</i> to <i>IfcIdentifier</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>ProfileDefinition</i> to <i>Description</i>. <br/>Type changed from <i>IfcProfileDef</i> to <i>IfcText</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Properties</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProfileDefinition</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>This is a collection of properties applicable to section profile definitions.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Entity made non-abstract. Subtypes <i>IfcGeneralProfileProperties</i>, <i>IfcStructuralProfileProperties</i>, and <i>IfcStructuralSteelProfileProperties</i> deleted. Attribute <i>ProfileName</i> deleted, use <i>ProfileDefinition.ProfileName</i> instead. Attribute <i>ProfileDefinition</i> made mandatory. Attributes <i>Name</i>, <i>Description</i>, and <i>HasProperties</i> added (inherited from <a href="../../ifcpropertyresource/lexical/ifcextendedproperties.htm">IfcExtendedProperties</a>).</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>4</td><td>ProfileDefinition</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+Profile definition which is qualified by these properties.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcprofileproperties.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,230,42" href="../../../schema/ifcpropertyresource/lexical/ifcextendedproperties.htm" alt="IfcExtendedProperties" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcpropertyresource/lexical/ifcpropertyabstraction.htm" alt="IfcPropertyAbstraction" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcpropertyabstraction.htm">IfcPropertyAbstraction</a></i></td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to an external reference, e.g. library, classification, or document information, that is associated to the property definition.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcextendedproperties.htm">IfcExtendedProperties</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+The name given to the set of properties.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Description for the set of properties.
+</td><td>X</td></tr>
+<tr><td>3</td><td>Properties</td><td><a href="../../ifcpropertyresource/lexical/ifcproperty.htm">IfcProperty</a></td><td>S[1:?]</td><td>
+The set of properties provided for this extended property collection.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a></td></tr>
+<tr><td>4</td><td>ProfileDefinition</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+Profile definition which is qualified by these properties.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcextendedproperties.htm">IfcExtendedProperties</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcextendedproperties.htm">IfcExtendedProperties</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcProfileProperties<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpropertyresource/lexical/ifcextendedproperties.htm">IfcExtendedProperties</a>)<b>;</b><br/>
+&nbsp;&nbsp;ProfileDefinition : <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprofileresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>
+</p>
+<p><a href="../../../link/ifcprofileproperties.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

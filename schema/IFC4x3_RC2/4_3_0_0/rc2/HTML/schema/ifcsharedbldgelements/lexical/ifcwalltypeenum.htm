@@ -1,0 +1,130 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcWallTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 1 index3 2 index4 23 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.1.2.24");
+//-->
+</script>
+
+<h4 class="num">IfcWallTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Wall Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Énumération des types de mur</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcwalltypeenum.htm">IfcWallTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVABLE</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PARAPET</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PARTITIONING</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOLIDWALL</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcwalltypeenum.htm">IfcWallTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETAININGWALL</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcwalltypeenum.htm">IfcWallTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WAVEWALL</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>This enumeration defines the different types of walls that can further specify an <a href="../../ifcsharedbldgelements/lexical/ifcwall.htm">IfcWall</a> or <a href="../../ifcsharedbldgelements/lexical/ifcwalltype.htm">IfcWallType</a>.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x2">
+<p>IFC2x2 CHANGE  The enumerator <i>POLYGON</i> has been changed to <i>POLYGONAL</i>.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The enumerators <i>ELEMENTEDWALL</i> and <i>PLUMBINGWALL</i> have been added.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  New enumerators MOVABLE, PARAPET, PARTITIONING, and SOLIDWALL have been added.<br>
+IFC4 DEPRECATION  The enumerators STANDARD, POLYGONAL and ELEMENTEDWALL are deprecated and shall no longer be used.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  The potentially misleading term <i>SHEAR</i> shall not impose a particular resistance against shear forces, but a particular shape.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>MOVABLE</td><td>A movable wall that is either movable, such as folding wall or a sliding wall, or can be easily removed as a removable partitioning or mounting wall. Movable walls do normally not define space boundaries and often belong to the furnishing system.
+</td></tr><tr><td>PARAPET</td><td>A wall-like barrier to protect human or vehicle from falling, or to prevent the spread of fires. Often designed at the edge of balconies, terraces or roofs, or along edges of bridges.
+</td></tr><tr><td>PARTITIONING</td><td>A wall designed to partition spaces that often has a light-weight, sandwich-like construction (e.g. using gypsum board). Partitioning walls are normally non load bearing.
+</td></tr><tr><td>PLUMBINGWALL</td><td>A pier, or enclosure, or encasement, normally used to enclose plumbing in sanitary rooms. Such walls often do not extent to the ceiling.
+</td></tr><tr><td>SHEAR</td><td>A wall designed to withstand shear loads. Examples of shear wall are diaphragms inside a box girder, typically on a pier, to resist lateral forces and transfer them to the support.
+</td></tr><tr><td>SOLIDWALL</td><td>A massive wall construction for the wall core being the single layer or having multiple layers attached. Such walls are often masonry or concrete walls (both cast in-situ or precast) that are load bearing and fire protecting.
+</td></tr><tr><td>STANDARD</td><td>A standard wall, extruded vertically with a constant thickness along the wall path.
+
+<blockquote>
+The value is deprecated, it is expressed by choosing the subtype <em>IfcWallStandardCase</em>.
+</blockquote>
+</td></tr><tr><td>POLYGONAL</td><td>A polygonal wall, extruded vertically, where the wall thickness varies along the wall path.
+</td></tr><tr><td>ELEMENTEDWALL</td><td>A stud wall framed with studs and faced with sheetings, sidings, wallboard, or plasterwork.
+
+<blockquote>
+The value is deprecated, it is expressed by choosing the subtype <em>IfcWallElementedCase</em>.
+</blockquote>
+</td></tr><tr><td>RETAININGWALL</td><td>A supporting wall used to protect against soil layers behind. Special types of a retaining wall may be e.g. Gabion wall and Grib wall. Examples of retaining walls are wing wall, headwall, stem wall, pierwall and protecting wall.
+</td></tr><tr><td>WAVEWALL</td><td>Protective wall or screen to block overtopping and impact of waves across a breakwater
+</td></tr><tr><td>USERDEFINED</td><td>User-defined wall element.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined wall element.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcsharedbldgelements/lexical/ifcwalltypeenum.htm">IfcWallTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;movable&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;parapet&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;partitioning&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;plumbingwall&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;shear&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;solidwall&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;standard&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;polygonal&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;elementedwall&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;retainingwall&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;wavewall&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcWallTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;MOVABLE, <br/>&nbsp;PARAPET, <br/>&nbsp;PARTITIONING, <br/>&nbsp;PLUMBINGWALL, <br/>&nbsp;SHEAR, <br/>&nbsp;SOLIDWALL, <br/>&nbsp;STANDARD, <br/>&nbsp;POLYGONAL, <br/>&nbsp;ELEMENTEDWALL, <br/>&nbsp;RETAININGWALL, <br/>&nbsp;WAVEWALL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcsharedbldgelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcsharedbldgelements/lexical/ifcwall.htm">IfcWall</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcwalltype.htm">IfcWallType</a>
+</p>
+<p><a href="../../../link/ifcwalltypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ProtectiveDeviceTrippingUnitTypeElectronic</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 4 index3 4 index4 57 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.4.4.58");
+//-->
+</script>
+
+<h4 class="std">7.4.4.58 Pset_ProtectiveDeviceTrippingUnitTypeElectronic</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcelectricaldomain/lexical/ifcprotectivedevicetrippingunit.htm">IfcProtectiveDeviceTrippingUnit</a>
+ / <span class="self-ref">ELECTRONIC</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Protective Device Tripping Unit Type Electronic</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/2DHek0qVmHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ProtectiveDeviceTrippingUnitTypeElectronic.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>ElectronicTrippingUnitType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_electronictrippingunittype.htm">PEnum_ElectronicTrippingUnitType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Electronic Tripping Unit Type</b></td><td>A list of the available types of electronic tripping unit  from which that required may be selected.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>電磁式の装置タイプ</b></td><td>電磁式の装置タイプをリストから選択。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NominalCurrents</td><td>
+<span class="self-ref">P_LISTVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Nominal Currents</b></td><td>A set of values providing information on available modules (chips) for setting the nominal current of the protective device. If
+the set is empty, no nominal current modules are available for the tripping unit.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>定格電流</b></td><td>トリップ装置が対応する定格電流。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>N_Protection</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>N_ Protection</b></td><td>An indication whether the electronic tripping unit has separate protection for the N conductor, or not.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>N_Protection</b></td><td>電磁式トリップ装置がN個の導体を保護するか否かの設定。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>N_Protection_50</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>N_ Protection_50</b></td><td>An indication whether the electronic tripping unit is tripping if the current in the N conductor is more than 50% of that of the phase conductors. The property is only asserted if the property N_Protection is asserted.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>N_Protection_50</b></td><td>電磁式トリップ装置がN導体の50％以上で保護するか否かの設定。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>N_Protection_100</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>N_ Protection_100</b></td><td>An indication whether the electronic tripping unit is tripping if the current in the N conductor is more than 100% of that of the phase conductors. The property is only asserted if the property N_Protection is asserted.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>N_Protection_100</b></td><td>電磁式トリップ装置がN導体の100％以上で保護するか否かの設定。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>N_Protection_Select</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>N_ Protection_ Select</b></td><td>An indication whether the use of the N_Protection can be selected by the user or not. If both the properties N_Protection_50 and N_Protection_100 are asserted, the value of N_Protection_Select property is set to TRUE. The property is only asserted if the property N_Protection is asserted.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>N_Protectionの選択</b></td><td>どのN_Protectionを使うかユーザが設定できるかどうかを指定する。
+N_Protection_50とN_Protection_100の両方が有効な場合は、TRUEにします。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_protectivedevicetrippingunittypeelectronic.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

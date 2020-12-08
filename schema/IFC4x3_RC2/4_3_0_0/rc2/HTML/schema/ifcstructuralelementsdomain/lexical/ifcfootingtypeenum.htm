@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcFootingTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 11 index3 2 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.11.2.1");
+//-->
+</script>
+
+<h4 class="num">IfcFootingTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Footing Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des types de fondation</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifcfootingtypeenum.htm">IfcFootingTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAISSON_FOUNDATION</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>Enumeration defining the generic footing type.</p>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x2</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC 2x4 CHANGE:  Item CAISSON_FOUNDATION added.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>CAISSON_FOUNDATION</td><td>A foundation construction type used in underwater construction.
+<blockquote class="change-ifc4x2">
+IFC4x2 CHANGE  Enum made optional and deprecated. Use the dedicated class <em>IfcCaissonFoundation</em> instead.
+</blockquote>
+</td></tr><tr><td>FOOTING_BEAM</td><td>Footing elements that are in bending and are supported clear of the ground. They will normally span between piers, piles or pile caps. They are distinguished from beams in the building superstructure since they will normally require a lower grade of finish. They are distinguished from <em>STRIP_FOOTING</em> since they are clear of the ground surface and hence require support to the lower face while the concrete is curing.
+</td></tr><tr><td>PAD_FOOTING</td><td>An element that transfers the load of a single column (possibly two) to the ground.
+</td></tr><tr><td>PILE_CAP</td><td>An element that transfers the load from a column or group of columns to a pier or pile or group of piers or piles.
+</td></tr><tr><td>STRIP_FOOTING</td><td>A linear element that transfers loads into the ground from either a continuous element, such as a wall, or from a series of elements, such as columns.
+</td></tr><tr><td>USERDEFINED</td><td>Special types of footings which meet specific local requirements.
+</td></tr><tr><td>NOTDEFINED</td><td>The type of footing is not defined.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcstructuralelementsdomain/lexical/ifcfootingtypeenum.htm">IfcFootingTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;caisson_foundation&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;footing_beam&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;pad_footing&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;pile_cap&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;strip_footing&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcFootingTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;CAISSON_FOUNDATION, <br/>&nbsp;FOOTING_BEAM, <br/>&nbsp;PAD_FOOTING, <br/>&nbsp;PILE_CAP, <br/>&nbsp;STRIP_FOOTING, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcstructuralelementsdomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcstructuralelementsdomain/lexical/ifcfooting.htm">IfcFooting</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifcfootingtype.htm">IfcFootingType</a>
+</p>
+<p><a href="../../../link/ifcfootingtypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

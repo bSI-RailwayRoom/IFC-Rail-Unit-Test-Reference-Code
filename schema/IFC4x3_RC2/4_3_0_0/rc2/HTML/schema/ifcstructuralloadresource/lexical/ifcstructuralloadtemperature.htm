@@ -1,0 +1,143 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcStructuralLoadTemperature</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 19 index3 3 index4 18 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.19.3.19");
+//-->
+</script>
+
+<h4 class="num">IfcStructuralLoadTemperature</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Temperaturlast</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Structural Load Temperature</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralloadresource/lexical/ifcstructuralloadtemperature.htm">IfcStructuralLoadTemperature</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeltaTConstant</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>DeltaT_Constant</i> to <i>DeltaTConstant</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeltaTY</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>DeltaT_Y</i> to <i>DeltaTY</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeltaTZ</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>DeltaT_Z</i> to <i>DeltaTZ</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An instance of the entity <span class="self-ref">IfcStructuralLoadTemperature</span> shall be used to define actions which are caused by a temperature change. As shown in Figure 433, the change of temperature is given with a constant value which is applied to the complete section and values for temperature differences between outer fibres of the section.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/structuralloadtemperature.gif" alt="&quot;Structural load temperature&quot;" title="Figure 433 &mdash; Structural load temperature"></td></tr><tr><td><p class="figure">Figure 433 &mdash; Structural load temperature</p></td></tr></table></p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>DeltaTConstant</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Temperature change which affects the complete section of the structural member, or the uniform portion of a non-uniform temperature change.
+<blockquote class="note">
+NOTE  A positive value describes an increase in temperature. I.e. a positive constant temperature change causes elongation of a member, or compression in the member if there are respective restraints.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>DeltaTY</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Non-uniform temperature change, specified as the difference of the temperature change at the outer fibre of the positive y direction minus the temperature change at the outer fibre of the negative y direction of the analysis member.
+<blockquote class="note">
+NOTE  A positive non-uniform temperature change in y induces a negative curvature of the member about z, or a positive bending moment about z if there are respective restraints. y and z are local member axes.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>DeltaTZ</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Non-uniform temperature change, specified as the difference of the temperature change at the outer fibre of the positive z direction minus the temperature change at the outer fibre of the negative z direction of the analysis member.
+<blockquote class="note">
+NOTE  A positive non-uniform temperature change in z induces a positive curvature of the member about y, or a negative bending moment about y if there are respective restraints. y and z are local member axes.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcstructuralloadtemperature.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcstructuralloadresource/lexical/ifcstructuralloadstatic.htm" alt="IfcStructuralLoadStatic" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcstructuralloadresource/lexical/ifcstructuralloadorresult.htm" alt="IfcStructuralLoadOrResult" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcstructuralloadresource/lexical/ifcstructuralload.htm" alt="IfcStructuralLoad" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcstructuralloadresource/lexical/ifcstructuralload.htm">IfcStructuralLoad</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optionally defines a name for this load.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadorresult.htm">IfcStructuralLoadOrResult</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadstatic.htm">IfcStructuralLoadStatic</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadtemperature.htm">IfcStructuralLoadTemperature</a></td></tr>
+<tr><td>2</td><td>DeltaTConstant</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Temperature change which affects the complete section of the structural member, or the uniform portion of a non-uniform temperature change.
+<blockquote class="note">
+NOTE  A positive value describes an increase in temperature. I.e. a positive constant temperature change causes elongation of a member, or compression in the member if there are respective restraints.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>DeltaTY</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Non-uniform temperature change, specified as the difference of the temperature change at the outer fibre of the positive y direction minus the temperature change at the outer fibre of the negative y direction of the analysis member.
+<blockquote class="note">
+NOTE  A positive non-uniform temperature change in y induces a negative curvature of the member about z, or a positive bending moment about z if there are respective restraints. y and z are local member axes.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>DeltaTZ</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td>? </td><td>
+Non-uniform temperature change, specified as the difference of the temperature change at the outer fibre of the positive z direction minus the temperature change at the outer fibre of the negative z direction of the analysis member.
+<blockquote class="note">
+NOTE  A positive non-uniform temperature change in z induces a positive curvature of the member about y, or a negative bending moment about y if there are respective restraints. y and z are local member axes.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadtemperature.htm">IfcStructuralLoadTemperature</a>&quot; type=&quot;ifc:<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadtemperature.htm">IfcStructuralLoadTemperature</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadstatic.htm">IfcStructuralLoadStatic</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadtemperature.htm">IfcStructuralLoadTemperature</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadstatic.htm">IfcStructuralLoadStatic</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;DeltaTConstant&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;DeltaTY&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;DeltaTZ&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcStructuralLoadTemperature<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcstructuralloadresource/lexical/ifcstructuralloadstatic.htm">IfcStructuralLoadStatic</a>)<b>;</b><br/>
+&nbsp;&nbsp;DeltaTConstant : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>;<br/>
+&nbsp;&nbsp;DeltaTY : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>;<br/>
+&nbsp;&nbsp;DeltaTZ : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcstructuralloadresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcstructuralloadtemperature.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCSTRUCTURALELEMENTSDOMAIN;
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcPreDefinedPropertySet
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcAreaMeasure,
+  IfcLabel,
+  IfcPositiveLengthMeasure,
+  IfcPlaneAngleMeasure,
+  IfcLengthMeasure,
+  IfcForceMeasure,
+  IfcPressureMeasure,
+  IfcNormalisedRatioMeasure
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcBuildingElement,
+  IfcBuildingElementType,
+  IfcFeatureElement,
+  IfcFeatureElementSubtraction
+);
+
+REFERENCE FROM IFCPROFILERESOURCE
+(
+  IfcSectionReinforcementProperties,
+  IfcReinforcingBarSurfaceEnum
+);
+
+REFERENCE FROM IFCSHAREDBLDGELEMENTS
+(
+  IfcDeepFoundation,
+  IfcDeepFoundationType
+);
+
+REFERENCE FROM IFCSHAREDCOMPONENTELEMENTS
+(
+  IfcElementComponent,
+  IfcElementComponentType
+);
+
+TYPE IfcFootingTypeEnum = ENUMERATION OF
+	(CAISSON_FOUNDATION
+	,FOOTING_BEAM
+	,PAD_FOOTING
+	,PILE_CAP
+	,STRIP_FOOTING
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcPileConstructionEnum = ENUMERATION OF
+	(CAST_IN_PLACE
+	,COMPOSITE
+	,PRECAST_CONCRETE
+	,PREFAB_STEEL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcPileTypeEnum = ENUMERATION OF
+	(BORED
+	,DRIVEN
+	,JETGROUTING
+	,COHESION
+	,FRICTION
+	,SUPPORT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcReinforcingBarTypeEnum = ENUMERATION OF
+	(ANCHORING
+	,EDGE
+	,LIGATURE
+	,MAIN
+	,PUNCHING
+	,RING
+	,SHEAR
+	,STUD
+	,SPACEBAR
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcReinforcingMeshTypeEnum = ENUMERATION OF
+	(USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSurfaceFeatureTypeEnum = ENUMERATION OF
+	(MARK
+	,TAG
+	,TREATMENT
+	,DEFECT
+	,HATCHMARKING
+	,LINEMARKING
+	,PAVEMENTSURFACEMARKING
+	,SYMBOLMARKING
+	,NONSKIDSURFACING
+	,RUMBLESTRIP
+	,TRANSVERSERUMBLESTRIP
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTendonAnchorTypeEnum = ENUMERATION OF
+	(COUPLER
+	,FIXED_END
+	,TENSIONING_END
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTendonConduitTypeEnum = ENUMERATION OF
+	(DUCT
+	,COUPLER
+	,GROUTING_DUCT
+	,TRUMPET
+	,DIABOLO
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTendonTypeEnum = ENUMERATION OF
+	(BAR
+	,COATED
+	,STRAND
+	,WIRE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcVoidingFeatureTypeEnum = ENUMERATION OF
+	(CUTOUT
+	,NOTCH
+	,HOLE
+	,MITER
+	,CHAMFER
+	,EDGE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcBendingParameterSelect = SELECT
+	(IfcLengthMeasure
+	,IfcPlaneAngleMeasure);
+END_TYPE;
+
+ENTITY IfcFooting
+ SUBTYPE OF (IfcBuiltElement);
+	PredefinedType : OPTIONAL IfcFootingTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT EXISTS(PredefinedType) OR
+(PredefinedType <> IfcFootingTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFootingTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCFOOTINGTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType))
+;
+END_ENTITY;
+
+ENTITY IfcFootingType
+ SUBTYPE OF (IfcBuiltElementType);
+	PredefinedType : IfcFootingTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcFootingTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFootingTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcPile
+ SUBTYPE OF (IfcDeepFoundation);
+	PredefinedType : OPTIONAL IfcPileTypeEnum;
+	ConstructionType : OPTIONAL IfcPileConstructionEnum;
+ WHERE
+	CorrectPredefinedType : NOT EXISTS(PredefinedType) OR
+(PredefinedType <> IfcPileTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcPileTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCPILETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcPileType
+ SUBTYPE OF (IfcDeepFoundationType);
+	PredefinedType : IfcPileTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcPileTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcPileTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcReinforcementDefinitionProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	DefinitionType : OPTIONAL IfcLabel;
+	ReinforcementSectionDefinitions : LIST [1:?] OF IfcSectionReinforcementProperties;
+END_ENTITY;
+
+ENTITY IfcReinforcingBar
+ SUBTYPE OF (IfcReinforcingElement);
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	CrossSectionArea : OPTIONAL IfcAreaMeasure;
+	BarLength : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : OPTIONAL IfcReinforcingBarTypeEnum;
+	BarSurface : OPTIONAL IfcReinforcingBarSurfaceEnum;
+ WHERE
+	CorrectPredefinedType : NOT EXISTS(PredefinedType) OR
+(PredefinedType <> IfcReinforcingBarTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcReinforcingBarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType))
+;
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCREINFORCINGBARTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcReinforcingBarType
+ SUBTYPE OF (IfcReinforcingElementType);
+	PredefinedType : IfcReinforcingBarTypeEnum;
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	CrossSectionArea : OPTIONAL IfcAreaMeasure;
+	BarLength : OPTIONAL IfcPositiveLengthMeasure;
+	BarSurface : OPTIONAL IfcReinforcingBarSurfaceEnum;
+	BendingShapeCode : OPTIONAL IfcLabel;
+	BendingParameters : OPTIONAL LIST [1:?] OF IfcBendingParameterSelect;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcReinforcingBarTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcReinforcingBarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+	BendingShapeCodeProvided : NOT EXISTS(BendingParameters) OR EXISTS(BendingShapeCode);
+END_ENTITY;
+
+ENTITY IfcReinforcingElement
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcReinforcingBar
+    ,IfcReinforcingMesh
+    ,IfcTendon
+    ,IfcTendonAnchor
+    ,IfcTendonConduit))
+ SUBTYPE OF (IfcElementComponent);
+	SteelGrade : OPTIONAL IfcLabel;
+END_ENTITY;
+
+ENTITY IfcReinforcingElementType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcReinforcingBarType
+    ,IfcReinforcingMeshType
+    ,IfcTendonAnchorType
+    ,IfcTendonConduitType
+    ,IfcTendonType))
+ SUBTYPE OF (IfcElementComponentType);
+END_ENTITY;
+
+ENTITY IfcReinforcingMesh
+ SUBTYPE OF (IfcReinforcingElement);
+	MeshLength : OPTIONAL IfcPositiveLengthMeasure;
+	MeshWidth : OPTIONAL IfcPositiveLengthMeasure;
+	LongitudinalBarNominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	TransverseBarNominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	LongitudinalBarCrossSectionArea : OPTIONAL IfcAreaMeasure;
+	TransverseBarCrossSectionArea : OPTIONAL IfcAreaMeasure;
+	LongitudinalBarSpacing : OPTIONAL IfcPositiveLengthMeasure;
+	TransverseBarSpacing : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : OPTIONAL IfcReinforcingMeshTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT EXISTS(PredefinedType) OR
+(PredefinedType <> IfcReinforcingMeshTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcReinforcingMeshTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCREINFORCINGMESHTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType))
+;
+END_ENTITY;
+
+ENTITY IfcReinforcingMeshType
+ SUBTYPE OF (IfcReinforcingElementType);
+	PredefinedType : IfcReinforcingMeshTypeEnum;
+	MeshLength : OPTIONAL IfcPositiveLengthMeasure;
+	MeshWidth : OPTIONAL IfcPositiveLengthMeasure;
+	LongitudinalBarNominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	TransverseBarNominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	LongitudinalBarCrossSectionArea : OPTIONAL IfcAreaMeasure;
+	TransverseBarCrossSectionArea : OPTIONAL IfcAreaMeasure;
+	LongitudinalBarSpacing : OPTIONAL IfcPositiveLengthMeasure;
+	TransverseBarSpacing : OPTIONAL IfcPositiveLengthMeasure;
+	BendingShapeCode : OPTIONAL IfcLabel;
+	BendingParameters : OPTIONAL LIST [1:?] OF IfcBendingParameterSelect;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcReinforcingMeshTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcReinforcingMeshTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+	BendingShapeCodeProvided : NOT EXISTS(BendingParameters) OR EXISTS(BendingShapeCode);
+END_ENTITY;
+
+ENTITY IfcSurfaceFeature
+ SUBTYPE OF (IfcFeatureElement);
+	PredefinedType : OPTIONAL IfcSurfaceFeatureTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcSurfaceFeatureTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
+END_ENTITY;
+
+ENTITY IfcTendon
+ SUBTYPE OF (IfcReinforcingElement);
+	PredefinedType : OPTIONAL IfcTendonTypeEnum;
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	CrossSectionArea : OPTIONAL IfcAreaMeasure;
+	TensionForce : OPTIONAL IfcForceMeasure;
+	PreStress : OPTIONAL IfcPressureMeasure;
+	FrictionCoefficient : OPTIONAL IfcNormalisedRatioMeasure;
+	AnchorageSlip : OPTIONAL IfcPositiveLengthMeasure;
+	MinCurvatureRadius : OPTIONAL IfcPositiveLengthMeasure;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcTendonTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCTENDONTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType))
+;
+END_ENTITY;
+
+ENTITY IfcTendonAnchor
+ SUBTYPE OF (IfcReinforcingElement);
+	PredefinedType : OPTIONAL IfcTendonAnchorTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcTendonAnchorTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonAnchorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCTENDONANCHORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcTendonAnchorType
+ SUBTYPE OF (IfcReinforcingElementType);
+	PredefinedType : IfcTendonAnchorTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcTendonAnchorTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonAnchorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcTendonConduit
+ SUBTYPE OF (IfcReinforcingElement);
+	PredefinedType : IfcTendonConduitTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT EXISTS(PredefinedType) OR
+(PredefinedType <> IfcTendonConduitTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonConduitTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSTRUCTURALELEMENTSDOMAIN.IFCTENDONCONDUITTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcTendonConduitType
+ SUBTYPE OF (IfcReinforcingElementType);
+	PredefinedType : IfcTendonConduitTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcTendonConduitTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonConduitTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcTendonType
+ SUBTYPE OF (IfcReinforcingElementType);
+	PredefinedType : IfcTendonTypeEnum;
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	CrossSectionArea : OPTIONAL IfcAreaMeasure;
+	SheathDiameter : OPTIONAL IfcPositiveLengthMeasure;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcTendonTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTendonTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcVoidingFeature
+ SUBTYPE OF (IfcFeatureElementSubtraction);
+	PredefinedType : OPTIONAL IfcVoidingFeatureTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcVoidingFeatureTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
+END_ENTITY;
+
+END_SCHEMA;

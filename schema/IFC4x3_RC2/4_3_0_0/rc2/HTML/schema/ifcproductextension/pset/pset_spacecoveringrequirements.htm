@@ -1,0 +1,289 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SpaceCoveringRequirements</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.17");
+//-->
+</script>
+
+<h4 class="std">5.4.4.17 Pset_SpaceCoveringRequirements</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Covering Requirements</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/pset/pset_spacecoveringrequirements.htm">Pset_SpaceCoveringRequirements</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConcealedFlooringOffset</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConcealedCeilingOffset</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/1_NWo9Gaz6lwAxpGptBWF4/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SpaceCoveringRequirements.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>FloorCovering</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bodenbelag</b></td><td>Angabe des Materials für den Bodenbelag. Diese Angabe wird im Raumbuch verwendet und oft im Raumstempel angezeigt.
+Die Materialangabe wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = FLOORING) für den Bodenbelag dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialangabe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Floor Covering</b></td><td>Label to indicate the material or finish of the space flooring. The label is used for room book information and often displayed in room stamp.
+The material information is provided in absence of an IfcCovering (type=FLOORING) object with own shape representation and material assignment. In case of inconsistency the material assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RevetementSol</b></td><td>Indication sur la nature du revêtement de sol […]. L'information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=FLOORING) avec sa propre représentation de forme et une assignation à un matériau. En cas d'incohérence, c'est le matériau assigné à l'instance de IfcCovering qui prime.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>床仕上げ</b></td><td>部屋の床材質または仕上げに関するラベル（識別情報）。このラベル名は部屋リスト情報や部屋情報表示の際に利用される。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FloorCoveringThickness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Dicke des Bodenbelags</b></td><td>Angabe der Dicke der Materialschichten für den Bodenbelag.
+Der Dickenparameter wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = FLOORING) für den Bodenbelag dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialdicke des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Floor Covering Thickness</b></td><td>Thickness of the material layer(s) for the space flooring.
+The thickness information is provided in absence of an IfcCovering (type=FLOORING) object with own shape representation. In cases of inconsistency between the geometric parameters of an assigned IfcCovering and this attached property, the geometric parameters take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Epaisseur du revêtement de sol</b></td><td>Epaisseur de la couche de matériau constituant le revêtement de sol. Cette information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=FLOORING) avec sa propre représentation de forme. En cas d'incohérence entre les paramètres géométriques de l'instance de IfcCovering et cette propriété, ce sont les paramètres géométriques qui priment.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>床仕上げ材厚</b></td><td>部屋の床に関する材質層の厚さ。
+形状表現を持つIfcCovering(type=FLOORING)オブジェクトが存在しない場合に与えられる厚さ情報。IfcCoveringの幾何形状パラメータとこのプロパティ値が一致しない場合、幾何形状パラメータの値を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WallCovering</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Wandbekleidung</b></td><td>Angabe des Materials für die Wandbekleidung, oder den Wandbelag Diese Angabe wird im Raumbuch verwendet und oft im Raumstempel angezeigt.
+Die Materialangabe wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = CLADDING) für die Wandbekleidung dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialangabe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Wall Covering</b></td><td>Label to indicate the material or finish of the space flooring. The label is used for room book information and often displayed in room stamp.
+The material information is provided in absence of an IfcCovering (type=CLADDING) object with own shape representation and material assignment. In case of inconsistency the material assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RevetementMur</b></td><td>Indication sur la nature du revêtement de mur […]. L'information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=CLADDING) avec sa propre représentation de forme et une assignation à un matériau. En cas d'incohérence, c'est le matériau assigné à l'instance de IfcCovering qui prime.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>壁仕上げ</b></td><td>部屋の壁材質または仕上げに関するラベル（識別情報）。このラベル名は部屋リスト情報や部屋情報表示の際に利用される。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WallCoveringThickness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Dicke der Wandbekleidung</b></td><td>Angabe der Dicke der Materialschichten für die Wandbekleidung.
+Der Dickenparameter wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = CLADDING) für die Wandbekleidung dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialdicke des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Wall Covering Thickness</b></td><td>Thickness of the material layer(s) for the space cladding.
+The thickness information is provided in absence of an IfcCovering (type=CLADDING) object with own shape representation. In cases of inconsistency between the geometric parameters of an assigned IfcCovering and this attached property, the geometric parameters take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Epaisseur du revêtement de mur</b></td><td>Epaisseur de la couche de matériau constituant le revêtement de mur. Cette information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=CLADDING) avec sa propre représentation de forme. En cas d'incohérence entre les paramètres géométriques de l'instance de IfcCovering et cette propriété, ce sont les paramètres géométriques qui priment.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>壁仕上げ厚</b></td><td>部屋の壁に関する材質層の厚さ。
+形状表現を持つIfcCovering(type=CLADDING)オブジェクトが存在しない場合に与えられる厚さ情報。IfcCoveringの幾何形状パラメータとこのプロパティ値が一致しない場合、幾何形状パラメータの値を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CeilingCovering</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Deckenbekleidung</b></td><td>Angabe des Materials für die Deckenbekleidung oder den Deckenbelag (bzw. der Unterdecke). Diese Angabe wird im Raumbuch verwendet und oft im Raumstempel angezeigt.
+Die Materialangabe wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = CEILING) für die Deckenbekleidung dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialangabe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ceiling Covering</b></td><td>Label to indicate the material or finish of the space flooring. The label is used for room book information and often displayed in room stamp.
+The material information is provided in absence of an IfcCovering (type=CEILING) object with own shape representation and material assignment. In case of inconsistency the material assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RevetementPlafond</b></td><td>Indication sur la nature du revêtement de plafond […]. L'information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=CEILING) avec sa propre représentation de forme et une assignation à un matériau. En cas d'incohérence, c'est le matériau assigné à l'instance de IfcCovering qui prime.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>天井仕上げ</b></td><td>部屋の天井材質または仕上げに関するラベル（識別情報）。このラベル名は部屋リスト情報や部屋情報表示の際に利用される。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CeilingCoveringThickness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Dicke der Deckenbekleidung</b></td><td>Angabe der  Dicke der Materialschichten für die Deckenbekleidung.
+Der Dickenparameter wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = CEILING) für die Deckenbekleidung dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialdicke des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ceiling Covering Thickness</b></td><td>Thickness of the material layer(s) for the space ceiling.
+The thickness information is provided in absence of an IfcCovering (type=CEILING) object with own shape representation. In cases of inconsistency between the geometric parameters of an assigned IfcCovering and this attached property, the geometric parameters take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Epaisseur du revêtement de plafond</b></td><td>Epaisseur de la couche de matériau constituant le revêtement de sol. Cette information sur le matériau est fournie en l'absence d'un objet de la classe IfcCovering (Type=CEILING) avec sa propre représentation de forme. En cas d'incohérence entre les paramètres géométriques de l'instance de IfcCovering et cette propriété, ce sont les paramètres géométriques qui priment.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>天井仕上げ厚</b></td><td>部屋の天井に関する材質層の厚さ。
+形状表現を持つIfcCovering(type=CEILING)オブジェクトが存在しない場合に与えられる厚さ情報。IfcCoveringの幾何形状パラメータとこのプロパティ値が一致しない場合、幾何形状パラメータの値を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SkirtingBoard</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Sockelleiste</b></td><td>Angabe des Materials für die Sockelleiste. Diese Angabe wird im Raumbuch verwendet.
+Die Materialangabe wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = SKIRTINGBOARD) für die Sockelleiste dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialangabe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Skirting Board</b></td><td>Label to indicate the material or construction of the skirting board around the space flooring. The label is used for room book information.
+The material information is provided in absence of an IfcCovering (type=SKIRTINGBOARD) object with own shape representation and material assignment. In case of inconsistency the material assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Matériau de la plinthe</b></td><td></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>幅木材</b></td><td>部屋の床の周りにある幅木の材質または施工に関するラベル（識別情報）。ラベル名は部屋リスト情報に使用される。
+形状表現を持つIfcCovering (type=SKIRTINGBOARD)オブジェクトが存在しない場合に与えられる材質情報。IfcCoveringの材質情報とこのプロパティ値が一致しない場合、IfcCoveringに与えられている材質情報を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SkirtingBoardHeight</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Höhe der Sockelleite</b></td><td>Angabe der  Höhe der umlaufenden Sockelleiste.
+Der Höhenparameter wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = SKIRTINGBOARD) für die Sockelleiste dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Höhe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Skirting Board Height</b></td><td>Height of the skirting board.
+The height information is provided in absence of an IfcCovering (type=SKIRTINGBOARD) object with own shape representation and material assignment. In case of inconsistency the height assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Hauteur de la plinthe</b></td><td></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>幅木材高</b></td><td>部屋の幅木の高さ。
+形状表現を持つIfcCovering(type=SKIRTINGBOARD)オブジェクトが存在しない場合に与えられる厚さ情報。IfcCoveringの幾何形状パラメータとこのプロパティ値が一致しない場合、幾何形状パラメータの値を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Molding</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Gesims</b></td><td>Angabe des Materials für das Gesims (Deckenkante). Diese Angabe wird im Raumbuch verwendet.
+Die Materialangabe wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = MOLDING) für das Gesims dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Materialangabe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Molding</b></td><td>Label to indicate the material or construction of the molding around the space ceiling. The label is used for room book information.
+The material information is provided in absence of an IfcCovering (type=MOLDING) object with own shape representation and material assignment. In case of inconsistency the material assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Matériau de la moulure</b></td><td></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>廻縁</b></td><td>部屋の廻縁の材質または施工に関するラベル（識別情報）。ラベル名は部屋リスト情報に使用される。
+形状表現を持つIfcCovering (type=MOLDING)オブジェクトが存在しない場合に与えられる材質情報。IfcCoveringの材質情報とこのプロパティ値が一致しない場合、IfcCoveringに与えられている材質情報を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MoldingHeight</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Höhe des Gesims</b></td><td>Angabe der  Höhe des umlaufenden Gesims (Deckenkante).
+Der Höhenparameter wird übernommen, wenn kein eigenes Bekleidungsobjekt (IfcCovering mit PredefinedType = MOLDING) für das Gesims dem Raum zugeordnet ist. Bei Inkonsistenzen (wenn beides gegeben ist), hat die Höhe des zugeordneten Bekleidungsobjekts Priorität.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Molding Height</b></td><td>Height of the molding.
+The height information is provided in absence of an IfcCovering (type=MOLDING) object with own shape representation and material assignment. In case of inconsistency the height assigned to IfcCovering elements takes precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Hauteur de la moulure</b></td><td></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>廻縁高</b></td><td>部屋の廻縁の高さ。
+形状表現を持つIfcCovering(type=MOLDING)オブジェクトが存在しない場合に与えられる厚さ情報。IfcCoveringの幾何形状パラメータとこのプロパティ値が一致しない場合、幾何形状パラメータの値を優先する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ConcealedFlooring</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Installationsboden</b></td><td>Angabe, ob dieser Raum mit einem aufgeständerten Fußboden ausgestattet ist (JA), oder nicht (NEIN).
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Concealed Flooring</b></td><td>Indication whether this space is designed to have a concealed flooring space (TRUE) or not (FALSE). A concealed flooring space is normally meant to be the space beneath a raised floor.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>FauxPlancher</b></td><td>Indique si la pièce comprend un faux plancher (VRAI) ou non (FAUX)
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>隠蔽床</b></td><td>この部屋（空間）が隠蔽された床空間を持つように設計されているかどうかを示すブーリアン値。隠蔽された床空間とは、上げ床の下の空間。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ConcealedFlooringOffset</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnonnegativelengthmeasure.htm">IfcNonNegativeLengthMeasure</a>
+</td><td>
+Distance between the floor slab and the floor covering, often used for cables and other installations. Often referred to as raised flooring.
+
+</td></tr>
+<tr><td>ConcealedCeiling</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Installationsdecke</b></td><td>Angabe, ob dieser Raum mit einer Installationsdecke (abgehängten Decke) ausgestattet ist (JA), oder nicht (NEIN).
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Concealed Ceiling</b></td><td>Indication whether this space is designed to have a concealed flooring space (TRUE) or not (FALSE). A concealed ceiling space is normally meant to be the space between a slab and a ceiling.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>FauxPlafond</b></td><td>Indique si la pièce comprend un faux plafond (VRAI) ou non (FAUX)
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>隠蔽天井</b></td><td>この部屋（空間）が隠蔽された天井空間を持つように設計されているかどうかを示すブーリアン値。隠蔽された天井空間とは、スラブと天井の間の空間。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ConcealedCeilingOffset</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnonnegativelengthmeasure.htm">IfcNonNegativeLengthMeasure</a>
+</td><td>
+Distance between the upper floor slab and the suspended ceiling, often used for distribution systems. Often referred to as plenum.
+
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_spacecoveringrequirements.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcOpenShell</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 20 index3 3 index4 11 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.20.3.12");
+//-->
+</script>
+
+<h4 class="num">IfcOpenShell</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Offene Hüllle</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Open Shell</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+An open shell is a shell of the dimensionality 2. Its domain, if present, is a finite, connected, oriented, 2-manifold with boundary, but is not a closed surface. It can be thought of as a closed shell with one or more holes punched in it. The domain of an open shell satisfies 0 &lt; Ξ &lt; 1. An open shell is functionally more general than a face because its domain can have handles.</p>
+<p>The shell is defined by a collection of faces, which may be oriented faces. The sense of each face, after taking account of the orientation, shall agree with the shell normal as defined below. The orientation can be supplied directly as a BOOLEAN attribute of an oriented face, or be defaulted to TRUE if the shell member is a face without the orientation attribute.</p>
+<p>The following combinatorial restrictions on open shells and geometrical restrictions on their domains are designed, together with the informal propositions, to ensure that any domain associated with an open shell is an orientable manifold. &gt; * Each face reference shall be unique.</p>
+<ul>
+<li>An open shell shall have at least one face.</li>
+<li>A given face may exist in more than one open shell.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The boundary of an open shell consists of the edges that are referenced only once by the face - bounds (loops) of its faces, together with all of their vertices. The domain of an open shell, if present, contains all edges and vertices of its faces.</p>
+<p>NOTE  Note that this is slightly different from the definition of a face domain, which includes none of its bounds. For example, a face domain may exclude an isolated point or line segment. An open shell domain may not. (See the algorithm for computing below.)</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>open_shell</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x.</p>
+</blockquote>
+<p class="spec-head">
+Informal Propositions:</p>
+<ol>
+<li>Every edge shall be referenced exactly twice by the face bounds of the face.</li>
+<li>Each oriented edge shall be unique.</li>
+<li>No edge shall be referenced by more than two faces.</li>
+<li>Distinct faces of the shell do not intersect, but may share edges or vertices.</li>
+<li>Distinct edges do not intersect but may share vertices.</li>
+<li>Each face reference shall be unique.</li>
+<li>The loops of the shell shall not be a mixture of poly loop and other loop types. Note: this is given, since only poly loop is defined as face bound definition.</li>
+<li>The closed shell shall be an oriented arcwise connected 2-manifold.</li>
+<li>The Euler equation shall be satisfied.</li>
+</ol>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcopenshell.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifctopologyresource/lexical/ifcconnectedfaceset.htm" alt="IfcConnectedFaceSet" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifctopologyresource/lexical/ifctopologicalrepresentationitem.htm" alt="IfcTopologicalRepresentationItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifctopologyresource/lexical/ifctopologicalrepresentationitem.htm">IfcTopologicalRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifctopologyresource/lexical/ifcconnectedfaceset.htm">IfcConnectedFaceSet</a></td></tr>
+<tr><td>1</td><td>CfsFaces</td><td><a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a></td><td>S[1:?]</td><td>
+The set of faces arcwise connected along common edges or vertices.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifctopologyresource/lexical/ifcopenshell.htm">IfcOpenShell</a></td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifctopologyresource/lexical/ifcopenshell.htm">IfcOpenShell</a>&quot; type=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcopenshell.htm">IfcOpenShell</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcconnectedfaceset.htm">IfcConnectedFaceSet</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifctopologyresource/lexical/ifcopenshell.htm">IfcOpenShell</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcconnectedfaceset.htm">IfcConnectedFaceSet</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcOpenShell<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifctopologyresource/lexical/ifcconnectedfaceset.htm">IfcConnectedFaceSet</a>)<b>;</b><br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifctopologyresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifctopologyresource/lexical/ifcshell.htm">IfcShell</a>
+</p>
+<p><a href="../../../link/ifcopenshell.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,1718 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCGEOMETRYRESOURCE;
+
+REFERENCE FROM IFCGEOMETRICCONSTRAINTRESOURCE
+(
+  IfcLinearPlacement
+);
+
+REFERENCE FROM IFCGEOMETRICMODELRESOURCE
+(
+  IfcBooleanResult,
+  IfcSolidModel,
+  IfcHalfSpaceSolid,
+  IfcBoundingBox,
+  IfcSectionedSpine,
+  IfcGeometricSet,
+  IfcFaceBasedSurfaceModel,
+  IfcShellBasedSurfaceModel,
+  IfcTessellatedItem,
+  IfcCartesianPointList
+);
+
+REFERENCE FROM IfcMeasureResource
+(
+  IfcPlaneAngleMeasure,
+  IfcLabel
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcLengthMeasure,
+  IfcPositiveLengthMeasure,
+  IfcParameterValue,
+  IfcSiUnit,
+  IfcInteger,
+  IfcReal,
+  IfcLogical,
+  IfcBoolean,
+  IfcPositiveInteger
+);
+
+REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
+(
+  IfcStyledItem,
+  IfcNullStyle
+);
+
+REFERENCE FROM IFCPRESENTATIONORGANIZATIONRESOURCE
+(
+  IfcPresentationLayerAssignment
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcLinearPositioningElement,
+  IfcAlignmentHorizontal,
+  IfcAlignmentVertical
+);
+
+REFERENCE FROM IFCPROFILERESOURCE
+(
+  IfcProfileDef,
+  IfcProfileTypeEnum
+);
+
+REFERENCE FROM IFCREPRESENTATIONRESOURCE
+(
+  IfcRepresentation,
+  IfcShapeAspect
+);
+
+REFERENCE FROM IFCTOPOLOGYRESOURCE
+(
+  IfcTopologicalRepresentationItem,
+  IfcOpenShell,
+  IfcClosedShell
+);
+
+TYPE IfcArcIndex = LIST [3:3] OF IfcPositiveInteger;
+END_TYPE;
+
+TYPE IfcDimensionCount = INTEGER;
+ WHERE
+	WR1 : { 0 < SELF <= 3 };
+END_TYPE;
+
+TYPE IfcLineIndex = LIST [2:?] OF IfcPositiveInteger;
+END_TYPE;
+
+TYPE IfcBSplineCurveForm = ENUMERATION OF
+	(POLYLINE_FORM
+	,CIRCULAR_ARC
+	,ELLIPTIC_ARC
+	,PARABOLIC_ARC
+	,HYPERBOLIC_ARC
+	,UNSPECIFIED);
+END_TYPE;
+
+TYPE IfcBSplineSurfaceForm = ENUMERATION OF
+	(PLANE_SURF
+	,CYLINDRICAL_SURF
+	,CONICAL_SURF
+	,SPHERICAL_SURF
+	,TOROIDAL_SURF
+	,SURF_OF_REVOLUTION
+	,RULED_SURF
+	,GENERALISED_CONE
+	,QUADRIC_SURF
+	,SURF_OF_LINEAR_EXTRUSION
+	,UNSPECIFIED);
+END_TYPE;
+
+TYPE IfcKnotType = ENUMERATION OF
+	(UNIFORM_KNOTS
+	,QUASI_UNIFORM_KNOTS
+	,PIECEWISE_BEZIER_KNOTS
+	,UNSPECIFIED);
+END_TYPE;
+
+TYPE IfcPreferredSurfaceCurveRepresentation = ENUMERATION OF
+	(CURVE3D
+	,PCURVE_S1
+	,PCURVE_S2);
+END_TYPE;
+
+TYPE IfcTransitionCode = ENUMERATION OF
+	(DISCONTINUOUS
+	,CONTINUOUS
+	,CONTSAMEGRADIENT
+	,CONTSAMEGRADIENTSAMECURVATURE);
+END_TYPE;
+
+TYPE IfcTransitionCurveType = ENUMERATION OF
+	(BIQUADRATICPARABOLA
+	,BLOSSCURVE
+	,CLOTHOIDCURVE
+	,COSINECURVE
+	,CUBICPARABOLA
+	,SINECURVE);
+END_TYPE;
+
+TYPE IfcTrimmingPreference = ENUMERATION OF
+	(CARTESIAN
+	,PARAMETER
+	,UNSPECIFIED);
+END_TYPE;
+
+TYPE IfcAxis2Placement = SELECT
+	(IfcAxis2Placement2D
+	,IfcAxis2Placement3D);
+END_TYPE;
+
+TYPE IfcCurveMeasureSelect = SELECT
+	(IfcNonNegativeLengthMeasure
+	,IfcParameterValue);
+END_TYPE;
+
+TYPE IfcCurveOnSurface = SELECT
+	(IfcCompositeCurveOnSurface
+	,IfcPcurve
+	,IfcSurfaceCurve);
+END_TYPE;
+
+TYPE IfcSegmentIndexSelect = SELECT
+	(IfcArcIndex
+	,IfcLineIndex);
+END_TYPE;
+
+TYPE IfcTrimmingSelect = SELECT
+	(IfcCartesianPoint
+	,IfcParameterValue);
+END_TYPE;
+
+TYPE IfcVectorOrDirection = SELECT
+	(IfcDirection
+	,IfcVector);
+END_TYPE;
+
+ENTITY IfcAlignmentCurve
+ SUBTYPE OF (IfcBoundedCurve);
+	Horizontal : IfcAlignmentHorizontal;
+	Vertical : OPTIONAL IfcAlignmentVertical;
+	Tag : OPTIONAL IfcLabel;
+END_ENTITY;
+
+ENTITY IfcAxis1Placement
+ SUBTYPE OF (IfcPlacement);
+	Axis : OPTIONAL IfcDirection;
+ DERIVE
+	Z : IfcDirection := NVL (IfcNormalise(Axis), IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0,0.0,1.0]));
+ WHERE
+	AxisIs3D : (NOT (EXISTS (Axis))) OR (Axis.Dim = 3);
+	LocationIs3D : SELF\IfcPlacement.Location.Dim = 3;
+	LocationIsCP : 'IFCGEOMETRYRESOURCE.IFCCARTESIANPOINT' IN TYPEOF(SELF\IfcPlacement.Location);
+END_ENTITY;
+
+ENTITY IfcAxis2Placement2D
+ SUBTYPE OF (IfcPlacement);
+	RefDirection : OPTIONAL IfcDirection;
+ DERIVE
+	P : LIST [2:2] OF IfcDirection := IfcBuild2Axes(RefDirection);
+ WHERE
+	RefDirIs2D : (NOT (EXISTS (RefDirection))) OR (RefDirection.Dim = 2);
+	LocationIs2D : SELF\IfcPlacement.Location.Dim = 2;
+	LocationIsCP : 'IFCGEOMETRYRESOURCE.IFCCARTESIANPOINT' IN TYPEOF(SELF\IfcPlacement.Location);
+END_ENTITY;
+
+ENTITY IfcAxis2Placement3D
+ SUBTYPE OF (IfcPlacement);
+	Axis : OPTIONAL IfcDirection;
+	RefDirection : OPTIONAL IfcDirection;
+ DERIVE
+	P : LIST [3:3] OF IfcDirection := IfcBuildAxes(Axis, RefDirection);
+ WHERE
+	LocationIs3D : SELF\IfcPlacement.Location.Dim = 3;
+	AxisIs3D : (NOT (EXISTS (Axis))) OR (Axis.Dim = 3);
+	RefDirIs3D : (NOT (EXISTS (RefDirection))) OR (RefDirection.Dim = 3);
+	AxisToRefDirPosition : (NOT (EXISTS (Axis))) OR (NOT (EXISTS (RefDirection))) OR (IfcCrossProduct(Axis,RefDirection).Magnitude > 0.0);
+	AxisAndRefDirProvision : NOT ((EXISTS (Axis)) XOR (EXISTS (RefDirection)));
+	LocationIsCP : 'IFCGEOMETRYRESOURCE.IFCCARTESIANPOINT' IN TYPEOF(SELF\IfcPlacement.Location);
+END_ENTITY;
+
+ENTITY IfcAxis2PlacementLinear
+ SUBTYPE OF (IfcPlacement);
+	Axis : OPTIONAL IfcDirection;
+	RefDirection : OPTIONAL IfcDirection;
+ WHERE
+	WR1 : 'IFCGEOMETRYRESOURCE.IfcPointByDistanceExpression' IN TYPEOF(SELF\IfcPlacement.Location);
+	WR2 : (NOT (EXISTS (Axis))) OR (NOT (EXISTS (RefDirection))) OR (IfcCrossProduct(Axis,RefDirection).Magnitude > 0.0);
+END_ENTITY;
+
+ENTITY IfcBSplineCurve
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBSplineCurveWithKnots))
+ SUBTYPE OF (IfcBoundedCurve);
+	Degree : IfcInteger;
+	ControlPointsList : LIST [2:?] OF IfcCartesianPoint;
+	CurveForm : IfcBSplineCurveForm;
+	ClosedCurve : IfcLogical;
+	SelfIntersect : IfcLogical;
+ DERIVE
+	UpperIndexOnControlPoints : IfcInteger := (SIZEOF(ControlPointsList) - 1);
+	ControlPoints : ARRAY [0:UpperIndexOnControlPoints] OF IfcCartesianPoint := IfcListToArray(ControlPointsList,0,UpperIndexOnControlPoints);
+ WHERE
+	SameDim : SIZEOF(QUERY(Temp <* ControlPointsList |
+  Temp.Dim <> ControlPointsList[1].Dim))
+= 0;
+END_ENTITY;
+
+ENTITY IfcBSplineCurveWithKnots
+ SUPERTYPE OF (ONEOF
+    (IfcRationalBSplineCurveWithKnots))
+ SUBTYPE OF (IfcBSplineCurve);
+	KnotMultiplicities : LIST [2:?] OF IfcInteger;
+	Knots : LIST [2:?] OF IfcParameterValue;
+	KnotSpec : IfcKnotType;
+ DERIVE
+	UpperIndexOnKnots : IfcInteger := SIZEOF(Knots);
+ WHERE
+	ConsistentBSpline : IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots,
+UpperIndexOnControlPoints, KnotMultiplicities, Knots);
+	CorrespondingKnotLists : SIZEOF(KnotMultiplicities) = UpperIndexOnKnots;
+END_ENTITY;
+
+ENTITY IfcBSplineSurface
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBSplineSurfaceWithKnots))
+ SUBTYPE OF (IfcBoundedSurface);
+	UDegree : IfcInteger;
+	VDegree : IfcInteger;
+	ControlPointsList : LIST [2:?] OF LIST [2:?] OF IfcCartesianPoint;
+	SurfaceForm : IfcBSplineSurfaceForm;
+	UClosed : IfcLogical;
+	VClosed : IfcLogical;
+	SelfIntersect : IfcLogical;
+ DERIVE
+	UUpper : IfcInteger := SIZEOF(ControlPointsList) - 1;
+	VUpper : IfcInteger := SIZEOF(ControlPointsList[1]) - 1;
+	ControlPoints : ARRAY [0:UUpper] OF ARRAY [0:VUpper] OF IfcCartesianPoint := IfcMakeArrayOfArray(ControlPointsList,
+0,UUpper,0,VUpper);
+END_ENTITY;
+
+ENTITY IfcBSplineSurfaceWithKnots
+ SUPERTYPE OF (ONEOF
+    (IfcRationalBSplineSurfaceWithKnots))
+ SUBTYPE OF (IfcBSplineSurface);
+	UMultiplicities : LIST [2:?] OF IfcInteger;
+	VMultiplicities : LIST [2:?] OF IfcInteger;
+	UKnots : LIST [2:?] OF IfcParameterValue;
+	VKnots : LIST [2:?] OF IfcParameterValue;
+	KnotSpec : IfcKnotType;
+ DERIVE
+	KnotVUpper : IfcInteger := SIZEOF(VKnots);
+	KnotUUpper : IfcInteger := SIZEOF(UKnots);
+ WHERE
+	UDirectionConstraints : IfcConstraintsParamBSpline (
+  SELF\IfcBSplineSurface.UDegree, KnotUUpper, 
+  SELF\IfcBSplineSurface.UUpper, UMultiplicities, UKnots);
+	VDirectionConstraints : IfcConstraintsParamBSpline (
+  SELF\IfcBSplineSurface.VDegree, KnotVUpper, 
+  SELF\IfcBSplineSurface.VUpper, VMultiplicities, VKnots);
+	CorrespondingULists : SIZEOF(UMultiplicities) = KnotUUpper;
+	CorrespondingVLists : SIZEOF(VMultiplicities) = KnotVUpper;
+END_ENTITY;
+
+ENTITY IfcBlossCurve
+ SUBTYPE OF (IfcCurve);
+	Position : IfcAxis2Placement;
+	CurveLength : IfcPositiveLengthMeasure;
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcBoundaryCurve
+ SUPERTYPE OF (ONEOF
+    (IfcOuterBoundaryCurve))
+ SUBTYPE OF (IfcCompositeCurveOnSurface);
+ WHERE
+	IsClosed : SELF\IfcCompositeCurve.ClosedCurve;
+END_ENTITY;
+
+ENTITY IfcBoundedCurve
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAlignmentCurve
+    ,IfcBSplineCurve
+    ,IfcCompositeCurve
+    ,IfcCurveSegment2D
+    ,IfcGradientCurve
+    ,IfcIndexedPolyCurve
+    ,IfcPolyline
+    ,IfcSegmentedReferenceCurve
+    ,IfcTrimmedCurve))
+ SUBTYPE OF (IfcCurve);
+ INVERSE
+	PositioningElement : SET [0:1] OF IfcLinearPositioningElement FOR Axis;
+END_ENTITY;
+
+ENTITY IfcBoundedSurface
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBSplineSurface
+    ,IfcCurveBoundedPlane
+    ,IfcCurveBoundedSurface
+    ,IfcRectangularTrimmedSurface))
+ SUBTYPE OF (IfcSurface);
+END_ENTITY;
+
+ENTITY IfcCartesianPoint
+ SUBTYPE OF (IfcPoint);
+	Coordinates : LIST [1:3] OF IfcLengthMeasure;
+ DERIVE
+	Dim : IfcDimensionCount := HIINDEX(Coordinates);
+ WHERE
+	CP2Dor3D : HIINDEX(Coordinates) >= 2;
+END_ENTITY;
+
+ENTITY IfcCartesianTransformationOperator
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCartesianTransformationOperator2D
+    ,IfcCartesianTransformationOperator3D))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Axis1 : OPTIONAL IfcDirection;
+	Axis2 : OPTIONAL IfcDirection;
+	LocalOrigin : IfcCartesianPoint;
+	Scale : OPTIONAL IfcReal;
+ DERIVE
+	Scl : IfcReal := NVL(Scale, 1.0);
+	Dim : IfcDimensionCount := LocalOrigin.Dim;
+ WHERE
+	ScaleGreaterZero : Scl > 0.0;
+END_ENTITY;
+
+ENTITY IfcCartesianTransformationOperator2D
+ SUPERTYPE OF (ONEOF
+    (IfcCartesianTransformationOperator2DnonUniform))
+ SUBTYPE OF (IfcCartesianTransformationOperator);
+ DERIVE
+	U : LIST [2:2] OF IfcDirection := IfcBaseAxis(2,SELF\IfcCartesianTransformationOperator.Axis1,
+SELF\IfcCartesianTransformationOperator.Axis2,?);
+ WHERE
+	DimEqual2 : SELF\IfcCartesianTransformationOperator.Dim = 2;
+	Axis1Is2D : NOT(EXISTS(SELF\IfcCartesianTransformationOperator.Axis1)) OR 
+(SELF\IfcCartesianTransformationOperator.Axis1.Dim = 2);
+	Axis2Is2D : NOT(EXISTS(SELF\IfcCartesianTransformationOperator.Axis2)) OR 
+(SELF\IfcCartesianTransformationOperator.Axis2.Dim = 2);
+END_ENTITY;
+
+ENTITY IfcCartesianTransformationOperator2DnonUniform
+ SUBTYPE OF (IfcCartesianTransformationOperator2D);
+	Scale2 : OPTIONAL IfcReal;
+ DERIVE
+	Scl2 : IfcReal := NVL(Scale2, SELF\IfcCartesianTransformationOperator.Scl);
+ WHERE
+	Scale2GreaterZero : Scl2 > 0.0;
+END_ENTITY;
+
+ENTITY IfcCartesianTransformationOperator3D
+ SUPERTYPE OF (ONEOF
+    (IfcCartesianTransformationOperator3DnonUniform))
+ SUBTYPE OF (IfcCartesianTransformationOperator);
+	Axis3 : OPTIONAL IfcDirection;
+ DERIVE
+	U : LIST [3:3] OF IfcDirection := IfcBaseAxis(3,SELF\IfcCartesianTransformationOperator.Axis1,
+SELF\IfcCartesianTransformationOperator.Axis2,Axis3);
+ WHERE
+	DimIs3D : SELF\IfcCartesianTransformationOperator.Dim = 3;
+	Axis1Is3D : NOT(EXISTS(SELF\IfcCartesianTransformationOperator.Axis1)) OR 
+(SELF\IfcCartesianTransformationOperator.Axis1.Dim = 3);
+	Axis2Is3D : NOT(EXISTS(SELF\IfcCartesianTransformationOperator.Axis2)) OR 
+(SELF\IfcCartesianTransformationOperator.Axis2.Dim = 3);
+	Axis3Is3D : NOT(EXISTS(Axis3)) OR (Axis3.Dim = 3);
+END_ENTITY;
+
+ENTITY IfcCartesianTransformationOperator3DnonUniform
+ SUBTYPE OF (IfcCartesianTransformationOperator3D);
+	Scale2 : OPTIONAL IfcReal;
+	Scale3 : OPTIONAL IfcReal;
+ DERIVE
+	Scl2 : IfcReal := NVL(Scale2, SELF\IfcCartesianTransformationOperator.Scl);
+	Scl3 : IfcReal := NVL(Scale3, SELF\IfcCartesianTransformationOperator.Scl);
+ WHERE
+	Scale2GreaterZero : Scl2 > 0.0;
+	Scale3GreaterZero : Scl3 > 0.0;
+END_ENTITY;
+
+ENTITY IfcCircle
+ SUBTYPE OF (IfcConic);
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcCircularArcSegment2D
+ SUBTYPE OF (IfcCurveSegment2D);
+	Radius : IfcPositiveLengthMeasure;
+	IsCCW : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcClothoid
+ SUBTYPE OF (IfcCurve);
+	Position : IfcAxis2Placement;
+	ClothoidConstant : IfcLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcCompositeCurve
+ SUPERTYPE OF (ONEOF
+    (IfcCompositeCurveOnSurface))
+ SUBTYPE OF (IfcBoundedCurve);
+	Segments : LIST [1:?] OF IfcSegment;
+	SelfIntersect : IfcLogical;
+ DERIVE
+	NSegments : IfcInteger := SIZEOF(Segments);
+	ClosedCurve : IfcLogical := Segments[NSegments].Transition <> Discontinuous;
+ WHERE
+	CurveContinuous : ((NOT ClosedCurve) AND (SIZEOF(QUERY(Temp <* Segments | Temp.Transition = Discontinuous)) = 1)) OR ((ClosedCurve) AND (SIZEOF(QUERY(Temp <* Segments | Temp.Transition = Discontinuous)) = 0));
+	SameDim : SIZEOF( QUERY( Temp <* Segments | Temp.Dim <> Segments[1].Dim)) = 0;
+END_ENTITY;
+
+ENTITY IfcCompositeCurveOnSurface
+ SUPERTYPE OF (ONEOF
+    (IfcBoundaryCurve))
+ SUBTYPE OF (IfcCompositeCurve);
+ DERIVE
+	BasisSurface : SET [0:1] OF IfcSurface := IfcGetBasisSurface(SELF);
+ WHERE
+	SameSurface : SIZEOF(BasisSurface) > 0;
+END_ENTITY;
+
+ENTITY IfcCompositeCurveSegment
+ SUPERTYPE OF (ONEOF
+    (IfcReparametrisedCompositeCurveSegment))
+ SUBTYPE OF (IfcSegment);
+	SameSense : IfcBoolean;
+	ParentCurve : IfcCurve;
+ DERIVE
+	Dim : IfcDimensionCount := ParentCurve.Dim;
+ INVERSE
+	UsingCurves : SET [1:?] OF IfcCompositeCurve FOR Segments;
+ WHERE
+	ParentIsBoundedCurve : ('IFCGEOMETRYRESOURCE.IFCBOUNDEDCURVE' IN TYPEOF(ParentCurve));
+END_ENTITY;
+
+ENTITY IfcConic
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCircle
+    ,IfcEllipse))
+ SUBTYPE OF (IfcCurve);
+	Position : IfcAxis2Placement;
+END_ENTITY;
+
+ENTITY IfcCurve
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBlossCurve
+    ,IfcBoundedCurve
+    ,IfcClothoid
+    ,IfcConic
+    ,IfcLine
+    ,IfcOffsetCurve
+    ,IfcPcurve
+    ,IfcSeriesParameterCurve
+    ,IfcSurfaceCurve))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+ DERIVE
+	Dim : IfcDimensionCount := IfcCurveDim(SELF);
+END_ENTITY;
+
+ENTITY IfcCurveBoundedPlane
+ SUBTYPE OF (IfcBoundedSurface);
+	BasisSurface : IfcPlane;
+	OuterBoundary : IfcCurve;
+	InnerBoundaries : SET [0:?] OF IfcCurve;
+END_ENTITY;
+
+ENTITY IfcCurveBoundedSurface
+ SUBTYPE OF (IfcBoundedSurface);
+	BasisSurface : IfcSurface;
+	Boundaries : SET [1:?] OF IfcBoundaryCurve;
+	ImplicitOuter : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcCurveSegment
+ SUBTYPE OF (IfcSegment);
+	Placement : IfcPlacement;
+	SegmentStart : IfcCurveMeasureSelect;
+	SegmentLength : IfcCurveMeasureSelect;
+	ParentCurve : IfcCurve;
+END_ENTITY;
+
+ENTITY IfcCurveSegment2D
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCircularArcSegment2D
+    ,IfcLineSegment2D
+    ,IfcTransitionCurveSegment2D))
+ SUBTYPE OF (IfcBoundedCurve);
+	StartPoint : IfcCartesianPoint;
+	StartDirection : IfcPlaneAngleMeasure;
+	SegmentLength : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcCylindricalSurface
+ SUBTYPE OF (IfcElementarySurface);
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcDirection
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	DirectionRatios : LIST [2:3] OF IfcReal;
+ DERIVE
+	Dim : IfcDimensionCount := HIINDEX(DirectionRatios);
+ WHERE
+	MagnitudeGreaterZero : SIZEOF(QUERY(Tmp <* DirectionRatios | Tmp <> 0.0)) > 0;
+END_ENTITY;
+
+ENTITY IfcDirectrixCurveSweptAreaSolid
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcFixedReferenceSweptAreaSolid
+    ,IfcSurfaceCurveSweptAreaSolid))
+ SUBTYPE OF (IfcSweptAreaSolid);
+	Directrix : IfcCurve;
+	StartParam : OPTIONAL IfcCurveMeasureSelect;
+	EndParam : OPTIONAL IfcCurveMeasureSelect;
+ WHERE
+	DirectrixBounded : (EXISTS(StartParam) AND EXISTS(EndParam)) OR 
+(SIZEOF(['IFCGEOMETRYRESOURCE.IFCCONIC', 'IFCGEOMETRYRESOURCE.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);
+END_ENTITY;
+
+ENTITY IfcElementarySurface
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCylindricalSurface
+    ,IfcPlane
+    ,IfcSphericalSurface
+    ,IfcToroidalSurface))
+ SUBTYPE OF (IfcSurface);
+	Position : IfcAxis2Placement3D;
+END_ENTITY;
+
+ENTITY IfcEllipse
+ SUBTYPE OF (IfcConic);
+	SemiAxis1 : IfcPositiveLengthMeasure;
+	SemiAxis2 : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcGeometricRepresentationItem
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAnnotationFillArea
+    ,IfcAxisLateralInclination
+    ,IfcBooleanResult
+    ,IfcBoundingBox
+    ,IfcCartesianPointList
+    ,IfcCartesianTransformationOperator
+    ,IfcCsgPrimitive3D
+    ,IfcCurve
+    ,IfcDirection
+    ,IfcFaceBasedSurfaceModel
+    ,IfcFillAreaStyleHatching
+    ,IfcFillAreaStyleTiles
+    ,IfcGeometricSet
+    ,IfcHalfSpaceSolid
+    ,IfcLightSource
+    ,IfcLinearAxisWithInclination
+    ,IfcPlacement
+    ,IfcPlanarExtent
+    ,IfcPoint
+    ,IfcSectionedSpine
+    ,IfcSegment
+    ,IfcShellBasedSurfaceModel
+    ,IfcSolidModel
+    ,IfcSurface
+    ,IfcTessellatedItem
+    ,IfcTextLiteral
+    ,IfcVector))
+ SUBTYPE OF (IfcRepresentationItem);
+END_ENTITY;
+
+ENTITY IfcGradientCurve
+ SUBTYPE OF (IfcBoundedCurve);
+	BaseCurve : IfcBoundedCurve;
+	Segments : LIST [1:?] OF IfcCurveSegment;
+	EndPoint : OPTIONAL IfcCartesianPoint;
+ DERIVE
+	Height : IfcLengthMeasure := IfcGradient(SELF);
+END_ENTITY;
+
+ENTITY IfcIndexedPolyCurve
+ SUBTYPE OF (IfcBoundedCurve);
+	Points : IfcCartesianPointList;
+	Segments : OPTIONAL LIST [1:?] OF IfcSegmentIndexSelect;
+	SelfIntersect : OPTIONAL IfcBoolean;
+ WHERE
+	Consecutive : NOT(EXISTS(Segments)) OR IfcConsecutiveSegments(Segments);
+END_ENTITY;
+
+ENTITY IfcIntersectionCurve
+ SUBTYPE OF (IfcSurfaceCurve);
+ WHERE
+	TwoPCurves : SIZEOF(SELF\IfcSurfaceCurve.AssociatedGeometry) = 2;
+	DistinctSurfaces : IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[1]) <> IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[2]);
+END_ENTITY;
+
+ENTITY IfcLine
+ SUBTYPE OF (IfcCurve);
+	Pnt : IfcCartesianPoint;
+	Dir : IfcVector;
+ WHERE
+	SameDim : Dir.Dim = Pnt.Dim;
+END_ENTITY;
+
+ENTITY IfcLineSegment2D
+ SUBTYPE OF (IfcCurveSegment2D);
+END_ENTITY;
+
+ENTITY IfcMappedItem
+ SUBTYPE OF (IfcRepresentationItem);
+	MappingSource : IfcRepresentationMap;
+	MappingTarget : IfcCartesianTransformationOperator;
+END_ENTITY;
+
+ENTITY IfcOffsetCurve
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcOffsetCurve2D
+    ,IfcOffsetCurve3D
+    ,IfcOffsetCurveByDistances))
+ SUBTYPE OF (IfcCurve);
+	BasisCurve : IfcCurve;
+END_ENTITY;
+
+ENTITY IfcOffsetCurve2D
+ SUBTYPE OF (IfcOffsetCurve);
+	Distance : IfcLengthMeasure;
+	SelfIntersect : IfcLogical;
+ WHERE
+	DimIs2D : BasisCurve.Dim = 2;
+END_ENTITY;
+
+ENTITY IfcOffsetCurve3D
+ SUBTYPE OF (IfcOffsetCurve);
+	Distance : IfcLengthMeasure;
+	SelfIntersect : IfcLogical;
+	RefDirection : IfcDirection;
+ WHERE
+	DimIs2D : BasisCurve.Dim = 3;
+END_ENTITY;
+
+ENTITY IfcOffsetCurveByDistances
+ SUBTYPE OF (IfcOffsetCurve);
+	OffsetValues : LIST [1:?] OF IfcPointByDistanceExpression;
+	Tag : OPTIONAL IfcLabel;
+END_ENTITY;
+
+ENTITY IfcOuterBoundaryCurve
+ SUBTYPE OF (IfcBoundaryCurve);
+END_ENTITY;
+
+ENTITY IfcPcurve
+ SUBTYPE OF (IfcCurve);
+	BasisSurface : IfcSurface;
+	ReferenceCurve : IfcCurve;
+ WHERE
+	DimIs2D : ReferenceCurve.Dim = 2;
+END_ENTITY;
+
+ENTITY IfcPlacement
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAxis1Placement
+    ,IfcAxis2Placement2D
+    ,IfcAxis2Placement3D
+    ,IfcAxis2PlacementLinear))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Location : IfcPoint;
+ DERIVE
+	Dim : IfcDimensionCount := Location.Dim;
+END_ENTITY;
+
+ENTITY IfcPlane
+ SUBTYPE OF (IfcElementarySurface);
+END_ENTITY;
+
+ENTITY IfcPoint
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCartesianPoint
+    ,IfcPointByDistanceExpression
+    ,IfcPointOnCurve
+    ,IfcPointOnSurface))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+END_ENTITY;
+
+ENTITY IfcPointByDistanceExpression
+ SUBTYPE OF (IfcPoint);
+	DistanceAlong : IfcCurveMeasureSelect;
+	OffsetLateral : OPTIONAL IfcLengthMeasure;
+	OffsetVertical : OPTIONAL IfcLengthMeasure;
+	OffsetLongitudinal : OPTIONAL IfcLengthMeasure;
+	BasisCurve : IfcCurve;
+ DERIVE
+	Dim : IfcDimensionCount := BasisCurve.Dim;
+END_ENTITY;
+
+ENTITY IfcPointOnCurve
+ SUBTYPE OF (IfcPoint);
+	BasisCurve : IfcCurve;
+	PointParameter : IfcParameterValue;
+ DERIVE
+	Dim : IfcDimensionCount := BasisCurve.Dim;
+END_ENTITY;
+
+ENTITY IfcPointOnSurface
+ SUBTYPE OF (IfcPoint);
+	BasisSurface : IfcSurface;
+	PointParameterU : IfcParameterValue;
+	PointParameterV : IfcParameterValue;
+ DERIVE
+	Dim : IfcDimensionCount := BasisSurface.Dim;
+END_ENTITY;
+
+ENTITY IfcPolyline
+ SUBTYPE OF (IfcBoundedCurve);
+	Points : LIST [2:?] OF IfcCartesianPoint;
+ WHERE
+	SameDim : SIZEOF(QUERY(Temp <* Points | Temp.Dim <> Points[1].Dim)) = 0;
+END_ENTITY;
+
+ENTITY IfcRationalBSplineCurveWithKnots
+ SUBTYPE OF (IfcBSplineCurveWithKnots);
+	WeightsData : LIST [2:?] OF IfcReal;
+ DERIVE
+	Weights : ARRAY [0:UpperIndexOnControlPoints] OF IfcReal := IfcListToArray(WeightsData,0,SELF\IfcBSplineCurve.UpperIndexOnControlPoints);
+ WHERE
+	SameNumOfWeightsAndPoints : SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineCurve.ControlPointsList);
+	WeightsGreaterZero : IfcCurveWeightsPositive(SELF);
+END_ENTITY;
+
+ENTITY IfcRationalBSplineSurfaceWithKnots
+ SUBTYPE OF (IfcBSplineSurfaceWithKnots);
+	WeightsData : LIST [2:?] OF LIST [2:?] OF IfcReal;
+ DERIVE
+	Weights : ARRAY [0:UUpper] OF ARRAY [0:VUpper] OF IfcReal := IfcMakeArrayOfArray(WeightsData,0,UUpper,0,VUpper);
+ WHERE
+	CorrespondingWeightsDataLists : (SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList))
+AND 
+(SIZEOF(WeightsData[1]) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList[1]));
+	WeightValuesGreaterZero : IfcSurfaceWeightsPositive(SELF);
+END_ENTITY;
+
+ENTITY IfcRectangularTrimmedSurface
+ SUBTYPE OF (IfcBoundedSurface);
+	BasisSurface : IfcSurface;
+	U1 : IfcParameterValue;
+	V1 : IfcParameterValue;
+	U2 : IfcParameterValue;
+	V2 : IfcParameterValue;
+	Usense : IfcBoolean;
+	Vsense : IfcBoolean;
+ WHERE
+	U1AndU2Different : U1 <> U2;
+	V1AndV2Different : V1 <> V2;
+	UsenseCompatible : (('IFCGEOMETRYRESOURCE.IFCELEMENTARYSURFACE' IN TYPEOF(BasisSurface)) AND
+         (NOT ('IFCGEOMETRYRESOURCE.IFCPLANE' IN TYPEOF(BasisSurface)))) OR
+         ('IFCGEOMETRYRESOURCE.IFCSURFACEOFREVOLUTION' IN TYPEOF(BasisSurface)) OR
+         (Usense = (U2 > U1));
+	VsenseCompatible : Vsense = (V2 > V1);
+END_ENTITY;
+
+ENTITY IfcReparametrisedCompositeCurveSegment
+ SUBTYPE OF (IfcCompositeCurveSegment);
+	ParamLength : IfcParameterValue;
+ WHERE
+	PositiveLengthParameter : ParamLength > 0.0;
+END_ENTITY;
+
+ENTITY IfcRepresentationItem
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcGeometricRepresentationItem
+    ,IfcMappedItem
+    ,IfcStyledItem
+    ,IfcTopologicalRepresentationItem));
+ INVERSE
+	LayerAssignment : SET [0:1] OF IfcPresentationLayerAssignment FOR AssignedItems;
+	StyledByItem : SET [0:1] OF IfcStyledItem FOR Item;
+END_ENTITY;
+
+ENTITY IfcRepresentationMap;
+	MappingOrigin : IfcAxis2Placement;
+	MappedRepresentation : IfcRepresentation;
+ INVERSE
+	HasShapeAspects : SET [0:?] OF IfcShapeAspect FOR PartOfProductDefinitionShape;
+	MapUsage : SET [0:?] OF IfcMappedItem FOR MappingSource;
+ WHERE
+	ApplicableMappedRepr : 'IFCREPRESENTATIONRESOURCE.IFCSHAPEMODEL' IN TYPEOF(MappedRepresentation);
+END_ENTITY;
+
+ENTITY IfcSeamCurve
+ SUBTYPE OF (IfcSurfaceCurve);
+ WHERE
+	TwoPCurves : SIZEOF(SELF\IfcSurfaceCurve.AssociatedGeometry) = 2;
+	SameSurface : IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[1]) = IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[2]);
+END_ENTITY;
+
+ENTITY IfcSegment
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCompositeCurveSegment
+    ,IfcCurveSegment))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Transition : IfcTransitionCode;
+END_ENTITY;
+
+ENTITY IfcSegmentedReferenceCurve
+ SUBTYPE OF (IfcBoundedCurve);
+	BaseCurve : IfcBoundedCurve;
+	Segments : LIST [1:?] OF IfcCurveSegment;
+	EndPoint : OPTIONAL IfcPlacement;
+END_ENTITY;
+
+ENTITY IfcSeriesParameterCurve
+ SUBTYPE OF (IfcCurve);
+	Position : IfcPlacement;
+	CoefficientsX : LIST [2:?] OF IfcReal;
+	CoefficientsY : LIST [2:?] OF IfcReal;
+END_ENTITY;
+
+ENTITY IfcSphericalSurface
+ SUBTYPE OF (IfcElementarySurface);
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcSurface
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBoundedSurface
+    ,IfcElementarySurface
+    ,IfcSectionedSurface
+    ,IfcSweptSurface))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcSurfaceCurve
+ SUPERTYPE OF (ONEOF
+    (IfcIntersectionCurve
+    ,IfcSeamCurve))
+ SUBTYPE OF (IfcCurve);
+	Curve3D : IfcCurve;
+	AssociatedGeometry : LIST [1:2] OF IfcPcurve;
+	MasterRepresentation : IfcPreferredSurfaceCurveRepresentation;
+ DERIVE
+	BasisSurface : SET [1:2] OF IfcSurface := IfcGetBasisSurface(SELF);
+ WHERE
+	CurveIs3D : Curve3D.Dim = 3;
+	CurveIsNotPcurve : NOT ('IFCGEOMETRYRESOURCE.IFCPCURVE' IN TYPEOF(Curve3D));
+END_ENTITY;
+
+ENTITY IfcSurfaceOfLinearExtrusion
+ SUBTYPE OF (IfcSweptSurface);
+	ExtrudedDirection : IfcDirection;
+	Depth : IfcLengthMeasure;
+ DERIVE
+	ExtrusionAxis : IfcVector := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector (ExtrudedDirection, Depth);
+ WHERE
+	DepthGreaterZero : Depth > 0.;
+END_ENTITY;
+
+ENTITY IfcSurfaceOfRevolution
+ SUBTYPE OF (IfcSweptSurface);
+	AxisPosition : IfcAxis1Placement;
+ DERIVE
+	AxisLine : IfcLine := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcCurve() || IfcLine(AxisPosition.Location, 
+  IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector(AxisPosition.Z,1.0));
+END_ENTITY;
+
+ENTITY IfcSweptSurface
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcSurfaceOfLinearExtrusion
+    ,IfcSurfaceOfRevolution))
+ SUBTYPE OF (IfcSurface);
+	SweptCurve : IfcProfileDef;
+	Position : OPTIONAL IfcAxis2Placement3D;
+ WHERE
+	SweptCurveType : SweptCurve.ProfileType = IfcProfileTypeEnum.Curve;
+END_ENTITY;
+
+ENTITY IfcToroidalSurface
+ SUBTYPE OF (IfcElementarySurface);
+	MajorRadius : IfcPositiveLengthMeasure;
+	MinorRadius : IfcPositiveLengthMeasure;
+ WHERE
+	MajorLargerMinor : MinorRadius < MajorRadius;
+END_ENTITY;
+
+ENTITY IfcTransitionCurveSegment2D
+ SUBTYPE OF (IfcCurveSegment2D);
+	StartRadius : OPTIONAL IfcPositiveLengthMeasure;
+	EndRadius : OPTIONAL IfcPositiveLengthMeasure;
+	IsStartRadiusCCW : IfcBoolean;
+	IsEndRadiusCCW : IfcBoolean;
+	TransitionCurveType : IfcTransitionCurveType;
+END_ENTITY;
+
+ENTITY IfcTrimmedCurve
+ SUBTYPE OF (IfcBoundedCurve);
+	BasisCurve : IfcCurve;
+	Trim1 : SET [1:2] OF IfcTrimmingSelect;
+	Trim2 : SET [1:2] OF IfcTrimmingSelect;
+	SenseAgreement : IfcBoolean;
+	MasterRepresentation : IfcTrimmingPreference;
+ WHERE
+	Trim1ValuesConsistent : (HIINDEX(Trim1) = 1) OR (TYPEOF(Trim1[1]) <> TYPEOF(Trim1[2]));
+	Trim2ValuesConsistent : (HIINDEX(Trim2) = 1) OR (TYPEOF(Trim2[1]) <> TYPEOF(Trim2[2]));
+	NoTrimOfBoundedCurves : NOT('IFCGEOMETRYRESOURCE.IFCBOUNDEDCURVE' IN TYPEOF(BasisCurve));
+END_ENTITY;
+
+ENTITY IfcVector
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Orientation : IfcDirection;
+	Magnitude : IfcLengthMeasure;
+ DERIVE
+	Dim : IfcDimensionCount := Orientation.Dim;
+ WHERE
+	MagGreaterOrEqualZero : Magnitude >= 0.0;
+END_ENTITY;
+
+FUNCTION IfcAssociatedSurface
+(Arg : IfcPcurve) : IfcSurface;
+
+   LOCAL
+     Surf : IfcSurface;
+   END_LOCAL;
+   
+   Surf := Arg\IfcPcurve.BasisSurface;
+   
+   RETURN(Surf);
+
+END_FUNCTION;
+
+FUNCTION IfcBaseAxis
+  (Dim : INTEGER; 
+   Axis1, Axis2, Axis3 : IfcDirection) 
+    : LIST [2:3] OF IfcDirection;
+
+LOCAL
+  U : LIST [2:3] OF IfcDirection;
+  Factor : REAL;
+  D1, D2 : IfcDirection;
+END_LOCAL;
+
+  IF (Dim = 3) THEN 
+    D1 := NVL(IfcNormalise(Axis3), IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0,0.0,1.0]));
+    D2 := IfcFirstProjAxis(D1, Axis1);
+    U  := [D2, IfcSecondProjAxis(D1, D2, Axis2), D1];
+  ELSE
+    IF EXISTS(Axis1) THEN
+      D1 := IfcNormalise(Axis1);
+      U  := [D1, IfcOrthogonalComplement(D1)];
+      IF EXISTS(Axis2) THEN
+        Factor := IfcDotProduct(Axis2, U[2]);
+        IF (Factor < 0.0) THEN
+          U[2].DirectionRatios[1] := -U[2].DirectionRatios[1];
+          U[2].DirectionRatios[2] := -U[2].DirectionRatios[2];
+        END_IF;
+      END_IF;
+    ELSE
+      IF EXISTS(Axis2) THEN
+        D1 := IfcNormalise(Axis2);
+        U  := [IfcOrthogonalComplement(D1), D1];
+        U[1].DirectionRatios[1] := -U[1].DirectionRatios[1];
+        U[1].DirectionRatios[2] := -U[1].DirectionRatios[2];
+        ELSE
+          U := [IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([1.0, 0.0]), 
+                IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0, 1.0])];
+      END_IF;
+    END_IF;
+  END_IF;
+  RETURN(U);
+
+END_FUNCTION;
+
+FUNCTION IfcBuild2Axes
+  (RefDirection : IfcDirection)
+    : LIST [2:2] OF IfcDirection;
+LOCAL
+  D : IfcDirection := NVL(IfcNormalise(RefDirection),
+      IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([1.0,0.0]));
+END_LOCAL;
+  RETURN([D, IfcOrthogonalComplement(D)]);
+
+END_FUNCTION;
+
+FUNCTION IfcBuildAxes
+  (Axis, RefDirection : IfcDirection) 
+    : LIST [3:3] OF IfcDirection;
+LOCAL
+  D1, D2 : IfcDirection;
+END_LOCAL;
+  D1 := NVL(IfcNormalise(Axis), IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0,0.0,1.0]));
+  D2 := IfcFirstProjAxis(D1, RefDirection);
+  RETURN ([D2, IfcNormalise(IfcCrossProduct(D1,D2))\IfcVector.Orientation, D1]);
+
+END_FUNCTION;
+
+FUNCTION IfcConsecutiveSegments
+  (Segments : LIST [1:?] OF IfcSegmentIndexSelect)
+  : BOOLEAN;
+
+ LOCAL
+  Result : BOOLEAN := TRUE;
+ END_LOCAL;
+
+  REPEAT i := 1 TO (HIINDEX(Segments)-1);
+    IF Segments[i][HIINDEX(Segments[i])] <> Segments[i+1][1] THEN
+      BEGIN
+        Result := FALSE;
+        ESCAPE;
+      END;
+	END_IF;
+  END_REPEAT;
+
+  RETURN (Result);
+
+END_FUNCTION;
+
+FUNCTION IfcConstraintsParamBSpline
+( Degree, UpKnots, UpCp : INTEGER;
+  KnotMult : LIST OF INTEGER;
+  Knots : LIST OF IfcParameterValue ) 
+: BOOLEAN;
+
+
+  LOCAL
+    Result : BOOLEAN := TRUE;
+    K, Sum : INTEGER;
+  END_LOCAL;
+
+  (* Find sum of knot multiplicities. *)
+  Sum := KnotMult[1];
+  REPEAT i := 2 TO UpKnots;
+    Sum := Sum + KnotMult[i];
+  END_REPEAT;
+
+  (* Check limits holding for all B-spline parametrisations *)
+  IF (Degree < 1) OR (UpKnots < 2) OR (UpCp < Degree) OR
+    (Sum <> (Degree + UpCp + 2)) THEN
+    Result := FALSE;
+    RETURN(Result);
+  END_IF;
+
+  K := KnotMult[1];
+  IF (K < 1) OR (K > Degree + 1) THEN
+    Result := FALSE;
+    RETURN(Result);
+  END_IF;
+
+  REPEAT i := 2 TO UpKnots;
+    IF (KnotMult[i] < 1) OR (Knots[i] <= Knots[i-1]) THEN
+      Result := FALSE;
+      RETURN(Result);
+    END_IF;
+    K := KnotMult[i];
+    IF (i < UpKnots) AND (K > Degree) THEN
+      Result := FALSE;
+      RETURN(Result);
+    END_IF;
+    IF (i = UpKnots) AND (K > Degree + 1) THEN
+      Result := FALSE;
+      RETURN(Result);
+    END_IF;
+  END_REPEAT;
+
+  RETURN(result);
+
+END_FUNCTION;
+
+FUNCTION IfcCrossProduct
+  (Arg1, Arg2 : IfcDirection) 
+    : IfcVector;
+LOCAL
+  Mag : REAL;
+  Res : IfcDirection;
+  V1,V2  : LIST[3:3] OF REAL;
+  Result : IfcVector;
+END_LOCAL;
+
+  IF (NOT EXISTS (Arg1) OR (Arg1.Dim = 2)) OR (NOT EXISTS (Arg2) OR (Arg2.Dim = 2)) THEN
+    RETURN(?);
+  ELSE
+    BEGIN
+      V1  := IfcNormalise(Arg1)\IfcDirection.DirectionRatios;
+
+      V2  := IfcNormalise(Arg2)\IfcDirection.DirectionRatios;
+      Res := IfcRepresentationItem() || IfcGeometricRepresentationItem () 
+             || IfcDirection([(V1[2]*V2[3] - V1[3]*V2[2]), (V1[3]*V2[1] - V1[1]*V2[3]), (V1[1]*V2[2] - V1[2]*V2[1])]);
+      Mag := 0.0;
+      REPEAT i := 1 TO 3;
+        Mag := Mag + Res.DirectionRatios[i]*Res.DirectionRatios[i];
+      END_REPEAT;
+      IF (Mag > 0.0) THEN
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector(Res, SQRT(Mag));
+      ELSE
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector(Arg1, 0.0);
+      END_IF;
+      RETURN(Result);
+    END;
+  END_IF;
+
+END_FUNCTION;
+
+FUNCTION IfcCurveDim
+(Curve : IfcCurve)
+       : IfcDimensionCount;
+
+  IF ('IFCGEOMETRYRESOURCE.IFCLINE' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcLine.Pnt.Dim);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCCONIC' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcConic.Position.Dim);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCPOLYLINE' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcPolyline.Points[1].Dim);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCTRIMMEDCURVE' IN TYPEOF(Curve))
+    THEN RETURN(IfcCurveDim(Curve\IfcTrimmedCurve.BasisCurve));
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCCOMPOSITECURVE' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcCompositeCurve.Segments[1].Dim);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCBSPLINECURVE' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcBSplineCurve.ControlPointsList[1].Dim);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCOFFSETCURVE2D' IN TYPEOF(Curve))
+    THEN RETURN(2); 
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCOFFSETCURVE3D' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCOFFSETCURVEBYDISTANCES' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCCURVESEGMENT2D' IN TYPEOF(Curve))
+    THEN RETURN(2);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCGRADIENTCURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCSEGMENTEDREFERENCECURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCSERIESPARAMETERCURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCPCURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCINDEXEDPOLYCURVE' IN TYPEOF(Curve))
+    THEN RETURN(Curve\IfcIndexedPolyCurve.Points.Dim);
+  END_IF;
+RETURN (?);
+
+END_FUNCTION;
+
+FUNCTION IfcCurveWeightsPositive
+( B: IfcRationalBSplineCurveWithKnots)
+: BOOLEAN;
+
+  LOCAL
+    Result : BOOLEAN := TRUE;
+  END_LOCAL;
+
+  REPEAT i := 0 TO B.UpperIndexOnControlPoints;
+    IF B.Weights[i] <= 0.0  THEN
+      Result := FALSE;
+      RETURN(Result);
+    END_IF;
+  END_REPEAT;
+  RETURN(Result);
+
+END_FUNCTION;
+
+FUNCTION IfcDotProduct
+  (Arg1, Arg2 : IfcDirection) 
+    : REAL;
+LOCAL
+  Scalar : REAL;
+  Vec1, Vec2 : IfcDirection;
+  Ndim   : INTEGER;
+END_LOCAL;
+
+  IF NOT EXISTS (Arg1) OR NOT EXISTS (Arg2) THEN
+    Scalar := ?;
+  ELSE
+    IF (Arg1.Dim <> Arg2.Dim) THEN
+      Scalar := ?;
+    ELSE
+      BEGIN
+        Vec1 := IfcNormalise(Arg1);
+        Vec2 := IfcNormalise(Arg2);
+        Ndim := Arg1.Dim;
+        Scalar := 0.0;
+        REPEAT i := 1 TO Ndim;
+          Scalar := Scalar + Vec1.DirectionRatios[i]*Vec2.DirectionRatios[i];
+        END_REPEAT;
+      END;
+    END_IF;
+  END_IF;
+  RETURN (Scalar);
+
+END_FUNCTION;
+
+FUNCTION IfcFirstProjAxis
+  (ZAxis, Arg : IfcDirection) : IfcDirection;
+LOCAL
+  XAxis : IfcDirection;
+  V     : IfcDirection;
+  Z     : IfcDirection;
+  XVec  : IfcVector;
+END_LOCAL;
+
+  IF (NOT EXISTS(ZAxis)) THEN
+    RETURN (?) ;
+  ELSE
+    Z := IfcNormalise(ZAxis);
+    IF NOT EXISTS(Arg) THEN
+      IF (Z.DirectionRatios <> [1.0,0.0,0.0]) THEN
+        V := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([1.0,0.0,0.0]);
+      ELSE
+        V := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0,1.0,0.0]);
+      END_IF;
+    ELSE
+      IF (Arg.Dim <> 3) THEN
+        RETURN (?) ;
+      END_IF;
+      IF ((IfcCrossProduct(Arg,Z).Magnitude) = 0.0) THEN
+        RETURN (?);
+      ELSE
+        V := IfcNormalise(Arg);
+      END_IF;
+    END_IF;
+    XVec  := IfcScalarTimesVector(IfcDotProduct(V, Z), Z);
+    XAxis := IfcVectorDifference(V, XVec).Orientation;
+    XAxis := IfcNormalise(XAxis);
+  END_IF;
+  RETURN(XAxis);
+
+END_FUNCTION;
+
+FUNCTION IfcGetBasisSurface
+(C : IfcCurveOnSurface) : SET[0:2] OF IfcSurface;
+
+  LOCAL
+    Surfs : SET[0:2] OF IfcSurface;
+    N : INTEGER;
+  END_LOCAL;
+
+  Surfs := [];
+  IF 'IFCGEOMETRYRESOURCE.IFCPCURVE' IN TYPEOF (C) THEN
+    Surfs := [C\IfcPCurve.BasisSurface];
+  ELSE
+    IF 'IFCGEOMETRYRESOURCE.IFCSURFACECURVE' IN TYPEOF (C) THEN
+      N := SIZEOF(C\IfcSurfaceCurve.AssociatedGeometry);
+      REPEAT i := 1 TO N;
+      Surfs := Surfs + IfcAssociatedSurface(C\IfcSurfaceCurve.AssociatedGeometry[i]);
+      END_REPEAT;
+    END_IF;
+  END_IF;
+  IF 'IFCGEOMETRYRESOURCE.IFCCOMPOSITECURVEONSURFACE' IN TYPEOF (C) THEN
+
+    (* For an IfcCompositeCurveOnSurface the BasisSurface is the intersection of the BasisSurface of all the segments. *)
+
+    N := SIZEOF(C\IfcCompositeCurve.Segments);
+    Surfs := IfcGetBasisSurface(C\IfcCompositeCurve.Segments[1].ParentCurve);
+    IF N > 1 THEN
+      REPEAT i := 2 TO N;
+        Surfs := Surfs * IfcGetBasisSurface(C\IfcCompositeCurve.Segments[1].ParentCurve);
+      END_REPEAT;
+    END_IF;
+  END_IF;
+  RETURN(Surfs);
+
+END_FUNCTION;
+
+FUNCTION IfcGradient
+(GradientCurve : IfcGradientCurve) : IfcLengthMeasure;
+  RETURN(1);
+END_FUNCTION;
+
+FUNCTION IfcListToArray
+(Lis : LIST [0:?] OF GENERIC : T;
+       Low,U : INTEGER) : ARRAY OF GENERIC : T;
+   LOCAL
+     N   : INTEGER;
+     Res : ARRAY [Low:U] OF GENERIC : T;
+   END_LOCAL;
+      
+   N := SIZEOF(Lis);
+   IF (N <> (U-Low +1)) THEN
+     RETURN(?);
+   ELSE
+     Res := [Lis[1] : N];
+     REPEAT i := 2 TO N;
+       Res[Low+i-1] := Lis[i];
+     END_REPEAT;
+     RETURN(Res);
+   END_IF;
+
+END_FUNCTION;
+
+FUNCTION IfcMakeArrayOfArray
+(Lis : LIST[1:?] OF LIST [1:?] OF GENERIC : T;
+ Low1, U1, Low2, U2 : INTEGER):
+ARRAY [Low1:U1] OF ARRAY [Low2:U2] OF GENERIC : T;
+
+  LOCAL
+    Res : ARRAY[Low1:U1] OF ARRAY [Low2:U2] OF GENERIC : T;
+  END_LOCAL;
+
+  (* Check input dimensions for consistency *)
+  IF (U1-Low1+1) <> SIZEOF(Lis) THEN
+    RETURN (?);
+  END_IF;
+  IF (U2 - Low2 + 1 ) <> SIZEOF(Lis[1]) THEN
+    RETURN (?) ;
+  END_IF;
+
+  (* Initialise Res with values from Lis[1] *)
+  Res := [IfcListToArray(Lis[1], Low2, U2) : (U1-Low1 + 1)];
+  REPEAT i := 2 TO HIINDEX(Lis);
+    IF (U2-Low2+1) <> SIZEOF(Lis[i]) THEN
+      RETURN (?);
+    END_IF;
+    Res[Low1+i-1] := IfcListToArray(Lis[i], Low2, U2);
+  END_REPEAT;
+  RETURN (Res);
+
+END_FUNCTION;
+
+FUNCTION IfcNormalise
+  (Arg : IfcVectorOrDirection) 
+    : IfcVectorOrDirection;
+LOCAL
+  Ndim : INTEGER;
+  V    : IfcDirection
+         := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([1.,0.]); 
+  Vec  : IfcVector 
+         := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector (
+            IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([1.,0.]), 1.);
+  Mag  : REAL;
+  Result : IfcVectorOrDirection
+         := V;
+END_LOCAL;
+
+  IF NOT EXISTS (Arg) THEN
+    RETURN (?);
+  ELSE
+    IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(Arg) THEN
+      BEGIN
+        Ndim := Arg\IfcVector.Dim;
+	V.DirectionRatios := Arg\IfcVector.Orientation.DirectionRatios;
+        Vec.Magnitude := Arg\IfcVector.Magnitude;
+	Vec.Orientation := V;
+        IF Arg\IfcVector.Magnitude = 0.0 THEN
+          RETURN(?);
+        ELSE
+          Vec.Magnitude := 1.0;
+        END_IF;
+      END;
+    ELSE
+      BEGIN
+        Ndim := Arg\IfcDirection.Dim;
+        V.DirectionRatios := Arg\IfcDirection.DirectionRatios;
+      END;
+    END_IF;
+
+    Mag := 0.0;
+      REPEAT i := 1 TO Ndim;
+        Mag := Mag + V.DirectionRatios[i]*V.DirectionRatios[i];
+      END_REPEAT;
+    IF Mag > 0.0 THEN
+      Mag := SQRT(Mag);
+      REPEAT i := 1 TO Ndim;
+        V.DirectionRatios[i] := V.DirectionRatios[i]/Mag;
+      END_REPEAT;
+      IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(arg) THEN
+        Vec.Orientation := V;
+        Result := Vec;
+      ELSE
+        Result := V;
+      END_IF;
+    ELSE
+      RETURN(?);
+    END_IF;
+  END_IF;
+  RETURN (Result);
+
+END_FUNCTION;
+
+FUNCTION IfcOrthogonalComplement
+  (Vec : IfcDirection) 
+    : IfcDirection;
+LOCAL
+  Result : IfcDirection ;
+END_LOCAL;
+  IF NOT EXISTS (Vec) OR (Vec.Dim <> 2) THEN
+    RETURN(?);
+  ELSE
+    Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([-Vec.DirectionRatios[2], Vec.DirectionRatios[1]]);
+    RETURN(Result);
+  END_IF;
+
+END_FUNCTION;
+
+FUNCTION IfcSameAxis2Placement
+  (ap1, ap2 : IfcAxis2Placement; Epsilon : REAL)
+  : LOGICAL ;
+
+  RETURN (IfcSameDirection(ap1.P[1],ap2.P[1],Epsilon) AND
+          IfcSameDirection(ap1.P[2],ap2.P[2],Epsilon) AND
+          IfcSameCartesianPoint(ap1.Location,ap1.Location,Epsilon));
+
+END_FUNCTION;
+
+FUNCTION IfcSameCartesianPoint
+	(cp1, cp2 : IfcCartesianPoint; Epsilon : REAL)
+	: LOGICAL;
+  
+  LOCAL
+    cp1x : REAL := cp1.Coordinates[1];
+    cp1y : REAL := cp1.Coordinates[2];
+    cp1z : REAL := 0;
+    cp2x : REAL := cp2.Coordinates[1];
+    cp2y : REAL := cp2.Coordinates[2];
+    cp2z : REAL := 0;
+  END_LOCAL;
+
+  IF (SIZEOF(cp1.Coordinates) > 2) THEN
+    cp1z := cp1.Coordinates[3];
+  END_IF;
+
+  IF (SIZEOF(cp2.Coordinates) > 2) THEN
+    cp2z := cp2.Coordinates[3];
+  END_IF;
+
+  RETURN (IfcSameValue(cp1x,cp2x,Epsilon) AND
+          IfcSameValue(cp1y,cp2y,Epsilon) AND
+          IfcSameValue(cp1z,cp2z,Epsilon));
+
+END_FUNCTION;
+
+FUNCTION IfcSameDirection
+	(dir1, dir2 : IfcDirection; Epsilon : REAL)
+	: LOGICAL;
+  LOCAL
+    dir1x : REAL := dir1.DirectionRatios[1];
+    dir1y : REAL := dir1.DirectionRatios[2];
+    dir1z : REAL := 0;
+    dir2x : REAL := dir2.DirectionRatios[1];
+    dir2y : REAL := dir2.DirectionRatios[2];
+    dir2z : REAL := 0;
+  END_LOCAL;
+
+  IF (SIZEOF(dir1.DirectionRatios) > 2) THEN
+    dir1z := dir1.DirectionRatios[3];
+  END_IF;
+
+  IF (SIZEOF(dir2.DirectionRatios) > 2) THEN
+    dir2z := dir2.DirectionRatios[3];
+  END_IF;
+  
+  RETURN (IfcSameValue(dir1x,dir2x,Epsilon) AND
+          IfcSameValue(dir1y,dir2y,Epsilon) AND
+          IfcSameValue(dir1z,dir2z,Epsilon));
+
+END_FUNCTION;
+
+FUNCTION IfcSameValue
+	(Value1, Value2 : REAL; Epsilon : REAL)
+	: LOGICAL;
+  LOCAL
+    ValidEps    : REAL;
+    DefaultEps  : REAL := 0.000001;
+  END_LOCAL;
+  
+  ValidEps := NVL(Epsilon, DefaultEps);
+  RETURN ((Value1 + ValidEps > Value2) AND (Value1 < Value2 + ValidEps));
+
+END_FUNCTION;
+
+FUNCTION IfcScalarTimesVector
+  (Scalar : REAL; Vec : IfcVectorOrDirection)
+    : IfcVector;
+LOCAL
+  V : IfcDirection;
+  Mag : REAL;
+  Result : IfcVector;
+END_LOCAL;
+
+  IF NOT EXISTS (Scalar) OR NOT EXISTS (Vec) THEN
+    RETURN (?) ;
+  ELSE
+    IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF (Vec) THEN
+      V := Vec\IfcVector.Orientation;
+      Mag := Scalar * Vec\IfcVector.Magnitude;
+    ELSE
+      V := Vec;
+      Mag := Scalar;
+    END_IF;
+    IF (Mag < 0.0 ) THEN
+      REPEAT i := 1 TO SIZEOF(V.DirectionRatios);
+        V.DirectionRatios[i] := -V.DirectionRatios[i];
+      END_REPEAT;
+      Mag := -Mag;
+    END_IF;
+    Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector(IfcNormalise(V), Mag);
+  END_IF;
+  RETURN (Result);
+
+END_FUNCTION;
+
+FUNCTION IfcSecondProjAxis
+  (ZAxis, XAxis, Arg: IfcDirection) 
+    : IfcDirection;
+LOCAL
+  YAxis : IfcVector;
+  V     : IfcDirection;
+  Temp  : IfcVector;
+END_LOCAL;
+
+  IF NOT EXISTS(Arg) THEN
+    V := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0,1.0,0.0]);
+  ELSE
+    V := Arg;
+  END_IF;
+  Temp  := IfcScalarTimesVector(IfcDotProduct(V, ZAxis), ZAxis);
+  YAxis := IfcVectorDifference(V, Temp);
+  Temp  := IfcScalarTimesVector(IfcDotProduct(V, XAxis), XAxis);
+  YAxis := IfcVectorDifference(YAxis, Temp);
+  YAxis := IfcNormalise(YAxis);
+  RETURN(YAxis.Orientation);
+
+END_FUNCTION;
+
+FUNCTION IfcSurfaceWeightsPositive
+( B: IfcRationalBSplineSurfaceWithKnots) 
+: BOOLEAN; 
+
+  LOCAL 
+    Result : BOOLEAN := TRUE; 
+    Weights : ARRAY [ 0 : B\IfcBSplineSurface.UUpper ] OF ARRAY [ 0 : B\IfcBSplineSurface.VUpper ] OF REAL := B.Weights; 
+  END_LOCAL; 
+
+  REPEAT i := 0 TO B\IfcBSplineSurface.UUpper; 
+    REPEAT j := 0 TO B\IfcBSplineSurface.VUpper; 
+      IF (Weights[i][j] <= 0.0) THEN 
+        Result := FALSE; 
+        RETURN(Result); 
+      END_IF; 
+    END_REPEAT; 
+  END_REPEAT; 
+  RETURN(Result);
+
+END_FUNCTION;
+
+FUNCTION IfcVectorDifference
+  (Arg1, Arg2 : IfcVectorOrDirection)
+    : IfcVector;
+LOCAL
+  Result : IfcVector;
+  Res, Vec1, Vec2 : IfcDirection;
+  Mag, Mag1, Mag2 : REAL;
+  Ndim : INTEGER;
+END_LOCAL;
+
+  IF ((NOT EXISTS (Arg1)) OR (NOT EXISTS (Arg2))) OR (Arg1.Dim <> Arg2.Dim) THEN
+    RETURN (?) ;
+  ELSE
+    BEGIN
+      IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(Arg1) THEN
+        Mag1 := Arg1\IfcVector.Magnitude;
+        Vec1 := Arg1\IfcVector.Orientation;
+      ELSE
+        Mag1 := 1.0;
+        Vec1 := Arg1;
+      END_IF;
+      IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(Arg2) THEN
+        Mag2 := Arg2\IfcVector.Magnitude;
+        Vec2 := Arg2\IfcVector.Orientation;
+      ELSE
+        Mag2 := 1.0;
+        Vec2 := Arg2;
+      END_IF;
+      Vec1 := IfcNormalise (Vec1);
+      Vec2 := IfcNormalise (Vec2);
+      Ndim := SIZEOF(Vec1.DirectionRatios);
+      Mag  := 0.0;
+      Res  := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0:Ndim]);
+
+      REPEAT i := 1 TO Ndim;
+        Res.DirectionRatios[i] := Mag1*Vec1.DirectionRatios[i] - Mag2*Vec2.DirectionRatios[i];
+        Mag := Mag + (Res.DirectionRatios[i]*Res.DirectionRatios[i]);
+      END_REPEAT;
+
+      IF (Mag > 0.0 ) THEN
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector( Res, SQRT(Mag));
+      ELSE
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector( Vec1, 0.0);
+      END_IF;
+    END;
+  END_IF;
+  RETURN (Result);
+
+END_FUNCTION;
+
+FUNCTION IfcVectorSum
+  (Arg1, Arg2 : IfcVectorOrDirection) 
+    : IfcVector;
+LOCAL
+  Result : IfcVector;
+  Res, Vec1, Vec2 : IfcDirection;
+  Mag, Mag1, Mag2 : REAL;
+  Ndim : INTEGER;
+END_LOCAL;
+
+  IF ((NOT EXISTS (Arg1)) OR (NOT EXISTS (Arg2))) OR (Arg1.Dim <> Arg2.Dim) THEN
+    RETURN (?) ;
+  ELSE
+    BEGIN
+      IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(Arg1) THEN
+        Mag1 := Arg1\IfcVector.Magnitude;
+        Vec1 := Arg1\IfcVector.Orientation;
+      ELSE
+        Mag1 := 1.0;
+        Vec1 := Arg1;
+      END_IF;
+      IF 'IFCGEOMETRYRESOURCE.IFCVECTOR' IN TYPEOF(Arg2) THEN
+        Mag2 := Arg2\IfcVector.Magnitude;
+        Vec2 := Arg2\IfcVector.Orientation;
+      ELSE
+        Mag2 := 1.0;
+        Vec2 := Arg2;
+      END_IF;
+      Vec1 := IfcNormalise (Vec1);
+      Vec2 := IfcNormalise (Vec2);
+      Ndim := SIZEOF(Vec1.DirectionRatios);
+      Mag  := 0.0;
+      Res  := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcDirection([0.0:Ndim]);
+
+      REPEAT i := 1 TO Ndim;
+        Res.DirectionRatios[i] := Mag1*Vec1.DirectionRatios[i] + Mag2*Vec2.DirectionRatios[i];
+        Mag := Mag + (Res.DirectionRatios[i]*Res.DirectionRatios[i]);
+      END_REPEAT;
+
+      IF (Mag > 0.0 ) THEN
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector( Res, SQRT(Mag));
+      ELSE
+        Result := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector( Vec1, 0.0);
+      END_IF;
+    END;
+  END_IF;
+  RETURN (Result);
+
+END_FUNCTION;
+
+END_SCHEMA;

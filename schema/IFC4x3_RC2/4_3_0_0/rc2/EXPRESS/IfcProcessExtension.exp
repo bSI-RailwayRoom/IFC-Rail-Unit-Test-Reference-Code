@@ -1,0 +1,274 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCPROCESSEXTENSION;
+
+REFERENCE FROM IFCACTORRESOURCE
+(
+  IfcPerson,
+  IfcPostalAddress
+);
+
+REFERENCE FROM IFCCOSTRESOURCE
+(
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcDateTime,
+  IfcDuration,
+  IfcEventTime,
+  IfcTaskTime,
+  IfcWorkTime,
+  IfcLagTime
+);
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+  IfcClassificationReference,
+  IfcDocumentReference
+);
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcAxis2Placement2D,
+  IfcAxis2Placement3D
+);
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcProcess,
+  IfcResource,
+  IfcControl,
+  IfcPropertySet,
+  IfcRelNests,
+  IfcRelConnects,
+  IfcTypeProcess
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcLabel,
+  IfcReal,
+  IfcSiUnit,
+  IfcBoolean,
+  IfcInteger
+);
+
+REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
+(
+  IfcNullStyle
+);
+
+TYPE IfcEventTriggerTypeEnum = ENUMERATION OF
+	(EVENTRULE
+	,EVENTMESSAGE
+	,EVENTTIME
+	,EVENTCOMPLEX
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcEventTypeEnum = ENUMERATION OF
+	(STARTEVENT
+	,ENDEVENT
+	,INTERMEDIATEEVENT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcProcedureTypeEnum = ENUMERATION OF
+	(ADVICE_CAUTION
+	,ADVICE_NOTE
+	,ADVICE_WARNING
+	,CALIBRATION
+	,DIAGNOSTIC
+	,SHUTDOWN
+	,STARTUP
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSequenceEnum = ENUMERATION OF
+	(START_START
+	,START_FINISH
+	,FINISH_START
+	,FINISH_FINISH
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTaskTypeEnum = ENUMERATION OF
+	(ATTENDANCE
+	,CONSTRUCTION
+	,DEMOLITION
+	,DISMANTLE
+	,DISPOSAL
+	,INSTALLATION
+	,LOGISTIC
+	,MAINTENANCE
+	,MOVE
+	,OPERATION
+	,REMOVAL
+	,RENOVATION
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWorkCalendarTypeEnum = ENUMERATION OF
+	(FIRSTSHIFT
+	,SECONDSHIFT
+	,THIRDSHIFT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWorkPlanTypeEnum = ENUMERATION OF
+	(ACTUAL
+	,BASELINE
+	,PLANNED
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWorkScheduleTypeEnum = ENUMERATION OF
+	(ACTUAL
+	,BASELINE
+	,PLANNED
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcEvent
+ SUBTYPE OF (IfcProcess);
+	PredefinedType : OPTIONAL IfcEventTypeEnum;
+	EventTriggerType : OPTIONAL IfcEventTriggerTypeEnum;
+	UserDefinedEventTriggerType : OPTIONAL IfcLabel;
+	EventOccurenceTime : OPTIONAL IfcEventTime;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcEventTypeEnum.USERDEFINED) OR ((PredefinedType = IfcEventTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : NOT(EXISTS(EventTriggerType)) OR (EventTriggerType <> IfcEventTriggerTypeEnum.USERDEFINED) OR ((EventTriggerType = IfcEventTriggerTypeEnum.USERDEFINED) AND EXISTS(UserDefinedEventTriggerType));
+END_ENTITY;
+
+ENTITY IfcEventType
+ SUBTYPE OF (IfcTypeProcess);
+	PredefinedType : IfcEventTypeEnum;
+	EventTriggerType : IfcEventTriggerTypeEnum;
+	UserDefinedEventTriggerType : OPTIONAL IfcLabel;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcEventTypeEnum.USERDEFINED) OR ((PredefinedType = IfcEventTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeProcess.ProcessType)) ;
+	CorrectEventTriggerType : (EventTriggerType <> IfcEventTriggerTypeEnum.USERDEFINED) OR ((EventTriggerType = IfcEventTriggerTypeEnum.USERDEFINED) AND EXISTS(UserDefinedEventTriggerType)) ;
+END_ENTITY;
+
+ENTITY IfcProcedure
+ SUBTYPE OF (IfcProcess);
+	PredefinedType : OPTIONAL IfcProcedureTypeEnum;
+ WHERE
+	HasName : EXISTS(SELF\IfcRoot.Name);
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcProcedureTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcProcedureType
+ SUBTYPE OF (IfcTypeProcess);
+	PredefinedType : IfcProcedureTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcProcedureTypeEnum.USERDEFINED) OR ((PredefinedType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeProcess.ProcessType));
+END_ENTITY;
+
+ENTITY IfcRelSequence
+ SUBTYPE OF (IfcRelConnects);
+	RelatingProcess : IfcProcess;
+	RelatedProcess : IfcProcess;
+	TimeLag : OPTIONAL IfcLagTime;
+	SequenceType : OPTIONAL IfcSequenceEnum;
+	UserDefinedSequenceType : OPTIONAL IfcLabel;
+ WHERE
+	AvoidInconsistentSequence : RelatingProcess :<>: RelatedProcess;
+	CorrectSequenceType : (SequenceType <> IfcSequenceEnum.USERDEFINED) OR ((SequenceType = IfcSequenceEnum.USERDEFINED) AND EXISTS(UserDefinedSequenceType));
+END_ENTITY;
+
+ENTITY IfcTask
+ SUBTYPE OF (IfcProcess);
+	Status : OPTIONAL IfcLabel;
+	WorkMethod : OPTIONAL IfcLabel;
+	IsMilestone : IfcBoolean;
+	Priority : OPTIONAL IfcInteger;
+	TaskTime : OPTIONAL IfcTaskTime;
+	PredefinedType : OPTIONAL IfcTaskTypeEnum;
+ WHERE
+	HasName : EXISTS(SELF\IfcRoot.Name);
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcTaskTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTaskTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcTaskType
+ SUBTYPE OF (IfcTypeProcess);
+	PredefinedType : IfcTaskTypeEnum;
+	WorkMethod : OPTIONAL IfcLabel;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcTaskTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTaskTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeProcess.ProcessType)) ;
+END_ENTITY;
+
+ENTITY IfcWorkCalendar
+ SUBTYPE OF (IfcControl);
+	WorkingTimes : OPTIONAL SET [1:?] OF IfcWorkTime;
+	ExceptionTimes : OPTIONAL SET [1:?] OF IfcWorkTime;
+	PredefinedType : OPTIONAL IfcWorkCalendarTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcWorkCalendarTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcWorkCalendarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcWorkControl
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcWorkPlan
+    ,IfcWorkSchedule))
+ SUBTYPE OF (IfcControl);
+	CreationDate : IfcDateTime;
+	Creators : OPTIONAL SET [1:?] OF IfcPerson;
+	Purpose : OPTIONAL IfcLabel;
+	Duration : OPTIONAL IfcDuration;
+	TotalFloat : OPTIONAL IfcDuration;
+	StartTime : IfcDateTime;
+	FinishTime : OPTIONAL IfcDateTime;
+END_ENTITY;
+
+ENTITY IfcWorkPlan
+ SUBTYPE OF (IfcWorkControl);
+	PredefinedType : OPTIONAL IfcWorkPlanTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcWorkPlanTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcWorkPlanTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcWorkSchedule
+ SUBTYPE OF (IfcWorkControl);
+	PredefinedType : OPTIONAL IfcWorkScheduleTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcWorkScheduleTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcWorkScheduleTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+END_SCHEMA;

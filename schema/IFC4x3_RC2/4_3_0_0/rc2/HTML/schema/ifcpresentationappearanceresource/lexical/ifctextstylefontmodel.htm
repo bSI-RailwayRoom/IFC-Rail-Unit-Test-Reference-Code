@@ -1,0 +1,215 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcTextStyleFontModel</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 3 index4 36 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.3.37");
+//-->
+</script>
+
+<h4 class="num">IfcTextStyleFontModel</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Textstil - Schriftensatz - Modell</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Text Style Font Model</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Modèle de police de style de texte</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifctextstylefontmodel.htm">IfcTextStyleFontModel</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCPRESENTATIONRESOURCE</i> to <i>IFCPRESENTATIONAPPEARANCERESOURCE</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FontFamily</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><blockquote class="extDef">
+<p>Definition according to W3C for Cascading Style Sheets:<br>
+Setting font properties will be among the most common uses of style sheets. Unfortunately, there exists no well-defined and universally accepted taxonomy for classifying fonts, and terms that apply to one font family may not be appropriate for others. For example, 'italic' is commonly used to label slanted text, but slanted text may also be labeled as being <i>Oblique</i>, <i>Slanted</i>, <i>Incline</i>, <i>Cursive</i> or <i>Kursiv</i>. Therefore it is not a simple problem to map typical font selection properties to a specific font.</p>
+</blockquote>
+<blockquote class="extDef">
+<p><strong>Font matching</strong><br>
+Because there is no accepted, universal taxonomy of font properties, matching of properties to font faces must be done carefully. The properties are matched in a well-defined order to ensure that the results of this matching process are as consistent as possible across user agents (assuming that the same library of font faces is presented to each of them).</p>
+</blockquote>
+<ol>
+<li>The user agent makes (or accesses) a database of relevant CSS1 properties of all the fonts of which the UA is aware. The UA may be aware of a font because it has been installed locally or it has been previously downloaded over the web. If there are two fonts with exactly the same properties, one of them is ignored.</li>
+<li>At a given element and for each character in that element, the UA assembles the font-properties applicable to that element. Using the complete set of properties, the UA uses the 'font-family' property to choose a tentative font family. The remaining properties are tested against the family according to the matching criteria described with each property. If there are matches for all the remaining properties, then that is the matching font face for the given element.</li>
+<li>If there is no matching font face within the 'font-family' being processed by step 2, and if there is a next alternative 'font-family' in the font set, then repeat step 2 with the next alternative 'font-family'.</li>
+<li>If there is a matching font face, but it doesn't contain a glyph for the current character, and if there is a next alternative 'font-family' in the font sets, then repeat step 2 with the next alternative 'font-family'. </li>
+<li>If there is no font within the family selected in 2, then use a UA-dependent default 'font-family' and repeat step 2, using the best match that can be obtained within the default font.</li>
+</ol>
+<p>(The above algorithm can be optimized to avoid having to revisit the CSS1 properties for each character.)</p>
+<p>The per-property matching rules from (2) above are as follows:</p>
+<ol>
+<li>'font-style' is tried first. 'italic' will be satisfied if there is either a face in the UA's font database labeled with the CSS keyword 'italic' (preferred) or 'oblique'. Otherwise the values must be matched exactly or font-style will fail.</li>
+<li>'font-variant' is tried next. 'normal' matches a font not labeled as 'small-caps'; 'small-caps' matches (1) a font labeled as 'small-caps', (2) a font in which the small caps are synthesized, or (3) a font where all lowercase letters are replaced by upper case letters. A small-caps font may be synthesized by electronically scaling uppercase letters from a normal font.</li>
+<li>'font-weight' is matched next, it will never fail. (See 'font-weight' below.)</li>
+<li>'font-size' must be matched within a UA-dependent margin of tolerance. (Typically, sizes for scalable fonts are rounded to the nearest whole pixel, while the tolerance for bitmapped fonts could be as large as 20%.) Further computations, are based on the 'font-size' value that is used, not the one that is specified.</li>
+</ol>
+<p>The inherited <i>Name</i> attribute is used to define the font name, particularly in cases, where no (list of) font families are provided.</p>
+<blockquote class="note">
+<p>NOTE  Corresponding CSS1 definitions are Font properties ('font-family', 'font-style', 'font-variant',  'font-weight').</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x3.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>FontFamily</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctextfontname.htm">IfcTextFontName</a></td><td>L[1:?]</td><td>
+The value is a prioritized list of font family names and/or generic family names. The first list entry has the highest priority, if this font fails, the next list item shall be used. The last list item should (if possible) be a generic family.
+
+<blockquote>
+IFC4 CHANGE  Attribute changed to being mandatory.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>FontStyle</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontstyle.htm">IfcFontStyle</a></td><td>? </td><td>
+The font style property selects between normal (sometimes referred to as &quot;roman&quot; or &quot;upright&quot;), italic and oblique faces within a font family.
+</td><td>X</td></tr>
+<tr><td>4</td><td>FontVariant</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontvariant.htm">IfcFontVariant</a></td><td>? </td><td>
+The font variant property selects between normal and small-caps.
+<blockquote class="note">
+NOTE  It has been introduced for later compliance to full CSS1 support.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>5</td><td>FontWeight</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontweight.htm">IfcFontWeight</a></td><td>? </td><td>
+The font weight property selects the weight of the font.
+<blockquote class="note">
+NOTE  Values other then 'normal' and 'bold' have been introduced for later compliance to full CSS1 support.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>FontSize</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcsizeselect.htm">IfcSizeSelect</a></td><td></td><td>
+The font size provides the size or height of the text font.
+<blockquote class="note">
+NOTE  The following values are allowed, &lt;<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>, with positive values, the length unit is globally defined at <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a>.__
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>MeasureOfFontSize</td><td>The size should be given by a positive length measure,
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifctextstylefontmodel.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcpredefinedtextfont.htm" alt="IfcPreDefinedTextFont" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcpredefineditem.htm" alt="IfcPreDefinedItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm" alt="IfcPresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationappearanceresource/lexical/ifcpredefineditem.htm">IfcPreDefinedItem</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+The string by which the pre defined item is identified. Allowable values for the string are declared at the level of subtypes.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationappearanceresource/lexical/ifcpredefinedtextfont.htm">IfcPreDefinedTextFont</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationappearanceresource/lexical/ifctextstylefontmodel.htm">IfcTextStyleFontModel</a></td></tr>
+<tr><td>2</td><td>FontFamily</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctextfontname.htm">IfcTextFontName</a></td><td>L[1:?]</td><td>
+The value is a prioritized list of font family names and/or generic family names. The first list entry has the highest priority, if this font fails, the next list item shall be used. The last list item should (if possible) be a generic family.
+
+<blockquote>
+IFC4 CHANGE  Attribute changed to being mandatory.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>FontStyle</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontstyle.htm">IfcFontStyle</a></td><td>? </td><td>
+The font style property selects between normal (sometimes referred to as &quot;roman&quot; or &quot;upright&quot;), italic and oblique faces within a font family.
+</td><td>X</td></tr>
+<tr><td>4</td><td>FontVariant</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontvariant.htm">IfcFontVariant</a></td><td>? </td><td>
+The font variant property selects between normal and small-caps.
+<blockquote class="note">
+NOTE  It has been introduced for later compliance to full CSS1 support.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>5</td><td>FontWeight</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcfontweight.htm">IfcFontWeight</a></td><td>? </td><td>
+The font weight property selects the weight of the font.
+<blockquote class="note">
+NOTE  Values other then 'normal' and 'bold' have been introduced for later compliance to full CSS1 support.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>FontSize</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcsizeselect.htm">IfcSizeSelect</a></td><td></td><td>
+The font size provides the size or height of the text font.
+<blockquote class="note">
+NOTE  The following values are allowed, &lt;<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>, with positive values, the length unit is globally defined at <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a>.__
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifctextstylefontmodel.htm">IfcTextStyleFontModel</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctextstylefontmodel.htm">IfcTextStyleFontModel</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpredefinedtextfont.htm">IfcPreDefinedTextFont</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifctextstylefontmodel.htm">IfcTextStyleFontModel</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpredefinedtextfont.htm">IfcPreDefinedTextFont</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;FontFamily&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctextfontname.htm">IfcTextFontName</a>-wrapper&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctextfontname.htm">IfcTextFontName</a>-wrapper&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;FontSize&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcsizeselect.htm">IfcSizeSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FontStyle&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcfontstyle.htm">IfcFontStyle</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FontVariant&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcfontvariant.htm">IfcFontVariant</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FontWeight&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcfontweight.htm">IfcFontWeight</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcTextStyleFontModel<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpresentationappearanceresource/lexical/ifcpredefinedtextfont.htm">IfcPreDefinedTextFont</a>)<b>;</b><br/>
+&nbsp;&nbsp;FontFamily : <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifctextfontname.htm">IfcTextFontName</a>;<br/>
+&nbsp;&nbsp;FontStyle : <span class="keyword">OPTIONAL</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcfontstyle.htm">IfcFontStyle</a>;<br/>
+&nbsp;&nbsp;FontVariant : <span class="keyword">OPTIONAL</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcfontvariant.htm">IfcFontVariant</a>;<br/>
+&nbsp;&nbsp;FontWeight : <span class="keyword">OPTIONAL</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcfontweight.htm">IfcFontWeight</a>;<br/>
+&nbsp;&nbsp;FontSize : <a href="../../ifcpresentationappearanceresource/lexical/ifcsizeselect.htm">IfcSizeSelect</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;MeasureOfFontSize : (&#39;IFCMEASURERESOURCE.<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&#39; IN TYPEOF(SELF.FontSize)) AND<br/>
+(SELF.FontSize &gt; 0.);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifctextstylefontmodel.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,214 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPropertySingleValue</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 16 index3 3 index4 11 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.16.3.12");
+//-->
+</script>
+
+<h4 class="num">IfcPropertySingleValue</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Merkmal mit Einzelwert</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Property Single Value</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Propriété à valeur simple</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The property with a single value <span class="self-ref">IfcPropertySingleValue</span> defines a property object which has a single (numeric or descriptive) value assigned. It defines a property - single value combination for which the property <i>Name</i>, an optional <i>Description</i>, and an optional <i>NominalValue</i> with measure type is provided. In addition, the default unit as specified within the project unit context can be overriden by assigning an <i>Unit</i>.</p>
+<p>The unit is handled by the <i>Unit</i> attribute, see Table 705 for an example of various single value properties:</p>
+<ul>
+<li>If the <i>Unit</i> attribute is not given, then the unit is already implied by the type of <a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a> or <a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>. The associated unit can be found at the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a> globally defined at the project level (<i>IfcProject.UnitsInContext</i>).</li>
+<li>If the <i>Unit</i> attribute is given, then the unit assigned by the <i>Unit</i> attribute overrides the globally assigned unit.</li>
+</ul>
+<p> </p>
+<table>
+ <tr>
+  <td>
+   <table class="gridtable">
+    <tr>
+      <th width="30%"><b>Name</b></th>
+      <th width="30%"><b>NominalValue</b></th>
+      <th width="25%"><b>Type</b> <span style="font-size:smaller">(through <a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a>)</span></th>
+      <th width="15%"><b>Unit</b></th>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Manufacturer "A" door</td>
+      <td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>PanelThickness</td>
+      <td>0.12</td>
+      <td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>ThermalTransmittance</td>
+      <td>2.6</td>
+      <td><a href="../../ifcmeasureresource/lexical/ifcthermaltransmittancemeasure.htm">IfcThermalTransmittanceMeasure</a></td>
+      <td>W/(m<sup>2</sup>K)</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td><p class="table">Table 705 &mdash; Single value properties with values, measure types and units</p></td>
+ </tr>
+</table>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0.</p>
+</blockquote>
+<blockquote class="change-ifc2x">
+<p>IFC2x CHANGE  Entity has been renamed from IfcSimpleProperty.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  Attribute <i>NominalValue</i> has been made OPTIONAL with upward compatibility for file based exchange.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>3</td><td>NominalValue</td><td><a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a></td><td>? </td><td>
+Value and measure type of this property.
+<blockquote class="note">
+NOTE  By virtue of the defined data type, that is selected from the SELECT <a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a>, the appropriate unit can be found within the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a>, defined for the project if no value for the unit attribute is given.
+</blockquote>
+<blockquote class="note">
+IFC2x3 CHANGE  The attribute has been made optional with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>Unit</td><td><a href="../../ifcmeasureresource/lexical/ifcunit.htm">IfcUnit</a></td><td>? </td><td>
+Unit for the nominal value, if not given, the default value for the measure type (given by the TYPE of nominal value) is used as defined by the global unit assignment at IfcProject.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpropertysinglevalue.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcpropertyresource/lexical/ifcsimpleproperty.htm" alt="IfcSimpleProperty" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcpropertyresource/lexical/ifcproperty.htm" alt="IfcProperty" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcpropertyresource/lexical/ifcpropertyabstraction.htm" alt="IfcPropertyAbstraction" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcpropertyabstraction.htm">IfcPropertyAbstraction</a></i></td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to an external reference, e.g. library, classification, or document information, that is associated to the property definition.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcproperty.htm">IfcProperty</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td></td><td>
+Name for this property. This label is the significant name string that defines the semantic meaning for the property.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Informative text to explain the property.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfPset</i></td><td><a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a><br/>@HasProperties</td><td>S[0:?]</td><td>Reference to the <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> by which the <span class="self-ref">IfcProperty</span> is referenced.
+
+<blockquote>
+IFC4 CHANGE  New inverse attribute to navigate from <span class="self-ref">IfcProperty</span> to <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>PropertyForDependance</i></td><td><a href="../../ifcpropertyresource/lexical/ifcpropertydependencyrelationship.htm">IfcPropertyDependencyRelationship</a><br/>@DependingProperty</td><td>S[0:?]</td><td>The property on whose value that of another property depends.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PropertyDependsOn</i></td><td><a href="../../ifcpropertyresource/lexical/ifcpropertydependencyrelationship.htm">IfcPropertyDependencyRelationship</a><br/>@DependantProperty</td><td>S[0:?]</td><td>The relating property on which the value of the property depends.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfComplex</i></td><td><a href="../../ifcpropertyresource/lexical/ifccomplexproperty.htm">IfcComplexProperty</a><br/>@HasProperties</td><td>S[0:?]</td><td>Reference to the <a href="../../ifcpropertyresource/lexical/ifccomplexproperty.htm">IfcComplexProperty</a> in which the <span class="self-ref">IfcProperty</span> is contained.
+
+<blockquote>
+IFC4 CHANGE  The cardinality has changed to 0..n to allow reuse of instances of <span class="self-ref">IfcProperty</span> in several <a href="../../ifcpropertyresource/lexical/ifccomplexproperty.htm">IfcComplexProperty</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasConstraints</i></td><td><a href="../../ifcconstraintresource/lexical/ifcresourceconstraintrelationship.htm">IfcResourceConstraintRelationship</a><br/>@RelatedResourceObjects</td><td>? S[0:?]</td><td>User-defined constraints for the property.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasApprovals</i></td><td><a href="../../ifcapprovalresource/lexical/ifcresourceapprovalrelationship.htm">IfcResourceApprovalRelationship</a><br/>@RelatedResourceObjects</td><td>? S[0:?]</td><td>User-defined approvals for the property.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcsimpleproperty.htm">IfcSimpleProperty</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a></td></tr>
+<tr><td>3</td><td>NominalValue</td><td><a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a></td><td>? </td><td>
+Value and measure type of this property.
+<blockquote class="note">
+NOTE  By virtue of the defined data type, that is selected from the SELECT <a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a>, the appropriate unit can be found within the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a>, defined for the project if no value for the unit attribute is given.
+</blockquote>
+<blockquote class="note">
+IFC2x3 CHANGE  The attribute has been made optional with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>Unit</td><td><a href="../../ifcmeasureresource/lexical/ifcunit.htm">IfcUnit</a></td><td>? </td><td>
+Unit for the nominal value, if not given, the default value for the measure type (given by the TYPE of nominal value) is used as defined by the global unit assignment at IfcProject.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a>&quot; type=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcsimpleproperty.htm">IfcSimpleProperty</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcsimpleproperty.htm">IfcSimpleProperty</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;NominalValue&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Unit&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcunit.htm">IfcUnit</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPropertySingleValue<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpropertyresource/lexical/ifcsimpleproperty.htm">IfcSimpleProperty</a>)<b>;</b><br/>
+&nbsp;&nbsp;NominalValue : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcvalue.htm">IfcValue</a>;<br/>
+&nbsp;&nbsp;Unit : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcunit.htm">IfcUnit</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpropertyresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcpropertysinglevalue.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

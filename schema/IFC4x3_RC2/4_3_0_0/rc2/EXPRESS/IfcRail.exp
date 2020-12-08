@@ -1,0 +1,246 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCRAIL;
+
+REFERENCE FROM IFCGEOMETRICCONSTRAINTRESOURCE
+(
+  IfcAlignmentCantSegment
+);
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcCurveMeasureSelect,
+  IfcPointByDistanceExpression
+);
+
+TYPE IfcDistributionBoardTypeEnum = ENUMERATION OF
+	(SWITCHBOARD
+	,CONSUMERUNIT
+	,MOTORCONTROLCENTRE
+	,DISTRIBUTIONFRAME
+	,DISTRIBUTIONBOARD
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcElectricFlowTreatmentDeviceTypeEnum = ENUMERATION OF
+	(ELECTRONICFILTER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcMobileTelecommunicationsApplianceTypeEnum = ENUMERATION OF
+	(E_UTRAN_NODE_B
+	,REMOTE_RADIO_UNIT
+	,ACCESSPOINT
+	,BASETRANSCEIVERSTATION
+	,REMOTEUNIT
+	,BASEBANDUNIT
+	,MASTERUNIT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcRailTypeEnum = ENUMERATION OF
+	(RACKRAIL
+	,BLADE
+	,GUARDRAIL
+	,STOCKRAIL
+	,CHECKRAIL
+	,RAIL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcRailwayPartTypeEnum = ENUMERATION OF
+	(TRACKSTRUCTURE
+	,TRACKSTRUCTUREPART
+	,LINESIDESTRUCTUREPART
+	,DILATATIONSUPERSTRUCTURE
+	,PLAINTRACKSUPESTRUCTURE
+	,LINESIDESTRUCTURE
+	,SUPERSTRUCTURE
+	,TURNOUTSUPERSTRUCTURE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTrackElementTypeEnum = ENUMERATION OF
+	(TRACKENDOFALIGNMENT
+	,BLOCKINGDEVICE
+	,VEHICLESTOP
+	,SLEEPER
+	,HALF_SET_OF_BLADES
+	,SPEEDREGULATOR
+	,DERAILER
+	,FROG
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcLinearAxisSelect = SELECT
+	(IfcCurve
+	,IfcLinearAxisWithInclination);
+END_TYPE;
+
+ENTITY IfcAlignmentCant
+ SUBTYPE OF (IfcLinearElement);
+	RailHeadDistance : IfcPositiveLengthMeasure;
+	Segments : LIST [1:?] OF IfcAlignmentCantSegment;
+END_ENTITY;
+
+ENTITY IfcAxisLateralInclination
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+ INVERSE
+	ToLinearAxis : SET [1:1] OF IfcLinearAxisWithInclination FOR Inclinating;
+END_ENTITY;
+
+ENTITY IfcDirectrixDistanceSweptAreaSolid
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcInclinedReferenceSweptAreaSolid))
+ SUBTYPE OF (IfcSweptAreaSolid);
+	Directrix : IfcCurve;
+	StartDistance : OPTIONAL IfcPointByDistanceExpression;
+	EndDistance : OPTIONAL IfcPointByDistanceExpression;
+END_ENTITY;
+
+ENTITY IfcDistributionBoard
+ SUBTYPE OF (IfcFlowController);
+	PredefinedType : OPTIONAL IfcDistributionBoardTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcDistributionBoardTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcDistributionBoardTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCRAIL.IFCDISTRIBUTIONBOARDTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcDistributionBoardType
+ SUBTYPE OF (IfcFlowControllerType);
+	PredefinedType : IfcDistributionBoardTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcDistributionBoardTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcDistributionBoardTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcElectricFlowTreatmentDevice
+ SUBTYPE OF (IfcFlowTreatmentDevice);
+	PredefinedType : OPTIONAL IfcElectricFlowTreatmentDeviceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcElectricFlowTreatmentDeviceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcElectricFlowTreatmentDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCRAIL.IFCELECTRICFLOWTREATMENTDEVICETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcElectricFlowTreatmentDeviceType
+ SUBTYPE OF (IfcFlowTreatmentDeviceType);
+	PredefinedType : IfcElectricFlowTreatmentDeviceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcElectricFlowTreatmentDeviceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcElectricFlowTreatmentDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcInclinedReferenceSweptAreaSolid
+ SUBTYPE OF (IfcDirectrixDistanceSweptAreaSolid);
+	FixedAxisVertical : OPTIONAL IfcBoolean;
+	Inclinating : IfcAxisLateralInclination;
+END_ENTITY;
+
+ENTITY IfcLinearAxisWithInclination
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Directrix : IfcCurve;
+	Inclinating : IfcAxisLateralInclination;
+END_ENTITY;
+
+ENTITY IfcLinearPlacementWithInclination
+ SUBTYPE OF (IfcLinearPlacement);
+	Inclinating : IfcAxisLateralInclination;
+END_ENTITY;
+
+ENTITY IfcMobileTelecommunicationsAppliance
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcMobileTelecommunicationsApplianceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcMobileTelecommunicationsApplianceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcMobileTelecommunicationsApplianceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCRAIL.IFCMOBILETELECOMMUNICATIONSAPPLIANCETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcMobileTelecommunicationsApplianceType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcMobileTelecommunicationsApplianceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcMobileTelecommunicationsApplianceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcMobileTelecommunicationsApplianceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcRail
+ SUBTYPE OF (IfcBuiltElement);
+	PredefinedType : OPTIONAL IfcRailTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcRailTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcRailTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCRAIL.IFCRAILTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcRailType
+ SUBTYPE OF (IfcBuiltElementType);
+	PredefinedType : IfcRailTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcRailTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcRailTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcRailway
+ SUBTYPE OF (IfcFacility);
+END_ENTITY;
+
+ENTITY IfcTrackElement
+ SUBTYPE OF (IfcBuiltElement);
+	PredefinedType : OPTIONAL IfcTrackElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcTrackElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTrackElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCRAIL.IFCTRACKELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcTrackElementType
+ SUBTYPE OF (IfcBuiltElementType);
+	PredefinedType : IfcTrackElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcTrackElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcTrackElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+END_SCHEMA;

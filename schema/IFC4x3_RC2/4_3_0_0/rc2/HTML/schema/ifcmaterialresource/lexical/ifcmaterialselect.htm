@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcMaterialSelect</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 10 index3 2 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.10.2.4");
+//-->
+</script>
+
+<h4 class="num">IfcMaterialSelect</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Material Select</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Sélection de matériau</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmaterialresource/lexical/ifcmaterialselect.htm">IfcMaterialSelect</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterialUsageDefinition</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterialDefinition</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterial</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterialLayerSetUsage</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterialLayerSet</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcMaterialLayer</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p><span class="self-ref">IfcMaterialSelect</span> provides selection of either a material definition or a material usage definition that can be assigned to an element, a resource or another entity within this specification.</p>
+<ul>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>
+<ul>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialconstituent.htm">IfcMaterialConstituent</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialconstituentset.htm">IfcMaterialConstituentSet</a></li>
+</ul>
+</li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialusagedefinition.htm">IfcMaterialUsageDefinition</a>
+<ul>
+<li><a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a></li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a></li>
+</ul>
+</li>
+<li><a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a></li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New select in IFC1.0</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE The select now includes two new abstract entities <a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a> and <a href="../../ifcmaterialresource/lexical/ifcmaterialusagedefinition.htm">IfcMaterialUsageDefinition</a> with upward compatibility. The use of <a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a> is deprecated from IFC4 onwards.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Select definition</summary><table class="attributes">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><a href="../../ifcmaterialresource/lexical/ifcmaterialusagedefinition.htm">IfcMaterialUsageDefinition</a>
+</td><td></td></tr><tr><td><a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>
+</td><td></td></tr><tr><td><a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a>
+</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:group name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmaterialselect.htm">IfcMaterialSelect</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:choice&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialusagedefinition.htm">IfcMaterialUsageDefinition</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:choice&gt;<br/>
+&nbsp;&lt;/xs:group&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcMaterialSelect = <span class="keyword">SELECT</span> (<br/>
+&nbsp;<a href="../../ifcmaterialresource/lexical/ifcmaterialusagedefinition.htm">IfcMaterialUsageDefinition</a>, <br/>&nbsp;<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>, <br/>&nbsp;<a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a>);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcmaterialresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>
+</p>
+<p><a href="../../../link/ifcmaterialselect.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

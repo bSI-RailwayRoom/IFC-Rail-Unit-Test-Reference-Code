@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ChillerPHistory</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 4 index4 12 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.4.13");
+//-->
+</script>
+
+<h4 class="std">7.5.4.13 Pset_ChillerPHistory</h4>
+<p><span class="self-ref">PSET_PERFORMANCEDRIVEN</span>
+/
+<a href="../../ifchvacdomain/lexical/ifcchiller.htm">IfcChiller</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Chiller PHistory</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3IwM40qSWHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ChillerPHistory.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Capacity</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Capacity</b></td><td>The product of the  ideal capacity and the overall volumetric efficiency of the compressor.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Puissance</b></td><td>Le produit de la puissance optimale par le rendement global du compresseur.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>EnergyEfficiencyRatio</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Energy Efficiency Ratio</b></td><td>The Energy efficiency ratio (EER) is the ratio of net cooling capacity to the total input rate of electric power applied.  By definition, the units are BTU/hour per Watt.
+The input electric power may be obtained from Pset_DistributionPortPHistoryElectrical.RealPower on the 'Power' port of the IfcChiller.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>CoefficientEfficacitéEnergétique</b></td><td>L'EER ou Energy Efficiency Ratio est le coefficient d'efficacité frigorifique, rapport entre entre l'énergie utile frigorifique divisée parénergie absorbée au compresseur.
+Par définition, l'unité est le BTU/hour par Watt.
+La puissance électrique fournie peut être obtenue depuis Pset_DistributionPortHistoryElectrical.RealPower sur le port &quot;Power&quot;  du IfcChiller.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoefficientOfPerformance</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coefficient Of Performance</b></td><td>The Coefficient of performance (COP) is the ratio of heat removed to energy input.
+The energy input may be obtained by multiplying
+Pset_DistributionPortPHistoryGas.FlowRate on the 'Fuel' port of the IfcChiller by Pset_MaterialFuel.LowerHeatingValue.<br>
+The IfcDistributionPort for fuel has an associated IfcMaterial with fuel properties and is assigned to an IfcPerformanceHistory object nested within this IfcPerformanceHistory object.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>CoefficientDePerformance</b></td><td>Le coefficient de performance (COP) est le rapport entre l'énergie calorifique fournie sur l'énergie abosrbée.
+L'énergie fournie peut être obtenue en multipliant Pset_DistributionPortHistoryGas.flowRate depuis le port du IfcChiller par Pset_MaterialFuel.LowerHeatingValue.
+Le IfcDistributionPort pour combustible est associé à IfcMaterial pour les propriétés du combustible et est atrribué à l'objet IfcPerformanceHistory situé à l'intérieur même de cet objet IfcPerformanceHistory.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_chillerphistory.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

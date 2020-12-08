@@ -1,0 +1,184 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcIndexedPolyCurve</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 38 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.39");
+//-->
+</script>
+
+<h4 class="num">IfcIndexedPolyCurve</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Indexed Curve</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositioningElement</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositioningElement</td><td></td><td></td><td>MODIFIED</td><td>Aggregation changed from <i>NONE</i> to <i>SET</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcIndexedPolyCurve</span> is a bounded curve with only linear and circular arc segments defined by a Cartesian point list and an optional list of segments, providing indices into the Cartesian point list. In the case that the list of <i>Segments</i> is not provided, all points in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a> are connected by straight line segments in the order they appear in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>.</p>
+<p>In the case that the list of <i>Segments</i> is provided, it is interpreted as such:</p>
+<ul>
+<li>Segment of type <a href="../../ifcgeometryresource/lexical/ifclineindex.htm">IfcLineIndex</a>: The first index is the start point of the poly line segment, the last index is the end point of the poly line segment. If more than two indices are included, then all intermediate indices define intermediate points of the polyline connected in the order of appearance of the indices;</li>
+<li>Segment of type <a href="../../ifcgeometryresource/lexical/ifcarcindex.htm">IfcArcIndex</a>: The first index is the start point of the circular arc, the second index is a point on arc, the third index is the end point of the circular arc. The three points shall not be co-linear. In case that this informal proposition is not maintained, the arc segment shall be treated as a polyline segment.</li>
+</ul>
+<blockquote class="example">
+<p>EXAMPLE  Figure 369 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having straight and arc segments. In this example, the straight segments only have two points and one edge, however more then two indices into the Cartesian point list can be includes, defining a multi edge polyline segment.</p>
+</blockquote>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig1.png" alt="&quot;poly curve with arcs examples&quot;" title="Figure 369 &mdash; Bounded open IfcIndexedPolyCurve with straight and arc segments"></td></tr><tr><td><p class="figure">Figure 369 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with straight and arc segments</p></td></tr></table></p>
+<blockquote class="example">
+<p>EXAMPLE  Figure 369 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having only straight segments. In this example, no list of <i>Segments</i> is provided, hence the points are drawn in the order of their appearance in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>.</p>
+</blockquote>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig2.png" alt="&quot;poly curve examples&quot;" title="Figure 369 &mdash; Bounded open IfcIndexedPolyCurve with only straight segments"></td></tr><tr><td><p class="figure">Figure 369 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with only straight segments</p></td></tr></table></p>
+<p>The <span class="self-ref">IfcIndexedPolyCurve</span> represents an open or a closed curve depending on the following condition:</p>
+<ul>
+<li>In the case that the list of <i>Segments</i> is provided: If the last index of the last <i>Segment</i> and the first index of the first <i>Segment</i> are identical, then the poly curve is a closed curve, otherwise it is an open curve.</li>
+<li>In the case that the list of <i>Segments</i> is not provided: If the first and the last Cartesian point in the Cartesian point list are identical, then the poly curve is a closed curve, otherwise it is an open curve.</li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4 ADD1</p>
+</blockquote>
+<p class="spec-head">
+Informal Propositions:</p>
+<ol>
+<li>Any two consecutive points of the <span class="self-ref">IfcIndexedPolyCurve</span> shall not be coincident after taking the <i>Precision</i> factor into account, given by the applicable <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a>.</li>
+<li>The three points of any <a href="../../ifcgeometryresource/lexical/ifcarcindex.htm">IfcArcIndex</a> segment of the <span class="self-ref">IfcIndexedPolyCurve</span> shall not be colinear after taking the <i>Precision</i> factor into account, given by the applicable <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a>.</li>
+</ol>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Points</td><td><a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a></td><td></td><td>
+A list of points, provided by a point list of either two, or three dimensions, that is used to define the poly curve. If the attribute <i>Segments</i> is not provided, the poly curve is generated as a poly line by connecting the points in the order of their appearance in the point list. If the attribute <i>Segments</i> is provided, the segments determine, how the points are to be used to create straigth and circular arc segments.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Segments</td><td><a href="../../ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a></td><td>? L[1:?]</td><td>
+List of straight line and circular arc segments, each providing a list of indices into the Cartesian point list. Indices should preserve consecutive connectivity between the segments, the start index of the next segment shall be identical with the end index of the previous segment.
+</td><td>X</td></tr>
+<tr><td>3</td><td>SelfIntersect</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+Indication of whether the curve intersects itself or not; this is for information only.
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>Consecutive</td><td>If a list of indexed segments is provided, they need to be consecutive, meaning that the last index of all, but the last, segments shall be identical with the first index of the next segment.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcindexedpolycurve.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifcgeometryresource/lexical/ifcboundedcurve.htm" alt="IfcBoundedCurve" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=IfcCurveDim(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this abstract class, defined differently for all subtypes, i.e. for IfcLine, IfcConic and IfcBoundedCurve.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcboundedcurve.htm">IfcBoundedCurve</a></i></td></tr>
+<tr><td></td><td><i>PositioningElement</i></td><td><a href="../../ifcproductextension/lexical/ifclinearpositioningelement.htm">IfcLinearPositioningElement</a><br/>@Axis</td><td>? S[0:1]</td><td></td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a></td></tr>
+<tr><td>1</td><td>Points</td><td><a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a></td><td></td><td>
+A list of points, provided by a point list of either two, or three dimensions, that is used to define the poly curve. If the attribute <i>Segments</i> is not provided, the poly curve is generated as a poly line by connecting the points in the order of their appearance in the point list. If the attribute <i>Segments</i> is provided, the segments determine, how the points are to be used to create straigth and circular arc segments.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Segments</td><td><a href="../../ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a></td><td>? L[1:?]</td><td>
+List of straight line and circular arc segments, each providing a list of indices into the Cartesian point list. Indices should preserve consecutive connectivity between the segments, the start index of the next segment shall be identical with the end index of the previous segment.
+</td><td>X</td></tr>
+<tr><td>3</td><td>SelfIntersect</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+Indication of whether the curve intersects itself or not; this is for information only.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcboundedcurve.htm">IfcBoundedCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcboundedcurve.htm">IfcBoundedCurve</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Points&quot; type=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Segments&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SelfIntersect&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcIndexedPolyCurve<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcboundedcurve.htm">IfcBoundedCurve</a>)<b>;</b><br/>
+&nbsp;&nbsp;Points : <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>;<br/>
+&nbsp;&nbsp;Segments : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] OF <a href="../../ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a>;<br/>
+&nbsp;&nbsp;SelfIntersect : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;Consecutive : NOT(EXISTS(Segments)) OR <a href="../../ifcgeometryresource/lexical/ifcconsecutivesegments.htm">IfcConsecutiveSegments</a>(Segments);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcindexedpolycurve.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

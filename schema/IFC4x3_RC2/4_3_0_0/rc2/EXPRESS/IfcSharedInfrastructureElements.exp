@@ -1,0 +1,376 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCSHAREDINFRASTRUCTUREELEMENTS;
+
+TYPE IfcAnnotationTypeEnum = ENUMERATION OF
+	(ASSUMEDPOINT
+	,ASBUILTAREA
+	,ASBUILTLINE
+	,NON_PHYSICAL_SIGNAL
+	,ASSUMEDLINE
+	,WIDTHEVENT
+	,ASSUMEDAREA
+	,SUPERELEVATIONEVENT
+	,ASBUILTPOINT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcBuiltSystemTypeEnum = ENUMERATION OF
+	(REINFORCING
+	,MOORING
+	,OUTERSHELL
+	,TRACKCIRCUIT
+	,EROSIONPREVENTION
+	,FOUNDATION
+	,LOADBEARING
+	,SHADING
+	,FENESTRATION
+	,MOORINGSYSTEM
+	,TRANSPORT
+	,PRESTRESSING
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcCourseTypeEnum = ENUMERATION OF
+	(ARMOUR
+	,FILTER
+	,BALLASTBED
+	,CORE
+	,PAVEMENT
+	,PROTECTION
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcEarthworksCutTypeEnum = ENUMERATION OF
+	(TRENCH
+	,DREDGING
+	,EXCAVATION
+	,OVEREXCAVATION
+	,TOPSOILREMOVAL
+	,STEPEXCAVATION
+	,PAVEMENTMILLING
+	,CUT
+	,BASE_EXCAVATION
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcEarthworksFillTypeEnum = ENUMERATION OF
+	(BACKFILL
+	,COUNTERWEIGHT
+	,SUBGRADE
+	,EMBANKMENT
+	,TRANSITIONSECTION
+	,SUBGRADEBED
+	,SLOPEFILL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcFacilityPartCommonTypeEnum = ENUMERATION OF
+	(SEGMENT
+	,ABOVEGROUND
+	,JUNCTION
+	,LEVELCROSSING
+	,BELOWGROUND
+	,SUBSTRUCTURE
+	,TERMINAL
+	,SUPERSTRUCTURE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcFacilityUsageEnum = ENUMERATION OF
+	(LATERAL
+	,REGION
+	,VERTICAL
+	,LONGITUDINAL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcImpactProtectionDeviceTypeEnum = ENUMERATION OF
+	(CRASHCUSHION
+	,DAMPINGSYSTEM
+	,FENDER
+	,BUMPER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcReinforcedSoilTypeEnum = ENUMERATION OF
+	(SURCHARGEPRELOADED
+	,VERTICALLYDRAINED
+	,DYNAMICALLYCOMPACTED
+	,REPLACED
+	,ROLLERCOMPACTED
+	,GROUTED
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSignTypeEnum = ENUMERATION OF
+	(MARKER
+	,PICTORAL
+	,MIRROR
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSignalTypeEnum = ENUMERATION OF
+	(VISUAL
+	,AUDIO
+	,MIXED
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcTransportElementNonFixedTypeEnum = ENUMERATION OF
+	(VEHICLE
+	,VEHICLETRACKED
+	,ROLLINGSTOCK
+	,VEHICLEWHEELED
+	,VEHICLEAIR
+	,CARGO
+	,VEHICLEMARINE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcFacilityPartTypeSelect = SELECT
+	(IfcBridgePartTypeEnum
+	,IfcFacilityPartCommonTypeEnum
+	,IfcMarinePartTypeEnum
+	,IfcRailwayPartTypeEnum
+	,IfcRoadPartTypeEnum);
+END_TYPE;
+
+TYPE IfcImpactProtectionDeviceTypeSelect = SELECT
+	(IfcImpactProtectionDeviceTypeEnum
+	,IfcVibrationDamperTypeEnum
+	,IfcVibrationIsolatorTypeEnum);
+END_TYPE;
+
+TYPE IfcInterferenceSelect = SELECT
+	(IfcElement
+	,IfcSpatialElement);
+END_TYPE;
+
+TYPE IfcSpatialReferenceSelect = SELECT
+	(IfcProduct
+	,IfcSystem);
+END_TYPE;
+
+TYPE IfcTransportElementTypeSelect = SELECT
+	(IfcTransportElementFixedTypeEnum
+	,IfcTransportElementNonFixedTypeEnum);
+END_TYPE;
+
+ENTITY IfcBorehole
+ SUBTYPE OF (IfcGeotechnicalAssembly);
+END_ENTITY;
+
+ENTITY IfcBuiltSystem
+ SUBTYPE OF (IfcSystem);
+	PredefinedType : OPTIONAL IfcBuiltSystemTypeEnum;
+	LongName : OPTIONAL IfcLabel;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcBuiltSystemTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcBuiltSystemTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcCourse
+ SUBTYPE OF (IfcBuiltElement);
+	PredefinedType : OPTIONAL IfcCourseTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcCourseTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcCourseTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCCOURSETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcCourseType
+ SUBTYPE OF (IfcBuiltElementType);
+	PredefinedType : IfcCourseTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcCourseTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcCourseTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcEarthworksCut
+ SUBTYPE OF (IfcFeatureElementSubtraction);
+	PredefinedType : OPTIONAL IfcEarthworksCutTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcEarthworksCutTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcEarthworksCutTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcEarthworksElement
+ SUPERTYPE OF (ONEOF
+    (IfcEarthworksFill
+    ,IfcReinforcedSoil))
+ SUBTYPE OF (IfcBuiltElement);
+END_ENTITY;
+
+ENTITY IfcEarthworksFill
+ SUBTYPE OF (IfcEarthworksElement);
+	PredefinedType : OPTIONAL IfcEarthworksFillTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcEarthworksFillTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcEarthworksFillTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcGeomodel
+ SUBTYPE OF (IfcGeotechnicalAssembly);
+END_ENTITY;
+
+ENTITY IfcGeoslice
+ SUBTYPE OF (IfcGeotechnicalAssembly);
+END_ENTITY;
+
+ENTITY IfcGeotechnicalAssembly
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBorehole
+    ,IfcGeomodel
+    ,IfcGeoslice))
+ SUBTYPE OF (IfcGeotechnicalElement);
+END_ENTITY;
+
+ENTITY IfcGeotechnicalElement
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcGeotechnicalAssembly
+    ,IfcGeotechnicalStratum))
+ SUBTYPE OF (IfcElement);
+END_ENTITY;
+
+ENTITY IfcGeotechnicalStratum
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcSolidStratum
+    ,IfcVoidStratum
+    ,IfcWaterStratum))
+ SUBTYPE OF (IfcGeotechnicalElement);
+END_ENTITY;
+
+ENTITY IfcImpactProtectionDevice
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcImpactProtectionDeviceTypeSelect;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCIMPACTPROTECTIONDEVICETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcImpactProtectionDeviceType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcImpactProtectionDeviceTypeSelect;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcPavement
+ SUBTYPE OF (IfcBuiltElement);
+	Flexible : OPTIONAL IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcPavementType
+ SUBTYPE OF (IfcBuiltElementType);
+	Flexible : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcPlant
+ SUBTYPE OF (IfcGeographicElement);
+END_ENTITY;
+
+ENTITY IfcReinforcedSoil
+ SUBTYPE OF (IfcEarthworksElement);
+	PredefinedType : OPTIONAL IfcReinforcedSoilTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcReinforcedSoilTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcReinforcedSoilTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcSign
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcSignTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcSignTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSignTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCSIGNTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcSignType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcSignTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcSignTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSignTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcSignal
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcSignalTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcSignalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSignalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCSIGNALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcSignalType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcSignalTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcSignalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSignalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcSolidStratum
+ SUBTYPE OF (IfcGeotechnicalStratum);
+END_ENTITY;
+
+ENTITY IfcVoidStratum
+ SUBTYPE OF (IfcGeotechnicalStratum);
+END_ENTITY;
+
+ENTITY IfcWaterStratum
+ SUBTYPE OF (IfcGeotechnicalStratum);
+END_ENTITY;
+
+END_SCHEMA;

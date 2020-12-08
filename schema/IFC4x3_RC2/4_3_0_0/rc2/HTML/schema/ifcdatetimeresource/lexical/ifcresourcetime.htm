@@ -1,0 +1,224 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcResourceTime</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 5 index3 3 index4 6 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.5.3.7");
+//-->
+</script>
+
+<h4 class="num">IfcResourceTime</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Ressourcenzeit</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Resource Time</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsOverAllocated</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcResourceTime</span> captures the time-related information about a construction resource.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>4</td><td>ScheduleWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the total work (e.g. person-hours) allocated to the task on behalf of the resource.
+Note: this is not necessarily the same as the task duration (IfcTaskTime.ScheduleDuration); it may vary according to the resource usage ratio and other resources assigned to the task.
+</td><td>X</td></tr>
+<tr><td>5</td><td>ScheduleUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the amount of the resource used concurrently. For example, 100% means 1 worker, 300% means 3 workers, 50% means half of 1 worker's time for scenarios where multitasking is feasible. If not provided, then the usage ratio is considered to be 100%.
+</td><td>X</td></tr>
+<tr><td>6</td><td>ScheduleStart</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource is scheduled to start working.
+</td><td>X</td></tr>
+<tr><td>7</td><td>ScheduleFinish</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource is scheduled to finish working.
+</td><td>X</td></tr>
+<tr><td>8</td><td>ScheduleContour</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Indicates how a resource should be leveled over time by adjusting the resource usage according to a specified curve.  Standard values include: 'Flat', 'BackLoaded', 'FrontLoaded', 'DoublePeak', 'EarlyPeak', 'LatePeak', 'Bell', and 'Turtle'.  Custom values may specify a custom name or formula.
+</td><td>X</td></tr>
+<tr><td>9</td><td>LevelingDelay</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates a delay in the ScheduleStart caused by leveling.
+</td><td>X</td></tr>
+<tr><td>10</td><td>IsOverAllocated</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+Indicates that the resource is scheduled in excess of its capacity.
+</td><td>X</td></tr>
+<tr><td>11</td><td>StatusTime</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the date and time for which status values are applicable; particularly completion, actual, and remaining values.  If values are time-phased (the referencing IfcConstructionResource has associated time series values for attributes), then the status values may be determined from such time-phased data as of the StatusTime.
+</td><td>X</td></tr>
+<tr><td>12</td><td>ActualWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the actual work performed by the resource as of the StatusTime.
+</td><td>X</td></tr>
+<tr><td>13</td><td>ActualUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the actual amount of the resource used concurrently.
+</td><td>X</td></tr>
+<tr><td>14</td><td>ActualStart</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource actually started working.
+</td><td>X</td></tr>
+<tr><td>15</td><td>ActualFinish</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource actually finished working.
+</td><td>X</td></tr>
+<tr><td>16</td><td>RemainingWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the work remaining to be completed by the resource.
+</td><td>X</td></tr>
+<tr><td>17</td><td>RemainingUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+</td><td>X</td></tr>
+<tr><td>18</td><td>Completion</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the percent completion of this resource.  If the resource is assigned to a task, then indicates completion of the task on behalf of the resource; if the resource is partitioned into sub-allocations, then indicates overall completion of sub-allocations.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcresourcetime.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcdatetimeresource/lexical/ifcschedulingtime.htm" alt="IfcSchedulingTime" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcdatetimeresource/lexical/ifcschedulingtime.htm">IfcSchedulingTime</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for the time definition.
+</td><td>X</td></tr>
+<tr><td>2</td><td>DataOrigin</td><td><a href="../../ifcdatetimeresource/lexical/ifcdataoriginenum.htm">IfcDataOriginEnum</a></td><td>? </td><td>
+Specifies the origin of the scheduling time entity. It currently
+differentiates between predicted, simulated, measured, and user defined values.
+</td><td>X</td></tr>
+<tr><td>3</td><td>UserDefinedDataOrigin</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Value of the data origin if DataOrigin attribute is USERDEFINED.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a></td></tr>
+<tr><td>4</td><td>ScheduleWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the total work (e.g. person-hours) allocated to the task on behalf of the resource.
+Note: this is not necessarily the same as the task duration (IfcTaskTime.ScheduleDuration); it may vary according to the resource usage ratio and other resources assigned to the task.
+</td><td>X</td></tr>
+<tr><td>5</td><td>ScheduleUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the amount of the resource used concurrently. For example, 100% means 1 worker, 300% means 3 workers, 50% means half of 1 worker's time for scenarios where multitasking is feasible. If not provided, then the usage ratio is considered to be 100%.
+</td><td>X</td></tr>
+<tr><td>6</td><td>ScheduleStart</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource is scheduled to start working.
+</td><td>X</td></tr>
+<tr><td>7</td><td>ScheduleFinish</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource is scheduled to finish working.
+</td><td>X</td></tr>
+<tr><td>8</td><td>ScheduleContour</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Indicates how a resource should be leveled over time by adjusting the resource usage according to a specified curve.  Standard values include: 'Flat', 'BackLoaded', 'FrontLoaded', 'DoublePeak', 'EarlyPeak', 'LatePeak', 'Bell', and 'Turtle'.  Custom values may specify a custom name or formula.
+</td><td>X</td></tr>
+<tr><td>9</td><td>LevelingDelay</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates a delay in the ScheduleStart caused by leveling.
+</td><td>X</td></tr>
+<tr><td>10</td><td>IsOverAllocated</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+Indicates that the resource is scheduled in excess of its capacity.
+</td><td>X</td></tr>
+<tr><td>11</td><td>StatusTime</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the date and time for which status values are applicable; particularly completion, actual, and remaining values.  If values are time-phased (the referencing IfcConstructionResource has associated time series values for attributes), then the status values may be determined from such time-phased data as of the StatusTime.
+</td><td>X</td></tr>
+<tr><td>12</td><td>ActualWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the actual work performed by the resource as of the StatusTime.
+</td><td>X</td></tr>
+<tr><td>13</td><td>ActualUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the actual amount of the resource used concurrently.
+</td><td>X</td></tr>
+<tr><td>14</td><td>ActualStart</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource actually started working.
+</td><td>X</td></tr>
+<tr><td>15</td><td>ActualFinish</td><td><a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a></td><td>? </td><td>
+Indicates the time when the resource actually finished working.
+</td><td>X</td></tr>
+<tr><td>16</td><td>RemainingWork</td><td><a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a></td><td>? </td><td>
+Indicates the work remaining to be completed by the resource.
+</td><td>X</td></tr>
+<tr><td>17</td><td>RemainingUsage</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+</td><td>X</td></tr>
+<tr><td>18</td><td>Completion</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td>? </td><td>
+Indicates the percent completion of this resource.  If the resource is assigned to a task, then indicates completion of the task on behalf of the resource; if the resource is partitioned into sub-allocations, then indicates overall completion of sub-allocations.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a>&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcschedulingtime.htm">IfcSchedulingTime</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcschedulingtime.htm">IfcSchedulingTime</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ScheduleWork&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ScheduleUsage&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ScheduleStart&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ScheduleFinish&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ScheduleContour&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;LevelingDelay&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;IsOverAllocated&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;StatusTime&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ActualWork&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ActualUsage&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ActualStart&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ActualFinish&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RemainingWork&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RemainingUsage&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Completion&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcResourceTime<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcdatetimeresource/lexical/ifcschedulingtime.htm">IfcSchedulingTime</a>)<b>;</b><br/>
+&nbsp;&nbsp;ScheduleWork : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>;<br/>
+&nbsp;&nbsp;ScheduleUsage : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>;<br/>
+&nbsp;&nbsp;ScheduleStart : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>;<br/>
+&nbsp;&nbsp;ScheduleFinish : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>;<br/>
+&nbsp;&nbsp;ScheduleContour : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;LevelingDelay : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>;<br/>
+&nbsp;&nbsp;IsOverAllocated : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;&nbsp;StatusTime : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>;<br/>
+&nbsp;&nbsp;ActualWork : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>;<br/>
+&nbsp;&nbsp;ActualUsage : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>;<br/>
+&nbsp;&nbsp;ActualStart : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>;<br/>
+&nbsp;&nbsp;ActualFinish : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdatetime.htm">IfcDateTime</a>;<br/>
+&nbsp;&nbsp;RemainingWork : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>;<br/>
+&nbsp;&nbsp;RemainingUsage : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>;<br/>
+&nbsp;&nbsp;Completion : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcdatetimeresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>
+</p>
+<p><a href="../../../link/ifcresourcetime.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,298 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ProfileMechanical</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 15 index3 4 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.15.4.3");
+//-->
+</script>
+
+<h4 class="std">8.15.4.3 Pset_ProfileMechanical</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Profile Mechanical</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/1WZtM0qVOHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ProfileMechanical.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>MassPerLength</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassperlengthmeasure.htm">IfcMassPerLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Mass Per Length</b></td><td>Mass per length, i.e. mass of a beam with a unit length of extrusion. For example measured in kg/m.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CrossSectionArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cross Section Area</b></td><td>Area of the profile. For example measured in mm2. If given, the value of the cross section area shall be greater than zero.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Perimeter</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Perimeter</b></td><td>Perimeter of the profile for calculating the surface area. For example measured in mm.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MinimumPlateThickness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Minimum Plate Thickness</b></td><td>This value may be needed for stress analysis and to handle buckling problems. It can also be derived from the given profile geometry or classification and therefore it is only an optional feature allowing for an explicit description. For example measured in mm.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MaximumPlateThickness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Maximum Plate Thickness</b></td><td>This value may be needed for stress analysis and to handle buckling problems. It can also be derived from the given profile geometry or classification and therefore it is only an optional feature allowing for an explicit description. For example measured in mm.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CentreOfGravityInX</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Centre Of Gravity In X</b></td><td>Location of the profile's centre of gravity (geometric centroid), measured along xp.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CentreOfGravityInY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Centre Of Gravity In Y</b></td><td>Location of the profile's centre of gravity (geometric centroid), measured along yp.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearCentreZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Centre Z</b></td><td>Location of the profile's shear centre, measured along zs.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearCentreY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Centre Y</b></td><td>Location of the profile's shear centre, measured along ys.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MomentOfInertiaY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Moment Of Inertia Y</b></td><td>Moment of inertia about ys (second moment of area, about ys). For example measured in mm4.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MomentOfInertiaZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Moment Of Inertia Z</b></td><td>Moment of inertia about zs (second moment of area, about zs). For example measured in mm4
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MomentOfInertiaYZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Moment Of Inertia YZ</b></td><td>Moment of inertia about ys and zs (product moment of area). For example measured in mm4.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TorsionalConstantX</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Torsional Constant X</b></td><td>Torsional constant about xs. For example measured in mm4.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WarpingConstant</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcwarpingconstantmeasure.htm">IfcWarpingConstantMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warping Constant</b></td><td>Warping constant of the profile for torsional action. For example measured in mm6.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearDeformationAreaZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Deformation Area Z</b></td><td>Area of the profile for calculating the shear deformation due to a shear force parallel to zs. For example measured in mm². If given, the shear deformation area zs shall be non-negative.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearDeformationAreaY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Deformation Area Y</b></td><td>Area of the profile for calculating the shear deformation due to a shear force parallel to ys. For example measured in mm². If given, the shear deformation area ys shall be non-negative.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MaximumSectionModulusY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Maximum Section Modulus Y</b></td><td>Bending resistance about the ys axis at the point with maximum zs ordinate. For example measured in mm³.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MinimumSectionModulusY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Minimum Section Modulus Y</b></td><td>Bending resistance about the ys axis at the point with minimum zs ordinate. For example measured in mm³.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MaximumSectionModulusZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Maximum Section Modulus Z</b></td><td>Bending resistance about the zs axis at the point with maximum ys ordinate. For example measured in mm³.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MinimumSectionModulusZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Minimum Section Modulus Z</b></td><td>Bending resistance about the zs axis at the point with minimum ys ordinate. For example measured in mm³.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TorsionalSectionModulus</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Torsional Section Modulus</b></td><td>Torsional resistance (about xs). For example measured in mm³.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearAreaZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Area Z</b></td><td>Area of the profile for calculating the shear stress due to shear force parallel to the section analysis axis zs. For example measured in mm². If given, the shear area zs shall be non-negative.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShearAreaY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Shear Area Y</b></td><td>Area of the profile for calculating the shear stress due to shear force parallel to the section analysis axis ys. For example measured in mm². If given, the shear area ys shall be non-negative.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PlasticShapeFactorY</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Plastic Shape Factor Y</b></td><td>Ratio of plastic versus elastic bending moment capacity about the section analysis axis ys. A dimensionless value.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PlasticShapeFactorZ</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Plastic Shape Factor Z</b></td><td>Ratio of plastic versus elastic bending moment capacity about the section analysis axis zs. A dimensionless value.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_profilemechanical.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

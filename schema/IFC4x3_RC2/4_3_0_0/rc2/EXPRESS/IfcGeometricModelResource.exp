@@ -1,0 +1,566 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCGEOMETRICMODELRESOURCE;
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcDimensionCount,
+  IfcGeometricRepresentationItem,
+  IfcSurface,
+  IfcCartesianPoint,
+  IfcDirection,
+  IfcAxis1Placement,
+  IfcLine,
+  IfcCircle,
+  IfcVectorSum,
+  IfcAxis2Placement3D,
+  IfcCompositeCurve,
+  IfcPolyline,
+  IfcTrimmedCurve,
+  IfcPlane,
+  IfcCurve,
+  IfcPoint,
+  IfcVector,
+  IfcDotProduct,
+  IfcBSplineCurve,
+  IfcBoundedCurve
+);
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcPointByDistanceExpression
+);
+
+REFERENCE FROM IfcMeasureResource
+(
+  IfcLabel
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcPositiveLengthMeasure,
+  IfcPlaneAngleMeasure,
+  IfcParameterValue,
+  IfcLengthMeasure,
+  IfcBoolean,
+  IfcInteger,
+  IfcPositiveInteger
+);
+
+REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
+(
+  IfcNullStyle,
+  IfcIndexedTextureMap,
+  IfcIndexedColourMap
+);
+
+REFERENCE FROM IFCPROFILERESOURCE
+(
+  IfcCircleProfileDef,
+  IfcRectangleProfileDef,
+  IfcTrapeziumProfileDef,
+  IfcEllipseProfileDef,
+  IfcRoundedRectangleProfileDef,
+  IfcProfileDef,
+  IfcProfileTypeEnum,
+  IfcParameterizedProfileDef,
+  IfcDerivedProfileDef
+);
+
+REFERENCE FROM IFCTOPOLOGYRESOURCE
+(
+  IfcClosedShell,
+  IfcConnectedFaceSet,
+  IfcShell
+);
+
+TYPE IfcBooleanOperator = ENUMERATION OF
+	(UNION
+	,INTERSECTION
+	,DIFFERENCE);
+END_TYPE;
+
+TYPE IfcBooleanOperand = SELECT
+	(IfcBooleanResult
+	,IfcCsgPrimitive3D
+	,IfcHalfSpaceSolid
+	,IfcSolidModel
+	,IfcTessellatedFaceSet);
+END_TYPE;
+
+TYPE IfcCsgSelect = SELECT
+	(IfcBooleanResult
+	,IfcCsgPrimitive3D);
+END_TYPE;
+
+TYPE IfcGeometricSetSelect = SELECT
+	(IfcCurve
+	,IfcPoint
+	,IfcSurface);
+END_TYPE;
+
+ENTITY IfcAdvancedBrep
+ SUPERTYPE OF (ONEOF
+    (IfcAdvancedBrepWithVoids))
+ SUBTYPE OF (IfcManifoldSolidBrep);
+ WHERE
+	HasAdvancedFaces : SIZEOF(QUERY(Afs <* SELF\IfcManifoldSolidBrep.Outer.CfsFaces |
+  (NOT ('IFCTOPOLOGYRESOURCE.IFCADVANCEDFACE' IN TYPEOF(Afs)))
+)) = 0;
+END_ENTITY;
+
+ENTITY IfcAdvancedBrepWithVoids
+ SUBTYPE OF (IfcAdvancedBrep);
+	Voids : SET [1:?] OF IfcClosedShell;
+ WHERE
+	VoidsHaveAdvancedFaces : SIZEOF (QUERY (Vsh <* Voids |
+  SIZEOF (QUERY (Afs <* Vsh.CfsFaces |
+  (NOT ('IFCTOPOLOGYRESOURCE.IFCADVANCEDFACE' IN TYPEOF(Afs)))
+  )) = 0
+)) = 0;
+END_ENTITY;
+
+ENTITY IfcBlock
+ SUBTYPE OF (IfcCsgPrimitive3D);
+	XLength : IfcPositiveLengthMeasure;
+	YLength : IfcPositiveLengthMeasure;
+	ZLength : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcBooleanClippingResult
+ SUBTYPE OF (IfcBooleanResult);
+ WHERE
+	FirstOperandType : ('IFCGEOMETRICMODELRESOURCE.IFCSWEPTAREASOLID' IN TYPEOF(FirstOperand)) OR 
+('IFCGEOMETRICMODELRESOURCE.IFCSWEPTDISCSOLID' IN TYPEOF(FirstOperand)) OR 
+('IFCGEOMETRICMODELRESOURCE.IFCBOOLEANCLIPPINGRESULT' IN TYPEOF(FirstOperand));
+	SecondOperandType : ('IFCGEOMETRICMODELRESOURCE.IFCHALFSPACESOLID' IN TYPEOF(SecondOperand));
+	OperatorType : Operator = DIFFERENCE;
+END_ENTITY;
+
+ENTITY IfcBooleanResult
+ SUPERTYPE OF (ONEOF
+    (IfcBooleanClippingResult))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Operator : IfcBooleanOperator;
+	FirstOperand : IfcBooleanOperand;
+	SecondOperand : IfcBooleanOperand;
+ DERIVE
+	Dim : IfcDimensionCount := FirstOperand.Dim;
+ WHERE
+	SameDim : FirstOperand.Dim = SecondOperand.Dim;
+	FirstOperandClosed : NOT('IFCGEOMETRICMODELRESOURCE.IFCTESSELLATEDFACESET' IN TYPEOF(FirstOperand)) OR (EXISTS(FirstOperand.Closed) AND FirstOperand.Closed);
+	SecondOperandClosed : NOT('IFCGEOMETRICMODELRESOURCE.IFCTESSELLATEDFACESET' IN TYPEOF(SecondOperand)) OR (EXISTS(SecondOperand.Closed) AND SecondOperand.Closed);
+END_ENTITY;
+
+ENTITY IfcBoundingBox
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Corner : IfcCartesianPoint;
+	XDim : IfcPositiveLengthMeasure;
+	YDim : IfcPositiveLengthMeasure;
+	ZDim : IfcPositiveLengthMeasure;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcBoxedHalfSpace
+ SUBTYPE OF (IfcHalfSpaceSolid);
+	Enclosure : IfcBoundingBox;
+ WHERE
+	UnboundedSurface : NOT ('IFCGEOMETRYRESOURCE.IFCCURVEBOUNDEDPLANE' IN TYPEOF(SELF\IfcHalfSpaceSolid.BaseSurface));
+END_ENTITY;
+
+ENTITY IfcCartesianPointList
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCartesianPointList2D
+    ,IfcCartesianPointList3D))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+ DERIVE
+	Dim : IfcDimensionCount := IfcPointListDim(SELF);
+END_ENTITY;
+
+ENTITY IfcCartesianPointList2D
+ SUBTYPE OF (IfcCartesianPointList);
+	CoordList : LIST [1:?] OF LIST [2:2] OF IfcLengthMeasure;
+	TagList : OPTIONAL LIST [1:?] OF IfcLabel;
+END_ENTITY;
+
+ENTITY IfcCartesianPointList3D
+ SUBTYPE OF (IfcCartesianPointList);
+	CoordList : LIST [1:?] OF LIST [3:3] OF IfcLengthMeasure;
+	TagList : OPTIONAL LIST [1:?] OF IfcLabel;
+END_ENTITY;
+
+ENTITY IfcCsgPrimitive3D
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBlock
+    ,IfcRectangularPyramid
+    ,IfcRightCircularCone
+    ,IfcRightCircularCylinder
+    ,IfcSphere))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Position : IfcAxis2Placement3D;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcCsgSolid
+ SUBTYPE OF (IfcSolidModel);
+	TreeRootExpression : IfcCsgSelect;
+END_ENTITY;
+
+ENTITY IfcExtrudedAreaSolid
+ SUPERTYPE OF (ONEOF
+    (IfcExtrudedAreaSolidTapered))
+ SUBTYPE OF (IfcSweptAreaSolid);
+	ExtrudedDirection : IfcDirection;
+	Depth : IfcPositiveLengthMeasure;
+ WHERE
+	ValidExtrusionDirection : IfcDotProduct(IfcRepresentationItem() || IfcGeometricRepresentationItem() || IfcDirection([0.0,0.0,1.0]), SELF.ExtrudedDirection) <> 0.0;
+END_ENTITY;
+
+ENTITY IfcExtrudedAreaSolidTapered
+ SUBTYPE OF (IfcExtrudedAreaSolid);
+	EndSweptArea : IfcProfileDef;
+ WHERE
+	CorrectProfileAssignment : IfcTaperedSweptAreaProfiles(SELF\IfcSweptAreaSolid.SweptArea, SELF.EndSweptArea);
+END_ENTITY;
+
+ENTITY IfcFaceBasedSurfaceModel
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	FbsmFaces : SET [1:?] OF IfcConnectedFaceSet;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcFacetedBrep
+ SUPERTYPE OF (ONEOF
+    (IfcFacetedBrepWithVoids))
+ SUBTYPE OF (IfcManifoldSolidBrep);
+END_ENTITY;
+
+ENTITY IfcFacetedBrepWithVoids
+ SUBTYPE OF (IfcFacetedBrep);
+	Voids : SET [1:?] OF IfcClosedShell;
+END_ENTITY;
+
+ENTITY IfcFixedReferenceSweptAreaSolid
+ SUBTYPE OF (IfcDirectrixCurveSweptAreaSolid);
+	FixedReference : IfcDirection;
+END_ENTITY;
+
+ENTITY IfcGeometricCurveSet
+ SUBTYPE OF (IfcGeometricSet);
+ WHERE
+	NoSurfaces : SIZEOF(QUERY(Temp <* SELF\IfcGeometricSet.Elements |
+'IFCGEOMETRYRESOURCE.IFCSURFACE' IN TYPEOF(Temp))) = 0;
+END_ENTITY;
+
+ENTITY IfcGeometricSet
+ SUPERTYPE OF (ONEOF
+    (IfcGeometricCurveSet))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	Elements : SET [1:?] OF IfcGeometricSetSelect;
+ DERIVE
+	Dim : IfcDimensionCount := Elements[1].Dim;
+ WHERE
+	ConsistentDim : SIZEOF(QUERY(Temp <* Elements |
+  Temp.Dim <> Elements[1].Dim))
+= 0;
+END_ENTITY;
+
+ENTITY IfcHalfSpaceSolid
+ SUPERTYPE OF (ONEOF
+    (IfcBoxedHalfSpace
+    ,IfcPolygonalBoundedHalfSpace))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	BaseSurface : IfcSurface;
+	AgreementFlag : IfcBoolean;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcIndexedPolygonalFace
+ SUPERTYPE OF (ONEOF
+    (IfcIndexedPolygonalFaceWithVoids))
+ SUBTYPE OF (IfcTessellatedItem);
+	CoordIndex : LIST [3:?] OF IfcPositiveInteger;
+ INVERSE
+	ToFaceSet : SET [1:?] OF IfcPolygonalFaceSet FOR Faces;
+END_ENTITY;
+
+ENTITY IfcIndexedPolygonalFaceWithVoids
+ SUBTYPE OF (IfcIndexedPolygonalFace);
+	InnerCoordIndices : LIST [1:?] OF LIST [3:?] OF UNIQUE IfcPositiveInteger;
+END_ENTITY;
+
+ENTITY IfcManifoldSolidBrep
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAdvancedBrep
+    ,IfcFacetedBrep))
+ SUBTYPE OF (IfcSolidModel);
+	Outer : IfcClosedShell;
+END_ENTITY;
+
+ENTITY IfcPolygonalBoundedHalfSpace
+ SUBTYPE OF (IfcHalfSpaceSolid);
+	Position : IfcAxis2Placement3D;
+	PolygonalBoundary : IfcBoundedCurve;
+ WHERE
+	BoundaryDim : PolygonalBoundary.Dim = 2;
+	BoundaryType : SIZEOF(TYPEOF(PolygonalBoundary) * [
+  'IFCGEOMETRYRESOURCE.IFCPOLYLINE', 
+  'IFCGEOMETRYRESOURCE.IFCCOMPOSITECURVE']
+) = 1;
+END_ENTITY;
+
+ENTITY IfcPolygonalFaceSet
+ SUBTYPE OF (IfcTessellatedFaceSet);
+	Closed : OPTIONAL IfcBoolean;
+	Faces : LIST [1:?] OF IfcIndexedPolygonalFace;
+	PnIndex : OPTIONAL LIST [1:?] OF IfcPositiveInteger;
+END_ENTITY;
+
+ENTITY IfcRectangularPyramid
+ SUBTYPE OF (IfcCsgPrimitive3D);
+	XLength : IfcPositiveLengthMeasure;
+	YLength : IfcPositiveLengthMeasure;
+	Height : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcRevolvedAreaSolid
+ SUPERTYPE OF (ONEOF
+    (IfcRevolvedAreaSolidTapered))
+ SUBTYPE OF (IfcSweptAreaSolid);
+	Axis : IfcAxis1Placement;
+	Angle : IfcPlaneAngleMeasure;
+ DERIVE
+	AxisLine : IfcLine := IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcCurve() || IfcLine(Axis.Location, 
+  IfcRepresentationItem() || IfcGeometricRepresentationItem () || IfcVector(Axis.Z,1.0));
+ WHERE
+	AxisStartInXY : Axis.Location.Coordinates[3] = 0.0;
+	AxisDirectionInXY : Axis.Z.DirectionRatios[3] = 0.0;
+END_ENTITY;
+
+ENTITY IfcRevolvedAreaSolidTapered
+ SUBTYPE OF (IfcRevolvedAreaSolid);
+	EndSweptArea : IfcProfileDef;
+ WHERE
+	CorrectProfileAssignment : IfcTaperedSweptAreaProfiles(SELF\IfcSweptAreaSolid.SweptArea, SELF.EndSweptArea);
+END_ENTITY;
+
+ENTITY IfcRightCircularCone
+ SUBTYPE OF (IfcCsgPrimitive3D);
+	Height : IfcPositiveLengthMeasure;
+	BottomRadius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcRightCircularCylinder
+ SUBTYPE OF (IfcCsgPrimitive3D);
+	Height : IfcPositiveLengthMeasure;
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcSectionedSolid
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcSectionedSolidHorizontal))
+ SUBTYPE OF (IfcSolidModel);
+	Directrix : IfcCurve;
+	CrossSections : LIST [2:?] OF IfcProfileDef;
+ WHERE
+	DirectrixIs3D : Directrix.Dim = 3;
+	ConsistentProfileTypes : SIZEOF(QUERY(temp <* CrossSections | CrossSections[1].ProfileType <> temp.ProfileType)) = 0;
+	SectionsSameType : SIZEOF(QUERY(temp <* CrossSections | TYPEOF(CrossSections[1]) :<>: TYPEOF(temp))) = 0;
+END_ENTITY;
+
+ENTITY IfcSectionedSolidHorizontal
+ SUBTYPE OF (IfcSectionedSolid);
+	CrossSectionPositions : LIST [2:?] OF IfcPointByDistanceExpression;
+	FixedAxisVertical : IfcBoolean;
+ WHERE
+	CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);
+	NoLongitudinalOffsets : SIZEOF(QUERY(temp <* CrossSectionPositions | EXISTS(temp.OffsetLongitudinal))) = 0;
+END_ENTITY;
+
+ENTITY IfcSectionedSpine
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	SpineCurve : IfcCompositeCurve;
+	CrossSections : LIST [2:?] OF IfcProfileDef;
+	CrossSectionPositions : LIST [2:?] OF IfcAxis2Placement3D;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+ WHERE
+	CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);
+	ConsistentProfileTypes : SIZEOF(QUERY(temp <* CrossSections | CrossSections[1].ProfileType <> temp.ProfileType)) = 0;
+	SpineCurveDim : SpineCurve.Dim = 3;
+END_ENTITY;
+
+ENTITY IfcShellBasedSurfaceModel
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+	SbsmBoundary : SET [1:?] OF IfcShell;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcSolidModel
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCsgSolid
+    ,IfcManifoldSolidBrep
+    ,IfcSectionedSolid
+    ,IfcSweptAreaSolid
+    ,IfcSweptDiskSolid))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+END_ENTITY;
+
+ENTITY IfcSphere
+ SUBTYPE OF (IfcCsgPrimitive3D);
+	Radius : IfcPositiveLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcSurfaceCurveSweptAreaSolid
+ SUBTYPE OF (IfcDirectrixCurveSweptAreaSolid);
+	ReferenceSurface : IfcSurface;
+END_ENTITY;
+
+ENTITY IfcSweptAreaSolid
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcDirectrixCurveSweptAreaSolid
+    ,IfcDirectrixDistanceSweptAreaSolid
+    ,IfcExtrudedAreaSolid
+    ,IfcRevolvedAreaSolid))
+ SUBTYPE OF (IfcSolidModel);
+	SweptArea : IfcProfileDef;
+	Position : OPTIONAL IfcAxis2Placement3D;
+ WHERE
+	SweptAreaType : SweptArea.ProfileType = IfcProfileTypeEnum.Area;
+END_ENTITY;
+
+ENTITY IfcSweptDiskSolid
+ SUPERTYPE OF (ONEOF
+    (IfcSweptDiskSolidPolygonal))
+ SUBTYPE OF (IfcSolidModel);
+	Directrix : IfcCurve;
+	Radius : IfcPositiveLengthMeasure;
+	InnerRadius : OPTIONAL IfcPositiveLengthMeasure;
+	StartParam : OPTIONAL IfcParameterValue;
+	EndParam : OPTIONAL IfcParameterValue;
+ WHERE
+	DirectrixDim : Directrix.Dim = 3;
+	InnerRadiusSize : (NOT EXISTS(InnerRadius)) OR (Radius > InnerRadius);
+	DirectrixBounded : (EXISTS(StartParam) AND EXISTS(EndParam)) OR 
+(SIZEOF(['IFCGEOMETRYRESOURCE.IFCCONIC', 'IFCGEOMETRYRESOURCE.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);
+END_ENTITY;
+
+ENTITY IfcSweptDiskSolidPolygonal
+ SUBTYPE OF (IfcSweptDiskSolid);
+	FilletRadius : OPTIONAL IfcPositiveLengthMeasure;
+ WHERE
+	CorrectRadii : NOT(EXISTS(FilletRadius)) OR (FilletRadius >= SELF\IfcSweptDiskSolid.Radius);
+	DirectrixIsPolyline : ('IFCGEOMETRYRESOURCE.IFCPOLYLINE' IN TYPEOF(SELF\IfcSweptDiskSolid.Directrix)) OR
+(('IFCGEOMETRYRESOURCE.IFCINDEXEDPOLYCURVE' IN TYPEOF(SELF\IfcSweptDiskSolid.Directrix)) AND NOT(EXISTS(SELF\IfcSweptDiskSolid.Directrix.Segments)));
+END_ENTITY;
+
+ENTITY IfcTessellatedFaceSet
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcPolygonalFaceSet
+    ,IfcTriangulatedFaceSet))
+ SUBTYPE OF (IfcTessellatedItem);
+	Coordinates : IfcCartesianPointList3D;
+ DERIVE
+	Dim : IfcDimensionCount := 3;
+ INVERSE
+	HasColours : SET [0:1] OF IfcIndexedColourMap FOR MappedTo;
+	HasTextures : SET [0:?] OF IfcIndexedTextureMap FOR MappedTo;
+END_ENTITY;
+
+ENTITY IfcTessellatedItem
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcIndexedPolygonalFace
+    ,IfcTessellatedFaceSet))
+ SUBTYPE OF (IfcGeometricRepresentationItem);
+END_ENTITY;
+
+ENTITY IfcTriangulatedFaceSet
+ SUPERTYPE OF (ONEOF
+    (IfcTriangulatedIrregularNetwork))
+ SUBTYPE OF (IfcTessellatedFaceSet);
+	Normals : OPTIONAL LIST [1:?] OF LIST [3:3] OF IfcParameterValue;
+	Closed : OPTIONAL IfcBoolean;
+	CoordIndex : LIST [1:?] OF LIST [3:3] OF IfcPositiveInteger;
+	PnIndex : OPTIONAL LIST [1:?] OF IfcPositiveInteger;
+ DERIVE
+	NumberOfTriangles : IfcInteger := SIZEOF(CoordIndex);
+END_ENTITY;
+
+ENTITY IfcTriangulatedIrregularNetwork
+ SUBTYPE OF (IfcTriangulatedFaceSet);
+	Flags : LIST [1:?] OF IfcInteger;
+ WHERE
+	NotClosed : SELF\IfcTriangulatedFaceSet.Closed = FALSE;
+END_ENTITY;
+
+FUNCTION IfcPointListDim
+(PointList : IfcCartesianPointList)
+           : IfcDimensionCount;
+
+  IF ('IFCGEOMETRICMODELRESOURCE.IFCCARTESIANPOINTLIST2D' IN TYPEOF(PointList))
+    THEN RETURN(2);
+  END_IF;		   
+  IF ('IFCGEOMETRICMODELRESOURCE.IFCCARTESIANPOINTLIST3D' IN TYPEOF(PointList))
+    THEN RETURN(3);
+  END_IF;		   
+  RETURN (?);
+
+END_FUNCTION;
+
+FUNCTION IfcTaperedSweptAreaProfiles
+(StartArea, EndArea : IfcProfileDef)
+ : LOGICAL;
+
+LOCAL
+   Result : LOGICAL := FALSE;
+END_LOCAL;
+   
+IF ('IFCPROFILERESOURCE.IFCPARAMETERIZEDPROFILEDEF' IN TYPEOF(StartArea)) THEN
+   IF ('IFCPROFILERESOURCE.IFCDERIVEDPROFILEDEF' IN TYPEOF(EndArea)) THEN
+      Result := (StartArea :=: EndArea\IfcDerivedProfileDef.ParentProfile);
+   ELSE
+      Result := (TYPEOF(StartArea) = TYPEOF(EndArea));
+   END_IF;
+ELSE
+   IF ('IFCPROFILERESOURCE.IFCDERIVEDPROFILEDEF' IN TYPEOF(EndArea)) THEN
+      Result := (StartArea :=: EndArea\IfcDerivedProfileDef.ParentProfile);
+   ELSE
+      Result := FALSE;
+   END_IF;
+END_IF;
+
+RETURN(Result);
+
+END_FUNCTION;
+
+END_SCHEMA;

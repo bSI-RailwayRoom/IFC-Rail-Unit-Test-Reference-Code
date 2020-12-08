@@ -1,0 +1,151 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCompoundPlaneAngleMeasure</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 11 index3 2 index4 9 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.11.2.10");
+//-->
+</script>
+
+<h4 class="num">IfcCompoundPlaneAngleMeasure</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Compound Plane Angle Measure</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Mesure composée d'angle plan</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p><span class="self-ref">IfcCompoundPlaneAngleMeasure</span> is a compound measure of plane angle in degrees, minutes, seconds, and optionally millionth-seconds of arc.</p>
+<blockquote class="note">
+<p>NOTE  <span class="self-ref">IfcCompoundPlaneAngleMeasure</span> is used where angles need to be described to an accuracy as fine as one millionth of a degree and expressed as parts of an arc. It may be used for angular measurement by surveyors or for other angular measurements where precision is required. Another usage is exact or approximate global positioning against a geographic coordinate systems using longitude and latitude.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  While the unit of measurement of the type <a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a> depends on unit assignment (radian or degree or other derived units; globally at the <i>IfcPoject</i> or locally at an <a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a>), the units of <span class="self-ref">IfcCompoundPlaneAngleMeasure</span> are always degrees, minutes, seconds, and millionth-seconds irrespective of unit assignments.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New type in IFC1.5.1.</p>
+</blockquote>
+<p>Type: LIST [3:4] OF INTEGER</p>
+<p class="use-head">
+Value restrictions</p>
+<ul>
+<li>The first integer measure is the number of degrees and is generally not range-restricted. However, when <span class="self-ref">IfcCompoundPlaneAngleMeasure</span> is used to express geographic coordinates, only latitudes of [-90, 90] and longitudes of [-180, 180] are used in practice.</li>
+<li>The second integer measure is the number of minutes and shall be in the range (-60, 60).</li>
+<li>The third integer measure is the number of seconds and shall be in the range (-60, 60).</li>
+<li>The optional fourth integer measure is the number of millionth-seconds and shall be in the range (-1 000 000, 1 000 000).</li>
+</ul>
+<p class="use-head">
+Signedness</p>
+<p>All measure components have the same sign (positive or negative). It is therefore trivial to convert between floating point representation (decimal degrees) and compound representation regardless whether the angle is greater or smaller than zero. Example:</p>
+<blockquote>
+<pre><code>
+</code></pre>
+</blockquote>
+<p>LOCAL</p>
+<blockquote>
+<p>  a : IfcPlaneAngleMeasure := -50.975864;  (* decimal degrees, -50° 58' 33&quot; 110400 *)<br>
+  b : IfcPlaneAngleMeasure;<br>
+  c : IfcCompoundPlaneAngleMeasure;<br>
+  s : IfcText;<br>
+END_LOCAL;</p>
+<p>(* convert from float to compound *)<br>
+  c[1] :=    a;                                           -- -50<br>
+  c[2] :=   (a - c[1]) * 60;                              -- -58<br>
+  c[3] :=  ((a - c[1]) * 60 - c[2]) * 60;                 -- -33<br>
+  c[4] := (((a - c[1]) * 60 - c[2]) * 60 - c[3]) * 1.e6;  -- -110400</p>
+<p>(* convert from compound to float *)<br>
+  b := c[1] + c[2]/60. + c[3]/3600. + c[4]/3600.e6;       -- -50.975864</p>
+<pre><code></code></pre>
+</blockquote>
+<p class="use-head">
+Use in string representations</p>
+<p>When a compound plane angle measure is formatted for display or printout, the signs of the fractional components will usually be discarded because, to a human reader, the sign of the first component alone already indicates the sense of the angle:</p>
+<blockquote>
+<pre><code>
+</code></pre>
+</blockquote>
+<p>(* convert from compound to human-readable string *)</p>
+<blockquote>
+<p>  s := FORMAT(c[1], '+##')     + &quot;000000B0&quot;<br>
+     + FORMAT(ABS(c[2]), '##') + ''''<br>
+     + FORMAT(ABS(c[3]), '##') + '&quot;'<br>
+     + FORMAT(ABS(c[4]), '##');  -- -50° 58' 33&quot; 110400</p>
+</blockquote>
+<blockquote>
+<pre><code></code></pre>
+</blockquote>
+<p>Another often encountered display format of latitudes and longitudes is to omit the signs and print N, S, E, W indicators instead, for example,</p>
+<pre><code>50&amp;deg;58'33&quot;S
+</code></pre>
+<p>. When stored as <span class="self-ref">IfcCompoundPlaneAngleMeasure</span> however, a compound plane angle measure is always signed, with same sign of all components.</p>
+</details>
+</section>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>MinutesInRange</td><td>The second measure (minutes) shall be between -60 exclusive and 60 exclusive.
+</td></tr>
+<tr><td>SecondsInRange</td><td>The third measure (seconds) shall be between -60 exclusive and 60 exclusive.
+</td></tr>
+<tr><td>MicrosecondsInRange</td><td>The forth measure (millionth-seconds), if asserted, shall be between -1e6 exclusive and 1e6 exclusive.
+</td></tr>
+<tr><td>ConsistentSign</td><td>All non-zero measure components shall have the same sign (positive or negative).
+</td></tr>
+</table>
+
+</details>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcmeasureresource/lexical/ifccompoundplaneanglemeasure.htm">IfcCompoundPlaneAngleMeasure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:simpleContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:List-<a href="../../ifcmeasureresource/lexical/ifccompoundplaneanglemeasure.htm">IfcCompoundPlaneAngleMeasure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;xs:long&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:simpleContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&lt;xs:simpleType name=&quot;List-<a href="../../ifcmeasureresource/lexical/ifccompoundplaneanglemeasure.htm">IfcCompoundPlaneAngleMeasure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;xs:long&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:minLength value=&quot;3&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:maxLength value=&quot;4&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcCompoundPlaneAngleMeasure = <span class="keyword">LIST</span> [3:4] OF <span class="self-ref">INTEGER</span>;<br/>&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;MinutesInRange : ABS(SELF[2]) &lt; 60<br/>&nbsp;&nbsp;SecondsInRange : ABS(SELF[3]) &lt; 60<br/>&nbsp;&nbsp;MicrosecondsInRange : (SIZEOF(SELF) = 3) OR (ABS(SELF[4]) &lt; 1000000)<br/>&nbsp;&nbsp;ConsistentSign : ((SELF[1] &gt;= 0) AND (SELF[2] &gt;= 0) AND (SELF[3] &gt;= 0) AND ((SIZEOF(SELF) = 3) OR (SELF[4] &gt;= 0)))
+OR
+((SELF[1] &lt;= 0) AND (SELF[2] &lt;= 0) AND (SELF[3] &lt;= 0) AND ((SIZEOF(SELF) = 3) OR (SELF[4] &lt;= 0)))<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcmeasureresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>
+<a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>
+</p>
+<p><a href="../../../link/ifccompoundplaneanglemeasure.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

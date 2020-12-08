@@ -1,0 +1,179 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLocalPlacement</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 3 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.7.3.17");
+//-->
+</script>
+
+<h4 class="num">IfcLocalPlacement</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Lokale Positionierung</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Local Placement</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Positionnement local</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PlacementRelTo</td><td></td><td>X</td><td>MODIFIED</td><td>Xsdformat changed from <i>Attribute</i> to <i>Default</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReferencedByPlacements</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcLocalPlacement</span> defines the relative placement of a product in relation to the placement of another product or the absolute placement of a product within the geometric representation context of the project.</p>
+<p>The <span class="self-ref">IfcLocalPlacement</span> allows that an <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> can be placed by this <span class="self-ref">IfcLocalPlacement</span> (through the attribute_ObjectPlacement_) within the local coordinate system of the object placement of another <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>, which is referenced by the <i>PlacementRelTo</i>. Rules to prevent cyclic relative placements have to be introduced on the application level.</p>
+<p>If the <i>PlacementRelTo</i> is not given, then the <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> is placed absolutely within the world coordinate system.</p>
+<p>The following conventions shall apply as default relative positions if the relative placement is used. The conventions are given for all five direct subtypes of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>, the <a href="../../ifcproductextension/lexical/ifcspatialstructureelement.htm">IfcSpatialStructureElement</a>, <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>, <a href="../../ifcproductextension/lexical/ifcannotation.htm">IfcAnnotation</a>, <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>, <a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a>. More detailed placement information is given at the level of subtypes of those five types mentioned.</p>
+<ul>
+<li>For the subtypes of <a href="../../ifcproductextension/lexical/ifcspatialstructureelement.htm">IfcSpatialStructureElement</a> the following conventions apply
+<ul>
+<li><a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a> shall be placed absolutely within the world coordinate system established by the geometric representation context of the <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a></li>
+<li><a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a> shall be placed relative to the local placement of <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a></li>
+<li><a href="../../ifcproductextension/lexical/ifcfacilitypart.htm">IfcFacilityPart</a> shall be placed relative to the local placement of <a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a></li>
+</ul>
+</li>
+<li>For <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a> and <a href="../../ifcproductextension/lexical/ifcannotation.htm">IfcAnnotation</a> the convention applies that it shall be placed relative
+<ul>
+<li>to the local placement of its container, either <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>, <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a>, or <a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm">IfcBuildingStorey</a>
+<ul>
+<li>it should be the same container element that is referenced by the <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a> containment relationship,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>For <a href="../../ifcproductextension/lexical/ifcalignment.htm">IfcAlignment</a> placed relative to the local placement of its container <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a> when not placed absolutely within the world coordinate system.</li>
+<li>For <a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a> the convention applies that it shall be placed relative
+<ul>
+<li>to the local placement of the <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> it belongs to
+<ul>
+<li>it should be the same element that is referenced by the <a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a> connection relationship,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>For <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> the convention applies that it shall be placed relative:
+<ul>
+<li>to the local placement of its container, either <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>, <a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a>, or <a href="../../ifcproductextension/lexical/ifcfacilitypart.htm">IfcFacilityPart</a>
+<ul>
+<li>it should be the same container element that is referenced by the <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a> containment relationship,</li>
+</ul>
+</li>
+<li>to the local placement of the <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> to which it is tied by an element composition relationship
+<ul>
+<li>for features that are located relative to the main component (such as openings), as expressed by <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> and <a href="../../ifcproductextension/lexical/ifcrelprojectselement.htm">IfcRelProjectsElement</a>;</li>
+<li>for elements that fill an opening (such as doors or windows), as expressed by <a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a>;</li>
+<li>for coverings that cover the element, as expressed by <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a>;</li>
+<li>for sub components that are aggregated to the main component, as expressed by <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a> and <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>RelativePlacement</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a></td><td></td><td>
+Geometric placement that defines the transformation from the related coordinate system into the relating. The placement can be either 2D or 3D, depending on the dimension count of the coordinate system.
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>WR21</td><td>Ensures that a 3D local placement can only be relative (if exists) to a 3D parent local placement (and not to a 2D parent local placement).
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifclocalplacement.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm" alt="IfcObjectPlacement" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a></i></td></tr>
+<tr><td>1</td><td>PlacementRelTo</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a></td><td>? </td><td>
+Reference to object placement that provides the relative placement with its placement in a grid, local coordinate system or linear referenced placement. If it is omitted, then in the case of linear placement it is established by the origin of horizontal alignment of the referenced IfcAlignment Axis. In the case of local placement it is established by the geometric representation context.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PlacesObject</i></td><td><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a><br/>@ObjectPlacement</td><td>S[0:?]</td><td>The <span class="self-ref">IfcObjectPlacement</span> shall be used to provide a placement and
+an object coordinate system for instances of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>.
+
+<blockquote>
+If an <span class="self-ref">IfcObjectPlacement</span> is shared by many instances of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> it does not apply a semantic meaning of being a shared placement that needs to be maintained. The same instance of <span class="self-ref">IfcObjectPlacement</span> could simply be used to reduce exchange file size.
+</blockquote>
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The cardinality has changed to 0..n to allow reuse of instances of <span class="self-ref">IfcObjectPlacement</span> as placement object in one to many products. It takes also into account that it can act as a placement for <a href="../../ifcstructuralanalysisdomain/lexical/ifcstructuralanalysismodel.htm">IfcStructuralAnalysisModel</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a></td></tr>
+<tr><td>2</td><td>RelativePlacement</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a></td><td></td><td>
+Geometric placement that defines the transformation from the related coordinate system into the relating. The placement can be either 2D or 3D, depending on the dimension count of the coordinate system.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelativePlacement&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcLocalPlacement<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>)<b>;</b><br/>
+&nbsp;&nbsp;RelativePlacement : <a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;WR21 : <a href="../../ifcgeometricconstraintresource/lexical/ifccorrectlocalplacement.htm">IfcCorrectLocalPlacement</a>(RelativePlacement, PlacementRelTo);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifclocalplacement.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

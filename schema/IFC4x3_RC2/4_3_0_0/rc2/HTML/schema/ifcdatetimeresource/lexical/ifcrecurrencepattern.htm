@@ -1,0 +1,215 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcRecurrencePattern</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 5 index3 3 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.5.3.5");
+//-->
+</script>
+
+<h4 class="num">IfcRecurrencePattern</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Wiederholungsmuster</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Recurrence Pattern</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifcrecurrencepattern.htm">IfcRecurrencePattern</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcRecurrencePattern</span> defines repetitive time periods on the basis of regular recurrences such as each Monday in a week, or every third Tuesday in a month. The population of the remaining attributes such as <i>DayComponent</i>, <i>Position</i>, and <i>Interval</i> depend on the specified recurrence type.</p>
+<p><span class="self-ref">IfcRecurrencePattern</span> supports various recurrence patterns that are differentiated by a type definition (<i>IfcRecurrencePattern.RecurrenceType</i>), which is required to provide the meaning of the given values. It can be further constrained by applicable times through specified <a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a> instances, thus enabling time periods such as between 7:00 and 12:00 and between 13:00 and 17:00 for each of the applicable days, weeks or months.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>RecurrenceType</td><td><a href="../../ifcdatetimeresource/lexical/ifcrecurrencetypeenum.htm">IfcRecurrenceTypeEnum</a></td><td></td><td>
+Defines the recurrence type that gives meaning to the used
+attributes and decides about possible attribute
+combinations, i.e. what attributes are needed to fully
+describe the pattern type.
+</td><td>X</td></tr>
+<tr><td>2</td><td>DayComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcdayinmonthnumber.htm">IfcDayInMonthNumber</a></td><td>? S[1:?]</td><td>
+The position of the specified day in a month.
+</td><td>X</td></tr>
+<tr><td>3</td><td>WeekdayComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcdayinweeknumber.htm">IfcDayInWeekNumber</a></td><td>? S[1:?]</td><td>
+The weekday name of the specified day in a week.
+</td><td>X</td></tr>
+<tr><td>4</td><td>MonthComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcmonthinyearnumber.htm">IfcMonthInYearNumber</a></td><td>? S[1:?]</td><td>
+The position of the specified month in a year.
+</td><td>X</td></tr>
+<tr><td>5</td><td>Position</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+The position of the specified component, e.g. the 3rd
+(position=3) Tuesday (weekday component) in a month. A
+negative position value is used to define the last position
+of the component (-1), the next to last position (-2) etc.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Interval</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+An interval can be given according to the pattern type. An
+interval value of 2 can for instance every two days, weeks,
+months, years. An empty interval value is regarded as 1. The
+used interval values should be in a reasonable range, e.g.
+not 0 or &lt;0.
+</td><td>X</td></tr>
+<tr><td>7</td><td>Occurrences</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+Defines the number of occurrences of this pattern, e.g. a weekly
+event might be defined to occur 5 times before it stops.
+</td><td>X</td></tr>
+<tr><td>8</td><td>TimePeriods</td><td><a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a></td><td>? L[1:?]</td><td>
+List of time periods that are defined by a start and end time
+of the recurring element (day). The order of the list should
+reflect the sequence of the time periods.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcrecurrencepattern.png" usemap="#f"/>
+<map name="f">
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcdatetimeresource/lexical/ifcrecurrencepattern.htm">IfcRecurrencePattern</a></td></tr>
+<tr><td>1</td><td>RecurrenceType</td><td><a href="../../ifcdatetimeresource/lexical/ifcrecurrencetypeenum.htm">IfcRecurrenceTypeEnum</a></td><td></td><td>
+Defines the recurrence type that gives meaning to the used
+attributes and decides about possible attribute
+combinations, i.e. what attributes are needed to fully
+describe the pattern type.
+</td><td>X</td></tr>
+<tr><td>2</td><td>DayComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcdayinmonthnumber.htm">IfcDayInMonthNumber</a></td><td>? S[1:?]</td><td>
+The position of the specified day in a month.
+</td><td>X</td></tr>
+<tr><td>3</td><td>WeekdayComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcdayinweeknumber.htm">IfcDayInWeekNumber</a></td><td>? S[1:?]</td><td>
+The weekday name of the specified day in a week.
+</td><td>X</td></tr>
+<tr><td>4</td><td>MonthComponent</td><td><a href="../../ifcdatetimeresource/lexical/ifcmonthinyearnumber.htm">IfcMonthInYearNumber</a></td><td>? S[1:?]</td><td>
+The position of the specified month in a year.
+</td><td>X</td></tr>
+<tr><td>5</td><td>Position</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+The position of the specified component, e.g. the 3rd
+(position=3) Tuesday (weekday component) in a month. A
+negative position value is used to define the last position
+of the component (-1), the next to last position (-2) etc.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Interval</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+An interval can be given according to the pattern type. An
+interval value of 2 can for instance every two days, weeks,
+months, years. An empty interval value is regarded as 1. The
+used interval values should be in a reasonable range, e.g.
+not 0 or &lt;0.
+</td><td>X</td></tr>
+<tr><td>7</td><td>Occurrences</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+Defines the number of occurrences of this pattern, e.g. a weekly
+event might be defined to occur 5 times before it stops.
+</td><td>X</td></tr>
+<tr><td>8</td><td>TimePeriods</td><td><a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a></td><td>? L[1:?]</td><td>
+List of time periods that are defined by a start and end time
+of the recurring element (day). The order of the list should
+reflect the sequence of the time periods.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcdatetimeresource/lexical/ifcrecurrencepattern.htm">IfcRecurrencePattern</a>&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcrecurrencepattern.htm">IfcRecurrencePattern</a>&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcdatetimeresource/lexical/ifcrecurrencepattern.htm">IfcRecurrencePattern</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;TimePeriods&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RecurrenceType&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcrecurrencetypeenum.htm">IfcRecurrenceTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;DayComponent&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdayinmonthnumber.htm">IfcDayInMonthNumber</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;WeekdayComponent&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdayinweeknumber.htm">IfcDayInWeekNumber</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;MonthComponent&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcmonthinyearnumber.htm">IfcMonthInYearNumber</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Position&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Interval&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Occurrences&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcRecurrencePattern<b>;</b><br/>
+&nbsp;&nbsp;RecurrenceType : <a href="../../ifcdatetimeresource/lexical/ifcrecurrencetypeenum.htm">IfcRecurrenceTypeEnum</a>;<br/>
+&nbsp;&nbsp;DayComponent : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcdatetimeresource/lexical/ifcdayinmonthnumber.htm">IfcDayInMonthNumber</a>;<br/>
+&nbsp;&nbsp;WeekdayComponent : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcdatetimeresource/lexical/ifcdayinweeknumber.htm">IfcDayInWeekNumber</a>;<br/>
+&nbsp;&nbsp;MonthComponent : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcdatetimeresource/lexical/ifcmonthinyearnumber.htm">IfcMonthInYearNumber</a>;<br/>
+&nbsp;&nbsp;Position : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;Interval : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;Occurrences : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;TimePeriods : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcdatetimeresource/lexical/ifctimeperiod.htm">IfcTimePeriod</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcdatetimeresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcdatetimeresource/lexical/ifctasktimerecurring.htm">IfcTaskTimeRecurring</a>
+<a href="../../ifcdatetimeresource/lexical/ifcworktime.htm">IfcWorkTime</a>
+</p>
+<p><a href="../../../link/ifcrecurrencepattern.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

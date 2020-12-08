@@ -1,0 +1,105 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCoveringTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 1 index3 2 index4 9 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.1.2.10");
+//-->
+</script>
+
+<h4 class="num">IfcCoveringTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Covering Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Énumération des types de revêtement</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCPRODUCTEXTENSION</i> to <i>IFCSHAREDBLDGELEMENTS</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COPING</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>This enumeration defines the range of different types of covering that can further specify an <a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a> or an <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC1.0</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The following enumerators have been added <i>MOLDING</i>, and <i>SKIRTINGBOARD</i>.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>CEILING</td><td>The covering is used torepresent a ceiling.
+</td></tr><tr><td>FLOORING</td><td>The covering is used to represent a flooring.
+</td></tr><tr><td>CLADDING</td><td>The covering is used to represent a cladding.
+</td></tr><tr><td>ROOFING</td><td>The covering is used to represent a roof covering.
+</td></tr><tr><td>MOLDING</td><td>The covering is used to represent a molding being a strip of material to cover the transition of surfaces (often between wall cladding and ceiling).
+</td></tr><tr><td>SKIRTINGBOARD</td><td>The covering is used to represent a skirting board being a strip of material to cover the transition between the wall cladding and the flooring.
+</td></tr><tr><td>INSULATION</td><td>The covering is used to insulate an element for thermal or acoustic purposes.
+</td></tr><tr><td>MEMBRANE</td><td>An impervious layer that could be used for e.g. roof covering (below tiling - that may be known as sarking etc.) or as a damp proof course membrane; also, waterproofing material on a bridge structure (typically on top of bridge slab).
+</td></tr><tr><td>SLEEVING</td><td>The covering is used to isolate a distribution element from a space in which it is contained.
+</td></tr><tr><td>WRAPPING</td><td>The covering is used for wrapping particularly of distribution elements using tape.
+</td></tr><tr><td>COPING</td><td>A protective capping or covering of a wall or a parapet.
+</td></tr><tr><td>USERDEFINED</td><td>User defined type of covering.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined type of covering.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;ceiling&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;flooring&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cladding&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;roofing&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;molding&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;skirtingboard&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;insulation&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;membrane&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sleeving&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;wrapping&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;coping&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcCoveringTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;CEILING, <br/>&nbsp;FLOORING, <br/>&nbsp;CLADDING, <br/>&nbsp;ROOFING, <br/>&nbsp;MOLDING, <br/>&nbsp;SKIRTINGBOARD, <br/>&nbsp;INSULATION, <br/>&nbsp;MEMBRANE, <br/>&nbsp;SLEEVING, <br/>&nbsp;WRAPPING, <br/>&nbsp;COPING, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcsharedbldgelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a>
+<a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>
+</p>
+<p><a href="../../../link/ifccoveringtypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

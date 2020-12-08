@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_Risk</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 4 index3 4 index4 10 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.4.4.11");
+//-->
+</script>
+
+<h4 class="std">6.4.4.11 Pset_Risk</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3$8DG0qW0HuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_Risk.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>RiskType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_risktype.htm">PEnum_RiskType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk Type</b></td><td>Identifies the predefined types of risk from which the type required may be set.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NatureOfRisk</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Nature Of Risk</b></td><td>An indication of the generic nature of the risk that might be encountered.
+NOTE: It is anticipated that there will be a local agreement that constrains the values that might be assigned to this property. An example might be 'Fall'  or 'Fall of grille unit' causing injury and damage to person and property.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SubNatureOfRisk1</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Sub Nature Of Risk1</b></td><td>A first subsidiary value that might be assigned to designate a more specific type of risk.
+NOTE: Nature of risk may be identified in various ways depending upon the place where risk assessment takes place and according to local agreement. This property set allows for a generic nature of risk and up to two subsidiary natures. An example might be 'causing injury and damage'.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SubNatureOfRisk2</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Sub Nature Of Risk2</b></td><td>A second subsidiary value that might be assigned to designate a more specific type of risk. An example might be 'o person and property'.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RiskCause</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk Cause</b></td><td>A value that may be assigned to capture the cause or trigger for the risk. An example might be 'poor fixing'.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AssessmentOfRisk</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskassessment.htm">PEnum_RiskAssessment</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Assessment Of Risk</b></td><td>Likelihood of risk event occurring.
+Note  that assessment of risk may frequently be associated with the physical location of the object for which the risk is assessed.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RiskConsequence</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskconsequence.htm">PEnum_RiskConsequence</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk Consequence</b></td><td>Indicates the level of severity of the consequences that the risk would have in case it happens.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RiskRating</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk Rating</b></td><td>A general rating of the risk that may be determined from a combination of the risk assessment and risk consequence.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RiskOwner</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskowner.htm">PEnum_RiskOwner</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Risk Owner</b></td><td>A determination of who is the owner of the risk by reference to principal roles of organizations within a project. Determination of the specific organization should be by reference to instances of IfcActorRole assigned to instances of IfcOrganization (if assigned).
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AffectsSurroundings</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Affects Surroundings</b></td><td>Indicates wether the risk affects only to the person assigned to that task (FALSE) or if it can also affect to the people in the surroundings (TRUE).
+For example, the process of painting would affect all the people in the vicinity of the process.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PreventiveMeassures</td><td>
+<span class="self-ref">P_LISTVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Preventive Meassures</b></td><td>Identifies preventive measures to be taken to mitigate risk.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_risk.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCSHAREDFACILITIESELEMENTS;
+
+REFERENCE FROM IFCACTORRESOURCE
+(
+  IfcActorSelect,
+  IfcPerson
+);
+
+REFERENCE FROM IFCCOSTRESOURCE
+(
+  IfcCostValue
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcDate
+);
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcGroup,
+  IfcActor
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcIdentifier
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcAssemblyPlaceEnum,
+  IfcFurnishingElementType,
+  IfcFurnishingElement
+);
+
+TYPE IfcFurnitureTypeEnum = ENUMERATION OF
+	(CHAIR
+	,TABLE
+	,DESK
+	,BED
+	,FILECABINET
+	,SHELF
+	,SOFA
+	,TECHNICALCABINET
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcInventoryTypeEnum = ENUMERATION OF
+	(ASSETINVENTORY
+	,SPACEINVENTORY
+	,FURNITUREINVENTORY
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcOccupantTypeEnum = ENUMERATION OF
+	(ASSIGNEE
+	,ASSIGNOR
+	,LESSEE
+	,LESSOR
+	,LETTINGAGENT
+	,OWNER
+	,TENANT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSystemFurnitureElementTypeEnum = ENUMERATION OF
+	(PANEL
+	,WORKSURFACE
+	,SUBRACK
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcAsset
+ SUBTYPE OF (IfcGroup);
+	Identification : OPTIONAL IfcIdentifier;
+	OriginalValue : OPTIONAL IfcCostValue;
+	CurrentValue : OPTIONAL IfcCostValue;
+	TotalReplacementCost : OPTIONAL IfcCostValue;
+	Owner : OPTIONAL IfcActorSelect;
+	User : OPTIONAL IfcActorSelect;
+	ResponsiblePerson : OPTIONAL IfcPerson;
+	IncorporationDate : OPTIONAL IfcDate;
+	DepreciatedValue : OPTIONAL IfcCostValue;
+END_ENTITY;
+
+ENTITY IfcFurniture
+ SUBTYPE OF (IfcFurnishingElement);
+	PredefinedType : OPTIONAL IfcFurnitureTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcFurnitureTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcFurnitureTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+   ('IFCSHAREDFACILITIESELEMENTS.IFCFURNITURETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcFurnitureType
+ SUBTYPE OF (IfcFurnishingElementType);
+	AssemblyPlace : IfcAssemblyPlaceEnum;
+	PredefinedType : OPTIONAL IfcFurnitureTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcFurnitureTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFurnitureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcInventory
+ SUBTYPE OF (IfcGroup);
+	PredefinedType : OPTIONAL IfcInventoryTypeEnum;
+	Jurisdiction : OPTIONAL IfcActorSelect;
+	ResponsiblePersons : OPTIONAL SET [1:?] OF IfcPerson;
+	LastUpdateDate : OPTIONAL IfcDate;
+	CurrentValue : OPTIONAL IfcCostValue;
+	OriginalValue : OPTIONAL IfcCostValue;
+END_ENTITY;
+
+ENTITY IfcOccupant
+ SUBTYPE OF (IfcActor);
+	PredefinedType : OPTIONAL IfcOccupantTypeEnum;
+ WHERE
+	WR31 : NOT(PredefinedType = IfcOccupantTypeEnum.USERDEFINED) 
+OR EXISTS(SELF\IfcObject.ObjectType);
+END_ENTITY;
+
+ENTITY IfcSystemFurnitureElement
+ SUBTYPE OF (IfcFurnishingElement);
+	PredefinedType : OPTIONAL IfcSystemFurnitureElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcSystemFurnitureElementTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcSystemFurnitureElementTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+   ('IFCSHAREDFACILITIESELEMENTS.IFCSYSTEMFURNITUREELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcSystemFurnitureElementType
+ SUBTYPE OF (IfcFurnishingElementType);
+	PredefinedType : OPTIONAL IfcSystemFurnitureElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcSystemFurnitureElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSystemFurnitureElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+END_SCHEMA;

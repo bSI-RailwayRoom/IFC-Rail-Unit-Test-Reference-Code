@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcBuild2Axes</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.3");
+//-->
+</script>
+
+<h4 class="num">IfcBuild2Axes</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Build 2 Axes</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function returns two orthogonal directions. u[1] is in the direction of ref_direction and u[2] is perpendicular to u[1]. A default value of (1.0,0.0,0.0) is supplied for ref_direction if the input data is incomplete.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>build_2axes</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC1.5</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcBuild2Axes<br/>
+
+&nbsp;&nbsp;(RefDirection : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;: LIST [2:2] OF <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>LOCAL<br/>&nbsp;&nbsp;D : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a> := NVL(<a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(RefDirection),<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>([1.0,0.0]));<br/>END_LOCAL;<br/>&nbsp;&nbsp;RETURN([D, <a href="../../ifcgeometryresource/lexical/ifcorthogonalcomplement.htm">IfcOrthogonalComplement</a>(D)]);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcbuild2axes.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

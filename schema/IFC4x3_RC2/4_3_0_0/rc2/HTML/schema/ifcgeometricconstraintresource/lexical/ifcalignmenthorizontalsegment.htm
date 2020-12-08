@@ -1,0 +1,176 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcAlignmentHorizontalSegment</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 3 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.7.3.5");
+//-->
+</script>
+
+<h4 class="num">IfcAlignmentHorizontalSegment</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Alignment Curve 2D Horizontal Segment</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc1-to-ifc4x3_rc2/index.htm">IFC4x3_RC1 to IFC4x3_RC2</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a></td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>IfcAlignment2DHorizontalSegment</i> to <i>IfcAlignmentHorizontalSegment</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartTag</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>TangentialContinuity</i> to <i>StartTag</i>. <br/>Type changed from <i>IfcBoolean</i> to <i>IfcLabel</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EndTag</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>StartTag</i> to <i>EndTag</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartPoint</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>EndTag</i> to <i>StartPoint</i>. <br/>Type changed from <i>IfcLabel</i> to <i>IfcCartesianPoint</i>. <br/>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartDirection</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>CurveGeometry</i> to <i>StartDirection</i>. <br/>Type changed from <i>IfcCurveSegment2D</i> to <i>IfcPlaneAngleMeasure</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartRadiusOfCurvature</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EndRadiusOfCurvature</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SegmentLength</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GravityCenterLineHeight</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerAssignment</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StyledByItem</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToHorizontal</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>Individual segment along the <a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a>, being defined in the x/y coordinate space. Each single horizontal alignment segment has an optional associated segment definition. The placement of <span class="self-ref">IfcAlignmentHorizontalSegment</span> and the <a href="../../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a> <i>StartPlacement</i> correspond to each other.</p>
+<p>The following information can be calculated (and is therefore not exchanged explicitly to avoid redundancy and inconsistencies)</p>
+<ul>
+<li>the end point (from start point, direction, segment length and curve parameter)</li>
+<li>the start distance along (from the end distance along of the previous segment, or the start distance along of the horizontal alignment (if it is the first segment)</li>
+<li>the end distance along (from the start distance and the segment length)</li>
+<li>the end direction (from the curve parameter, the start direction and the segment length)</li>
+<li>the point of intersection (from the start direction and the end direction)</li>
+</ul>
+<p>The following checks can be done to validate the correct exchange:</p>
+<ul>
+<li>continuity – does the calculated end point of the previous segment matches with the provided start point of this segment</li>
+<li>tangential continuity – does the calculated end direction of the previous segment matches with the provided start direction of this segment</li>
+</ul>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>3</td><td>StartPoint</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td></td><td>
+The start point of the segment defined by a Cartesian point.
+</td><td>X</td></tr>
+<tr><td>4</td><td>StartDirection</td><td><a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a></td><td></td><td>
+The direction of the tangent at the start point. Direction value 0. indicates a curve with a start tangent along the positive x-axis. Values increases counter-clockwise, and decreases clockwise. Depending on the plane angle unit, either degree or radians, the sensible range is -360° ≤ n ≤ 360° (or -2π ≤ n ≤ 2π). Values larger then a full circle (&gt;|360°| or &gt;|2 π| shall not be used.
+</td><td>X</td></tr>
+<tr><td>5</td><td>StartRadiusOfCurvature</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td></td><td>
+For a NONLINEAR horizontal segment type the radius of the curve at the start point (<i>Placement</i> of the segment). For CIRCULAR type it is constant i.e. <i>StartRadiusOfCurvature</i> and <i>EndRadiusOfCurvature</i> are always the same. For LINE type, both <i>StartRadiusOfCurvature</i> and <i>EndRadiusOfCurvature</i> is 0. If the radius is 0 it shall be interpreted as INFINITE.
+</td><td>X</td></tr>
+<tr><td>6</td><td>EndRadiusOfCurvature</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td></td><td>
+For a NONLINEAR horizontal segment type the radius of the curve at the end point. If the radius is 0 it shall be interpreted as INFINITE.
+</td><td>X</td></tr>
+<tr><td>7</td><td>SegmentLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The length along the curve.
+</td><td>X</td></tr>
+<tr><td>8</td><td>GravityCenterLineHeight</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Optional attribute require for the exchange of Vienna bend transition segment.
+</td><td>X</td></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td>
+Predefined type of the horizontal alignmnent segment.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcalignmenthorizontalsegment.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm" alt="IfcAlignmentParameterSegment" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm">IfcAlignmentParameterSegment</a></i></td></tr>
+<tr><td>1</td><td>StartTag</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Tag to annotate the start point of the alignment segment.
+</td><td>X</td></tr>
+<tr><td>2</td><td>EndTag</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Tag to annotate the end point of the alignment segment.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a></td></tr>
+<tr><td>3</td><td>StartPoint</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td></td><td>
+The start point of the segment defined by a Cartesian point.
+</td><td>X</td></tr>
+<tr><td>4</td><td>StartDirection</td><td><a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a></td><td></td><td>
+The direction of the tangent at the start point. Direction value 0. indicates a curve with a start tangent along the positive x-axis. Values increases counter-clockwise, and decreases clockwise. Depending on the plane angle unit, either degree or radians, the sensible range is -360° ≤ n ≤ 360° (or -2π ≤ n ≤ 2π). Values larger then a full circle (&gt;|360°| or &gt;|2 π| shall not be used.
+</td><td>X</td></tr>
+<tr><td>5</td><td>StartRadiusOfCurvature</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td></td><td>
+For a NONLINEAR horizontal segment type the radius of the curve at the start point (<i>Placement</i> of the segment). For CIRCULAR type it is constant i.e. <i>StartRadiusOfCurvature</i> and <i>EndRadiusOfCurvature</i> are always the same. For LINE type, both <i>StartRadiusOfCurvature</i> and <i>EndRadiusOfCurvature</i> is 0. If the radius is 0 it shall be interpreted as INFINITE.
+</td><td>X</td></tr>
+<tr><td>6</td><td>EndRadiusOfCurvature</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td></td><td>
+For a NONLINEAR horizontal segment type the radius of the curve at the end point. If the radius is 0 it shall be interpreted as INFINITE.
+</td><td>X</td></tr>
+<tr><td>7</td><td>SegmentLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The length along the curve.
+</td><td>X</td></tr>
+<tr><td>8</td><td>GravityCenterLineHeight</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Optional attribute require for the exchange of Vienna bend transition segment.
+</td><td>X</td></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td>
+Predefined type of the horizontal alignmnent segment.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm">IfcAlignmentParameterSegment</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm">IfcAlignmentParameterSegment</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;StartPoint&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;StartDirection&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;StartRadiusOfCurvature&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;EndRadiusOfCurvature&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SegmentLength&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;GravityCenterLineHeight&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcAlignmentHorizontalSegment<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm">IfcAlignmentParameterSegment</a>)<b>;</b><br/>
+&nbsp;&nbsp;StartPoint : <a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>;<br/>
+&nbsp;&nbsp;StartDirection : <a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>;<br/>
+&nbsp;&nbsp;StartRadiusOfCurvature : <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;EndRadiusOfCurvature : <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;SegmentLength : <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;GravityCenterLineHeight : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;PredefinedType : <a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a>
+</p>
+<p><a href="../../../link/ifcalignmenthorizontalsegment.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

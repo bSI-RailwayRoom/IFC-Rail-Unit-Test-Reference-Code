@@ -1,0 +1,137 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcIntersectionCurve</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 39 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.40");
+//-->
+</script>
+
+<h4 class="num">IfcIntersectionCurve</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Intersection Curve</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcintersectioncurve.htm">IfcIntersectionCurve</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcIntersectionCurve</span> is a 3-dimensional curve that has two additional representations provided by two pcurves defined within two distinct and intersecting surfaces.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+An intersection curve is a type of surface curve, which results from the intersection of two surfaces. It is represented as a special subtype of the surface curve entity having two distinct surface associations defined via the associated geometry list.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>intersection_curve</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4 Add2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>TwoPCurves</td><td>The intersection curve shall have precisely two associated geometry elements.
+</td></tr>
+<tr><td>DistinctSurfaces</td><td>The two associated geometry elements shall be related to distinct surfaces. These are the surfaces which define the intersection curve.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcintersectioncurve.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifcgeometryresource/lexical/ifcsurfacecurve.htm" alt="IfcSurfaceCurve" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=IfcCurveDim(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this abstract class, defined differently for all subtypes, i.e. for IfcLine, IfcConic and IfcBoundedCurve.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a></td></tr>
+<tr><td>1</td><td>Curve3D</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+The curve which is the three-dimensional representation of the surface curve.
+</td><td>X</td></tr>
+<tr><td>2</td><td>AssociatedGeometry</td><td><a href="../../ifcgeometryresource/lexical/ifcpcurve.htm">IfcPcurve</a></td><td>L[1:2]</td><td>
+A list of one or two pcurves which define the surface or surfaces associated with the surface curve. Two elements in this list indicate that the curve has two surface associations which need not be two distinct surfaces. Being a pcurve, it also associates a basis curve in the parameter space of this surface as an alternative representation of the surface curve.
+</td><td>X</td></tr>
+<tr><td>3</td><td>MasterRepresentation</td><td><a href="../../ifcgeometryresource/lexical/ifcpreferredsurfacecurverepresentation.htm">IfcPreferredSurfaceCurveRepresentation</a></td><td></td><td>
+The &lt;em&lt;MasterRepresentation defines the curve used to determine the unique parametrisation of the <span class="self-ref">IfcSurfaceCurve</span>.<br>
+The master_representation takes one of the values <i>Curve3D</i>, <i>PCurve_S1</i> or <i>PCurve_S2</i> to indicate a preference for the 3D curve, or the first or second pcurve, in the associated geometry list, respectively. Multiple representations provide the ability to communicate data in more than one form, even though the data is expected to be geometrically identical.
+NOTE  The master representation attribute acknowledges the impracticality of ensuring that multiple forms are indeed identical and allows the indication of a preferred form. This would probably be determined by the creator of the data. All characteristics, such as parametrisation, domain, and results of evaluation, for an entity having multiple representations, are derived from the master representation. Any use of the other representations is a compromise for practical considerations.
+</td><td>X</td></tr>
+<tr><td></td><td>BasisSurface<br/>:=IfcGetBasisSurface(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a></td><td>S[1:2]</td><td>The surface, or surfaces on which the <span class="self-ref">IfcSurfaceCurve</span> lies. This is determined from the <i>AssociatedGeometry</i> list.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcintersectioncurve.htm">IfcIntersectionCurve</a></td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcintersectioncurve.htm">IfcIntersectionCurve</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcintersectioncurve.htm">IfcIntersectionCurve</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcintersectioncurve.htm">IfcIntersectionCurve</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcIntersectionCurve<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>)<b>;</b><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;TwoPCurves : SIZEOF(SELF\<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>.AssociatedGeometry) = 2;<br/>&nbsp;&nbsp;DistinctSurfaces : <a href="../../ifcgeometryresource/lexical/ifcassociatedsurface.htm">IfcAssociatedSurface</a>(SELF\<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>.AssociatedGeometry[1]) &lt;&gt; <a href="../../ifcgeometryresource/lexical/ifcassociatedsurface.htm">IfcAssociatedSurface</a>(SELF\<a href="../../ifcgeometryresource/lexical/ifcsurfacecurve.htm">IfcSurfaceCurve</a>.AssociatedGeometry[2]);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcintersectioncurve.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

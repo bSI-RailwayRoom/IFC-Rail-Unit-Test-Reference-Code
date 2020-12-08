@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcGridAxis</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 3 index4 13 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.7.3.14");
+//-->
+</script>
+
+<h4 class="num">IfcGridAxis</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Rasterachse</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Grid Axis</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Axe de grille</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An individual axis, <span class="self-ref">IfcGridAxis</span>, is defined in the context of a design grid. The axis definition is based on a curve of dimensionality 2. The grid axis is positioned within the XY plane of the position coordinate system defined by the <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.</p>
+<p>The standard geometric representation of <span class="self-ref">IfcGridAxis</span> is defined using a 2D curve entity. Grid axes are normally defined by an offset to another axis. The <a href="../../ifcgeometryresource/lexical/ifcoffsetcurve2d.htm">IfcOffsetCurve2D</a> supports this concept. Each grid axis has a sense given by the parameterization of the curve. The attribute <i>SameSense</i> is an indicator of whether or not the sense of the grid axis agrees with, or opposes, that of the underlying curve.</p>
+<table cellpadding="2" cellspacing="2">
+<tr>
+<td><img src="../../../figures/ifcgridaxis-layout1.gif" alt="design grid" border="0" height="300" width="400"></td>
+<td style="vertical-align:bottom">
+<p class="small">As shown in Figure 313, the grid axis is defined as a 2D curve within
+the xy plane of the position coordinate system. Any curve can be
+used to define a grid axis, most common is the use of IfcLine for
+linear grids and <a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a> for radial grids.</p>
+<p class="small">Most grids are defined by a pair of axis
+lists, each defined by a base grid axis and axes given by an
+offset to the base axis. The use of <a href="../../ifcgeometryresource/lexical/ifcoffsetcurve2d.htm">IfcOffsetCurve2D</a> as
+underlying AxisCurve supports this concept.</p>
+</td>
+</tr>
+<tr><td><p class="figure">Figure 313 &mdash; Grid axis</p></td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>AxisTag</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The tag or name for this grid axis.
+</td><td>X</td></tr>
+<tr><td>2</td><td>AxisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+Underlying curve which provides the geometry for this grid axis.
+</td><td>X</td></tr>
+<tr><td>3</td><td>SameSense</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+Defines whether the original sense of curve is used or whether it is reversed in the context of the grid axis.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfW</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@WAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>WAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfV</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@VAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>VAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfU</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@UAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>UAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasIntersections</i></td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a><br/>@IntersectingAxes</td><td>S[0:?]</td><td>The reference to a set of &lt;IfcVirtualGridIntersection's, that connect other grid axes to this grid axis.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>WR1</td><td>The dimensionality of the grid axis is 2.
+</td></tr>
+<tr><td>WR2</td><td>The <span class="self-ref">IfcGridAxis</span> needs to be used by exactly one of the three attributes of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>:
+<ul>
+<li><i>UAxes</i></li>
+<li><i>VAxes</i></li>
+<li><i>WAxes</i></li>
+</ul>
+i.e. it can only refer to a single instance of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a> in one of the three list of axes.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcgridaxis.png" usemap="#f"/>
+<map name="f">
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a></td></tr>
+<tr><td>1</td><td>AxisTag</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The tag or name for this grid axis.
+</td><td>X</td></tr>
+<tr><td>2</td><td>AxisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+Underlying curve which provides the geometry for this grid axis.
+</td><td>X</td></tr>
+<tr><td>3</td><td>SameSense</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+Defines whether the original sense of curve is used or whether it is reversed in the context of the grid axis.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfW</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@WAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>WAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfV</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@VAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>VAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>PartOfU</i></td><td><a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a><br/>@UAxes</td><td>S[0:1]</td><td>If provided, the <span class="self-ref">IfcGridAxis</span> is part of the <i>UAxes</i> of <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasIntersections</i></td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a><br/>@IntersectingAxes</td><td>S[0:?]</td><td>The reference to a set of &lt;IfcVirtualGridIntersection's, that connect other grid axes to this grid axis.
+
+<blockquote>
+IFC2x3 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;AxisCurve&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;AxisTag&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SameSense&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcGridAxis<b>;</b><br/>
+&nbsp;&nbsp;AxisTag : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;AxisCurve : <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>;<br/>
+&nbsp;&nbsp;SameSense : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;PartOfW : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a> <span class="keyword">FOR</span> WAxes;<br/>
+&nbsp;&nbsp;PartOfV : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a> <span class="keyword">FOR</span> VAxes;<br/>
+&nbsp;&nbsp;PartOfU : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a> <span class="keyword">FOR</span> UAxes;<br/>
+&nbsp;&nbsp;HasIntersections : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a> <span class="keyword">FOR</span> IntersectingAxes;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;WR1 : AxisCurve.Dim = 2;<br/>&nbsp;&nbsp;WR2 : (SIZEOF(PartOfU) = 1) XOR (SIZEOF(PartOfV) = 1) XOR (SIZEOF(PartOfW) = 1);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcgrid.htm">IfcGrid</a>
+<a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a>
+</p>
+<p><a href="../../../link/ifcgridaxis.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

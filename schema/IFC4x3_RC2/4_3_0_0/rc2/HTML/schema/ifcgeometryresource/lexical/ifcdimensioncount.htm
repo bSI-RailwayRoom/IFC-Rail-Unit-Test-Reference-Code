@@ -1,0 +1,101 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcDimensionCount</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 2 index4 1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.2.2");
+//-->
+</script>
+
+<h4 class="num">IfcDimensionCount</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Dimension Count</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Dimensionalité</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcDimensionCount</span> defins the dimensionality of the coordinate space. It is restricted to have the dimensionality of either 1, 2, or 3 for the purpose of this specification.</p>
+<blockquote class="note">
+<p>NOTE  The shape representations assigned to a geometric representation context may include geometric representation items of lower dimensionality, particularly when defining the boundary of planar surfaces as 2D cross sections for the purpose of 3D swept areas.</p>
+</blockquote>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A dimension count is a positive integer used to define the coordinate space dimensionality.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Type adapted from <strong>dimension_count</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New Type in IFC1.5</p>
+</blockquote>
+</details>
+</section>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>WR1</td><td>The dimension count should be an integer between 1 and 3 NOTE: This is a further constraint by IFC, the upper limit does not exist in STEP.
+</td></tr>
+</table>
+
+</details>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:long&quot;/&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcDimensionCount = <span class="self-ref">INTEGER</span>;<br/>&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;WR1 : { 0 &lt; SELF &lt;= 3 }<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanresult.htm">IfcBooleanResult</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcboundingbox.htm">IfcBoundingBox</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcfacebasedsurfacemodel.htm">IfcFaceBasedSurfaceModel</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcgeometricset.htm">IfcGeometricSet</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcsectionedspine.htm">IfcSectionedSpine</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcshellbasedsurfacemodel.htm">IfcShellBasedSurfaceModel</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcsolidmodel.htm">IfcSolidModel</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifctessellatedfaceset.htm">IfcTessellatedFaceSet</a>
+<a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>
+<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>
+<a href="../../ifcgeometryresource/lexical/ifccompositecurvesegment.htm">IfcCompositeCurveSegment</a>
+<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>
+<a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>
+<a href="../../ifcgeometryresource/lexical/ifcplacement.htm">IfcPlacement</a>
+<a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a>
+<a href="../../ifcgeometryresource/lexical/ifcpointoncurve.htm">IfcPointOnCurve</a>
+<a href="../../ifcgeometryresource/lexical/ifcpointonsurface.htm">IfcPointOnSurface</a>
+<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>
+<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>
+<a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a>
+<a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a>
+</p>
+<p><a href="../../../link/ifcdimensioncount.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

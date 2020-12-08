@@ -1,0 +1,226 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_CoolingTowerTypeCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 4 index4 27 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.4.28");
+//-->
+</script>
+
+<h4 class="std">7.5.4.28 Pset_CoolingTowerTypeCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifchvacdomain/lexical/ifccoolingtower.htm">IfcCoolingTower</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cooling Tower Type Common</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/1RQm00qSyHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_CoolingTowerTypeCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Reference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+*</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td><td>Reference ID for this specified type in this project
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Reference</b></td><td>Référence à l'identifiant d'un type spécifié dans le contexte de ce projet.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>参照記号</b></td><td>このプロジェクトのための参照記号。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Status</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_elementstatus.htm">PEnum_ElementStatus</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Status</b></td><td>Status of the element, predominately used in renovation or retrofitting projects. The status can be assigned to as &quot;New&quot; - element designed as new addition, &quot;Existing&quot; - element exists and remains, &quot;Demolish&quot; - element existed but is to be demolished,  &quot;Temporary&quot; - element will exists only temporary (like a temporary support structure).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>状態</b></td><td>要素（主にリノベーションまたは改修プロジェクトにおいて）の状態。 状態は、「新規(New)」－新しく追加される要素。「既存」－要素は存在し、かつ残りもの。「破壊」－要素は存在したが、廃棄されるもの。「一時的」－一時的に存在する要素（一時的にサポートしている構造のようなもの）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NominalCapacity</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Nominal Capacity</b></td><td>Nominal cooling tower capacity in terms of heat transfer rate of the cooling tower between air stream and water stream at nominal conditions.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CircuitType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coolingtowercircuittype.htm">PEnum_CoolingTowerCircuitType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Circuit Type</b></td><td>OpenCircuit: Exposes water directly to the cooling atmosphere.
+CloseCircuit: The fluid is separated from the atmosphere by a heat exchanger.
+Wet: The air stream or the heat exchange surface is evaporatively cooled.
+Dry: No evaporation into the air stream.
+DryWet: A combination of a dry tower and a wet tower.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FlowArrangement</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coolingtowerflowarrangement.htm">PEnum_CoolingTowerFlowArrangement</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Flow Arrangement</b></td><td>CounterFlow: Air and water flow enter in different directions.
+CrossFlow: Air and water flow are perpendicular.
+ParallelFlow: air and water flow enter in same directions.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SprayType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coolingtowerspraytype.htm">PEnum_CoolingTowerSprayType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Spray Type</b></td><td>SprayFilled: Water is sprayed into airflow.
+SplashTypeFill: water cascades over successive rows of splash bars.
+FilmTypeFill: water flows in a thin layer over closely spaced sheets.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CapacityControl</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coolingtowercapacitycontrol.htm">PEnum_CoolingTowerCapacityControl</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Capacity Control</b></td><td>FanCycling: Fan is cycled on and off to control duty.
+TwoSpeedFan: Fan is switched between low and high speed to control duty.
+VariableSpeedFan: Fan speed is varied to control duty.
+DampersControl: Dampers modulate the air flow to control duty.
+BypassValveControl: Bypass valve modulates the water flow to control duty.
+MultipleSeriesPumps: Turn on/off multiple series pump to control duty.
+TwoSpeedPump: Switch between high/low pump speed to control duty.
+VariableSpeedPump: vary pump speed to control duty.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ControlStrategy</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coolingtowercontrolstrategy.htm">PEnum_CoolingTowerControlStrategy</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Control Strategy</b></td><td>FixedExitingWaterTemp: The capacity is controlled to maintain a fixed exiting water temperature.
+WetBulbTempReset: The set-point is reset based on the wet-bulb temperature.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NumberOfCells</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Number Of Cells</b></td><td>Number of cells in one cooling tower unit.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BasinReserveVolume</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumemeasure.htm">IfcVolumeMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Basin Reserve Volume</b></td><td>Volume between operating and overflow levels in cooling tower basin.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>LiftElevationDifference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Lift Elevation Difference</b></td><td>Elevation difference between cooling tower sump and the top of the tower.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WaterRequirement</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Water Requirement</b></td><td>Make-up water requirements.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OperationTemperatureRange</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Operation Temperature Range</b></td><td>Allowable operation ambient air temperature range.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AmbientDesignDryBulbTemperature</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ambient Design Dry Bulb Temperature</b></td><td>Ambient design dry bulb temperature used for selecting the cooling tower.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AmbientDesignWetBulbTemperature</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ambient Design Wet Bulb Temperature</b></td><td>Ambient design wet bulb temperature used for selecting the cooling tower.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_coolingtowertypecommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

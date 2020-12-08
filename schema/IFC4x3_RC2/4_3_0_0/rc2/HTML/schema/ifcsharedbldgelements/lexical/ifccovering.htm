@@ -1,0 +1,637 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCovering</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 1 index3 3 index4 15 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.1.3.16");
+//-->
+</script>
+
+<h4 class="num">IfcCovering</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bekleidung / Belag</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Covering</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Revêtement</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCPRODUCTEXTENSION</i> to <i>IFCSHAREDBLDGELEMENTS</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositionedRelativeTo</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>A covering is an element which covers some part of another element and is fully dependent on that other element. The <span class="self-ref">IfcCovering</span> defines the occurrence of a covering type, that (if given) is expressed by the <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO ISO 6707-1: final coverings and treatments of surfaces and their intersections.</p>
+</blockquote>
+<p>Coverings are elements with relationships to the covered element and the space on the other side, they may contain openings, assigned by <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a>, material information, assigned by <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>, and others.</p>
+<blockquote class="example">
+<p>EXAMPLE  Coverings include wall claddings, floorings, suspended ceilings, moldings and skirting boards.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  A more basic information about claddings, floorings, and ceilings of a space can be attached to <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>'s using the Pset_SpaceCommon properties. Then only a name can be provided and the covering quantities would be interpreted from the space quantities.</p>
+</blockquote>
+<p>Coverings can be assigned to</p>
+<ul>
+<li>a space represented by <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>
+<ul>
+<li>using the inverse relationship <i>CoversSpaces</i> pointing to <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a>. The space is then accessible via <i>IfcRelCoversSpaces.RelatedSpace</i>. It defines to which space a covering is facing towards.</li>
+</ul>
+</li>
+<li>a space boundary represented by <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>
+<ul>
+<li>using the inverse relationship <i>ProvidesBoundaries</i> pointing to <i>IfcRelSpaceBoundary.</i> The space is then accessible via <i>IfcRelSpaceBoundary.RelatingSpace</i>.</li>
+</ul>
+</li>
+<li>a building element represented by <i>IfcBuildingElement</i>
+<ul>
+<li>using the inverse relationship <i>Covers</i> pointing to <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a>. The building element is then accessible via <i>IfcRelCoversBldgElements.RelatingBuildingElement</i>.</li>
+</ul>
+</li>
+</ul>
+<blockquote class="note">
+<p>NOTE  The mere containment relationship between an <span class="self-ref">IfcCovering</span> and an <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> is created by using <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a></p>
+</blockquote>
+<p>The following guideline shall apply:</p>
+<ul>
+<li>(default) if the space has coverings that may not have their own shape representation and no defined relationships to the building elements they cover, then the <span class="self-ref">IfcCovering</span> shall be assigned to <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> using the <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a> relationship,</li>
+<li>if the space has coverings that have an own shape representation and the space has defined space boundaries, then the covering, which relates to that space, shall be contained in the space using <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>. It may be assigned to the space boundaries using the <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>.</li>
+<li>if the covering does not relate to a space, then the covering should be assigned to the building element or a distribution element using the <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a> relationship.</li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0.</p>
+</blockquote>
+<blockquote class="change-ifc2x">
+<p>IFC2x CHANGE  The attribute <i>PredefinedType</i> is now optional and should only be inserted when no type information, given by <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>, is assigned to the <span class="self-ref">IfcCovering</span> occurrence by <a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a>.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a></td><td>? </td><td>
+Predefined types to define the particular type of the covering. There may be property set definitions available for each predefined type.
+<blockquote class="note">
+NOTE  The <i>PredefinedType</i> shall only be used, if no <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a> is assigned, providing its own <i>IfcCoveringType.PredefinedType</i>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>CoversSpaces</i></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a><br/>@RelatedCoverings</td><td>S[0:1]</td><td>Reference to the objectified relationship that handles the relationship of the covering to the covered space.
+</td><td>X</td></tr>
+<tr><td></td><td><i>CoversElements</i></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a><br/>@RelatedCoverings</td><td>S[0:1]</td><td>Reference to the objectified relationship that handles the relationship of the covering to the covered element.
+
+<blockquote>
+IFC4 CHANGE Renamed into <i>CoversElements</i> for consistency.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either the <i>PredefinedType</i> attribute is unset (e.g. because an <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a> is associated), or the inherited attribute <i>ObjectType</i> shall be given, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
+<tr><td>CorrectTypeAssigned</td><td>Either there is no covering type object associated, i.e. the <i>IsTypedBy</i> inverse relationship is not provided, or the associated type object has to be of type <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifccovering.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="66,126,278,138" href="../../../schema/ifcproductextension/lexical/ifcbuiltelement.htm" alt="IfcBuiltElement" />
+<area shape="rect" coords="54,102,290,114" href="../../../schema/ifcproductextension/lexical/ifcelement.htm" alt="IfcElement" />
+<area shape="rect" coords="42,78,302,90" href="../../../schema/ifckernel/lexical/ifcproduct.htm" alt="IfcProduct" />
+<area shape="rect" coords="30,54,314,66" href="../../../schema/ifckernel/lexical/ifcobject.htm" alt="IfcObject" />
+<area shape="rect" coords="18,30,326,42" href="../../../schema/ifckernel/lexical/ifcobjectdefinition.htm" alt="IfcObjectDefinition" />
+<area shape="rect" coords="6,6,338,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasAssignments</i></td><td><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that assign (by an association relationship) other subtypes of IfcObject to this object instance. Examples are the association to products, processes, controls, resources or groups.
+</td><td>X</td></tr>
+<tr><td></td><td><i>Nests</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is a part within an ordered whole/part decomposition relationship. An object occurrence or type can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>Decomposes</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsNestedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is the whole within an ordered whole/part decomposition relationship. An object or object type can be nested by several other objects (occurrences or types).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>IsDecomposedBy</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td>References to the context providing context information such as project unit or representation context. It should only be asserted for the uppermost non-spatial object.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDecomposedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is whole within an unordered whole/part decomposition relationship. An object definitions can be aggregated by several other objects (occurrences or parts).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Decomposes</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is a part within an unordered whole/part decomposition relationship. An object definitions can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that associates external references or other resource definitions to the object.. Examples are the association to library, documentation or classification.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></i></td></tr>
+<tr><td>5</td><td>ObjectType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The type denotes a particular type that indicates the object further. The use has to be established at the level of instantiable subtypes. In particular it holds the user defined type, if the enumeration of the attribute <i>PredefinedType</i> is set to USERDEFINED.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDeclaredBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Link to the relationship object pointing to the declaring object that provides the object definitions for this object occurrence. The declaring object has to be part of an object type decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, contains the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Declares</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatingObject</td><td>S[0:?]</td><td>Link to the relationship object pointing to the reflected object(s) that receives the object definitions. The reflected object has to be part of an object occurrence decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, provides the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsTypedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Set of relationships to the object type that provides the type definitions for this object occurrence. The then associated <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a>, or its subtypes, contains the specific information (or type, or style), that is common to all instances of <span class="self-ref">IfcObject</span>, or its subtypes, referring to the same type.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, the link to <a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a> had previously be included in the inverse relationship <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a>. Change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDefinedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Set of relationships to property set definitions attached to this object. Those statically or dynamically defined properties contain alphanumeric information content that further defines the object.
+
+<blockquote>
+IFC4 CHANGE  The data type has been changed from <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a> to <a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></i></td></tr>
+<tr><td>6</td><td>ObjectPlacement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a></td><td>? </td><td>
+Placement of the product in space, the placement can either be absolute (relative to the world coordinate system), relative (relative to the object placement of another product), or constraint (e.g. relative to grid axes). It is determined by the various subtypes of IfcObjectPlacement, which includes the axis placement information to determine the  transformation for the object coordinate system.
+</td><td>X</td></tr>
+<tr><td>7</td><td>Representation</td><td><a href="../../ifcrepresentationresource/lexical/ifcproductrepresentation.htm">IfcProductRepresentation</a></td><td>? </td><td>
+Reference to the representations of the product, being either a representation (IfcProductRepresentation) or as a special case a shape representations (IfcProductDefinitionShape). The product definition shape provides for multiple geometric representations of the shape property of the object within the same object coordinate system, defined by the object placement.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ReferencedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a><br/>@RelatingProduct</td><td>S[0:?]</td><td>Reference to the <a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a> relationship, by which other products, processes, controls, resources or actors (as subtypes of <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>) can be related to this product.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PositionedRelativeTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelpositions.htm">IfcRelPositions</a><br/>@RelatedProducts</td><td>S[0:1]</td><td></td><td>X</td></tr>
+<tr><td></td><td><i>ReferencedInStructures</i></td><td><a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a><br/>@RelatedElements</td><td>S[0:?]</td><td></td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></i></td></tr>
+<tr><td>8</td><td>Tag</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+The tag (or label) identifier at the particular instance of a product, e.g. the serial number, or the position number. It is the identifier at the occurrence level.
+</td><td>X</td></tr>
+<tr><td></td><td><i>FillsVoids</i></td><td><a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a><br/>@RelatedBuildingElement</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a> Relationship that puts the element as a filling into the opening created within another element.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ConnectedTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectselements.htm">IfcRelConnectsElements</a><br/>@RelatingElement</td><td>S[0:?]</td><td>Reference to the element connection relationship. The relationship then refers to the other element to which this element is connected to.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsInterferedByElements</i></td><td><a href="../../ifcproductextension/lexical/ifcrelinterfereselements.htm">IfcRelInterferesElements</a><br/>@RelatedElement</td><td>S[0:?]</td><td>Reference to the interference relationship to indicate the element that is interfered. The relationship, if provided, indicates that this element has an interference with one or many other elements.
+<blockquote class="note">
+NOTE  There is no indication of precedence between <i>IsInterferedByElements</i> and <i>InterferesElements</i>.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE New inverse relationship.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>InterferesElements</i></td><td><a href="../../ifcproductextension/lexical/ifcrelinterfereselements.htm">IfcRelInterferesElements</a><br/>@RelatingElement</td><td>S[0:?]</td><td>Reference to the interference relationship to indicate the element that interferes. The relationship, if provided, indicates that this element has an interference with one or many other elements.
+<blockquote class="note">
+NOTE  There is no indication of precedence between <i>IsInterferedByElements</i> and <i>InterferesElements</i>.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE New inverse relationship.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProjections</i></td><td><a href="../../ifcproductextension/lexical/ifcrelprojectselement.htm">IfcRelProjectsElement</a><br/>@RelatingElement</td><td>S[0:?]</td><td>Projection relationship that adds a feature (using a Boolean union) to the <i>IfcBuildingElement</i>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasOpenings</i></td><td><a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a><br/>@RelatingBuildingElement</td><td>S[0:?]</td><td>Reference to the <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> relationship that creates an opening in an element. An element can incorporate zero-to-many openings. For each opening, that voids the element, a new relationship <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> is generated.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsConnectionRealization</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectswithrealizingelements.htm">IfcRelConnectsWithRealizingElements</a><br/>@RealizingElements</td><td>S[0:?]</td><td>Reference to the connection relationship with realizing element. The relationship, if provided, assigns this element as the realizing element to the connection, which provides the physical manifestation of the connection relationship.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ProvidesBoundaries</i></td><td><a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a><br/>@RelatedBuildingElement</td><td>S[0:?]</td><td>Reference to space boundaries by virtue of the objectified relationship <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>. It defines the concept of an element bounding spaces.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ConnectedFrom</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectselements.htm">IfcRelConnectsElements</a><br/>@RelatedElement</td><td>S[0:?]</td><td>Reference to the element connection relationship. The relationship then refers to the other element that is connected to this element.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ContainedInStructure</i></td><td><a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a><br/>@RelatedElements</td><td>S[0:1]</td><td>Containment relationship to the spatial structure element, to which the element is primarily associated. This containment relationship has to be hierachical, i.e. an element may only be assigned directly to zero or one spatial structure.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasCoverings</i></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a><br/>@RelatingBuildingElement</td><td>S[0:?]</td><td>Reference to <a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a> by virtue of the objectified relationship <i>IfcRelCoversBldgElement</i>. It defines the concept of an element having coverings associated.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a></td></tr>
+<tr><td colspan="6"><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a></td></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a></td><td>? </td><td>
+Predefined types to define the particular type of the covering. There may be property set definitions available for each predefined type.
+<blockquote class="note">
+NOTE  The <i>PredefinedType</i> shall only be used, if no <a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a> is assigned, providing its own <i>IfcCoveringType.PredefinedType</i>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>CoversSpaces</i></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a><br/>@RelatedCoverings</td><td>S[0:1]</td><td>Reference to the objectified relationship that handles the relationship of the covering to the covered space.
+</td><td>X</td></tr>
+<tr><td></td><td><i>CoversElements</i></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a><br/>@RelatedCoverings</td><td>S[0:1]</td><td>Reference to the objectified relationship that handles the relationship of the covering to the covered element.
+
+<blockquote>
+IFC4 CHANGE Renamed into <i>CoversElements</i> for consistency.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifccovering.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="object-typing" />
+<p class="use-head">Object Typing</p>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept applies to this entity.</p><br/><br/>
+
+<a id="property-sets-for-objects" />
+<p class="use-head">Property Sets for Objects</p>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 125.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
+<tr><td><a href="../../ifcsharedbldgelements/pset/pset_coveringcommon.htm">Pset_CoveringCommon</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th><th>Reference</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Reference</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>FireRating</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>AcousticRating</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>FlammabilityRating</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>FragilityRating</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SurfaceSpreadOfFlame</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Combustible</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>IsExternal</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalTransmittance</td><td><a href="../../ifcmeasureresource/lexical/ifcthermaltransmittancemeasure.htm">IfcThermalTransmittanceMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Finish</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td></td></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>Status</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td></tr>
+</table></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 125 &mdash; IfcCovering Property Sets for Objects</td></tr></table>
+
+<br/><br/>
+
+<a id="quantity-sets" />
+<p class="use-head">Quantity Sets</p>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 126.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
+<tr><td><a href="../../ifcsharedbldgelements/qset/qto_coveringbasequantities.htm">Qto_CoveringBaseQuantities</a></td><td></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 126 &mdash; IfcCovering Quantity Sets</td></tr></table>
+
+<br/><br/>
+
+<a id="spatial-containment" />
+<p class="use-head">Spatial Containment</p>
+<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 127.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>RelatingStructure</b></th></tr>
+<tr><td><a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 127 &mdash; IfcCovering Spatial Containment</td></tr></table>
+
+<p>The <span class="self-ref">IfcCovering</span> has a containment relationship within the hierarchical spatial structure.</p>
+<ul>
+<li>The <span class="self-ref">IfcCovering</span> is places within the project spatial hierarchy using the objectified relationship <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>, referring to it by its inverse attribute <i>SELF\IfcElement.ContainedInStructure</i>. Subtypes of <a href="../../ifcproductextension/lexical/ifcspatialstructureelement.htm">IfcSpatialStructureElement</a> are valid spatial containers, with <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> being the default container.</li>
+</ul>
+
+<br/><br/>
+
+<a id="material-layer-set-usage" />
+<p class="use-head">Material Layer Set Usage</p>
+<p>The <a href="../../templates/material-layer-set-usage.htm">Material Layer Set Usage</a> concept template applies to this entity as shown in Table 128.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Name</b></th><th><b>Description</b></th></tr>
+<tr><td>Front</td><td>Optional front-facing material of layer-based coverings such as drywall paper.
+</td></tr>
+<tr><td>Fill</td><td>The solid material of layer-based coverings such as drywall gypsum.
+</td></tr>
+<tr><td>Back</td><td>Optional back-facing material of layer-based coverings such as drywall paper.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 128 &mdash; IfcCovering Material Layer Set Usage</td></tr></table>
+
+<p>Coverings for surfaces (CEILING, FLOORING, CLADDING, CEILING, ROOFING) may have materials defined according to layers.</p>
+
+<br/><br/>
+
+<a id="material-profile-set-usage" />
+<p class="use-head">Material Profile Set Usage</p>
+<p>The <a href="../../templates/material-profile-set-usage.htm">Material Profile Set Usage</a> concept template applies to this entity as shown in Table 129.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Name</b></th><th><b>Description</b></th></tr>
+<tr><td>Trim</td><td>Profile of trim such as crown molding or base molding.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 129 &mdash; IfcCovering Material Profile Set Usage</td></tr></table>
+
+<p>Coverings for edges (MOLDING, SKIRTINGBOARD) may have materials defined according to profiles.</p>
+
+<br/><br/>
+
+<a id="surface-geometry" />
+<p class="use-head">Surface Geometry</p>
+<p>The <a href="../../templates/surface-geometry.htm">Surface Geometry</a> concept applies to this entity.</p><p>The following additional constraints apply to the 'GeometricSet' representation of <span class="self-ref">IfcCovering</span>:</p>
+<ul>
+<li>for planar base surfaces - bounded surface representation</li>
+<li>for cylindrical base surfaces - swept surface representation</li>
+</ul>
+<p> </p>
+<table>
+ <tr>
+  <td><img src="../../../figures/ifccovering_standard-1-layout1.gif" alt="standard planar covering" border="0" height="274" width="399"></td>
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 215 illustrates a planar surface representation where the
+area of <span class="self-ref">IfcCovering</span> is given by an <a href="../../ifctopologyresource/lexical/ifcpolyloop.htm">IfcPolyLoop</a> for
+planar base surfaces (here provided by the
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>). The implicit planar surface of the <a href="../../ifctopologyresource/lexical/ifcpolyloop.htm">IfcPolyLoop</a> shall be
+identical with the planar surface defined by the
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>.</blockquote></td>
+ </tr>
+ <tr>
+  <td>
+<p class="figure">Figure 215 &mdash; Covering surface planar</p>
+</td>
+ </tr>
+</table>
+<table>
+ <tr>
+  <td><img src="../../../figures/ifccovering_standard-2-layout1.gif" alt="standard cylindrical covering" border="0" height="274" width="399"></td>
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 216 illustrates a cylindrical surface representation where
+the area of the <span class="self-ref">IfcCovering</span> is given by an
+<a href="../../ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm">IfcSurfaceOfLinearExtrusion</a> for cylindrical base surfaces
+(here given by the <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>, such as caused by a
+round wall).</blockquote>
+  <blockquote>
+   <ul>
+    
+<li class="small">The geometry representation of the <span class="self-ref">IfcCovering</span> is given
+by the <i>IfcTrimmedCurved</i> (the Curve parameter of the
+<a href="../../ifcprofileresource/lexical/ifcarbitraryopenprofiledef.htm">IfcArbitraryOpenProfileDef</a> - in cases of faceted
+representation also an <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>). It is extruded within
+the plane of the base surface using the <i>Depth</i> parameter of
+the <a href="../../ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm">IfcSurfaceOfLinearExtrusion</a>.</li>
+</ul></blockquote>
+</td>
+ 
+</tr>
+ 
+<tr>
+  <td>
+<p class="figure">Figure 216 &mdash; Covering surface
+cylindrical</p>
+</td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+
+<br/><br/>
+
+<a id="body-sweptsolid-geometry" />
+<p class="use-head">Body SweptSolid Geometry</p>
+<p>The <a href="../../templates/body-sweptsolid-geometry.htm">Body SweptSolid Geometry</a> concept applies to this entity.</p><p>The following additional constraints apply to the 'SweptSolid' representation of <span class="self-ref">IfcCovering</span>:</p>
+<ul>
+<li>for planar base surfaces - swept area representation</li>
+<li>for cylindrical base surfaces - swept area representation</li>
+</ul>
+<p> </p>
+<table>
+ 
+<tr>
+  
+<td><img src="../../../figures/ifccovering_advanced-1-layout1.gif" alt="advanded solid covering" border="0" height="274" width="399"></td>
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 217 illustrates a body representation where the volume of
+<span class="self-ref">IfcCovering</span> is given by an <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a> for
+planar base surfaces (here given by the
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>). The extruded area (<a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a>) shall 
+be coplanar to the surface defined by the
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>.
+</blockquote></td>
+ </tr>
+ <tr>
+  
+<td>
+<p class="figure">Figure 217 &mdash; Covering body planar</p>
+</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+<table>
+ 
+<tr>
+  
+<td><img src="../../../figures/ifccovering_advanced-2-layout1.gif" alt="advanced solid covering" border="0" height="274" width="399"></td>
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 218 illustrates a body representation where the volume of
+the <span class="self-ref">IfcCovering</span> is given by an <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>
+for cylindrical base surfaces (here given by the
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a> - such as caused by a round wall).</blockquote>
+  <blockquote>
+   
+<ul>
+<li class="small">The geometry representation of the <span class="self-ref">IfcCovering</span> is given
+by the <a href="../../ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a> (the <i>OuterCurve</i> parameter of
+the <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> - in cases of faceted
+representation also a closed <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>). It is extruded
+along the plane of the base surface using the <i>Depth</i>
+parameter of the <a href="../../ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm">IfcSurfaceOfLinearExtrusion</a>.</li>
+</ul></blockquote>
+ </td>
+ </tr>
+ 
+<tr>
+  
+<td>
+<p class="figure">Figure 218 &mdash; Covering body circular</p>
+</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;71f56697-4f86-45c6-a960-7dbf2c5424a7&quot; name=&quot;IfcCovering&quot; applicableRootEntity=&quot;IfcCovering&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;d24c3034-cab6-4612-9eb8-9f814dd9a3d4&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;e2c62edc-7fd0-41e4-9e89-5c348b65492f&quot; name=&quot;Object Typing&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;35a2e10e-20df-40f4-ab2f-dacf0a6744f4&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;097c3f91-ba3f-4c90-9503-4873e56e7587&quot; name=&quot;Property Sets for Objects&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;f74255a6-0c0e-4f31-84ad-24981db62461&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_CoveringCommon&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;397523b1-8cc5-4172-aeac-d1d73f8ab001&quot; name=&quot;Quantity Sets&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;6652398e-6579-4460-8cb4-26295acfacc7&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;QsetName[Value]=&amp;apos;Qto_CoveringBaseQuantities&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;c24fd65c-3172-428f-ae20-07886b19ecae&quot; name=&quot;Spatial Containment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;d9a3f822-0014-4bc2-8d94-9d9067759045&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;RelatingStructure[Type]=&amp;apos;IfcSpace&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;1317ca91-462b-4bfe-a951-8b1e0cbd0aa5&quot; name=&quot;Material Layer Set Usage&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;6d5fb86f-3f2d-49fb-9528-077855ddcc47&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Optional front-facing material of layer-based coverings such as drywall paper.&quot; Parameters=&quot;Name[Value]=&amp;apos;Front&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;The solid material of layer-based coverings such as drywall gypsum.&quot; Parameters=&quot;Name[Value]=&amp;apos;Fill&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Optional back-facing material of layer-based coverings such as drywall paper.&quot; Parameters=&quot;Name[Value]=&amp;apos;Back&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;9e0bc382-529e-40c9-838f-bf81ca989828&quot; name=&quot;Material Profile Set Usage&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;6aa01429-b566-4b36-875a-3162088a9831&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Profile of trim such as crown molding or base molding.&quot; Parameters=&quot;Name[Value]=&amp;apos;Trim&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;e9e34f36-1a74-4ae4-aa59-a4208cfdce63&quot; name=&quot;Surface Geometry&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;2e99de70-fb73-478f-9bca-4fedfdeb4ea5&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;57fa00e6-30ca-4650-8686-9f8fc8fbb90b&quot; name=&quot;Body SweptSolid Geometry&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;cb7c18fa-cf83-4db1-be1b-c013ba4ed672&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm#classification-association">Classification Association</a></td><td><a href="../../templates/classification-association.htm">Classification Association</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobject.htm"><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-user-identity">Object User Identity</a></td><td><a href="../../templates/object-user-identity.htm">Object User Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-predefined-type">Object Predefined Type</a></td><td><a href="../../templates/object-predefined-type.htm">Object Predefined Type</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#property-sets-with-override">Property Sets with Override</a></td><td><a href="../../templates/property-sets-with-override.htm">Property Sets with Override</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#footprint-geometry">FootPrint Geometry</a></td><td><a href="../../templates/footprint-geometry.htm">FootPrint Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-surfaceorsolidmodel-geometry">Body SurfaceOrSolidModel Geometry</a></td><td><a href="../../templates/body-surfaceorsolidmodel-geometry.htm">Body SurfaceOrSolidModel Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-surfacemodel-geometry">Body SurfaceModel Geometry</a></td><td><a href="../../templates/body-surfacemodel-geometry.htm">Body SurfaceModel Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-tessellation-geometry">Body Tessellation Geometry</a></td><td><a href="../../templates/body-tessellation-geometry.htm">Body Tessellation Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-brep-geometry">Body Brep Geometry</a></td><td><a href="../../templates/body-brep-geometry.htm">Body Brep Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-advancedbrep-geometry">Body AdvancedBrep Geometry</a></td><td><a href="../../templates/body-advancedbrep-geometry.htm">Body AdvancedBrep Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#body-csg-geometry">Body CSG Geometry</a></td><td><a href="../../templates/body-csg-geometry.htm">Body CSG Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#mapped-geometry">Mapped Geometry</a></td><td><a href="../../templates/mapped-geometry.htm">Mapped Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#element-voiding">Element Voiding</a></td><td><a href="../../templates/element-voiding.htm">Element Voiding</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#element-projecting">Element Projecting</a></td><td><a href="../../templates/element-projecting.htm">Element Projecting</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-linear-placement">Linear Placement</a></td><td><a href="../../templates/product-linear-placement.htm">Product Linear Placement</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcbuiltelement.htm#product-assignment">Product Assignment</a></td><td><a href="../../templates/product-assignment.htm">Product Assignment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcbuiltelement.htm#surface-3d-geometry">Surface 3D Geometry</a></td><td><a href="../../templates/surface-3d-geometry.htm">Surface 3D Geometry</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a></td></tr><tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#object-typing">Object Typing</a></td><td><a href="../../templates/object-typing.htm">Object Typing</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#quantity-sets">Quantity Sets</a></td><td><a href="../../templates/quantity-sets.htm">Quantity Sets</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#spatial-containment">Spatial Containment</a></td><td><a href="../../templates/spatial-containment.htm">Spatial Containment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#material-layer-set-usage">Material Layer Set Usage</a></td><td><a href="../../templates/material-layer-set-usage.htm">Material Layer Set Usage</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#material-profile-set-usage">Material Profile Set Usage</a></td><td><a href="../../templates/material-profile-set-usage.htm">Material Profile Set Usage</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#surface-geometry">Surface Geometry</a></td><td><a href="../../templates/surface-geometry.htm">Surface Geometry</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgelements/lexical/ifccovering.htm#body-sweptsolid-geometry">Body SweptSolid Geometry</a></td><td><a href="../../templates/body-sweptsolid-geometry.htm">Body SweptSolid Geometry</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a>&quot; type=&quot;ifc:<a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcsharedbldgelements/lexical/ifccovering.htm">IfcCovering</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcCovering<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a>)<b>;</b><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;CoversSpaces : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a> <span class="keyword">FOR</span> RelatedCoverings;<br/>
+&nbsp;&nbsp;CoversElements : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a> <span class="keyword">FOR</span> RelatedCoverings;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR <br/>
+ (PredefinedType &lt;&gt; <a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a>.USERDEFINED) OR <br/>
+ ((PredefinedType = <a href="../../ifcsharedbldgelements/lexical/ifccoveringtypeenum.htm">IfcCoveringTypeEnum</a>.USERDEFINED) AND EXISTS (SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+  (&#39;IFCSHAREDBLDGELEMENTS.<a href="../../ifcsharedbldgelements/lexical/ifccoveringtype.htm">IfcCoveringType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcsharedbldgelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcsharedbldgelements/lexical/ifcrelcoversbldgelements.htm">IfcRelCoversBldgElements</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcrelcoversspaces.htm">IfcRelCoversSpaces</a>
+</p>
+<p><a href="../../../link/ifccovering.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

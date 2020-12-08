@@ -1,0 +1,203 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SpaceThermalDesign</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 2 index3 4 index4 23 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.2.4.24");
+//-->
+</script>
+
+<h4 class="std">6.2.4.24 Pset_SpaceThermalDesign</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Thermal Design</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/0K0cK0qWiHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SpaceThermalDesign.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>CoolingDesignAirflow</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cooling Design Airflow</b></td><td>The air flowrate required during the peak cooling conditions.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>冷房設計吸気量</b></td><td>ピーク時の冷房条件で要求される給気量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HeatingDesignAirflow</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Heating Design Airflow</b></td><td>The air flowrate required during the peak heating conditions, but could also be determined by minimum ventilation requirement or minimum air change requirements.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TotalSensibleHeatGain</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total Sensible Heat Gain</b></td><td>The total sensible heat or energy gained by the space during the peak cooling conditions.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>顕熱負荷の合計</b></td><td>ピーク時の冷房条件で取得した顕熱或いはエネルギー。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TotalHeatGain</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total Heat Gain</b></td><td>The total amount of heat or energy gained by the space at the time of the space's peak cooling conditions.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>熱取得の合計</b></td><td>ピーク時の室内最大冷房負荷時に取得した顕熱或いはエネルギー。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TotalHeatLoss</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total Heat Loss</b></td><td>The total amount of heat or energy lost by the space at the time of the space's peak heating conditions.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>熱ロスの合計</b></td><td>ピーク時の室内最大暖房負荷時に取得・損失した熱或いはエネルギー。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoolingDryBulb</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cooling Dry Bulb</b></td><td>Inside dry bulb temperature for cooling design.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>冷房設計温度</b></td><td>冷房設計における室内設計乾球温度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoolingRelativeHumidity</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cooling Relative Humidity</b></td><td>Inside relative humidity for cooling design.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>冷房設計相対湿度</b></td><td>冷房設計における室内設計相対湿度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HeatingDryBulb</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Heating Dry Bulb</b></td><td>Inside dry bulb temperature for heating design.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>暖房設計温度</b></td><td>暖房設計における室内設計乾球温度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HeatingRelativeHumidity</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Heating Relative Humidity</b></td><td>Inside relative humidity for heating design.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>暖房設計相対湿度</b></td><td>暖房設計における室内設計相対湿度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>VentilationAirFlowrate</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ventilation Air Flowrate</b></td><td>Ventilation outside air requirement for the space.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>外気量</b></td><td>必要外気量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ExhaustAirFlowrate</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Exhaust Air Flowrate</b></td><td>Design exhaust air flow rate for the space.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>排気量</b></td><td>設計排気量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CeilingRAPlenum</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Ceiling RAPlenum</b></td><td>Ceiling plenum used for return air or not. TRUE = Yes, FALSE = No.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>天井裏還気</b></td><td>天井裏還気（リタンあり・なし）　TRUE=あり、FALSE=なし。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BoundaryAreaHeatLoss</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcheatfluxdensitymeasure.htm">IfcHeatFluxDensityMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Boundary Area Heat Loss</b></td><td>Heat loss per unit area for the boundary object. This is a design input value for use in the absence of calculated load data.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>周辺関連設備の熱ロス</b></td><td>単位面積ありた周辺関連設備の熱ロス。空調負荷計算値以外の設計設定値。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_spacethermaldesign.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

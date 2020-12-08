@@ -1,0 +1,89 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcStyleAssignmentSelect</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 2 index4 22 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.2.23");
+//-->
+</script>
+
+<h4 class="num">IfcStyleAssignmentSelect</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Style Assignment Select</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-technical-corrigendum-1-4_0_2_1/index.htm">IFC4 Addendum 2 Technical Corrigendum 1 4.0.2.1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></td><td></td><td></td><td>MODIFIED</td><td>Status changed to <i>Deprecated</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x1-final-4_1_0_0/index.htm">IFC4x1 Final 4.1.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></td><td></td><td></td><td>MODIFIED</td><td>Status changed from <i>Deprecated</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The style assignment select is a selection of two wasy of assigning presentation styles to an <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>.</p>
+<ul>
+<li>by directly assigning presentation styles as subtypes of <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></li>
+<li>by assigning presentation stypes via an intermediate collection entity <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a></li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New select type in IFC4.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The select type has been introduced to provide an upward compatible improvement for assigning styles to a styled items.</p>
+</blockquote>
+<blockquote class="deprecated">
+<p>DEPRECATION  Using <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a> is deprecated, use the direct assignment of a subtype of <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a> instead.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Select definition</summary><table class="attributes">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a>
+</td><td></td></tr><tr><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>
+</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:group name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:choice&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:choice&gt;<br/>
+&nbsp;&lt;/xs:group&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcStyleAssignmentSelect = <span class="keyword">SELECT</span> (<br/>
+&nbsp;<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a>, <br/>&nbsp;<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>
+</p>
+<p><a href="../../../link/ifcstyleassignmentselect.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SpaceHeaterPHistory</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 4 index4 83 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.4.84");
+//-->
+</script>
+
+<h4 class="std">7.5.4.84 Pset_SpaceHeaterPHistory</h4>
+<p><span class="self-ref">PSET_PERFORMANCEDRIVEN</span>
+/
+<a href="../../ifchvacdomain/lexical/ifcspaceheater.htm">IfcSpaceHeater</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Heater PHistory</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/2K9yi0qWaHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SpaceHeaterPHistory.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>FractionRadiantHeatTransfer</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Fraction Radiant Heat Transfer</b></td><td>Fraction of the total heat transfer rate as the radiant heat transfer.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>放射熱移動フラクション</b></td><td>総合熱移動の内放射熱移動とみなされる部分
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FractionConvectiveHeatTransfer</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Fraction Convective Heat Transfer</b></td><td>Fraction of the total heat transfer rate as the convective heat transfer.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>対流熱移動フラクション</b></td><td>総合熱移動の内対流射熱移動とみなされる部分
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Effectiveness</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Effectiveness</b></td><td>Ratio of the real heat transfer rate to the maximum possible heat transfer rate.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>効率</b></td><td>最大可能熱移動量に対する実熱移動量の割合
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SurfaceTemperature</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Surface Temperature</b></td><td>Average surface temperature of the component.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>表面温度</b></td><td>構成要素の平均表面温度
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SpaceAirTemperature</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Air Temperature</b></td><td>Dry bulb temperature in the space.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>室温</b></td><td>部屋の乾球温度
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SpaceMeanRadiantTemperature</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Mean Radiant Temperature</b></td><td>Mean radiant temperature in the space.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>室平均放射温度</b></td><td>部屋の平均放射温度
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AuxiliaryEnergySourceConsumption</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Auxiliary Energy Source Consumption</b></td><td>Auxiliary energy source consumption.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>補助エネルギー源使用量</b></td><td>補助エネルギー源使用量
+</td></tr>
+</table>
+</td></tr>
+<tr><td>UACurve</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>UACurve</b></td><td>UA curve as function of ambient temperature and surface temperature; UA = f (Tambient, Tsurface)
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>UA曲線</b></td><td>周囲温度と表面温度との関数のUA曲線
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OutputCapacityCurve</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Output Capacity Curve</b></td><td>Partial output capacity curve (as a function of water temperature); Q = f (Twater).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>部分的アウトプット能力曲線</b></td><td>部分的アウトプット能力曲線（水温の関数として）
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AirResistanceCurve</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Air Resistance Curve</b></td><td>Air resistance curve (w/ fan only); Pressure = f ( flow rate).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>空気抵抗曲線</b></td><td>空気抵抗曲線（送風機のみ）圧力＝ｆ（流速）
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Exponent</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Exponent</b></td><td>Characteristic exponent, slope of log(heat output) vs log (surface temperature minus environmental temperature).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>指数</b></td><td>特徴的な指数、log(熱出力)log（表面温度マイナス周囲温度）の勾配
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HeatOutputRate</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Heat Output Rate</b></td><td>Overall heat transfer rate.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>熱出力比</b></td><td>総合熱移動率
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_spaceheaterphistory.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

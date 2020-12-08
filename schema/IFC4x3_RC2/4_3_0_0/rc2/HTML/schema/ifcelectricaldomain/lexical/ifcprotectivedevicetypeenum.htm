@@ -1,0 +1,105 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcProtectiveDeviceTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 4 index3 2 index4 18 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.4.2.19");
+//-->
+</script>
+
+<h4 class="num">IfcProtectiveDeviceTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Protective Device Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des types d'équipement de protection</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcprotectivedevicetypeenum.htm">IfcProtectiveDeviceTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EARTHLEAKAGECIRCUITBREAKER</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EARTHINGSWITCH</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EARTHFAILUREDEVICE</td><td>X</td><td>X</td><td>DELETED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcprotectivedevicetypeenum.htm">IfcProtectiveDeviceTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANTI_ARCING_DEVICE</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPARKGAP</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VOLTAGELIMITER</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcProtectiveDeviceTypeEnum</span> specifically defines the range of different breaker unit types that can be used in conjunction with protective device. Types may also be used as a reference to a complete protective device in circumstances where tripping units are not separately identified (typically expected to be the case during earlier stages of design).</p>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x2. Modified definition and usage in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>CIRCUITBREAKER</td><td>A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time and breaking, current under specified abnormal circuit conditions such as those of short circuit.
+</td></tr><tr><td>EARTHLEAKAGECIRCUITBREAKER</td><td>A device that opens, closes, or isolates a circuit and has short circuit protection but no overload protection.  It attempts to break the circuit when there is a leakage of current from phase to earth, by measuring voltage on the earth conductor.
+</td></tr><tr><td>EARTHINGSWITCH</td><td>A safety device used to open or close a circuit when there is no current. Used to isolate a part of a circuit, a machine, a part of an overhead line or an underground line so that maintenance can be safely conducted.
+</td></tr><tr><td>FUSEDISCONNECTOR</td><td>A device that will electrically open the circuit after a period of prolonged, abnormal current flow.
+</td></tr><tr><td>RESIDUALCURRENTCIRCUITBREAKER</td><td>A device that opens, closes, or isolates a circuit and has short circuit and overload protection.  It attempts to break the circuit when there is a difference in current between any two phases.  May also be referred to as 'Ground Fault Interupter (GFI)' or 'Ground Fault Circuit Interuptor (GFCI)'
+</td></tr><tr><td>RESIDUALCURRENTSWITCH</td><td>A device that opens, closes or isolates a circuit and has no short circuit or overload protection.  May also be identified as a 'ground fault switch'.
+</td></tr><tr><td>VARISTOR</td><td>A high voltage surge protection device.
+</td></tr><tr><td>ANTI_ARCING_DEVICE</td><td>An anti-arcing device is an equipment that prevents electric arc.
+</td></tr><tr><td>SPARKGAP</td><td>A spark gap is a device used to connect a circuit to earth in the event of a fault in live circuits.
+</td></tr><tr><td>VOLTAGELIMITER</td><td>a voltage limiter is an equipment that prevents the over voltage.
+</td></tr><tr><td>USERDEFINED</td><td>User-defined type.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined type.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcelectricaldomain/lexical/ifcprotectivedevicetypeenum.htm">IfcProtectiveDeviceTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;circuitbreaker&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;earthleakagecircuitbreaker&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;earthingswitch&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;fusedisconnector&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;residualcurrentcircuitbreaker&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;residualcurrentswitch&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;varistor&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;anti_arcing_device&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sparkgap&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;voltagelimiter&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcProtectiveDeviceTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;CIRCUITBREAKER, <br/>&nbsp;EARTHLEAKAGECIRCUITBREAKER, <br/>&nbsp;EARTHINGSWITCH, <br/>&nbsp;FUSEDISCONNECTOR, <br/>&nbsp;RESIDUALCURRENTCIRCUITBREAKER, <br/>&nbsp;RESIDUALCURRENTSWITCH, <br/>&nbsp;VARISTOR, <br/>&nbsp;ANTI_ARCING_DEVICE, <br/>&nbsp;SPARKGAP, <br/>&nbsp;VOLTAGELIMITER, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcelectricaldomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcelectricaldomain/lexical/ifcprotectivedevice.htm">IfcProtectiveDevice</a>
+<a href="../../ifcelectricaldomain/lexical/ifcprotectivedevicetype.htm">IfcProtectiveDeviceType</a>
+</p>
+<p><a href="../../../link/ifcprotectivedevicetypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcSameValidPrecision</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 18 index3 4 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.18.4.5");
+//-->
+</script>
+
+<h4 class="num">IfcSameValidPrecision</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Same Valid Precision</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function compares the epsilon values (given as <i>Precision</i> at <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a> and ensures that they are the same (with a derivation tolerance) and within reasonable min and max values.</p>
+<blockquote class="note">
+<p>NOTE  In the above function the following three questionable ad-hoc values are used: <ul>
+</ul></blockquote>
+  <ul>
+    <li><small>0.000001 for the default precision (1E-6) </small></li>
+    <li><small>1.001 for the allowable deviation of the
+precision values and </small></li>
+    <li><small>0.1 for setting the upper limit of the
+accepted precision values to about 0.1.</small>
+    </li>
+  </ul>
+
+<blockquote class="history">
+<p>HISTORY  New function in IFC2x2</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcSameValidPrecision<br/>
+
+&nbsp;&nbsp;&nbsp;(Epsilon1, Epsilon2 : REAL) : LOGICAL ;<br/>&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;ValidEps1, ValidEps2 : REAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;DefaultEps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: REAL := 0.000001;<br/>&nbsp;&nbsp;&nbsp;&nbsp;DerivationOfEps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: REAL := 1.001;<br/>&nbsp;&nbsp;&nbsp;&nbsp;UpperEps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : REAL := 1.0;<br/>&nbsp;&nbsp;END_LOCAL;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;ValidEps1 := NVL(Epsilon1, DefaultEps);<br/>&nbsp;&nbsp;&nbsp;&nbsp;ValidEps2 := NVL(Epsilon2, DefaultEps);<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN ((0.0 &lt; ValidEps1) AND (ValidEps1 &lt;= (DerivationOfEps * ValidEps2)) AND <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ValidEps2 &lt;= (DerivationOfEps * ValidEps1)) AND (ValidEps2 &lt; UpperEps));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcsamevalidprecision.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

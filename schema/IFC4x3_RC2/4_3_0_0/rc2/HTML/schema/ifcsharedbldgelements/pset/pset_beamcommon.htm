@@ -1,0 +1,231 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_BeamCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 1 index3 4 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.1.4.1");
+//-->
+</script>
+
+<h4 class="std">6.1.4.1 Pset_BeamCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcsharedbldgelements/lexical/ifcbeam.htm">IfcBeam</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Beam Common</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3vyMG0qSCHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_BeamCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Reference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+*</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td><td>Reference ID for this specified type in this project
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Reference</b></td><td>Référence à l'identifiant d'un type spécifié dans le contexte de ce projet.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>参照記号</b></td><td>このプロジェクトのための参照記号。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Status</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_elementstatus.htm">PEnum_ElementStatus</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Status</b></td><td>Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Status</b></td><td>Status of the element, predominately used in renovation or retrofitting projects. The status can be assigned to as &quot;New&quot; - element designed as new addition, &quot;Existing&quot; - element exists and remains, &quot;Demolish&quot; - element existed but is to be demolished,  &quot;Temporary&quot; - element will exists only temporary (like a temporary support structure).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Statut</b></td><td>Statut de l'élément, principalement utilisé dans les projets de rénovation et de réhabilitation. Le statut a pour valeur NOUVEAU pour un nouvel élément, EXISTANT pour un élément existant qui est conservé, DEMOLI pour un élément existant à démolir et TEMPORAIRE pour un élément temporaire (comme une structure support provisoire).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>状態</b></td><td>要素（主にリノベーションまたは改修プロジェクトにおいて）の状態。 状態は、「新規(New)」－新しく追加される要素。「既存」－要素は存在し、かつ残りもの。「破壊」－要素は存在したが、廃棄されるもの。「一時的」－一時的に存在する要素（一時的にサポートしている構造のようなもの）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Span</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Spannweite</b></td><td>Lichte Spannweite des Balkens für die statische Anforderung,
+Dieser Parameter wird zusätzlich zur geometrischen Repräsentation bereitgestellt. Im Fall der Inkonsistenz zwischen dem Parameter und der Geometrie hat die geometrische Repräsention Priorität. Dieser Parameter ist für CAD Software write-only.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Span</b></td><td>Clear span for this object.
+The shape information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the shape properties, provided in the attached property, the geometric parameters take precedence. For geometry editing applications, like CAD: this value should be write-only.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>PorteeLibre</b></td><td>Portée libre de la poutre. Cette propriété  est donnée en complément de la représentation de la forme et des paramètres géométriques qui la déterminent. En cas d'incohérence entre ces paramètres géométriques et cette propriété, ce sont les paramètres géométriques qui priment. Les applications qui déterminent la géométrie comme les logiciels de CAO ne doivent pas autoriser la modification de cette propriété.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>全長</b></td><td>このオブジェクトの全長。
+その形状（オブジェクトの全長）情報は、表示のための形状に内部で使用される幾何学的パラメータを加えて提供される。形状情報と内部の幾何学的パラメータに矛盾が生じた場合は、幾何学的パラメータが優先される。幾何学的パラメ－タ編集アプリケーションでは、CADと同様に、この値は書き込み専用とする。
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>跨度</b></td><td>该对象的净跨度。
+该属性所提供的形状信息是对内部形状描述和几何参数的补充。如果几何参数与该属性所提供的形状属性不符，应以几何参数为准。对CAD等几何编辑程序，该属性应为只写类型。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Slope</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Neigungswinkel</b></td><td>Neigungswinkel des Balkens relative zur Horizontalen (0 Grad).
+Dieser Parameter wird zusätzlich zur geometrischen Repräsentation bereitgestellt. Im Fall der Inkonsistenz zwischen dem Parameter und der Geometrie hat die geometrische Repräsention Priorität. Dieser Parameter ist für CAD Software write-only.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Slope</b></td><td>Slope angle - relative to horizontal (0.0 degrees).
+The shape information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the shape properties, provided in the attached property, the geometric parameters take precedence.  For geometry editing applications, like CAD: this value should be write-only.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Inclinaison</b></td><td>Angle d'inclinaison avec l'horizontale (0 degrés). Cette propriété  est donnée en complément de la représentation de la forme et des paramètres géométriques qui la déterminent. En cas d'incohérence entre ces paramètres géométriques et cette propriété, ce sont les paramètres géométriques qui priment. Les applications qui déterminent la géométrie comme les logiciels de CAO ne doivent pas autoriser la modification de cette propriété
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>傾斜</b></td><td>傾斜角度。水平を0度とする。
+その形状（傾斜梁）情報は、表示のための形状に内部で使用される幾何学的パラメータを加えて提供される。形状情報と内部の幾何学的パラメータに矛盾が生じた場合は、幾何学的パラメータが優先される。幾何学的パラメ－タ編集アプリケーションでは、CADと同様に、この値は書き込み専用とする。
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>坡度</b></td><td>相对于水平（0.0度）方向的坡度角。
+该属性所提供的形状信息是对内部形状描述和几何参数的补充。如果几何参数与该属性所提供的形状属性不符，应以几何参数为准。对CAD等几何编辑程序，该属性应为只写类型。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Roll</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Kippwinkel</b></td><td>Kippwinkel des Balkens relative zur Vertikalen (O Grad).
+Dieser Parameter wird zusätzlich zur geometrischen Repräsentation bereitgestellt. Im Fall der Inkonsistenz zwischen dem Parameter und der Geometrie hat die geometrische Repräsention Priorität. Dieser Parameter ist für CAD Software write-only.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Roll</b></td><td>Rotation against the longitudinal axis - relative to the global Z direction for all beams that are non-vertical in regard to the global coordinate system (Profile direction equals global Z is Roll = 0.)
+The shape information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the shape properties, provided in the attached property, the geometric parameters take precedence.  For geometry editing applications, like CAD: this value should be write-only.
+Note: new property in IFC4
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RotationAutourAxeLongitudinal</b></td><td>Rotation autour de l'axe longitudinal - relativement à l'axe Z pour toutes les poutres qui ne sont pas verticales relativement au repère absolu (la direction du profil est celle de l'axe Z si la valeur de la propriété est 0). Cette propriété est donnée en complément de la représentation de la forme de l'élément et des paramètres géométriques qui la déterminent. En cas d'incohérence entre ces paramètres géométriques et cette propriété, ce sont les paramètres géométriques qui priment. Les applications qui déterminent la géométrie comme les logiciels de CAO ne doivent pas autoriser la modification de cette propriété. Note : nouvelle propriété de la version IFC2x4.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>回転</b></td><td>梁の材軸に対する回転。
+-この材軸はグローバル座標系で非垂直な全ての梁に対してグローバルZ方向へ相対する。（表示方向は、グローバルZの回転方向を0とする。）
+その形状（梁の回転）情報は、表示のための形状に内部で使用される幾何学的パラメータを加えて提供される。形状情報と内部の幾何学的パラメータに矛盾が生じた場合は、幾何学的パラメータが優先される。幾何学的パラメ－タ編集アプリケーションでは、CADと同様に、この値は書き込み専用とする。
+注：IFC2x4の新しいプロパティ
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>转角</b></td><td>相对于纵轴的旋转角。对全局坐标系中的非垂直梁，该属性为相对于Z轴的角度。（若轮廓方向在Z轴上，则转角为0。）
+该属性所提供的形状信息是对内部形状描述和几何参数的补充。如果几何参数与该属性所提供的形状属性不符，应以几何参数为准。对CAD等几何编辑程序，该属性应为只写类型。
+注：IFC2x4新添属性
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsExternal</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Außenbauteil</b></td><td>Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is External</b></td><td>Indication whether the element is designed for use in the exterior (TRUE) or not (FALSE). If (TRUE) it is an external element and faces the outside of the building.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>EstExterieur</b></td><td>Indique si l'élément est conçu pour être utilisé à l'extérieur (VRAI) ou non (FAUX). Si VRAI, c'est un élément extérieur qui donne sur l'extérieur du bâtiment.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>外部区分</b></td><td>外部の部材かどうかを示すブーリアン値。もしTRUEの場合、外部の部材で建物の外側に面している。
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>是否外部构件</b></td><td>表示该图元是否设计为外部构件。若是，则该图元为外部图元，朝向建筑物的外部。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ThermalTransmittance</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermaltransmittancemeasure.htm">IfcThermalTransmittanceMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>U-Wert</b></td><td>Wärmedurchgangskoeffizient (U-Wert) der Materialschichten.
+Hier der Gesamtwärmedurchgangskoeffizient des Balkens (in Richtung des Wärmeflusses), angegeben ohne den inneren und äußeren Wärmeübergangswiderstand.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Thermal Transmittance</b></td><td>Thermal transmittance coefficient (U-Value) of the element. Here the total thermal transmittance coefficient through the beam within the direction of the thermal flow (including all materials).
+Note: new property in IFC4
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>TransmissionThermique</b></td><td>Coefficient de transmission thermique surfacique (U). C'est le coefficient global de transmission thermique à travers la poutre dans la direction du flux thermique (tous matériaux inclus). Nouvelle propriété de la version 2x4.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>熱貫流率</b></td><td>熱貫流率U値。
+ここでは（すべての材料を含む）梁を通した熱移動の方向における全体の熱還流率を示す。
+注：IFC2x4の新しいプロパティ
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>导热系数</b></td><td>材料的导热系数（U值）。
+表示该梁在传热方向上的整体导热系数（包括所有材料）。
+注：IFC2x4新添属性
+</td></tr>
+</table>
+</td></tr>
+<tr><td>LoadBearing</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Tragendes Bauteil</b></td><td>Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Load Bearing</b></td><td>Indicates whether the object is intended to carry loads (TRUE) or not (FALSE).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Porteur</b></td><td>Indique si l'objet est censé porter des charges (VRAI) ou non (FAUX).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>耐力部材</b></td><td>荷重に関係している部材かどうかを示すブーリアン値。
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>是否承重</b></td><td>表示该对象是否需要承重。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FireRating</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Feuerwiderstandsklasse</b></td><td>Feuerwiderstandasklasse gemäß der nationalen oder regionalen Brandschutzverordnung.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Fire Rating</b></td><td>Fire rating for the element. It is given according to the national fire safety classification.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ResistanceAuFeu</b></td><td>Classement au feu de l'élément donné selon la classification nationale de sécurité incendie.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>耐火等級</b></td><td>主要な耐火等級。関連する建築基準法、消防法などの国家基準を参照。
+</td></tr>
+<tr><td><img src="../../../img/locale-zh.png" /></td><td><b>防火等级</b></td><td>该构件的防火等级。
+该属性的依据为国家防火安全分级。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_beamcommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

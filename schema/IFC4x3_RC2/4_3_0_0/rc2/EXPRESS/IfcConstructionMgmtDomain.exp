@@ -1,0 +1,254 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2020
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+03 December 2020
+
+*)
+
+SCHEMA IFCCONSTRUCTIONMGMTDOMAIN;
+
+REFERENCE FROM IFCCOSTRESOURCE
+(
+  IfcAppliedValue
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcResourceTime
+);
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcResource,
+  IfcTypeResource
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+);
+
+REFERENCE FROM IFCQUANTITYRESOURCE
+(
+  IfcPhysicalQuantity
+);
+
+TYPE IfcConstructionEquipmentResourceTypeEnum = ENUMERATION OF
+	(DEMOLISHING
+	,EARTHMOVING
+	,ERECTING
+	,HEATING
+	,LIGHTING
+	,PAVING
+	,PUMPING
+	,TRANSPORTING
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcConstructionMaterialResourceTypeEnum = ENUMERATION OF
+	(AGGREGATES
+	,CONCRETE
+	,DRYWALL
+	,FUEL
+	,GYPSUM
+	,MASONRY
+	,METAL
+	,PLASTIC
+	,WOOD
+	,NOTDEFINED
+	,USERDEFINED);
+END_TYPE;
+
+TYPE IfcConstructionProductResourceTypeEnum = ENUMERATION OF
+	(ASSEMBLY
+	,FORMWORK
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcCrewResourceTypeEnum = ENUMERATION OF
+	(OFFICE
+	,SITE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcLaborResourceTypeEnum = ENUMERATION OF
+	(ADMINISTRATION
+	,CARPENTRY
+	,CLEANING
+	,CONCRETE
+	,DRYWALL
+	,ELECTRIC
+	,FINISHING
+	,FLOORING
+	,GENERAL
+	,HVAC
+	,LANDSCAPING
+	,MASONRY
+	,PAINTING
+	,PAVING
+	,PLUMBING
+	,ROOFING
+	,SITEGRADING
+	,STEELWORK
+	,SURVEYING
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSubContractResourceTypeEnum = ENUMERATION OF
+	(PURCHASE
+	,WORK
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcConstructionEquipmentResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcConstructionEquipmentResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcConstructionEquipmentResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcConstructionEquipmentResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+ENTITY IfcConstructionMaterialResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcConstructionMaterialResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcConstructionMaterialResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcConstructionMaterialResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcConstructionMaterialResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcConstructionMaterialResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcConstructionMaterialResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcConstructionMaterialResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+ENTITY IfcConstructionProductResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcConstructionProductResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcConstructionProductResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcConstructionProductResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcConstructionProductResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcConstructionProductResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcConstructionProductResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcConstructionProductResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+ENTITY IfcConstructionResource
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcConstructionEquipmentResource
+    ,IfcConstructionMaterialResource
+    ,IfcConstructionProductResource
+    ,IfcCrewResource
+    ,IfcLaborResource
+    ,IfcSubContractResource))
+ SUBTYPE OF (IfcResource);
+	Usage : OPTIONAL IfcResourceTime;
+	BaseCosts : OPTIONAL LIST [1:?] OF IfcAppliedValue;
+	BaseQuantity : OPTIONAL IfcPhysicalQuantity;
+END_ENTITY;
+
+ENTITY IfcConstructionResourceType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcConstructionEquipmentResourceType
+    ,IfcConstructionMaterialResourceType
+    ,IfcConstructionProductResourceType
+    ,IfcCrewResourceType
+    ,IfcLaborResourceType
+    ,IfcSubContractResourceType))
+ SUBTYPE OF (IfcTypeResource);
+	BaseCosts : OPTIONAL LIST [1:?] OF IfcAppliedValue;
+	BaseQuantity : OPTIONAL IfcPhysicalQuantity;
+END_ENTITY;
+
+ENTITY IfcCrewResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcCrewResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcCrewResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcCrewResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcCrewResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcCrewResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcCrewResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcCrewResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+ENTITY IfcLaborResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcLaborResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcLaborResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcLaborResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcLaborResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcLaborResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcLaborResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcLaborResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+ENTITY IfcSubContractResource
+ SUBTYPE OF (IfcConstructionResource);
+	PredefinedType : OPTIONAL IfcSubContractResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcSubContractResourceTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcSubContractResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcSubContractResourceType
+ SUBTYPE OF (IfcConstructionResourceType);
+	PredefinedType : IfcSubContractResourceTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcSubContractResourceTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSubContractResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));
+END_ENTITY;
+
+END_SCHEMA;

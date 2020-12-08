@@ -1,0 +1,89 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcEvaporativeCoolerTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 2 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.2.17");
+//-->
+</script>
+
+<h4 class="num">IfcEvaporativeCoolerTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Evaporative Cooler Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des types de refroidisseur évaporatif</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>Enumeration defining the typical types of evaporative coolers.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC2x2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER</td><td>Direct evaporative random media air cooler: Cools the air stream by evaporating water dircectly into the air stream using coolers with evaporative pads, usually of aspen wood or plastic fiber/foam.
+</td></tr><tr><td>DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER</td><td>Direct evaporative rigid media air cooler: Cools the air stream by evaporating water dircectly into the air stream using coolers with sheets of rigid, corrugated material as the wetted surface.
+</td></tr><tr><td>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</td><td>Direct evaporative slingers packaged air cooler: Cools the air stream by evaporating water dircectly into the air stream using coolers with a water slinger in an evaporative cooling section and a fan section.
+</td></tr><tr><td>DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER</td><td>Direct evaporative packaged rotary air cooler: Cools the air stream by evaporating water dircectly into the air stream using coolers that wet and wash the evaporative pad by rotating it through a water bath.
+</td></tr><tr><td>DIRECTEVAPORATIVEAIRWASHER</td><td>Direct evaporative air washer: Cools the air stream by evaporating water dircectly into the air stream using coolers with spray-type air washer consist of a chamber or casing containing spray nozzles, and tank for collecting spray water, and an eliminator section for removing entrained drops of water from the air.
+</td></tr><tr><td>INDIRECTEVAPORATIVEPACKAGEAIRCOOLER</td><td>Indirect evaporative package air cooler: Cools the air stream by evaporating water indirectly and without adding moisture into the air stream. On one side of the heat exchanger, the secondary air stream is cooled by evaporation, while on the other side of heat exchanger, the primary air stream (conditioned air to be supplied to the room) is sensibly cooled by the heat exchanger surfaces.
+</td></tr><tr><td>INDIRECTEVAPORATIVEWETCOIL</td><td>Indirect evaporative wet coil: Cools the air stream by evaporating water indirectly and without adding moisture into the air stream. Water is sprayed directly on the tubes of the heat exchanger where latent cooling takes place and the vaporization of the water on the outside of the heat exchanger tubes allows the simultaneous heat and mass transfer which removes heat from the supply air on the tube side.
+</td></tr><tr><td>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</td><td>Indirect evaporative cooling tower or coil cooler: Cools the air stream by evaporating water indirectly and without adding moisture into the air stream using a combination of a cooling tower or other evaporative water cooler with a water-to-air heat exchanger coil and water circulating pump.
+</td></tr><tr><td>INDIRECTDIRECTCOMBINATION</td><td>Indirect/Direct combination: Cools the air stream by evaporating water indirectly and without adding moisture into the air stream using a two-stage cooler with a first-stage indirect evaporative cooler and second-stage direct evaporative cooler.
+</td></tr><tr><td>USERDEFINED</td><td>User-defined evaporative cooler type.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined evaporative cooler type.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifchvacdomain/lexical/ifcevaporativecoolertypeenum.htm">IfcEvaporativeCoolerTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;directevaporativerandommediaaircooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;directevaporativerigidmediaaircooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;directevaporativeslingerspackagedaircooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;directevaporativepackagedrotaryaircooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;directevaporativeairwasher&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;indirectevaporativepackageaircooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;indirectevaporativewetcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;indirectevaporativecoolingtowerorcoilcooler&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;indirectdirectcombination&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcEvaporativeCoolerTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER, <br/>&nbsp;DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER, <br/>&nbsp;DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER, <br/>&nbsp;DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER, <br/>&nbsp;DIRECTEVAPORATIVEAIRWASHER, <br/>&nbsp;INDIRECTEVAPORATIVEPACKAGEAIRCOOLER, <br/>&nbsp;INDIRECTEVAPORATIVEWETCOIL, <br/>&nbsp;INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER, <br/>&nbsp;INDIRECTDIRECTCOMBINATION, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifchvacdomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifchvacdomain/lexical/ifcevaporativecooler.htm">IfcEvaporativeCooler</a>
+<a href="../../ifchvacdomain/lexical/ifcevaporativecoolertype.htm">IfcEvaporativeCoolerType</a>
+</p>
+<p><a href="../../../link/ifcevaporativecoolertypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

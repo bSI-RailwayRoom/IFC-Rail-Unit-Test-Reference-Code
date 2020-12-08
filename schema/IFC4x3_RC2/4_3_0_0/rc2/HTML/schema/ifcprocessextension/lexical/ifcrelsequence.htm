@@ -1,0 +1,214 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcRelSequence</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 3 index3 3 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.3.3.5");
+//-->
+</script>
+
+<h4 class="num">IfcRelSequence</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Abfolgebeziehung zwischen Prozessen - Relation</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Rel Sequence</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCKERNEL</i> to <i>IFCPROCESSEXTENSION</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TimeLag</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcTimeMeasure</i> to <i>IfcLagTime</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SequenceType</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserDefinedSequenceType</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcRelSequence</span> is a sequential relationship between processes where one process must occur before the other in time and where the timing of the relationship may be described as a type of sequence. The relating process (<i>IfcRelSequence.RelatingProcess</i>) is considered to be the predecessor in the relationship (has precedence) whilst the related process (<i>IfcRelSequence.RelatedProcess</i>) is the successor.</p>
+<p><span class="self-ref">IfcRelSequence</span> is defined as one-to-one relationship; therefore it assigns one predecessor to one successor.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Relocated to <i>IfcProcessExtension</i> schema. <i>TimeLag</i> and <i>SequenceType</i> made optional. USERDEFINED added to the <i>IfcSequenceType</i> enumeration. <i>UserDefinedSequenceType</i> attribute added. WHERE rule controlling use of the USERDEFINED enumeration added.</p>
+</blockquote>
+<p class="use-head">
+Use definitions</p>
+<p><span class="self-ref">IfcRelSequence</span> is used to describe the logical sequence relationship that exists between two processes. This logical relationship identifies that there is a predecessor or relating process and a successor or related process. In IFC, there may be one predecessor and one successor in the relationship. Many occurrences of <span class="self-ref">IfcRelSequence</span> may exist to describe the sequence relationships of a predecessor task with many successor tasks or of many predecessor tasks with one successor task, thus enabling a m:n sequence relationship between tasks. Please note that sequence relationships can be used to define dependencies between process occurrences but also between process types (for further information see <a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a> and <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>). In case of defining dependencies between process occurrences sequence relationships should stay within the limits of a directed, non-cyclic graph.</p>
+<p>A sequence type may be set for a sequence. For tasks assigned to a work schedule, it is expected that the sequence type will be asserted. For a process map, where the sequence relationship between processes is simply a logical flow, it need not be asserted.</p>
+<p>A time lag may be assigned to a sequence, and the sequence type defines the way in which the time lag applies to the sequence either as a ratio or percentage of time duration (e.g. start successor task when predecessor is 50% complete) or as a time measure (e.g. start successor task 1 week after commencement of the predecessor task). Care should be used when assigning a time lag to a sequence depending on the setting of the sequence type since there is no checking that the time lag value is in keeping with the sequence type set.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>5</td><td>RelatingProcess</td><td><a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a></td><td></td><td>
+Reference to the process, that is the predecessor.
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatedProcess</td><td><a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a></td><td></td><td>
+Reference to the process, that is the successor.
+</td><td>X</td></tr>
+<tr><td>7</td><td>TimeLag</td><td><a href="../../ifcdatetimeresource/lexical/ifclagtime.htm">IfcLagTime</a></td><td>? </td><td>
+Time duration of the sequence, it is the time lag between the
+predecessor and the successor as specified by the
+SequenceType.
+</td><td>X</td></tr>
+<tr><td>8</td><td>SequenceType</td><td><a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a></td><td>? </td><td>
+The way in which the time lag applies to the sequence.
+</td><td>X</td></tr>
+<tr><td>9</td><td>UserDefinedSequenceType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Allows for specification of user defined type of the sequence
+beyond the enumeration values (START_START, START_FINISH,
+FINISH_START, FINISH_FINISH) provided by <i>SequenceType</i>
+attribute of type <a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>. When a value is
+provided for attribute <i>UserDefinedSequenceType</i> in
+parallel the attribute <i>SequenceType</i> shall have
+enumeration value USERDEFINED.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>AvoidInconsistentSequence</td><td>The RelatingProcess shall not point to the same instance as the RelatedProcess.
+</td></tr>
+<tr><td>CorrectSequenceType</td><td>The attribute UserDefinedSequenceType must be asserted when the value of SequenceType is set to USERDEFINED.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcrelsequence.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifckernel/lexical/ifcrelconnects.htm" alt="IfcRelConnects" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifckernel/lexical/ifcrelationship.htm" alt="IfcRelationship" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a></td></tr>
+<tr><td>5</td><td>RelatingProcess</td><td><a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a></td><td></td><td>
+Reference to the process, that is the predecessor.
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatedProcess</td><td><a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a></td><td></td><td>
+Reference to the process, that is the successor.
+</td><td>X</td></tr>
+<tr><td>7</td><td>TimeLag</td><td><a href="../../ifcdatetimeresource/lexical/ifclagtime.htm">IfcLagTime</a></td><td>? </td><td>
+Time duration of the sequence, it is the time lag between the
+predecessor and the successor as specified by the
+SequenceType.
+</td><td>X</td></tr>
+<tr><td>8</td><td>SequenceType</td><td><a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a></td><td>? </td><td>
+The way in which the time lag applies to the sequence.
+</td><td>X</td></tr>
+<tr><td>9</td><td>UserDefinedSequenceType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Allows for specification of user defined type of the sequence
+beyond the enumeration values (START_START, START_FINISH,
+FINISH_START, FINISH_FINISH) provided by <i>SequenceType</i>
+attribute of type <a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>. When a value is
+provided for attribute <i>UserDefinedSequenceType</i> in
+parallel the attribute <i>SequenceType</i> shall have
+enumeration value USERDEFINED.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>&quot; type=&quot;ifc:<a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatingProcess&quot; type=&quot;ifc:<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatedProcess&quot; type=&quot;ifc:<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;TimeLag&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifclagtime.htm">IfcLagTime</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SequenceType&quot; type=&quot;ifc:<a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;UserDefinedSequenceType&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcRelSequence<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>)<b>;</b><br/>
+&nbsp;&nbsp;RelatingProcess : <a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>;<br/>
+&nbsp;&nbsp;RelatedProcess : <a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>;<br/>
+&nbsp;&nbsp;TimeLag : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifclagtime.htm">IfcLagTime</a>;<br/>
+&nbsp;&nbsp;SequenceType : <span class="keyword">OPTIONAL</span> <a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>;<br/>
+&nbsp;&nbsp;UserDefinedSequenceType : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;AvoidInconsistentSequence : RelatingProcess :&lt;&gt;: RelatedProcess;<br/>&nbsp;&nbsp;CorrectSequenceType : (SequenceType &lt;&gt; <a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>.USERDEFINED) OR ((SequenceType = <a href="../../ifcprocessextension/lexical/ifcsequenceenum.htm">IfcSequenceEnum</a>.USERDEFINED) AND EXISTS(UserDefinedSequenceType));<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprocessextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>
+</p>
+<p><a href="../../../link/ifcrelsequence.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

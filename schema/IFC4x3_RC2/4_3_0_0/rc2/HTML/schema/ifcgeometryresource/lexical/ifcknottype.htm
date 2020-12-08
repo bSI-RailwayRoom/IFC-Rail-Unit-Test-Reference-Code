@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcKnotType</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 2 index4 5 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.2.6");
+//-->
+</script>
+
+<h4 class="num">IfcKnotType</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Knot Type</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Type de nœud</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcknottype.htm">IfcKnotType</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcKnotType</span> indicates the particular form of b-spline knots.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This type indicates that the B-spline knots shall have a particularly simple form enabling the knots themselves to be defaulted.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Type adapted from <strong>knot_type</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New type in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>UNIFORM_KNOTS</td><td>The form of knots appropriate for a uniform B-spline curve.
+</td></tr><tr><td>QUASI_UNIFORM_KNOTS</td><td>The form of knots appropriate for a quasi-uniform B-spline curve.
+</td></tr><tr><td>PIECEWISE_BEZIER_KNOTS</td><td>The form of knots appropriate for a piecewise Bezier curve.
+</td></tr><tr><td>UNSPECIFIED</td><td>The type of knots is not specified. This includes the case of non uniform knots.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcknottype.htm">IfcKnotType</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;uniform_knots&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;quasi_uniform_knots&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;piecewise_bezier_knots&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;unspecified&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcKnotType = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;UNIFORM_KNOTS, <br/>&nbsp;QUASI_UNIFORM_KNOTS, <br/>&nbsp;PIECEWISE_BEZIER_KNOTS, <br/>&nbsp;UNSPECIFIED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a>
+<a href="../../ifcgeometryresource/lexical/ifcbsplinesurfacewithknots.htm">IfcBSplineSurfaceWithKnots</a>
+</p>
+<p><a href="../../../link/ifcknottype.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

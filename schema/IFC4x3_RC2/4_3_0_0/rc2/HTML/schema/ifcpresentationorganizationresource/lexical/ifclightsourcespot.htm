@@ -1,0 +1,191 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLightSourceSpot</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 14 index3 3 index4 7 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.14.3.8");
+//-->
+</script>
+
+<h4 class="num">IfcLightSourceSpot</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Lichtquelle - Spot</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Light Source Spot</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Source de lumière ponctuelle</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><blockquote class="extDef">
+<p>NOTE  Definition according to ISO 10303-46:<br>
+The light source spot entity is a subtype of light source. Spot light source entities have a light source colour, position, direction, attenuation coefficients, concentration exponent, and spread angle. If a point lies outside the cone of influence of a light source of this type as determined by the light source position, direction and spread angle its colour is not affected by that light source.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  The <span class="self-ref">IfcLightSourceSpot</span> adds the <i>BeamWidthAngle</i> which defines the inner cone in which the light source emits light at uniform full intensity. The light source's emission intensity drops off from the inner solid angle (<i>BeamWidthAngle</i>) to the outer solid angle (<i>SpreadAngle</i>).</p>
+</blockquote>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/IEC 14772-1:1997:<br>
+The Spot light node defines a light source that emits light from a specific point along a specific direction vector and constrained within a solid angle. Spot lights may illuminate geometry nodes that respond to light sources and intersect the solid angle defined by the Spot light. Spot light nodes are specified in the local coordinate system and are affected by ancestors' transformations. Figure 405 shows the definition of spot light. <table><tr><td style="width: 600px"><img src="../../../figures/ifclightsourcespot_fig1.gif" alt="&quot;spot light&quot;" title="Figure 405 &mdash; Light source spot"></td></tr><tr><td><p class="figure">Figure 405 &mdash; Light source spot</p></td></tr></table></p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Corresponding ISO 10303 entity: light_source_spot. Please refer to ISO/IS 10303-46:1994, p. 33 for the final definition of the formal standard.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  In addition to the attributes as defined in ISO10303-46 the additional property from ISO/IEC 14772-1:1997 (VRML) <i>Radius</i>, <i>BeamWidth</i>, and <i>QuadricAttenuation</i> are added to this subtype and the <i>AmbientIntensity</i> and <i>Intensity</i> are inherited from the supertype.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x, renamed and enhanced in IFC2x2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>10</td><td>Orientation</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This is the direction of the axis of the cone of the light source specified in the coordinate space of the representation being projected..
+Definition from VRML97 - ISO/IEC 14772-1:1997: The direction field specifies the direction vector of the light's central axis defined in the local coordinate system.
+</td><td>X</td></tr>
+<tr><td>11</td><td>ConcentrationExponent</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>? </td><td>
+Definition from ISO/CD 10303-46:1992: This real is the exponent on the cosine of the angle between the line that starts at the position of the spot light source and is in the direction of the orientation of the spot light source and a line that starts at the position of the spot light source and goes through a point on the surface being shaded.
+NOTE  This attribute does not exists in ISO/IEC 14772-1:1997.
+</td><td>X</td></tr>
+<tr><td>12</td><td>SpreadAngle</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This planar angle measure is the angle between the line that starts at the position of the spot light source and is in the direction of the spot light source and any line on the boundary of the cone of influence.
+Definition from VRML97 - ISO/IEC 14772-1:1997: The cutOffAngle (name of spread angle in VRML) field specifies the outer bound of the solid angle. The light source does not emit light outside of this solid angle.
+</td><td>X</td></tr>
+<tr><td>13</td><td>BeamWidthAngle</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a></td><td></td><td>
+Definition from VRML97 - ISO/IEC 14772-1:1997: The beamWidth field specifies an inner solid angle in which the light source emits light at uniform full intensity. The light source's emission intensity drops off from the inner solid angle (beamWidthAngle) to the outer solid angle (spreadAngle).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifclightsourcespot.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm" alt="IfcLightSourcePositional" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcpresentationorganizationresource/lexical/ifclightsource.htm" alt="IfcLightSource" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationorganizationresource/lexical/ifclightsource.htm">IfcLightSource</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The name given to the light source in presentation.
+</td><td>X</td></tr>
+<tr><td>2</td><td>LightColour</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifccolourrgb.htm">IfcColourRgb</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: Based on the current lighting model, the colour of the light to be used for shading.
+Definition from VRML97 - ISO/IEC 14772-1:1997: The color field specifies the spectral color properties of both the direct and ambient light emission as an RGB value.
+</td><td>X</td></tr>
+<tr><td>3</td><td>AmbientIntensity</td><td><a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a></td><td>? </td><td>
+Definition from VRML97 - ISO/IEC 14772-1:1997: The ambientIntensity specifies the intensity of the ambient emission from the light. Light intensity may range from 0.0 (no light emission) to 1.0 (full intensity).
+</td><td>X</td></tr>
+<tr><td>4</td><td>Intensity</td><td><a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a></td><td>? </td><td>
+Definition from VRML97 - ISO/IEC 14772-1:1997: The intensity field specifies the brightness of the direct emission from the ligth. Light intensity may range from 0.0 (no light emission) to 1.0 (full intensity).
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm">IfcLightSourcePositional</a></td></tr>
+<tr><td>5</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: The Cartesian point indicates the position of the light source.
+Definition from VRML97 - ISO/IEC 14772-1:1997: A Point light node illuminates geometry within radius of its location.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Radius</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The maximum distance from the light source for a surface still to be illuminated.
+Definition from VRML97 - ISO/IEC 14772-1:1997: A Point light node illuminates geometry within radius of its location.
+</td><td>X</td></tr>
+<tr><td>7</td><td>ConstantAttenuation</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This real indicates the value of the attenuation in the lighting equation that is constant.
+</td><td>X</td></tr>
+<tr><td>8</td><td>DistanceAttenuation</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This real indicates the value of the attenuation in the lighting equation that proportional to the distance from the light source.
+</td><td>X</td></tr>
+<tr><td>9</td><td>QuadricAttenuation</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td></td><td>
+This real indicates the value of the attenuation in the lighting equation that proportional to the square value of the distance from the light source.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcespot.htm">IfcLightSourceSpot</a></td></tr>
+<tr><td>10</td><td>Orientation</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This is the direction of the axis of the cone of the light source specified in the coordinate space of the representation being projected..
+Definition from VRML97 - ISO/IEC 14772-1:1997: The direction field specifies the direction vector of the light's central axis defined in the local coordinate system.
+</td><td>X</td></tr>
+<tr><td>11</td><td>ConcentrationExponent</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>? </td><td>
+Definition from ISO/CD 10303-46:1992: This real is the exponent on the cosine of the angle between the line that starts at the position of the spot light source and is in the direction of the orientation of the spot light source and a line that starts at the position of the spot light source and goes through a point on the surface being shaded.
+NOTE  This attribute does not exists in ISO/IEC 14772-1:1997.
+</td><td>X</td></tr>
+<tr><td>12</td><td>SpreadAngle</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a></td><td></td><td>
+Definition from ISO/CD 10303-46:1992: This planar angle measure is the angle between the line that starts at the position of the spot light source and is in the direction of the spot light source and any line on the boundary of the cone of influence.
+Definition from VRML97 - ISO/IEC 14772-1:1997: The cutOffAngle (name of spread angle in VRML) field specifies the outer bound of the solid angle. The light source does not emit light outside of this solid angle.
+</td><td>X</td></tr>
+<tr><td>13</td><td>BeamWidthAngle</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a></td><td></td><td>
+Definition from VRML97 - ISO/IEC 14772-1:1997: The beamWidth field specifies an inner solid angle in which the light source emits light at uniform full intensity. The light source's emission intensity drops off from the inner solid angle (beamWidthAngle) to the outer solid angle (spreadAngle).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcespot.htm">IfcLightSourceSpot</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcespot.htm">IfcLightSourceSpot</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm">IfcLightSourcePositional</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcespot.htm">IfcLightSourceSpot</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm">IfcLightSourcePositional</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Orientation&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ConcentrationExponent&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SpreadAngle&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;BeamWidthAngle&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcLightSourceSpot<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm">IfcLightSourcePositional</a>)<b>;</b><br/>
+&nbsp;&nbsp;Orientation : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>
+&nbsp;&nbsp;ConcentrationExponent : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>;<br/>
+&nbsp;&nbsp;SpreadAngle : <a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a>;<br/>
+&nbsp;&nbsp;BeamWidthAngle : <a href="../../ifcmeasureresource/lexical/ifcpositiveplaneanglemeasure.htm">IfcPositivePlaneAngleMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationorganizationresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifclightsourcespot.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>
