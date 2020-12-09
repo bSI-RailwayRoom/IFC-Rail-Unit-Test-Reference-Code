@@ -1,5 +1,5 @@
-# IFC Rail - Utils
-This is the **utility repository** for the testing and validation process of the IFC Rail Project. It contains production schema that is subject for testing, source code and other utils used to generate IFC files. 
+# IFC 4.3 - Utils
+This is the **utility repository** for the testing and validation process of the IFC 4.3. It contains production schema that is subject for testing, source code and other utils used to generate IFC files. 
 
 ## How the repository is structured
 * The folder "schema" contains production schema based on offical releases of IFC, e.g. IFC4x3_RC2. Updates are documented in the change log.
