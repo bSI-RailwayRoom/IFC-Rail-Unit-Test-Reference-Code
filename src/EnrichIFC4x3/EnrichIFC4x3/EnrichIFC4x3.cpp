@@ -80,10 +80,12 @@ void    CheckResults(char * fileName)
                 setting = flagbit2 + flagbit4 + flagbit9;
         SetFormat(owlModel, setting, mask);
 
+        setSegmentation(ifcModel, 100, 0.);
+
         //
         //  HORIZONTAL ALIGNMENT
         //
-/*        int_t   * ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, "IFCCOMPOSITECURVE"),
+        int_t   * ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, "IFCCOMPOSITECURVE"),
                 noIfcCompositeCurveInstances = sdaiGetMemberCount(ifcCompositeCurveInstances);
         for (int_t i = 0; i < noIfcCompositeCurveInstances; i++) {
             int_t   ifcCompositeCurveInstance = 0;
@@ -173,12 +175,12 @@ void    CheckResults(char * fileName)
                 double  epsilon = 0.001,
                         distance = Vec3Length(&vecDiff);
                 if (std::fabs(distance) > epsilon) {
-                    std::cout << "  ISSUE distance end / start point too large, distance : " << distance << " (epsilon : " << epsilon << ").\n";
+                    std::cout << "  ISSUE HORIZONTAL ALIGNMENT distance end / start point too large, distance : " << distance << " (epsilon : " << epsilon << ").\n";
                 }
 
                 double  dotProduct = Vec3Dot(&pEndVector[j - 1], &pStartVector[j]);
                 if (dotProduct <= 1. - epsilon || dotProduct >= 1. + epsilon) {
-                    std::cout << "  ISSUE difference angle end / start point too large, dotProduct : " << dotProduct << " (epsilon : " << epsilon << ").\n";
+                    std::cout << "  ISSUE HORIZONTAL ALIGNMENT difference angle end / start point too large, dotProduct : " << dotProduct << " (epsilon : " << epsilon << ").\n";
                 }
             }
 
@@ -186,7 +188,7 @@ void    CheckResults(char * fileName)
             delete[] pStartVector;
             delete[] pEndPoint;
             delete[] pEndVector;
-        }   //  */
+        }
 
         //
         //  VERTICAL ALIGNMENT
@@ -281,13 +283,122 @@ void    CheckResults(char * fileName)
                 double  epsilon = 0.05, //   0.001,
                         distance = Vec3Length(&vecDiff);
                 if (std::fabs(distance) > epsilon) {
-                    std::cout << "  ISSUE distance end / start point too large, distance : " << distance << " (epsilon : " << epsilon << ").\n";
+                    std::cout << "  ISSUE VERTICAL ALIGNMENT distance end / start point too large, distance : " << distance << " (epsilon : " << epsilon << ").\n";
                 }
 
                 epsilon = 0.001;
                 double  dotProduct = Vec3Dot(&pEndVector[j - 1], &pStartVector[j]);
                 if (dotProduct <= 1. - epsilon || dotProduct >= 1. + epsilon) {
-                    std::cout << "  ISSUE difference angle end / start point too large, dotProduct : " << dotProduct << " (epsilon : " << epsilon << ").\n";
+                    std::cout << "  ISSUE VERTICAL ALIGNMENT difference angle end / start point too large, dotProduct : " << dotProduct << " (epsilon : " << epsilon << ").\n";
+                }
+            }
+
+            delete[] pStartPoint;
+            delete[] pStartVector;
+            delete[] pEndPoint;
+            delete[] pEndVector;
+        }
+
+        //
+        //  CANT ALIGNMENT
+        //
+        int_t   * ifcSegmentedReferenceCurveInstances = sdaiGetEntityExtentBN(ifcModel, "IFCSEGMENTEDREFERENCECURVE"),
+                noIfcSegmentedReferenceCurveInstances = sdaiGetMemberCount(ifcGradientCurveInstances);
+        for (int_t i = 0; i < noIfcSegmentedReferenceCurveInstances; i++) {
+            int_t   ifcSegmentedReferenceCurveInstance = 0;
+            engiGetAggrElement(ifcSegmentedReferenceCurveInstances, i, sdaiINSTANCE, &ifcSegmentedReferenceCurveInstance);
+            
+            int_t   * ifcSegmentInstances = nullptr;
+            sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, "Segments", sdaiAGGR, &ifcSegmentInstances);
+            int_t   noIfcSegmentInstances = sdaiGetMemberCount(ifcSegmentInstances);
+
+            VECTOR3 * pStartPoint = new VECTOR3[noIfcSegmentInstances];
+            VECTOR3 * pStartVector = new VECTOR3[noIfcSegmentInstances];
+            VECTOR3 * pEndPoint = new VECTOR3[noIfcSegmentInstances];
+            VECTOR3 * pEndVector = new VECTOR3[noIfcSegmentInstances];
+
+            for (int_t j = 0; j < noIfcSegmentInstances; j++) {
+                int_t   ifcSegmentInstance = 0;
+                engiGetAggrElement(ifcSegmentInstances, j, sdaiINSTANCE, &ifcSegmentInstance);
+
+                int64_t owlInstance = 0;
+                owlBuildInstance(ifcModel, ifcSegmentInstance, &owlInstance);
+
+                int64_t vertexBufferSize = 0, indexBufferSize = 0;
+                CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
+                if (vertexBufferSize && indexBufferSize) {
+                    double  * vertices = new double[3 * (int_t) vertexBufferSize];
+                    UpdateInstanceVertexBuffer(owlInstance, vertices);
+
+                    int32_t * indices = new int32_t[(int_t) indexBufferSize];
+                    UpdateInstanceIndexBuffer(owlInstance, indices);
+
+                    VECTOR3 * pPnt = new VECTOR3[(int_t) indexBufferSize];
+
+                    int_t    offset = 0;
+                    int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
+                    for (int_t k = 0; k < conceptualFaceCnt; k++) {
+                        int64_t  startIndicesLines = 0, noIndicesLines = 0;
+                        GetConceptualFaceEx(
+                                owlInstance, k,
+                                nullptr, nullptr,
+                                &startIndicesLines, &noIndicesLines,
+                                nullptr, nullptr,
+                                nullptr, nullptr,
+                                nullptr, nullptr
+                            );
+                        assert(noIndicesLines);
+
+                        if (offset) {
+                            assert(std::fabs(pPnt[offset - 1].x - vertices[3 * indices[startIndicesLines] + 0]) < 0.000000001);
+                            assert(std::fabs(pPnt[offset - 1].y - vertices[3 * indices[startIndicesLines] + 1]) < 0.000000001);
+                            assert(std::fabs(pPnt[offset - 1].z - vertices[3 * indices[startIndicesLines] + 2]) < 0.000000001);
+                            offset--;
+                        }
+
+                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            pPnt[offset].x = vertices[3 * indices[startIndicesLines + m] + 0];
+                            pPnt[offset].y = vertices[3 * indices[startIndicesLines + m] + 1];
+                            pPnt[offset].z = vertices[3 * indices[startIndicesLines + m] + 2];
+                            offset++;
+                        }
+                    }
+                    assert(offset >= 2);
+
+                    VECTOR3 * pnt0 = &pPnt[0],
+                            * pnt1 = &pPnt[1],
+                            * pntNm2 = &pPnt[offset - 2],
+                            * pntNm1 = &pPnt[offset - 1];
+                    pStartPoint[j].x = pnt0->x;
+                    pStartPoint[j].y = pnt0->y;
+                    pStartPoint[j].z = pnt0->z;
+                    Vec3Subtract(&pStartVector[j], pnt1, pnt0);
+                    Vec3Normalize(&pStartVector[j]);
+                    pEndPoint[j].x = pntNm1->x;
+                    pEndPoint[j].y = pntNm1->y;
+                    pEndPoint[j].z = pntNm1->z;
+                    Vec3Subtract(&pEndVector[j], pntNm1, pntNm2);
+                    Vec3Normalize(&pEndVector[j]);
+                }
+                else {
+                    assert(false);
+                }
+            }
+
+            for (int_t j = 1; j < noIfcSegmentInstances; j++) {
+                VECTOR3 vecDiff;
+                Vec3Subtract(&vecDiff, &pEndPoint[j - 1], &pStartPoint[j]);
+                    
+                double  epsilon = 0.05, //   0.001,
+                        distance = Vec3Length(&vecDiff);
+                if (std::fabs(distance) > epsilon) {
+                    std::cout << "  ISSUE CANT ALIGNMENT distance end / start point too large, distance : " << distance << " (epsilon : " << epsilon << ").\n";
+                }
+
+                epsilon = 0.001;
+                double  dotProduct = Vec3Dot(&pEndVector[j - 1], &pStartVector[j]);
+                if (dotProduct <= 1. - epsilon || dotProduct >= 1. + epsilon) {
+                    std::cout << "  ISSUE CANT ALIGNMENT difference angle end / start point too large, dotProduct : " << dotProduct << " (epsilon : " << epsilon << ").\n";
                 }
             }
 
