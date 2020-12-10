@@ -1,5 +1,8 @@
 #pragma once
 
+#include "generic.h"
+#include "mathematics.h"
+
 
 static  inline  int_t   CreateGradientCurve__alignmentVertical(
                                 int_t   model,
@@ -19,19 +22,21 @@ static  inline  int_t   CreateGradientCurve__alignmentVertical(
         engiGetAggrElement(aggrSegments, i, sdaiINSTANCE, &ifcAlignmentVerticalSegmentInstance);
         assert(sdaiGetInstanceType(ifcAlignmentVerticalSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICALSEGMENT"));
 
+        int_t   expressLine = internalGetP21Line(ifcAlignmentVerticalSegmentInstance);
+
         {
             int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
 
             //
             //  ENTITY IfcAlignmentVerticalSegment
-            //      StartDistAlong      IfcLengthMeasure;
-            //      HorizontalLength    IfcPositiveLengthMeasure;
-            //      StartHeight         IfcLengthMeasure;
-            //      StartGradient       IfcLengthMeasure;
-            //      EndGradient         IfcLengthMeasure;
-            //      RadiusOfCurvature   OPTIONAL IfcPositiveLengthMeasure;
-            //      PredefinedType      IfcAlignmentVerticalSegmentTypeEnum;
-            //  END_ENTITY;
+            //      StartDistAlong      IfcLengthMeasure
+            //      HorizontalLength    IfcPositiveLengthMeasure
+            //      StartHeight         IfcLengthMeasure
+            //      StartGradient       IfcLengthMeasure
+            //      EndGradient         IfcLengthMeasure
+            //      RadiusOfCurvature   OPTIONAL IfcPositiveLengthMeasure
+            //      PredefinedType      IfcAlignmentVerticalSegmentTypeEnum
+            //  END_ENTITY
             //
 
             //
@@ -45,7 +50,7 @@ static  inline  int_t   CreateGradientCurve__alignmentVertical(
             //
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength);
-            assert(horizontalLength > 0.);
+//            assert(horizontalLength > 0.);
 
             //
             //  StartHeight
@@ -56,14 +61,14 @@ static  inline  int_t   CreateGradientCurve__alignmentVertical(
             //
             //  StartGradient
             //
-            double  startGradient = 0.;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartGradient", sdaiREAL, &startGradient);
+            double  startGradient__ = 0.;
+            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartGradient", sdaiREAL, &startGradient__);
 
             //
             //  EndGradient
             //
-            double  endGradient = 0.;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "EndGradient", sdaiREAL, &endGradient);
+            double  endGradient__ = 0.;
+            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "EndGradient", sdaiREAL, &endGradient__);
 
             //
             //  RadiusOfCurvature
@@ -98,67 +103,69 @@ static  inline  int_t   CreateGradientCurve__alignmentVertical(
             char    * predefinedType = nullptr;
             sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
             if (equals(predefinedType, (char*) "CIRCULARARC")) {
-                assert(startGradient > -Pi && startGradient < Pi && endGradient > -Pi && endGradient < Pi);
+                double  startAngle = std::atan(startGradient__),
+                        endAngle = std::atan(endGradient__);
+                assert(startAngle > -Pi && startAngle < Pi && endAngle > -Pi && endAngle < Pi);
 
                 double  radius;
                 VECTOR2 origin;
-                if (startGradient < endGradient) {
+                if (startAngle < endAngle) {
                     //
-                    //  Ox = -sin( startGradient ) * radius         Ox = horizontalLength - sin( endGradient ) * radius
-                    //  Oy = cos( startGradient ) * radius          Oy = offsetY + cos( endGradient ) * radius
+                    //  Ox = -sin( startAngle ) * radius         Ox = horizontalLength - sin( endAngle ) * radius
+                    //  Oy = cos( startAngle ) * radius          Oy = offsetY + cos( endAngle ) * radius
                     //
-                    //  horizontalLength = (sin( endGradient ) - sin( startGradient )) * radius
-                    //  radius = horizontalLength / (sin( endGradient ) - sin( startGradient ));
+                    //  horizontalLength = (sin( endAngle ) - sin( startAngle )) * radius
+                    //  radius = horizontalLength / (sin( endAngle ) - sin( startAngle ));
                     //
-                    radius = horizontalLength / (sin(endGradient) - sin(startGradient));
-                    assert(radius > 0. && (radius - std::fabs(radiusOfCurvature) < .05 * radius || radiusOfCurvature == 0.));
+                    radius = horizontalLength / (sin(endAngle) - sin(startAngle));
+//                    assert(radius > 0. && (radius - std::fabs(radiusOfCurvature) < .25 * radius || radiusOfCurvature == 0.));
 
                     //
-                    //  offsetY = (cos( startGradient ) - cos( endGradient )) * radius;
+                    //  offsetY = (cos( startAngle ) - cos( endAngle )) * radius;
                     //
-                    double  offsetY = (cos(startGradient) - cos(endGradient)) * radius;
+                    double  offsetY = (cos(startAngle) - cos(endAngle)) * radius;
 
-                    origin.x = -sin(startGradient) * radius;
-                    origin.y = cos(startGradient) * radius;
+                    origin.x = -sin(startAngle) * radius;
+                    origin.y = cos(startAngle) * radius;
 
-                    assert(std::fabs(origin.x - (horizontalLength - sin(endGradient) * radius)) < epsilon);
-                    assert(std::fabs(origin.y - (offsetY + cos(endGradient) * radius)) < epsilon);
+                    assert(std::fabs(origin.x - (horizontalLength - sin(endAngle) * radius)) < epsilon);
+                    assert(std::fabs(origin.y - (offsetY + cos(endAngle) * radius)) < epsilon);
 
-                    startGradient += 3. * Pi / 2.;
-                    endGradient += 3 * Pi / 2.;
+                    startAngle += 3. * Pi / 2.;
+                    endAngle += 3 * Pi / 2.;
 
-                    origin.x = -cos(startGradient) * radius;
-                    origin.y = -sin(startGradient) * radius;
+                    origin.x = -cos(startAngle) * radius;
+                    origin.y = -sin(startAngle) * radius;
                 }
                 else {
-                    assert(startGradient > endGradient);
+                    assert(startAngle > endAngle);
                     assert(radiusOfCurvature < 0.);
                     //
-                    //  Ox = sin( startGradient ) * radius         Ox = horizontalLength + sin( endGradient ) * radius
-                    //  Oy = -cos( startGradient ) * radius        Oy = offsetY - cos( endGradient ) * radius
+                    //  Ox = sin( startAngle ) * radius         Ox = horizontalLength + sin( endAngle ) * radius
+                    //  Oy = -cos( startAngle ) * radius        Oy = offsetY - cos( endAngle ) * radius
                     //
-                    //  horizontalLength = (sin( startGradient ) - sin( endGradient )) * radius
-                    //  radius = horizontalLength / (sin( startGradient ) - sin( endGradient ));
+                    //  horizontalLength = (sin( startAngle ) - sin( endAngle )) * radius
+                    //  radius = horizontalLength / (sin( startAngle ) - sin( endAngle ));
                     //
-                    radius = horizontalLength / (sin(startGradient) - sin(endGradient));
-                    assert(radius > 0. && radius - std::fabs(radiusOfCurvature) < .05 * radius);
+                    radius = horizontalLength / (sin(startAngle) - sin(endAngle));
+//                    assert(radius > 0. && radius - std::fabs(radiusOfCurvature) < .05 * radius);
  
                     //
-                    //  offsetY = (cos( endGradient ) - cos( startGradient )) * radius;
+                    //  offsetY = (cos( endAngle ) - cos( startAngle )) * radius;
                     //
-                    double  offsetY = (cos(endGradient) - cos(startGradient)) * radius;
+                    double  offsetY = (cos(endAngle) - cos(startAngle)) * radius;
 
-                    origin.x = sin(startGradient) * radius;
-                    origin.y = -cos(startGradient) * radius;
+                    origin.x = sin(startAngle) * radius;
+                    origin.y = -cos(startAngle) * radius;
 
-                    assert(std::fabs(origin.x - (horizontalLength + sin(endGradient) * radius)) < epsilon);
-                    assert(std::fabs(origin.y - (offsetY - cos(endGradient) * radius)) < epsilon);
+                    assert(std::fabs(origin.x - (horizontalLength + sin(endAngle) * radius)) < epsilon);
+                    assert(std::fabs(origin.y - (offsetY - cos(endAngle) * radius)) < epsilon);
 
-                    startGradient += Pi / 2.;
-                    endGradient += Pi / 2.;
+                    startAngle += Pi / 2.;
+                    endAngle += Pi / 2.;
 
-                    origin.x = -cos(startGradient) * radius;
-                    origin.y = -sin(startGradient) * radius;
+                    origin.x = -cos(startAngle) * radius;
+                    origin.y = -sin(startAngle) * radius;
                 }
 
                 int_t   ifcCircleInstance = CreateCircle(model, &origin, radius);
@@ -167,11 +174,11 @@ static  inline  int_t   CreateGradientCurve__alignmentVertical(
                 //
                 //  SegmentStart
                 //
-                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &startGradient);
+                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &startAngle);
                 sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                double  segmentLengthAsParameter = endGradient - startGradient;
+                double  segmentLengthAsParameter = endAngle - startAngle;
                 assert(std::fabs(segmentLengthAsParameter * radius) > horizontalLength);
                 //
                 //  SegmentLength
@@ -187,9 +194,10 @@ assert(false);
             }
             else if (equals(predefinedType, (char*) "CONSTANTGRADIENT")) {
                 VECTOR2 orientation = {
-                                cos(startGradient),
-                                sin(startGradient)
+                                1.,
+                                startGradient__
                             };
+                Vec2Normalize(&orientation);
                 int_t   ifcLineInstance = CreateLine(model, &orientation);
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineInstance);
 
@@ -201,10 +209,7 @@ assert(false);
                 sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                double  segmentLength =
-                            (orientation.x) ?
-                                horizontalLength / orientation.x :
-                                0.;
+                double  segmentLength = horizontalLength * std::sqrt(1. + startGradient__ * startGradient__);
 
                 //
                 //  SegmentLength
@@ -221,10 +226,6 @@ assert(false);
                 sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
             }
-
-            //
-            //  horizontalLength
-            //
 
             sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
         }

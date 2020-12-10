@@ -1,5 +1,10 @@
 #pragma once
 
+#include "generic.h"
+
+#include "ifcaxis2placement2d.h"
+#include "ifcline.h"
+
 
 static  inline  int_t   CreateSegmentedReferenceCurve__alignmentCant(
                                 int_t   model,
@@ -17,25 +22,76 @@ static  inline  int_t   CreateSegmentedReferenceCurve__alignmentCant(
     sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, "Segments", sdaiAGGR, &aggrSegments);
     int_t   noAggrSegments = sdaiGetMemberCount(aggrSegments);
     for (int_t i = 0; i < noAggrSegments; i++) {
-        int_t   ifcAlignmentVerticalSegmentInstance = 0;
-        engiGetAggrElement(aggrSegments, i, sdaiINSTANCE, &ifcAlignmentVerticalSegmentInstance);
-        assert(sdaiGetInstanceType(ifcAlignmentVerticalSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICALSEGMENT"));
+        int_t   ifcAlignmentCantSegmentInstance = 0;
+        engiGetAggrElement(aggrSegments, i, sdaiINSTANCE, &ifcAlignmentCantSegmentInstance);
+        assert(sdaiGetInstanceType(ifcAlignmentCantSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICALSEGMENT"));
+
+        int_t   expressLine = internalGetP21Line(ifcAlignmentCantSegmentInstance);
 
         {
             int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
 
-/*            //
-            //  SegmentLength
             //
-            double  segmentLength = 0.;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "SegmentLength", sdaiREAL, &segmentLength);
-            assert(segmentLength > 0.);
+            //  ENTITY IfcAlignmentCantSegment
+            //      StartDistAlong      IfcLengthMeasure
+            //      HorizontalLength    IfcPositiveLengthMeasure
+            //      StartCantLeft       IfcLengthMeasure
+            //      EndCantLeft         OPTIONAL IfcLengthMeasure
+            //      StartCantRight      IfcLengthMeasure
+            //      EndCantRight        OPTIONAL IfcLengthMeasure
+            //      SmoothingLength     OPTIONAL IfcPositiveLengthMeasure
+            //      PredefinedType      IfcAlignmentCantSegmentTypeEnum
+            //  END_ENTITY
+            //
+
+            //
+            //  StartDistAlong
+            //
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, &startDistAlong);
+
+            //
+            //  HorizontalLength
+            //
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength);
+            assert(horizontalLength > 0.);
+
+            //
+            //  StartCantLeft
+            //
+            double  startCantLeft = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, &startCantLeft);
+
+            //
+            //  EndCantLeft
+            //
+            double  endCantLeft = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, &endCantLeft);
+
+            //
+            //  StartCantRight
+            //
+            double  startCantRight = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, &startCantRight);
+
+            //
+            //  EndCantRight
+            //
+            double  endCantRight = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight);
+
+            //
+            //  SmoothingLength
+            //
+            double  smoothingLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "SmoothingLength", sdaiREAL, &smoothingLength);
 
             //
             //  Transition
             //
             char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
-            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*)transitionCode);
 
             //
             //  Placement
@@ -43,60 +99,89 @@ static  inline  int_t   CreateSegmentedReferenceCurve__alignmentCant(
             MATRIX  matrix;
             MatrixIdentity(&matrix);
 
-            int_t   ifcCartesianPointInstance = 0;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartPoint", sdaiINSTANCE, &ifcCartesianPointInstance);
+            matrix._41 = startDistAlong;
+            matrix._42 = (startCantLeft + startCantRight) / 2.;
 
-            GetCartesianPointCoordinates(ifcCartesianPointInstance, (VECTOR3*) &matrix._41);
-
-            double   startDirection = 0.;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartDirection", sdaiREAL, &startDirection);
-            matrix._11 = cos(startDirection);
-            matrix._12 = sin(startDirection);
-
-            sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) CreateAxis2Placement2D(model, &matrix));
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*)CreateAxis2Placement2D(model, &matrix));
 
             //
             //  Parse the individual segments
+            //      CONSTANTCANT
+            //      LINEARTRANSITION
+            //      BIQUADRATICPARABOLA
+            //      BLOSSCURVE
+            //      COSINECURVE
+            //      SINECURVE
+            //      VIENNESEBEND
             //
             char    * predefinedType = nullptr;
-            sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
-            if (equals(predefinedType, (char*) "CIRCULARARC")) {
-                double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
-                sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
-                sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
-                assert(startRadiusOfCurvature && startRadiusOfCurvature == endRadiusOfCurvature);
-
-                int_t   ifcCircleInstance = CreateCircle(model, startRadiusOfCurvature);
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircleInstance);
-
-                if (startRadiusOfCurvature < 0) {
-                    segmentLength = -segmentLength;
-                }
-            }
-            else if (equals(predefinedType, (char*) "CLOTHOID")) {
-                double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
-                sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
-                sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
-    //            assert((startRadiusOfCurvature && endRadiusOfCurvature == 0.) || (startRadiusOfCurvature == 0. && endRadiusOfCurvature));
-
-                int_t   ifcClothoidInstance = CreateClothoid(model, startRadiusOfCurvature, endRadiusOfCurvature, segmentLength, ifcCurveSegmentInstance, &segmentLength);
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
-            }
-            else if (equals(predefinedType, (char*) "LINE")) {
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
+            if (equals(predefinedType, (char*) "CONSTANTCANT")) {
                 int_t   ifcLineInstance = CreateLine(model);
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineInstance);
+
+                //
+                //  SegmentStart
+                //
+                double  offset = 0.;
+                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+                sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                double  segmentLength = horizontalLength;
+
+                //
+                //  SegmentLength
+                //
+                void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
+            }
+            else if (equals(predefinedType, (char*) "LINEARTRANSITION")) {
+                VECTOR2 orientation = {
+                                horizontalLength,
+                                (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.
+                            };
+                Vec2Normalize(&orientation);
+                int_t   ifcLineInstance = CreateLine(model);
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineInstance);
+
+                //
+                //  SegmentStart
+                //
+                double  offset = 0.;
+                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+                sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                double  segmentLength = horizontalLength;
+
+                //
+                //  SegmentLength
+                //
+                void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
+            }
+            else if (equals(predefinedType, (char*) "BIQUADRATICPARABOLA")) {
+                assert(false);
+            }
+            else if (equals(predefinedType, (char*) "BLOSSCURVE")) {
+                assert(false);
+            }
+            else if (equals(predefinedType, (char*) "COSINECURVE")) {
+                assert(false);
+            }
+            else if (equals(predefinedType, (char*) "SINECURVE")) {
+                assert(false);
+            }
+            else if (equals(predefinedType, (char*) "VIENNESEBEND")) {
+                assert(false);
             }
             else {
                 assert(false);
             }
 
-            //
-            //  SegmentLength
-            //
-            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-//  */
             sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
         }
     }

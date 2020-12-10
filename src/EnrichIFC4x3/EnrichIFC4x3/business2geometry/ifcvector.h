@@ -1,7 +1,6 @@
 #pragma once
 
-#include "mathematics.h"
-#include "ifcengine.h"
+#include "ifcdirection.h"
 
 
 static	inline	int_t	CreateVector(

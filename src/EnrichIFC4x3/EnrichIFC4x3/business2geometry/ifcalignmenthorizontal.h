@@ -87,7 +87,7 @@ static  inline   int_t  CreateCompositeCurve__alignmentHorizontal(
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                 if (startRadiusOfCurvature) {
-                    segmentLength = 2. * Pi * segmentLength / std::fabs(startRadiusOfCurvature);
+                    segmentLength = segmentLength / std::fabs(startRadiusOfCurvature);
                 }
 
                 //
@@ -95,7 +95,7 @@ static  inline   int_t  CreateCompositeCurve__alignmentHorizontal(
                 //
                 void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                 sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
             }
             else if (equals(predefinedType, (char*) "CLOTHOID")) {
                 double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;

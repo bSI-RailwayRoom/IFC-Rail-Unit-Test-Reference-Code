@@ -1,6 +1,7 @@
 #pragma once
 
 #include <assert.h>
+#include <cmath>
 
 
 struct	MATRIX {
@@ -45,6 +46,20 @@ void	MatrixIdentity(
 	matrix->_41 = 0.;
 	matrix->_42 = 0.;
 	matrix->_43 = 0.;
+}
+
+static	inline	double	Vec2Normalize(
+								VECTOR2						* pInOut
+							)
+{
+	double	size = pInOut->x * pInOut->x + pInOut->y * pInOut->y;
+
+	double	sqrtSize = sqrt(size);
+
+	pInOut->x /= sqrtSize;
+	pInOut->y /= sqrtSize;
+
+	return	sqrtSize;
 }
 
 static	inline	void	Vec3Subtract(
