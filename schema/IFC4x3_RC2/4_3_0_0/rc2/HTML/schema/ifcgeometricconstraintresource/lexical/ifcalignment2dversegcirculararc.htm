@@ -67,13 +67,13 @@
 <p>For crest curves (where <i>IsConvex</i> is True), the elevation of a point along the curve (relative to <i>StartHeight</i>) is defined as:</p>
 <p><img src="../../../figures/ifcalignment2dversegcirculararc-formula-concave.png" alt="Image"><table>
 <tr><td><img src="../../../figures/ifcalignment2dversegcirculararc-convex.png"></td><td style="vertical-align: bottom">start point provided by <i>StartDistAlong</i> and <i>StartHeight</i><br>instanteneous gradient provided by <i>StartGradient</i>, <br>and length provided by <i>HorizontalLength</i></td></tr>
-<tr><td><p class="figure">Figure 307 &mdash; Alignment vertical arc segment convex</p></td><td>&nbsp;</td></tr>
+<tr><td><p class="figure">Figure 313 &mdash; Alignment vertical arc segment convex</p></td><td>&nbsp;</td></tr>
 </table>
 <p> </p>
 <p>For sag curves (where <i>IsConvex</i> is False), the elevation of a point along the curve (relative to <i>StartHeight</i>) is defined as:</p>
 <p><img src="../../../figures/ifcalignment2dversegcirculararc-formula-convex.png" alt="Image"><table>
 <tr><td><img src="../../../figures/ifcalignment2dversegcirculararc-concave.png"></td><td style="vertical-align: bottom">start point provided by <i>StartDistAlong</i> and <i>StartHeight</i><br>instanteneous gradient provided by <i>StartGradient</i>, <br>and length provided by <i>HorizontalLength</i></td></tr>
-<tr><td><p class="figure">Figure 308 &mdash; Alignment vertical arc segment concave</p></td><td>&nbsp;</td></tr>
+<tr><td><p class="figure">Figure 314 &mdash; Alignment vertical arc segment concave</p></td><td>&nbsp;</td></tr>
 </table>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
@@ -127,9 +127,9 @@ End gradient of the segment. In the case of a PredefinedType='.CONSTANTGRADIENT.
 <tr><td>8</td><td>RadiusOfCurvature</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
 Radius of parabola or arc.
 <blockquote class="note">
-NOTE1 &amp;nbsp: :For <i>PredefinedType</i> is ARC. The radius of the basis circle for the arc.
-NOTE2 &amp;nbsp:For <i>PredefinedType</i> is PARABOLICARC. Parabola constant (determining the “steepness” of the parabola). The parabola constant is provided by the “minimum parabola radius”, the true radius of a parabola at its vertical axis (the zero-gradient point of the parabola). The minimum radius is twice the focal length of the parabola (the distance between the focal point and the vertex).
-NOTE3 &amp;nbsp: For <i>PredefinedType</i> that is not either ARC or PARABOLICARC the value should be empty.
+NOTE1   For <i>PredefinedType</i> is ARC. The radius of the basis circle for the arc.
+NOTE2   For <i>PredefinedType</i> is PARABOLICARC. Parabola constant (determining the “steepness” of the parabola). The parabola constant is provided by the “minimum parabola radius”, the true radius of a parabola at its vertical axis (the zero-gradient point of the parabola). The minimum radius is twice the focal length of the parabola (the distance between the focal point and the vertex).
+NOTE3   For <i>PredefinedType</i> that is not either ARC or PARABOLICARC the value should be empty.
 </blockquote>
 </td><td>X</td></tr>
 <tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentverticalsegmenttypeenum.htm">IfcAlignmentVerticalSegmentTypeEnum</a></td><td></td><td>

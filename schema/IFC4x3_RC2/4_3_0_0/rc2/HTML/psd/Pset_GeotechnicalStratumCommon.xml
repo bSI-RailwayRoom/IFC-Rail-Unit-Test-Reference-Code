@@ -2,7 +2,7 @@
 <PropertySetDef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ifdguid="13e95d11802d4d9e98c9f379d61092e9" xsi:noNamespaceSchemaLocation="http://buildingSMART-tech.org/xml/psd/PSD_IFC4.xsd">
   <IfcVersion version="IFC4x3_RC2" />
   <Name>Pset_GeotechnicalStratumCommon</Name>
-  <Definition>Properties describing the characteristics of any solid, water or void stratum. A status of �New� should not be associated to a [&lt;font color="#0000ff"&gt;&lt;u&gt;IfcGeotechnicalAssembly&lt;/u&gt;&lt;/font&gt;]($element://{85B77FDE-67EA-40a4-ADA4-ADD4C95A7D3E})  or [&lt;font color="#0000ff"&gt;&lt;u&gt;IfcSolidStratum&lt;/u&gt;&lt;/font&gt;]($element://{C1BDB3F2-0742-4fc7-B313-53194628B9C2}) , as other entities are used for earthworks and courses.</Definition>
+  <Definition>Properties describing the characteristics of any solid, water or void stratum. A status of �New� should not be associated to a _IfcGeotechnicalAssembly_  or _IfcSolidStratum_, as other entities are used for earthworks and courses.</Definition>
   <Applicability />
   <ApplicableClasses>
     <ClassName>IfcGeotechnicalStratum</ClassName>

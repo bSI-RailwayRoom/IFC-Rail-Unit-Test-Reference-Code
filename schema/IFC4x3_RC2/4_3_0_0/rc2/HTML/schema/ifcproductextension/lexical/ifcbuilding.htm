@@ -58,20 +58,18 @@ A building is (if specified) associated to a site. A building may span over seve
 <li><strong>ELEMENT</strong>: building</li>
 <li><strong>PARTIAL</strong>: building section</li>
 </ul>
-<p>The <a href="$element://%7B6A41B6BC-5685-455c-84F7-0CBCEAF26389%7D"><font color="#0000ff"><u>IfcBuilding</u></font></a> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together by using the objectified relationship <a href="$element://%7B12F56CBC-A6CE-493c-8A50-E301CE73BBA5%7D"><font color="#0000ff"><u>IfcRelAggregates</u></font></a>. Figure 150 shows the <a href="$element://%7B6A41B6BC-5685-455c-84F7-0CBCEAF26389%7D"><font color="#0000ff"><u>IfcBuilding</u></font></a> as part of the spatial structure. It also serves as the spatial container for building and other elements.<br>
+<p>The <span class="self-ref">IfcBuilding</span> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together by using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>. Figure 150 shows the <span class="self-ref">IfcBuilding</span> as part of the spatial structure. It also serves as the spatial container for building and other elements.<br>
 NOTE Detailed requirements on mandatory element containment and placement structure relationships are given in view definitions and implementer agreements.</p>
-<p>[<font color="#0000ff"><u>Building composition</u></font>]($imageman://id=2006805526;mdg=Global;name=Building composition;type=Bitmap;)<br>
-Figure 150 � Building composition</p>
-<p>Systems, such as building service or electrical distribution systems, zonal systems, or structural analysis systems, relate to <a href="$element://%7B6A41B6BC-5685-455c-84F7-0CBCEAF26389%7D"><font color="#0000ff"><u>IfcBuilding</u></font></a> by using the objectified relationship <a href="$element://%7B415054A4-1479-4c32-9A58-BC1E36A488CC%7D"><font color="#ff0000"><u>IfcRelReferencedInSpatialStructure</u></font></a><font color="#ff0000">.</font><br>
-Figure 151 describes the heights and elevations of the <a href="$element://%7B6A41B6BC-5685-455c-84F7-0CBCEAF26389%7D"><font color="#0000ff"><u>IfcBuilding</u></font></a> . It is used to provide the height above sea level of the project height datum for this building, that is, the internal height 0.00. The height 0.00 is often used as a building internal reference height and equal to the floor finish level of the ground floor.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuilding-spatialstructure.png" alt="&quot;IfcBuildingStorey as part of a spatial structure&quot;" title="Figure 150 &mdash; Building composition"></td></tr><tr><td><p class="figure">Figure 150 &mdash; Building composition</p></td></tr></table></p>
+<p>Systems, such as building service or electrical distribution systems, zonal systems, or structural analysis systems, relate to <span class="self-ref">IfcBuilding</span> by using the objectified relationship <a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a>.
+Figure 151 describes the heights and elevations of the <span class="self-ref">IfcBuilding</span> . It is used to provide the height above sea level of the project height datum for this building, that is, the internal height 0.00. The height 0.00 is often used as a building internal reference height and equal to the floor finish level of the ground floor.</p>
 <ul>
 <li>base elevation of building provided by: <i>IfcBuilding.ElevationOfRefHeight</i>, it is usually the top of construction slab.</li>
 <li>base elevation of terrain at the perimeter of the building provided by: <i>IfcBuilding.ElevationOfTerrain</i>, it is usually the minimum elevation is sloped terrain</li>
 <li>total height of building, also referred to as ridge height (top of roof structure, e.g the ridge against terrain): provided by BaseQuantity with Name=&quot;TotalHeight&quot;</li>
 <li>eaves height of building (base of roof structure, e.g the eaves against terrain): provided by BaseQuantity with Name=&quot;EavesHeight&quot;</li>
 </ul>
-<p><a href="$imageman://id=867057645;mdg=Global;name=building_elevations;type=Bitmap;"><font color="#0000ff"><u>building_elevations</u></font></a><br>
-Figure 2 � Building elevations</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuilding_heights.png" alt="&quot;building heights&quot;" title="Figure 150 &mdash; Building elevations"></td></tr><tr><td><p class="figure">Figure 150 &mdash; Building elevations</p></td></tr></table></p>
 <p>HISTORY New entity in IFC1.0.</p>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">

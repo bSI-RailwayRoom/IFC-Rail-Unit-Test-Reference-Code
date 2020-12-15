@@ -49,19 +49,19 @@
 </details>
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
-<details open="open"><summary>Entity definition</summary><p>The <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> represents complex element assemblies aggregated from several elements, such as discrete elements, building elements, or other elements.</p>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcElementAssembly</span> represents complex element assemblies aggregated from several elements, such as discrete elements, building elements, or other elements.</p>
 <blockquote class="example">
-<p>EXAMPLE Steel construction assemblies, such as trusses and different kinds of frames, can be represented by the <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> entity. Other examples include slab fields aggregated from a number of precast concrete slabs or reinforcement units made from several reinforcement bars. Also bathroom units, staircase sections and other premanufactured or precast elements are examples of the general <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> entity<br>
-NOTE The <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> is a general purpose entity that is required to be decomposed. Also other subtypes of IfcElement can be decomposed.  <font color="#ff0000">REMOVE {</font>with some dedicated entities such as <a href="../../ifcsharedbldgelements/lexical/ifcwallelementedcase.htm">IfcWallElementedCase</a> and <a href="../../ifcsharedbldgelements/lexical/ifcslabelementedcase.htm">IfcSlabElementedCase</a>.<font color="#ff0000">}</font><br>
-The assembly structure can be nested, i.e. an <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> could be an aggregated part within another <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a>.<br>
-NOTE View definitions and/or implementer agreements may restrict the number of allowed levels of nesting.<br>
-The geometry of an <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> is generally formed from its components, in which case it does not need to have an explicit geometric representation. In some cases it may be useful to also expose an own explicit representation of the aggregate.<br>
-NOTE View definitions or implementer agreements may further constrain the applicability of certain shape representations at the <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> in respect of the shape representations of its parts.<br>
-HISTORY New entity in IFC2x2.</p>
+<p>EXAMPLE Steel construction assemblies, such as trusses and different kinds of frames, can be represented by the <span class="self-ref">IfcElementAssembly</span> entity. Other examples include slab fields aggregated from a number of precast concrete slabs or reinforcement units made from several reinforcement bars. Also bathroom units, staircase sections and other premanufactured or precast elements are examples of the general <span class="self-ref">IfcElementAssembly</span> entity<br>
+NOTE  The <span class="self-ref">IfcElementAssembly</span> is a general purpose entity that is required to be decomposed. Also other subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> can be decomposed.  <font color="#ff0000">REMOVE {</font>with some dedicated entities such as <a href="../../ifcsharedbldgelements/lexical/ifcwallelementedcase.htm">IfcWallElementedCase</a> and <a href="../../ifcsharedbldgelements/lexical/ifcslabelementedcase.htm">IfcSlabElementedCase</a>.<font color="#ff0000">}</font><br>
+The assembly structure can be nested, i.e. an <span class="self-ref">IfcElementAssembly</span> could be an aggregated part within another <span class="self-ref">IfcElementAssembly</span>.<br>
+NOTE  View definitions and/or implementer agreements may restrict the number of allowed levels of nesting.<br>
+The geometry of an <span class="self-ref">IfcElementAssembly</span> is generally formed from its components, in which case it does not need to have an explicit geometric representation. In some cases it may be useful to also expose an own explicit representation of the aggregate.<br>
+NOTE  View definitions or implementer agreements may further constrain the applicability of certain shape representations at the <span class="self-ref">IfcElementAssembly</span> in respect of the shape representations of its parts.<br>
+HISTORY  New entity in IFC2x2.</p>
 </blockquote>
 <p><strong>Informal Propositions:</strong></p>
 <ol>
-<li>The <a href="$element://%7B37A21453-AB05-44b6-8887-DD9BF7647B60%7D"><font color="#0000ff"><u>IfcElementAssembly</u></font></a> shall have an aggregation relationship to the contained parts, i.e. the (INV) IsDecomposedBy relationship shall be utilized.</li>
+<li>The <span class="self-ref">IfcElementAssembly</span> shall have an aggregation relationship to the contained parts, i.e. the (INV) IsDecomposedBy relationship shall be utilized.</li>
 </ol>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
@@ -262,8 +262,8 @@ A designation of where the assembly is intended to take place defined by an Enum
 <li>The <span class="self-ref">IfcElementAssembly</span> is an aggregate i.e. being composed by other elements and acting as an assembly using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>, refering to it by its inverse attribute <i>SELF\IfcObjectDefinition.IsDecomposedBy</i>. Components of an assembly are described by instances of subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>.</li>
 <li>In this case, the contained subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> shall not be additionally contained in the project spatial hierarchy, i.e. the inverse attribute <i>SELF\IfcElement.ContainedInStructure</i> of those <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>'s shall be <i>NIL.</i></li>
 </ul>
-<p>Figure 154 illustrates spatial containment and element aggregation relationships.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcelementassembly-containment.png" alt="&quot;containment relationships&quot;" title="Figure 154 &mdash; Element assembly containment"></td></tr><tr><td><p class="figure">Figure 154 &mdash; Element assembly containment</p></td></tr></table></p>
+<p>Figure 156 illustrates spatial containment and element aggregation relationships.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcelementassembly-containment.png" alt="&quot;containment relationships&quot;" title="Figure 156 &mdash; Element assembly containment"></td></tr><tr><td><p class="figure">Figure 156 &mdash; Element assembly containment</p></td></tr></table></p>
 
 <br/><br/>
 

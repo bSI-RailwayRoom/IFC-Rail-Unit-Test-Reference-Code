@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-03 December 2020
+13 December 2020
 
 *)
 
@@ -183,8 +183,8 @@ TYPE IfcInterferenceSelect = SELECT
 END_TYPE;
 
 TYPE IfcSpatialReferenceSelect = SELECT
-	(IfcProduct
-	,IfcSystem);
+	(IfcGroup
+	,IfcProduct);
 END_TYPE;
 
 TYPE IfcTransportElementTypeSelect = SELECT

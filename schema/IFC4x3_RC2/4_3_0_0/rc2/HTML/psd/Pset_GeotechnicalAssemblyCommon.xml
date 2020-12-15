@@ -2,7 +2,7 @@
 <PropertySetDef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ifdguid="829734737c7c4725b43558a4a802081e" xsi:noNamespaceSchemaLocation="http://buildingSMART-tech.org/xml/psd/PSD_IFC4.xsd">
   <IfcVersion version="IFC4x3_RC2" />
   <Name>Pset_GeotechnicalAssemblyCommon</Name>
-  <Definition>Properties describing the characteristics of any geotechnical model. A Status of �New� should not be associated to a [&lt;font color="#0000ff"&gt;&lt;u&gt;IfcGeotechnicalAssembly&lt;/u&gt;&lt;/font&gt;]($element://{85B77FDE-67EA-40a4-ADA4-ADD4C95A7D3E}) or [&lt;font color="#0000ff"&gt;&lt;u&gt;IfcGeotechnicalStratum&lt;/u&gt;&lt;/font&gt;]($element://{FAEFB134-3800-4995-B222-B921D7E287BF}), as other entities are used for earthworks and courses.</Definition>
+  <Definition>Properties describing the characteristics of any geotechnical model. A Status of �New� should not be associated to a _IfcGeotechnicalAssembly_ or _IfcGeotechnicalStratum_, as other entities are used for earthworks and courses.</Definition>
   <Applicability />
   <ApplicableClasses>
     <ClassName>IfcGeotechnicalAssembly</ClassName>

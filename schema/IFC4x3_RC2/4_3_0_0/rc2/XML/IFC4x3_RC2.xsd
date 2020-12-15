@@ -11324,8 +11324,8 @@ of the material. The information contained in this document is subject to change
 	</xs:group>
 	<xs:group name="IfcSpatialReferenceSelect">
 		<xs:choice>
+			<xs:element ref="ifc:IfcGroup"/>
 			<xs:element ref="ifc:IfcProduct"/>
-			<xs:element ref="ifc:IfcSystem"/>
 		</xs:choice>
 	</xs:group>
 	<xs:group name="IfcSpecularHighlightSelect">
@@ -11660,6 +11660,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="circulararc"/>
 			<xs:enumeration value="clothoid"/>
 			<xs:enumeration value="cubicspiral"/>
+			<xs:enumeration value="cubicparabola"/>
 			<xs:enumeration value="biquadraticparabola"/>
 			<xs:enumeration value="blosscurve"/>
 			<xs:enumeration value="cosinecurve"/>

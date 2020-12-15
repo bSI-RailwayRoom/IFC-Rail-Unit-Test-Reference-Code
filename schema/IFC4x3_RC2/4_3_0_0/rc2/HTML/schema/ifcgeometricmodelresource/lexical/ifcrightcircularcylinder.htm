@@ -41,8 +41,8 @@
 <li><i>SELF\IfcCsgPrimitive3D.Position.Location</i>: The center of the circular area being the bottom face of the cylinder.</li>
 <li><i>SELF\IfcCsgPrimitive3D.Position.Position[3]:</i> The z axis provides the center axis and the height is measured from the origin along the positive direction of the z axis.</li>
 </ul>
-<p>Figure 344 illustrates geometric parameters of the cylinder. The cylinder is positioned within its own placement coordiante system. The origin is the center of the bottom circular disk, that lies in the XY plane. The center of the top circular disk is on the positive z axis at [0, 0, <i>Height</i>].</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcrightcircularcylinder-layout1.png" alt="&quot;cylinder&quot;" title="Figure 344 &mdash; Right circular cylinder geometry"></td></tr><tr><td><p class="figure">Figure 344 &mdash; Right circular cylinder geometry</p></td></tr></table></p>
+<p>Figure 350 illustrates geometric parameters of the cylinder. The cylinder is positioned within its own placement coordiante system. The origin is the center of the bottom circular disk, that lies in the XY plane. The center of the top circular disk is on the positive z axis at [0, 0, <i>Height</i>].</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcrightcircularcylinder-layout1.png" alt="&quot;cylinder&quot;" title="Figure 350 &mdash; Right circular cylinder geometry"></td></tr><tr><td><p class="figure">Figure 350 &mdash; Right circular cylinder geometry</p></td></tr></table></p>
 <blockquote class="extDef">
 <p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
 A right circular cylinder is a CSG primitive in the form of a solid cylinder of finite height. It is defined by an axis point at the centre of one planar circular face, an axis, a height, and a radius. The faces are perpendicular to the axis and are circular discs with the specified radius. The height is the distance from the first circular face centre in the positive direction of the axis to the second circular face centre.</p>
@@ -57,7 +57,7 @@ A right circular cylinder is a CSG primitive in the form of a solid cylinder of 
 Texture use definition</p>
 <p>On the circular side, textures are aligned facing upright with origin at the back (+Y direction) revolving counter-clockwise. Textures are stretched or repeated to the extent of the circumference according to RepeatS. Textures are stretched or repeated to the extent of the <i>Height</i> according to RepeatT.</p>
 <p>On the top and bottom faces, textures are aligned facing front-to-back, with the center of the circle aligned to the center of the texture.</p>
-<p>Figure 345 illustrates default texture mapping with a clamped texture (RepeatS=False and RepeatT=False). The image on the left shows the texture where the S axis points to the right and the T axis points up. The image on the right shows the texture applied to the geometry where the X axis points back to the right, the Y axis points back to the left, and the Z axis points up.</p>
+<p>Figure 351 illustrates default texture mapping with a clamped texture (RepeatS=False and RepeatT=False). The image on the left shows the texture where the S axis points to the right and the T axis points up. The image on the right shows the texture applied to the geometry where the X axis points back to the right, the Y axis points back to the left, and the Z axis points up.</p>
 <table summary="texture" class="gridtable">
 <tr>
 <td><img alt="texture" src="../../../figures/ifcrightcircularcylinder-texture.png"></td>
@@ -106,7 +106,7 @@ Texture use definition</p>
 </tr>
 <tr>
 <td>
-<p class="figure">Figure 345 &mdash; Right circular cylinder textures</p>
+<p class="figure">Figure 351 &mdash; Right circular cylinder textures</p>
 </td>
 </tr>
 </table>

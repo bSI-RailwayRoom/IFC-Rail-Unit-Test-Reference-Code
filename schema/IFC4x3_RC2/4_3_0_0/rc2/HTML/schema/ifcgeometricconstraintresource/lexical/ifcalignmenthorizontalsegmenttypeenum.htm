@@ -32,6 +32,9 @@
 <tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc1-to-ifc4x3_rc2/index.htm">IFC4x3_RC1 to IFC4x3_RC2</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-update/index.htm">IFC4x3_RC2 Update</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUBICPARABOLA</td><td></td><td></td><td>ADDED</td><td></td></tr>
 </table>
 </details>
 <section>
@@ -43,6 +46,10 @@
 </td></tr><tr><td>CIRCULARARC</td><td>Circular arc transiiton.
 </td></tr><tr><td>CLOTHOID</td><td>Clothoid transition.
 </td></tr><tr><td>CUBICSPIRAL</td><td>Cubic spiral transition.
+</td></tr><tr><td>CUBICPARABOLA</td><td>X coordinate:<br>
+<img src="../../../figures/ifctransitioncurvetype-cubicparabola-x.png" alt="Image"><br>
+Y coordinate:<br>
+<img src="../../../figures/ifctransitioncurvetype-cubicparabola-y.png" alt="Image">
 </td></tr><tr><td>BIQUADRATICPARABOLA</td><td>Bloss transition.
 NOTE  also referred to as Schramm curve.
 </td></tr><tr><td>BLOSSCURVE</td><td>Bloss transition.
@@ -60,6 +67,7 @@ NOTE  also referred to as Klein curve.
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;circulararc&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;clothoid&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubicspiral&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubicparabola&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;biquadraticparabola&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blosscurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cosinecurve&quot;/&gt;<br/>
@@ -70,7 +78,7 @@ NOTE  also referred to as Klein curve.
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcAlignmentHorizontalSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;CUBICPARABOLA, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

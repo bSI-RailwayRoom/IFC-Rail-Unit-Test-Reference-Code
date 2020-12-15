@@ -261,14 +261,14 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
  
 <tr>
   <td><img src="../../../figures/ifcwallstandardcase_materialusage-01.png" alt="Material layer set and usage" height="220" width="501"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; Figure 255 illustrates assignment of <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a> and <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a> to the wall type and the wall occurrence.</blockquote></td>
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 258 illustrates assignment of <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a> and <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a> to the wall type and the wall occurrence.</blockquote></td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 255 &mdash; Wall Standard Object Typing</p></td>
+  <td><p class="figure">Figure 258 &mdash; Wall Standard Object Typing</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
-<p>Figure 256 illustrates material layer usage, where the following conventions shall be met:</p>
+<p>Figure 259 illustrates material layer usage, where the following conventions shall be met:</p>
 <ul>
 <li>The reference coordinate system is the local coordinate system established by the <i>ObjectPlacement</i> of the <span class="self-ref">IfcWallStandardCase</span>.</li>
 <li>The reference axis is the axis defined by the <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a> with <i>RepresentationType</i>='Axis' as one of the <i>Representation.Representations</i> of the <span class="self-ref">IfcWallStandardCase</span>.</li>
@@ -278,7 +278,7 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <li>The <i>Thickness</i> of each <a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a> is provided starting from the <i>OffsetFromReferenceLine</i> and in the direction given by <i>DirectionSense</i>. It is applied without any gap or overlap between two consecutive layers. The <i>TotalThickness</i> of the <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a> is the sum of all layer thicknesses.</li>
 <li>The <i>IfcMaterialLayerSetUsage.LayerSetDirection</i> is always AXIS2.</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmateriallayersetusage_wall-01.png" alt="&quot;roof slab material layer set&quot;" title="Figure 256 &mdash; Wall material layers"></td></tr><tr><td><p class="figure">Figure 256 &mdash; Wall material layers</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmateriallayersetusage_wall-01.png" alt="&quot;roof slab material layer set&quot;" title="Figure 259 &mdash; Wall material layers"></td></tr><tr><td><p class="figure">Figure 259 &mdash; Wall material layers</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -316,25 +316,25 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <table cellpadding="2" cellspacing="2">
  <tr>
   <td align="left" valign="top"><img src="../../../figures/ifcwallstandard_straigthwall_01-layout1.gif" alt="straight wall axis" border="0" height="299" width="393"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; Figure 257 illustrates an axis representation for a straight wall. In case of a straight wall, the set of items shall
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 260 illustrates an axis representation for a straight wall. In case of a straight wall, the set of items shall
 include a single geometric representation item of type <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a> or <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a> with the <i>BasisCurve</i> being an <a href="../../ifcgeometryresource/lexical/ifcline.htm">IfcLine</a>. The <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a> or <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a> shall be parallel (here in a special case co-linear) to the x-axis
 of the object coordinate system. The direction shall be identical to the direction of the x-axis.</blockquote>
  </td>
  </tr>
  <tr>
-  <td width="393"><p class="figure">Figure 257 &mdash; Wall axis straight</p></td>
+  <td width="393"><p class="figure">Figure 260 &mdash; Wall axis straight</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
 <table cellpadding="2" cellspacing="2">
  <tr>
   <td align="left" valign="top"><img src="../../../figures/ifcwallstandard_curvedwall_01-layout1.gif" alt="curved wall axis" border="0" height="299" width="393"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; Figure 258 illustrates an axis representation for a curved wall. In case of a curved wall, the set of items shall include
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 261 illustrates an axis representation for a curved wall. In case of a curved wall, the set of items shall include
 a single geometric representation item of type <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a>. The curve shall have a <i>BasisCurve</i> of type <a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a>. The tangent of the <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a> shall be parallel at start to the x-axis of the object coordinate system. The direction shall be identical to the direction of the x-axis.</blockquote>
  </td></tr>
  
 <tr>
-  <td width="393"><p class="figure">Figure 258 &mdash; Wall axis curved</p></td>
+  <td width="393"><p class="figure">Figure 261 &mdash; Wall axis curved</p></td>
   <td>&nbsp;</td>
  
 </tr>
@@ -351,16 +351,16 @@ a single geometric representation item of type <a href="../../ifcgeometryresourc
 <li><strong>Extrusion</strong>: The profile shall be extruded vertically, i.e., in the direction of the z-axis of the co-ordinate system of the referred spatial structure element. It might be further constraint to be in the direction of the global z-axis in implementers agreements. The extrusion axis shall be perpendicular to the swept profile, i.e. pointing into the direction of the z-axis of the Position of the <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>.</li>
 </ul>
 <p>The profile of a wall is described in the ground view and extruded vertically. The profile (also identical with the foot print of the wall) is defined by the <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> (excluding its subtypes). The profile is given with all wall connections already resolved.</p>
-<p>Figure 259 illustrates a body representation for a straight wall. In case of a straight wall, the two sides of the profile shall be parallel to the wall axis, that is, the wall has a single unchanged thickness.</p>
-<p>Figure 260 illustrates a body representation for a curved wall. In case of a curved wall, the two sides of the profile shall be parallel (with defined offset) to the wall axis, that is, the wall has a single unchanged thickness.</p>
+<p>Figure 262 illustrates a body representation for a straight wall. In case of a straight wall, the two sides of the profile shall be parallel to the wall axis, that is, the wall has a single unchanged thickness.</p>
+<p>Figure 263 illustrates a body representation for a curved wall. In case of a curved wall, the two sides of the profile shall be parallel (with defined offset) to the wall axis, that is, the wall has a single unchanged thickness.</p>
 <table cellpadding="2" cellspacing="2">
 <tr>
 <td align="left" valign="top"><img src="../../../figures/ifcwallstandard_straigthwall_02-layout1.gif" alt="straight wall body" border="0" height="299" width="393"></td>
 <td align="left" valign="top"><img src="../../../figures/ifcwallstandard_curvedwall_02-layout1.gif" alt="curved wall body" border="0" height="299" width="393"></td>
 </tr>
 <tr>
-<td width="393"><p class="figure">Figure 259 &mdash; Wall body extrusion straight</p></td>
-<td width="393"><p class="figure">Figure 260 &mdash; Wall body extrusion curved</p></td>
+<td width="393"><p class="figure">Figure 262 &mdash; Wall body extrusion straight</p></td>
+<td width="393"><p class="figure">Figure 263 &mdash; Wall body extrusion curved</p></td>
 </tr>
 </table>
 
@@ -375,16 +375,16 @@ a single geometric representation item of type <a href="../../ifcgeometryresourc
 <li><strong>Extrusion</strong>: see standard geometric representation</li>
 <li><strong>Boolean result</strong>: The <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a> shall be supported, allowing for Boolean differences between the swept solid (here <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>) and one or several <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> (or subtypes).</li>
 </ul>
-<p>Figure 261 illustrates a clipping for a straight wall using an <a href="../../ifcgeometricmodelresource/lexical/ifcpolygonalboundedhalfspace.htm">IfcPolygonalBoundedHalfSpace</a> as <i>SecondOperand</i> in the <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a>.</p>
-<p>Figure 262 illustrates a clipping for a curved wall using an <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> as <i>SecondOperand</i> in the <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a>.</p>
+<p>Figure 264 illustrates a clipping for a straight wall using an <a href="../../ifcgeometricmodelresource/lexical/ifcpolygonalboundedhalfspace.htm">IfcPolygonalBoundedHalfSpace</a> as <i>SecondOperand</i> in the <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a>.</p>
+<p>Figure 265 illustrates a clipping for a curved wall using an <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> as <i>SecondOperand</i> in the <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a>.</p>
 <table cellpadding="2" cellspacing="2">
 <tr>
 <td><img src="../../../figures/ifcwallstandard_straigthwall_03-layout1.gif" alt="straight wall clipping" border="0" height="299" width="397"></td>
 <td><img src="../../../figures/ifcwallstandard_curvedwall_03-layout1.gif" alt="curved wall clipping" border="0" height="300" width="400"></td>
 </tr>
 <tr>
-<td width="397"><p class="figure">Figure 261 &mdash; Wall body clipping straight</p></td>
-<td width="400"><p class="figure">Figure 262 &mdash; Wall body clipping curved</p></td>
+<td width="397"><p class="figure">Figure 264 &mdash; Wall body clipping straight</p></td>
+<td width="400"><p class="figure">Figure 265 &mdash; Wall body clipping curved</p></td>
 </tr>
 </table>
 

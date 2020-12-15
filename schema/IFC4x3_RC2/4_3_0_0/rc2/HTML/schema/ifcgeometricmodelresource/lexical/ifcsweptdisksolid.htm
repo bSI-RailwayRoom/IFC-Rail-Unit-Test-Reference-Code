@@ -45,7 +45,7 @@
 <details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcSweptDiskSolid</span> represents the 3D shape by a sweeping representation scheme allowing a two dimensional circularly bounded plane to sweep along a three dimensional <i>Directrix</i> through space.</p>
 <p>The <i>StartParam</i> and <i>EndParam</i> parameter are optional, if not provided they default to the start and end of the <i>Directrix</i>. Only if the <i>Directrix</i> is given by a bounded or by a closed curve, it is permissible to omit the values of <i>StartParam</i> and <i>EndParam</i>.</p>
 <p>If the transitions between consecutive segments of the <i>Directrix</i> are not tangent continuous, the resulting solid is created by a miter at half angle between the two segments. Informal proposition restricts the permissible angle between two non-tangent continuous segments.</p>
-<p>Figure 353 illustrates an example.</p>
+<p>Figure 359 illustrates an example.</p>
 <ul>
 <li><i>Directrix</i> given as <a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a>, having linear and circular arc segments, that are tangent continuous between each segments</li>
 <li><i>Directrix</i> being a bounded and open curve</li>
@@ -57,7 +57,7 @@
 <blockquote class="note">
 <p>NOTE  The geometric item <a href="../../ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a> provides a more compact representation compared with <a href="../../ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a> as is therefore the prefered curve representation for the <i>Directrix</i>.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcsweptdisksolid-layout1.png" alt="&quot;disk solid&quot;" title="Figure 353 &mdash; Swept disk solid geometry"></td></tr><tr><td><p class="figure">Figure 353 &mdash; Swept disk solid geometry</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcsweptdisksolid-layout1.png" alt="&quot;disk solid&quot;" title="Figure 359 &mdash; Swept disk solid geometry"></td></tr><tr><td><p class="figure">Figure 359 &mdash; Swept disk solid geometry</p></td></tr></table></p>
 <blockquote class="extDef">
 <p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
 A swept disk solid is the solid produced by sweeping a circular disk along a three dimensional curve. During the sweeping operation the normal to the plane of the circular disk is in the direction of the tangent to the directrix curve and the center of the disk lies on the directrix. The circular disk may, optionally, have a central hole, in this case the resulting solid has a through hole, or, an internal void when the directrix forms a close curve.</p>

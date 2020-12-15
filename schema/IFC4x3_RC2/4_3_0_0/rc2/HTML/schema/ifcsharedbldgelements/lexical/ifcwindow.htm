@@ -97,17 +97,17 @@ Construction for closing a vertical or near vertical opening in a wall or pitche
 <p class="use-head">
 Parameteric Representation using parameters at <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a></p>
 <p>The parameters, which define the shape of the <span class="self-ref">IfcWindow</span>, are given at the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> and the property sets, which are included in the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>. The <span class="self-ref">IfcWindow</span> only defines the local placement. The overall size of the <span class="self-ref">IfcWindow</span> to be used to apply the lining or panel parameter provided by the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> is determined by the IfcShapeRepresentation with the RepresentationIdentifier = 'Profile'. Only in case of an <span class="self-ref">IfcWindow</span> inserted into an <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> using the <a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a> relatioship, having a horizontal extrusion (along the y-axis of the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>), the overall size is determined by the extrusion profile of the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a>.</p>
-<p>Figure 263 illustrates the insertion of a window into the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> by creating an instance of <span class="self-ref">IfcWindow</span> with <i>PartitioningType = DoublePanelHorizontal</i>. The parameters <i>OverallHeight</i> and <i>OverallWidth</i> show the extent of the window in the positive Z and X axis of the local placement of the window. The lining and the transom are created by the given parameters.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout1.gif" alt="&quot;window 1&quot;" title="Figure 263 &mdash; Window placement"></td></tr><tr><td><p class="figure">Figure 263 &mdash; Window placement</p></td></tr></table></p>
-<p>Figure 264 illustrates the final window (DoublePanelHorizontal) with first panel having <i>PanelPosition = TOP</i>, <i>OperationType = BOTTOMHUNG</i> and second panel having <i>PanelPosition = BOTTOM</i> and <i>OperationType = TILTANDTURNLEFTHAND</i>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout2.gif" alt="&quot;window 2&quot;" title="Figure 264 &mdash; Window planes"></td></tr><tr><td><p class="figure">Figure 264 &mdash; Window planes</p></td></tr></table></p>
+<p>Figure 266 illustrates the insertion of a window into the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> by creating an instance of <span class="self-ref">IfcWindow</span> with <i>PartitioningType = DoublePanelHorizontal</i>. The parameters <i>OverallHeight</i> and <i>OverallWidth</i> show the extent of the window in the positive Z and X axis of the local placement of the window. The lining and the transom are created by the given parameters.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout1.gif" alt="&quot;window 1&quot;" title="Figure 266 &mdash; Window placement"></td></tr><tr><td><p class="figure">Figure 266 &mdash; Window placement</p></td></tr></table></p>
+<p>Figure 267 illustrates the final window (DoublePanelHorizontal) with first panel having <i>PanelPosition = TOP</i>, <i>OperationType = BOTTOMHUNG</i> and second panel having <i>PanelPosition = BOTTOM</i> and <i>OperationType = TILTANDTURNLEFTHAND</i>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout2.gif" alt="&quot;window 2&quot;" title="Figure 267 &mdash; Window planes"></td></tr><tr><td><p class="figure">Figure 267 &mdash; Window planes</p></td></tr></table></p>
 <p class="use-head">
 Window opening operation by window type</p>
 <p>The parameters that defines the shape of the <span class="self-ref">IfcWindow</span>, are given at the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> and the property sets, which are included in the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>. The <span class="self-ref">IfcWindow</span> only defines the local placement which determines the opening direction of the window. The overall layout of the <span class="self-ref">IfcWindow</span> is determined by its <i>IfcWindowType.PartitioningType</i>. Each window panel has its own operation type, provided by <i>IfcWindowPanelProperties.OperationType</i>. All window panels are assumed to open into the same direction (if relevant for the particular window panel operation. The hindge side (whether a window opens to the left or to the right) is determined by the <a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelproperties.htm">IfcWindowPanelProperties</a>.<i>OperationType</i>.</p>
 <blockquote class="note">
 <p>NOTE   There are different conventions in different countries on how to show the symbolic presentation of the window panel operation (the &quot;triangles&quot;). Either as seen from the exterior, or from the interior side. The following figures show the symbolics from the exterior side (the convention as used predominately in Europe).</p>
 </blockquote>
-<p>Figure 265 illustrates window operation types.</p>
+<p>Figure 268 illustrates window operation types.</p>
 <table><tr><td><table border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr valign="top">
@@ -153,7 +153,7 @@ window, given by <i>IfcWindowPanelProperties.OperationType</i>
 </tbody>
 </table>
 </td></tr>
-<tr><td><p class="figure">Figure 265 &mdash; Window operations</p></td></tr>
+<tr><td><p class="figure">Figure 268 &mdash; Window operations</p></td></tr>
 </table>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
@@ -483,7 +483,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
 <li>the <i>Spatial Containment</i> (defined here), or</li>
 <li>the <i>Element Composition</i>.</li>
 </ul>
-<p>The <span class="self-ref">IfcWindow</span> may also be connected to the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> in which it is placed as a filler. In this case, the spatial containment relationship shall be provided, see Figure 266.</p>
+<p>The <span class="self-ref">IfcWindow</span> may also be connected to the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> in which it is placed as a filler. In this case, the spatial containment relationship shall be provided, see Figure 269.</p>
 <table>
  
 <tr valign="bottom">
@@ -496,7 +496,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
  </tr>
  
 <tr>
-  <td><p class="figure">Figure 266 &mdash; Window spatial containment</p></td>
+  <td><p class="figure">Figure 269 &mdash; Window spatial containment</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>

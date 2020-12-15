@@ -42,20 +42,20 @@
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcBoxedHalfSpace</span> is used (as its supertype <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a>) only within Boolean operations. It divides the domain into exactly two subsets, where the domain in question is that of the attribute <i>Enclosure</i>.</p>
-<p>The purpose of the attribute <i>Enclosure</i> is to provide a search box for the other operand in the Boolean operation. It shall be sufficiently large to fully enclose the resulting solid after the Boolean operation with the half space. It however does not alter the final result. The result of the Boolean operation would be the same, as if executed by the supertype <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a>. See Figure 325 below.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcboxedhalfspace_01.png" alt="&quot;correct use of enclosure&quot;" title="Figure 325 &mdash; Boxed half space operands"></td></tr><tr><td><p class="figure">Figure 325 &mdash; Boxed half space operands</p></td></tr></table></p>
+<p>The purpose of the attribute <i>Enclosure</i> is to provide a search box for the other operand in the Boolean operation. It shall be sufficiently large to fully enclose the resulting solid after the Boolean operation with the half space. It however does not alter the final result. The result of the Boolean operation would be the same, as if executed by the supertype <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a>. See Figure 331 below.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcboxedhalfspace_01.png" alt="&quot;correct use of enclosure&quot;" title="Figure 331 &mdash; Boxed half space operands"></td></tr><tr><td><p class="figure">Figure 331 &mdash; Boxed half space operands</p></td></tr></table></p>
 <p>The <a href="../../ifcgeometricmodelresource/lexical/ifcboundingbox.htm">IfcBoundingBox</a> that provides the enclosure is given for the convenience of the receiving application to enable the use of size box comparison for efficiency (for example, to check first whether size boxes intersect, if not no calculations has to be done to check whether the solids of the entities intersect).</p>
 <table summary="boxed half space">
 <tr>
 <td width="600" valign="top" align="left"><img src="../../../figures/ifcboxedhalfspace-layout1.png" border="0" height="480" width="600" alt="boxed half space"></td>
 <td>The <i>Enclosure</i> therefore helps to prevent dealing with infinite-size related issues. The enclosure box is
 positioned within the object coordinate system, established by the <i>ObjectPlacement</i> of the element represented
-(for example, by <a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>). Figure 326 shows the <i>Enclosure</i> box being sufficiently large to
+(for example, by <a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>). Figure 332 shows the <i>Enclosure</i> box being sufficiently large to
 fully enclose the Boolean result.</td>
 </tr>
 <tr>
 <td>
-<p class="figure">Figure 326 &mdash; Boxed half space geometry</p>
+<p class="figure">Figure 332 &mdash; Boxed half space geometry</p>
 </td>
 <td>&nbsp;</td>
 </tr>

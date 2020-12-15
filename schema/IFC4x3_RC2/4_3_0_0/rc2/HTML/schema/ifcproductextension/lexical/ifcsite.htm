@@ -62,12 +62,12 @@
 <li>PARTIAL = site section</li>
 </ul>
 <p>The <span class="self-ref">IfcSite</span> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical).</p>
-<p>Figure 177 shows the <span class="self-ref">IfcSite</span> as part of the spatial structure. In addition to the logical spatial structure, also the placement hierarchy is shown. In this example the spatial structure hierarchy and the placement hierarchy are identical.</p>
+<p>Figure 180 shows the <span class="self-ref">IfcSite</span> as part of the spatial structure. In addition to the logical spatial structure, also the placement hierarchy is shown. In this example the spatial structure hierarchy and the placement hierarchy are identical.</p>
 <blockquote class="note">
 <p>NOTE  Detailed requirements on mandatory element containment and placement structure relationships are given in view definitions and implementer agreements.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcsite-spatialstructure.png" alt="&quot;IfcSite as part of a spatial structure&quot;" title="Figure 177 &mdash; Site composition"></td></tr><tr><td><p class="figure">Figure 177 &mdash; Site composition</p></td></tr></table></p>
-<p>Figure 178 describes the heights and elevations of the <span class="self-ref">IfcSite</span>. It is used to provide the geographic longitude, latitude, and height above sea level for the origin of the site. The origin of the site is the local placement.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcsite-spatialstructure.png" alt="&quot;IfcSite as part of a spatial structure&quot;" title="Figure 180 &mdash; Site composition"></td></tr><tr><td><p class="figure">Figure 180 &mdash; Site composition</p></td></tr></table></p>
+<p>Figure 181 describes the heights and elevations of the <span class="self-ref">IfcSite</span>. It is used to provide the geographic longitude, latitude, and height above sea level for the origin of the site. The origin of the site is the local placement.</p>
 <p>The provision of longitude, latitude, height at the <span class="self-ref">IfcSite</span> for georeferencing is provided for upward compatibility reasons. It requires a single instance of <span class="self-ref">IfcSite</span> and WGS84 as coordinate reference system.</p>
 <p>For exact georeferencing (or referencing to any other geographic coordinate system other than WSG84) the entities <a href="../../ifcrepresentationresource/lexical/ifccoordinatereferencesystem.htm">IfcCoordinateReferenceSystem</a> and <a href="../../ifcrepresentationresource/lexical/ifcmapconversion.htm">IfcMapConversion</a> have to be used to define an exact mapping of the project engineering coordinate system to the geographic (or map) coordinate system.</p>
 <ul>
@@ -82,7 +82,7 @@
 </tr>
 <tr>
 <td>
-<p class="figure">Figure 178 &mdash; Site elevations</p>
+<p class="figure">Figure 181 &mdash; Site elevations</p>
 </td>
 </tr>
 </tbody>
@@ -394,7 +394,7 @@ Address given to the site for postal purposes.
 <li><i>IfcShapeRepresentation.RepresentationIdentifier</i> = 'SurveyPoints'</li>
 <li><i>IfcShapeRepresentation.RepresentationType</i> = 'GeometricCurveSet'</li>
 </ul>
-<p>Figure 179 shows a set of survey points, given as 3D Cartesian points within the object coordinate system of the site. Figure 180 shows the result after facetation.</p>
+<p>Figure 182 shows a set of survey points, given as 3D Cartesian points within the object coordinate system of the site. Figure 183 shows the result after facetation.</p>
 <p>The set of <a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a> is included in the set of <i>IfcGeometricCurveSet.Elements</i>.</p>
 <table cellpadding="2" cellspacing="2" summary="survey points representation">
 <tr>
@@ -402,11 +402,11 @@ Address given to the site for postal purposes.
 <td><img src="../../../figures/ifcsite-standard-facets-points.gif" alt="facetation of points" border="0" height="300" width="400"></td>
 </tr>
 <tr>
-<td width="400"><p class="figure">Figure 179 &mdash; Site survey points</p></td>
-<td width="400"><p class="figure">Figure 180 &mdash; Site survey points facetation</p></td>
+<td width="400"><p class="figure">Figure 182 &mdash; Site survey points</p></td>
+<td width="400"><p class="figure">Figure 183 &mdash; Site survey points facetation</p></td>
 </tr>
 </table>
-<p>Figure 181 shows A set of survey points, given as 3D Cartesian points, and a set of break points, given as a set of lines, connecting some survey points, within the object coordinate system of the site. Figure 182 shows the result after facetation.</p>
+<p>Figure 184 shows A set of survey points, given as 3D Cartesian points, and a set of break points, given as a set of lines, connecting some survey points, within the object coordinate system of the site. Figure 185 shows the result after facetation.</p>
 <p>The set of <a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a> and the set of <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a> are included in the set of <i>IfcGeometricCurveSet.Elements</i>.</p>
 <table cellpadding="2" cellspacing="2" summary="survey points representation">
 <tr>
@@ -414,8 +414,8 @@ Address given to the site for postal purposes.
 <td><img src="../../../figures/ifcsite-standard-facets-breaklines.gif" alt="facetation with breakpoints" border="0" height="300" width="400"></td>
 </tr>
 <tr>
-<td width="400"><p class="figure">Figure 181 &mdash; Site breaklines</p></td>
-<td width="400"><p class="figure">Figure 182 &mdash; Site breaklines facetation</p></td>
+<td width="400"><p class="figure">Figure 184 &mdash; Site breaklines</p></td>
+<td width="400"><p class="figure">Figure 185 &mdash; Site breaklines facetation</p></td>
 </tr>
 </table>
 <blockquote class="note">

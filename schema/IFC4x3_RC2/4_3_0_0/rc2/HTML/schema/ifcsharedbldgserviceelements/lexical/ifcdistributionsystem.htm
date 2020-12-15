@@ -45,12 +45,12 @@
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p>A distribution system is a network designed to receive, store, maintain, distribute, or control the flow of a distribution media. A common example is a heating hot water system that consists of a pump, a tank, and an interconnected piping system for distributing hot water to terminals.<br>
-The group <a href="$element://%7B4EDF40D6-B0CB-4feb-9A1A-2EAFA23D7E07%7D"><font color="#0000ff"><u>IfcDistributionSystem</u></font></a> defines the occurrence of a specialized system for use within the context of building services or utilities for built facilities.<br>
+The group <span class="self-ref">IfcDistributionSystem</span> defines the occurrence of a specialized system for use within the context of building services or utilities for built facilities.<br>
 Important functionalities for the description of a distribution system are derived from existing IFC entities:</p>
 <ul>
-<li><font color="#ff0000">From </font><a href="$element://%7B34E3790C-B8FF-41f1-B5A1-BD382C9DBD21%7D"><font color="#ff0000"><u>IfcSystem</u></font></a><font color="#ff0000">  it inherits the ability to couple the built system via </font><a href="$element://%7B415054A4-1479-4c32-9A58-BC1E36A488CC%7D"><font color="#ff0000"><u>IfcRelReferencedInSpatialStructure</u></font></a><font color="#ff0000">  to one or more </font><a href="$element://%7BAFD1B7AF-F4A3-42ba-BF29-741A1DEBF281%7D"><font color="#ff0000"><u>IfcSpatialElement</u></font></a><font color="#ff0000"> subtypes as necessary.</font></li>
-<li>From <a href="$element://%7B9F87A6C3-BA39-40f1-A16E-48328E412EAF%7D"><font color="#0000ff"><u>IfcGroup</u></font></a> it inherits the inverse attribute IsGroupedBy, pointing to the relationship class <a href="$element://%7BEE5D94CF-E3EB-49fc-8035-8D06C0925A2E%7D"><font color="#0000ff"><u>IfcRelAssignsToGroup</u></font></a> . This allows the grouping of distribution elements (instances of <a href="$element://%7BD6FBAB6B-EDC4-4561-883E-6AD51D97F2F1%7D"><font color="#0000ff"><u>IfcDistributionElement</u></font></a> subtypes).</li>
-<li>From <a href="$element://%7B82D54863-CD3F-4127-90A2-82628ECFBDC9%7D"><font color="#0000ff"><u>IfcObjectDefinition</u></font></a> it inherits the inverse attribute IsDecomposedBy pointing to the relationship class <a href="$element://%7B12F56CBC-A6CE-493c-8A50-E301CE73BBA5%7D"><font color="#0000ff"><u>IfcRelAggregates</u></font></a>. It provides the hierarchy between the separate (partial) distribution systems. For example, an electrical main circuit may be aggregated into branch circuits.</li>
+<li><font color="#ff0000">From </font><a href="../../ifcproductextension/lexical/ifcsystem.htm">IfcSystem</a><font color="#ff0000">  it inherits the ability to couple the built system via </font><a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a><font color="#ff0000">  to one or more </font><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a><font color="#ff0000"> subtypes as necessary.</font></li>
+<li>From <a href="../../ifckernel/lexical/ifcgroup.htm">IfcGroup</a> it inherits the inverse attribute IsGroupedBy, pointing to the relationship class <a href="../../ifckernel/lexical/ifcrelassignstogroup.htm">IfcRelAssignsToGroup</a>. This allows the grouping of distribution elements (instances of <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> subtypes).</li>
+<li>From <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a> it inherits the inverse attribute IsDecomposedBy pointing to the relationship class <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>. It provides the hierarchy between the separate (partial) distribution systems. For example, an electrical main circuit may be aggregated into branch circuits.</li>
 </ul>
 <p>HISTORY New entity in IFC4.</p>
 </details>
@@ -229,8 +229,8 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 <blockquote class="example">
 <p>EXAMPLE  A gas-powered hot water heater may have three ports: GAS, DOMESTICCOLDWATER, and DOMESTICHOTWATER. The heater is a member of two systems (GAS and DOMESTICCOLDWATER), and hosts one system (DOMESTICHOTWATER) at the corresponding port.</p>
 </blockquote>
-<p>Figure 271 illustrates a distribution system for an electrical circuit.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcdistributionsystem-01.png" alt="&quot;Instance diagram for electrical circuit&quot;" title="Figure 271 &mdash; Distribution system assignment"></td></tr><tr><td><p class="figure">Figure 271 &mdash; Distribution system assignment</p></td></tr></table></p>
+<p>Figure 274 illustrates a distribution system for an electrical circuit.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcdistributionsystem-01.png" alt="&quot;Instance diagram for electrical circuit&quot;" title="Figure 274 &mdash; Distribution system assignment"></td></tr><tr><td><p class="figure">Figure 274 &mdash; Distribution system assignment</p></td></tr></table></p>
 
 <br/><br/>
 

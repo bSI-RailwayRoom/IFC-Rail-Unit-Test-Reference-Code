@@ -61,11 +61,11 @@
 <p>NOTE  View definitions and implementation agreements may restrict spaces with <i>CompositionType</i>=ELEMENT to be non-overlapping.</p>
 </blockquote>
 <p>The <span class="self-ref">IfcSpace</span> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together by using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.</p>
-<p>Figure 183 shows the <span class="self-ref">IfcSpace</span> as part of the spatial structure. It also serves as the spatial container for space related elements.</p>
+<p>Figure 186 shows the <span class="self-ref">IfcSpace</span> as part of the spatial structure. It also serves as the spatial container for space related elements.</p>
 <blockquote class="note">
 <p>NOTE  Detailed requirements on mandatory element containment and placement structure relationships are given in view definitions and implementer agreements.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace-spatialstructure.png" alt="&quot;spatial structure&quot;" title="Figure 183 &mdash; Space composition"></td></tr><tr><td><p class="figure">Figure 183 &mdash; Space composition</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace-spatialstructure.png" alt="&quot;spatial structure&quot;" title="Figure 186 &mdash; Space composition"></td></tr><tr><td><p class="figure">Figure 186 &mdash; Space composition</p></td></tr></table></p>
 <p>The following guidelines should apply for using the <i>Name</i>, <i>Description</i>, <i>LongName</i> and <i>ObjectType</i> attributes.</p>
 <ul>
 <li><i>Name</i> holds the unique name (or space number) from the plan.</li>
@@ -76,7 +76,7 @@
 <blockquote class="note">
 <p>NOTE  In cases of inconsistency between the geometric representation of the <span class="self-ref">IfcSpace</span> and the combined geometric representations of the surrounding <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>, the geometric representation of the space should take priority over the geometric representation of the surrounding space boundaries.</p>
 </blockquote>
-<p>Figure 184 describes the heights and elevations of the <span class="self-ref">IfcSpace</span>.</p>
+<p>Figure 187 describes the heights and elevations of the <span class="self-ref">IfcSpace</span>.</p>
 <ul>
 <li>elevation of the space (top of construction slab) equals elevation of storey: provided by <i>IfcBuildingStorey.Elevation</i> relative to em&gt;IfcBuilding.ElevationOfRefHeight</li>
 <li>elevation of the space flooring (top of flooring on top of slab): provided by <i>IfcSpace.ElevationWithFlooring</i> relative to <i>IfcBuilding.ElevationOfRefHeight</i></li>
@@ -84,7 +84,7 @@
 <li>floor height of space (top of slab below to top of flooring): provided by BaseQuantity with Name=&quot;FinishFloorHeight&quot;</li>
 <li>net height of space (top of flooring to bottom of suspended ceiling): provided by BaseQuantity with Name=&quot;FinishCeilingHeight&quot;</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_heights.png" alt="&quot;space heights&quot;" title="Figure 184 &mdash; Space elevations"></td></tr><tr><td><p class="figure">Figure 184 &mdash; Space elevations</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_heights.png" alt="&quot;space heights&quot;" title="Figure 187 &mdash; Space elevations"></td></tr><tr><td><p class="figure">Figure 187 &mdash; Space elevations</p></td></tr></table></p>
 <blockquote class="history">
 <p>HISTORY  New entity in IFC1.0</p>
 </blockquote>
@@ -499,11 +499,11 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
  
 <tr valign="top">
   <td align="left" valign="top"><img src="../../../figures/ifcspace_2d-layout1.gif" alt="2d representation" border="0" height="300" width="400"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; Figure 185 shows a two-dimensional bounded curve representing the
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 188 shows a two-dimensional bounded curve representing the
 foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 185 &mdash; Space footprint</p></td>
+  <td><p class="figure">Figure 188 &mdash; Space footprint</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -518,8 +518,8 @@ foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
 <li><strong>Profile</strong>: <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> is required, <a href="../../ifcprofileresource/lexical/ifcarbitraryprofiledefwithvoids.htm">IfcArbitraryProfileDefWithVoids</a> shall be supported.</li>
 <li><strong>Extrusion</strong>: The extrusion direction shall be vertically, i.e., along the positive Z Axis of the co-ordinate system of the containing spatial structure element.</li>
 </ul>
-<p>Figure 186 shows an extrusion of an arbitrary profile definition with voids into the swept area solid of <span class="self-ref">IfcSpace</span>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_standard-layout1.gif" alt="&quot;fig1&quot;" title="Figure 186 &mdash; Space body swept solid"></td></tr><tr><td><p class="figure">Figure 186 &mdash; Space body swept solid</p></td></tr></table></p>
+<p>Figure 189 shows an extrusion of an arbitrary profile definition with voids into the swept area solid of <span class="self-ref">IfcSpace</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_standard-layout1.gif" alt="&quot;fig1&quot;" title="Figure 189 &mdash; Space body swept solid"></td></tr><tr><td><p class="figure">Figure 189 &mdash; Space body swept solid</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -532,8 +532,8 @@ foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
 <li><strong>Extrusion</strong>: The extrusion direction shall be vertically, i.e., along the positive Z Axis of the co-ordinate system of the containing spatial structure element.</li>
 <li><strong>Boolean result</strong>: The difference operation with the second operand being of type <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> (or one of its subtypes) shall be supported.</li>
 </ul>
-<p>Figure 187 shows an extrusion of an arbitrary profile definition into the swept area solid. The solid and an half space solid are operands of the Boolean result of <span class="self-ref">IfcSpace</span>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_advanced-layout1.gif" alt="&quot;fig2&quot;" title="Figure 187 &mdash; Space body clipping"></td></tr><tr><td><p class="figure">Figure 187 &mdash; Space body clipping</p></td></tr></table></p>
+<p>Figure 190 shows an extrusion of an arbitrary profile definition into the swept area solid. The solid and an half space solid are operands of the Boolean result of <span class="self-ref">IfcSpace</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_advanced-layout1.gif" alt="&quot;fig2&quot;" title="Figure 190 &mdash; Space body clipping"></td></tr><tr><td><p class="figure">Figure 190 &mdash; Space body clipping</p></td></tr></table></p>
 
 <br/><br/>
 

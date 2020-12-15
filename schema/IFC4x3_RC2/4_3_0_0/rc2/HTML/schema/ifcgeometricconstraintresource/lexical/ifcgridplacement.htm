@@ -68,14 +68,14 @@
 <table cellpadding="2" cellspacing="2" summary="Geometry use definition">
 <tr><td align="left" valign="top"><img src="../../../figures/ifcgridplacement-layout1.png" alt="without ref direction" border="0" height="300" width="400"></td>
 <td style="vertical-align:bottom">
-<p>Figure 314 illustrates the case where <i>PlacementRefDirection</i> is <u>not</u> given - the object coordinate system is defined by:</p>
+<p>Figure 320 illustrates the case where <i>PlacementRefDirection</i> is <u>not</u> given - the object coordinate system is defined by:</p>
 <ul>
 <li><u>its location</u>: given by the virtual grid intersection of <i>PlacementLocation</i></li>
 <li><u>its x-axis direction</u>: given by the tangent of the first intersecting axis in the offset location of the virtual grid intersection</li>
 </ul>
 </td>
 </tr>
-<tr><td><p class="figure">Figure 314 &mdash; Grid placement</p></td>
+<tr><td><p class="figure">Figure 320 &mdash; Grid placement</p></td>
 <td>&nbsp;</td>
 </tr>
 </table>
@@ -83,28 +83,28 @@
 <tr>
 <td align="left" valign="top"><img src="../../../figures/ifcgridplacement-layout3.png" alt="with ref direction" border="0" height="300" width="400"></td>
 <td style="vertical-align:bottom">
-<p>Figure 315 illustrates the case where <i>PlacementRefDirection</i> is given as an <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>- the object coordinate system is defined by:
+<p>Figure 321 illustrates the case where <i>PlacementRefDirection</i> is given as an <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>- the object coordinate system is defined by:
 <ul>
 <li><u>its location</u>: given by the virtual grid intersection of <i>PlacementLocation</i></li>
 <li><u>its x-axis direction</u>: given by the <i>DirectionRatios</i> of the <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>, only the ratios for x and y are taken into account,</li>
 </ul>
 </td>
 </tr>
-<tr><td><p class="figure">Figure 315 &mdash; Grid placement with direction</p></td>
+<tr><td><p class="figure">Figure 321 &mdash; Grid placement with direction</p></td>
 <td>&nbsp;</td>
 </tr>
 </table>
 <table cellpadding="2" cellspacing="2" summary="Geometry use definition">
 <tr><td align="left" valign="top"><img src="../../../figures/ifcgridplacement-layout2.png" alt="with ref direction" border="0" height="300" width="400"></td>
 <td style="vertical-align:bottom">
-<p>Figure 316 illustrates the case where <i>PlacementRefDirection</i> is given as an <a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a>- the object coordinate system is defined by:
+<p>Figure 322 illustrates the case where <i>PlacementRefDirection</i> is given as an <a href="../../ifcgeometricconstraintresource/lexical/ifcvirtualgridintersection.htm">IfcVirtualGridIntersection</a>- the object coordinate system is defined by:
 <ul>
 <li><u>its location</u>: given by the virtual grid intersection of <i>PlacementLocation</i></li>
 <li><u>its x-axis direction</u>: given by the tangent of the line between the virtual grid intersection of the <i>PlacementLocation</i> and the virtual grid intersection of the <i>PlacementRefDirection</i>.</li>
 </ul>
 </td>
 </tr>
-<tr><td><p class="figure">Figure 316 &mdash; Grid placement with intersection</p></td>
+<tr><td><p class="figure">Figure 322 &mdash; Grid placement with intersection</p></td>
 <td>&nbsp;</td>
 </tr>
 </table>

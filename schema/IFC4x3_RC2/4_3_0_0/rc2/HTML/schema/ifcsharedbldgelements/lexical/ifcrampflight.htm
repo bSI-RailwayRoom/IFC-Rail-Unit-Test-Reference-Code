@@ -365,13 +365,13 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <a id="axis-2d-geometry" />
 <p class="use-head">Axis 2D Geometry</p>
 <p>The <a href="../../templates/axis-2d-geometry.htm">Axis 2D Geometry</a> concept applies to this entity.</p><p>The walking line is represented by a two-dimensional open curve as the axis. The curve is directed into the upward direction (direction has to be interpreted as specified at the subtypes of <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>).</p>
-<p>Figure 235 illustrates the axis representation which has the following constraints:</p>
+<p>Figure 238 illustrates the axis representation which has the following constraints:</p>
 <ul>
 <li>In case of straight flights the curve shall be a single item of type <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>.</li>
 <li>In case of winding flights the curve shall be a single item of type <a href="../../ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a>.</li>
 <li>In case of a curved flight or a spiral flight the curve shall be a single item of type <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a>.</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstairflight_01-layout1.gif" alt="&quot;walking line&quot;" title="Figure 235 &mdash; Ramp flight axis"></td></tr><tr><td><p class="figure">Figure 235 &mdash; Ramp flight axis</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstairflight_01-layout1.gif" alt="&quot;walking line&quot;" title="Figure 238 &mdash; Ramp flight axis"></td></tr><tr><td><p class="figure">Figure 238 &mdash; Ramp flight axis</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -383,13 +383,13 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <tr><td><p class="table">Table 169 &mdash; IfcRampFlight FootPrint Geometry</td></tr></table>
 
 <p>The flight foot print, including the flight boundary is represented by a two-dimensional geometric curve set.</p>
-<p>Figure 236 illustrates the footprint representation which has the following constraints:</p>
+<p>Figure 239 illustrates the footprint representation which has the following constraints:</p>
 <ul>
 <li>In case of straight flights the curve set shall consist of a single item of type <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>.</li>
 <li>In case of winding flights or curved flights the curve set shall consists of a single item of type <a href="../../ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a>.</li>
 <li>In case of a spiral flight the curve set shall consists of a single item of type <a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a> or <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>.</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstairflight_02-layout1.gif" alt="&quot;boundary&quot;" title="Figure 236 &mdash; Ramp flight footprint"></td></tr><tr><td><p class="figure">Figure 236 &mdash; Ramp flight footprint</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstairflight_02-layout1.gif" alt="&quot;boundary&quot;" title="Figure 239 &mdash; Ramp flight footprint"></td></tr><tr><td><p class="figure">Figure 239 &mdash; Ramp flight footprint</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -401,8 +401,8 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <li><strong>Profile</strong>: <a href="../../ifcprofileresource/lexical/ifcrectangleprofiledef.htm">IfcRectangleProfileDef</a> and <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> shall be supported.</li>
 <li><strong>Extrusion</strong>: The profile shall be extruded in any direction relative to the XY plane of the position coordinate system of the <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>. Therefore non-perpendicular sweep operation has to be supported. It might be further constrained to be in the direction of the global z-axis in implementers agreements.</li>
 </ul>
-<p>Figure 237 illustrates the body representation.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcrampflight-layout1.gif" alt="&quot;fig1&quot;" title="Figure 237 &mdash; Ramp flight body"></td></tr><tr><td><p class="figure">Figure 237 &mdash; Ramp flight body</p></td></tr></table></p>
+<p>Figure 240 illustrates the body representation.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcrampflight-layout1.gif" alt="&quot;fig1&quot;" title="Figure 240 &mdash; Ramp flight body"></td></tr><tr><td><p class="figure">Figure 240 &mdash; Ramp flight body</p></td></tr></table></p>
 
 <br/><br/>
 

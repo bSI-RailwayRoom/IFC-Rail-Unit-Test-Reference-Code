@@ -8633,7 +8633,7 @@ Note that the service provided by the hose (water/foam) is determined by the con
 						<IfcSimplePropertyTemplate xsi:nil="true" href="NumberOfChairs_1B_B20qUaHuO00025QrEV" />
 					</HasPropertyTemplates>
 				</IfcPropertySetTemplate>
-				<IfcPropertySetTemplate GlobalId="22bpHpV7n79RGrMAIe0WWU" Name="Pset_GeotechnicalAssemblyCommon" Description="Properties describing the characteristics of any geotechnical model. A Status of �New� should not be associated to a [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;IfcGeotechnicalAssembly&lt;/u&gt;&lt;/font&gt;]($element://{85B77FDE-67EA-40a4-ADA4-ADD4C95A7D3E}) or [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;IfcGeotechnicalStratum&lt;/u&gt;&lt;/font&gt;]($element://{FAEFB134-3800-4995-B222-B921D7E287BF}), as other entities are used for earthworks and courses." ApplicableEntity="IfcGeotechnicalAssembly">
+				<IfcPropertySetTemplate GlobalId="22bpHpV7n79RGrMAIe0WWU" Name="Pset_GeotechnicalAssemblyCommon" Description="Properties describing the characteristics of any geotechnical model. A Status of �New� should not be associated to a _IfcGeotechnicalAssembly_ or _IfcGeotechnicalStratum_, as other entities are used for earthworks and courses." ApplicableEntity="IfcGeotechnicalAssembly">
 					<HasPropertyTemplates>
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Limitations_0wl2LrL0b7mR5ua2A1tgcx" />
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Methodology_2rVw3QGqHCNhBarOsArmh" />
@@ -8641,7 +8641,7 @@ Note that the service provided by the hose (water/foam) is determined by the con
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Status_3dE_6Mlwz5CeQvFuTvtn2Q" />
 					</HasPropertyTemplates>
 				</IfcPropertySetTemplate>
-				<IfcPropertySetTemplate GlobalId="0JwLqHW2rDdfZ9ytdM49Bf" Name="Pset_GeotechnicalStratumCommon" Description="Properties describing the characteristics of any solid, water or void stratum. A status of �New� should not be associated to a [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;IfcGeotechnicalAssembly&lt;/u&gt;&lt;/font&gt;]($element://{85B77FDE-67EA-40a4-ADA4-ADD4C95A7D3E})  or [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;IfcSolidStratum&lt;/u&gt;&lt;/font&gt;]($element://{C1BDB3F2-0742-4fc7-B313-53194628B9C2}) , as other entities are used for earthworks and courses." ApplicableEntity="IfcGeotechnicalStratum">
+				<IfcPropertySetTemplate GlobalId="0JwLqHW2rDdfZ9ytdM49Bf" Name="Pset_GeotechnicalStratumCommon" Description="Properties describing the characteristics of any solid, water or void stratum. A status of �New� should not be associated to a _IfcGeotechnicalAssembly_  or _IfcSolidStratum_, as other entities are used for earthworks and courses." ApplicableEntity="IfcGeotechnicalStratum">
 					<HasPropertyTemplates>
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Colour_0iHTZHO0b8BO33foHizEN0" />
 						<IfcSimplePropertyTemplate xsi:nil="true" href="IsTopographic_2E3ZmSESz08wrQaLoH1SHI" />
@@ -11404,7 +11404,7 @@ Note that a pressure relief valve is constrained to have a single port pattern."
 						<IfcSimplePropertyTemplate xsi:nil="true" href="GrossWeight_1InDYDQ0bF4887_MZria4x" />
 					</HasPropertyTemplates>
 				</IfcPropertySetTemplate>
-				<IfcPropertySetTemplate GlobalId="2S5$9w7kbFUQZD_9dp3trc" Name="Qto_ArealStratumBaseQuantities" Description="Quantity measures associated to areal stratum such as in a geotechnical slice. Uncertainty is documented in [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;Pset_Uncertainty&lt;/u&gt;&lt;/font&gt;]($element://{EB7C91FE-A348-4889-BDFA-65CC36C81917})." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
+				<IfcPropertySetTemplate GlobalId="2S5$9w7kbFUQZD_9dp3trc" Name="Qto_ArealStratumBaseQuantities" Description="Quantity measures associated to areal stratum such as in a geotechnical slice. Uncertainty is documented in _Pset_Uncertainty_." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
 					<HasPropertyTemplates>
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Area_30mgAbQ1T07OVkS7olRIhF" />
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Length_2jJcrH4rEGfeVtDgy1kcg" />
@@ -11744,7 +11744,7 @@ Note that a pressure relief valve is constrained to have a single port pattern."
 						<IfcSimplePropertyTemplate xsi:nil="true" href="GrossWeight_1SeGGNb75AXfTrOHr7Myp9" />
 					</HasPropertyTemplates>
 				</IfcPropertySetTemplate>
-				<IfcPropertySetTemplate GlobalId="0uOCy_pGv4HuAxLx$ilI0j" Name="Qto_LinearStratumBaseQuantities" Description="Quantity measures associated to a linear stratum such as in a borehole. Uncertainty is documented in [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;Pset_Uncertainty&lt;/u&gt;&lt;/font&gt;]($element://{EB7C91FE-A348-4889-BDFA-65CC36C81917})." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
+				<IfcPropertySetTemplate GlobalId="0uOCy_pGv4HuAxLx$ilI0j" Name="Qto_LinearStratumBaseQuantities" Description="Quantity measures associated to a linear stratum such as in a borehole. Uncertainty is documented in _Pset_Uncertainty_." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
 					<HasPropertyTemplates>
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Diameter_0vS54g5YD0D8XXzjqMTI8V" />
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Length_2G8M_eiDEgwJIrvinbXuH" />
@@ -11991,7 +11991,7 @@ Note that a pressure relief valve is constrained to have a single port pattern."
 						<IfcSimplePropertyTemplate xsi:nil="true" href="GrossWeight_2wYRWuU9n6FwcgXHQuQT1Z" />
 					</HasPropertyTemplates>
 				</IfcPropertySetTemplate>
-				<IfcPropertySetTemplate GlobalId="0yBOOdpVXDS9qQEv_kTjZb" Name="Qto_VolumetricStratumBaseQuantities" Description="Quantity measures associated to volumetric stratum such as in a geotechnical model. Uncertainty is documented in [&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;Pset_Uncertainty&lt;/u&gt;&lt;/font&gt;]($element://{EB7C91FE-A348-4889-BDFA-65CC36C81917})." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
+				<IfcPropertySetTemplate GlobalId="0yBOOdpVXDS9qQEv_kTjZb" Name="Qto_VolumetricStratumBaseQuantities" Description="Quantity measures associated to volumetric stratum such as in a geotechnical model. Uncertainty is documented in _Pset_Uncertainty_." TemplateType="qto_occurrencedriven" ApplicableEntity="IfcGeotechnicalStratum">
 					<HasPropertyTemplates>
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Area_1WROcqqYjDCOj4JQqqzQwC" />
 						<IfcSimplePropertyTemplate xsi:nil="true" href="Mass_1RL9YZzxfF8OOLIYHIynpF" />
