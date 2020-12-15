@@ -8,3 +8,6 @@ The repository to maintain IFC4.3.RC.2 production schema, including the EXPRESS 
 | IfcCurveSegment      |  |  |
 |- Placement      | MODIFIED | StartPlacement is changed name to Placement |
 |- SegmentStart      | ADDED | New attribute SegmentStart is added to IfcCurveSegment |
+| IfcAlignmentHorizontalSegmentTypeEnum      |  |  |
+|- CUBICPARABOLA      | ADDED | CUBICPARABOLA is added as a predefined type of IfcAlignmentHorizontalSegment |
+| IfcSpatialReferenceSelect      | MODIFIED | IfcSystem is replaced by IfcGroup to be selected |
