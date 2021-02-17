@@ -1,0 +1,151 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcParameterizedProfileDef</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 15 index3 3 index4 14 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.15.3.15");
+//-->
+</script>
+
+<h4 class="num">IfcParameterizedProfileDef</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Profil - parametrische Definition</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Parameterized Profile Def</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The parameterized profile definition defines a 2D position coordinate system to which the parameters of the different profiles relate to. All profiles are defined centric to the origin of the position coordinate system, or more specific, the origin [0.,0.] shall be in the center of the bounding box of the profile.</p>
+<p>The <i>Position</i> attribute of <span class="self-ref">IfcParameterizedProfileDef</span> is used to position the profile within the XY plane of the underlying coordinate system of the swept surface geometry, the swept area solid or the sectioned spine. It can be used to position the profile at any point which becomes the origin [0.,0.,0.] of the extruded or rotated surface or solid.</p>
+<p>The <i>Position</i> attribute should not be used if the transformation can be specified in a containing object instead. In particular, this applies if the <span class="self-ref">IfcParameterizedProfileDef</span> is referenced as <i>SweptArea</i> in subtypes of <a href="../../ifcgeometricmodelresource/lexical/ifcsweptareasolid.htm">IfcSweptAreaSolid</a> or as <i>CrossSections</i> in <a href="../../ifcgeometricmodelresource/lexical/ifcsectionedspine.htm">IfcSectionedSpine</a>.</p>
+<p>Several subtypes of <span class="self-ref">IfcParameterizedProfileDef</span> provide shape parameters which are optional. Sending systems should always provide values for these parameters if possible. If these parameters are left unspecified, receiving systems may retrieve values for them by external reference (if a reference to an external document or library is given; see guidance at <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>), or estimate them, or simply assume zero values.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x">
+<p>IFC2x CHANGE  The <span class="self-ref">IfcParameterizedProfileDef</span> is introduced as an intermediate new abstract entity that unifies the definition and usage of the position coordinate system for all parameterized profiles. The Position attribute has been removed at all subtypes (like <a href="../../ifcprofileresource/lexical/ifcrectangleprofiledef.htm">IfcRectangleProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifccircleprofiledef.htm">IfcCircleProfileDef</a>, etc.).</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  All profile origins are now in the center of the bounding box.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  <i>Position</i> attribute made optional (default: identity transformation).<br>
+Several radius parameters in subtypes have been changed from optional <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a> (assumed default: 0.) to optional <a href="../../ifcmeasureresource/lexical/ifcnonnegativelengthmeasure.htm">IfcNonNegativeLengthMeasure</a> (default: unspecified). This change allows to explicitly specify zero radius. Sending systems shall export 0. values if parameters are known to be 0.<br>
+Subtypes <i>IfcCraneRailAShapeProfileDef</i> and <i>IfcCraneRailFShapeProfileDef</i> deleted. Rail profiles shall be modeled as <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> or as <a href="../../ifcprofileresource/lexical/ifcasymmetricishapeprofiledef.htm">IfcAsymmetricIShapeProfileDef</a> together with appropriate external reference.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>3</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement2d.htm">IfcAxis2Placement2D</a></td><td>? </td><td>
+Position coordinate system of the parameterized profile definition. If unspecified, no translation and no rotation is applied.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcparameterizedprofiledef.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,218,66" href="../../../schema/ifcprofileresource/lexical/ifcasymmetricishapeprofiledef.htm" alt="IfcAsymmetricIShapeProfileDef" />
+<area shape="rect" coords="30,78,218,90" href="../../../schema/ifcprofileresource/lexical/ifccircleprofiledef.htm" alt="IfcCircleProfileDef" />
+<area shape="rect" coords="30,102,218,114" href="../../../schema/ifcprofileresource/lexical/ifccshapeprofiledef.htm" alt="IfcCShapeProfileDef" />
+<area shape="rect" coords="30,126,218,138" href="../../../schema/ifcprofileresource/lexical/ifcellipseprofiledef.htm" alt="IfcEllipseProfileDef" />
+<area shape="rect" coords="30,150,218,162" href="../../../schema/ifcprofileresource/lexical/ifcishapeprofiledef.htm" alt="IfcIShapeProfileDef" />
+<area shape="rect" coords="30,174,218,186" href="../../../schema/ifcprofileresource/lexical/ifclshapeprofiledef.htm" alt="IfcLShapeProfileDef" />
+<area shape="rect" coords="30,198,218,210" href="../../../schema/ifcprofileresource/lexical/ifcrectangleprofiledef.htm" alt="IfcRectangleProfileDef" />
+<area shape="rect" coords="30,222,218,234" href="../../../schema/ifcprofileresource/lexical/ifctrapeziumprofiledef.htm" alt="IfcTrapeziumProfileDef" />
+<area shape="rect" coords="30,246,218,258" href="../../../schema/ifcprofileresource/lexical/ifctshapeprofiledef.htm" alt="IfcTShapeProfileDef" />
+<area shape="rect" coords="30,270,218,282" href="../../../schema/ifcprofileresource/lexical/ifcushapeprofiledef.htm" alt="IfcUShapeProfileDef" />
+<area shape="rect" coords="30,294,218,306" href="../../../schema/ifcprofileresource/lexical/ifczshapeprofiledef.htm" alt="IfcZShapeProfileDef" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcprofileresource/lexical/ifcprofiledef.htm" alt="IfcProfileDef" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td></tr>
+<tr><td>1</td><td>ProfileType</td><td><a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a></td><td></td><td>
+Defines the type of geometry into which this profile definition shall be resolved, either a curve or a surface area. In case of curve the profile should be referenced by a swept surface, in case of area the profile should be referenced by a swept area solid.
+</td><td>X</td></tr>
+<tr><td>2</td><td>ProfileName</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Human-readable name of the profile, for example according to a standard profile table. As noted above, machine-readable standardized profile designations should be provided in <i>IfcExternalReference.ItemReference</i>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReference</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external information, e.g. library, classification, or document information, which is associated with the profile.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a><br/>@ProfileDefinition</td><td>S[0:?]</td><td>Additional properties of the profile, for example mechanical properties.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a></i></td></tr>
+<tr><td>3</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement2d.htm">IfcAxis2Placement2D</a></td><td>? </td><td>
+Position coordinate system of the parameterized profile definition. If unspecified, no translation and no rotation is applied.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td></tr><tr><td> </td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Position&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcaxis2placement2d.htm">IfcAxis2Placement2D</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcParameterizedProfileDef<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcprofileresource/lexical/ifcasymmetricishapeprofiledef.htm">IfcAsymmetricIShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifccshapeprofiledef.htm">IfcCShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifccircleprofiledef.htm">IfcCircleProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcellipseprofiledef.htm">IfcEllipseProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcishapeprofiledef.htm">IfcIShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifclshapeprofiledef.htm">IfcLShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcrectangleprofiledef.htm">IfcRectangleProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifctshapeprofiledef.htm">IfcTShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifctrapeziumprofiledef.htm">IfcTrapeziumProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcushapeprofiledef.htm">IfcUShapeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifczshapeprofiledef.htm">IfcZShapeProfileDef</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>)<b>;</b><br/>
+&nbsp;&nbsp;Position : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometryresource/lexical/ifcaxis2placement2d.htm">IfcAxis2Placement2D</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprofileresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcparameterizedprofiledef.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

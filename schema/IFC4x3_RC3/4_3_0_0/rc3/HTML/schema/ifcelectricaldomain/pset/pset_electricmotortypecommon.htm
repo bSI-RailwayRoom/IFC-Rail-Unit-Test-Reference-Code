@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_ElectricMotorTypeCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 4 index3 4 index4 34 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.4.4.35");
+//-->
+</script>
+
+<h4 class="std">7.4.4.35 Pset_ElectricMotorTypeCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcelectricaldomain/lexical/ifcelectricmotor.htm">IfcElectricMotor</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Electric Motor Type Common</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3AdI00qU0HuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_ElectricMotorTypeCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Reference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+*</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td><td>Reference ID for this specified type in this project
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Reference</b></td><td>Référence à l'identifiant d'un type spécifié dans le contexte de ce projet.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>参照記号</b></td><td>このプロジェクトのための参照記号。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Status</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_elementstatus.htm">PEnum_ElementStatus</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Status</b></td><td>Status of the element, predominately used in renovation or retrofitting projects. The status can be assigned to as &quot;New&quot; - element designed as new addition, &quot;Existing&quot; - element exists and remains, &quot;Demolish&quot; - element existed but is to be demolished,  &quot;Temporary&quot; - element will exists only temporary (like a temporary support structure).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>状態</b></td><td>要素（主にリノベーションまたは改修プロジェクトにおいて）の状態。 状態は、「新規(New)」－新しく追加される要素。「既存」－要素は存在し、かつ残りもの。「破壊」－要素は存在したが、廃棄されるもの。「一時的」－一時的に存在する要素（一時的にサポートしている構造のようなもの）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MaximumPowerOutput</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Maximum Power Output</b></td><td>The maximum output power rating of the engine.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>最大出力</b></td><td>エンジンの最大出力定格。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ElectricMotorEfficiency</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Electric Motor Efficiency</b></td><td>The ratio of output capacity to intake capacity.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>出力効率</b></td><td>出力容量と入力容量の比率。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>StartCurrentFactor</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Start Current Factor</b></td><td>IEC. Start current factor defines how large the peak starting current will become on the engine. StartCurrentFactor is multiplied to NominalCurrent and to give the start current.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>始動電流係数</b></td><td>始動電流係数はエンジンが動き始めた時のピーク始動電流を定義。始動電流係数は定格電流と始動時の電流を掛け合わせたもの。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>StartingTime</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctimemeasure.htm">IfcTimeMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Starting Time</b></td><td>The time (in s) needed for the motor to reach its rated speed with its driven equipment attached, starting from standstill and at the nominal voltage applied at its terminals.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>始動時間</b></td><td>モーターが停止状態から定格電圧を印加し定格速度に到達するまでに必要な時間。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TeTime</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctimemeasure.htm">IfcTimeMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Te Time</b></td><td>The maximum time (in s) at which the motor could run with locked rotor when the motor is used in an EX-environment. The time indicates that a protective device should trip before this time when the starting current of the motor is slowing through the device.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>最大時間</b></td><td>モーターがEX環境でローターロックされて使用きる最大時間。
+モーター始動電流が機器を介して減速している時間より前に保護装置で停止する時間を示す。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>LockedRotorCurrent</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Locked Rotor Current</b></td><td>Input current when a motor armature is energized but not rotating.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>拘束ロータ電流</b></td><td>モーターの電機子に電圧を印加しロータが回っていない時の入力電流。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MotorEnclosureType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_motorenclosuretype.htm">PEnum_MotorEnclosureType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Motor Enclosure Type</b></td><td>A list of the available types of motor enclosure from which that required may be selected.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>モーター保護構造</b></td><td>モーターに必要な筐体を使用可能なタイプのリストから選択。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FrameSize</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Frame Size</b></td><td>Designation of the frame size according to the named range of frame sizes designated at the place of use or according to a given standard.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>フレームサイズ</b></td><td>フレームサイズの意味が実際の大きさを表示しているのか、規格表記なのかを指定。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsGuarded</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Guarded</b></td><td>Indication of whether the motor enclosure is guarded (= TRUE) or not (= FALSE).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>保護</b></td><td>モーターの筐体が守られているかどうかを示す。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HasPartWinding</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Has Part Winding</b></td><td>Indication of whether the motor is single speed, i.e. has a single winding (= FALSE) or multi-speed i.e.has part winding (= TRUE) .
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>巻線</b></td><td>モータが単一の速度であるかどうかを示す。例えば、単巻線、マルチスピード、分割巻線。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_electricmotortypecommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

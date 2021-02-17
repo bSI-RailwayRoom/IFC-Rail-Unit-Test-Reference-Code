@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLayeredItem</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 14 index3 2 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.14.2.3");
+//-->
+</script>
+
+<h4 class="num">IfcLayeredItem</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Geometrische Repräsentation bezogen auf Präsentations-Layer</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Layered Item</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Item composite</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcLayeredItem</span> is the collection of all those items, that are assigned to a single layer. These items are representation items or complete representations (<i>IfcRepresentationItem, IfcRepresentation</i>). If an <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> is referenced, all <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a> within its set of <i>Items</i> are assigned to the same layer.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO 10303-46:<br>
+The layered things type selects those things, which can be grouped in layers.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Corresponding ISO 10303 name: layered_item. It was called layered_things in the ISO/CD version and had been renamed to layered_item in the ISO/IS final version. Please refer to ISO/IS 10303-46:1994, p. 13 for the final definition of the formal standard.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Select definition</summary><table class="attributes">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>
+</td><td></td></tr><tr><td><a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a>
+</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:group name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifclayereditem.htm">IfcLayeredItem</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:choice&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:choice&gt;<br/>
+&nbsp;&lt;/xs:group&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcLayeredItem = <span class="keyword">SELECT</span> (<br/>
+&nbsp;<a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>, <br/>&nbsp;<a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a>);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationorganizationresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a>
+</p>
+<p><a href="../../../link/ifclayereditem.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

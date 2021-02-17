@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCoilTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 2 index4 6 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.2.7");
+//-->
+</script>
+
+<h4 class="num">IfcCoilTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Énumération des types de bobine</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccoiltypeenum.htm">IfcCoilTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYDRONICCOIL</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>Enumeration defining the typical types of coils.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC2x.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>DXCOOLINGCOIL</td><td>Cooling coil using a refrigerant to cool the air stream directly.
+</td></tr><tr><td>ELECTRICHEATINGCOIL</td><td>Heating coil using electricity as a heating source.
+</td></tr><tr><td>GASHEATINGCOIL</td><td>Heating coil using gas as a heating source.
+</td></tr><tr><td>HYDRONICCOIL</td><td>Cooling or Heating coil that uses a hydronic fluid as a cooling or heating source.
+</td></tr><tr><td>STEAMHEATINGCOIL</td><td>Heating coil using steam as heating source.
+</td></tr><tr><td>WATERCOOLINGCOIL</td><td>Cooling coil using chilled water. HYDRONICCOIL supercedes this enumerator.
+</td></tr><tr><td>WATERHEATINGCOIL</td><td>Heating coil using hot water as a heating source. HYDRONICCOIL supercedes this enumerator.
+</td></tr><tr><td>USERDEFINED</td><td>User-defined coil type.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined coil type.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifchvacdomain/lexical/ifccoiltypeenum.htm">IfcCoilTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;dxcoolingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;electricheatingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;gasheatingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;hydroniccoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;steamheatingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;watercoolingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;waterheatingcoil&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcCoilTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;DXCOOLINGCOIL, <br/>&nbsp;ELECTRICHEATINGCOIL, <br/>&nbsp;GASHEATINGCOIL, <br/>&nbsp;HYDRONICCOIL, <br/>&nbsp;STEAMHEATINGCOIL, <br/>&nbsp;WATERCOOLINGCOIL, <br/>&nbsp;WATERHEATINGCOIL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifchvacdomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifchvacdomain/lexical/ifccoil.htm">IfcCoil</a>
+<a href="../../ifchvacdomain/lexical/ifccoiltype.htm">IfcCoilType</a>
+</p>
+<p><a href="../../../link/ifccoiltypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

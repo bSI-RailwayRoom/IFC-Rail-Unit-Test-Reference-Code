@@ -1,0 +1,248 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcAppliedValue</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 4 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.4.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcAppliedValue</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Angewendeter Wert</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Applied Value</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Valeur appliquée</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a></td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>ABSTRACT</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApplicableDate</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcDateTimeSelect</i> to <i>IfcDate</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FixedUntilDate</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcDateTimeSelect</i> to <i>IfcDate</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Category</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Condition</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArithmeticOperator</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Components</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>This entity captures a value driven by a formula, with additional qualifications including unit basis, valid date range, and categorization.</p>
+<p>The extent of the <span class="self-ref">IfcAppliedValue</span> is determined by the <i>AppliedValue</i> attribute which may be defined either as an <a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a> or as an <a href="../../ifcmeasureresource/lexical/ifcmonetarymeasure.htm">IfcMonetaryMeasure</a> or as an <a href="../../ifcmeasureresource/lexical/ifcratiomeasure.htm">IfcRatioMeasure</a> via the <a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a> type.</p>
+<p>Optionally, an <span class="self-ref">IfcAppliedValue</span> may have an applicable date. This is intended to fix the date on which the value became relevant for use. It may be the date on which the value was set in the model or it may be a prior or future date when the value becomes operable. Similarly, an <span class="self-ref">IfcAppliedValue</span> may have a 'fixed until' date. This is intended to fix the date on which the value ceases to be relevant for use.</p>
+<p>An instance of <span class="self-ref">IfcAppliedValue</span> may have a unit basis asserted. This is defined as an <a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a> that determines the extent of the unit value for application purposes. It is assumed that when this attribute is asserted, then the value given to <span class="self-ref">IfcAppliedValue</span> is that for unit quantity. This is not enforced within the schema and thus needs to be controlled within an application.</p>
+<p>Applied values may be referenced from a document (such as a price list). The relationship between one or more occurrences of <span class="self-ref">IfcAppliedValue</span> (or its subtypes) is achieved through the use of the <a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a> in which the document provides the <i>IfcExternalReferenceRelationship.RelatingExtReference</i> and the value occurrences are the <i>IfcExternalReferenceRelationship.RelatedResourceObjects</i>.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Entity made non-abstract to support general formula expressions of constraints, data type of date-based attributes changed into <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>, <i>ValueType</i> and <i>Condition</i> promoted from <a href="../../ifccostresource/lexical/ifccostvalue.htm">IfcCostValue</a>, <i>Components</i> and <i>ArithmeticOperator</i> attributes added to replace <i>IfcAppliedValueRelationship</i> for more efficient encoding and reference tracking.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+A name or additional clarification given to a cost value.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+The description that may apply additional information about a cost value.
+</td><td>X</td></tr>
+<tr><td>3</td><td>AppliedValue</td><td><a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a></td><td>? </td><td>
+The extent or quantity or amount of an applied value.
+</td><td>X</td></tr>
+<tr><td>4</td><td>UnitBasis</td><td><a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a></td><td>? </td><td>
+The number and unit of measure on which the unit cost is based.
+Note: As well as the normally expected units of measure such as length, area, volume etc., costs may be based on units of measure which need to be defined e.g. sack, drum, pallet, item etc. Unit costs may be based on quantities greater (or lesser) than a unitary value of the basis measure. For instance, timber may have a unit cost rate per X meters where X &gt; 1; similarly for cable, piping and many other items. The basis number may be either an integer or a real value.
+Note: This attribute should be asserted for all circumstances where the cost to be applied is per unit quantity. It may be asserted even for circumstances where an item price is used, in which case the unit cost basis should be by item (or equivalent definition).
+</td><td>X</td></tr>
+<tr><td>5</td><td>ApplicableDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date on or from which an applied value is applicable.
+
+<blockquote>
+IFC4 CHANGE Type changed from IfcDateTimeSelect.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>FixedUntilDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date until which applied value is applicable.
+
+<blockquote>
+IFC4 CHANGE Type changed from IfcDateTimeSelect.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Specification of the type of cost used.
+<blockquote class="note">
+NOTE  There are many possible types of cost value that may be identified. Whilst there is a broad understanding of the meaning of names that may be assigned to different types of costs, there is no general standard for naming cost types nor are there any broadly defined classifications. To allow for any type of cost value, the <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a> datatype is assigned.
+</blockquote>
+In the absence of any well defined standard, it is recommended that local agreements should be made to define allowable and understandable cost value types within a project or region.
+</td><td>X</td></tr>
+<tr><td>8</td><td>Condition</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The condition under which a cost value applies.
+For example, within the context of a bid submission, this may refer to an option that may or may not be elected.
+</td><td>X</td></tr>
+<tr><td>9</td><td>ArithmeticOperator</td><td><a href="../../ifccostresource/lexical/ifcarithmeticoperatorenum.htm">IfcArithmeticOperatorEnum</a></td><td>? </td><td>
+The arithmetic operator applied to component values.
+</td><td>X</td></tr>
+<tr><td>10</td><td>Components</td><td><a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a></td><td>? L[1:?]</td><td>
+Optional component values from which <i>AppliedValue</i> is calculated.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReference</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to an external reference, e.g. library, classification, or document information, that is associated to the IfcAppliedValue.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcappliedvalue.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,206,42" href="../../../schema/ifccostresource/lexical/ifccostvalue.htm" alt="IfcCostValue" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+A name or additional clarification given to a cost value.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+The description that may apply additional information about a cost value.
+</td><td>X</td></tr>
+<tr><td>3</td><td>AppliedValue</td><td><a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a></td><td>? </td><td>
+The extent or quantity or amount of an applied value.
+</td><td>X</td></tr>
+<tr><td>4</td><td>UnitBasis</td><td><a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a></td><td>? </td><td>
+The number and unit of measure on which the unit cost is based.
+Note: As well as the normally expected units of measure such as length, area, volume etc., costs may be based on units of measure which need to be defined e.g. sack, drum, pallet, item etc. Unit costs may be based on quantities greater (or lesser) than a unitary value of the basis measure. For instance, timber may have a unit cost rate per X meters where X &gt; 1; similarly for cable, piping and many other items. The basis number may be either an integer or a real value.
+Note: This attribute should be asserted for all circumstances where the cost to be applied is per unit quantity. It may be asserted even for circumstances where an item price is used, in which case the unit cost basis should be by item (or equivalent definition).
+</td><td>X</td></tr>
+<tr><td>5</td><td>ApplicableDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date on or from which an applied value is applicable.
+
+<blockquote>
+IFC4 CHANGE Type changed from IfcDateTimeSelect.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>FixedUntilDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date until which applied value is applicable.
+
+<blockquote>
+IFC4 CHANGE Type changed from IfcDateTimeSelect.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Specification of the type of cost used.
+<blockquote class="note">
+NOTE  There are many possible types of cost value that may be identified. Whilst there is a broad understanding of the meaning of names that may be assigned to different types of costs, there is no general standard for naming cost types nor are there any broadly defined classifications. To allow for any type of cost value, the <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a> datatype is assigned.
+</blockquote>
+In the absence of any well defined standard, it is recommended that local agreements should be made to define allowable and understandable cost value types within a project or region.
+</td><td>X</td></tr>
+<tr><td>8</td><td>Condition</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The condition under which a cost value applies.
+For example, within the context of a bid submission, this may refer to an option that may or may not be elected.
+</td><td>X</td></tr>
+<tr><td>9</td><td>ArithmeticOperator</td><td><a href="../../ifccostresource/lexical/ifcarithmeticoperatorenum.htm">IfcArithmeticOperatorEnum</a></td><td>? </td><td>
+The arithmetic operator applied to component values.
+</td><td>X</td></tr>
+<tr><td>10</td><td>Components</td><td><a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a></td><td>? L[1:?]</td><td>
+Optional component values from which <i>AppliedValue</i> is calculated.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReference</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to an external reference, e.g. library, classification, or document information, that is associated to the IfcAppliedValue.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>&quot; type=&quot;ifc:<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;AppliedValue&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;UnitBasis&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Components&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Name&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Description&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ApplicableDate&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FixedUntilDate&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Category&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Condition&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ArithmeticOperator&quot; type=&quot;ifc:<a href="../../ifccostresource/lexical/ifcarithmeticoperatorenum.htm">IfcArithmeticOperatorEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcAppliedValue<br/>
+&nbsp;<span class="keyword">SUPERTYPE OF</span>(<a href="../../ifccostresource/lexical/ifccostvalue.htm">IfcCostValue</a>)<b>;</b><br/>
+&nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Description : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>;<br/>
+&nbsp;&nbsp;AppliedValue : <span class="keyword">OPTIONAL</span> <a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a>;<br/>
+&nbsp;&nbsp;UnitBasis : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcmeasurewithunit.htm">IfcMeasureWithUnit</a>;<br/>
+&nbsp;&nbsp;ApplicableDate : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>;<br/>
+&nbsp;&nbsp;FixedUntilDate : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>;<br/>
+&nbsp;&nbsp;Category : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Condition : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;ArithmeticOperator : <span class="keyword">OPTIONAL</span> <a href="../../ifccostresource/lexical/ifcarithmeticoperatorenum.htm">IfcArithmeticOperatorEnum</a>;<br/>
+&nbsp;&nbsp;Components : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;HasExternalReference : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a> <span class="keyword">FOR</span> RelatedResourceObjects;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifccostresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>
+<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresourcetype.htm">IfcConstructionResourceType</a>
+<a href="../../ifcconstraintresource/lexical/ifcmetricvalueselect.htm">IfcMetricValueSelect</a>
+<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcresourceobjectselect.htm">IfcResourceObjectSelect</a>
+<a href="../../ifcpropertyresource/lexical/ifcobjectreferenceselect.htm">IfcObjectReferenceSelect</a>
+</p>
+<p><a href="../../../link/ifcappliedvalue.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

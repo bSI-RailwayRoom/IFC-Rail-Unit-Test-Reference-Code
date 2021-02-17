@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcScalarTimesVector</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 21 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.22");
+//-->
+</script>
+
+<h4 class="num">IfcScalarTimesVector</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Scalar Times Vector</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function returns the vector that is the scalar multiple of the input vector. It accepts as input a scalar and a 'vector' which may be either a Direction or a Vector. The output is a Vector of the same units as the input vector or unitless if a direction is input. If either input argument is undefined then the returned vector is also undefined.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>scalar_times_vector</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC1.5</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcScalarTimesVector<br/>
+
+&nbsp;&nbsp;(Scalar : REAL; Vec : <a href="../../ifcgeometryresource/lexical/ifcvectorordirection.htm">IfcVectorOrDirection</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;: <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>;<br/>LOCAL<br/>&nbsp;&nbsp;V : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>&nbsp;&nbsp;Mag : REAL;<br/>&nbsp;&nbsp;Result : <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>;<br/>END_LOCAL;<br/><br/>&nbsp;&nbsp;IF NOT EXISTS (Scalar) OR NOT EXISTS (Vec) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (?) ;<br/>&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;IF 'IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>' IN TYPEOF (Vec) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V := Vec\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Orientation;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag := Scalar * Vec\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Magnitude;<br/>&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V := Vec;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag := Scalar;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;IF (Mag &lt; 0.0 ) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPEAT i := 1 TO SIZEOF(V.DirectionRatios);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V.DirectionRatios[i] := -V.DirectionRatios[i];<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_REPEAT;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag := -Mag;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;Result := <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>(<a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(V), Mag);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;RETURN (Result);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcscalartimesvector.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../details-shim.css">
+    <script type="text/javascript" src="../../details-shim.js"></script>
+    <title>IfcGeometricConstraintResource</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../toc-8.htm#8.7");
+//-->
+</script>
+
+<h2 class="std">8.7 IfcGeometricConstraintResource</h2>
+<h3 class="std">8.7.1 Schema Definition</h3>
+<p>The schema <i>IfcGeometricConstraintResource</i> defines the resources used to determine the placement of the shape representation of a product within the geometric representation context of a project. It also contains resource definitions to be assigned to product connectivity definitions to determine the connection geometry constraints between those products.</p>
+<p>The primary application of this resource is to:</p>
+<ul>
+<li>determine the object placement used for the shape representation of the object</li>
+<li>determine the constraints applied to the connectivity between two shapes of objects</li>
+</ul>
+<h4>8.7.1.1 Placement</h4>
+<p>The placement of an product's shape is given by the <a href="../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>, used by the attribute <i>ObjectPlacement</i> of <a href="../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>. The object placement defines the local object coordinate system in which all shape representations of that product are defined. It is given either as</p>
+<ul>
+<li>absolute placement,
+<ul>
+<li>the absolute placement is specified by using <a href="../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a> and omitting the <i>PlacementRelTo</i> attribute;</li>
+</ul>
+</li>
+<li>relative placement,
+<ul>
+<li>the relative placement is specified by using <a href="../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a> and pointing the <i>PlacementRelTo</i> attribute to an <a href="../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a> used in another <a href="../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> instance;</li>
+</ul>
+</li>
+<li>placement relative to a grid,
+<ul>
+<li>the placement relative to a grid is specified by using <a href="../ifcgeometricconstraintresource/lexical/ifcgridplacement.htm">IfcGridPlacement</a> pointing to one (or two) virtual intersections of <a href="../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>. If two virtual intersections are references, than the second virtual intersections specifies the orientation of the object placement. Alternatively the direction can also be provided explicitly by ifcDirection.</li>
+</ul>
+</li>
+</ul>
+<blockquote class="note">
+<p>NOTE  When using relative placement the shape representation of each product is defined in the local object coordinate system provided by <i>ObjectPlacement</i>. That local object coordinate system is defined relative to the object coordinate system referred to by <i>PlacementRelTo</i> which may be a relative placement as well. Finally the <i>ObjectPlacement</i> not having an <i>PlacementRelTo</i> attribute defined the transformation into the global coordinate system. The transformation of the current coordinate system into the parent coordinate systems have to be applied in that order.</p>
+</blockquote>
+<h4>8.7.1.2 Connection geometry</h4>
+<p>The connection geometry defines the connectivity between the shapes of two products. The constraint can be defined by geometric representation items:</p>
+<ul>
+<li>point</li>
+<li>curve</li>
+<li>surface</li>
+<li>solid</li>
+</ul>
+<p>or by topological representation items with associated geometry:</p>
+<ul>
+<li>vertex point</li>
+<li>edge curve</li>
+<li>face surface</li>
+<li>closed shell</li>
+</ul>
+<p>As a special type of point connection includes the provision to express an eccentricity, i.e. a physical distance between the two points involved in the connection.</p>
+<p><a href="../../annex/annex-d/ifcgeometricconstraintresource/index.htm" ><img src="../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</p>
+<p><a href="../../link/ifcgeometricconstraintresource.htm" target="_top" ><img src="../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

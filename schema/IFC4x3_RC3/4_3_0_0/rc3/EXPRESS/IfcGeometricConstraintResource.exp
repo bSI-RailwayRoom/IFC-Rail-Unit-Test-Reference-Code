@@ -1,0 +1,312 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+17 February 2021
+
+*)
+
+SCHEMA IFCGEOMETRICCONSTRAINTRESOURCE;
+
+REFERENCE FROM IFCGEOMETRICMODELRESOURCE
+(
+  IfcFaceBasedSurfaceModel,
+  IfcSolidModel
+);
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcPoint,
+  IfcBoundedCurve,
+  IfcSurface,
+  IfcCurve,
+  IfcAxis2Placement,
+  IfcLine,
+  IfcConic,
+  IfcPolyline,
+  IfcTrimmedCurve,
+  IfcCompositeCurve,
+  IfcBSplineCurve,
+  IfcDirection,
+  IfcGeometricRepresentationItem
+);
+
+REFERENCE FROM IfcGeometryResource
+(
+  IfcPointByDistanceExpression,
+  IfcAxis2PlacementLinear,
+  IfcAxis2Placement3D
+);
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcProduct
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcLabel,
+  IfcBoolean,
+  IfcLengthMeasure
+);
+
+REFERENCE FROM IfcMeasureResource
+(
+  IfcPositiveLengthMeasure,
+  IfcRatioMeasure
+);
+
+REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
+(
+  IfcNullStyle
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcGrid
+);
+
+REFERENCE FROM IFCPROFILERESOURCE
+(
+);
+
+REFERENCE FROM IFCTOPOLOGYRESOURCE
+(
+  IfcVertexPoint,
+  IfcEdgeCurve,
+  IfcFaceSurface,
+  IfcClosedShell
+);
+
+TYPE IfcAlignmentCantSegmentTypeEnum = ENUMERATION OF
+	(CONSTANTCANT
+	,LINEARTRANSITION
+	,BIQUADRATICPARABOLA
+	,BLOSSCURVE
+	,COSINECURVE
+	,SINECURVE
+	,VIENNESEBEND);
+END_TYPE;
+
+TYPE IfcAlignmentHorizontalSegmentTypeEnum = ENUMERATION OF
+	(LINE
+	,CIRCULARARC
+	,CLOTHOID
+	,CUBIC
+	,BIQUADRATICPARABOLA
+	,BLOSSCURVE
+	,COSINECURVE
+	,SINECURVE
+	,VIENNESEBEND);
+END_TYPE;
+
+TYPE IfcAlignmentVerticalSegmentTypeEnum = ENUMERATION OF
+	(CONSTANTGRADIENT
+	,CIRCULARARC
+	,PARABOLICARC
+	,CLOTHOID);
+END_TYPE;
+
+TYPE IfcCurveOrEdgeCurve = SELECT
+	(IfcBoundedCurve
+	,IfcEdgeCurve);
+END_TYPE;
+
+TYPE IfcGridPlacementDirectionSelect = SELECT
+	(IfcDirection
+	,IfcVirtualGridIntersection);
+END_TYPE;
+
+TYPE IfcPointOrVertexPoint = SELECT
+	(IfcPoint
+	,IfcVertexPoint);
+END_TYPE;
+
+TYPE IfcSolidOrShell = SELECT
+	(IfcClosedShell
+	,IfcSolidModel);
+END_TYPE;
+
+TYPE IfcSurfaceOrFaceSurface = SELECT
+	(IfcFaceBasedSurfaceModel
+	,IfcFaceSurface
+	,IfcSurface);
+END_TYPE;
+
+ENTITY IfcAlignmentCantSegment
+ SUBTYPE OF (IfcAlignmentParameterSegment);
+	StartDistAlong : IfcLengthMeasure;
+	HorizontalLength : IfcPositiveLengthMeasure;
+	StartCantLeft : IfcLengthMeasure;
+	EndCantLeft : OPTIONAL IfcLengthMeasure;
+	StartCantRight : IfcLengthMeasure;
+	EndCantRight : OPTIONAL IfcLengthMeasure;
+	SmoothingLength : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : IfcAlignmentCantSegmentTypeEnum;
+END_ENTITY;
+
+ENTITY IfcAlignmentHorizontalSegment
+ SUBTYPE OF (IfcAlignmentParameterSegment);
+	StartPoint : IfcCartesianPoint;
+	StartDirection : IfcPlaneAngleMeasure;
+	StartRadiusOfCurvature : IfcLengthMeasure;
+	EndRadiusOfCurvature : IfcLengthMeasure;
+	SegmentLength : IfcNonNegativeLengthMeasure;
+	GravityCenterLineHeight : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : IfcAlignmentHorizontalSegmentTypeEnum;
+END_ENTITY;
+
+ENTITY IfcAlignmentParameterSegment
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAlignmentCantSegment
+    ,IfcAlignmentHorizontalSegment
+    ,IfcAlignmentVerticalSegment));
+	StartTag : OPTIONAL IfcLabel;
+	EndTag : OPTIONAL IfcLabel;
+END_ENTITY;
+
+ENTITY IfcAlignmentVerticalSegment
+ SUBTYPE OF (IfcAlignmentParameterSegment);
+	StartDistAlong : IfcLengthMeasure;
+	HorizontalLength : IfcPositiveLengthMeasure;
+	StartHeight : IfcLengthMeasure;
+	StartGradient : IfcRatioMeasure;
+	EndGradient : IfcRatioMeasure;
+	RadiusOfCurvature : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : IfcAlignmentVerticalSegmentTypeEnum;
+END_ENTITY;
+
+ENTITY IfcConnectionCurveGeometry
+ SUBTYPE OF (IfcConnectionGeometry);
+	CurveOnRelatingElement : IfcCurveOrEdgeCurve;
+	CurveOnRelatedElement : OPTIONAL IfcCurveOrEdgeCurve;
+END_ENTITY;
+
+ENTITY IfcConnectionGeometry
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcConnectionCurveGeometry
+    ,IfcConnectionPointGeometry
+    ,IfcConnectionSurfaceGeometry
+    ,IfcConnectionVolumeGeometry));
+END_ENTITY;
+
+ENTITY IfcConnectionPointEccentricity
+ SUBTYPE OF (IfcConnectionPointGeometry);
+	EccentricityInX : OPTIONAL IfcLengthMeasure;
+	EccentricityInY : OPTIONAL IfcLengthMeasure;
+	EccentricityInZ : OPTIONAL IfcLengthMeasure;
+END_ENTITY;
+
+ENTITY IfcConnectionPointGeometry
+ SUPERTYPE OF (ONEOF
+    (IfcConnectionPointEccentricity))
+ SUBTYPE OF (IfcConnectionGeometry);
+	PointOnRelatingElement : IfcPointOrVertexPoint;
+	PointOnRelatedElement : OPTIONAL IfcPointOrVertexPoint;
+END_ENTITY;
+
+ENTITY IfcConnectionSurfaceGeometry
+ SUBTYPE OF (IfcConnectionGeometry);
+	SurfaceOnRelatingElement : IfcSurfaceOrFaceSurface;
+	SurfaceOnRelatedElement : OPTIONAL IfcSurfaceOrFaceSurface;
+END_ENTITY;
+
+ENTITY IfcConnectionVolumeGeometry
+ SUBTYPE OF (IfcConnectionGeometry);
+	VolumeOnRelatingElement : IfcSolidOrShell;
+	VolumeOnRelatedElement : OPTIONAL IfcSolidOrShell;
+END_ENTITY;
+
+ENTITY IfcGridAxis;
+	AxisTag : OPTIONAL IfcLabel;
+	AxisCurve : IfcCurve;
+	SameSense : IfcBoolean;
+ INVERSE
+	PartOfW : SET [0:1] OF IfcGrid FOR WAxes;
+	PartOfV : SET [0:1] OF IfcGrid FOR VAxes;
+	PartOfU : SET [0:1] OF IfcGrid FOR UAxes;
+	HasIntersections : SET [0:?] OF IfcVirtualGridIntersection FOR IntersectingAxes;
+ WHERE
+	WR1 : AxisCurve.Dim = 2;
+	WR2 : (SIZEOF(PartOfU) = 1) XOR (SIZEOF(PartOfV) = 1) XOR (SIZEOF(PartOfW) = 1);
+END_ENTITY;
+
+ENTITY IfcGridPlacement
+ SUBTYPE OF (IfcObjectPlacement);
+	PlacementLocation : IfcVirtualGridIntersection;
+	PlacementRefDirection : OPTIONAL IfcGridPlacementDirectionSelect;
+END_ENTITY;
+
+ENTITY IfcLinearPlacement
+ SUBTYPE OF (IfcObjectPlacement);
+	RelativePlacement : IfcAxis2PlacementLinear;
+	CartesianPosition : OPTIONAL IfcAxis2Placement3D;
+END_ENTITY;
+
+ENTITY IfcLocalPlacement
+ SUBTYPE OF (IfcObjectPlacement);
+	RelativePlacement : IfcAxis2Placement;
+ WHERE
+	WR21 : IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
+END_ENTITY;
+
+ENTITY IfcObjectPlacement
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcGridPlacement
+    ,IfcLinearPlacement
+    ,IfcLocalPlacement));
+	PlacementRelTo : OPTIONAL IfcObjectPlacement;
+ INVERSE
+	PlacesObject : SET [0:?] OF IfcProduct FOR ObjectPlacement;
+END_ENTITY;
+
+ENTITY IfcVirtualGridIntersection;
+	IntersectingAxes : LIST [2:2] OF UNIQUE IfcGridAxis;
+	OffsetDistances : LIST [2:3] OF IfcLengthMeasure;
+END_ENTITY;
+
+FUNCTION IfcCorrectLocalPlacement
+  (AxisPlacement:IfcAxis2Placement; 
+   RelPlacement : IfcObjectPlacement):LOGICAL;
+
+  IF (EXISTS(RelPlacement)) THEN
+    IF ('IFCGEOMETRICCONSTRAINTRESOURCE.IFCGRIDPLACEMENT' IN TYPEOF(RelPlacement)) THEN
+      RETURN(?);
+    END_IF;
+    IF ('IFCGEOMETRICCONSTRAINTRESOURCE.IFCLOCALPLACEMENT' IN TYPEOF(RelPlacement)) THEN
+      IF ('IFCGEOMETRYRESOURCE.IFCAXIS2PLACEMENT2D' IN TYPEOF(AxisPlacement)) THEN
+        RETURN(TRUE);
+      END_IF;
+      IF ('IFCGEOMETRYRESOURCE.IFCAXIS2PLACEMENT3D' IN TYPEOF(AxisPlacement)) THEN
+        IF (RelPlacement\IfcLocalPlacement.RelativePlacement.Dim = 3) THEN
+          RETURN(TRUE);
+        ELSE
+          RETURN(FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  ELSE
+    RETURN(TRUE);  
+  END_IF;
+  RETURN(?);
+
+END_FUNCTION;
+
+END_SCHEMA;

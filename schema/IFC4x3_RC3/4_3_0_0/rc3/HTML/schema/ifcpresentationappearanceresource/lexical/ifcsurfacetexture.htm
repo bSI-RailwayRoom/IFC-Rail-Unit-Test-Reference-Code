@@ -1,0 +1,253 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcSurfaceTexture</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 3 index4 34 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.3.35");
+//-->
+</script>
+
+<h4 class="num">IfcSurfaceTexture</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Oberflächentextur</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Surface Texture</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Texture de surface</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcSurfaceTexture</span> provides a 2-dimensional image-based texture map. It can either be given by referencing an external image file through an URL reference (<a href="../../ifcpresentationappearanceresource/lexical/ifcimagetexture.htm">IfcImageTexture</a>), including the image file as a blob (long binary) into the data set (<a href="../../ifcpresentationappearanceresource/lexical/ifcblobtexture.htm">IfcBlobTexture</a>), or by explicitly including an array of pixels (<a href="../../ifcpresentationappearanceresource/lexical/ifcpixeltexture.htm">IfcPixelTexture</a>).</p>
+<p>The following definitions from ISO/IEC 19775-1 X3D Architecture and base components (<a href="http://www.web3d.org/x3d/specifications/">X3D Specification</a>) apply:</p>
+<ul>
+<li><span style="font-size:smaller;color:blue">Texture: An image
+used in a texture map to create visual appearance effects when
+applied to geometry nodes.</span></li>
+<li><span style="font-size:smaller;color:blue">Texture map: A
+texture plus the general parameters necessary for mapping the
+texture to geometry.</span></li>
+</ul>
+Texture are defined by 2D images that contain an array of colour values describing the texture. The texture values are interpreted differently depending on the number of components in the texture and the specifics of the image format. In general, texture may be described using one of the following forms:
+<ol>
+<li>Intensity textures (one-component)</li>
+<li>Intensity plus alpha opacity textures (two-component)</li>
+<li>Full RGB textures (three-component)</li>
+<li>Full RGB plus alpha opacity textures (four-component)</li>
+</ol>
+<blockquote class="note">
+<p>NOTE  Image formats specify an alpha opacity, not transparency (where alpha = 1 - transparency).</p>
+</blockquote>
+<p>Figure 405 illustrates the texture coordinate system.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcsurfacetexture_fig-1.png" alt="&quot;texture coordinates&quot;" title="Figure 405 &mdash; Surface texture coordinates"></td></tr><tr><td><p class="figure">Figure 405 &mdash; Surface texture coordinates</p></td></tr></table></p>
+<p>The following definitions from ISO/IEC 19775-1 X3D Architecture and base components (<a href="http://www.web3d.org/x3d/specifications/">X3D Specification</a>) on texture coordinates apply:</p>
+<ul>
+<li><span style="font-size:smaller;color:blue">Texture maps are defined in a 2D coordinate system (s, t) that ranges from [0.0, 1.0] in both directions. The bottom edge of the image corresponds to the S-axis of the texture map, and left edge of the image corresponds to the T-axis of the texture map. The lower-left pixel of the image corresponds to s=0, t=0, and the top-right pixel of the image corresponds to s=1, t=1. Texture maps may be viewed as two dimensional colour functions that, given an <i>(s, t)</i> coordinate, return a colour value <i>colour(s, t)</i>.</span></li>
+</ul>
+<p>If multiple surface textures are included in the <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylewithtextures.htm">IfcSurfaceStyleWithTextures</a> applying them to a geometric item, a mode and optional parameters can be included that blending operations.</p>
+<p>The <i>RepeatS</i> and <i>RepeatT</i> Boolean flags control whether the texture map is repeated outside the [0.0, 1.0] texture coordinate range, when applied to a geometric surface, or clamped to lie within the [0.0, 1.0] range. The <i>TextureTransform</i> applies a 2D non-uniform transformation to the texture before it is applied to a geometric surface.</p>
+<p>The following definitions from ISO/IEC 19775-1 X3D Architecture and base components (<a href="http://www.web3d.org/x3d/specifications/">X3D Specification</a>) apply:</p>
+<ul>
+<li><span style="font-size:smaller;color:blue">These parameters
+support changes to the size, orientation, and position of textures
+on shapes. Note that these operations appear reversed when viewed
+on the surface of geometry. For example, a <i>scale</i> value of (2
+2) will scale the texture coordinates and have the net effect of
+shrinking the texture size by a factor of 2 (texture coordinates
+are twice as large and thus cause the texture to repeat). A
+translation of (0.5 0.0) translates the texture coordinates +.5
+units along the S-axis and has the net effect of translating the
+texture &minus;0.5 along the S-axis on the geometry's surface. A
+rotation of &pi;/2 of the texture coordinates results in a
+&minus;&pi;/2 rotation of the texture on the geometry.</span></li>
+<li><span style="font-size:smaller;color:blue">The <i>center</i>
+field specifies a translation offset in texture coordinate space
+about which the <i>rotation</i> and <i>scale</i> fields are
+applied. The <i>scale</i> field specifies a scaling factor in S and
+T of the texture coordinates about the <i>center</i> point.
+<i>scale</i> values shall be in the range (&minus;&infin;,&infin;).
+The <i>rotation</i> field specifies a rotation in radians of the
+texture coordinates about the <i>center</i> point after the scale
+has been applied. A positive rotation value makes the texture
+coordinates rotate counterclockwise about the centre, thereby
+rotating the appearance of the texture itself clockwise. The
+<i>translation</i> field specifies a translation of the texture
+coordinates.</span><br>
+<span style="font-size:smaller">The following conventions
+apply:</span>
+<ul>
+<li style="list-style-type:none"><span style="font-size:smaller">center =
+<i>TextureTransform.LocalOrigin</i>;<br>
+rotation = <i>TextureTransform.Axis1</i><br>
+scale S = <i>TextureTransform.Scale</i><br>
+scale T = <i>TextureTransform.Scale2</i></span></li>
+</ul>
+</li>
+</ul>
+> NOTE&nbsp; The definitions of texturing within this standard have been developed in dependence on the texture component of X3D. See ISO/IEC 19775-1.2:2008 X3D Architecture and base components Edition 2, Part 1, 18 Texturing component for the definitions in the international standard.
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Attribute TextureType replaces by <i>Mode</i>, attributes <i>Parameter</i> and <i>MapsTo</i> aded, new inverse attribute <i>UsedInStyle</i>.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>RepeatS</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+The <i>RepeatS</i> field specifies how the texture wraps in the S direction. If <i>RepeatS</i> is TRUE (the default), the texture map is repeated outside the [0.0, 1.0] texture coordinate range in the S direction so that it fills the shape. If <i>RepeatS</i> is FALSE, the texture coordinates are clamped in the S direction to lie within the [0.0, 1.0] range.
+</td><td>X</td></tr>
+<tr><td>2</td><td>RepeatT</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+The <i>RepeatT</i> field specifies how the texture wraps in the T direction. If <i>RepeatT</i> is TRUE (the default), the texture map is repeated outside the [0.0, 1.0] texture coordinate range in the T direction so that it fills the shape. If <i>RepeatT</i> is FALSE, the texture coordinates are clamped in the T direction to lie within the [0.0, 1.0] range.
+</td><td>X</td></tr>
+<tr><td>3</td><td>Mode</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+The <i>Mode</i> attribute is provided to control the appearance of a multi textures. The mode then controls the type of blending operation. The mode includes a MODULATE for a lit appearance, a REPLACE for a unlit appearance, and variations of the two.
+<blockquote class="note">
+NOTE  The applicable values for the <i>Mode</i> attribute are determined by view definitions or implementer agreements. It is recommended to use the modes described in ISO/IES 19775-1.2:2008 X3D Architecture and base components Edition 2, Part 1. See <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texturing.html#MultiTexture">18.4.3 MultiTexture</a> for recommended values.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute replacing previous TextureType.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>TextureTransform</td><td><a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a></td><td>? </td><td>
+The <i>TextureTransform</i> defines a 2D transformation that is applied to the texture coordinates. It affects the way texture coordinates are applied to the surfaces of geometric representation itesm. The 2D transformation supports changes to the size, orientation, and position of textures on shapes. Mirroring is not allowed to be used in the <a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>
+</td><td>X</td></tr>
+<tr><td>5</td><td>Parameter</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? L[1:?]</td><td>
+The <i>Parameter</i> attribute is provided to control the appearance of a multi textures. The applicable parameters depend on the value of the <i>Mode</i> attribute.
+<blockquote class="note">
+NOTE  The applicable values for the list of <i>Parameter</i> attributes are determined by view definitions or implementer agreements. It is recommended to use the source and the function fields described in ISO/IES 19775-1.2:2008 X3D Architecture and base components Edition 2, Part 1. See <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texturing.html#MultiTexture">18.4.3 MultiTexture</a> for recommended values.<br>
+By convention, <i>Parameter[1]</i> shall then hold the source value, <i>Parameter[2]</i> the function value, <i>Parameter[3]</i> the base RGB color for select operations, and <i>Parameter[4]</i> the alpha value for select operations.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsMappedBy</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a><br/>@Maps</td><td>S[0:?]</td><td>Texture coordinates, either provided by a corresponding list of texture vertices to vertex-based geometric items or by a texture coordinate generator, that applies the surface texture to the surfaces of the geometric items.
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>UsedInStyles</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylewithtextures.htm">IfcSurfaceStyleWithTextures</a><br/>@Textures</td><td>S[0:?]</td><td></td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcsurfacetexture.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,218,66" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcblobtexture.htm" alt="IfcBlobTexture" />
+<area shape="rect" coords="30,78,218,90" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcimagetexture.htm" alt="IfcImageTexture" />
+<area shape="rect" coords="30,102,218,114" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcpixeltexture.htm" alt="IfcPixelTexture" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm" alt="IfcPresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a></i></td></tr>
+<tr><td>1</td><td>RepeatS</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+The <i>RepeatS</i> field specifies how the texture wraps in the S direction. If <i>RepeatS</i> is TRUE (the default), the texture map is repeated outside the [0.0, 1.0] texture coordinate range in the S direction so that it fills the shape. If <i>RepeatS</i> is FALSE, the texture coordinates are clamped in the S direction to lie within the [0.0, 1.0] range.
+</td><td>X</td></tr>
+<tr><td>2</td><td>RepeatT</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+The <i>RepeatT</i> field specifies how the texture wraps in the T direction. If <i>RepeatT</i> is TRUE (the default), the texture map is repeated outside the [0.0, 1.0] texture coordinate range in the T direction so that it fills the shape. If <i>RepeatT</i> is FALSE, the texture coordinates are clamped in the T direction to lie within the [0.0, 1.0] range.
+</td><td>X</td></tr>
+<tr><td>3</td><td>Mode</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+The <i>Mode</i> attribute is provided to control the appearance of a multi textures. The mode then controls the type of blending operation. The mode includes a MODULATE for a lit appearance, a REPLACE for a unlit appearance, and variations of the two.
+<blockquote class="note">
+NOTE  The applicable values for the <i>Mode</i> attribute are determined by view definitions or implementer agreements. It is recommended to use the modes described in ISO/IES 19775-1.2:2008 X3D Architecture and base components Edition 2, Part 1. See <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texturing.html#MultiTexture">18.4.3 MultiTexture</a> for recommended values.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute replacing previous TextureType.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>TextureTransform</td><td><a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a></td><td>? </td><td>
+The <i>TextureTransform</i> defines a 2D transformation that is applied to the texture coordinates. It affects the way texture coordinates are applied to the surfaces of geometric representation itesm. The 2D transformation supports changes to the size, orientation, and position of textures on shapes. Mirroring is not allowed to be used in the <a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>
+</td><td>X</td></tr>
+<tr><td>5</td><td>Parameter</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? L[1:?]</td><td>
+The <i>Parameter</i> attribute is provided to control the appearance of a multi textures. The applicable parameters depend on the value of the <i>Mode</i> attribute.
+<blockquote class="note">
+NOTE  The applicable values for the list of <i>Parameter</i> attributes are determined by view definitions or implementer agreements. It is recommended to use the source and the function fields described in ISO/IES 19775-1.2:2008 X3D Architecture and base components Edition 2, Part 1. See <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texturing.html#MultiTexture">18.4.3 MultiTexture</a> for recommended values.<br>
+By convention, <i>Parameter[1]</i> shall then hold the source value, <i>Parameter[2]</i> the function value, <i>Parameter[3]</i> the base RGB color for select operations, and <i>Parameter[4]</i> the alpha value for select operations.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsMappedBy</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a><br/>@Maps</td><td>S[0:?]</td><td>Texture coordinates, either provided by a corresponding list of texture vertices to vertex-based geometric items or by a texture coordinate generator, that applies the surface texture to the surfaces of the geometric items.
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>UsedInStyles</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylewithtextures.htm">IfcSurfaceStyleWithTextures</a><br/>@Textures</td><td>S[0:?]</td><td></td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;TextureTransform&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RepeatS&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RepeatT&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Mode&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Parameter&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcSurfaceTexture<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcpresentationappearanceresource/lexical/ifcblobtexture.htm">IfcBlobTexture</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcimagetexture.htm">IfcImageTexture</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcpixeltexture.htm">IfcPixelTexture</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a>)<b>;</b><br/>
+&nbsp;&nbsp;RepeatS : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;&nbsp;RepeatT : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;&nbsp;Mode : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>;<br/>
+&nbsp;&nbsp;TextureTransform : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a>;<br/>
+&nbsp;&nbsp;Parameter : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;IsMappedBy : <span class="keyword">SET</span> [0:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a> <span class="keyword">FOR</span> Maps;<br/>
+&nbsp;&nbsp;UsedInStyles : <span class="keyword">SET</span> [0:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylewithtextures.htm">IfcSurfaceStyleWithTextures</a> <span class="keyword">FOR</span> Textures;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylewithtextures.htm">IfcSurfaceStyleWithTextures</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a>
+</p>
+<p><a href="../../../link/ifcsurfacetexture.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Qto_BuildingBaseQuantities</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 5 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.5.1");
+//-->
+</script>
+
+<h4 class="std">5.4.5.1 Qto_BuildingBaseQuantities</h4>
+<p><span class="self-ref">QTO_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Building Base Quantities</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/qset/qto_buildingbasequantities.htm">Qto_BuildingBaseQuantities</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EavesHeight</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EavesHeigth</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Quantities</summary><p><a href="../../../qto/Qto_BuildingBaseQuantities.xml"><img border="0" src="../../../img/diagram.png" title="Link to QTO-XML"/> QTO-XML</a></p>
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th>
+<tr><td>Height</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Firsthöhe</b></td><td>Systemhöhe des Geschosses, gemessen von der Oberkante Rohfdecke bis zur Oberkante Rohdecke im darüberliegenden Geschoss. Wird nur angegeben, wenn es eine konstante Höhe gibt.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Height</b></td><td>Standard gross height of this building, from the top surface of the construction floor, to the top surface of the construction floor or roof above. Only provided is there is a constant height.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>高さ</b></td><td>建物の高さ。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>EavesHeight</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Traufhöhe</b></td><td>Lichte des Geschosses, gemessen von der Oberkante Rohdecke bis zur Unterkante der Rohdecke im darüberliegenden Geschoss. Wird nur angegeben, wenn es eine konstante Höhe gibt.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Eaves Height</b></td><td>Standard net height of this storey, from the top surface of the construction floor, to the bottom surface of the construction floor or roof above. Only provided is there is a constant height.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FootprintArea</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bebaute Fläche</b></td><td>Bebaute Fläche des Baugrundstücks.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Footprint Area</b></td><td>Gross area of the site covered by the building(s).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建築面積</b></td><td>建物が敷地を覆う全体の面積。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>GrossFloorArea</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bruttogrundfläche</b></td><td>Summe aller Bruttogrundflächen der Räume und der Konstruktionsfläuchen aufgehender Bauelemente im Gebäude. Kann zusätzlich zu den einzelnen Mengen der Räume und aufgehenden Bauelementen angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume und aufgehenen Bauelementen.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Floor Area</b></td><td>Sum of all gross areas of spaces within the building. It includes the area of construction elements within the building. May be provided in addition to the quantities of the spaces and the construction elements assigend to the building. In case of inconsistencies, the individual quantities of spaces and construction elements take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>延べ床面積</b></td><td>建物の部屋の全面積を集計したもの。建物を構成する建築部材の面積も含む。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NetFloorArea</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Nettogrundfläche</b></td><td>Summe aller Nettogrundflächen der Räume im Gebäude. Kann zusätzlich zu den einzelnen Mengen der Räume angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Net Floor Area</b></td><td>Sum of all net areas of spaces within the building. It excludes the area of construction elements within the building. May be provided in addition to the quantities of the spaces assigend to the building. In case of inconsistencies, the individual quantities of spaces take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>正味床面積</b></td><td>建物の部屋の全面積を集計したもの。建物を構成する建築部材の面積も除外したもの。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>GrossVolume</td><td>
+<span class="self-ref">Q_VOLUME</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bruttorauminhalt</b></td><td>Summe aller Bruttorauminhalte der Räume eines Gebäudes, inklusive der Volumen der Baulemente (Gesamtrauminhalt, der von den äußeren Begrenzungsflächen umschlossen wird). Kann zusätzlich zu den einzelnen Mengen der Räume und Bauelemente angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume und Bauelemente.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Volume</b></td><td>Sum of all gross volumes of spaces enclosed by the building. It includes the volumes of construction elements within the building. May be provided in addition to the quantities of the spaces and the construction elements assigend to the building. In case of inconsistencies, the individual quantities of spaces and construction elements take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建物体積</b></td><td>建物により囲まれた空間の全体積を集計したもの。建物を構成する建築部材の体積も含む。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NetVolume</td><td>
+<span class="self-ref">Q_VOLUME</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Nettorauminhalt</b></td><td>Summe aller Nettorauminhalte der Räume eines Gebäudes. Kann zusätzlich zu den einzelnen Mengen der Räumeangegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Net Volume</b></td><td>Sum of all net volumes of spaces enclosed by the building. It iexcludes the volumes of construction elements within the building. May be provided in addition to the quantities of the spaces assigend to the building. In case of inconsistencies, the individual quantities of spaces take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>正味建物体積</b></td><td>建物により囲まれた空間の全体積を集計したもの。建物を構成する建築部材の体積を除外したもの。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/qto_buildingbasequantities.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

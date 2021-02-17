@@ -1,0 +1,97 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcConnectionGeometry</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 3 index4 5 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.7.3.6");
+//-->
+</script>
+
+<h4 class="num">IfcConnectionGeometry</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Verbindung - Geometrie</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Connection Geometry</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Connexion géométrique</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcConnectionGeometry</span> is used to describe the geometric and topological constraints that facilitate the physical connection of two objects. It is envisioned as a control that applies to the element connection relationships.</p>
+<blockquote class="note">
+<p>NOTE  The element connection relationship normally provides for a logical connection information, by referencing the relating and related elements. If in addition an <span class="self-ref">IfcConnectionGeometry</span> is provided, physical connection information is given by specifying exactly where at the relating and related element the element connection occurs. Using the eccentricity subtypes, the connection can also be described when there is a physical distance (or eccentricity) between the connection elements.</p>
+</blockquote>
+<p>The <span class="self-ref">IfcConnectionGeometry</span> allows for the provision of connection constraints between geometric and topological elements, the following connection geometry/topology types are in scope:</p>
+<ul>
+<li>point | vertex point,</li>
+<li>curve | edge curve,</li>
+<li>surface | face surface,</li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.5.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The definition of the subtypes has been enhanced by allowing either geometric representation items (point | curve | surface) or topological representation items with associated geometry (vertex point | edge curve | face  surface).</p>
+</blockquote>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcconnectiongeometry.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,206,42" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm" alt="IfcConnectionCurveGeometry" />
+<area shape="rect" coords="18,54,206,66" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcconnectionpointgeometry.htm" alt="IfcConnectionPointGeometry" />
+<area shape="rect" coords="18,78,206,90" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcconnectionsurfacegeometry.htm" alt="IfcConnectionSurfaceGeometry" />
+<area shape="rect" coords="18,102,206,114" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcconnectionvolumegeometry.htm" alt="IfcConnectionVolumeGeometry" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a></i></td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcConnectionGeometry<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm">IfcConnectionCurveGeometry</a>, <a href="../../ifcgeometricconstraintresource/lexical/ifcconnectionpointgeometry.htm">IfcConnectionPointGeometry</a>, <a href="../../ifcgeometricconstraintresource/lexical/ifcconnectionsurfacegeometry.htm">IfcConnectionSurfaceGeometry</a>, <a href="../../ifcgeometricconstraintresource/lexical/ifcconnectionvolumegeometry.htm">IfcConnectionVolumeGeometry</a>))<b>;</b><br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcrelconnectselements.htm">IfcRelConnectsElements</a>
+<a href="../../ifcproductextension/lexical/ifcrelinterfereselements.htm">IfcRelInterferesElements</a>
+<a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>
+<a href="../../ifcstructuralanalysisdomain/lexical/ifcrelconnectswitheccentricity.htm">IfcRelConnectsWithEccentricity</a>
+</p>
+<p><a href="../../../link/ifcconnectiongeometry.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

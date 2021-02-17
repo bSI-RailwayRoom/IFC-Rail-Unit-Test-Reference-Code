@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcBuildAxes</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.4");
+//-->
+</script>
+
+<h4 class="num">IfcBuildAxes</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Build Axes</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function builds and returns three normalized orthogonal directions. u[3] is the direction of axis. u[1] is in the direction of the projection of ref_direction onto the plane normal to u[3] and u[2] is the cross product of u[3] and u[1]. Default values are supplied if input data is incomplete.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>build_axes</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC1.5</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcBuildAxes<br/>
+
+&nbsp;&nbsp;(Axis, RefDirection : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>) <br/>&nbsp;&nbsp;&nbsp;&nbsp;: LIST [3:3] OF <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>LOCAL<br/>&nbsp;&nbsp;D1, D2 : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>END_LOCAL;<br/>&nbsp;&nbsp;D1 := NVL(<a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(Axis), <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>([0.0,0.0,1.0]));<br/>&nbsp;&nbsp;D2 := <a href="../../ifcgeometryresource/lexical/ifcfirstprojaxis.htm">IfcFirstProjAxis</a>(D1, RefDirection);<br/>&nbsp;&nbsp;RETURN ([D2, <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(<a href="../../ifcgeometryresource/lexical/ifccrossproduct.htm">IfcCrossProduct</a>(D1,D2))\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Orientation, D1]);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcbuildaxes.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

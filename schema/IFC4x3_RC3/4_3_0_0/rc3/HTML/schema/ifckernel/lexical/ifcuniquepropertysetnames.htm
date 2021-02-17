@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcUniquePropertySetNames</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 2 index3 4 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.2.4.4");
+//-->
+</script>
+
+<h4 class="num">IfcUniquePropertySetNames</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Unique Property Set Names</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function gets the set of <a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a>'s. It iterates through the <i>Name</i> attibute of the <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a>'s
+and verifies that no <i>Name</i> appears twice. It is called from within the function <a href="../../ifckernel/lexical/ifcuniquedefinitionnames.htm">IfcUniqueDefinitionNames</a>.</p>
+<blockquote class="history">
+<p>HISTORY  New function in IFC4 ADD1</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcUniquePropertySetNames<br/>
+
+(Properties : SET [1:?] OF <a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a>)<br/>:LOGICAL;<br/><br/>LOCAL<br/>&nbsp;&nbsp;Names : SET OF <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a> := [];<br/>&nbsp;&nbsp;Unnamed : INTEGER := 0;<br/>END_LOCAL;<br/><br/>REPEAT i:=1 TO HIINDEX(Properties);<br/>&nbsp;&nbsp;IF 'IFCKERNEL.<a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a>' IN TYPEOF(Properties[i]) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;Names := Names + Properties[i]\<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>.Name;<br/>&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;Unnamed := Unnamed + 1;<br/>&nbsp;&nbsp;END_IF;<br/>END_REPEAT;<br/><br/>RETURN (SIZEOF(Names) + Unnamed = SIZEOF(Properties));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a>
+</p>
+<p><a href="../../../link/ifcuniquepropertysetnames.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

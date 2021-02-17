@@ -1,0 +1,61 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcTopologyRepresentationTypes</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 18 index3 4 index4 7 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.18.4.8");
+//-->
+</script>
+
+<h4 class="num">IfcTopologyRepresentationTypes</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Topology Representation Types</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function gets the topology representation type and the assigned set of representation items as input and verifies whether the correct items are assigned according to the representation type given.</p>
+<blockquote class="history">
+<p>HISTORY  New function in IFC2x3</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcTopologyRepresentationTypes<br/>
+
+(RepType : <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>; Items : SET OF <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>) : LOGICAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count : INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_LOCAL;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;CASE RepType OF <br/>&nbsp;&nbsp;&nbsp;&nbsp;'Vertex' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcvertex.htm">IfcVertex</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;&nbsp;&nbsp;'Edge' : <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcedge.htm">IfcEdge</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;&nbsp;&nbsp;'Path' : <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcpath.htm">IfcPath</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;&nbsp;&nbsp;'Face' : <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;&nbsp;&nbsp;'Shell' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcopenshell.htm">IfcOpenShell</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR ('IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcclosedshell.htm">IfcClosedShell</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;&nbsp;&nbsp;'Undefined': RETURN(TRUE);<br/>&nbsp;&nbsp;&nbsp;&nbsp; OTHERWISE : RETURN(?);<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_CASE;<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (Count = SIZEOF(Items));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcrepresentationresource/lexical/ifctopologyrepresentation.htm">IfcTopologyRepresentation</a>
+</p>
+<p><a href="../../../link/ifctopologyrepresentationtypes.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

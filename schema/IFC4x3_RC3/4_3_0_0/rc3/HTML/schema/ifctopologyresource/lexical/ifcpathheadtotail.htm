@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPathHeadToTail</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 20 index3 4 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.20.4.3");
+//-->
+</script>
+
+<h4 class="num">IfcPathHeadToTail</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Path Head To Tail</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>This function returns TRUE if all edges of the input path are consecutive.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function returns TRUE if for the edges of the input path the end vertex of each edge is the same as the start vertex of its successor.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>path_head_to_tail</strong> defined in ISO10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC2.0</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcPathHeadToTail<br/>
+
+(APath : <a href="../../ifctopologyresource/lexical/ifcpath.htm">IfcPath</a>) : LOGICAL;<br/>&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp; N : INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp; P : LOGICAL := UNKNOWN;<br/>&nbsp;&nbsp;&nbsp;END_LOCAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp; N := SIZEOF (APath.EdgeList);<br/>&nbsp;&nbsp;&nbsp;REPEAT i := 2 TO N;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P := P AND (APath.EdgeList[i-1].EdgeEnd :=:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APath.EdgeList[i].EdgeStart);<br/>&nbsp;&nbsp;&nbsp;END_REPEAT;<br/>&nbsp;&nbsp;&nbsp;RETURN (P);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifctopologyresource/lexical/ifcpath.htm">IfcPath</a>
+</p>
+<p><a href="../../../link/ifcpathheadtotail.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

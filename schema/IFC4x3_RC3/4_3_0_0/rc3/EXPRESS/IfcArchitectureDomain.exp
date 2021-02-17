@@ -1,0 +1,322 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+17 February 2021
+
+*)
+
+SCHEMA IFCARCHITECTUREDOMAIN;
+
+REFERENCE FROM IFCACTORRESOURCE
+(
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+);
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+);
+
+REFERENCE FROM IFCGEOMETRICMODELRESOURCE
+(
+  IfcGeometricSet
+);
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcAxis2Placement2D,
+  IfcAxis2Placement3D,
+  IfcSurface
+);
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcTypeProduct,
+  IfcPreDefinedPropertySet
+);
+
+REFERENCE FROM IFCMATERIALRESOURCE
+(
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcPositiveLengthMeasure,
+  IfcSIUnit,
+  IfcNormalisedRatioMeasure,
+  IfcLengthMeasure,
+  IfcNonNegativeLengthMeasure,
+  IfcBoolean
+);
+
+REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
+(
+  IfcNullStyle
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+);
+
+REFERENCE FROM IFCPROPERTYRESOURCE
+(
+);
+
+REFERENCE FROM IFCREPRESENTATIONRESOURCE
+(
+  IfcShapeAspect
+);
+
+REFERENCE FROM IFCSHAREDBLDGELEMENTS
+(
+);
+
+TYPE IfcDoorPanelOperationEnum = ENUMERATION OF
+	(SWINGING
+	,DOUBLE_ACTING
+	,SLIDING
+	,FOLDING
+	,REVOLVING
+	,ROLLINGUP
+	,FIXEDPANEL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDoorPanelPositionEnum = ENUMERATION OF
+	(LEFT
+	,MIDDLE
+	,RIGHT
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDoorStyleConstructionEnum = ENUMERATION OF
+	(ALUMINIUM
+	,HIGH_GRADE_STEEL
+	,STEEL
+	,WOOD
+	,ALUMINIUM_WOOD
+	,ALUMINIUM_PLASTIC
+	,PLASTIC
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDoorStyleOperationEnum = ENUMERATION OF
+	(SINGLE_SWING_LEFT
+	,SINGLE_SWING_RIGHT
+	,DOUBLE_DOOR_SINGLE_SWING
+	,DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
+	,DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
+	,DOUBLE_SWING_LEFT
+	,DOUBLE_SWING_RIGHT
+	,DOUBLE_DOOR_DOUBLE_SWING
+	,SLIDING_TO_LEFT
+	,SLIDING_TO_RIGHT
+	,DOUBLE_DOOR_SLIDING
+	,FOLDING_TO_LEFT
+	,FOLDING_TO_RIGHT
+	,DOUBLE_DOOR_FOLDING
+	,REVOLVING
+	,ROLLINGUP
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcPermeableCoveringOperationEnum = ENUMERATION OF
+	(GRILL
+	,LOUVER
+	,SCREEN
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWindowPanelOperationEnum = ENUMERATION OF
+	(SIDEHUNGRIGHTHAND
+	,SIDEHUNGLEFTHAND
+	,TILTANDTURNRIGHTHAND
+	,TILTANDTURNLEFTHAND
+	,TOPHUNG
+	,BOTTOMHUNG
+	,PIVOTHORIZONTAL
+	,PIVOTVERTICAL
+	,SLIDINGHORIZONTAL
+	,SLIDINGVERTICAL
+	,REMOVABLECASEMENT
+	,FIXEDCASEMENT
+	,OTHEROPERATION
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWindowPanelPositionEnum = ENUMERATION OF
+	(LEFT
+	,MIDDLE
+	,RIGHT
+	,BOTTOM
+	,TOP
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWindowStyleConstructionEnum = ENUMERATION OF
+	(ALUMINIUM
+	,HIGH_GRADE_STEEL
+	,STEEL
+	,WOOD
+	,ALUMINIUM_WOOD
+	,PLASTIC
+	,OTHER_CONSTRUCTION
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWindowStyleOperationEnum = ENUMERATION OF
+	(SINGLE_PANEL
+	,DOUBLE_PANEL_VERTICAL
+	,DOUBLE_PANEL_HORIZONTAL
+	,TRIPLE_PANEL_VERTICAL
+	,TRIPLE_PANEL_BOTTOM
+	,TRIPLE_PANEL_TOP
+	,TRIPLE_PANEL_LEFT
+	,TRIPLE_PANEL_RIGHT
+	,TRIPLE_PANEL_HORIZONTAL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcDoorLiningProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	LiningDepth : OPTIONAL IfcPositiveLengthMeasure;
+	LiningThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	ThresholdDepth : OPTIONAL IfcPositiveLengthMeasure;
+	ThresholdThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	TransomThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	TransomOffset : OPTIONAL IfcLengthMeasure;
+	LiningOffset : OPTIONAL IfcLengthMeasure;
+	ThresholdOffset : OPTIONAL IfcLengthMeasure;
+	CasingThickness : OPTIONAL IfcPositiveLengthMeasure;
+	CasingDepth : OPTIONAL IfcPositiveLengthMeasure;
+	ShapeAspectStyle : OPTIONAL IfcShapeAspect;
+	LiningToPanelOffsetX : OPTIONAL IfcLengthMeasure;
+	LiningToPanelOffsetY : OPTIONAL IfcLengthMeasure;
+ WHERE
+	WR31 : NOT(EXISTS(LiningDepth) AND NOT(EXISTS(LiningThickness)));
+	WR32 : NOT(EXISTS(ThresholdDepth) AND NOT(EXISTS(ThresholdThickness)));
+	WR33 : (EXISTS(TransomOffset) AND EXISTS(TransomThickness)) XOR
+(NOT(EXISTS(TransomOffset)) AND NOT(EXISTS(TransomThickness)));
+	WR34 : (EXISTS(CasingDepth) AND EXISTS(CasingThickness)) XOR
+(NOT(EXISTS(CasingDepth)) AND NOT(EXISTS(CasingThickness)));
+	WR35 : (EXISTS(SELF\IfcPropertySetDefinition.DefinesType[1])) 
+AND 
+(
+ ('IFCSHAREDBLDGELEMENTS.IFCDOORTYPE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+  OR
+ ('IFCARCHITECTUREDOMAIN.IFCDOORSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+);
+END_ENTITY;
+
+ENTITY IfcDoorPanelProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	PanelDepth : OPTIONAL IfcPositiveLengthMeasure;
+	PanelOperation : IfcDoorPanelOperationEnum;
+	PanelWidth : OPTIONAL IfcNormalisedRatioMeasure;
+	PanelPosition : IfcDoorPanelPositionEnum;
+	ShapeAspectStyle : OPTIONAL IfcShapeAspect;
+ WHERE
+	ApplicableToType : (EXISTS(SELF\IfcPropertySetDefinition.DefinesType[1])) 
+AND 
+(
+ ('IFCSHAREDBLDGELEMENTS.IFCDOORTYPE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+  OR
+ ('IFCARCHITECTUREDOMAIN.IFCDOORSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+);
+END_ENTITY;
+
+ENTITY IfcDoorStyle
+ SUBTYPE OF (IfcTypeProduct);
+	OperationType : IfcDoorStyleOperationEnum;
+	ConstructionType : IfcDoorStyleConstructionEnum;
+	ParameterTakesPrecedence : IfcBoolean;
+	Sizeable : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcPermeableCoveringProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	OperationType : IfcPermeableCoveringOperationEnum;
+	PanelPosition : IfcWindowPanelPositionEnum;
+	FrameDepth : OPTIONAL IfcPositiveLengthMeasure;
+	FrameThickness : OPTIONAL IfcPositiveLengthMeasure;
+	ShapeAspectStyle : OPTIONAL IfcShapeAspect;
+END_ENTITY;
+
+ENTITY IfcWindowLiningProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	LiningDepth : OPTIONAL IfcPositiveLengthMeasure;
+	LiningThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	TransomThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	MullionThickness : OPTIONAL IfcNonNegativeLengthMeasure;
+	FirstTransomOffset : OPTIONAL IfcNormalisedRatioMeasure;
+	SecondTransomOffset : OPTIONAL IfcNormalisedRatioMeasure;
+	FirstMullionOffset : OPTIONAL IfcNormalisedRatioMeasure;
+	SecondMullionOffset : OPTIONAL IfcNormalisedRatioMeasure;
+	ShapeAspectStyle : OPTIONAL IfcShapeAspect;
+	LiningOffset : OPTIONAL IfcLengthMeasure;
+	LiningToPanelOffsetX : OPTIONAL IfcLengthMeasure;
+	LiningToPanelOffsetY : OPTIONAL IfcLengthMeasure;
+ WHERE
+	WR31 : NOT(EXISTS(LiningDepth) AND NOT(EXISTS(LiningThickness)));
+	WR32 : NOT(NOT(EXISTS(FirstTransomOffset)) AND EXISTS(SecondTransomOffset));
+	WR33 : NOT(NOT(EXISTS(FirstMullionOffset)) AND EXISTS(SecondMullionOffset));
+	WR34 : (EXISTS(SELF\IfcPropertySetDefinition.DefinesType[1])) 
+AND 
+(
+ ('IFCSHAREDBLDGELEMENTS.IFCWINDOWTYPE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+  OR
+ ('IFCARCHITECTUREDOMAIN.IFCWINDOWSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+);
+END_ENTITY;
+
+ENTITY IfcWindowPanelProperties
+ SUBTYPE OF (IfcPreDefinedPropertySet);
+	OperationType : IfcWindowPanelOperationEnum;
+	PanelPosition : IfcWindowPanelPositionEnum;
+	FrameDepth : OPTIONAL IfcPositiveLengthMeasure;
+	FrameThickness : OPTIONAL IfcPositiveLengthMeasure;
+	ShapeAspectStyle : OPTIONAL IfcShapeAspect;
+ WHERE
+	ApplicableToType : (EXISTS(SELF\IfcPropertySetDefinition.DefinesType[1])) 
+AND 
+(
+ ('IFCSHAREDBLDGELEMENTS.IFCWINDOWTYPE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+  OR
+ ('IFCARCHITECTUREDOMAIN.IFCWINDOWSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]))
+);
+END_ENTITY;
+
+ENTITY IfcWindowStyle
+ SUBTYPE OF (IfcTypeProduct);
+	ConstructionType : IfcWindowStyleConstructionEnum;
+	OperationType : IfcWindowStyleOperationEnum;
+	ParameterTakesPrecedence : IfcBoolean;
+	Sizeable : IfcBoolean;
+END_ENTITY;
+
+END_SCHEMA;

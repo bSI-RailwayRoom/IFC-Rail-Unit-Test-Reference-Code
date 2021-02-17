@@ -1,0 +1,163 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SpaceOccupancyRequirements</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 19 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.20");
+//-->
+</script>
+
+<h4 class="std">5.4.4.20 Pset_SpaceOccupancyRequirements</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<span class="self-ref">IfcSpace, IfcSpatialZone, IfcZone</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Occupancy Requirements</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/32MTg0qWeHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SpaceOccupancyRequirements.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>OccupancyType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Nutzungsart</b></td><td>Nutzungsart des Raums gemäß der gültigen Raumnutzungstabelle des Raumprogramms.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Occupancy Type</b></td><td>Occupancy type for this object. It is defined according to the presiding national building code.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>TypeOccupation</b></td><td>Usage type de cet espace. Est défini selon le Code national en vigueur.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>用途</b></td><td>このオブジェクトの用途。統括する国の建築法規により定義される。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OccupancyNumber</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Belegung</b></td><td>Durchschnittliche Anzahl der Personen für deren  Aktivitäten der Raum vorgesehen ist.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Occupancy Number</b></td><td>Number of people required for the activity assigned to this space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>NombreOccupants</b></td><td>Nombre d'occupants concernés par l'activité dans cet espace.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>利用人数</b></td><td>この空間に割り当てられた活動を遂行するために必要な人数。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OccupancyNumberPeak</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Maximale Belegung</b></td><td>Maximale Anzahl der Personen für deren  Aktivitäten der Raum vorgesehen ist.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Occupancy Number Peak</b></td><td>Maximal number of people required for the activity assigned to this space in peak time.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>NombreOccupantsMax</b></td><td>Nombre maximum d'occupants simultanés concernés par l'activité dans cet espace à l'heure de pointe.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>利用人数ピーク</b></td><td>この空間に割り当てられた活動を遂行するために必要な最大人数。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OccupancyTimePerDay</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctimemeasure.htm">IfcTimeMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Belegungszeit pro Tag</b></td><td>Durchschnittliche Belegungszeit des Raums pro Tag.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Occupancy Time Per Day</b></td><td>The amount of time during the day that the activity is required within this space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DureeOccupationJour</b></td><td>Durée journalière de l'activité dans cet espace
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>日毎利用時間</b></td><td>この空間での活動をするために必要な日中の時間。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AreaPerOccupant</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Fläche pro Nutzer</b></td><td>Anteil der Raumfläche pro Benutzer für Nutzung des Raums.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Area Per Occupant</b></td><td>Design occupancy loading for this type of usage assigned to this space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceParOccupant</b></td><td>Taux de remplissage de l'espace pour l'usage type
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>利用者毎面積</b></td><td>この空間に割り当てられた用途に対する想定利用負荷。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MinimumHeadroom</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Lichte Höhe</b></td><td>Minumal geforderte lichte Höhe für diesen Raum.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Minimum Headroom</b></td><td>Headroom required for the activity assigned to this space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>HauteurPassageMinimale</b></td><td>Hauteur de passage requise pour l'usage assigné à l'espace
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>最小頭上あき高</b></td><td>この空間に割り当てられた用途に必要な頭上あき高。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsOutlookDesirable</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Ausblick erwünscht</b></td><td>Angabe, ob dieser Raum einen natürlichen Ausblick nach draussen gewähren soll (WAHR) oder dies nicht gefordert ist (FALSCH).
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Outlook Desirable</b></td><td>An indication of whether the outlook is desirable (set TRUE) or not (set FALSE)
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>VueExterieurSouhaitable</b></td><td>Indique si la vue sur l'extérieur est souhaitable (VRAI) ou non (FAUX).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>眺望の善し悪し</b></td><td>外の眺望が望ましいかどうか。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_spaceoccupancyrequirements.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

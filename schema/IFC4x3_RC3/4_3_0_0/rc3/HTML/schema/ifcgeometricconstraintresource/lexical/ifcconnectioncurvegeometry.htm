@@ -1,0 +1,121 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcConnectionCurveGeometry</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 7 index3 3 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.7.3.5");
+//-->
+</script>
+
+<h4 class="num">IfcConnectionCurveGeometry</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Lineare Verbindung - Geometrie</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Connection Curve Geometry</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcConnectionCurveGeometry</span> is used to describe the geometric constraints that facilitate the physical connection of two objects at a curve or at an edge with curve geometry associated. It is envisioned as a control that applies to the element connection relationships.</p>
+<p>The <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a> (or the <a href="../../ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a> with an associated <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>) at the <i>CurveOnRelatingElement</i> attribute defines the curve where the basic geometry items of the connected elements connects. The curve geometry and coordinates are provided within the local coordinate system of the <i>RelatingElement</i>, as specified at the <a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a> subtype that utilizes the <span class="self-ref">IfcConnectionCurveGeometry</span>. Optionally, the same curve geometry and coordinates can also be provided within the local coordinate system of the <i>RelatedElement</i> by using the <i>CurveOnRelatedElement</i> attribute.</p>
+<blockquote class="example">
+<p>EXAMPLE  The connection relationship between two walls has a geometric constraint which describes the end caps (or cut-off of the wall ends) by a <i>CurveOnRelatingElement</i> for the first wall and a <i>CurveOnRelatedElement</i> for the second wall. The exact usage of the <span class="self-ref">IfcConnectionCurveGeometry</span> is further defined in the geometry use sections of the elements that use it.</p>
+</blockquote>
+<p>The available geometry for the connection constraint may be further restricted to only allow straight segments by applying <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a> only. Such an usage constraint is provided at the object definition of the <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> subtype, utilizing the element connection by referring to the subtype of <a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a> with the associated <i>IfcConnectionCurveGeometry.</i></p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.5.</p>
+</blockquote>
+<blockquote class="change-ifc2x">
+<p>IFC2x CHANGE  Renamed from IfcLineConnectionGeometry.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The provision of topology with associated geometry, <a href="../../ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a>, is enabled by using the <a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a>.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>CurveOnRelatingElement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a></td><td></td><td>
+The bounded curve at which the connected objects are aligned at the relating element, given in the LCS of the relating element.
+</td><td>X</td></tr>
+<tr><td>2</td><td>CurveOnRelatedElement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a></td><td>? </td><td>
+The bounded curve at which the connected objects are aligned at the related element, given in the LCS of the related element. If the information is omitted, then the origin of the related element is used.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcconnectioncurvegeometry.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm" alt="IfcConnectionGeometry" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm">IfcConnectionCurveGeometry</a></td></tr>
+<tr><td>1</td><td>CurveOnRelatingElement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a></td><td></td><td>
+The bounded curve at which the connected objects are aligned at the relating element, given in the LCS of the relating element.
+</td><td>X</td></tr>
+<tr><td>2</td><td>CurveOnRelatedElement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a></td><td>? </td><td>
+The bounded curve at which the connected objects are aligned at the related element, given in the LCS of the related element. If the information is omitted, then the origin of the related element is used.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm">IfcConnectionCurveGeometry</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm">IfcConnectionCurveGeometry</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectioncurvegeometry.htm">IfcConnectionCurveGeometry</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;CurveOnRelatingElement&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;CurveOnRelatedElement&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcConnectionCurveGeometry<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricconstraintresource/lexical/ifcconnectiongeometry.htm">IfcConnectionGeometry</a>)<b>;</b><br/>
+&nbsp;&nbsp;CurveOnRelatingElement : <a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a>;<br/>
+&nbsp;&nbsp;CurveOnRelatedElement : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometricconstraintresource/lexical/ifccurveoredgecurve.htm">IfcCurveOrEdgeCurve</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcconnectioncurvegeometry.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

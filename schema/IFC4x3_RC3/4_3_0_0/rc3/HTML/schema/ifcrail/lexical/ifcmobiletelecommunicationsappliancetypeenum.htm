@@ -1,0 +1,84 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcMobileTelecommunicationsApplianceTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 8 index3 2 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.8.2.3");
+//-->
+</script>
+
+<h4 class="num">IfcMobileTelecommunicationsApplianceTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcrail/lexical/ifcmobiletelecommunicationsappliancetypeenum.htm">IfcMobileTelecommunicationsApplianceTypeEnum</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The IfcMobileTelecommunicationsApplianceTypeEnum defines the range of different types of mobile telecommunications appliance that can be specified.</p>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>E_UTRAN_NODE_B</td><td>An E-utran nodel B is a logical network component which serves one or more E-utran cells. It is the hardware connected to the evolved packet core (EPC), more specifically to the mobility management entity (MME) , which communicates directly with user equipment in wireless way.
+</td></tr><tr><td>REMOTE_RADIO_UNIT</td><td>A remote radio unit is a component of a distributed base transceiver station that converts digital baseband signals into high-frequency (rf) signals and sends high-frequency (rf) signals to the antenna for radiation.
+</td></tr><tr><td>ACCESSPOINT</td><td>An access point is a device that allows wireless devices to connect to a wired network.
+</td></tr><tr><td>BASETRANSCEIVERSTATION</td><td>A base transceiver station (BTS) is a network component which serves one cell. It completes the conversion between base station controller and wireless channel, and realizes the wireless transmission and related control functions between base station controller and mobile switching through the air interface.
+</td></tr><tr><td>REMOTEUNIT</td><td>A remote unit is a device used to amplify a base station signal.
+</td></tr><tr><td>BASEBANDUNIT</td><td>A baseband unit is a component of a distributed base transceiver station for implementing baseband processing functions.
+</td></tr><tr><td>MASTERUNIT</td><td>A master unit is a component of a repeater for coupling base station signals.
+</td></tr><tr><td>USERDEFINED</td><td>User-defined type
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined type.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcrail/lexical/ifcmobiletelecommunicationsappliancetypeenum.htm">IfcMobileTelecommunicationsApplianceTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;e_utran_node_b&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;remote_radio_unit&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;accesspoint&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;basetransceiverstation&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;remoteunit&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;basebandunit&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;masterunit&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcMobileTelecommunicationsApplianceTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;E_UTRAN_NODE_B, <br/>&nbsp;REMOTE_RADIO_UNIT, <br/>&nbsp;ACCESSPOINT, <br/>&nbsp;BASETRANSCEIVERSTATION, <br/>&nbsp;REMOTEUNIT, <br/>&nbsp;BASEBANDUNIT, <br/>&nbsp;MASTERUNIT, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcrail/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcrail/lexical/ifcmobiletelecommunicationsappliance.htm">IfcMobileTelecommunicationsAppliance</a>
+<a href="../../ifcrail/lexical/ifcmobiletelecommunicationsappliancetype.htm">IfcMobileTelecommunicationsApplianceType</a>
+</p>
+<p><a href="../../../link/ifcmobiletelecommunicationsappliancetypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

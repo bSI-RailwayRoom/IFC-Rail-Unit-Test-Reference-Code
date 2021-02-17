@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPointListDim</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 4 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.8.4.1");
+//-->
+</script>
+
+<h4 class="num">IfcPointListDim</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Point List Dimension</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>This function determines the dimensionality of a cartesian point list.</p>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcPointListDim<br/>
+
+(PointList : <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a>;<br/><br/>&nbsp;&nbsp;IF ('IFCGEOMETRICMODELRESOURCE.<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist2d.htm">IfcCartesianPointList2D</a>' IN TYPEOF(PointList))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2);<br/>&nbsp;&nbsp;END_IF;		&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRICMODELRESOURCE.<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist3d.htm">IfcCartesianPointList3D</a>' IN TYPEOF(PointList))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;		&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;RETURN (?);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcpointlistdim.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

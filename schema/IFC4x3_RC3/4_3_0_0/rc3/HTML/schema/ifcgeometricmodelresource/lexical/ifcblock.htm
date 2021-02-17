@@ -1,0 +1,245 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcBlock</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 3 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.8.3.3");
+//-->
+</script>
+
+<h4 class="num">IfcBlock</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Quader</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Block</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Parallélépipède</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcBlock</span> is a Construction Solid Geometry (CSG) 3D primitive. It is defined by a position and a positve distance along the three orthogonal axes. The inherited <i>Position</i> attribute has the <i>IfcAxisPlacement3D</i> type and provides:</p>
+<ul>
+<li><i>SELF\IfcCsgPrimitive3D.Position</i>: The location and orientation of the axis system for the primitive.</li>
+<li><i>SELF\IfcCsgPrimitive3D.Position.Location</i>: The block has one vertex at location and the edges are aligned with the placement axes in the positive sense.</li>
+</ul>
+<p>The <i>XLength</i>, <i>YLength</i>, and <i>ZLength</i> attributes define the size of the IfcBlock along the three axes.</p>
+<table cellpadding="2" cellspacing="2" summary="block geometry">
+<tr>
+<td><img alt="block" src="../../../figures/ifcblock-layout1.png" border="0" height="300" width="400"></td>
+<td style="vertical-align:bottom;">
+<p class="small">Figure 333 illustrates geometric parameters of a block where the block positioned within its own placement
+coordinate system. The values for <i>XLength</i>, <i>YLength</i>, and <i>ZLength</i> are applied to the positive
+direction of the X, Y, and Z axis.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="figure">Figure 333 &mdash; Block geometry</p>
+</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A block is a solid rectangular parallelepiped, defined with a location and placement coordinate system. The block is specified by the positive lengths x, y, and z along the axes of the placement coordinate system, and has one vertex at the origin of the placement coordinate system.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>block</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x3.</p>
+</blockquote>
+<p class="use-head">
+Texture definition</p>
+<p>On each side face, textures are aligned facing upright. On the top and bottom faces, textures are aligned facing front-to-back. Textures are stretched or repeated to the extent of each face according to <i>RepeatS</i> and <i>RepeatT</i>.</p>
+<p>Figure 334 illustrates default texture mapping with a clamped texture (RepeatS=False and RepeatT=False). The image on the left shows the texture where the S axis points to the right and the T axis points up. The image on the right shows the texture applied to the geometry where the X axis points back to the right, the Y axis points back to the left, and the Z axis points up.</p>
+<p> </p>
+<table summary="block texture" class="gridtable">
+<tr>
+<td><img src="../../../figures/ifcblock-texture.png" alt="texture"></td>
+</tr>
+<tr>
+<td>
+<table summary="texture" width="512" class="gridtable">
+<tr>
+<th>Side</th>
+<th>Normal</th>
+<th>Origin X</th>
+<th>Origin Y</th>
+<th>Origin Z</th>
+<th>S Axis</th>
+<th>T Axis</th>
+</tr>
+<tr>
+<td>Left</td>
+<td>-X</td>
+<td>0</td>
+<td>+YLength</td>
+<td>0</td>
+<td>-Y</td>
+<td>+Z</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>+X</td>
+<td>+XLength</td>
+<td>0</td>
+<td>0</td>
+<td>+Y</td>
+<td>+Z</td>
+</tr>
+<tr>
+<td>Front</td>
+<td>-Y</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>+X</td>
+<td>+Z</td>
+</tr>
+<tr>
+<td>Back</td>
+<td>+Y</td>
+<td>+XLength</td>
+<td>+YLength</td>
+<td>0</td>
+<td>-X</td>
+<td>+Z</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>-Z</td>
+<td>0</td>
+<td>+YLength</td>
+<td>0</td>
+<td>+X</td>
+<td>-Y</td>
+</tr>
+<tr>
+<td>Top</td>
+<td>+Z</td>
+<td>0</td>
+<td>0</td>
+<td>+ZLength</td>
+<td>+X</td>
+<td>+Y</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<p class="figure">Figure 334 &mdash; Block textures</p>
+</td>
+</tr>
+</table>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>XLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement X axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[1]</i>.
+</td><td>X</td></tr>
+<tr><td>3</td><td>YLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement Y axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[2]</i>.
+</td><td>X</td></tr>
+<tr><td>4</td><td>ZLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement Z axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[3]</i>.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcblock.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm" alt="IfcCsgPrimitive3D" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a></i></td></tr>
+<tr><td>1</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement3d.htm">IfcAxis2Placement3D</a></td><td></td><td>
+The placement coordinate system to which the parameters of each individual CSG primitive apply.
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=3</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this geometric representation item, it is always 3.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricmodelresource/lexical/ifcblock.htm">IfcBlock</a></td></tr>
+<tr><td>2</td><td>XLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement X axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[1]</i>.
+</td><td>X</td></tr>
+<tr><td>3</td><td>YLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement Y axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[2]</i>.
+</td><td>X</td></tr>
+<tr><td>4</td><td>ZLength</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The size of the block along the placement Z axis. It is provided by the inherited axis placement through <i>SELF\IfcCsgPrimitive3D.Position.P[3]</i>.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifcblock.htm">IfcBlock</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifcblock.htm">IfcBlock</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifcblock.htm">IfcBlock</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;XLength&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;YLength&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ZLength&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcBlock<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>)<b>;</b><br/>
+&nbsp;&nbsp;XLength : <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;YLength : <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;ZLength : <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricmodelresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcblock.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

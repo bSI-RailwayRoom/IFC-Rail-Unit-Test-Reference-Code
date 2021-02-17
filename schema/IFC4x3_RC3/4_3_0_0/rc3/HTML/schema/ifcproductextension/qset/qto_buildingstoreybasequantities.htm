@@ -1,0 +1,131 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Qto_BuildingStoreyBaseQuantities</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 5 index4 1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.5.2");
+//-->
+</script>
+
+<h4 class="std">5.4.5.2 Qto_BuildingStoreyBaseQuantities</h4>
+<p><span class="self-ref">QTO_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm">IfcBuildingStorey</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Building Storey Base Quantities</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Quantities</summary><p><a href="../../../qto/Qto_BuildingStoreyBaseQuantities.xml"><img border="0" src="../../../img/diagram.png" title="Link to QTO-XML"/> QTO-XML</a></p>
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th>
+<tr><td>GrossHeight</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Systemhöhe</b></td><td>Systemhöhe des Geschosses, gemessen von der Oberkante Rohfdecke bis zur Oberkante Rohdecke im darüberliegenden Geschoss. Wird nur angegeben, wenn es eine konstante Höhe gibt.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Height</b></td><td>Standard gross height of this storey, from the top surface of the construction floor, to the top surface of the construction floor or roof above. Only provided is there is a constant height.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>階高</b></td><td>建物階の高さ。床の上面から上階の床面の上面までの距離。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NetHeigtht</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Lichte Höhe</b></td><td>Lichte des Geschosses, gemessen von der Oberkante Rohdecke bis zur Unterkante der Rohdecke im darüberliegenden Geschoss. Wird nur angegeben, wenn es eine konstante Höhe gibt.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Net Heigtht</b></td><td>Standard net height of this storey, from the top surface of the construction floor, to the bottom surface of the construction floor or roof above. Only provided is there is a constant height.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>正味階高</b></td><td>建物階の高さ。床の上面から上階の床面の下面までの距離。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>GrossPerimeter</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Umfang</b></td><td>Äußerer Umfang des Geschosses entlang der äußeren Umfassungsbauteilen, die die Fassade bilden. Innere Öffnungen, z.B. von inneren Deckenöffnungen, werden nicht mit einbezogen.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Perimeter</b></td><td>Perimeter of the outer contour of the building story without taking interior slab openings into account.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>周辺長</b></td><td>建物階の外側の周辺長。内部スラブの開口は考慮しない。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>GrossFloorArea</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bruttogrundfläche</b></td><td>Summe aller Bruttogrundflächen der Räume und der Konstruktionsfläuchen aufgehender Bauelemente im Geschoss. Kann zusätzlich zu den einzelnen Mengen der Räume und aufgehenden Bauelementen angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume und aufgehenen Bauelementen.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Floor Area</b></td><td>Sum of all gross areas of spaces within the building storey. It includes the area of construction elements within the building storey. May be provided in addition to the quantities of the spaces and the construction elements assigend to the storey. In case of inconsistencies, the individual quantities of spaces and construction elements take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>床面積</b></td><td>建物階の部屋の全面積を集計したもの。建物を構成する建築部材の面積も含む。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NetFloorArea</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Nettogrundfläche</b></td><td>Summe aller Nettogrundflächen der Räume im Geschoss. Kann zusätzlich zu den einzelnen Mengen der Räume angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Net Floor Area</b></td><td>Sum of all net areas of spaces within the building storey. It excludes the area of construction elements within the building storey. May be provided in addition to the quantities of the spaces assigend to the storey. In case of inconsistencies, the individual quantities of spaces take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>正味床面積</b></td><td>建物階の部屋の全面積を集計したもの。建物を構成する建築部材の面積も除外したもの。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>GrossVolume</td><td>
+<span class="self-ref">Q_VOLUME</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bruttorauminhalt</b></td><td>Summe aller Bruttorauminhalte der Räume eines Geschosses, inklusive der Volumen der Baulemente (Gesamtrauminhalt, der von den äußeren Begrenzungsflächen umschlossen wird). Kann zusätzlich zu den einzelnen Mengen der Räume und Bauelemente angegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume und Bauelemente.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Gross Volume</b></td><td>Sum of all gross volumes of spaces enclosed by the building storey. It includes the volumes of construction elements within the building storey. May be provided in addition to the quantities of the spaces and the construction elements assigend to the storey. In case of inconsistencies, the individual quantities of spaces and construction elements take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建物階体積</b></td><td>建物階により囲まれた空間の全体積を集計したもの。建物を構成する建築部材の体積も含む。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NetVolume</td><td>
+<span class="self-ref">Q_VOLUME</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Nettorauminhalt</b></td><td>Summe aller Nettorauminhalte der Räume eines Geschosses. Kann zusätzlich zu den einzelnen Mengen der Räumeangegeben werden. Bei Inkonsistenz zählen die einzelnen Mengen der Räume.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Net Volume</b></td><td>Sum of all net volumes of spaces enclosed by the building storey. It iexcludes the volumes of construction elements within the building storey. May be provided in addition to the quantities of the spaces assigend to the storey. In case of inconsistencies, the individual quantities of spaces take precedence.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>正味建物階体積</b></td><td>建物階により囲まれた空間の全体積を集計したもの。建物を構成する建築部材の体積を除外したもの。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/qto_buildingstoreybasequantities.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

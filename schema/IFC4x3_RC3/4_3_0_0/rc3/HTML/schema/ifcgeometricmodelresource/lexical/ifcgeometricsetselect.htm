@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcGeometricSetSelect</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 2 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.8.2.4");
+//-->
+</script>
+
+<h4 class="num">IfcGeometricSetSelect</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Geometric Set Select</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Sélection des items de représentation géométrique</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcGeometricSetSelect</span> includes the geometric representation items applicable to be part of the geometric set.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition from ISO10303-42:<br>
+This select type identifies the types of entities which can occur in a geometric set.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Corresponding STEP type <strong>geometric_set_select</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Select definition</summary><table class="attributes">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>
+</td><td></td></tr><tr><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>
+</td><td></td></tr><tr><td><a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>
+</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:group name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifcgeometricsetselect.htm">IfcGeometricSetSelect</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:choice&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:choice&gt;<br/>
+&nbsp;&lt;/xs:group&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcGeometricSetSelect = <span class="keyword">SELECT</span> (<br/>
+&nbsp;<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>, <br/>&nbsp;<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>, <br/>&nbsp;<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricmodelresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcgeometricmodelresource/lexical/ifcgeometricset.htm">IfcGeometricSet</a>
+</p>
+<p><a href="../../../link/ifcgeometricsetselect.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

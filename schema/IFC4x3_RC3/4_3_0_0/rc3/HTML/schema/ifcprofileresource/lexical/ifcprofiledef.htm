@@ -1,0 +1,366 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcProfileDef</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 15 index3 3 index4 15 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.15.3.16");
+//-->
+</script>
+
+<h4 class="num">IfcProfileDef</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Profil</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Profile Def</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Définition de profil</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>ABSTRACT</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcProfileDef</span> is the supertype of all definitions of standard and arbitrary profiles within IFC. It is used to define a standard set of commonly used section profiles by their parameters or by their explicit curve geometry.</p>
+<ul>
+<li>Parameterized profiles are 2D primitives, which are used within the industry to describe cross sections by a description of its parameters.</li>
+<li>Arbitrary profiles are cross sections defined by an outer boundary as bounded curve, which may also include holes, defined by inner boundaries.</li>
+<li>Derived profiles, based on a transformation of a parent profile, are also part of the profile definitions available.</li>
+<li>In addition composite profiles can be defined, which include two or more profile definitions to define the resulting profile.</li>
+</ul>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.5, the capabilities have been extended in IFC2x. Profiles can now support swept surfaces and swept area solids with inner boundaries. It had been renamed from IfcAttDrivenProfileDef.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Changed from ABSTRACT to non-abstract for uses which do not require an explicitly defined geometry. Added inverse attributes <i>HasProperties</i> and <i>HasExternalReference</i>.</p>
+</blockquote>
+<p><strong>Use in material association</strong></p>
+<p>Beams, columns, and similarly shaped building elements and their type objects may be associated with a section profile definition, combined with material definition, by means of <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a> together with <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> and <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a>. This way, building elements and element types with same section and material can share a common section profile definition and association.</p>
+<p>The profile definition in material association is required to be consistent with shape representations of the respective building elements.</p>
+<p>A higher-level description of spatial aligment of the section profile of a member (such as centered, bottom-left, in the geometric centroid, and more) can be provided within <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a> by means of a cardinal point reference. This can be used redundant to geometric data in order to convey design intent.</p>
+<p><strong>Use in shape models</strong></p>
+<p>Profile definitions are used within the geometry and geometric model resource to create either swept surfaces, swept area solids, or sectioned spines.</p>
+<p>The purpose of the profile definition within the swept surfaces or swept area solids is to define a uniform cross section being swept:</p>
+<ul>
+<li>along a line (extrusion) using <a href="../../ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm">IfcSurfaceOfLinearExtrusion</a> or <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a></li>
+<li>along a circular arc (revolution) using <a href="../../ifcgeometryresource/lexical/ifcsurfaceofrevolution.htm">IfcSurfaceOfRevolution</a> or <a href="../../ifcgeometricmodelresource/lexical/ifcrevolvedareasolid.htm">IfcRevolvedAreaSolid</a></li>
+<li>along a directrix lying on a reference surface using <a href="../../ifcgeometricmodelresource/lexical/ifcsurfacecurvesweptareasolid.htm">IfcSurfaceCurveSweptAreaSolid</a></li>
+</ul>
+<p>The purpose of the profile definition within the sectioned spine is to define a varying cross sections at several positions along a spine curve. The subtype <a href="../../ifcprofileresource/lexical/ifcderivedprofiledef.htm">IfcDerivedProfileDef</a> is particularly suited to provide the consecutive profiles to be based on transformations of the start profile and thus maintaining the identity of vertices and edges.</p>
+<blockquote class="note">
+<p>NOTE  Subtypes of the <span class="self-ref">IfcProfileDef</span> contain parameterized profiles (as subtypes of <a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>) which establish their own 2D position coordinate system, profiles given by explicit curve geometry (either open or closed profiles) and two special types for composite profiles and derived profiles, based on a 2D Cartesian transformation.</p>
+</blockquote>
+<p>An <span class="self-ref">IfcProfileDef</span> is treated as bounded area if it is used within swept area solids. In this case, the inside of the profile is part of the profile. The attribute <i>ProfileType</i> is set to AREA. An <span class="self-ref">IfcProfileDef</span> is treated as a curve if it is used within swept surfaces. In this case, the inside of the profile (if the curve is closed) is not part of the profile. The attribute <i>ProfileType</i> is set to CURVE.</p>
+<p>Figure 428 illustrates use of parameterized profiles within a swept area solid.</p>
+<table><tr><td>
+<table border="1" cellpadding="2" cellspacing="2" frame="border" width="100%">
+  <tbody>
+    <tr valign="top">
+      <td align="left" valign="top" width="420">
+<img src="../../../figures/ifcprofiledef-layout1.gif" alt="Example of standard profile definition" border="0" height="300" width="400">
+<pre><code>  &lt;/td&gt;
+  &lt;td align=&quot;left&quot; valign=&quot;top&quot;&gt;
+</code></pre>
+<p><u>Position</u><br>
+The <span class="self-ref">IfcProfileDef</span> is defined within the underlying
+coordinate system which is defined by the swept surface or swept area solid
+that uses the profile definition. It is the xy plane</p>
+<pre><code>  &lt;ul&gt;
+    &lt;li&gt;of &lt;em&gt;IfcSweptSurface.Position&lt;/em&gt; or&lt;/li&gt;
+    &lt;li&gt;of &lt;em&gt;IfcSweptAreaSolid.Position&lt;/em&gt; or&lt;/li&gt;
+    &lt;li&gt;of each list member of &lt;em&gt;IfcSectionedSpine.CrossSectionPositions&lt;/em&gt;.&lt;/li&gt;
+  &lt;/ul&gt;
+</code></pre>
+<p>In the figure to the left, the z axis of the position coordinate system points outwards of the drawing plane.</p>
+<p><font size="-1">Note: The subtype <a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a> optionally provides an additional 2D position coordinate system relative to the underlying coordinate system of the <span class="self-ref">IfcProfileDef</span>.</font></p>
+<pre><code>  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td width=&quot;420&quot;&gt;
+</code></pre>
+<img src="../../../figures/ifcprofiledef-layout5.gif" alt="use within swept area solids" border="0" height="300" width="400">
+<pre><code>  &lt;/td&gt;
+  &lt;td align=&quot;left&quot; valign=&quot;top&quot;&gt;
+</code></pre>
+<p><u>Sweeping</u></p>
+<p>In the later use of the <span class="self-ref">IfcProfileDef</span>
+within the swept surface or swept area solid,&nbsp; e.g. the <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>
+(here used as an example), the profile boundaries (here based on the 2D
+position coordinate system of <a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>)
+are placed within the xy plane of the 3D position coordinate system of
+the swept surface or swept area solid.</p>
+<p>The profile is inserted into the underlying coordinate system either:</p>
+<pre><code>  &lt;ul&gt;
+    &lt;li&gt;directly in case of using &lt;em&gt;IfcArbitraryClosedProfileDef&lt;/em&gt;
+    and &lt;em&gt;IfcArbitraryOpenProfileDef&lt;/em&gt;,&lt;/li&gt;
+
+    &lt;li&gt;through an intermediate position coordinate system in case of
+    using &lt;em&gt;IfcParameterizedProfileDef&lt;/em&gt;.&lt;/li&gt;
+
+    &lt;li&gt;through an 2D Cartesian transformation operator (applied directly
+    to the curve position when using arbitrary profile definitions,
+    or applied to the position coordinate system when using parameterized
+    profile definitions) in case of using &lt;em&gt;IfcDerivedProfileDef&lt;/em&gt;.&lt;/li&gt;
+
+    &lt;li&gt;when using &lt;em&gt;IfcCompositeProfileDef&lt;/em&gt; the insertion depends on
+    the subtype of the included sub-profiles.&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+  </td></tr></tbody>
+</table>
+</td></tr>
+<tr><td><p class="figure">Figure 428 &mdash; Profile sweeping</p></td></tr>
+</table>
+<p><strong>Profile types</strong></p>
+<p>Results of the different usage of the <i>ProfileType</i> attribute are demonstrated here. The <i>ProfileType</i> defines whether the inside (the bounded area) is part of the profile definition (Area) or not (Curve). Figure 429 illustrates the resulting area or curve depending on <i>ProfileType</i>.</p>
+<table><tr><td>
+<table border="1" cellpadding="2" cellspacing="2" frame="border" width="100%">
+  <tbody>
+    <tr>
+      <td width="420">
+<p><img src="../../../figures/ifcprofiledef-layout3.gif" alt="area without thickness" height="225" width="300"><br>
+ProfileType = AREA</p>
+<pre><code>  &lt;/td&gt;
+  &lt;td align=&quot;left&quot; valign=&quot;top&quot;&gt;
+</code></pre>
+<p><img src="../../../figures/ifcprofiledef-layout4.gif" alt="closed curve" height="225" width="300"><br>
+ProfileType = CURVE</p>
+<pre><code>  &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+  </td></tr></tbody>
+</table>
+</td></tr>
+<tr><td><p class="figure">Figure 429 &mdash; Profile types</p></td></tr>
+</table>
+<p><strong>Profile specification by external reference</strong></p>
+<p>If the profile is standardized by a norm or a catalogue, a reference to this norm or catalogue should be provided by means of <i>HasExternalReference</i>. This inverse relationship is used to associate an <a href="../../ifcexternalreferenceresource/lexical/ifcexternalreference.htm">IfcExternalReference</a> (notably <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> or <a href="../../ifcexternalreferenceresource/lexical/ifclibraryreference.htm">IfcLibraryReference</a>) with the profile.</p>
+<p><a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> is used to refer to a profile norm (a common standard or manufacturer's standard). In this case,</p>
+<ul>
+<li><i>IfcClassificationReference.ItemReference</i> contains the formal profile designation from the norm. (On the other hand, <i>IfcProfileDef.ProfileName</i> contains a displayable name which may not necessarily be the same as the formal designation.)</li>
+<li><i>IfcClassificationReference.Name</i> carries the short name of the profile norm.</li>
+<li>Optionally, the norm can be further described by <i>IfcClassificationReference.ReferencedSource</i>.</li>
+</ul>
+<p><a href="../../ifcexternalreferenceresource/lexical/ifclibraryreference.htm">IfcLibraryReference</a> is used to refer to a library which contains profile definitions. In this case,</p>
+<ul>
+<li><i>IfcLibraryReference.ItemReference</i> contains the identifier of the profile within the library and is meant to be machine-readable (in contrast to <i>IfcProfileDef.ProfileName</i> which should be human-readable).</li>
+<li><i>IfcLibraryReference.Location</i> and .<i>Name</i> or .<i>ReferencedLibrary</i> further describe the library.</li>
+</ul>
+<p>If an external reference is provided, sending systems shall ensure that the shape of the profile definition object agrees with the definitions in the referenced classification or library.</p>
+<p><strong>Direct instances of <span class="self-ref">IfcProfileDef</span></strong></p>
+<p>Usually, only subtypes of <span class="self-ref">IfcProfileDef</span> should be instantiated. In some special cases, e.g. if the profile object is used for purposes other than geometric models (e.g. for structural analysis models), it may be possible to directly instantiate <span class="self-ref">IfcProfileDef</span> and further specify the profile only by external reference or by profile properties. The latter are tracked by the inverse attribute <i>HasProperties</i>.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>ProfileType</td><td><a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a></td><td></td><td>
+Defines the type of geometry into which this profile definition shall be resolved, either a curve or a surface area. In case of curve the profile should be referenced by a swept surface, in case of area the profile should be referenced by a swept area solid.
+</td><td>X</td></tr>
+<tr><td>2</td><td>ProfileName</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Human-readable name of the profile, for example according to a standard profile table. As noted above, machine-readable standardized profile designations should be provided in <i>IfcExternalReference.ItemReference</i>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReference</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external information, e.g. library, classification, or document information, which is associated with the profile.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a><br/>@ProfileDefinition</td><td>S[0:?]</td><td>Additional properties of the profile, for example mechanical properties.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcprofiledef.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,206,42" href="../../../schema/ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm" alt="IfcArbitraryClosedProfileDef" />
+<area shape="rect" coords="18,54,206,66" href="../../../schema/ifcprofileresource/lexical/ifcarbitraryopenprofiledef.htm" alt="IfcArbitraryOpenProfileDef" />
+<area shape="rect" coords="18,78,206,90" href="../../../schema/ifcprofileresource/lexical/ifccompositeprofiledef.htm" alt="IfcCompositeProfileDef" />
+<area shape="rect" coords="18,102,206,114" href="../../../schema/ifcprofileresource/lexical/ifcderivedprofiledef.htm" alt="IfcDerivedProfileDef" />
+<area shape="rect" coords="18,126,206,138" href="../../../schema/ifcroad/lexical/ifcopencrossprofiledef.htm" alt="IfcOpenCrossProfileDef" />
+<area shape="rect" coords="18,150,206,162" href="../../../schema/ifcprofileresource/lexical/ifcparameterizedprofiledef.htm" alt="IfcParameterizedProfileDef" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td></tr>
+<tr><td>1</td><td>ProfileType</td><td><a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a></td><td></td><td>
+Defines the type of geometry into which this profile definition shall be resolved, either a curve or a surface area. In case of curve the profile should be referenced by a swept surface, in case of area the profile should be referenced by a swept area solid.
+</td><td>X</td></tr>
+<tr><td>2</td><td>ProfileName</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Human-readable name of the profile, for example according to a standard profile table. As noted above, machine-readable standardized profile designations should be provided in <i>IfcExternalReference.ItemReference</i>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReference</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external information, e.g. library, classification, or document information, which is associated with the profile.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a><br/>@ProfileDefinition</td><td>S[0:?]</td><td>Additional properties of the profile, for example mechanical properties.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifcprofiledef.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="property-sets-for-objects" />
+<p class="use-head">Property Sets for Objects</p>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 697.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
+<tr><td><a href="../../ifcprofileresource/pset/pset_profilemechanical.htm">Pset_ProfileMechanical</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MassPerLength</td><td><a href="../../ifcmeasureresource/lexical/ifcmassperlengthmeasure.htm">IfcMassPerLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CrossSectionArea</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Perimeter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MinimumPlateThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MaximumPlateThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CentreOfGravityInX</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CentreOfGravityInY</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearCentreZ</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearCentreY</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MomentOfInertiaY</td><td><a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MomentOfInertiaZ</td><td><a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MomentOfInertiaYZ</td><td><a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>TorsionalConstantX</td><td><a href="../../ifcmeasureresource/lexical/ifcmomentofinertiameasure.htm">IfcMomentOfInertiaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>WarpingConstant</td><td><a href="../../ifcmeasureresource/lexical/ifcwarpingconstantmeasure.htm">IfcWarpingConstantMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearDeformationAreaZ</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearDeformationAreaY</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MaximumSectionModulusY</td><td><a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MinimumSectionModulusY</td><td><a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MaximumSectionModulusZ</td><td><a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MinimumSectionModulusZ</td><td><a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>TorsionalSectionModulus</td><td><a href="../../ifcmeasureresource/lexical/ifcsectionmodulusmeasure.htm">IfcSectionModulusMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearAreaZ</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearAreaY</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>PlasticShapeFactorY</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>PlasticShapeFactorZ</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+</table></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 697 &mdash; IfcProfileDef Property Sets for Objects</td></tr></table>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;a0929ea7-2e73-482b-b1f3-007c5006ff24&quot; name=&quot;IfcProfileDef&quot; applicableRootEntity=&quot;IfcProfileDef&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;69055b56-877b-4f1d-8c05-4a4911f7d646&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;2af806c8-9ddc-4ce0-a57c-75b6f8908041&quot; name=&quot;Property Sets for Objects&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;f74255a6-0c0e-4f31-84ad-24981db62461&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_ProfileMechanical&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td></tr><tr><td> </td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;HasProperties&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ProfileType&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ProfileName&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcProfileDef<br/>
+&nbsp;<span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcarbitraryopenprofiledef.htm">IfcArbitraryOpenProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifccompositeprofiledef.htm">IfcCompositeProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcderivedprofiledef.htm">IfcDerivedProfileDef</a>, <a href="../../ifcroad/lexical/ifcopencrossprofiledef.htm">IfcOpenCrossProfileDef</a>, <a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>))<b>;</b><br/>
+&nbsp;&nbsp;ProfileType : <a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a>;<br/>
+&nbsp;&nbsp;ProfileName : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;HasExternalReference : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a> <span class="keyword">FOR</span> RelatedResourceObjects;<br/>
+&nbsp;&nbsp;HasProperties : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a> <span class="keyword">FOR</span> ProfileDefinition;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprofileresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcroad/lexical/ifcrelassociatesprofiledef.htm">IfcRelAssociatesProfileDef</a>
+<a href="../../ifcroad/lexical/ifcsectionedsurface.htm">IfcSectionedSurface</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcresourceobjectselect.htm">IfcResourceObjectSelect</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolidtapered.htm">IfcExtrudedAreaSolidTapered</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcrevolvedareasolidtapered.htm">IfcRevolvedAreaSolidTapered</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcsectionedsolid.htm">IfcSectionedSolid</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcsectionedspine.htm">IfcSectionedSpine</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcsweptareasolid.htm">IfcSweptAreaSolid</a>
+<a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>
+<a href="../../ifcprofileresource/lexical/ifccompositeprofiledef.htm">IfcCompositeProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcderivedprofiledef.htm">IfcDerivedProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcprofileproperties.htm">IfcProfileProperties</a>
+<a href="../../ifcprofileresource/lexical/ifcsectionproperties.htm">IfcSectionProperties</a>
+</p>
+<p><a href="../../../link/ifcprofiledef.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

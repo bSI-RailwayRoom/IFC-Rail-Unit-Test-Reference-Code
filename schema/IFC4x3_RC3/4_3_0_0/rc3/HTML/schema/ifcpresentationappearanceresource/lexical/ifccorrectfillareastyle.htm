@@ -1,0 +1,70 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCorrectFillAreaStyle</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 4 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.4.1");
+//-->
+</script>
+
+<h4 class="num">IfcCorrectFillAreaStyle</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Correct Fill Area Style</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>This function returns true if the different fill area styles are assigned correctly to the <a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a>. Only certain combinations of the entity types provided by the <a href="../../ifcpresentationappearanceresource/lexical/ifcfillstyleselect.htm">IfcFillStyleSelect</a> are allowed.</p>
+<p>Return false:</p>
+<ul>
+<li>if more then one externally defined style is assigned</li>
+<li>if an externally defined style is given and any other internal style definition is attached additionally</li>
+<li>if more then one background colour is assigned</li>
+<li>if both, a hatching and a tiling is assigned</li>
+</ul>
+<p>otherwise return true</p>
+<blockquote class="history">
+<p><font color="#0000FF"><small>HISTORY  New function
+in Release IFC2x3 TC1.</small></font></p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcCorrectFillAreaStyle<br/>
+
+&nbsp;&nbsp;(Styles : SET[1:?] OF <a href="../../ifcpresentationappearanceresource/lexical/ifcfillstyleselect.htm">IfcFillStyleSelect</a>)<br/>&nbsp;&nbsp;:LOGICAL;<br/><br/>LOCAL<br/>&nbsp;&nbsp;&nbsp;Hatching : INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;Tiles&nbsp;&nbsp;&nbsp;&nbsp;: INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;Colour&nbsp;&nbsp;&nbsp;: INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;External : INTEGER := 0;<br/>END_LOCAL;<br/><br/><br/>External := SIZEOF(QUERY(Style &lt;* Styles |<br/>&nbsp;&nbsp;'IFCPRESENTATIONAPPEARANCERESOURCE.<a href="../../ifcpresentationappearanceresource/lexical/ifcexternallydefinedhatchstyle.htm">IfcExternallyDefinedHatchStyle</a>' IN<br/>&nbsp;&nbsp;&nbsp;TYPEOF(Style)));<br/><br/>Hatching&nbsp;&nbsp;:= SIZEOF(QUERY(Style &lt;* Styles |<br/>&nbsp;&nbsp;'IFCPRESENTATIONAPPEARANCERESOURCE.<a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastylehatching.htm">IfcFillAreaStyleHatching</a>' IN<br/>&nbsp;&nbsp;&nbsp;TYPEOF(Style)));<br/><br/>Tiles&nbsp;&nbsp;&nbsp;&nbsp; := SIZEOF(QUERY(Style &lt;* Styles |<br/>&nbsp;&nbsp;'IFCPRESENTATIONAPPEARANCERESOURCE.<a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyletiles.htm">IfcFillAreaStyleTiles</a>' IN<br/>&nbsp;&nbsp;&nbsp;TYPEOF(Style)));<br/><br/>Colour&nbsp;&nbsp;&nbsp;&nbsp;:= SIZEOF(QUERY(Style &lt;* Styles |<br/>&nbsp;&nbsp;'IFCPRESENTATIONAPPEARANCERESOURCE.<a href="../../ifcpresentationappearanceresource/lexical/ifccolour.htm">IfcColour</a>' IN<br/>&nbsp;&nbsp;&nbsp;TYPEOF(Style)));<br/><br/><br/>IF (External &gt; 1) THEN<br/>&nbsp;&nbsp;RETURN (FALSE);<br/>END_IF;<br/><br/><br/>IF ((External = 1) AND ((Hatching &gt; 0) OR (Tiles &gt; 0) OR (Colour &gt; 0))) THEN<br/>&nbsp;&nbsp;RETURN (FALSE);<br/>END_IF;<br/><br/><br/>IF (Colour &gt; 1) THEN<br/>&nbsp;&nbsp;RETURN (FALSE);<br/>END_IF;<br/><br/>IF ((Hatching &gt; 0) AND (Tiles &gt;0)) THEN<br/>&nbsp;&nbsp;RETURN (FALSE);<br/>END_IF;<br/><br/>RETURN(TRUE);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a>
+</p>
+<p><a href="../../../link/ifccorrectfillareastyle.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

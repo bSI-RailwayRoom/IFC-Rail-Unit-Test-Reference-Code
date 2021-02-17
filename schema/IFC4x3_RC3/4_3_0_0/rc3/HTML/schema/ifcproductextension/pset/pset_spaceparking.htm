@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SpaceParking</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 20 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.21");
+//-->
+</script>
+
+<h4 class="std">5.4.4.21 Pset_SpaceParking</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>
+ / <span class="self-ref">PARKING</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Space Parking</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3oeNa0qWeHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SpaceParking.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>ParkingUse</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Parking Use</b></td><td>Identifies the type of transporation for which the parking space is designed. Values are not predefined but might include car, compact car, motorcycle, bicycle, truck, bus etc.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>AccessibleHandicape</b></td><td>Identifie le type de véhicule pour lequel le parking a été conçu. Les valeurs possibles (voiture, bus, motos, vélos,…)  ne sont pas prédéfinies.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>駐車場の用途</b></td><td>どの車両種別の駐車場なのかを識別します。値はあらかじめ定められないが、自動車、小型車、オートバイ、自転車、トラック、バスなどを含んでいるかもしれません。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ParkingUnits</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Parking Units</b></td><td>Indicates the number of transporation units of the type specified by the property ParkingUse that may be accommodated within the space. Generally, this value should default to 1 unit. However, where the parking space is for motorcycles or bicycles, provision may be made for more than one unit in the space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>TypeVehicule</b></td><td>Nombre d'unités du type de véhicule spécifié dans la propriété TypeVehicule que peut contenir l'espace alloué au parking. Généralement, la valeur par défaut est 1. Elle peut être supérieure pour les deux roues.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>一区画当たりの駐車台数</b></td><td>車両種別ごとの駐車台数のユニットごとの指定台数。一般に、この値は1台/1ユニットになるべきです。しかしながら、オートバイまたは自転車向けである場合、数台/1ユニット以上なるかもしれません。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsAisle</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Aisle</b></td><td>Indicates that this parking zone is for accessing the parking units, i.e. an aisle (TRUE) and not a parking unit itself (FALSE)
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>NombreUnites</b></td><td>Indique si cette zone du parking, comme une allée, est réservée à l'accès (VRAI) ou non (FAUX).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>通路か駐車スペースの判別</b></td><td>駐車場の通路部分(TRUE)か駐車部部分(FALSE)かを示すフラグ。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsOneWay</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is One Way</b></td><td>Indicates whether the parking aisle is designed for oneway traffic (TRUE) or twoway traffic (FALSE). Should only be provided if the property IsAisle is set to TRUE.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Sens unique</b></td><td>Indique si cette allée du parking est prévue pour être à sens unique (VRAI) ou à double sens (FAUX). A fournir seulement si la propriété &quot;Est un accès&quot; est égale à VRAI.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>一方通行</b></td><td>駐車場通路が一方通行(TRUE)か双方向(FALSE)かを示すフラグ。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_spaceparking.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

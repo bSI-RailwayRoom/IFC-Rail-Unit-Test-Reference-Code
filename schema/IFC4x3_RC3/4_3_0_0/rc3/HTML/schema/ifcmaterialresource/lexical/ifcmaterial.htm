@@ -1,0 +1,347 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcMaterial</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 10 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.10.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcMaterial</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Material</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Material</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Matériau</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Category</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcMaterial</span> is a homogeneous or inhomogeneous substance that can be used to form elements (physical products or their components).</p>
+<p><span class="self-ref">IfcMaterial</span> is the basic entity for material designation and definition; this includes identification by name and classification (via reference to an external classification), as well as association of material properties (isotropic or anisotropic) defined by (subtypes of) <a href="../../ifcmaterialresource/lexical/ifcmaterialproperties.htm">IfcMaterialProperties</a>. An instance of <span class="self-ref">IfcMaterial</span> may be associated to an element or element type using the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a> relationship. The assignment might either be direct as a single material information, or via</p>
+<ul>
+<li>a material layer set</li>
+<li>a material profile set</li>
+<li>a material constituent set</li>
+</ul>
+<p>An <span class="self-ref">IfcMaterial</span> may also have presentation information associated. Such presentation information is provided by <a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a>, associating curve styles, hatching definitions or surface colouring/rendering information to a material.</p>
+<blockquote class="history">
+<p>HISTORY New entity in IFC4</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The attributes <i>Description</i> and <i>Category</i> have been added.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+Name of the material.
+<blockquote class="example">
+EXAMPLE A view definition may require <i>Material.Name</i> to uniquely specify e.g. concrete or steel grade, in which case the attribute Material.Category could take the value 'Concrete' or 'Steel'.
+</blockquote>
+<blockquote class="note">
+NOTE  Material grade may have different meaning in different view definitions, e.g. strength grade for structural design and analysis, or visible appearance grade in architectural application. Also, more elaborate material grade definition may be associated as classification via inverse attribute <i>HasExternalReferences</i>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Definition of the material in more descriptive terms than given by attributes <i>Name</i> or <i>Category</i>.
+
+<blockquote>
+IFC4 CHANGE  The attribute has been added at the end of attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Definition of the category (group or type) of material, in more general terms than given by attribute <i>Name</i>.
+<blockquote class="example">
+EXAMPLE A view definition may require each <i>Material.Name</i> to be unique, e.g. for each concrete or steel grade used in a project, in which case <i>Material.Category</i> could take the values 'Concrete' or 'Steel'.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been added at the end of attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasRepresentation</i></td><td><a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a><br/>@RepresentedMaterial</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a> that provides presentation information to a representation common to this material in style definitions.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>HasRepresentation</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsRelatedWith</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a><br/>@RelatedMaterials</td><td>S[0:?]</td><td>Reference to a material relationship indicating that this material is a part (or constituent) in a material composite.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>RelatesTo</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a><br/>@RelatingMaterial</td><td>S[0:1]</td><td>Reference to a material relationship indicating that this material composite has parts (or constituents).
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcmaterial.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcmaterialresource/lexical/ifcmaterialdefinition.htm" alt="IfcMaterialDefinition" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a></i></td></tr>
+<tr><td></td><td><i>AssociatedTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a><br/>@RelatingMaterial</td><td>S[0:?]</td><td>Use of the <span class="self-ref">IfcMaterialDefinition</span> subtypes within the material association of an element occurrence or element type. The association is established by the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a> relationship.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external references, e.g. library, classification, or document information, that are associated to the material.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialproperties.htm">IfcMaterialProperties</a><br/>@Material</td><td>S[0:?]</td><td>Material properties assigned to instances of subtypes of <span class="self-ref">IfcMaterialDefinition</span>.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+Name of the material.
+<blockquote class="example">
+EXAMPLE A view definition may require <i>Material.Name</i> to uniquely specify e.g. concrete or steel grade, in which case the attribute Material.Category could take the value 'Concrete' or 'Steel'.
+</blockquote>
+<blockquote class="note">
+NOTE  Material grade may have different meaning in different view definitions, e.g. strength grade for structural design and analysis, or visible appearance grade in architectural application. Also, more elaborate material grade definition may be associated as classification via inverse attribute <i>HasExternalReferences</i>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Definition of the material in more descriptive terms than given by attributes <i>Name</i> or <i>Category</i>.
+
+<blockquote>
+IFC4 CHANGE  The attribute has been added at the end of attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Definition of the category (group or type) of material, in more general terms than given by attribute <i>Name</i>.
+<blockquote class="example">
+EXAMPLE A view definition may require each <i>Material.Name</i> to be unique, e.g. for each concrete or steel grade used in a project, in which case <i>Material.Category</i> could take the values 'Concrete' or 'Steel'.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been added at the end of attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasRepresentation</i></td><td><a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a><br/>@RepresentedMaterial</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a> that provides presentation information to a representation common to this material in style definitions.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>HasRepresentation</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsRelatedWith</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a><br/>@RelatedMaterials</td><td>S[0:?]</td><td>Reference to a material relationship indicating that this material is a part (or constituent) in a material composite.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>RelatesTo</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a><br/>@RelatingMaterial</td><td>S[0:1]</td><td>Reference to a material relationship indicating that this material composite has parts (or constituents).
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifcmaterial.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="property-sets-for-objects" />
+<p class="use-head">Property Sets for Objects</p>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 694.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialcombustion.htm">Pset_MaterialCombustion</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SpecificHeatCapacity</td><td><a href="../../ifcmeasureresource/lexical/ifcspecificheatcapacitymeasure.htm">IfcSpecificHeatCapacityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>N20Content</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>COContent</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CO2Content</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialcommon.htm">Pset_MaterialCommon</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MolecularWeight</td><td><a href="../../ifcmeasureresource/lexical/ifcmolecularweightmeasure.htm">IfcMolecularWeightMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Porosity</td><td><a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MassDensity</td><td><a href="../../ifcmeasureresource/lexical/ifcmassdensitymeasure.htm">IfcMassDensityMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialenergy.htm">Pset_MaterialEnergy</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ViscosityTemperatureDerivative</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MoistureCapacityThermalGradient</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalConductivityTemperatureDerivative</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SpecificHeatTemperatureDerivative</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>VisibleRefractionIndex</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SolarRefractionIndex</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>GasPressure</td><td><a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialfuel.htm">Pset_MaterialFuel</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CombustionTemperature</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CarbonContent</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>LowerHeatingValue</td><td><a href="../../ifcmeasureresource/lexical/ifcheatingvaluemeasure.htm">IfcHeatingValueMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>HigherHeatingValue</td><td><a href="../../ifcmeasureresource/lexical/ifcheatingvaluemeasure.htm">IfcHeatingValueMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialhygroscopic.htm">Pset_MaterialHygroscopic</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>UpperVaporResistanceFactor</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>LowerVaporResistanceFactor</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>IsothermalMoistureCapacity</td><td><a href="../../ifcmeasureresource/lexical/ifcisothermalmoisturecapacitymeasure.htm">IfcIsothermalMoistureCapacityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>VaporPermeability</td><td><a href="../../ifcmeasureresource/lexical/ifcvaporpermeabilitymeasure.htm">IfcVaporPermeabilityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>MoistureDiffusivity</td><td><a href="../../ifcmeasureresource/lexical/ifcmoisturediffusivitymeasure.htm">IfcMoistureDiffusivityMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialmechanical.htm">Pset_MaterialMechanical</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>DynamicViscosity</td><td><a href="../../ifcmeasureresource/lexical/ifcdynamicviscositymeasure.htm">IfcDynamicViscosityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>YoungModulus</td><td><a href="../../ifcmeasureresource/lexical/ifcmodulusofelasticitymeasure.htm">IfcModulusOfElasticityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ShearModulus</td><td><a href="../../ifcmeasureresource/lexical/ifcmodulusofelasticitymeasure.htm">IfcModulusOfElasticityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>PoissonRatio</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalExpansionCoefficient</td><td><a href="../../ifcmeasureresource/lexical/ifcthermalexpansioncoefficientmeasure.htm">IfcThermalExpansionCoefficientMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialoptical.htm">Pset_MaterialOptical</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>VisibleTransmittance</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SolarTransmittance</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalIrTransmittance</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalIrEmissivityBack</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalIrEmissivityFront</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>VisibleReflectanceBack</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>VisibleReflectanceFront</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SolarReflectanceBack</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SolarReflectanceFront</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialthermal.htm">Pset_MaterialThermal</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>SpecificHeatCapacity</td><td><a href="../../ifcmeasureresource/lexical/ifcspecificheatcapacitymeasure.htm">IfcSpecificHeatCapacityMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>BoilingPoint</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>FreezingPoint</td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ThermalConductivity</td><td><a href="../../ifcmeasureresource/lexical/ifcthermalconductivitymeasure.htm">IfcThermalConductivityMeasure</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcmaterialresource/pset/pset_materialwater.htm">Pset_MaterialWater</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>IsPotable</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>Hardness</td><td><a href="../../ifcmeasureresource/lexical/ifcionconcentrationmeasure.htm">IfcIonConcentrationMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>AlkalinityConcentration</td><td><a href="../../ifcmeasureresource/lexical/ifcionconcentrationmeasure.htm">IfcIonConcentrationMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>AcidityConcentration</td><td><a href="../../ifcmeasureresource/lexical/ifcionconcentrationmeasure.htm">IfcIonConcentrationMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ImpuritiesContent</td><td><a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>DissolvedSolidsContent</td><td><a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>PHLevel</td><td><a href="../../ifcmeasureresource/lexical/ifcphmeasure.htm">IfcPHMeasure</a></td></tr>
+</table></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 694 &mdash; IfcMaterial Property Sets for Objects</td></tr></table>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;273c1b6b-c95d-4551-bf2e-264a167469dc&quot; name=&quot;IfcMaterial&quot; applicableRootEntity=&quot;IfcMaterial&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;7c1b0051-bb4d-4e91-85d9-7f10bd5349ea&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;3d497394-85a9-4046-8983-eabd3c87533e&quot; name=&quot;Property Sets for Objects&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;f74255a6-0c0e-4f31-84ad-24981db62461&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialCombustion&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialCommon&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialEnergy&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialFuel&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialHygroscopic&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialMechanical&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialOptical&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialThermal&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_MaterialWater&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td></tr><tr><td> </td><td><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>&quot; type=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;HasRepresentation&quot; type=&quot;ifc:<a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Name&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Description&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Category&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcMaterial<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>)<b>;</b><br/>
+&nbsp;&nbsp;Name : <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Description : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>;<br/>
+&nbsp;&nbsp;Category : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;HasRepresentation : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a> <span class="keyword">FOR</span> RepresentedMaterial;<br/>
+&nbsp;&nbsp;IsRelatedWith : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a> <span class="keyword">FOR</span> RelatedMaterials;<br/>
+&nbsp;&nbsp;RelatesTo : <span class="keyword">SET</span> [0:1] OF <a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a> <span class="keyword">FOR</span> RelatingMaterial;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcmaterialresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcmaterialresource/lexical/ifcmaterialclassificationrelationship.htm">IfcMaterialClassificationRelationship</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialconstituent.htm">IfcMaterialConstituent</a>
+<a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a>
+<a href="../../ifcmaterialresource/lexical/ifcmateriallist.htm">IfcMaterialList</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a>
+<a href="../../ifcrepresentationresource/lexical/ifcmaterialdefinitionrepresentation.htm">IfcMaterialDefinitionRepresentation</a>
+</p>
+<p><a href="../../../link/ifcmaterial.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

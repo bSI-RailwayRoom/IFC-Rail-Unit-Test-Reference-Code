@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Qto_OpeningElementBaseQuantities</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 5 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.5.3");
+//-->
+</script>
+
+<h4 class="std">5.4.5.3 Qto_OpeningElementBaseQuantities</h4>
+<p><span class="self-ref">QTO_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Opening Element Base Quantities</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Quantities</summary><p><a href="../../../qto/Qto_OpeningElementBaseQuantities.xml"><img border="0" src="../../../img/diagram.png" title="Link to QTO-XML"/> QTO-XML</a></p>
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th>
+<tr><td>Width</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Breite</b></td><td>Breite der Önnung, bei Wandöffnugen ist es die horizontale Abmessung, bei Deckenöffnungen eine der beiden horizontalen Abmessungen. Wird nur dann angegeben, wenn die Öffnung rechteckig ist.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Width</b></td><td>Width of the opening, in case of wall openings it is the horizontal dimension in case of slab openings it is one horizontal dimension. Only provided, if the area is rectangular.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>開口幅</b></td><td>開口の幅。壁の開口の場合、水平方向の寸法。スラブの開口の場合、一つの水平方向の寸法。形状が長方形の場合のみ与えられる。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Height</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Höhe</b></td><td>Höhe der Önnung, bei Wandöffnugen ist es die vertikale Abmessung, bei Deckenöffnungen eine der beiden horizontalen Abmessungen. Wird nur dann angegeben, wenn die Öffnung rechteckig ist.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Height</b></td><td>Height of the opening, in case of wall openings it is the vertical dimension in case of slab openings it is one horizontal dimension. Only provided, if the area is rectangular.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>開口高さ</b></td><td>開口の高さ。壁の開口の場合、垂直方向の寸法。スラブの開口の場合、一つの水平方向の寸法。形状が長方形の場合のみ与えられる。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Depth</td><td>
+<span class="self-ref">Q_LENGTH</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Tiefe</b></td><td>Die Tiefe einer Öffnung, diese entspricht der Dicke des Elementes, in dem sich die Öffnung befindet. Wird nur dann angegeben, wenn das Element eine konstante Dicke hat.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Depth</b></td><td>Depth (or thickness) of the opening, in case of openings it shall be identical to the width (or thickness) of the voided element, in case of recesses it shall be less. Only provided, if the depth is constant.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>開口奥行き</b></td><td>開口の奥行き（厚さ）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Area</td><td>
+<span class="self-ref">Q_AREA</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Fläche</b></td><td>Fläche der Öffnung, es ist die Ansichtsfläche für Wandöffnungen, oder die Grundfläche für Deckenöffnungen.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Area</b></td><td>Area of the opening as viewed by an elevation view (for wall openings) or as viewed by a ground floor view (for slab openings).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>面積</b></td><td>開口の面積。立面図で見た場合の形状。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Volume</td><td>
+<span class="self-ref">Q_VOLUME</span>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Volumen</b></td><td>Volumen der Öffnung. Es ist das Abzugsvolumen der Öffnung vom dem Element, in dem sich die Öffnung befindet. Sollte der Öffnungskörper eine größere Ausdehnung besitzen, wird nur das Abzugsvolumen berücksichtigt.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Volume</b></td><td>Volume of the opening. It is the subtraction volume of the opening from the voided element (e.g. wall or slab). In case that the geometric volume of the opening is bigger then the subtraction volume, only the subtraction volume should be used.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>体積</b></td><td>開口の体積。壁やスラブなどから、穴が開いた部分の差の体積。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/qto_openingelementbasequantities.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

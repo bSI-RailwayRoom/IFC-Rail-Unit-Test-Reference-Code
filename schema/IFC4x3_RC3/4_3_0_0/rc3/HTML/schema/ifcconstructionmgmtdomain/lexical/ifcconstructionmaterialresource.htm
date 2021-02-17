@@ -1,0 +1,391 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcConstructionMaterialResource</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 3 index3 3 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.3.3.3");
+//-->
+</script>
+
+<h4 class="num">IfcConstructionMaterialResource</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Baumaterial - Ressource</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Construction Material Resource</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Matériaux de construction</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Identification</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>ResourceIdentifier</i> to <i>Identification</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LongDescription</td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>ResourceGroup</i> to <i>LongDescription</i>. <br/>Type changed from <i>IfcLabel</i> to <i>IfcText</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usage</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>ResourceConsumption</i> to <i>Usage</i>. <br/>Type changed from <i>IfcResourceConsumptionEnum</i> to <i>IfcResourceTime</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BaseCosts</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>BaseQuantity</i> to <i>BaseCosts</i>. <br/>Type changed from <i>IfcMeasureWithUnit</i> to <i>IfcAppliedValue</i>. <br/>Aggregation changed from <i>NONE</i> to <i>LIST</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BaseQuantity</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Suppliers</i> to <i>BaseQuantity</i>. <br/>Type changed from <i>IfcActorSelect</i> to <i>IfcPhysicalQuantity</i>. <br/>Aggregation changed from <i>SET</i> to <i>NONE</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>UsageRatio</i> to <i>PredefinedType</i>. <br/>Type changed from <i>IfcRatioMeasure</i> to <i>IfcConstructionMaterialResourceTypeEnum</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcConstructionMaterialResource</span> identifies a material resource type in a construction project.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2.0.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The attribute <i>Suppliers</i> has been deleted; use <a href="../../ifckernel/lexical/ifcrelassignstoresource.htm">IfcRelAssignsToResource</a> to assign an <a href="../../ifckernel/lexical/ifcactor.htm">IfcActor</a> to fulfill the role as a supplier. The attribute <i>UsageRatio</i> has been deleted; use <i>BaseQuantityConsumed</i> and <i>BaseQuantityProduced</i> to indicate material usage.</p>
+</blockquote>
+<p>Occurrences of <span class="self-ref">IfcConstructionMaterialResource</span> are consumed (wholly or partially), or occupied during a construction work task (<a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>).</p>
+<p>Similar to <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionproductresource.htm">IfcConstructionProductResource</a>, sometimes things such as 5000kg of gravel are already instantiated as an instance of an <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> subtype because it is a result of a work task (for example, transporting gravel). In this case, the instance of <span class="self-ref">IfcConstructionMaterialResource</span> can be associated with the product instance 5000kg of gravel to provide more information for resource uses. Nevertheless, <span class="self-ref">IfcConstructionMaterialResource</span> should only be used to represent resource usage, but not product substances.</p>
+<blockquote class="note">
+<p>NOTE  This entity is not the same as <a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>. One one hand, <span class="self-ref">IfcConstructionMaterialResource</span> represents usage of bulk materials such as sand, gravels, nails and so on. Physical manifestations can be instantiated from <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> as well, depending on their uses in the system, and such an <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> object can be assigned to the <span class="self-ref">IfcConstructionMaterialResource</span> object via <a href="../../ifckernel/lexical/ifcrelassignstoresource.htm">IfcRelAssignsToResource</a>. On the other hand, <a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a> is about physical materials that a physical building element consists of, possibly with detailed material layering information.&quot;</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>11</td><td>PredefinedType</td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a></td><td>? </td><td>
+Defines types of construction material resources.
+
+<blockquote>
+IFC4 New attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcconstructionmaterialresource.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,266,114" href="../../../schema/ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm" alt="IfcConstructionResource" />
+<area shape="rect" coords="42,78,278,90" href="../../../schema/ifckernel/lexical/ifcresource.htm" alt="IfcResource" />
+<area shape="rect" coords="30,54,290,66" href="../../../schema/ifckernel/lexical/ifcobject.htm" alt="IfcObject" />
+<area shape="rect" coords="18,30,302,42" href="../../../schema/ifckernel/lexical/ifcobjectdefinition.htm" alt="IfcObjectDefinition" />
+<area shape="rect" coords="6,6,314,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasAssignments</i></td><td><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that assign (by an association relationship) other subtypes of IfcObject to this object instance. Examples are the association to products, processes, controls, resources or groups.
+</td><td>X</td></tr>
+<tr><td></td><td><i>Nests</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is a part within an ordered whole/part decomposition relationship. An object occurrence or type can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>Decomposes</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsNestedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is the whole within an ordered whole/part decomposition relationship. An object or object type can be nested by several other objects (occurrences or types).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>IsDecomposedBy</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td>References to the context providing context information such as project unit or representation context. It should only be asserted for the uppermost non-spatial object.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDecomposedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is whole within an unordered whole/part decomposition relationship. An object definitions can be aggregated by several other objects (occurrences or parts).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Decomposes</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is a part within an unordered whole/part decomposition relationship. An object definitions can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that associates external references or other resource definitions to the object.. Examples are the association to library, documentation or classification.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></i></td></tr>
+<tr><td>5</td><td>ObjectType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The type denotes a particular type that indicates the object further. The use has to be established at the level of instantiable subtypes. In particular it holds the user defined type, if the enumeration of the attribute <i>PredefinedType</i> is set to USERDEFINED.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDeclaredBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Link to the relationship object pointing to the declaring object that provides the object definitions for this object occurrence. The declaring object has to be part of an object type decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, contains the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Declares</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatingObject</td><td>S[0:?]</td><td>Link to the relationship object pointing to the reflected object(s) that receives the object definitions. The reflected object has to be part of an object occurrence decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, provides the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsTypedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Set of relationships to the object type that provides the type definitions for this object occurrence. The then associated <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a>, or its subtypes, contains the specific information (or type, or style), that is common to all instances of <span class="self-ref">IfcObject</span>, or its subtypes, referring to the same type.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, the link to <a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a> had previously be included in the inverse relationship <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a>. Change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDefinedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Set of relationships to property set definitions attached to this object. Those statically or dynamically defined properties contain alphanumeric information content that further defines the object.
+
+<blockquote>
+IFC4 CHANGE  The data type has been changed from <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a> to <a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcresource.htm">IfcResource</a></i></td></tr>
+<tr><td>6</td><td>Identification</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+An identifying designation given to a resource.
+It is the identifier at the occurrence level.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute promoted from subtype <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>LongDescription</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+A detailed description of the resource (e.g. the skillset for a labor resource).<br>
+
+<blockquote>
+IFC4 CHANGE  The attribute <i>LongDescription</i> is added replacing the <i>ResourceGroup</i> attribute at subtype <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ResourceOf</i></td><td><a href="../../ifckernel/lexical/ifcrelassignstoresource.htm">IfcRelAssignsToResource</a><br/>@RelatingResource</td><td>S[0:?]</td><td>Set of relationships to other objects, e.g. products, processes, controls, resources or actors, for which this resource object is a resource.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a></i></td></tr>
+<tr><td>8</td><td>Usage</td><td><a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a></td><td>? </td><td>
+Indicates the work, usage, and times scheduled and completed.  Some attributes on this object may have associated constraints or time series; see documentation of <a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a> for specific usage.  If the resource is nested, then certain values may be calculated based on the component resources as indicated at <a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a>.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>9</td><td>BaseCosts</td><td><a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a></td><td>? L[1:?]</td><td>
+Indicates the unit costs for which accrued amounts should be calculated.  Such unit costs may be split into <i>Name</i> designations (for example, 'Standard', 'Overtime'), and may contain a hierarchy of cost values that apply at different dates (using <i>IfcCostValue.ApplicableDate</i> and <i>IfcCostValue.FixedUntilDate</i>).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>10</td><td>BaseQuantity</td><td><a href="../../ifcquantityresource/lexical/ifcphysicalquantity.htm">IfcPhysicalQuantity</a></td><td>? </td><td>
+Identifies the base quantity consumed of the resource relative to assignments.
+For crew, labour, subcontract, and equipment resources, this refers to <a href="../../ifcquantityresource/lexical/ifcquantitytime.htm">IfcQuantityTime</a>.
+For material resources, this refers to <a href="../../ifcquantityresource/lexical/ifcquantityvolume.htm">IfcQuantityVolume</a>.
+For product resources, this refers to <a href="../../ifcquantityresource/lexical/ifcquantitycount.htm">IfcQuantityCount</a>.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a></td></tr>
+<tr><td>11</td><td>PredefinedType</td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a></td><td>? </td><td>
+Defines types of construction material resources.
+
+<blockquote>
+IFC4 New attribute.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifcconstructionmaterialresource.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="object-typing" />
+<p class="use-head">Object Typing</p>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 305.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
+<tr><td></td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetype.htm">IfcConstructionMaterialResourceType</a></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 305 &mdash; IfcConstructionMaterialResource Object Typing</td></tr></table>
+
+<br/><br/>
+
+<a id="quantity-sets" />
+<p class="use-head">Quantity Sets</p>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 306.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
+<tr><td><a href="../../ifcconstructionmgmtdomain/qset/qto_constructionmaterialresourcebasequantities.htm">Qto_ConstructionMaterialResourceBaseQuantities</a></td><td></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 306 &mdash; IfcConstructionMaterialResource Quantity Sets</td></tr></table>
+
+<br/><br/>
+
+<a id="resource-type-assignment" />
+<p class="use-head">Resource Type Assignment</p>
+<p>The <a href="../../templates/resource-type-assignment.htm">Resource Type Assignment</a> concept template applies to this entity as shown in Table 307.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Type</b></th><th><b>Description</b></th></tr>
+<tr><td><a href="../../ifcproductextension/lexical/ifcgeographicelement.htm">IfcGeographicElement</a></td><td>Indicates a physical element manifesting the resource such as a pile of sand.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 307 &mdash; IfcConstructionMaterialResource Resource Type Assignment</td></tr></table>
+
+<br/><br/>
+
+<a id="resource-cost" />
+<p class="use-head">Resource Cost</p>
+<p>The <a href="../../templates/resource-cost.htm">Resource Cost</a> concept template applies to this entity as shown in Table 308.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>CostType</b></th><th><b>CostName</b></th><th><b>ValueType</b></th><th><b>Description</b></th></tr>
+<tr><td><a href="../../ifccostresource/lexical/ifccostvalue.htm">IfcCostValue</a></td><td>Material</td><td><a href="../../ifcmeasureresource/lexical/ifcmonetarymeasure.htm">IfcMonetaryMeasure</a></td><td>The amount incurred per unit volume of the material.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 308 &mdash; IfcConstructionMaterialResource Resource Cost</td></tr></table>
+
+<br/><br/>
+
+<a id="resource-quantity" />
+<p class="use-head">Resource Quantity</p>
+<p>The <a href="../../templates/resource-quantity.htm">Resource Quantity</a> concept template applies to this entity as shown in Table 309.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>QuantityType</b></th><th><b>QuantityName</b></th><th><b>Description</b></th></tr>
+<tr><td><a href="../../ifcquantityresource/lexical/ifcquantityvolume.htm">IfcQuantityVolume</a></td><td>GrossVolume</td><td>The unit volume of material used, such as cubic meters of concrete.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 309 &mdash; IfcConstructionMaterialResource Resource Quantity</td></tr></table>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;50b8bce8-a8bd-4e9a-b2f7-2b4462741aee&quot; name=&quot;IfcConstructionMaterialResource&quot; applicableRootEntity=&quot;IfcConstructionMaterialResource&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;2eda588e-a742-4b97-993f-a7c0461a9eda&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;2af97832-33aa-46d0-93a2-161c1ce45839&quot; name=&quot;Object Typing&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;35a2e10e-20df-40f4-ab2f-dacf0a6744f4&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;RelatingType[Type]=&amp;apos;IfcConstructionMaterialResourceType&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;594ab3e1-cfda-472f-8ffb-bfc6fb5dbe74&quot; name=&quot;Quantity Sets&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;6652398e-6579-4460-8cb4-26295acfacc7&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;QsetName[Value]=&amp;apos;Qto_ConstructionMaterialResourceBaseQuantities&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;QsetName[Value]=&amp;apos;Qto_ConstructionMaterialResourceBaseQuantities&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;76edeae2-c8e3-438c-875e-7689495f55c4&quot; name=&quot;Resource Type Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;d8197dee-4bdc-4aba-bb57-4c6678ce70dc&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates a physical element manifesting the resource such as a pile of sand.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcGeographicElement&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;cd4185da-6055-4cbd-99c3-58fb586a356f&quot; name=&quot;Resource Cost&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;678111f9-565e-4c1d-b8c3-d218c4ccd056&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;The amount incurred per unit volume of the material.&quot; Parameters=&quot;CostType[Type]=&amp;apos;IfcCostValue&amp;apos; AND CostName[Value]=&amp;apos;Material&amp;apos; AND ValueType[Type]=&amp;apos;IfcMonetaryMeasure&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;abe8b9c0-63ea-40ff-88f1-03affe33c1f4&quot; name=&quot;Resource Quantity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;a057d708-23d4-47d2-a84d-89ffc93d8fe8&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;The unit volume of material used, such as cubic meters of concrete.&quot; Parameters=&quot;QuantityType[Type]=&amp;apos;IfcQuantityVolume&amp;apos; AND QuantityName[Value]=&amp;apos;GrossVolume&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm#classification-association">Classification Association</a></td><td><a href="../../templates/classification-association.htm">Classification Association</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobject.htm"><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-user-identity">Object User Identity</a></td><td><a href="../../templates/object-user-identity.htm">Object User Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-predefined-type">Object Predefined Type</a></td><td><a href="../../templates/object-predefined-type.htm">Object Predefined Type</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#property-sets-with-override">Property Sets with Override</a></td><td><a href="../../templates/property-sets-with-override.htm">Property Sets with Override</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm"><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a></a></td></tr><tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm#document-association">Document</a></td><td><a href="../../templates/document-association.htm">Document Association</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm#constraint-association">Constraint</a></td><td><a href="../../templates/constraint-association.htm">Constraint Association</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm#object-nesting">Nesting</a></td><td><a href="../../templates/object-nesting.htm">Object Nesting</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a></td></tr><tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm#object-typing">Object Typing</a></td><td><a href="../../templates/object-typing.htm">Object Typing</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm#quantity-sets">Quantity Sets</a></td><td><a href="../../templates/quantity-sets.htm">Quantity Sets</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm#resource-type-assignment">Resource Type Assignment</a></td><td><a href="../../templates/resource-type-assignment.htm">Resource Type Assignment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm#resource-cost">Resource Cost</a></td><td><a href="../../templates/resource-cost.htm">Resource Cost</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm#resource-quantity">Resource Quantity</a></td><td><a href="../../templates/resource-quantity.htm">Resource Quantity</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a>&quot; type=&quot;ifc:<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresource.htm">IfcConstructionMaterialResource</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcConstructionMaterialResource<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionresource.htm">IfcConstructionResource</a>)<b>;</b><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR <br/>
+ (PredefinedType &lt;&gt; <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a>.USERDEFINED) OR <br/>
+ ((PredefinedType = <a href="../../ifcconstructionmgmtdomain/lexical/ifcconstructionmaterialresourcetypeenum.htm">IfcConstructionMaterialResourceTypeEnum</a>.USERDEFINED) AND EXISTS (SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcconstructionmgmtdomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcconstructionmaterialresource.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

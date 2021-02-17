@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcSameValue</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 20 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.21");
+//-->
+</script>
+
+<h4 class="num">IfcSameValue</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Same Value</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function compares two numerical values and ensures that they are the same (with an epsilon precision factor). In the function the following questionable ad-hoc value is used: 0.000001 for the default precision (1E-6)</p>
+<blockquote class="history">
+<p>HISTORY  New function in IFC2x2</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcSameValue<br/>
+
+	(Value1, Value2 : REAL; Epsilon : REAL)<br/>	: LOGICAL;<br/>&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;ValidEps&nbsp;&nbsp;&nbsp;&nbsp;: REAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;DefaultEps&nbsp;&nbsp;: REAL := 0.000001;<br/>&nbsp;&nbsp;END_LOCAL;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;ValidEps := NVL(Epsilon, DefaultEps);<br/>&nbsp;&nbsp;RETURN ((Value1 + ValidEps &gt; Value2) AND (Value1 &lt; Value2 + ValidEps));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcsamevalue.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

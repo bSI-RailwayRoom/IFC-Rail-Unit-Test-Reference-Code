@@ -1,0 +1,287 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_TransformerTypeCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 4 index3 4 index4 79 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.4.4.80");
+//-->
+</script>
+
+<h4 class="std">7.4.4.80 Pset_TransformerTypeCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcelectricaldomain/lexical/ifctransformer.htm">IfcTransformer</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Transformer Type Common</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-technical-corrigendum-1-4_0_2_1/index.htm">IFC4 Addendum 2 Technical Corrigendum 1 4.0.2.1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/pset/pset_transformertypecommon.htm">Pset_TransformerTypeCommon</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EfficiencyCurve</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RadiativeFraction</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x1-final-4_1_0_0/index.htm">IFC4x1 Final 4.1.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/pset/pset_transformertypecommon.htm">Pset_TransformerTypeCommon</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EfficiencyCurve</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RadiativeFraction</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/0_xxU0qX4HuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_TransformerTypeCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Reference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+*</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td><td>Reference ID for this specified type in this project
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Reference</b></td><td>Référence à l'identifiant d'un type spécifié dans le contexte de ce projet.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>参照記号</b></td><td>このプロジェクトのための参照記号。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Status</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_elementstatus.htm">PEnum_ElementStatus</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Status</b></td><td>Status of the element, predominately used in renovation or retrofitting projects. The status can be assigned to as &quot;New&quot; - element designed as new addition, &quot;Existing&quot; - element exists and remains, &quot;Demolish&quot; - element existed but is to be demolished,  &quot;Temporary&quot; - element will exists only temporary (like a temporary support structure).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>状態</b></td><td>要素（主にリノベーションまたは改修プロジェクトにおいて）の状態。 状態は、「新規(New)」－新しく追加される要素。「既存」－要素は存在し、かつ残りもの。「破壊」－要素は存在したが、廃棄されるもの。「一時的」－一時的に存在する要素（一時的にサポートしている構造のようなもの）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PrimaryVoltage</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectricvoltagemeasure.htm">IfcElectricVoltageMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Primary Voltage</b></td><td>The voltage that is going to be transformed and that runs into the transformer on the primary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第1電圧</b></td><td>変圧器の1次側に伝送される電圧。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondaryVoltage</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectricvoltagemeasure.htm">IfcElectricVoltageMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Voltage</b></td><td>The voltage that has been transformed and is running out of the transformer on the secondary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第2電圧</b></td><td>変圧器の2次側へ出力される電圧。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PrimaryCurrent</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Primary Current</b></td><td>The current that is going to be transformed and that runs into the transformer on the primary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第1電流</b></td><td>変圧器の1次側に伝送される電流。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondaryCurrent</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Current</b></td><td>The current that has been transformed and is running out of the transformer on the secondary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第2電流</b></td><td>変圧器の2次側へ出力される電流。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PrimaryFrequency</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcfrequencymeasure.htm">IfcFrequencyMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Primary Frequency</b></td><td>The frequency that is going to be transformed and that runs into the transformer on the primary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第１周波数</b></td><td>変圧器の1次側に伝送される周波数。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondaryFrequency</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcfrequencymeasure.htm">IfcFrequencyMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Frequency</b></td><td>The frequency that has been transformed and is running out of the transformer on the secondary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第2周波数</b></td><td>変圧器の2次側に出力される周波数。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PrimaryApparentPower</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Primary Apparent Power</b></td><td>The power in VA (volt ampere) that has been transformed and that runs into the transformer on the primary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第1電力</b></td><td>変圧器の1次側に伝送される電力（VA: アンペア）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondaryApparentPower</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Apparent Power</b></td><td>The power in VA (volt ampere) that has been transformed and is running out of the transformer on the secondary side.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第2電力</b></td><td>変圧器の2次側へ出力される電力（VA: アンペア）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MaximumApparentPower</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Maximum Apparent Power</b></td><td>Maximum apparent power/capacity in VA (volt ampere).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>最大電力</b></td><td>皮相電力/容量 の最大値　（VA:アンペア）。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondaryCurrentType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_secondarycurrenttype.htm">PEnum_SecondaryCurrentType</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Current Type</b></td><td>A list of the secondary current types that can result from transformer output.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>第2電流タイプ</b></td><td>変圧器より出力される第2電流の種類の一覧。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ShortCircuitVoltage</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifccomplexnumber.htm">IfcComplexNumber</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Short Circuit Voltage</b></td><td>A complex number that specifies the real and imaginary parts of the short-circuit voltage at rated current of a transformer given in %.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>短絡電圧</b></td><td>%で与えられる変圧器の定格電流における短絡電圧の実数と虚数を定義する複素数。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RealImpedanceRatio</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcratiomeasure.htm">IfcRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Real Impedance Ratio</b></td><td>The ratio between the real part of the zero sequence impedance and the real part of the positive impedance (i.e. real part of the short-circuit voltage) of the transformer.
+Used for three-phase transformer which includes a N-conductor.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>インピーダンス実部比率</b></td><td>零相インピーダンスと正相インピーダンス（例．短絡電圧の実部）の間の比率。N-コンダクターを含む三相トランスのために使用。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ImaginaryImpedanceRatio</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcratiomeasure.htm">IfcRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Imaginary Impedance Ratio</b></td><td>The ratio between the imaginary part of the zero sequence impedance and the imaginary part of the positive impedance (i.e. imaginary part of the short-circuit voltage) of the transformer.
+Used for three-phase transformer which includes a N-conductor.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>インピーダンス虚部比率</b></td><td>零相インピーダンスと正相インピーダンス（例．短絡電圧の虚部）の間の比率。N-コンダクターを含む三相トランスのために使用。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TransformerVectorGroup</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_transformervectorgroup.htm">PEnum_TransformerVectorGroup</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Transformer Vector Group</b></td><td>List of the possible vector groups for the transformer from which that required may be set. Values in the enumeration list follow a standard international code where the first letter  describes how the primary windings are connected,
+the second letter describes how the secondary windings are connected, and the numbers describe the rotation of voltages and currents from the primary to the secondary side in multiples of 30 degrees.
+D: means that the windings are delta-connected.
+Y: means that the windings are star-connected.
+Z: means that the windings are zig-zag connected (a special start-connected providing low reactance of the transformer);
+The connectivity is only relevant for three-phase transformers.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsNeutralPrimaryTerminalAvailable</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Neutral Primary Terminal Available</b></td><td>An indication of whether the neutral point of the primary winding is available as a terminal (=TRUE) or not (= FALSE).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>中性点第1ターミナルがあるかどうか</b></td><td>一次巻線の中性点がターミナルの場合は（=TRUE）、違う場合は（= FALSE）として表示する
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsNeutralSecondaryTerminalAvailable</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Neutral Secondary Terminal Available</b></td><td>An indication of whether the neutral point of the secondary winding is available as a terminal (=TRUE) or not (= FALSE).
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>中性点第2ターミナルがあるかどうか</b></td><td>二次巻線の中性点がターミナルの場合は（=TRUE）、違う場合は（= FALSE）として表示する
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_transformertypecommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>
