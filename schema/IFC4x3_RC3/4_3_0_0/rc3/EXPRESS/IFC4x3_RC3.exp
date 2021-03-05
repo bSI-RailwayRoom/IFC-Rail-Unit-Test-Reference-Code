@@ -19,11 +19,14 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+05 March 2021
 
 *)
 
 SCHEMA IFC4X3_RC3;
+
+TYPE IfcStrippedOptional = BOOLEAN;
+END_TYPE;
 
 TYPE IfcAbsorbedDoseMeasure = REAL;
 END_TYPE;
@@ -591,6 +594,7 @@ TYPE IfcAlignmentHorizontalSegmentTypeEnum = ENUMERATION OF
 	,CUBIC
 	,BIQUADRATICPARABOLA
 	,BLOSSCURVE
+	,CUBICSPIRAL
 	,COSINECURVE
 	,SINECURVE
 	,VIENNESEBEND);
@@ -1236,21 +1240,23 @@ TYPE IfcDiscreteAccessoryTypeEnum = ENUMERATION OF
 	,BRACKET
 	,SHOE
 	,EXPANSION_JOINT_DEVICE
-	,BIRDPROTECTION
 	,CABLEARRANGER
 	,INSULATOR
 	,LOCK
 	,TENSIONINGEQUIPMENT
 	,RAILPAD
 	,SLIDINGCHAIR
+	,RAIL_LUBRICATION
 	,PANEL_STRENGTHENING
 	,RAILBRACE
 	,ELASTIC_CUSHION
 	,SOUNDABSORPTION
-	,RAIL_LUBRICATION
+	,POINTMACHINEMOUNTINGDEVICE
+	,POINT_MACHINE_LOCKING_DEVICE
 	,RAIL_MECHANICAL_EQUIPMENT
 	,USERDEFINED
-	,NOTDEFINED);
+	,NOTDEFINED
+	,BIRDPROTECTION);
 END_TYPE;
 
 TYPE IfcDistributionBoardTypeEnum = ENUMERATION OF
@@ -1418,22 +1424,27 @@ END_TYPE;
 TYPE IfcDoorTypeOperationEnum = ENUMERATION OF
 	(SINGLE_SWING_LEFT
 	,SINGLE_SWING_RIGHT
-	,DOUBLE_DOOR_SINGLE_SWING
-	,DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
-	,DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
+	,DOUBLE_PANEL_SINGLE_SWING
+	,DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_LEFT
+	,DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_RIGHT
 	,DOUBLE_SWING_LEFT
 	,DOUBLE_SWING_RIGHT
-	,DOUBLE_DOOR_DOUBLE_SWING
+	,DOUBLE_PANEL_DOUBLE_SWING
 	,SLIDING_TO_LEFT
 	,SLIDING_TO_RIGHT
-	,DOUBLE_DOOR_SLIDING
+	,DOUBLE_PANEL_SLIDING
 	,FOLDING_TO_LEFT
 	,FOLDING_TO_RIGHT
-	,DOUBLE_DOOR_FOLDING
-	,REVOLVING
+	,DOUBLE_PANEL_FOLDING
+	,REVOLVING_HORIZONTAL
 	,ROLLINGUP
 	,SWING_FIXED_LEFT
 	,SWING_FIXED_RIGHT
+	,DOUBLE_PANEL_LIFTING_VERTICAL
+	,LIFTING_HORIZONTAL
+	,LIFTING_VERTICAL_LEFT
+	,LIFTING_VERTICAL_RIGHT
+	,REVOLVING_VERTICAL
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -1723,6 +1734,7 @@ TYPE IfcFireSuppressionTerminalTypeEnum = ENUMERATION OF
 	,HOSEREEL
 	,SPRINKLER
 	,SPRINKLERDEFLECTOR
+	,FIREMONITOR
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -2129,10 +2141,6 @@ TYPE IfcNavigationElementTypeEnum = ENUMERATION OF
 	,NOTDEFINED);
 END_TYPE;
 
-TYPE IfcNullStyle = ENUMERATION OF
-	(NULL);
-END_TYPE;
-
 TYPE IfcObjectTypeEnum = ENUMERATION OF
 	(PRODUCT
 	,PROCESS
@@ -2397,6 +2405,11 @@ TYPE IfcRailwayPartTypeEnum = ENUMERATION OF
 	,NOTDEFINED);
 END_TYPE;
 
+TYPE IfcRailwayTypeEnum = ENUMERATION OF
+	(USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
 TYPE IfcRampFlightTypeEnum = ENUMERATION OF
 	(STRAIGHT
 	,SPIRAL
@@ -2522,6 +2535,11 @@ TYPE IfcRoadPartTypeEnum = ENUMERATION OF
 	,CARRIAGEWAY
 	,TRAFFICISLAND
 	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcRoadTypeEnum = ENUMERATION OF
+	(USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
 
@@ -3034,6 +3052,7 @@ TYPE IfcTransportElementFixedTypeEnum = ENUMERATION OF
 	,MOVINGWALKWAY
 	,CRANEWAY
 	,LIFTINGGEAR
+	,HAULINGGEAR
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -3600,14 +3619,6 @@ TYPE IfcPointOrVertexPoint = SELECT
 	,IfcVertexPoint);
 END_TYPE;
 
-TYPE IfcPresentationStyleSelect = SELECT
-	(IfcCurveStyle
-	,IfcFillAreaStyle
-	,IfcNullStyle
-	,IfcSurfaceStyle
-	,IfcTextStyle);
-END_TYPE;
-
 TYPE IfcProcessSelect = SELECT
 	(IfcProcess
 	,IfcTypeProcess);
@@ -3717,11 +3728,6 @@ END_TYPE;
 TYPE IfcStructuralActivityAssignmentSelect = SELECT
 	(IfcElement
 	,IfcStructuralItem);
-END_TYPE;
-
-TYPE IfcStyleAssignmentSelect = SELECT
-	(IfcPresentationStyle
-	,IfcPresentationStyleAssignment);
 END_TYPE;
 
 TYPE IfcSurfaceOrFaceSurface = SELECT
@@ -4524,6 +4530,10 @@ END_ENTITY;
 ENTITY IfcBridge
  SUBTYPE OF (IfcFacility);
 	PredefinedType : OPTIONAL IfcBridgeTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcBridgePartTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcBridgePartTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcBuilding
@@ -5946,6 +5956,10 @@ ENTITY IfcDistributionSystem
  SUBTYPE OF (IfcSystem);
 	LongName : OPTIONAL IfcLabel;
 	PredefinedType : OPTIONAL IfcDistributionSystemEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcDistributionSystemEnum.USERDEFINED) OR
+((PredefinedType = IfcDistributionSystemEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcDocumentInformation
@@ -6003,6 +6017,11 @@ ENTITY IfcDoor
  WHERE
 	CorrectStyleAssigned : (SIZEOF(IsTypedBy) = 0) 
 OR ('IFC4X3_RC3.IFCDOORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+ (PredefinedType <> IfcDoorTypeEnum.USERDEFINED) OR
+ ((PredefinedType = IfcDoorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+  ('IFC4X3_RC3.IFCDOORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
 
 ENTITY IfcDoorLiningProperties
@@ -6738,6 +6757,19 @@ ENTITY IfcFacilityPart
  SUBTYPE OF (IfcSpatialStructureElement);
 	PredefinedType : IfcFacilityPartTypeSelect;
 	UsageType : IfcFacilityUsageEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+((PredefinedType <> IfcBridgePartTypeEnum.USERDEFINED) AND
+(PredefinedType <> IfcRailwayPartTypeEnum.USERDEFINED) AND
+(PredefinedType <> IfcRoadPartTypeEnum.USERDEFINED) AND
+(PredefinedType <> IfcMarinePartTypeEnum.USERDEFINED) AND
+(PredefinedType <> IfcFacilityPartCommonTypeEnum.USERDEFINED)) OR
+(((PredefinedType = IfcBridgePartTypeEnum.USERDEFINED) OR
+(PredefinedType = IfcRailwayPartTypeEnum.USERDEFINED) OR
+(PredefinedType = IfcRoadPartTypeEnum.USERDEFINED) OR
+(PredefinedType = IfcMarinePartTypeEnum.USERDEFINED) OR
+(PredefinedType = IfcFacilityPartCommonTypeEnum.USERDEFINED))
+AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcFailureConnectionCondition
@@ -7410,8 +7442,13 @@ ENTITY IfcImpactProtectionDevice
 	PredefinedType : OPTIONAL IfcImpactProtectionDeviceTypeSelect;
  WHERE
 	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
-(PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
-((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+(PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED AND
+PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED AND
+PredefinedType <> IfcVibrationIsolatorTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED OR
+PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED OR
+PredefinedType = IfcVibrationIsolatorTypeEnum.USERDEFINED)
+AND EXISTS(SELF\IfcObject.ObjectType));
 	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
 ('IFC4X3_RC3.IFCIMPACTPROTECTIONDEVICETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
@@ -7420,8 +7457,13 @@ ENTITY IfcImpactProtectionDeviceType
  SUBTYPE OF (IfcElementComponentType);
 	PredefinedType : IfcImpactProtectionDeviceTypeSelect;
  WHERE
-	CorrectPredefinedType : (PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
-((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+	CorrectPredefinedType : (PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED AND
+PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED AND
+PredefinedType <> IfcVibrationIsolatorTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED OR
+PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED OR
+PredefinedType = IfcVibrationIsolatorTypeEnum.USERDEFINED)
+AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcInclinedReferenceSweptAreaSolid
@@ -7732,7 +7774,6 @@ ENTITY IfcLinearPositioningElement
  SUPERTYPE OF (ONEOF
     (IfcAlignment))
  SUBTYPE OF (IfcPositioningElement);
-	Axis : IfcCurve;
 END_ENTITY;
 
 ENTITY IfcLiquidTerminal
@@ -7797,7 +7838,7 @@ END_ENTITY;
 
 ENTITY IfcMarineFacility
  SUBTYPE OF (IfcFacility);
-	PredefinedType : IfcMarineFacilityTypeEnum;
+	PredefinedType : OPTIONAL IfcMarineFacilityTypeEnum;
  WHERE
 	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
 (PredefinedType <> IfcMarineFacilityTypeEnum.USERDEFINED) OR
@@ -8286,6 +8327,10 @@ ENTITY IfcOpeningElement
 	PredefinedType : OPTIONAL IfcOpeningElementTypeEnum;
  INVERSE
 	HasFillings : SET [0:?] OF IfcRelFillsElement FOR RelatingOpeningElement;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcOpeningElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcOpeningElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcOpeningStandardCase
@@ -8841,10 +8886,6 @@ ENTITY IfcPresentationStyle
 	Name : OPTIONAL IfcLabel;
 END_ENTITY;
 
-ENTITY IfcPresentationStyleAssignment;
-	Styles : SET [1:?] OF IfcPresentationStyleSelect;
-END_ENTITY;
-
 ENTITY IfcProcedure
  SUBTYPE OF (IfcProcess);
 	PredefinedType : OPTIONAL IfcProcedureTypeEnum;
@@ -8974,6 +9015,10 @@ END_ENTITY;
 ENTITY IfcProjectionElement
  SUBTYPE OF (IfcFeatureElementAddition);
 	PredefinedType : OPTIONAL IfcProjectionElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcProjectionElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcProjectionElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcProperty
@@ -9320,6 +9365,9 @@ END_ENTITY;
 
 ENTITY IfcRailway
  SUBTYPE OF (IfcFacility);
+	PredefinedType : OPTIONAL IfcRailwayTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcRailwayTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
 END_ENTITY;
 
 ENTITY IfcRamp
@@ -10150,6 +10198,9 @@ END_ENTITY;
 
 ENTITY IfcRoad
  SUBTYPE OF (IfcFacility);
+	PredefinedType : OPTIONAL IfcRoadTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcRoadTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
 END_ENTITY;
 
 ENTITY IfcRoof
@@ -10773,6 +10824,9 @@ ENTITY IfcStructuralAnalysisModel
 	SharedPlacement : OPTIONAL IfcObjectPlacement;
  WHERE
 	HasObjectType : (PredefinedType <> IfcAnalysisModelTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcAnalysisModelTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcAnalysisModelTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcStructuralConnection
@@ -11066,7 +11120,7 @@ END_ENTITY;
 ENTITY IfcStyledItem
  SUBTYPE OF (IfcRepresentationItem);
 	Item : OPTIONAL IfcRepresentationItem;
-	Styles : SET [1:?] OF IfcStyleAssignmentSelect;
+	Styles : SET [1:?] OF IfcPresentationStyle;
 	Name : OPTIONAL IfcLabel;
  WHERE
 	ApplicableItem : NOT('IFC4X3_RC3.IFCSTYLEDITEM' IN TYPEOF(Item));
@@ -12127,6 +12181,11 @@ ENTITY IfcWindow
  WHERE
 	CorrectStyleAssigned : (SIZEOF(IsTypedBy) = 0) 
 OR ('IFC4X3_RC3.IFCWINDOWTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+ (PredefinedType <> IfcWindowTypeEnum.USERDEFINED) OR
+ ((PredefinedType = IfcWindowTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+  ('IFC4X3_RC3.IFCWINDOWTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
 
 ENTITY IfcWindowLiningProperties
@@ -13519,7 +13578,8 @@ FUNCTION IfcShapeRepresentationTypes
       BEGIN
         Count := SIZEOF(QUERY(temp <* Items | SIZEOF([
                    'IFC4X3_RC3.IFCSWEPTAREASOLID',
-                   'IFC4X3_RC3.IFCSWEPTDISKSOLID'] *  TYPEOF(temp)) >= 1
+                   'IFC4X3_RC3.IFCSWEPTDISKSOLID'
+                   'IFC4X3_RC3.IFCSECTIONEDSOLIDHORIZONTAL'] *  TYPEOF(temp)) >= 1
                  ));      
       END;
 
