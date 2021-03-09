@@ -19,14 +19,11 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-05 March 2021
+09 March 2021
 
 *)
 
 SCHEMA IFC4X3_RC3;
-
-TYPE IfcStrippedOptional = BOOLEAN;
-END_TYPE;
 
 TYPE IfcAbsorbedDoseMeasure = REAL;
 END_TYPE;
@@ -4385,13 +4382,6 @@ ENTITY IfcBlock
 	ZLength : IfcPositiveLengthMeasure;
 END_ENTITY;
 
-ENTITY IfcBlossCurve
- SUBTYPE OF (IfcSpiral);
-	QubicTerm : IfcLengthMeasure;
-	QuadraticTerm : OPTIONAL IfcLengthMeasure;
-	LinearTerm : OPTIONAL IfcLengthMeasure;
-END_ENTITY;
-
 ENTITY IfcBoiler
  SUBTYPE OF (IfcEnergyConversionDevice);
 	PredefinedType : OPTIONAL IfcBoilerTypeEnum;
@@ -7389,13 +7379,6 @@ ENTITY IfcHeatExchangerType
 ((PredefinedType = IfcHeatExchangerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
 END_ENTITY;
 
-ENTITY IfcHelmertCurve
- SUBTYPE OF (IfcSpiral);
-	QuadraticTerm : IfcLengthMeasure;
-	LinearTerm : OPTIONAL IfcLengthMeasure;
-	ConstantTerm : OPTIONAL IfcReal;
-END_ENTITY;
-
 ENTITY IfcHumidifier
  SUBTYPE OF (IfcEnergyConversionDevice);
 	PredefinedType : OPTIONAL IfcHumidifierTypeEnum;
@@ -10289,6 +10272,13 @@ ENTITY IfcSeamCurve
 	SameSurface : IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[1]) = IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[2]);
 END_ENTITY;
 
+ENTITY IfcSecondOrderPolynomialSpiral
+ SUBTYPE OF (IfcSpiral);
+	QuadraticTerm : IfcLengthMeasure;
+	LinearTerm : OPTIONAL IfcLengthMeasure;
+	ConstantTerm : OPTIONAL IfcReal;
+END_ENTITY;
+
 ENTITY IfcSectionProperties
  SUBTYPE OF (IfcPreDefinedProperties);
 	SectionType : IfcSectionTypeEnum;
@@ -10725,11 +10715,11 @@ END_ENTITY;
 
 ENTITY IfcSpiral
  ABSTRACT SUPERTYPE OF (ONEOF
-    (IfcBlossCurve
-    ,IfcClothoid
+    (IfcClothoid
     ,IfcCosine
-    ,IfcHelmertCurve
-    ,IfcSine))
+    ,IfcSecondOrderPolynomialSpiral
+    ,IfcSine
+    ,IfcThirdOrderPolynomialSpiral))
  SUBTYPE OF (IfcCurve);
 	Position : OPTIONAL IfcAxis2Placement;
 END_ENTITY;
@@ -11710,6 +11700,13 @@ END_ENTITY;
 ENTITY IfcTextureVertexList
  SUBTYPE OF (IfcPresentationItem);
 	TexCoordsList : LIST [1:?] OF LIST [2:2] OF IfcParameterValue;
+END_ENTITY;
+
+ENTITY IfcThirdOrderPolynomialSpiral
+ SUBTYPE OF (IfcSpiral);
+	QubicTerm : IfcLengthMeasure;
+	QuadraticTerm : OPTIONAL IfcLengthMeasure;
+	LinearTerm : OPTIONAL IfcLengthMeasure;
 END_ENTITY;
 
 ENTITY IfcTimePeriod;
