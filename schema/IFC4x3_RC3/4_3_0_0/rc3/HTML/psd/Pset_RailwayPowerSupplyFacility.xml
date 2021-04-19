@@ -12,9 +12,30 @@
       <Name>RailwayPowerSupplyFacilityType</Name>
       <Definition />
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_RailwayPowerSupplyFacilityType">
+            <EnumItem>RAILWAY_AUTOTRANSFORMER_POST</EnumItem>
+            <EnumItem>RAILWAY_SUBSTATION</EnumItem>
+            <EnumItem>RAILWAY_TRACTION_POST</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>RAILWAY_AUTOTRANSFORMER_POST</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>RAILWAY_SUBSTATION</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>RAILWAY_TRACTION_POST</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />

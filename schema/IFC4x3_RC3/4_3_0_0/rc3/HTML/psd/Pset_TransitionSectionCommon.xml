@@ -5,16 +5,20 @@
   <Applicability />
   <ApplicableClasses />
   <PropertyDefs>
-    <PropertyDef ifdguid="bcce7f9bbc6540ffb082c3e2dcd68e11">
-      <Name>Length</Name>
-      <Definition>The nominal length of the transition section. The size information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the size properties, provided in the attached property set, the geometric parameters take precedence.</Definition>
+    <PropertyDef ifdguid="076d1500d1e911e1800000215ad4efdf">
+      <Name>NominalLength</Name>
+      <Definition>Nominal length of the object</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
-      <NameAliases />
-      <DefinitionAliases />
+      <NameAliases>
+        <NameAlias lang="en">Nominal Length</NameAlias>
+      </NameAliases>
+      <DefinitionAliases>
+        <DefinitionAlias lang="en" />
+      </DefinitionAliases>
     </PropertyDef>
   </PropertyDefs>
   <PsetDefinitionAliases />

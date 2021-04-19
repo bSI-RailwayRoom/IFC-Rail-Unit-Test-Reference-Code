@@ -172,10 +172,10 @@
     </PropertyDef>
     <PropertyDef ifdguid="076d1500d1e911e1800000215ad4efdf">
       <Name>NominalLength</Name>
-      <Definition>The nominal length of the furniture of this type. The size information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the size properties, provided in the attached property set, the geometric parameters take precedence.</Definition>
+      <Definition>Nominal length of the object</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>
@@ -187,17 +187,19 @@
     </PropertyDef>
     <PropertyDef ifdguid="118f1380d1e911e1800000215ad4efdf">
       <Name>NominalDepth</Name>
-      <Definition>The nominal depth of the furniture of this type. The size information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the size properties, provided in the attached property set, the geometric parameters take precedence.</Definition>
+      <Definition>Nominal Depth of the object</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>
         <NameAlias lang="en">Nominal Depth</NameAlias>
+        <NameAlias lang="ja-JP">深さ</NameAlias>
       </NameAliases>
       <DefinitionAliases>
         <DefinitionAlias lang="en" />
+        <DefinitionAlias lang="ja-JP">装置の基礎に配管吸入口から測定した深さ。</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
     <PropertyDef ifdguid="19e74e80d1e911e1800000215ad4efdf">

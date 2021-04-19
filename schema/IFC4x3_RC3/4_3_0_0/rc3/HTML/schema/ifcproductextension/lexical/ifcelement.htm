@@ -252,7 +252,7 @@ IFC4 CHANGE New inverse relationship.
 <summary>Concept usage</summary>
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 51.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 52.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -332,13 +332,13 @@ IFC4 CHANGE New inverse relationship.
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 51 &mdash; IfcElement Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 52 &mdash; IfcElement Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="product-local-placement" />
 <p class="use-head">Product Local Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 52.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 53.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasPlacement</b></th><th><b>RelativeToElement</b></th><th><b>Description</b></th></tr>
@@ -346,7 +346,7 @@ IFC4 CHANGE New inverse relationship.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 52 &mdash; IfcElement Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 53 &mdash; IfcElement Product Local Placement</td></tr></table>
 
 <p>The object placement for any subtype of <span class="self-ref">IfcElement</span> is defined by the <a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>, either <a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a> or <a href="../../ifcgeometricconstraintresource/lexical/ifcgridplacement.htm">IfcGridPlacement</a>, which defines the local object coordinate system that is referenced by all geometric representations of that <span class="self-ref">IfcElement</span>.</p>
 
@@ -364,11 +364,11 @@ IFC4 CHANGE New inverse relationship.
  <tr>
   <td><img src="../../../figures/ifcbuildingelement-boundingbox-layout1.gif" border="0" height="275" width="400" alt="bounding box"></td> 
   <td>
-<blockquote class="example">EXAMPLE&nbsp; Any <span class="self-ref">IfcElement</span> may be represented by a bounding box, which shows the maximum extend of the body within the object coordinate system established by the <a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>. As shown in Figure 163, the bounding box representation is given by an <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a> that includes a single item, an <a href="../../ifcgeometricmodelresource/lexical/ifcboundingbox.htm">IfcBoundingBox</a>.</blockquote>
+<blockquote class="example">EXAMPLE&nbsp; Any <span class="self-ref">IfcElement</span> may be represented by a bounding box, which shows the maximum extend of the body within the object coordinate system established by the <a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>. As shown in Figure 164, the bounding box representation is given by an <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a> that includes a single item, an <a href="../../ifcgeometricmodelresource/lexical/ifcboundingbox.htm">IfcBoundingBox</a>.</blockquote>
  </td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 163 &mdash; Building element box representation</p></td>
+  <td><p class="figure">Figure 164 &mdash; Building element box representation</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -377,7 +377,7 @@ IFC4 CHANGE New inverse relationship.
 
 <a id="footprint-geometry" />
 <p class="use-head">FootPrint Geometry</p>
-<p>The <a href="../../templates/footprint-geometry.htm">FootPrint Geometry</a> concept template applies to this entity as shown in Table 53.<table>
+<p>The <a href="../../templates/footprint-geometry.htm">FootPrint Geometry</a> concept template applies to this entity as shown in Table 54.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Identifier</b></th><th><b>Type</b></th><th><b>Items</b></th><th><b>Description</b></th></tr>
@@ -387,7 +387,7 @@ IFC4 CHANGE New inverse relationship.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 53 &mdash; IfcElement FootPrint Geometry</td></tr></table>
+<tr><td><p class="table">Table 54 &mdash; IfcElement FootPrint Geometry</td></tr></table>
 
 <br/><br/>
 
@@ -405,7 +405,7 @@ IFC4 CHANGE New inverse relationship.
  <tr>
   
 <td><img src="../../../figures/ifcbuildingelement-surfacemodel-layout1.gif" alt="surface model" border="0" height="275" width="400"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; As shown in Figure 164, the surface model representation is given 
+  <td><blockquote class="example">EXAMPLE&nbsp; As shown in Figure 165, the surface model representation is given 
 by an <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a>, which includes a single item which is either an <a href="../../ifcgeometricmodelresource/lexical/ifcshellbasedsurfacemodel.htm">IfcShellBasedSurfaceModel</a>, or an <a href="../../ifcgeometricmodelresource/lexical/ifcfacebasedsurfacemodel.htm">IfcFaceBasedSurfaceModel</a>. In some cases it may also be useful to expose a simple 
 representation as a bounding box representation of the same complex 
 shape.</blockquote></td>
@@ -414,7 +414,7 @@ shape.</blockquote></td>
 <tr>
   
 <td>
-<p class="figure">Figure 164 &mdash; Element surface model
+<p class="figure">Figure 165 &mdash; Element surface model
 representation</p>
 </td>
   <td>&nbsp;</td>
@@ -439,7 +439,7 @@ representation</p>
 <tr>
   
 <td><img src="../../../figures/ifcbuildingelement-brep-layout1.gif" alt="Brep representation" border="0" height="275" width="400"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; As shown in Figure 165, the Brep representation is given by an
+  <td><blockquote class="example">EXAMPLE&nbsp; As shown in Figure 166, the Brep representation is given by an
  <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a>, which includes one or more 
 items, all of type <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm">IfcFacetedBrep</a>. In some cases it may be useful to also expose a simple 
 representation as a bounding box representation of the same complex 
@@ -448,7 +448,7 @@ shape.</blockquote> </td>
  <tr>
   
 <td>
-<p class="figure">Figure 165 &mdash; Building element body boundary
+<p class="figure">Figure 166 &mdash; Building element body boundary
 representation</p>
 </td>
   <td>&nbsp;</td>
@@ -492,15 +492,15 @@ representation</p>
 
 <a id="product-linear-placement" />
 <p class="use-head">Linear Placement</p>
-<p>The <a href="../../templates/product-linear-placement.htm">Product Linear Placement</a> concept template applies to this entity as shown in Table 54.<table>
+<p>The <a href="../../templates/product-linear-placement.htm">Product Linear Placement</a> concept template applies to this entity as shown in Table 55.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasPlacement</b></th><th><b>Description</b></th></tr>
-<tr><td></td><td>DIstance can be measured along any physical element that has a representation featuring an IfcBoundedCurve that can be used as an Axis in IfcLinearPositioningElement.
+<tr><td></td><td>Distance can be measured along any physical element that has a representation featuring an IfcBoundedCurve that can be used as an Axis in IfcLinearPositioningElement.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 54 &mdash; IfcElement Product Linear Placement</td></tr></table>
+<tr><td><p class="table">Table 55 &mdash; IfcElement Product Linear Placement</td></tr></table>
 
 <p>Product placement with a <i>Product Linear Placement</i> template. It defines the local coordinate system based on the curve which is referenced by <a href="../../ifcgeometricconstraintresource/lexical/ifclinearplacement.htm">IfcLinearPlacement</a>.<i>RelativePlacement</i> which is an <a href="../../ifcgeometryresource/lexical/ifcaxis2placementlinear.htm">IfcAxis2PlacementLinear</a>.<i>Location</i> using an <a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a>.<i>BasisCurve</i>. The local coordinate system is based on the tangent of the curve at Location, its normal in the global Z plane and the cross product of the aforementioned vectors.</p>
 
@@ -579,7 +579,7 @@ representation</p>
 &nbsp;&nbsp;&lt;Concept uuid=&quot;e8eec15a-5c2e-4bad-9767-f157690cd5a3&quot; name=&quot;Linear Placement&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;8b71ce7c-35cf-4aaf-9402-f060c8c57bf3&quot; /&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;DIstance can be measured along any physical element that has a representation featuring an IfcBoundedCurve that can be used as an Axis in IfcLinearPositioningElement.&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Distance can be measured along any physical element that has a representation featuring an IfcBoundedCurve that can be used as an Axis in IfcLinearPositioningElement.&quot; /&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
 &nbsp;&nbsp;&lt;/Concept&gt;<br/>
 &nbsp;&lt;/Concepts&gt;<br/>
@@ -603,6 +603,7 @@ representation</p>
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><span class="self-ref">IfcElement</span></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>

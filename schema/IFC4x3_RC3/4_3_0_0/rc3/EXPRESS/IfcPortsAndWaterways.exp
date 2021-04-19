@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -44,7 +44,7 @@ END_TYPE;
 TYPE IfcMarineFacilityTypeEnum = ENUMERATION OF
 	(CANAL
 	,WATERWAYSHIPLIFT
-	,EMBANKMENT
+	,REVETMENT
 	,LAUNCHRECOVERY
 	,MARINEDEFENCE
 	,HYDROLIFT
@@ -151,7 +151,7 @@ END_ENTITY;
 
 ENTITY IfcMarineFacility
  SUBTYPE OF (IfcFacility);
-	PredefinedType : IfcMarineFacilityTypeEnum;
+	PredefinedType : OPTIONAL IfcMarineFacilityTypeEnum;
  WHERE
 	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
 (PredefinedType <> IfcMarineFacilityTypeEnum.USERDEFINED) OR

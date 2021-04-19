@@ -44,7 +44,7 @@
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p>The property with a single value <span class="self-ref">IfcPropertySingleValue</span> defines a property object which has a single (numeric or descriptive) value assigned. It defines a property - single value combination for which the property <i>Name</i>, an optional <i>Description</i>, and an optional <i>NominalValue</i> with measure type is provided. In addition, the default unit as specified within the project unit context can be overriden by assigning an <i>Unit</i>.</p>
-<p>The unit is handled by the <i>Unit</i> attribute, see Table 703 for an example of various single value properties:</p>
+<p>The unit is handled by the <i>Unit</i> attribute, see Table 704 for an example of various single value properties:</p>
 <ul>
 <li>If the <i>Unit</i> attribute is not given, then the unit is already implied by the type of <a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a> or <a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>. The associated unit can be found at the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a> globally defined at the project level (<i>IfcProject.UnitsInContext</i>).</li>
 <li>If the <i>Unit</i> attribute is given, then the unit assigned by the <i>Unit</i> attribute overrides the globally assigned unit.</li>
@@ -82,7 +82,7 @@
   </td>
  </tr>
  <tr>
-  <td><p class="table">Table 703 &mdash; Single value properties with values, measure types and units</p></td>
+  <td><p class="table">Table 704 &mdash; Single value properties with values, measure types and units</p></td>
  </tr>
 </table>
 <blockquote class="history">

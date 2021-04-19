@@ -47,7 +47,7 @@
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcPropertyListValue</span> defines a property that has several (numeric or descriptive) values assigned, these values are given by an ordered list. It defines a property - list value combination for which the property <i>Name</i>, an optional <i>Description</i>, the optional <i>ListValues</i> with measure type and optionally an <i>Unit</i> is given. An <span class="self-ref">IfcPropertyListValue</span> is a list of values. The order in which values appear is significant. All list members shall be of the same type.</p>
-<p>The unit is handled by the <i>Unit</i> attribute, see Table 702 for an example of a list property:</p>
+<p>The unit is handled by the <i>Unit</i> attribute, see Table 703 for an example of a list property:</p>
 <ul>
 <li>If the <i>Unit</i> attribute is not given, then the unit is already implied by the type of <a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a> or <a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>. The associated unit can be found at the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a> globally defined at the project level (<i>IfcProject.UnitsInContext</i>).</li>
 <li>If the <i>Unit</i> attribute is given, then the unit assigned by the <i>Unit</i> attribute overrides the globally assigned unit.</li>
@@ -88,7 +88,7 @@
     </tr>
    
 <tr>
-  <td><p class="table">Table 702 &mdash; List property with values, measure types and units</p></td>
+  <td><p class="table">Table 703 &mdash; List property with values, measure types and units</p></td>
  </tr>
 <blockquote class="history">
 <p>HISTORY  New entity in IFC2x2.</p>

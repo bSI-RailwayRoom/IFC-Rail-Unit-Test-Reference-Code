@@ -8,9 +8,9 @@
   </ApplicableClasses>
   <ApplicableTypeValue>IfcElem/SUMPBUSTER</ApplicableTypeValue>
   <PropertyDefs>
-    <PropertyDef ifdguid="a2fa257c48bd49adb0e436dccdd10f57">
-      <Name>Type</Name>
-      <Definition>Sump buster designator according to local standards</Definition>
+    <PropertyDef ifdguid="fec5ed14d21e43eeba124e8eb03952d0">
+      <Name>TypeDesignation</Name>
+      <Definition>Type designator according to local standards</Definition>
       <PropertyType>
         <TypePropertySingleValue>
           <DataType type="IfcLabel" />

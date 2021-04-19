@@ -6,7 +6,7 @@
   <Applicability />
   <ApplicableClasses />
   <PropertyDefs>
-    <PropertyDef ifdguid="9a8bc3ed4205402aa5c9e8516d73f0ae">
+    <PropertyDef ifdguid="9a39b9f37f2342628164099b571a83a5">
       <Name>IsInsulated</Name>
       <Definition />
       <PropertyType>
@@ -17,7 +17,7 @@
       <NameAliases />
       <DefinitionAliases />
     </PropertyDef>
-    <PropertyDef ifdguid="b22757644f514c9cad50a038018fb428">
+    <PropertyDef ifdguid="f12c5ce22da642caae1b6b7130eba268">
       <Name>IsTemporary</Name>
       <Definition />
       <PropertyType>

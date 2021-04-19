@@ -207,6 +207,28 @@
         <DefinitionAlias lang="ja-JP">保険の定義済み種別。</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
+    <PropertyDef ifdguid="442e566590d1453b8cf957cae7db5e50">
+      <Name>AssetStatus</Name>
+      <Definition>Current status or stage in life cycle.</Definition>
+      <PropertyType>
+        <TypePropertySingleValue>
+          <DataType type="IfcLabel" />
+        </TypePropertySingleValue>
+      </PropertyType>
+      <NameAliases />
+      <DefinitionAliases />
+    </PropertyDef>
+    <PropertyDef ifdguid="4fd2e75b2b134b5996cc8a2581cd265a">
+      <Name>AssetUse</Name>
+      <Definition>General use category of the asset</Definition>
+      <PropertyType>
+        <TypePropertySingleValue>
+          <DataType type="IfcLabel" />
+        </TypePropertySingleValue>
+      </PropertyType>
+      <NameAliases />
+      <DefinitionAliases />
+    </PropertyDef>
   </PropertyDefs>
   <PsetDefinitionAliases>
     <PsetDefinitionAlias lang="en" />

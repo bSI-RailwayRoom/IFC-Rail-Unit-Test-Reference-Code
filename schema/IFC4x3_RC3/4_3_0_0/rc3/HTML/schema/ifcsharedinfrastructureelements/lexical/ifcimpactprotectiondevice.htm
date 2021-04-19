@@ -227,6 +227,7 @@ IFC4 CHANGE New inverse relationship.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
@@ -271,9 +272,21 @@ IFC4 CHANGE New inverse relationship.
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcsharedcomponentelements/lexical/ifcelementcomponent.htm">IfcElementComponent</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetypeselect.htm">IfcImpactProtectionDeviceTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
-(PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetypeenum.htm">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) OR<br/>
-((PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetypeenum.htm">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType))<br/>
+OR<br/>
+((PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetypeenum.htm">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedcomponentelements/lexical/ifcvibrationdampertypeenum.htm">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifchvacdomain/lexical/ifcvibrationisolatortypeenum.htm">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+ OR<br/>
+(((PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetypeenum.htm">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcsharedcomponentelements/lexical/ifcvibrationdampertypeenum.htm">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifchvacdomain/lexical/ifcvibrationisolatortypeenum.htm">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
 (&#39;IFCSHAREDINFRASTRUCTUREELEMENTS.<a href="../../ifcsharedinfrastructureelements/lexical/ifcimpactprotectiondevicetype.htm">IfcImpactProtectionDeviceType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcsharedinfrastructureelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

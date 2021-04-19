@@ -71,7 +71,7 @@
 <p>NOTE  Subtypes of the <span class="self-ref">IfcProfileDef</span> contain parameterized profiles (as subtypes of <a href="../../ifcprofileresource/lexical/ifcparameterizedprofiledef.htm">IfcParameterizedProfileDef</a>) which establish their own 2D position coordinate system, profiles given by explicit curve geometry (either open or closed profiles) and two special types for composite profiles and derived profiles, based on a 2D Cartesian transformation.</p>
 </blockquote>
 <p>An <span class="self-ref">IfcProfileDef</span> is treated as bounded area if it is used within swept area solids. In this case, the inside of the profile is part of the profile. The attribute <i>ProfileType</i> is set to AREA. An <span class="self-ref">IfcProfileDef</span> is treated as a curve if it is used within swept surfaces. In this case, the inside of the profile (if the curve is closed) is not part of the profile. The attribute <i>ProfileType</i> is set to CURVE.</p>
-<p>Figure 428 illustrates use of parameterized profiles within a swept area solid.</p>
+<p>Figure 429 illustrates use of parameterized profiles within a swept area solid.</p>
 <table><tr><td>
 <table border="1" cellpadding="2" cellspacing="2" frame="border" width="100%">
   <tbody>
@@ -132,10 +132,10 @@ the swept surface or swept area solid.</p>
   </td></tr></tbody>
 </table>
 </td></tr>
-<tr><td><p class="figure">Figure 428 &mdash; Profile sweeping</p></td></tr>
+<tr><td><p class="figure">Figure 429 &mdash; Profile sweeping</p></td></tr>
 </table>
 <p><strong>Profile types</strong></p>
-<p>Results of the different usage of the <i>ProfileType</i> attribute are demonstrated here. The <i>ProfileType</i> defines whether the inside (the bounded area) is part of the profile definition (Area) or not (Curve). Figure 429 illustrates the resulting area or curve depending on <i>ProfileType</i>.</p>
+<p>Results of the different usage of the <i>ProfileType</i> attribute are demonstrated here. The <i>ProfileType</i> defines whether the inside (the bounded area) is part of the profile definition (Area) or not (Curve). Figure 430 illustrates the resulting area or curve depending on <i>ProfileType</i>.</p>
 <table><tr><td>
 <table border="1" cellpadding="2" cellspacing="2" frame="border" width="100%">
   <tbody>
@@ -154,7 +154,7 @@ ProfileType = CURVE</p>
   </td></tr></tbody>
 </table>
 </td></tr>
-<tr><td><p class="figure">Figure 429 &mdash; Profile types</p></td></tr>
+<tr><td><p class="figure">Figure 430 &mdash; Profile types</p></td></tr>
 </table>
 <p><strong>Profile specification by external reference</strong></p>
 <p>If the profile is standardized by a norm or a catalogue, a reference to this norm or catalogue should be provided by means of <i>HasExternalReference</i>. This inverse relationship is used to associate an <a href="../../ifcexternalreferenceresource/lexical/ifcexternalreference.htm">IfcExternalReference</a> (notably <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> or <a href="../../ifcexternalreferenceresource/lexical/ifclibraryreference.htm">IfcLibraryReference</a>) with the profile.</p>
@@ -240,7 +240,7 @@ IFC4 CHANGE New inverse attribute
 <summary>Concept usage</summary>
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 697.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 698.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -273,7 +273,7 @@ IFC4 CHANGE New inverse attribute
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 697 &mdash; IfcProfileDef Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 698 &mdash; IfcProfileDef Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 

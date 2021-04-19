@@ -42,10 +42,17 @@ A pavement is a type of built element in a road or other paved area to provide a
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
 <th>G</th></tr>
-<tr><td>10</td><td>Flexible</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a></td><td></td><td>
 Boolean to identify the pavement type as a Flexible or Rigid structure.
 </td><td>X</td></tr>
 </table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>The inherited attribute <i>ElementType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
+</table>
+
 </details>
 </section>
 <section>
@@ -151,7 +158,7 @@ The type denotes a particular type that indicates the object further. The use ha
 </td><td>X</td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcbuiltelementtype.htm">IfcBuiltElementType</a></td></tr>
 <tr><td colspan="6"><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtype.htm">IfcPavementType</a></td></tr>
-<tr><td>10</td><td>Flexible</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a></td><td></td><td>
 Boolean to identify the pavement type as a Flexible or Rigid structure.
 </td><td>X</td></tr>
 </table>
@@ -182,7 +189,7 @@ Boolean to identify the pavement type as a Flexible or Rigid structure.
 &nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtype.htm">IfcPavementType</a>&quot;&gt;<br/>
 &nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcbuiltelementtype.htm">IfcBuiltElementType</a>&quot;&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Flexible&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
 &nbsp;&lt;/xs:complexType&gt;<br/>
@@ -190,8 +197,10 @@ Boolean to identify the pavement type as a Flexible or Rigid structure.
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">ENTITY</span> IfcPavementType<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcbuiltelementtype.htm">IfcBuiltElementType</a>)<b>;</b><br/>
-&nbsp;&nbsp;Flexible : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : (PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcsharedinfrastructureelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

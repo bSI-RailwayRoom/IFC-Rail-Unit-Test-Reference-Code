@@ -105,6 +105,13 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 </td><td>X</td></tr>
 </table>
 </details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either <i>PredefinedType</i> is unset or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED or <i>PredefinedType</i>.
+</td></tr>
+</table>
+
+</details>
 </section>
 <section>
 <h5 class="num">Inherited definitions from supertypes</h5>
@@ -272,7 +279,7 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <summary>Concept usage</summary>
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 67.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 68.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -285,13 +292,13 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 67 &mdash; IfcOpeningElement Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 68 &mdash; IfcOpeningElement Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 68.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 69.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
@@ -304,16 +311,16 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 68 &mdash; IfcOpeningElement Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 69 &mdash; IfcOpeningElement Quantity Sets</td></tr></table>
 
 <br/><br/>
 
 <a id="product-local-placement" />
 <p class="use-head">Product Local Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 69.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 70.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 69 &mdash; IfcOpeningElement Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 70 &mdash; IfcOpeningElement Product Local Placement</td></tr></table>
 
 <p>The local placement for <span class="self-ref">IfcOpeningElement</span> is defined in its supertype <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>. It is defined by the <a href="../../ifcgeometricconstraintresource/lexical/ifclocalplacement.htm">IfcLocalPlacement</a>, which defines the local coordinate system that is referenced by all geometric representations.</p>
 <ul>
@@ -341,12 +348,12 @@ Extrusion</i></p>
 <blockquote class="note">
 <p>NOTE  In case of non-parallel jambs, the shape representation shall be a 'SweptSolid' representation with vertical extrusion.</p>
 </blockquote>
-<p>Figure 171 illustrates an opening with horizontal extrusion.</p>
+<p>Figure 172 illustrates an opening with horizontal extrusion.</p>
 <blockquote class="note">
 <p>NOTE  The local placement directions for the <span class="self-ref">IfcOpeningElement</span> are only given as an example, other directions are valid as well.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_horizontal-layout1.png" alt="&quot;standard opening&quot;" title="Figure 171 &mdash; Opening with full extrusion"></td></tr><tr><td><p class="figure">Figure 171 &mdash; Opening with full extrusion</p></td></tr></table></p>
-<p>Figure 172 illustrates an opening for a recess.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_horizontal-layout1.png" alt="&quot;standard opening&quot;" title="Figure 172 &mdash; Opening with full extrusion"></td></tr><tr><td><p class="figure">Figure 172 &mdash; Opening with full extrusion</p></td></tr></table></p>
+<p>Figure 173 illustrates an opening for a recess.</p>
 <blockquote class="note">
 <p>NOTE  The local placement directions for the <span class="self-ref">IfcOpeningElement</span> are only given as an example, other directions are valid as well.</p>
 </blockquote>
@@ -356,7 +363,7 @@ Extrusion</i></p>
 <ul>
 <li><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>(XDim/2,YDim/2)</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_recess-layout1.png" alt="&quot;recess&quot;" title="Figure 172 &mdash; Opening with recess extrusion"></td></tr><tr><td><p class="figure">Figure 172 &mdash; Opening with recess extrusion</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_recess-layout1.png" alt="&quot;recess&quot;" title="Figure 173 &mdash; Opening with recess extrusion"></td></tr><tr><td><p class="figure">Figure 173 &mdash; Opening with recess extrusion</p></td></tr></table></p>
 <p><i>Swept Solid Representation with Vertical Extrusion</i></p>
 <p>The 'SweptSolid' geometric representation of <span class="self-ref">IfcOpeningElement</span>, using vertical extrusion direction (for walls), is defined using the swept area solid geometry, however the extrusion direction may be vertical, i.e. in case of a wall opening, the extrusion would be in the direction of the wall height. The following attribute values for the <a href="../../ifcrepresentationresource/lexical/ifcshaperepresentation.htm">IfcShapeRepresentation</a> holding this geometric representation shall be used:</p>
 <ul>
@@ -370,11 +377,11 @@ Extrusion</i></p>
 <li><strong>Extrusion</strong>: The profile shall be extruded vertically, i.e. for wall openings along the extrusion direction of the voided element.  If multiple instances of <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a> are used, the extrusion direction should be equal.</li>
 </ul>
 <p>Vertical extrusions shall be used when an opening or recess has a non rectangular foot print geometry that does not change along the height of the opening or recess.</p>
-<p>Figure 173 shows a vertical extrusion with multiple extrusion bodies for the opening. Each extrusion body has a different extrusion lenght.</p>
+<p>Figure 174 shows a vertical extrusion with multiple extrusion bodies for the opening. Each extrusion body has a different extrusion lenght.</p>
 <blockquote class="note">
 <p>NOTE  The local placement directions for the <span class="self-ref">IfcOpeningElement</span> are only given as an example, other directions are valid as well.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_vertical-layout1.png" alt="&quot;vertical extrusion&quot;" title="Figure 173 &mdash; Opening with multiple extrusions"></td></tr><tr><td><p class="figure">Figure 173 &mdash; Opening with multiple extrusions</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcopeningelement_vertical-layout1.png" alt="&quot;vertical extrusion&quot;" title="Figure 174 &mdash; Opening with multiple extrusions"></td></tr><tr><td><p class="figure">Figure 174 &mdash; Opening with multiple extrusions</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -437,6 +444,7 @@ Extrusion</i></p>
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>
@@ -485,7 +493,10 @@ Extrusion</i></p>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcproductextension/lexical/ifcopeningelementtypeenum.htm">IfcOpeningElementTypeEnum</a>;<br/>
 &nbsp;<span class="keyword">INVERSE</span><br/>
 &nbsp;&nbsp;HasFillings : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a> <span class="keyword">FOR</span> RelatingOpeningElement;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifcopeningelementtypeenum.htm">IfcOpeningElementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcproductextension/lexical/ifcopeningelementtypeenum.htm">IfcOpeningElementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

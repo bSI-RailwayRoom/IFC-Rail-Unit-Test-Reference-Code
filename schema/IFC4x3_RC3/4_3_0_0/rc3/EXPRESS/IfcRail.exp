@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -85,6 +85,11 @@ TYPE IfcRailwayPartTypeEnum = ENUMERATION OF
 	,SUPERSTRUCTURE
 	,TURNOUTSUPERSTRUCTURE
 	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcRailwayTypeEnum = ENUMERATION OF
+	(USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
 
@@ -198,6 +203,9 @@ END_ENTITY;
 
 ENTITY IfcRailway
  SUBTYPE OF (IfcFacility);
+	PredefinedType : OPTIONAL IfcRailwayTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcRailwayTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
 END_ENTITY;
 
 ENTITY IfcTrackElement

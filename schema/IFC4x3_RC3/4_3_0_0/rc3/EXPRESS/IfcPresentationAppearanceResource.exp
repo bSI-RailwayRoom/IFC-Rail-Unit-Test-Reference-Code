@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -120,10 +120,6 @@ TYPE IfcTextTransformation = STRING;
 	WR1 : SELF IN ['capitalize', 'uppercase', 'lowercase', 'none'];
 END_TYPE;
 
-TYPE IfcNullStyle = ENUMERATION OF
-	(NULL);
-END_TYPE;
-
 TYPE IfcReflectanceMethodEnum = ENUMERATION OF
 	(BLINN
 	,FLAT
@@ -175,14 +171,6 @@ TYPE IfcHatchLineDistanceSelect = SELECT
 	,IfcVector);
 END_TYPE;
 
-TYPE IfcPresentationStyleSelect = SELECT
-	(IfcCurveStyle
-	,IfcFillAreaStyle
-	,IfcNullStyle
-	,IfcSurfaceStyle
-	,IfcTextStyle);
-END_TYPE;
-
 TYPE IfcSizeSelect = SELECT
 	(IfcDescriptiveMeasure
 	,IfcLengthMeasure
@@ -195,11 +183,6 @@ END_TYPE;
 TYPE IfcSpecularHighlightSelect = SELECT
 	(IfcSpecularExponent
 	,IfcSpecularRoughness);
-END_TYPE;
-
-TYPE IfcStyleAssignmentSelect = SELECT
-	(IfcPresentationStyle
-	,IfcPresentationStyleAssignment);
 END_TYPE;
 
 TYPE IfcSurfaceStyleElementSelect = SELECT
@@ -424,14 +407,10 @@ ENTITY IfcPresentationStyle
 	Name : OPTIONAL IfcLabel;
 END_ENTITY;
 
-ENTITY IfcPresentationStyleAssignment;
-	Styles : SET [1:?] OF IfcPresentationStyleSelect;
-END_ENTITY;
-
 ENTITY IfcStyledItem
  SUBTYPE OF (IfcRepresentationItem);
 	Item : OPTIONAL IfcRepresentationItem;
-	Styles : SET [1:?] OF IfcStyleAssignmentSelect;
+	Styles : SET [1:?] OF IfcPresentationStyle;
 	Name : OPTIONAL IfcLabel;
  WHERE
 	ApplicableItem : NOT('IFCPRESENTATIONAPPEARANCERESOURCE.IFCSTYLEDITEM' IN TYPEOF(Item));

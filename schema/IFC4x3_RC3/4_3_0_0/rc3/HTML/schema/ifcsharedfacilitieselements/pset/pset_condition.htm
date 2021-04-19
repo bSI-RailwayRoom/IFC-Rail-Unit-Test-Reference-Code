@@ -27,7 +27,7 @@
 <h4 class="std">6.4.4.2 Pset_Condition</h4>
 <p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
 /
-<a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>
+<span class="self-ref">IfcElement,IfcSystem,IfcAsset</span>
 </p><details open="open"><summary>Natural language names</summary><table>
 <table class="gridtable">
 <tr><td><img src="../../../img/locale-en.png" /></td><td><b>Condition</b></td></tr>
@@ -76,6 +76,38 @@
 <tr><td><img src="../../../img/locale-ja.png" /></td><td><b>評価記述</b></td><td>状態に関する定性的な記述。
 </td></tr>
 </table>
+</td></tr>
+<tr><td>AssessmentType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Category of latest condition assessment report of the asset.
+
+</td></tr>
+<tr><td>AssessmentMethod</td><td>
+<span class="self-ref">P_REFERENCEVALUE</span>
+/
+<a href="../../ifcexternalreferenceresource/lexical/ifcdocumentreference.htm">IfcDocumentReference</a>
+</td><td>
+External reference to assessment method or application used to perform the assessment.
+
+</td></tr>
+<tr><td>LastAssessmentReport</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Reference to latest condition (state of health) report.
+
+</td></tr>
+<tr><td>NextAssessmentDate</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>
+</td><td>
+Date of next condition inspection
+
 </td></tr>
 </table>
 </details>

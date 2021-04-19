@@ -52,7 +52,7 @@
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcGrid</span> ia a planar design grid defined in 3D space used as an aid in locating structural and design elements. The position of the grid (<i>ObjectPlacement</i>) is defined by a 3D coordinate system (and thereby the design grid can be used in plan, section or in any position relative to the world coordinate system). The position can be relative to the object placement of other products or grids. The XY plane of the 3D coordinate system is used to place the grid axes, which are 2D curves (for example, line, circle, arc, polyline).</p>
 <p>The inherited attributes <i>Name</i> and <i>Description</i> can be used to define a descriptive name of the grid and to indicate the grid's purpose. A grid is defined by (normally) two, or (in case of a triangular grid) three lists of grid axes. The following figures shows some examples.</p>
-<p>A grid may support a rectangular layout as shown in Figure 167, a radial layout as shown in Figure 168, or a triangular layout as shown in Figure 169.</p>
+<p>A grid may support a rectangular layout as shown in Figure 168, a radial layout as shown in Figure 169, or a triangular layout as shown in Figure 170.</p>
 <blockquote class="note">
 <p>NOTE  The <i>PredefinedType</i> denotes the type of grid that is represented by <span class="self-ref">IfcGrid</span>. The instantiation of <a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>'s has to agree to the <i>PredefinedType</i>, if provided.</p>
 </blockquote>
@@ -74,13 +74,13 @@
         </tr>
         <tr>
           <td width="320">
-            <p class="figure">Figure 167 &mdash; Grid rectangular layout</p>
+            <p class="figure">Figure 168 &mdash; Grid rectangular layout</p>
           </td>
           <td width="320">
-            <p class="figure">Figure 168 &mdash; Grid radial layout</p>
+            <p class="figure">Figure 169 &mdash; Grid radial layout</p>
           </td>
           <td width="320">
-            <p class="figure">Figure 169 &mdash; Grid triangular layout</p>
+            <p class="figure">Figure 170 &mdash; Grid triangular layout</p>
           </td>
         </tr>
       </tbody>
@@ -115,7 +115,7 @@ Informal Propositions:</p>
         </td>
         <td align="right" valign="top" width="320">
           <img src="../../../figures/ifcdesigngrid-ip2.gif" alt="IP2" border="0" height="97" width="306">
-          <p class="figure">Figure 170 &mdash; Grid intersections</p>
+          <p class="figure">Figure 171 &mdash; Grid intersections</p>
         </td>
       </tr>
     </table>
@@ -295,6 +295,7 @@ IFC4 Change  New attribute.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm"><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm">IfcPositioningElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm#product-local-placement">Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm#footprint-geometry">Footprint Geometry</a></td><td><a href="../../templates/footprint-geometry.htm">FootPrint Geometry</a></td><td>General Usage</td></tr>

@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -59,6 +59,11 @@ TYPE IfcRoadPartTypeEnum = ENUMERATION OF
 	,NOTDEFINED);
 END_TYPE;
 
+TYPE IfcRoadTypeEnum = ENUMERATION OF
+	(USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
 ENTITY IfcKerb
  SUBTYPE OF (IfcBuiltElement);
 	Mountable : IfcBoolean;
@@ -88,6 +93,9 @@ END_ENTITY;
 
 ENTITY IfcRoad
  SUBTYPE OF (IfcFacility);
+	PredefinedType : OPTIONAL IfcRoadTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcRoadTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
 END_ENTITY;
 
 ENTITY IfcSectionedSurface

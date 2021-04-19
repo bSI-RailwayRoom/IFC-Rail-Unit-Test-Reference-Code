@@ -47,7 +47,7 @@
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
 <details open="open"><summary>Entity definition</summary><p>A property with a bounded value, <span class="self-ref">IfcPropertyBoundedValue</span>, defines a property object which has a maximum of two (numeric or descriptive) values assigned, the first value specifying the upper bound and the second value specifying the lower bound. It defines a property - value bound (min-max) combination for which the property <i>Name</i>, an optional <i>Description</i>, the optional <i>UpperBoundValue</i> with measure type, the optional <i>LowerBoundValue</i> with measure type, and the optional <i>Unit</i> is given. A set point value can be provided in addition to the upper and lower bound values for operational value setting.</p>
-<p>The unit is handled by the <i>Unit</i> attribute, see Table 698 for an example of a bounded property:</p>
+<p>The unit is handled by the <i>Unit</i> attribute, see Table 699 for an example of a bounded property:</p>
 <ul>
 <li>If the <i>Unit</i> attribute is not given, then the unit is already implied by the type of <a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a> or <a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>. The associated unit can be found at the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a> globally defined at the project level (<i>IfcProject.UnitsInContext</i>).</li>
 <li>If the <i>Unit</i> attribute is given, then the unit assigned by the <i>Unit</i> attribute overrides the globally assigned unit.</li>
@@ -110,7 +110,7 @@
   </td>
  </tr>
  <tr>
-  <td><p class="table">Table 698 &mdash; Bounded property with values, measure types and units</p></td>
+  <td><p class="table">Table 699 &mdash; Bounded property with values, measure types and units</p></td>
  </tr>
 
 <blockquote class="history">

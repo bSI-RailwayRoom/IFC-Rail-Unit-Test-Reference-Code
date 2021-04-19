@@ -388,23 +388,21 @@ Note: Not required for a vertical cylindrical tank.</Definition>
         <DefinitionAlias lang="ja-JP">公称幅又は水平円筒形タンクの場合、タンクの公称直径　　　　　注：垂直円筒形タンクに対しては必須ではない</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
-    <PropertyDef ifdguid="fedc0500d20f11e1800000215ad4efdf">
+    <PropertyDef ifdguid="118f1380d1e911e1800000215ad4efdf">
       <Name>NominalDepth</Name>
-      <Definition>The nominal depth of the tank.
-
-Note: Not required for a horizontal cylindrical tank.</Definition>
+      <Definition>Nominal Depth of the object</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>
         <NameAlias lang="en">Nominal Depth</NameAlias>
-        <NameAlias lang="ja-JP">公称深さ</NameAlias>
+        <NameAlias lang="ja-JP">深さ</NameAlias>
       </NameAliases>
       <DefinitionAliases>
         <DefinitionAlias lang="en" />
-        <DefinitionAlias lang="ja-JP">タンクの公称深さ　　注：水平円筒形タンクに対しては必須ではない</DefinitionAlias>
+        <DefinitionAlias lang="ja-JP">装置の基礎に配管吸入口から測定した深さ。</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
     <PropertyDef ifdguid="069ba980d21011e1800000215ad4efdf">

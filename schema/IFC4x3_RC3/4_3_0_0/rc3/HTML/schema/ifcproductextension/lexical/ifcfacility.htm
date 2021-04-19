@@ -201,7 +201,7 @@ IFC4 CHANGE  Attribute made optional.
 <summary>Concept usage</summary>
 <a id="spatial-composition" />
 <p class="use-head">Spatial Composition</p>
-<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 58.<table>
+<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 59.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingObject</b></th><th><b>Description</b></th></tr>
@@ -213,7 +213,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 58 &mdash; IfcFacility Spatial Composition</td></tr></table>
+<tr><td><p class="table">Table 59 &mdash; IfcFacility Spatial Composition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcFacility.Decomposes</i> it references <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> || <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a> || <span class="self-ref">IfcFacility</span> through <i>IfcRelAggregates.RelatingObject</i>. If it refers to another instance of <span class="self-ref">IfcFacility</span>, the referenced <span class="self-ref">IfcFacility</span> needs to have a different and higher <i>CompositionType</i>, i.e. COMPLEX (if the other <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a> has ELEMENT), or ELEMENT (if the other <span class="self-ref">IfcFacility</span> has PARTIAL).</p>
@@ -223,7 +223,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="spatial-decomposition" />
 <p class="use-head">Spatial Decomposition</p>
-<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 59.<table>
+<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 60.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -233,7 +233,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 59 &mdash; IfcFacility Spatial Decomposition</td></tr></table>
+<tr><td><p class="table">Table 60 &mdash; IfcFacility Spatial Decomposition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcFacility.IsDecomposedBy</i> it references <span class="self-ref">IfcFacility</span> || <a href="../../ifcproductextension/lexical/ifcfacilitypart.htm">IfcFacilityPart</a> through <i>IfcRelAggregates.RelatedObjects</i>. If it refers to another instance of <span class="self-ref">IfcFacility</span>, the referenced <span class="self-ref">IfcFacility</span> needs to have a different and lower <i>CompositionType</i>, i.e. ELEMENT (if the other <span class="self-ref">IfcFacility</span> has COMPLEX), or PARTIAL (if the other <span class="self-ref">IfcFacility</span> has ELEMENT).</p>
@@ -243,7 +243,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="spatial-container" />
 <p class="use-head">Spatial Container</p>
-<p>The <a href="../../templates/spatial-container.htm">Spatial Container</a> concept template applies to this entity as shown in Table 60.<table>
+<p>The <a href="../../templates/spatial-container.htm">Spatial Container</a> concept template applies to this entity as shown in Table 61.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Type</b></th><th><b>Description</b></th></tr>
@@ -255,7 +255,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 60 &mdash; IfcFacility Spatial Container</td></tr></table>
+<tr><td><p class="table">Table 61 &mdash; IfcFacility Spatial Container</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  If there are building elements and/or other elements directly related to the <span class="self-ref">IfcFacility</span> (like a curtain wall spanning several stories), they are associated with the <span class="self-ref">IfcFacility</span> by using the objectified relationship <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>. The <span class="self-ref">IfcFacility</span> references them by its inverse relationship: &gt; *  <i>IfcFacility.ContainsElements</i> -- referencing any subtype of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> (with the exception of other spatial structure element) by <i>IfcRelContainedInSpatialStructure.RelatedElements</i>.</p>
@@ -344,6 +344,7 @@ system  that is referenced by all geometric representations.</i></p>
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm#footprint-geomset-geometry">FootPrint GeomSet Geometry</a></td><td><a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a></td><td>General Usage</td></tr>
 

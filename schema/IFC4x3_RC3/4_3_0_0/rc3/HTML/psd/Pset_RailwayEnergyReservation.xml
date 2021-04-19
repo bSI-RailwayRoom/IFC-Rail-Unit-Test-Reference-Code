@@ -12,9 +12,36 @@
       <Name>ReservationZoneType</Name>
       <Definition />
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_EnergyReservationZone">
+            <EnumItem>ELECTRICTRANSFERTZONE</EnumItem>
+            <EnumItem>EARTHINGZONE</EnumItem>
+            <EnumItem>CURRENTRETURNZONE</EnumItem>
+            <EnumItem>UNDERGROUNDLINEZONE</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>ELECTRICTRANSFERTZONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>EARTHINGZONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>CURRENTRETURNZONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>UNDERGROUNDLINEZONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />

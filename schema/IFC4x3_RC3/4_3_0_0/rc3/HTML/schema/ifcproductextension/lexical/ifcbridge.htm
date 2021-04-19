@@ -55,6 +55,13 @@ Civil engineering works that affords passage to pedestrians, animals, vehicles, 
 </td><td>X</td></tr>
 </table>
 </details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either <i>PredefinedType</i> is unset or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED or <i>PredefinedType</i>.
+</td></tr>
+</table>
+
+</details>
 </section>
 <section>
 <h5 class="num">Inherited definitions from supertypes</h5>
@@ -214,7 +221,7 @@ IFC4 CHANGE  Attribute made optional.
 <summary>Concept usage</summary>
 <a id="spatial-composition" />
 <p class="use-head">Spatial Composition</p>
-<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 26.<table>
+<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 27.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingObject</b></th><th><b>Description</b></th></tr>
@@ -226,7 +233,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 26 &mdash; IfcBridge Spatial Composition</td></tr></table>
+<tr><td><p class="table">Table 27 &mdash; IfcBridge Spatial Composition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcBridge.Decomposes</i> it references <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> || <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a> || <span class="self-ref">IfcBridge</span> through <i>IfcRelAggregates.RelatingObject</i>. If it refers to another instance of <span class="self-ref">IfcBridge</span>, the referenced <span class="self-ref">IfcBridge</span> needs to have a different and higher <i>CompositionType</i>, i.e. COMPLEX (if the other <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a> has ELEMENT), or ELEMENT (if the other <span class="self-ref">IfcBridge</span> has PARTIAL).</p>
@@ -236,7 +243,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="spatial-decomposition" />
 <p class="use-head">Spatial Decomposition</p>
-<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 27.<table>
+<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 28.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -246,7 +253,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 27 &mdash; IfcBridge Spatial Decomposition</td></tr></table>
+<tr><td><p class="table">Table 28 &mdash; IfcBridge Spatial Decomposition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcBridge.IsDecomposedBy</i> it references <span class="self-ref">IfcBridge</span> || <i>IfcBridgePart</i> through <i>IfcRelAggregates.RelatedObjects</i>. If it refers to another instance of <span class="self-ref">IfcBridge</span>, the referenced <span class="self-ref">IfcBridge</span> needs to have a different and lower <i>CompositionType</i>, i.e. ELEMENT (if the other <span class="self-ref">IfcBridge</span> has COMPLEX), or PARTIAL (if the other <span class="self-ref">IfcBridge</span> has ELEMENT).</p>
@@ -256,7 +263,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="spatial-container" />
 <p class="use-head">Spatial Container</p>
-<p>The <a href="../../templates/spatial-container.htm">Spatial Container</a> concept template applies to this entity as shown in Table 28.<table>
+<p>The <a href="../../templates/spatial-container.htm">Spatial Container</a> concept template applies to this entity as shown in Table 29.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Type</b></th><th><b>Description</b></th></tr>
@@ -268,7 +275,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 28 &mdash; IfcBridge Spatial Container</td></tr></table>
+<tr><td><p class="table">Table 29 &mdash; IfcBridge Spatial Container</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  If there are building elements and/or other elements directly related to the <span class="self-ref">IfcBridge</span>, they are associated with the <span class="self-ref">IfcBridge</span> by using the objectified relationship <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>. The <span class="self-ref">IfcBridge</span> references them by its inverse relationship: &gt; *  <i>IfcBridge.ContainsElements</i> -- referencing any subtype of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a> (with the exception of other spatial structure element) by <i>IfcRelContainedInSpatialStructure.RelatedElements</i>.</p>
@@ -282,14 +289,14 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 29.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 30.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
 <tr><td><a href="../../ifcproductextension/pset/pset_bridgecommon.htm">Pset_BridgeCommon</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 29 &mdash; IfcBridge Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 30 &mdash; IfcBridge Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
@@ -310,14 +317,14 @@ system that is referenced by all geometric representations.</i></p>
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 30.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 31.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
 <tr><td><a href="../../ifcproductextension/pset/pset_bridgecommon.htm">Pset_BridgeCommon</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 30 &mdash; IfcBridge Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 31 &mdash; IfcBridge Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
@@ -408,6 +415,7 @@ system that is referenced by all geometric representations.</i></p>
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm#footprint-geomset-geometry">FootPrint GeomSet Geometry</a></td><td><a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a></td><td>General Usage</td></tr>
 
@@ -439,7 +447,10 @@ system that is referenced by all geometric representations.</i></p>
 <span class="keyword">ENTITY</span> IfcBridge<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcproductextension/lexical/ifcbridgetypeenum.htm">IfcBridgeTypeEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifcbridgetypeenum.htm">IfcBridgeTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcproductextension/lexical/ifcbridgetypeenum.htm">IfcBridgeTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

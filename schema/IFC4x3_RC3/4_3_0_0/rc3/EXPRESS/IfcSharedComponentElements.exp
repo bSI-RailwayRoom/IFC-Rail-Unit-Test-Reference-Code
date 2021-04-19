@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -55,19 +55,21 @@ TYPE IfcDiscreteAccessoryTypeEnum = ENUMERATION OF
 	,BRACKET
 	,SHOE
 	,EXPANSION_JOINT_DEVICE
-	,BIRDPROTECTION
 	,CABLEARRANGER
 	,INSULATOR
 	,LOCK
 	,TENSIONINGEQUIPMENT
 	,RAILPAD
 	,SLIDINGCHAIR
+	,RAIL_LUBRICATION
 	,PANEL_STRENGTHENING
 	,RAILBRACE
 	,ELASTIC_CUSHION
 	,SOUNDABSORPTION
-	,RAIL_LUBRICATION
+	,POINTMACHINEMOUNTINGDEVICE
+	,POINT_MACHINE_LOCKING_DEVICE
 	,RAIL_MECHANICAL_EQUIPMENT
+	,BIRDPROTECTION
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;

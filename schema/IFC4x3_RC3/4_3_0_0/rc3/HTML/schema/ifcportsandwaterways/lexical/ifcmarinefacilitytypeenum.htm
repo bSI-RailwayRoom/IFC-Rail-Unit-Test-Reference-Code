@@ -43,8 +43,7 @@
 <tr><td>CANAL</td><td>A man-made watercourse constructed usually, to join rivers, lakes or seas and often of a size suitable for navigation.
 NOTE definition in ISO 6707: channel constructed to carry water, usually for navigation, but which can also be used for water power, irrigation, collecting rainwater run-off , or drainage  of surface water.
 </td></tr><tr><td>WATERWAYSHIPLIFT</td><td>A facility used for raising and lowering boats, ships and other watercraft between stretches of water of different levels on river and canal waterways or between impounded basins. This is achieved via an impounded trough of water which is mechanically lifted up and down.
-</td></tr><tr><td>EMBANKMENT</td><td>A marine defensive structure made from earthworks activities this spatial element groups together other items connected to the earthworks element.
-NOTE definition IS 6707: section of earthworks, often formed by cut or fill, where the finished ground level is above or below original ground level and whose length usually greatly exceeds its width.
+</td></tr><tr><td>REVETMENT</td><td>A marine defensive structure made from earthworks, masonry or activities, built in such a way as to absorb the energy of incoming water.
 </td></tr><tr><td>LAUNCHRECOVERY</td><td>Subset of facilities for the function of launching or recovering vessels.
 </td></tr><tr><td>MARINEDEFENCE</td><td>A subset of facilities with the primary function of protection or defence of a coastal or flood area.
 </td></tr><tr><td>HYDROLIFT</td><td>A type of vessel launch &amp; recovery facility, also known as a hydraulic lift dock, where ships are lifted vertically by water impounding systems, then floated laterally across the land to berths which subsequently become dry.
@@ -78,7 +77,7 @@ NOTE definition in ISO 28640: facility consisting of a trestle or similar struct
 &nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;canal&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;waterwayshiplift&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;embankment&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;revetment&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;launchrecovery&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;marinedefence&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;hydrolift&quot;/&gt;<br/>
@@ -102,7 +101,7 @@ NOTE definition in ISO 28640: facility consisting of a trestle or similar struct
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcMarineFacilityTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;CANAL, <br/>&nbsp;WATERWAYSHIPLIFT, <br/>&nbsp;EMBANKMENT, <br/>&nbsp;LAUNCHRECOVERY, <br/>&nbsp;MARINEDEFENCE, <br/>&nbsp;HYDROLIFT, <br/>&nbsp;SHIPYARD, <br/>&nbsp;SHIPLIFT, <br/>&nbsp;PORT, <br/>&nbsp;QUAY, <br/>&nbsp;FLOATINGDOCK, <br/>&nbsp;NAVIGATIONALCHANNEL, <br/>&nbsp;BREAKWATER, <br/>&nbsp;DRYDOCK, <br/>&nbsp;JETTY, <br/>&nbsp;SHIPLOCK, <br/>&nbsp;BARRIERBEACH, <br/>&nbsp;SLIPWAY, <br/>&nbsp;WATERWAY, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;CANAL, <br/>&nbsp;WATERWAYSHIPLIFT, <br/>&nbsp;REVETMENT, <br/>&nbsp;LAUNCHRECOVERY, <br/>&nbsp;MARINEDEFENCE, <br/>&nbsp;HYDROLIFT, <br/>&nbsp;SHIPYARD, <br/>&nbsp;SHIPLIFT, <br/>&nbsp;PORT, <br/>&nbsp;QUAY, <br/>&nbsp;FLOATINGDOCK, <br/>&nbsp;NAVIGATIONALCHANNEL, <br/>&nbsp;BREAKWATER, <br/>&nbsp;DRYDOCK, <br/>&nbsp;JETTY, <br/>&nbsp;SHIPLOCK, <br/>&nbsp;BARRIERBEACH, <br/>&nbsp;SLIPWAY, <br/>&nbsp;WATERWAY, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcportsandwaterways/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

@@ -12,9 +12,42 @@
       <Name>TransformerType</Name>
       <Definition />
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_VolategAndCurrentTransformerType">
+            <EnumItem>AUTO_TRANSFORMER</EnumItem>
+            <EnumItem>AUXILIARY_TRANSFORMER</EnumItem>
+            <EnumItem>TRACTION_TRANSFORMER</EnumItem>
+            <EnumItem>DECOUPLER_TRANSFORMER</EnumItem>
+            <EnumItem>BOOSTER_TRANSFORMER</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>AUTO_TRANSFORMER</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>AUXILIARY_TRANSFORMER</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>TRACTION_TRANSFORMER</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>DECOUPLER_TRANSFORMER</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>BOOSTER_TRANSFORMER</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />

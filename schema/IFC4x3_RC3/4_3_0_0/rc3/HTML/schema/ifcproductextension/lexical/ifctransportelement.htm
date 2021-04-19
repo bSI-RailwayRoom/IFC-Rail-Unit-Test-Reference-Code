@@ -240,7 +240,7 @@ IFC4 CHANGE New inverse relationship.
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 89.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 90.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -253,7 +253,7 @@ IFC4 CHANGE New inverse relationship.
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 89 &mdash; IfcTransportElement Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 90 &mdash; IfcTransportElement Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
@@ -308,6 +308,7 @@ IFC4 CHANGE New inverse relationship.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
@@ -354,9 +355,17 @@ IFC4 CHANGE New inverse relationship.
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementtypeselect.htm">IfcTransportElementTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
-((PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) AND (PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) OR<br/>
-(((PredefinedType = <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) OR (PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType))<br/>
+OR<br/>
+((PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+(((PredefinedType = <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>.ElementType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
   (&#39;IFCPRODUCTEXTENSION.<a href="../../ifcproductextension/lexical/ifctransportelementtype.htm">IfcTransportElementType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

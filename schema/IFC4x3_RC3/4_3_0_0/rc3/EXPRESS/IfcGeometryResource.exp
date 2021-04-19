@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -312,13 +312,6 @@ ENTITY IfcBSplineSurfaceWithKnots
 	CorrespondingVLists : SIZEOF(VMultiplicities) = KnotVUpper;
 END_ENTITY;
 
-ENTITY IfcBlossCurve
- SUBTYPE OF (IfcSpiral);
-	QubicTerm : IfcLengthMeasure;
-	QuadraticTerm : OPTIONAL IfcLengthMeasure;
-	LinearTerm : OPTIONAL IfcLengthMeasure;
-END_ENTITY;
-
 ENTITY IfcBoundaryCurve
  SUPERTYPE OF (ONEOF
     (IfcOuterBoundaryCurve))
@@ -522,6 +515,8 @@ ENTITY IfcCurveSegment
 	SegmentStart : IfcCurveMeasureSelect;
 	SegmentLength : IfcCurveMeasureSelect;
 	ParentCurve : IfcCurve;
+ DERIVE
+	Dim : IfcDimensionCount := ParentCurve.Dim;
 END_ENTITY;
 
 ENTITY IfcCylindricalSurface
@@ -603,13 +598,6 @@ ENTITY IfcGradientCurve
 	EndPoint : OPTIONAL IfcPlacement;
  DERIVE
 	RelativeElevation : IfcLengthMeasure := IfcGradient(SELF);
-END_ENTITY;
-
-ENTITY IfcHelmertCurve
- SUBTYPE OF (IfcSpiral);
-	QuadraticTerm : IfcLengthMeasure;
-	LinearTerm : OPTIONAL IfcLengthMeasure;
-	ConstantTerm : OPTIONAL IfcReal;
 END_ENTITY;
 
 ENTITY IfcIndexedPolyCurve
@@ -752,6 +740,8 @@ ENTITY IfcPolynomialCurve
 	CoefficientsX : OPTIONAL LIST [2:?] OF IfcReal;
 	CoefficientsY : OPTIONAL LIST [2:?] OF IfcReal;
 	CoefficientsZ : OPTIONAL LIST [2:?] OF IfcReal;
+ WHERE
+	ValidCoefficients : (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ));
 END_ENTITY;
 
 ENTITY IfcRationalBSplineCurveWithKnots
@@ -830,6 +820,13 @@ ENTITY IfcSeamCurve
 	SameSurface : IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[1]) = IfcAssociatedSurface(SELF\IfcSurfaceCurve.AssociatedGeometry[2]);
 END_ENTITY;
 
+ENTITY IfcSecondOrderPolynomialSpiral
+ SUBTYPE OF (IfcSpiral);
+	QuadraticTerm : IfcLengthMeasure;
+	LinearTerm : OPTIONAL IfcLengthMeasure;
+	ConstantTerm : OPTIONAL IfcReal;
+END_ENTITY;
+
 ENTITY IfcSegment
  ABSTRACT SUPERTYPE OF (ONEOF
     (IfcCompositeCurveSegment
@@ -859,11 +856,11 @@ END_ENTITY;
 
 ENTITY IfcSpiral
  ABSTRACT SUPERTYPE OF (ONEOF
-    (IfcBlossCurve
-    ,IfcClothoid
+    (IfcClothoid
     ,IfcCosine
-    ,IfcHelmertCurve
-    ,IfcSine))
+    ,IfcSecondOrderPolynomialSpiral
+    ,IfcSine
+    ,IfcThirdOrderPolynomialSpiral))
  SUBTYPE OF (IfcCurve);
 	Position : OPTIONAL IfcAxis2Placement;
 END_ENTITY;
@@ -921,6 +918,13 @@ ENTITY IfcSweptSurface
 	Position : OPTIONAL IfcAxis2Placement3D;
  WHERE
 	SweptCurveType : SweptCurve.ProfileType = IfcProfileTypeEnum.Curve;
+END_ENTITY;
+
+ENTITY IfcThirdOrderPolynomialSpiral
+ SUBTYPE OF (IfcSpiral);
+	QubicTerm : IfcLengthMeasure;
+	QuadraticTerm : OPTIONAL IfcLengthMeasure;
+	LinearTerm : OPTIONAL IfcLengthMeasure;
 END_ENTITY;
 
 ENTITY IfcToroidalSurface
@@ -1162,6 +1166,12 @@ FUNCTION IfcCurveDim
   IF ('IFCGEOMETRYRESOURCE.IFCTRIMMEDCURVE' IN TYPEOF(Curve))
     THEN RETURN(IfcCurveDim(Curve\IfcTrimmedCurve.BasisCurve));
   END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCGRADIENTCURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
+  IF ('IFCGEOMETRYRESOURCE.IFCSEGMENTEDREFERENCECURVE' IN TYPEOF(Curve))
+    THEN RETURN(3);
+  END_IF;
   IF ('IFCGEOMETRYRESOURCE.IFCCOMPOSITECURVE' IN TYPEOF(Curve))
     THEN RETURN(Curve\IfcCompositeCurve.Segments[1].Dim);
   END_IF;
@@ -1180,14 +1190,11 @@ FUNCTION IfcCurveDim
   IF ('IFCGEOMETRYRESOURCE.IFCCURVESEGMENT2D' IN TYPEOF(Curve))
     THEN RETURN(2);
   END_IF;
-  IF ('IFCGEOMETRYRESOURCE.IFCGRADIENTCURVE' IN TYPEOF(Curve))
-    THEN RETURN(3);
-  END_IF;
-  IF ('IFCGEOMETRYRESOURCE.IFCSEGMENTEDREFERENCECURVE' IN TYPEOF(Curve))
-    THEN RETURN(3);
-  END_IF;
-  IF ('IFCGEOMETRYRESOURCE.IFCSERIESPARAMETERCURVE' IN TYPEOF(Curve))
-    THEN RETURN(3);
+  IF ('IFCGEOMETRYRESOURCE.IFCPOLYNOMIALCURVE' IN TYPEOF(Curve)) THEN
+    IF (NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsX) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsY) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsZ))
+      THEN RETURN(2);
+    ELSE
+      RETURN(3);
   END_IF;
   IF ('IFCGEOMETRYRESOURCE.IFCPCURVE' IN TYPEOF(Curve))
     THEN RETURN(3);
@@ -1322,6 +1329,7 @@ END_FUNCTION;
 FUNCTION IfcGradient
 (GradientCurve : IfcGradientCurve) : IfcLengthMeasure;
   RETURN(1);
+
 END_FUNCTION;
 
 FUNCTION IfcListToArray

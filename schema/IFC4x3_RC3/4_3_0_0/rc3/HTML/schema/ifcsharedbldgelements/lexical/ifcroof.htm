@@ -253,20 +253,20 @@ IFC4 CHANGE The attribute has been renamed from ShapeType and changed to be OPTI
 <summary>Concept usage</summary>
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 168.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 169.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcsharedbldgelements/lexical/ifcrooftype.htm">IfcRoofType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 168 &mdash; IfcRoof Object Typing</td></tr></table>
+<tr><td><p class="table">Table 169 &mdash; IfcRoof Object Typing</td></tr></table>
 
 <br/><br/>
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 169.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 170.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -324,26 +324,26 @@ IFC4 CHANGE The attribute has been renamed from ShapeType and changed to be OPTI
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 169 &mdash; IfcRoof Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 170 &mdash; IfcRoof Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 170.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 171.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
 <tr><td><a href="../../ifcsharedbldgelements/qset/qto_roofbasequantities.htm">Qto_RoofBaseQuantities</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 170 &mdash; IfcRoof Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 171 &mdash; IfcRoof Quantity Sets</td></tr></table>
 
 <br/><br/>
 
 <a id="spatial-containment" />
 <p class="use-head">Spatial Containment</p>
-<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 171.<table>
+<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 172.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingStructure</b></th><th><b>Description</b></th></tr>
@@ -355,13 +355,13 @@ IFC4 CHANGE The attribute has been renamed from ShapeType and changed to be OPTI
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 171 &mdash; IfcRoof Spatial Containment</td></tr></table>
+<tr><td><p class="table">Table 172 &mdash; IfcRoof Spatial Containment</td></tr></table>
 
 <br/><br/>
 
 <a id="element-decomposition" />
 <p class="use-head">Element Decomposition</p>
-<p>The <a href="../../templates/element-decomposition.htm">Element Decomposition</a> concept template applies to this entity as shown in Table 172.<table>
+<p>The <a href="../../templates/element-decomposition.htm">Element Decomposition</a> concept template applies to this entity as shown in Table 173.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>IsDecomposedBy</b></th><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -369,21 +369,21 @@ IFC4 CHANGE The attribute has been renamed from ShapeType and changed to be OPTI
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 172 &mdash; IfcRoof Element Decomposition</td></tr></table>
+<tr><td><p class="table">Table 173 &mdash; IfcRoof Element Decomposition</td></tr></table>
 
 <p><i>Geometric representation by aggregated elements</i></p>
 <p>If the <span class="self-ref">IfcRoof</span> has components (referenced by <i>SELF\IfcObject.IsDecomposedBy</i>) then no independent geometric representation shall defined for the <span class="self-ref">IfcRoof</span>. The <span class="self-ref">IfcRoof</span> is then geometrically represented by the geometric representation of its components. The components are accessed via <i>SELF\IfcObject.IsDecomposedBy[1].RelatedObjects</i>. The geometric representations that are supported for the aggregated elements are defined with each element. See geometric use definition for <a href="../../ifcsharedbldgelements/lexical/ifcslab.htm">IfcSlab</a>, <a href="../../ifcsharedbldgelements/lexical/ifcbeam.htm">IfcBeam</a>, <a href="../../ifcsharedbldgelements/lexical/ifccolumn.htm">IfcColumn</a>, <a href="../../ifcsharedcomponentelements/lexical/ifcbuildingelementpart.htm">IfcBuildingElementPart</a> and other subtypes of <i>IfcBuildingElement</i>.</p>
-<p>Figure 254 illustrates roof placement, with an <span class="self-ref">IfcRoof</span> defining the local placement for all aggregated elements.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcroof-layout1.gif" alt="&quot;roof&quot;" title="Figure 254 &mdash; Roof placement"></td></tr><tr><td><p class="figure">Figure 254 &mdash; Roof placement</p></td></tr></table></p>
+<p>Figure 255 illustrates roof placement, with an <span class="self-ref">IfcRoof</span> defining the local placement for all aggregated elements.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcroof-layout1.gif" alt="&quot;roof&quot;" title="Figure 255 &mdash; Roof placement"></td></tr><tr><td><p class="figure">Figure 255 &mdash; Roof placement</p></td></tr></table></p>
 
 <br/><br/>
 
 <a id="product-local-placement" />
 <p class="use-head">Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 173.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 174.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 173 &mdash; IfcRoof Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 174 &mdash; IfcRoof Product Local Placement</td></tr></table>
 
 <p>The following restriction may be imposed by view definitions or implementer agreements:</p>
 <ul>
@@ -461,6 +461,7 @@ IFC4 CHANGE The attribute has been renamed from ShapeType and changed to be OPTI
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>

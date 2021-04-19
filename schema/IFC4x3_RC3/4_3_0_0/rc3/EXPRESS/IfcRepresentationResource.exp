@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -84,7 +84,6 @@ REFERENCE FROM IFCMEASURERESOURCE
 
 REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
 (
-  IfcNullStyle
 );
 
 REFERENCE FROM IFCPRESENTATIONORGANIZATIONRESOURCE
@@ -489,7 +488,8 @@ FUNCTION IfcShapeRepresentationTypes
       BEGIN
         Count := SIZEOF(QUERY(temp <* Items | SIZEOF([
                    'IFCGEOMETRICMODELRESOURCE.IFCSWEPTAREASOLID',
-                   'IFCGEOMETRICMODELRESOURCE.IFCSWEPTDISKSOLID'] *  TYPEOF(temp)) >= 1
+                   'IFCGEOMETRICMODELRESOURCE.IFCSWEPTDISKSOLID',
+                   'IFCGEOMETRICMODELRESOURCE.IFCSECTIONEDSOLIDHORIZONTAL'] *  TYPEOF(temp)) >= 1
                  ));      
       END;
 

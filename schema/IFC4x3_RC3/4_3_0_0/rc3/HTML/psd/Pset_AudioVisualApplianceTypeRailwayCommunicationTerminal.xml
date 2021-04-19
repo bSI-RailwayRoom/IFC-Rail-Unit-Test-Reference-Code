@@ -13,9 +13,24 @@
       <Name>TelephoneType</Name>
       <Definition />
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_CommunicationTerminalType">
+            <EnumItem>TRACKSIDE_TELEPHONE</EnumItem>
+            <EnumItem>TUNNEL_EMERGENCY_TELEPHONE</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>TRACKSIDE_TELEPHONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>TUNNEL_EMERGENCY_TELEPHONE</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />

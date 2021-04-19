@@ -11,7 +11,7 @@
     <title>IfcPolynomialCurve</title>
 
     <style type="text/css">
-      body { counter-reset: index1 8 index2 9 index3 3 index4 54 index5 0; }
+      body { counter-reset: index1 8 index2 9 index3 3 index4 52 index5 0; }
     </style>
   </head>
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 <!--
-    parent.index.location.replace("../../toc-8.htm#8.9.3.55");
+    parent.index.location.replace("../../toc-8.htm#8.9.3.53");
 //-->
 </script>
 
@@ -148,7 +148,8 @@ IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
 &nbsp;&nbsp;CoefficientsX : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>;<br/>
 &nbsp;&nbsp;CoefficientsY : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>;<br/>
 &nbsp;&nbsp;CoefficientsZ : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;ValidCoefficients : (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

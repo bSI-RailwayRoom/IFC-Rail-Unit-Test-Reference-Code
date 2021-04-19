@@ -212,6 +212,21 @@ Reference to the representations of the product, being either a representation (
 
 <br/><br/>
 
+<a id="product-relative-positioning" />
+<p class="use-head">Relative Position</p>
+<p>The <a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a> concept template applies to this entity as shown in Table 6.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PositioningElement</b></th></tr>
+<tr><td><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm">IfcPositioningElement</a></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 6 &mdash; IfcProduct Product Relative Positioning</td></tr></table>
+
+<p>If the <span class="self-ref">IfcProduct</span> <i>Product Placement</i> is placed relative to an <a href="../../ifcproductextension/lexical/ifcpositioningelement.htm">IfcPositioningElement</a> this relationship covers the information on which <a href="../../ifcproductextension/lexical/ifcpositioningelement.htm">IfcPositioningElement</a> positions the <span class="self-ref">IfcProduct</span>.</p>
+
+<br/><br/>
+
 </details>
 <details><summary>mvdXML Specification</summary>
 <div class="xsd"><code class="xsd">
@@ -228,6 +243,12 @@ Reference to the representations of the product, being either a representation (
 &nbsp;&nbsp;&lt;/Concept&gt;<br/>
 &nbsp;&nbsp;&lt;Concept uuid=&quot;297857a0-8351-434d-9a08-96e1ae5e9259&quot; name=&quot;Product Geometric Representation&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;13f96914-1ad4-41d4-ba99-411a9ecbf567&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;8e918ac9-7aee-483e-9ecb-7f31812f382b&quot; name=&quot;Relative Position&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;6dc82845-b142-4624-a9a5-37d1e4995761&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PositioningElement[Type]=&amp;apos;IfcPositioningElement&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
 &nbsp;&nbsp;&lt;/Concept&gt;<br/>
 &nbsp;&lt;/Concepts&gt;<br/>
 &lt;/ConceptRoot&gt;<br/>
@@ -251,6 +272,7 @@ Reference to the representations of the product, being either a representation (
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><span class="self-ref">IfcProduct</span></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 </table>
 </details>

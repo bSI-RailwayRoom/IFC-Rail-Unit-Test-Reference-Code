@@ -32,6 +32,9 @@
 <tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcportsandwaterways/lexical/ifcmarinefacility.htm">IfcMarineFacility</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcportsandwaterways/lexical/ifcmarinefacility.htm">IfcMarineFacility</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
 </table>
 </details>
 <section>
@@ -41,7 +44,7 @@
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
 <th>G</th></tr>
-<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a></td><td></td><td>
+<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a></td><td>? </td><td>
 </td><td>X</td></tr>
 </table>
 </details>
@@ -199,7 +202,7 @@ IFC4 CHANGE  Attribute made optional.
 </td><td>X</td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a></td></tr>
 <tr><td colspan="6"><a href="../../ifcportsandwaterways/lexical/ifcmarinefacility.htm">IfcMarineFacility</a></td></tr>
-<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a></td><td></td><td>
+<tr><td>10</td><td>PredefinedType</td><td><a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a></td><td>? </td><td>
 </td><td>X</td></tr>
 </table>
 </details>
@@ -224,6 +227,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm#footprint-geomset-geometry">FootPrint GeomSet Geometry</a></td><td><a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a></td><td>General Usage</td></tr>
 
@@ -253,7 +257,7 @@ IFC4 CHANGE  Attribute made optional.
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">ENTITY</span> IfcMarineFacility<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a>)<b>;</b><br/>
-&nbsp;&nbsp;PredefinedType : <a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a>;<br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
 (PredefinedType &lt;&gt; <a href="../../ifcportsandwaterways/lexical/ifcmarinefacilitytypeenum.htm">IfcMarineFacilityTypeEnum</a>.USERDEFINED) OR<br/>

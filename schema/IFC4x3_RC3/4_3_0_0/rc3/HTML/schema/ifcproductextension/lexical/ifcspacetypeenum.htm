@@ -58,7 +58,8 @@
 <tr><td>SPACE</td><td>Any space not falling into another category.
 </td></tr><tr><td>PARKING</td><td>A space dedication for use as a parking spot for vehicles, including access, such as a parking aisle.
 </td></tr><tr><td>GFA</td><td>Gross Floor Area - a specific kind of space for each building story that includes all net area and construction area (also the external envelop). Provision of such a specific space is often required by regulations.
-</td></tr><tr><td>INTERNAL</td><td></td></tr><tr><td>EXTERNAL</td><td></td></tr><tr><td>USERDEFINED</td><td></td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
+</td></tr><tr><td>INTERNAL</td><td></td></tr><tr><td>EXTERNAL</td><td></td></tr><tr><td>BERTH</td><td>A Space deidicated to the Berthing of vessels within a port or managed area
+</td></tr><tr><td>USERDEFINED</td><td></td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
 </details>
 </section>
 <section>
@@ -70,6 +71,7 @@
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;gfa&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;internal&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;external&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;berth&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
@@ -77,7 +79,7 @@
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcSpaceTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;SPACE, <br/>&nbsp;PARKING, <br/>&nbsp;GFA, <br/>&nbsp;INTERNAL, <br/>&nbsp;EXTERNAL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;SPACE, <br/>&nbsp;PARKING, <br/>&nbsp;GFA, <br/>&nbsp;INTERNAL, <br/>&nbsp;EXTERNAL, <br/>&nbsp;BERTH, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

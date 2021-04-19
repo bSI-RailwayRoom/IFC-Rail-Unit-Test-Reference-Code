@@ -50,7 +50,7 @@
 <blockquote class="note">
 <p>NOTE  Multiple choices from the property enumeration are supported.</p>
 </blockquote>
-<p>The unit is handled by the <i>Unit</i> attribute, see Table 699 for an example of a enumerated property:</p>
+<p>The unit is handled by the <i>Unit</i> attribute, see Table 700 for an example of a enumerated property:</p>
 <ul>
 <li>If the <i>Unit</i> attribute is not given, then the unit is already implied by the type of <a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a> or <a href="../../ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm">IfcDerivedMeasureValue</a>. The associated unit can be found at the <a href="../../ifcmeasureresource/lexical/ifcunitassignment.htm">IfcUnitAssignment</a> globally defined at the project level (<i>IfcProject.UnitsInContext</i>).</li>
 <li>If the <i>Unit</i> attribute is given, then the unit assigned by the unit attribute overrides the globally assigned unit.</li>
@@ -86,11 +86,11 @@
   </td>
  </tr>
  <tr>
-  <td><p class="table">Table 699 &mdash; Enumerated property with values, measure types and units</p></td>
+  <td><p class="table">Table 700 &mdash; Enumerated property with values, measure types and units</p></td>
  </tr>
 </table>
 <p> </p>
-<p>The <span class="self-ref">IfcPropertyEnumeratedValue</span> refers to an <a href="../../ifcpropertyresource/lexical/ifcpropertyenumeration.htm">IfcPropertyEnumeration</a>, see Table 700 for an example:</p>
+<p>The <span class="self-ref">IfcPropertyEnumeratedValue</span> refers to an <a href="../../ifcpropertyresource/lexical/ifcpropertyenumeration.htm">IfcPropertyEnumeration</a>, see Table 701 for an example:</p>
 <table>
  <tr>
   <td>
@@ -111,7 +111,7 @@
   </td>
  </tr>
  <tr>
-  <td><p class="table">Table 700 &mdash; Property enumeration with enumerators</p></td>
+  <td><p class="table">Table 701 &mdash; Property enumeration with enumerators</p></td>
  </tr>
 </table>
 <p>It is not mandatory to use an instance of <a href="../../ifcpropertyresource/lexical/ifcpropertyenumeration.htm">IfcPropertyEnumeration</a> to hold the applicable values for <span class="self-ref">IfcPropertyEnumeratedValue</span>, however this is the preferred way. A single instance of <a href="../../ifcpropertyresource/lexical/ifcpropertyenumeration.htm">IfcPropertyEnumeration</a> can be referenced by multiple instances of <span class="self-ref">IfcPropertyEnumeratedValue</span>.</p>

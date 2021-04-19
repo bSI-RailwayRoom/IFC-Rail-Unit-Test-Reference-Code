@@ -11,7 +11,7 @@
     <title>IfcIndexedPolyCurve</title>
 
     <style type="text/css">
-      body { counter-reset: index1 8 index2 9 index3 3 index4 37 index5 0; }
+      body { counter-reset: index1 8 index2 9 index3 3 index4 35 index5 0; }
     </style>
   </head>
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 <!--
-    parent.index.location.replace("../../toc-8.htm#8.9.3.38");
+    parent.index.location.replace("../../toc-8.htm#8.9.3.36");
 //-->
 </script>
 
@@ -55,13 +55,13 @@
 <li>Segment of type <a href="../../ifcgeometryresource/lexical/ifcarcindex.htm">IfcArcIndex</a>: The first index is the start point of the circular arc, the second index is a point on arc, the third index is the end point of the circular arc. The three points shall not be co-linear. In case that this informal proposition is not maintained, the arc segment shall be treated as a polyline segment.</li>
 </ul>
 <blockquote class="example">
-<p>EXAMPLE  Figure 378 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having straight and arc segments. In this example, the straight segments only have two points and one edge, however more then two indices into the Cartesian point list can be includes, defining a multi edge polyline segment.</p>
+<p>EXAMPLE  Figure 379 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having straight and arc segments. In this example, the straight segments only have two points and one edge, however more then two indices into the Cartesian point list can be includes, defining a multi edge polyline segment.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig1.png" alt="&quot;poly curve with arcs examples&quot;" title="Figure 378 &mdash; Bounded open IfcIndexedPolyCurve with straight and arc segments"></td></tr><tr><td><p class="figure">Figure 378 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with straight and arc segments</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig1.png" alt="&quot;poly curve with arcs examples&quot;" title="Figure 379 &mdash; Bounded open IfcIndexedPolyCurve with straight and arc segments"></td></tr><tr><td><p class="figure">Figure 379 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with straight and arc segments</p></td></tr></table></p>
 <blockquote class="example">
-<p>EXAMPLE  Figure 378 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having only straight segments. In this example, no list of <i>Segments</i> is provided, hence the points are drawn in the order of their appearance in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>.</p>
+<p>EXAMPLE  Figure 379 illustrates a bounded open <span class="self-ref">IfcIndexedPolyCurve</span> having only straight segments. In this example, no list of <i>Segments</i> is provided, hence the points are drawn in the order of their appearance in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist.htm">IfcCartesianPointList</a>.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig2.png" alt="&quot;poly curve examples&quot;" title="Figure 378 &mdash; Bounded open IfcIndexedPolyCurve with only straight segments"></td></tr><tr><td><p class="figure">Figure 378 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with only straight segments</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcindexedpolycurve-fig2.png" alt="&quot;poly curve examples&quot;" title="Figure 379 &mdash; Bounded open IfcIndexedPolyCurve with only straight segments"></td></tr><tr><td><p class="figure">Figure 379 &mdash; Bounded open <span class="self-ref">IfcIndexedPolyCurve</span> with only straight segments</p></td></tr></table></p>
 <p>The <span class="self-ref">IfcIndexedPolyCurve</span> represents an open or a closed curve depending on the following condition:</p>
 <ul>
 <li>In the case that the list of <i>Segments</i> is provided: If the last index of the last <i>Segment</i> and the first index of the first <i>Segment</i> are identical, then the poly curve is a closed curve, otherwise it is an open curve.</li>

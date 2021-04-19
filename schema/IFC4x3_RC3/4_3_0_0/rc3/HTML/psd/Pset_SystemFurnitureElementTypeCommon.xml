@@ -39,19 +39,23 @@
         <DefinitionAlias lang="en" />
       </DefinitionAliases>
     </PropertyDef>
-    <PropertyDef ifdguid="24b4da00d20f11e1800000215ad4efdf">
+    <PropertyDef ifdguid="a28e9f226e204a909976810e633a45f4">
       <Name>NominalWidth</Name>
-      <Definition>The nominal width of the system furniture elements of this type. The size information is provided in addition to the shape representation and the geometric parameters used within. In cases of inconsistency between the geometric parameters and the size properties, provided in the attached property set, the geometric parameters take precedence.</Definition>
+      <Definition>The nominal width of the object.</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>
         <NameAlias lang="en">Nominal Width</NameAlias>
+        <NameAlias lang="ja-JP">公称幅</NameAlias>
+        <NameAlias lang="ko-KR">공칭 폭</NameAlias>
       </NameAliases>
       <DefinitionAliases>
         <DefinitionAlias lang="en" />
+        <DefinitionAlias lang="ja-JP">呼び幅寸法。</DefinitionAlias>
+        <DefinitionAlias lang="ko-KR">폭 치수</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
     <PropertyDef ifdguid="2d0d1500d20f11e1800000215ad4efdf">

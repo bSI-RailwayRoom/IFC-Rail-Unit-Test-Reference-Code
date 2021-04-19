@@ -61,11 +61,11 @@
 <p>NOTE  View definitions and implementation agreements may restrict spaces with <i>CompositionType</i>=ELEMENT to be non-overlapping.</p>
 </blockquote>
 <p>The <span class="self-ref">IfcSpace</span> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together by using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.</p>
-<p>Figure 196 shows the <span class="self-ref">IfcSpace</span> as part of the spatial structure. It also serves as the spatial container for space related elements.</p>
+<p>Figure 197 shows the <span class="self-ref">IfcSpace</span> as part of the spatial structure. It also serves as the spatial container for space related elements.</p>
 <blockquote class="note">
 <p>NOTE  Detailed requirements on mandatory element containment and placement structure relationships are given in view definitions and implementer agreements.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace-spatialstructure.png" alt="&quot;spatial structure&quot;" title="Figure 196 &mdash; Space composition"></td></tr><tr><td><p class="figure">Figure 196 &mdash; Space composition</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace-spatialstructure.png" alt="&quot;spatial structure&quot;" title="Figure 197 &mdash; Space composition"></td></tr><tr><td><p class="figure">Figure 197 &mdash; Space composition</p></td></tr></table></p>
 <p>The following guidelines should apply for using the <i>Name</i>, <i>Description</i>, <i>LongName</i> and <i>ObjectType</i> attributes.</p>
 <ul>
 <li><i>Name</i> holds the unique name (or space number) from the plan.</li>
@@ -76,7 +76,7 @@
 <blockquote class="note">
 <p>NOTE  In cases of inconsistency between the geometric representation of the <span class="self-ref">IfcSpace</span> and the combined geometric representations of the surrounding <a href="../../ifcproductextension/lexical/ifcrelspaceboundary.htm">IfcRelSpaceBoundary</a>, the geometric representation of the space should take priority over the geometric representation of the surrounding space boundaries.</p>
 </blockquote>
-<p>Figure 197 describes the heights and elevations of the <span class="self-ref">IfcSpace</span>.</p>
+<p>Figure 198 describes the heights and elevations of the <span class="self-ref">IfcSpace</span>.</p>
 <ul>
 <li>elevation of the space (top of construction slab) equals elevation of storey: provided by <i>IfcBuildingStorey.Elevation</i> relative to em&gt;IfcBuilding.ElevationOfRefHeight</li>
 <li>elevation of the space flooring (top of flooring on top of slab): provided by <i>IfcSpace.ElevationWithFlooring</i> relative to <i>IfcBuilding.ElevationOfRefHeight</i></li>
@@ -84,7 +84,7 @@
 <li>floor height of space (top of slab below to top of flooring): provided by BaseQuantity with Name=&quot;FinishFloorHeight&quot;</li>
 <li>net height of space (top of flooring to bottom of suspended ceiling): provided by BaseQuantity with Name=&quot;FinishCeilingHeight&quot;</li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_heights.png" alt="&quot;space heights&quot;" title="Figure 197 &mdash; Space elevations"></td></tr><tr><td><p class="figure">Figure 197 &mdash; Space elevations</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_heights.png" alt="&quot;space heights&quot;" title="Figure 198 &mdash; Space elevations"></td></tr><tr><td><p class="figure">Figure 198 &mdash; Space elevations</p></td></tr></table></p>
 <blockquote class="history">
 <p>HISTORY  New entity in IFC1.0</p>
 </blockquote>
@@ -323,7 +323,7 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 82.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 83.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -443,20 +443,20 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 82 &mdash; IfcSpace Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 83 &mdash; IfcSpace Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 83.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 84.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
 <tr><td><a href="../../ifcproductextension/qset/qto_spacebasequantities.htm">Qto_SpaceBaseQuantities</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 83 &mdash; IfcSpace Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 84 &mdash; IfcSpace Quantity Sets</td></tr></table>
 
 <br/><br/>
 
@@ -480,7 +480,7 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
 
 <a id="footprint-geomset-geometry" />
 <p class="use-head">FootPrint GeomSet Geometry</p>
-<p>The <a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a> concept template applies to this entity as shown in Table 84.<table>
+<p>The <a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a> concept template applies to this entity as shown in Table 85.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Identifier</b></th><th><b>Type</b></th><th><b>Items</b></th><th><b>Description</b></th></tr>
@@ -488,7 +488,7 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 84 &mdash; IfcSpace FootPrint GeomSet Geometry</td></tr></table>
+<tr><td><p class="table">Table 85 &mdash; IfcSpace FootPrint GeomSet Geometry</td></tr></table>
 
 <p>The following constraints apply to the 2D representation:</p>
 <ul>
@@ -499,11 +499,11 @@ IFC2x Edition3 CHANGE  New inverse relationship. Upward compatibility for file 
  
 <tr valign="top">
   <td align="left" valign="top"><img src="../../../figures/ifcspace_2d-layout1.gif" alt="2d representation" border="0" height="300" width="400"></td>
-  <td><blockquote class="example">EXAMPLE&nbsp; Figure 198 shows a two-dimensional bounded curve representing the
+  <td><blockquote class="example">EXAMPLE&nbsp; Figure 199 shows a two-dimensional bounded curve representing the
 foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 198 &mdash; Space footprint</p></td>
+  <td><p class="figure">Figure 199 &mdash; Space footprint</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -518,8 +518,8 @@ foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
 <li><strong>Profile</strong>: <a href="../../ifcprofileresource/lexical/ifcarbitraryclosedprofiledef.htm">IfcArbitraryClosedProfileDef</a> is required, <a href="../../ifcprofileresource/lexical/ifcarbitraryprofiledefwithvoids.htm">IfcArbitraryProfileDefWithVoids</a> shall be supported.</li>
 <li><strong>Extrusion</strong>: The extrusion direction shall be vertically, i.e., along the positive Z Axis of the co-ordinate system of the containing spatial structure element.</li>
 </ul>
-<p>Figure 199 shows an extrusion of an arbitrary profile definition with voids into the swept area solid of <span class="self-ref">IfcSpace</span>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_standard-layout1.gif" alt="&quot;fig1&quot;" title="Figure 199 &mdash; Space body swept solid"></td></tr><tr><td><p class="figure">Figure 199 &mdash; Space body swept solid</p></td></tr></table></p>
+<p>Figure 200 shows an extrusion of an arbitrary profile definition with voids into the swept area solid of <span class="self-ref">IfcSpace</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_standard-layout1.gif" alt="&quot;fig1&quot;" title="Figure 200 &mdash; Space body swept solid"></td></tr><tr><td><p class="figure">Figure 200 &mdash; Space body swept solid</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -532,8 +532,8 @@ foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
 <li><strong>Extrusion</strong>: The extrusion direction shall be vertically, i.e., along the positive Z Axis of the co-ordinate system of the containing spatial structure element.</li>
 <li><strong>Boolean result</strong>: The difference operation with the second operand being of type <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> (or one of its subtypes) shall be supported.</li>
 </ul>
-<p>Figure 200 shows an extrusion of an arbitrary profile definition into the swept area solid. The solid and an half space solid are operands of the Boolean result of <span class="self-ref">IfcSpace</span>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_advanced-layout1.gif" alt="&quot;fig2&quot;" title="Figure 200 &mdash; Space body clipping"></td></tr><tr><td><p class="figure">Figure 200 &mdash; Space body clipping</p></td></tr></table></p>
+<p>Figure 201 shows an extrusion of an arbitrary profile definition into the swept area solid. The solid and an half space solid are operands of the Boolean result of <span class="self-ref">IfcSpace</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcspace_advanced-layout1.gif" alt="&quot;fig2&quot;" title="Figure 201 &mdash; Space body clipping"></td></tr><tr><td><p class="figure">Figure 201 &mdash; Space body clipping</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -628,6 +628,7 @@ foot print of <span class="self-ref">IfcSpace</span>.</blockquote></td>
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspace.htm#spatial-composition">Spatial Composition</a></td><td><a href="../../templates/spatial-composition.htm">Spatial Composition</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspace.htm#spatial-decomposition">Spatial Decomposition</a></td><td><a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a></td><td>General Usage</td></tr>

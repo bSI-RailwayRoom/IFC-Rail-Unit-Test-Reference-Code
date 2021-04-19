@@ -11,7 +11,7 @@
     <title>IfcSpiral</title>
 
     <style type="text/css">
-      body { counter-reset: index1 8 index2 9 index3 3 index4 66 index5 0; }
+      body { counter-reset: index1 8 index2 9 index3 3 index4 65 index5 0; }
     </style>
   </head>
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 <!--
-    parent.index.location.replace("../../toc-8.htm#8.9.3.67");
+    parent.index.location.replace("../../toc-8.htm#8.9.3.66");
 //-->
 </script>
 
@@ -40,8 +40,8 @@
 x = r(φ) cosφ
 y = r(φ) sinφ</p>
 <p>In the case of the clothoid and higher order transition spirals, the parametrization is:
-x = ∫cos&amp;Thetadl
-y = ∫sin&amp;Thetadl</p>
+x = ∫cos &amp;Theta dl
+y = ∫sin &amp;Theta dl</p>
 <p>where &amp;Theta is the deflection or bearing angle and dl the differential of the spiral length.</p>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
@@ -56,11 +56,11 @@ y = ∫sin&amp;Thetadl</p>
 <h5 class="num">Inherited definitions from supertypes</h5>
 <details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcspiral.png" usemap="#f"/>
 <map name="f">
-<area shape="rect" coords="54,102,242,114" href="../../../schema/ifcgeometryresource/lexical/ifcblosscurve.htm" alt="IfcBlossCurve" />
-<area shape="rect" coords="54,126,242,138" href="../../../schema/ifcgeometryresource/lexical/ifcclothoid.htm" alt="IfcClothoid" />
-<area shape="rect" coords="54,150,242,162" href="../../../schema/ifcgeometryresource/lexical/ifccosine.htm" alt="IfcCosine" />
-<area shape="rect" coords="54,174,242,186" href="../../../schema/ifcgeometryresource/lexical/ifchelmertcurve.htm" alt="IfcHelmertCurve" />
-<area shape="rect" coords="54,198,242,210" href="../../../schema/ifcgeometryresource/lexical/ifcsine.htm" alt="IfcSine" />
+<area shape="rect" coords="54,102,242,114" href="../../../schema/ifcgeometryresource/lexical/ifcclothoid.htm" alt="IfcClothoid" />
+<area shape="rect" coords="54,126,242,138" href="../../../schema/ifcgeometryresource/lexical/ifccosine.htm" alt="IfcCosine" />
+<area shape="rect" coords="54,150,242,162" href="../../../schema/ifcgeometryresource/lexical/ifcsecondorderpolynomialspiral.htm" alt="IfcSecondOrderPolynomialSpiral" />
+<area shape="rect" coords="54,174,242,186" href="../../../schema/ifcgeometryresource/lexical/ifcsine.htm" alt="IfcSine" />
+<area shape="rect" coords="54,198,242,210" href="../../../schema/ifcgeometryresource/lexical/ifcthirdorderpolynomialspiral.htm" alt="IfcThirdOrderPolynomialSpiral" />
 <area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
 <area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
 <area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
@@ -114,7 +114,7 @@ IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">ENTITY</span> IfcSpiral<br/>
-&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcgeometryresource/lexical/ifcblosscurve.htm">IfcBlossCurve</a>, <a href="../../ifcgeometryresource/lexical/ifcclothoid.htm">IfcClothoid</a>, <a href="../../ifcgeometryresource/lexical/ifccosine.htm">IfcCosine</a>, <a href="../../ifcgeometryresource/lexical/ifchelmertcurve.htm">IfcHelmertCurve</a>, <a href="../../ifcgeometryresource/lexical/ifcsine.htm">IfcSine</a>))<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcgeometryresource/lexical/ifcclothoid.htm">IfcClothoid</a>, <a href="../../ifcgeometryresource/lexical/ifccosine.htm">IfcCosine</a>, <a href="../../ifcgeometryresource/lexical/ifcsecondorderpolynomialspiral.htm">IfcSecondOrderPolynomialSpiral</a>, <a href="../../ifcgeometryresource/lexical/ifcsine.htm">IfcSine</a>, <a href="../../ifcgeometryresource/lexical/ifcthirdorderpolynomialspiral.htm">IfcThirdOrderPolynomialSpiral</a>))<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>)<b>;</b><br/>
 &nbsp;&nbsp;Position : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>

@@ -92,6 +92,8 @@ NOTE  A structural item may be grouped into more than one analysis model. In th
 <tr><th>Rule</th><th>Description</th></tr>
 <tr><td>HasObjectType</td><td>The attribute ObjectType shall be given if the predefined type is set to USERDEFINED.
 </td></tr>
+<tr><td>CorrectPredefinedType</td><td>Either the <i>PredefinedType</i> attribute is unset, or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
 </table>
 
 </details>
@@ -218,16 +220,16 @@ IFC4 CHANGE  The cardinality has been changed from 1..1 to 0..? in order to all
 <summary>Concept usage</summary>
 <a id="aggregation" />
 <p class="use-head">Aggregation</p>
-<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 637.<table>
+<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 638.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 637 &mdash; IfcStructuralAnalysisModel Aggregation</td></tr></table>
+<tr><td><p class="table">Table 638 &mdash; IfcStructuralAnalysisModel Aggregation</td></tr></table>
 
 <br/><br/>
 
 <a id="group-assignment" />
 <p class="use-head">Group Assignment</p>
-<p>The <a href="../../templates/group-assignment.htm">Group Assignment</a> concept template applies to this entity as shown in Table 638.<table>
+<p>The <a href="../../templates/group-assignment.htm">Group Assignment</a> concept template applies to this entity as shown in Table 639.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>IsGrouped</b></th><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -235,7 +237,7 @@ IFC4 CHANGE  The cardinality has been changed from 1..1 to 0..? in order to all
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 638 &mdash; IfcStructuralAnalysisModel Group Assignment</td></tr></table>
+<tr><td><p class="table">Table 639 &mdash; IfcStructuralAnalysisModel Group Assignment</td></tr></table>
 
 <br/><br/>
 
@@ -334,7 +336,9 @@ IFC4 CHANGE  The cardinality has been changed from 1..1 to 0..? in order to all
 &nbsp;&nbsp;HasResults : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcstructuralanalysisdomain/lexical/ifcstructuralresultgroup.htm">IfcStructuralResultGroup</a>;<br/>
 &nbsp;&nbsp;SharedPlacement : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;HasObjectType : (PredefinedType &lt;&gt; <a href="../../ifcstructuralanalysisdomain/lexical/ifcanalysismodeltypeenum.htm">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType);<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;HasObjectType : (PredefinedType &lt;&gt; <a href="../../ifcstructuralanalysisdomain/lexical/ifcanalysismodeltypeenum.htm">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType);<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcstructuralanalysisdomain/lexical/ifcanalysismodeltypeenum.htm">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcstructuralanalysisdomain/lexical/ifcanalysismodeltypeenum.htm">IfcAnalysisModelTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcstructuralanalysisdomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

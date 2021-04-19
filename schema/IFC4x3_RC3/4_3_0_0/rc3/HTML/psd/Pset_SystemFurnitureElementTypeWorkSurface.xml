@@ -151,19 +151,19 @@
         <DefinitionAlias lang="en" />
       </DefinitionAliases>
     </PropertyDef>
-    <PropertyDef ifdguid="8a08cb00d20f11e1800000215ad4efdf">
+    <PropertyDef ifdguid="9aa93573818943ee9e7ad7e898fddfae">
       <Name>NominalThickness</Name>
-      <Definition>The nominal thickness of the work surface.</Definition>
+      <Definition>The nominal  thickness of the entity.</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>
         <NameAlias lang="en">Nominal Thickness</NameAlias>
       </NameAliases>
       <DefinitionAliases>
-        <DefinitionAlias lang="en" />
+        <DefinitionAlias lang="en">The nominal wall thickness of the duct at the connection point.</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
     <PropertyDef ifdguid="92610600d20f11e1800000215ad4efdf">

@@ -43,12 +43,12 @@
         <DefinitionAlias lang="ja-JP">ゴミ処理装置の排出口接続口サイズ。</DefinitionAlias>
       </DefinitionAliases>
     </PropertyDef>
-    <PropertyDef ifdguid="76ae2d80d21811e1800000215ad4efdf">
+    <PropertyDef ifdguid="118f1380d1e911e1800000215ad4efdf">
       <Name>NominalDepth</Name>
-      <Definition>Nominal or quoted depth of the object measured from the inlet drain connection to the base of the unit.</Definition>
+      <Definition>Nominal Depth of the object</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>

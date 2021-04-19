@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -235,6 +235,9 @@ ENTITY IfcStructuralAnalysisModel
 	SharedPlacement : OPTIONAL IfcObjectPlacement;
  WHERE
 	HasObjectType : (PredefinedType <> IfcAnalysisModelTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcAnalysisModelTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcAnalysisModelTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcStructuralConnection

@@ -477,7 +477,7 @@ OR
 <br/>
 <a name="ifcalignmenthorizontalsegmenttypeenum" />
 <span class="keyword">TYPE</span> IfcAlignmentHorizontalSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcalignmenttypeenum" />
 <span class="keyword">TYPE</span> IfcAlignmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -709,7 +709,7 @@ OR
 <br/>
 <a name="ifcdiscreteaccessorytypeenum" />
 <span class="keyword">TYPE</span> IfcDiscreteAccessoryTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;ANCHORPLATE, <br/>&nbsp;BRACKET, <br/>&nbsp;SHOE, <br/>&nbsp;EXPANSION_JOINT_DEVICE, <br/>&nbsp;BIRDPROTECTION, <br/>&nbsp;CABLEARRANGER, <br/>&nbsp;INSULATOR, <br/>&nbsp;LOCK, <br/>&nbsp;TENSIONINGEQUIPMENT, <br/>&nbsp;RAILPAD, <br/>&nbsp;SLIDINGCHAIR, <br/>&nbsp;PANEL_STRENGTHENING, <br/>&nbsp;RAILBRACE, <br/>&nbsp;ELASTIC_CUSHION, <br/>&nbsp;SOUNDABSORPTION, <br/>&nbsp;RAIL_LUBRICATION, <br/>&nbsp;RAIL_MECHANICAL_EQUIPMENT, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;ANCHORPLATE, <br/>&nbsp;BRACKET, <br/>&nbsp;SHOE, <br/>&nbsp;EXPANSION_JOINT_DEVICE, <br/>&nbsp;CABLEARRANGER, <br/>&nbsp;INSULATOR, <br/>&nbsp;LOCK, <br/>&nbsp;TENSIONINGEQUIPMENT, <br/>&nbsp;RAILPAD, <br/>&nbsp;SLIDINGCHAIR, <br/>&nbsp;RAIL_LUBRICATION, <br/>&nbsp;PANEL_STRENGTHENING, <br/>&nbsp;RAILBRACE, <br/>&nbsp;ELASTIC_CUSHION, <br/>&nbsp;SOUNDABSORPTION, <br/>&nbsp;POINTMACHINEMOUNTINGDEVICE, <br/>&nbsp;POINT_MACHINE_LOCKING_DEVICE, <br/>&nbsp;RAIL_MECHANICAL_EQUIPMENT, <br/>&nbsp;BIRDPROTECTION, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcdistributionboardtypeenum" />
 <span class="keyword">TYPE</span> IfcDistributionBoardTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -757,7 +757,7 @@ OR
 <br/>
 <a name="ifcdoortypeoperationenum" />
 <span class="keyword">TYPE</span> IfcDoorTypeOperationEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;SINGLE_SWING_LEFT, <br/>&nbsp;SINGLE_SWING_RIGHT, <br/>&nbsp;DOUBLE_DOOR_SINGLE_SWING, <br/>&nbsp;DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT, <br/>&nbsp;DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT, <br/>&nbsp;DOUBLE_SWING_LEFT, <br/>&nbsp;DOUBLE_SWING_RIGHT, <br/>&nbsp;DOUBLE_DOOR_DOUBLE_SWING, <br/>&nbsp;SLIDING_TO_LEFT, <br/>&nbsp;SLIDING_TO_RIGHT, <br/>&nbsp;DOUBLE_DOOR_SLIDING, <br/>&nbsp;FOLDING_TO_LEFT, <br/>&nbsp;FOLDING_TO_RIGHT, <br/>&nbsp;DOUBLE_DOOR_FOLDING, <br/>&nbsp;REVOLVING, <br/>&nbsp;ROLLINGUP, <br/>&nbsp;SWING_FIXED_LEFT, <br/>&nbsp;SWING_FIXED_RIGHT, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;SINGLE_SWING_LEFT, <br/>&nbsp;SINGLE_SWING_RIGHT, <br/>&nbsp;DOUBLE_PANEL_SINGLE_SWING, <br/>&nbsp;DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_LEFT, <br/>&nbsp;DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_RIGHT, <br/>&nbsp;DOUBLE_SWING_LEFT, <br/>&nbsp;DOUBLE_SWING_RIGHT, <br/>&nbsp;DOUBLE_PANEL_DOUBLE_SWING, <br/>&nbsp;SLIDING_TO_LEFT, <br/>&nbsp;SLIDING_TO_RIGHT, <br/>&nbsp;DOUBLE_PANEL_SLIDING, <br/>&nbsp;FOLDING_TO_LEFT, <br/>&nbsp;FOLDING_TO_RIGHT, <br/>&nbsp;DOUBLE_PANEL_FOLDING, <br/>&nbsp;REVOLVING_HORIZONTAL, <br/>&nbsp;ROLLINGUP, <br/>&nbsp;SWING_FIXED_LEFT, <br/>&nbsp;SWING_FIXED_RIGHT, <br/>&nbsp;DOUBLE_PANEL_LIFTING_VERTICAL, <br/>&nbsp;LIFTING_HORIZONTAL, <br/>&nbsp;LIFTING_VERTICAL_LEFT, <br/>&nbsp;LIFTING_VERTICAL_RIGHT, <br/>&nbsp;REVOLVING_VERTICAL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcductfittingtypeenum" />
 <span class="keyword">TYPE</span> IfcDuctFittingTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -861,7 +861,7 @@ OR
 <br/>
 <a name="ifcfiresuppressionterminaltypeenum" />
 <span class="keyword">TYPE</span> IfcFireSuppressionTerminalTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;BREECHINGINLET, <br/>&nbsp;FIREHYDRANT, <br/>&nbsp;HOSEREEL, <br/>&nbsp;SPRINKLER, <br/>&nbsp;SPRINKLERDEFLECTOR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;BREECHINGINLET, <br/>&nbsp;FIREHYDRANT, <br/>&nbsp;HOSEREEL, <br/>&nbsp;SPRINKLER, <br/>&nbsp;SPRINKLERDEFLECTOR, <br/>&nbsp;FIREMONITOR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcflowdirectionenum" />
 <span class="keyword">TYPE</span> IfcFlowDirectionEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -969,7 +969,7 @@ OR
 <br/>
 <a name="ifcmarinefacilitytypeenum" />
 <span class="keyword">TYPE</span> IfcMarineFacilityTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;CANAL, <br/>&nbsp;WATERWAYSHIPLIFT, <br/>&nbsp;EMBANKMENT, <br/>&nbsp;LAUNCHRECOVERY, <br/>&nbsp;MARINEDEFENCE, <br/>&nbsp;HYDROLIFT, <br/>&nbsp;SHIPYARD, <br/>&nbsp;SHIPLIFT, <br/>&nbsp;PORT, <br/>&nbsp;QUAY, <br/>&nbsp;FLOATINGDOCK, <br/>&nbsp;NAVIGATIONALCHANNEL, <br/>&nbsp;BREAKWATER, <br/>&nbsp;DRYDOCK, <br/>&nbsp;JETTY, <br/>&nbsp;SHIPLOCK, <br/>&nbsp;BARRIERBEACH, <br/>&nbsp;SLIPWAY, <br/>&nbsp;WATERWAY, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;CANAL, <br/>&nbsp;WATERWAYSHIPLIFT, <br/>&nbsp;REVETMENT, <br/>&nbsp;LAUNCHRECOVERY, <br/>&nbsp;MARINEDEFENCE, <br/>&nbsp;HYDROLIFT, <br/>&nbsp;SHIPYARD, <br/>&nbsp;SHIPLIFT, <br/>&nbsp;PORT, <br/>&nbsp;QUAY, <br/>&nbsp;FLOATINGDOCK, <br/>&nbsp;NAVIGATIONALCHANNEL, <br/>&nbsp;BREAKWATER, <br/>&nbsp;DRYDOCK, <br/>&nbsp;JETTY, <br/>&nbsp;SHIPLOCK, <br/>&nbsp;BARRIERBEACH, <br/>&nbsp;SLIPWAY, <br/>&nbsp;WATERWAY, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcmarineparttypeenum" />
 <span class="keyword">TYPE</span> IfcMarinePartTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1003,10 +1003,6 @@ OR
 <span class="keyword">TYPE</span> IfcNavigationElementTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;BEACON, <br/>&nbsp;BUOY, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
-<a name="ifcnullstyle" />
-<span class="keyword">TYPE</span> IfcNullStyle = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;NULL);<br/><span class="keyword">END_TYPE;</span><br/>
-<br/>
 <a name="ifcobjecttypeenum" />
 <span class="keyword">TYPE</span> IfcObjectTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;PRODUCT, <br/>&nbsp;PROCESS, <br/>&nbsp;CONTROL, <br/>&nbsp;RESOURCE, <br/>&nbsp;ACTOR, <br/>&nbsp;GROUP, <br/>&nbsp;PROJECT, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
@@ -1026,6 +1022,10 @@ OR
 <a name="ifcoutlettypeenum" />
 <span class="keyword">TYPE</span> IfcOutletTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;AUDIOVISUALOUTLET, <br/>&nbsp;COMMUNICATIONSOUTLET, <br/>&nbsp;POWEROUTLET, <br/>&nbsp;DATAOUTLET, <br/>&nbsp;TELEPHONEOUTLET, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+<br/>
+<a name="ifcpavementtypeenum" />
+<span class="keyword">TYPE</span> IfcPavementTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;FLEXIBLE, <br/>&nbsp;RIGID, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcperformancehistorytypeenum" />
 <span class="keyword">TYPE</span> IfcPerformanceHistoryTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1115,6 +1115,10 @@ OR
 <span class="keyword">TYPE</span> IfcRailwayPartTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;TRACKSTRUCTURE, <br/>&nbsp;TRACKSTRUCTUREPART, <br/>&nbsp;LINESIDESTRUCTUREPART, <br/>&nbsp;DILATATIONSUPERSTRUCTURE, <br/>&nbsp;PLAINTRACKSUPESTRUCTURE, <br/>&nbsp;LINESIDESTRUCTURE, <br/>&nbsp;SUPERSTRUCTURE, <br/>&nbsp;TURNOUTSUPERSTRUCTURE, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
+<a name="ifcrailwaytypeenum" />
+<span class="keyword">TYPE</span> IfcRailwayTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+<br/>
 <a name="ifcrampflighttypeenum" />
 <span class="keyword">TYPE</span> IfcRampFlightTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;STRAIGHT, <br/>&nbsp;SPIRAL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
@@ -1158,6 +1162,10 @@ OR
 <a name="ifcroadparttypeenum" />
 <span class="keyword">TYPE</span> IfcRoadPartTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
 &nbsp;ROADSIDEPART, <br/>&nbsp;BUS_STOP, <br/>&nbsp;HARDSHOULDER, <br/>&nbsp;INTERSECTION, <br/>&nbsp;PASSINGBAY, <br/>&nbsp;ROADWAYPLATEAU, <br/>&nbsp;ROADSIDE, <br/>&nbsp;REFUGEISLAND, <br/>&nbsp;TOLLPLAZA, <br/>&nbsp;CENTRALRESERVE, <br/>&nbsp;SIDEWALK, <br/>&nbsp;PARKINGBAY, <br/>&nbsp;RAILWAYCROSSING, <br/>&nbsp;PEDESTRIAN_CROSSING, <br/>&nbsp;SOFTSHOULDER, <br/>&nbsp;BICYCLECROSSING, <br/>&nbsp;CENTRALISLAND, <br/>&nbsp;SHOULDER, <br/>&nbsp;TRAFFICLANE, <br/>&nbsp;ROADSEGMENT, <br/>&nbsp;ROUNDABOUT, <br/>&nbsp;LAYBY, <br/>&nbsp;CARRIAGEWAY, <br/>&nbsp;TRAFFICISLAND, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+<br/>
+<a name="ifcroadtypeenum" />
+<span class="keyword">TYPE</span> IfcRoadTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcroleenum" />
 <span class="keyword">TYPE</span> IfcRoleEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1221,7 +1229,7 @@ OR
 <br/>
 <a name="ifcspacetypeenum" />
 <span class="keyword">TYPE</span> IfcSpaceTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;SPACE, <br/>&nbsp;PARKING, <br/>&nbsp;GFA, <br/>&nbsp;INTERNAL, <br/>&nbsp;EXTERNAL, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;SPACE, <br/>&nbsp;PARKING, <br/>&nbsp;GFA, <br/>&nbsp;INTERNAL, <br/>&nbsp;EXTERNAL, <br/>&nbsp;BERTH, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcspatialzonetypeenum" />
 <span class="keyword">TYPE</span> IfcSpatialZoneTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1325,7 +1333,7 @@ OR
 <br/>
 <a name="ifctransportelementfixedtypeenum" />
 <span class="keyword">TYPE</span> IfcTransportElementFixedTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;ELEVATOR, <br/>&nbsp;ESCALATOR, <br/>&nbsp;MOVINGWALKWAY, <br/>&nbsp;CRANEWAY, <br/>&nbsp;LIFTINGGEAR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;ELEVATOR, <br/>&nbsp;ESCALATOR, <br/>&nbsp;MOVINGWALKWAY, <br/>&nbsp;CRANEWAY, <br/>&nbsp;LIFTINGGEAR, <br/>&nbsp;HAULINGGEAR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifctransportelementnonfixedtypeenum" />
 <span class="keyword">TYPE</span> IfcTransportElementNonFixedTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1559,10 +1567,6 @@ OR
 <span class="keyword">TYPE</span> IfcPointOrVertexPoint = <span class="keyword">SELECT</span> (<br/>
 &nbsp;<a href="#ifcpoint">IfcPoint</a>, <br/>&nbsp;<a href="#ifcvertexpoint">IfcVertexPoint</a>);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
-<a name="ifcpresentationstyleselect" />
-<span class="keyword">TYPE</span> IfcPresentationStyleSelect = <span class="keyword">SELECT</span> (<br/>
-&nbsp;<a href="#ifcnullstyle">IfcNullStyle</a>, <br/>&nbsp;<a href="#ifccurvestyle">IfcCurveStyle</a>, <br/>&nbsp;<a href="#ifcfillareastyle">IfcFillAreaStyle</a>, <br/>&nbsp;<a href="#ifctextstyle">IfcTextStyle</a>, <br/>&nbsp;<a href="#ifcsurfacestyle">IfcSurfaceStyle</a>);<br/><span class="keyword">END_TYPE;</span><br/>
-<br/>
 <a name="ifcprocessselect" />
 <span class="keyword">TYPE</span> IfcProcessSelect = <span class="keyword">SELECT</span> (<br/>
 &nbsp;<a href="#ifcprocess">IfcProcess</a>, <br/>&nbsp;<a href="#ifctypeprocess">IfcTypeProcess</a>);<br/><span class="keyword">END_TYPE;</span><br/>
@@ -1626,10 +1630,6 @@ OR
 <a name="ifcstructuralactivityassignmentselect" />
 <span class="keyword">TYPE</span> IfcStructuralActivityAssignmentSelect = <span class="keyword">SELECT</span> (<br/>
 &nbsp;<a href="#ifcstructuralitem">IfcStructuralItem</a>, <br/>&nbsp;<a href="#ifcelement">IfcElement</a>);<br/><span class="keyword">END_TYPE;</span><br/>
-<br/>
-<a name="ifcstyleassignmentselect" />
-<span class="keyword">TYPE</span> IfcStyleAssignmentSelect = <span class="keyword">SELECT</span> (<br/>
-&nbsp;<a href="#ifcpresentationstyleassignment">IfcPresentationStyleAssignment</a>, <br/>&nbsp;<a href="#ifcpresentationstyle">IfcPresentationStyle</a>);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcsurfaceorfacesurface" />
 <span class="keyword">TYPE</span> IfcSurfaceOrFaceSurface = <span class="keyword">SELECT</span> (<br/>
@@ -2239,14 +2239,6 @@ UpperIndexOnControlPoints, KnotMultiplicities, Knots);<br/>&nbsp;&nbsp;Correspon
 &nbsp;&nbsp;ZLength : <a href="#ifcpositivelengthmeasure">IfcPositiveLengthMeasure</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
-<a name="ifcblosscurve" />
-<span class="keyword">ENTITY</span> IfcBlossCurve<br/>
-&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcspiral">IfcSpiral</a>)<b>;</b><br/>
-&nbsp;&nbsp;QubicTerm : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-&nbsp;&nbsp;QuadraticTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-&nbsp;&nbsp;LinearTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
-<br/>
 <a name="ifcboiler" />
 <span class="keyword">ENTITY</span> IfcBoiler<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcenergyconversiondevice">IfcEnergyConversionDevice</a>)<b>;</b><br/>
@@ -2374,7 +2366,10 @@ UpperIndexOnControlPoints, KnotMultiplicities, Knots);<br/>&nbsp;&nbsp;Correspon
 <span class="keyword">ENTITY</span> IfcBridge<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcfacility">IfcFacility</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcbridgetypeenum">IfcBridgeTypeEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcbridgetypeenum">IfcBridgeTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcbridgetypeenum">IfcBridgeTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcbuilding" />
 <span class="keyword">ENTITY</span> IfcBuilding<br/>
@@ -3392,6 +3387,8 @@ SELF\IfcCartesianTransformationOperator.Axis2,Axis3);<br/>
 &nbsp;&nbsp;SegmentStart : <a href="#ifccurvemeasureselect">IfcCurveMeasureSelect</a>;<br/>
 &nbsp;&nbsp;SegmentLength : <a href="#ifccurvemeasureselect">IfcCurveMeasureSelect</a>;<br/>
 &nbsp;&nbsp;ParentCurve : <a href="#ifccurve">IfcCurve</a>;<br/>
+&nbsp;<span class="keyword">DERIVE</span><br/>
+&nbsp;&nbsp;Dim : <a href="#ifcdimensioncount">IfcDimensionCount</a> := ParentCurve.Dim;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifccurvestyle" />
@@ -3651,7 +3648,10 @@ SELF\IfcCartesianTransformationOperator.Axis2,Axis3);<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcsystem">IfcSystem</a>)<b>;</b><br/>
 &nbsp;&nbsp;LongName : <span class="keyword">OPTIONAL</span> <a href="#ifclabel">IfcLabel</a>;<br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcdistributionsystemenum">IfcDistributionSystemEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcdistributionsystemenum">IfcDistributionSystemEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcdistributionsystemenum">IfcDistributionSystemEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcdocumentinformation" />
 <span class="keyword">ENTITY</span> IfcDocumentInformation<br/>
@@ -3709,7 +3709,10 @@ SELF\IfcCartesianTransformationOperator.Axis2,Axis3);<br/>
 &nbsp;&nbsp;UserDefinedOperationType : <span class="keyword">OPTIONAL</span> <a href="#ifclabel">IfcLabel</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;CorrectStyleAssigned : (SIZEOF(IsTypedBy) = 0) <br/>
-OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcdoortype">IfcDoorType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
+OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcdoortype">IfcDoorType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+ (PredefinedType &lt;&gt; <a href="#ifcdoortypeenum">IfcDoorTypeEnum</a>.USERDEFINED) OR<br/>
+ ((PredefinedType = <a href="#ifcdoortypeenum">IfcDoorTypeEnum</a>.USERDEFINED) AND EXISTS (SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+  (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcdoortype">IfcDoorType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcdoorliningproperties" />
 <span class="keyword">ENTITY</span> IfcDoorLiningProperties<br/>
@@ -4346,7 +4349,28 @@ AND <br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcspatialstructureelement">IfcSpatialStructureElement</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <a href="#ifcfacilityparttypeselect">IfcFacilityPartTypeSelect</a>;<br/>
 &nbsp;&nbsp;UsageType : <a href="#ifcfacilityusageenum">IfcFacilityUsageEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="#ifcbridgeparttypeenum">IfcBridgePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcrailwayparttypeenum">IfcRailwayPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcroadparttypeenum">IfcRoadPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcmarineparttypeenum">IfcMarinePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcfacilitypartcommontypeenum">IfcFacilityPartCommonTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+(((PredefinedType = <a href="#ifcbridgeparttypeenum">IfcBridgePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcrailwayparttypeenum">IfcRailwayPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcroadparttypeenum">IfcRoadPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcmarineparttypeenum">IfcMarinePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcfacilitypartcommontypeenum">IfcFacilityPartCommonTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcfailureconnectioncondition" />
 <span class="keyword">ENTITY</span> IfcFailureConnectionCondition<br/>
@@ -4399,7 +4423,8 @@ AND <br/>
 <span class="keyword">ENTITY</span> IfcFeatureElement<br/>
 &nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="#ifcfeatureelementaddition">IfcFeatureElementAddition</a>, <a href="#ifcfeatureelementsubtraction">IfcFeatureElementSubtraction</a>, <a href="#ifcsurfacefeature">IfcSurfaceFeature</a>))<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcelement">IfcElement</a>)<b>;</b><br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;NotContained : SIZEOF(ContainedInStructure) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcfeatureelementaddition" />
 <span class="keyword">ENTITY</span> IfcFeatureElementAddition<br/>
@@ -4840,14 +4865,6 @@ AND <br/>
 &nbsp;&nbsp;CorrectPredefinedType : (PredefinedType &lt;&gt; <a href="#ifcheatexchangertypeenum">IfcHeatExchangerTypeEnum</a>.USERDEFINED) OR<br/>
 ((PredefinedType = <a href="#ifcheatexchangertypeenum">IfcHeatExchangerTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
-<a name="ifchelmertcurve" />
-<span class="keyword">ENTITY</span> IfcHelmertCurve<br/>
-&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcspiral">IfcSpiral</a>)<b>;</b><br/>
-&nbsp;&nbsp;QuadraticTerm : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-&nbsp;&nbsp;LinearTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-&nbsp;&nbsp;ConstantTerm : <span class="keyword">OPTIONAL</span> <a href="#ifcreal">IfcReal</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
-<br/>
 <a name="ifchumidifier" />
 <span class="keyword">ENTITY</span> IfcHumidifier<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcenergyconversiondevice">IfcEnergyConversionDevice</a>)<b>;</b><br/>
@@ -4892,9 +4909,21 @@ AND <br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcelementcomponent">IfcElementComponent</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcimpactprotectiondevicetypeselect">IfcImpactProtectionDeviceTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
-(PredefinedType &lt;&gt; <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) OR<br/>
-((PredefinedType = <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType))<br/>
+OR<br/>
+((PredefinedType &lt;&gt; <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcvibrationdampertypeenum">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcvibrationisolatortypeenum">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+ OR<br/>
+(((PredefinedType = <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcvibrationdampertypeenum">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifcvibrationisolatortypeenum">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
 (&#39;IFCSHAREDINFRASTRUCTUREELEMENTS.<a href="#ifcimpactprotectiondevicetype">IfcImpactProtectionDeviceType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcimpactprotectiondevicetype" />
@@ -4902,8 +4931,19 @@ AND <br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcelementcomponenttype">IfcElementComponentType</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <a href="#ifcimpactprotectiondevicetypeselect">IfcImpactProtectionDeviceTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : (PredefinedType &lt;&gt; <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) OR<br/>
-((PredefinedType = <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcvibrationdampertypeenum">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcvibrationisolatortypeenum">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+(((PredefinedType = <a href="#ifcimpactprotectiondevicetypeenum">IfcImpactProtectionDeviceTypeEnum</a>.USERDEFINED)<br/>
+OR <br/>
+(PredefinedType = <a href="#ifcvibrationdampertypeenum">IfcVibrationDamperTypeEnum</a>.USERDEFINED)<br/>
+OR <br/>
+(PredefinedType = <a href="#ifcvibrationisolatortypeenum">IfcVibrationIsolatorTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcinclinedreferencesweptareasolid" />
 <span class="keyword">ENTITY</span> IfcInclinedReferenceSweptAreaSolid<br/>
@@ -5221,7 +5261,6 @@ AND <br/>
 <span class="keyword">ENTITY</span> IfcLinearPositioningElement<br/>
 &nbsp;<span class="keyword">SUPERTYPE OF</span>(<a href="#ifcalignment">IfcAlignment</a>)<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcpositioningelement">IfcPositioningElement</a>)<b>;</b><br/>
-&nbsp;&nbsp;Axis : <a href="#ifccurve">IfcCurve</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcliquidterminal" />
@@ -5285,7 +5324,7 @@ AND <br/>
 <a name="ifcmarinefacility" />
 <span class="keyword">ENTITY</span> IfcMarineFacility<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcfacility">IfcFacility</a>)<b>;</b><br/>
-&nbsp;&nbsp;PredefinedType : <a href="#ifcmarinefacilitytypeenum">IfcMarineFacilityTypeEnum</a>;<br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcmarinefacilitytypeenum">IfcMarineFacilityTypeEnum</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
 (PredefinedType &lt;&gt; <a href="#ifcmarinefacilitytypeenum">IfcMarineFacilityTypeEnum</a>.USERDEFINED) OR<br/>
@@ -5758,7 +5797,10 @@ OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcopeningelementtypeenum">IfcOpeningElementTypeEnum</a>;<br/>
 &nbsp;<span class="keyword">INVERSE</span><br/>
 &nbsp;&nbsp;HasFillings : <span class="keyword">SET</span> [0:?] OF <a href="#ifcrelfillselement">IfcRelFillsElement</a> <span class="keyword">FOR</span> RelatingOpeningElement;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcopeningelementtypeenum">IfcOpeningElementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcopeningelementtypeenum">IfcOpeningElementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcopeningstandardcase" />
 <span class="keyword">ENTITY</span> IfcOpeningStandardCase<br/>
@@ -5853,14 +5895,20 @@ OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="
 <a name="ifcpavement" />
 <span class="keyword">ENTITY</span> IfcPavement<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcbuiltelement">IfcBuiltElement</a>)<b>;</b><br/>
-&nbsp;&nbsp;Flexible : <span class="keyword">OPTIONAL</span> <a href="#ifcboolean">IfcBoolean</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+(&#39;IFCSHAREDINFRASTRUCTUREELEMENTS.<a href="#ifcpavementtype">IfcPavementType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcpavementtype" />
 <span class="keyword">ENTITY</span> IfcPavementType<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcbuiltelementtype">IfcBuiltElementType</a>)<b>;</b><br/>
-&nbsp;&nbsp;Flexible : <a href="#ifcboolean">IfcBoolean</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : (PredefinedType &lt;&gt; <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcpavementtypeenum">IfcPavementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcpcurve" />
 <span class="keyword">ENTITY</span> IfcPcurve<br/>
@@ -6150,7 +6198,8 @@ OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="
 &nbsp;&nbsp;CoefficientsX : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="#ifcreal">IfcReal</a>;<br/>
 &nbsp;&nbsp;CoefficientsY : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="#ifcreal">IfcReal</a>;<br/>
 &nbsp;&nbsp;CoefficientsZ : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="#ifcreal">IfcReal</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;ValidCoefficients : (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcport" />
 <span class="keyword">ENTITY</span> IfcPort<br/>
@@ -6262,11 +6311,6 @@ EXISTS (Country);<br/><span class="keyword">END_ENTITY;</span><br/>
 <span class="keyword">ENTITY</span> IfcPresentationStyle<br/>
 &nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="#ifccurvestyle">IfcCurveStyle</a>, <a href="#ifcfillareastyle">IfcFillAreaStyle</a>, <a href="#ifcsurfacestyle">IfcSurfaceStyle</a>, <a href="#ifctextstyle">IfcTextStyle</a>))<b>;</b><br/>
 &nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="#ifclabel">IfcLabel</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
-<br/>
-<a name="ifcpresentationstyleassignment" />
-<span class="keyword">ENTITY</span> IfcPresentationStyleAssignment<b>;</b><br/>
-&nbsp;&nbsp;Styles : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="#ifcpresentationstyleselect">IfcPresentationStyleSelect</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcprocedure" />
@@ -6382,7 +6426,10 @@ EXISTS (Country);<br/><span class="keyword">END_ENTITY;</span><br/>
 <span class="keyword">ENTITY</span> IfcProjectionElement<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcfeatureelementaddition">IfcFeatureElementAddition</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcprojectionelementtypeenum">IfcProjectionElementTypeEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcprojectionelementtypeenum">IfcProjectionElementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcprojectionelementtypeenum">IfcProjectionElementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcproperty" />
 <span class="keyword">ENTITY</span> IfcProperty<br/>
@@ -6705,7 +6752,9 @@ OR (SIZEOF(DefiningValues) = SIZEOF(DefinedValues));<br/>&nbsp;&nbsp;WR22 : NOT(
 <a name="ifcrailway" />
 <span class="keyword">ENTITY</span> IfcRailway<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcfacility">IfcFacility</a>)<b>;</b><br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcrailwaytypeenum">IfcRailwayTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType &lt;&gt; <a href="#ifcrailwaytypeenum">IfcRailwayTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcramp" />
 <span class="keyword">ENTITY</span> IfcRamp<br/>
@@ -7492,7 +7541,9 @@ OR <br/>
 <a name="ifcroad" />
 <span class="keyword">ENTITY</span> IfcRoad<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcfacility">IfcFacility</a>)<b>;</b><br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifcroadtypeenum">IfcRoadTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType &lt;&gt; <a href="#ifcroadtypeenum">IfcRoadTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcroof" />
 <span class="keyword">ENTITY</span> IfcRoof<br/>
@@ -7571,6 +7622,14 @@ OR <br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcsurfacecurve">IfcSurfaceCurve</a>)<b>;</b><br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;TwoPCurves : SIZEOF(SELF\<a href="#ifcsurfacecurve">IfcSurfaceCurve</a>.AssociatedGeometry) = 2;<br/>&nbsp;&nbsp;SameSurface : <a href="#ifcassociatedsurface">IfcAssociatedSurface</a>(SELF\<a href="#ifcsurfacecurve">IfcSurfaceCurve</a>.AssociatedGeometry[1]) = <a href="#ifcassociatedsurface">IfcAssociatedSurface</a>(SELF\<a href="#ifcsurfacecurve">IfcSurfaceCurve</a>.AssociatedGeometry[2]);<br/><span class="keyword">END_ENTITY;</span><br/>
+<br/>
+<a name="ifcsecondorderpolynomialspiral" />
+<span class="keyword">ENTITY</span> IfcSecondOrderPolynomialSpiral<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcspiral">IfcSpiral</a>)<b>;</b><br/>
+&nbsp;&nbsp;QuadraticTerm : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;LinearTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;ConstantTerm : <span class="keyword">OPTIONAL</span> <a href="#ifcreal">IfcReal</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcsectionproperties" />
 <span class="keyword">ENTITY</span> IfcSectionProperties<br/>
@@ -7980,7 +8039,7 @@ AND<br/>
 <br/>
 <a name="ifcspiral" />
 <span class="keyword">ENTITY</span> IfcSpiral<br/>
-&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="#ifcblosscurve">IfcBlossCurve</a>, <a href="#ifcclothoid">IfcClothoid</a>, <a href="#ifccosine">IfcCosine</a>, <a href="#ifchelmertcurve">IfcHelmertCurve</a>, <a href="#ifcsine">IfcSine</a>))<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="#ifcclothoid">IfcClothoid</a>, <a href="#ifccosine">IfcCosine</a>, <a href="#ifcsecondorderpolynomialspiral">IfcSecondOrderPolynomialSpiral</a>, <a href="#ifcsine">IfcSine</a>, <a href="#ifcthirdorderpolynomialspiral">IfcThirdOrderPolynomialSpiral</a>))<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifccurve">IfcCurve</a>)<b>;</b><br/>
 &nbsp;&nbsp;Position : <span class="keyword">OPTIONAL</span> <a href="#ifcaxis2placement">IfcAxis2Placement</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
@@ -8069,7 +8128,9 @@ AND<br/>
 &nbsp;&nbsp;HasResults : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="#ifcstructuralresultgroup">IfcStructuralResultGroup</a>;<br/>
 &nbsp;&nbsp;SharedPlacement : <span class="keyword">OPTIONAL</span> <a href="#ifcobjectplacement">IfcObjectPlacement</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;HasObjectType : (PredefinedType &lt;&gt; <a href="#ifcanalysismodeltypeenum">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;HasObjectType : (PredefinedType &lt;&gt; <a href="#ifcanalysismodeltypeenum">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType);<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="#ifcanalysismodeltypeenum">IfcAnalysisModelTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="#ifcanalysismodeltypeenum">IfcAnalysisModelTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcstructuralconnection" />
 <span class="keyword">ENTITY</span> IfcStructuralConnection<br/>
@@ -8349,7 +8410,7 @@ AND<br/>
 <span class="keyword">ENTITY</span> IfcStyledItem<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcrepresentationitem">IfcRepresentationItem</a>)<b>;</b><br/>
 &nbsp;&nbsp;Item : <span class="keyword">OPTIONAL</span> <a href="#ifcrepresentationitem">IfcRepresentationItem</a>;<br/>
-&nbsp;&nbsp;Styles : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="#ifcstyleassignmentselect">IfcStyleAssignmentSelect</a>;<br/>
+&nbsp;&nbsp;Styles : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="#ifcpresentationstyle">IfcPresentationStyle</a>;<br/>
 &nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="#ifclabel">IfcLabel</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;ApplicableItem : NOT(&#39;IFCPRESENTATIONAPPEARANCERESOURCE.<a href="#ifcstyleditem">IfcStyledItem</a>&#39; IN TYPEOF(Item));<br/><span class="keyword">END_ENTITY;</span><br/>
@@ -8916,6 +8977,14 @@ EXISTS (MessagingIDs);<br/><span class="keyword">END_ENTITY;</span><br/>
 &nbsp;&nbsp;TexCoordsList : <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <span class="keyword">LIST</span> [2:2] OF <a href="#ifcparametervalue">IfcParameterValue</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
+<a name="ifcthirdorderpolynomialspiral" />
+<span class="keyword">ENTITY</span> IfcThirdOrderPolynomialSpiral<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcspiral">IfcSpiral</a>)<b>;</b><br/>
+&nbsp;&nbsp;QubicTerm : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;QuadraticTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;LinearTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<br/>
 <a name="ifctimeperiod" />
 <span class="keyword">ENTITY</span> IfcTimePeriod<b>;</b><br/>
 &nbsp;&nbsp;StartTime : <a href="#ifctime">IfcTime</a>;<br/>
@@ -9007,9 +9076,17 @@ EXISTS (MessagingIDs);<br/><span class="keyword">END_ENTITY;</span><br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcelement">IfcElement</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="#ifctransportelementtypeselect">IfcTransportElementTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
-((PredefinedType &lt;&gt; <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) AND (PredefinedType &lt;&gt; <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) OR<br/>
-(((PredefinedType = <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) OR (PredefinedType = <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) AND EXISTS(SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType))<br/>
+OR<br/>
+((PredefinedType &lt;&gt; <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+(PredefinedType &lt;&gt; <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+(((PredefinedType = <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
   (&#39;IFCPRODUCTEXTENSION.<a href="#ifctransportelementtype">IfcTransportElementType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifctransportelementtype" />
@@ -9017,8 +9094,15 @@ EXISTS (MessagingIDs);<br/><span class="keyword">END_ENTITY;</span><br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="#ifcelementtype">IfcElementType</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <a href="#ifctransportelementtypeselect">IfcTransportElementTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) AND (PredefinedType &lt;&gt; <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) OR<br/>
-(((PredefinedType = <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) OR (PredefinedType = <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) AND EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+(PredefinedType &lt;&gt; <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+((PredefinedType = <a href="#ifctransportelementfixedtypeenum">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="#ifctransportelementnonfixedtypeenum">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+EXISTS(SELF\<a href="#ifcelementtype">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifctrapeziumprofiledef" />
 <span class="keyword">ENTITY</span> IfcTrapeziumProfileDef<br/>
@@ -9361,7 +9445,10 @@ EXISTS (MessagingIDs);<br/><span class="keyword">END_ENTITY;</span><br/>
 &nbsp;&nbsp;UserDefinedPartitioningType : <span class="keyword">OPTIONAL</span> <a href="#ifclabel">IfcLabel</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;CorrectStyleAssigned : (SIZEOF(IsTypedBy) = 0) <br/>
-OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcwindowtype">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
+OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcwindowtype">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+ (PredefinedType &lt;&gt; <a href="#ifcwindowtypeenum">IfcWindowTypeEnum</a>.USERDEFINED) OR<br/>
+ ((PredefinedType = <a href="#ifcwindowtypeenum">IfcWindowTypeEnum</a>.USERDEFINED) AND EXISTS (SELF\<a href="#ifcobject">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+  (&#39;IFCSHAREDBLDGELEMENTS.<a href="#ifcwindowtype">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="#ifcobject">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcwindowliningproperties" />
 <span class="keyword">ENTITY</span> IfcWindowLiningProperties<br/>
@@ -9672,7 +9759,7 @@ AND <br/>
 <p>
 <span class="keyword">FUNCTION</span> IfcCurveDim<br/>
 
-(Curve : <a href="#ifccurve">IfcCurve</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="#ifcdimensioncount">IfcDimensionCount</a>;<br/><br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcline">IfcLine</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcline">IfcLine</a>.Pnt.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcconic">IfcConic</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcconic">IfcConic</a>.Position.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcpolyline">IfcPolyline</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcpolyline">IfcPolyline</a>.Points[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifctrimmedcurve">IfcTrimmedCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(<a href="#ifccurvedim">IfcCurveDim</a>(Curve\<a href="#ifctrimmedcurve">IfcTrimmedCurve</a>.BasisCurve));<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifccompositecurve">IfcCompositeCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifccompositecurve">IfcCompositeCurve</a>.Segments[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcbsplinecurve">IfcBSplineCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcbsplinecurve">IfcBSplineCurve</a>.ControlPointsList[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurve2d">IfcOffsetCurve2D</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2); <br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurve3d">IfcOffsetCurve3D</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurvebydistances">IfcOffsetCurveByDistances</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.IFCCURVESEGMENT2D' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcgradientcurve">IfcGradientCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcsegmentedreferencecurve">IfcSegmentedReferenceCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.IFCSERIESPARAMETERCURVE' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcpcurve">IfcPcurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcindexedpolycurve">IfcIndexedPolyCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcindexedpolycurve">IfcIndexedPolyCurve</a>.Points.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>RETURN (?);<br/>
+(Curve : <a href="#ifccurve">IfcCurve</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="#ifcdimensioncount">IfcDimensionCount</a>;<br/><br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcline">IfcLine</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcline">IfcLine</a>.Pnt.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcconic">IfcConic</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcconic">IfcConic</a>.Position.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcpolyline">IfcPolyline</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcpolyline">IfcPolyline</a>.Points[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifctrimmedcurve">IfcTrimmedCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(<a href="#ifccurvedim">IfcCurveDim</a>(Curve\<a href="#ifctrimmedcurve">IfcTrimmedCurve</a>.BasisCurve));<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcgradientcurve">IfcGradientCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcsegmentedreferencecurve">IfcSegmentedReferenceCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifccompositecurve">IfcCompositeCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifccompositecurve">IfcCompositeCurve</a>.Segments[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcbsplinecurve">IfcBSplineCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcbsplinecurve">IfcBSplineCurve</a>.ControlPointsList[1].Dim);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurve2d">IfcOffsetCurve2D</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2); <br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurve3d">IfcOffsetCurve3D</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcoffsetcurvebydistances">IfcOffsetCurveByDistances</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.IFCCURVESEGMENT2D' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcpolynomialcurve">IfcPolynomialCurve</a>' IN TYPEOF(Curve)) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;IF (NOT EXISTS(Curve\<a href="#ifcpolynomialcurve">IfcPolynomialCurve</a>.CoefficientsX) OR NOT EXISTS(Curve\<a href="#ifcpolynomialcurve">IfcPolynomialCurve</a>.CoefficientsY) OR NOT EXISTS(Curve\<a href="#ifcpolynomialcurve">IfcPolynomialCurve</a>.CoefficientsZ))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(2);<br/>&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcpcurve">IfcPcurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(3);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcindexedpolycurve">IfcIndexedPolyCurve</a>' IN TYPEOF(Curve))<br/>&nbsp;&nbsp;&nbsp;&nbsp;THEN RETURN(Curve\<a href="#ifcindexedpolycurve">IfcIndexedPolyCurve</a>.Points.Dim);<br/>&nbsp;&nbsp;END_IF;<br/>RETURN (?);<br/>
 <br/>
 
 <span class="keyword">END_FUNCTION</span>;
@@ -9756,7 +9843,7 @@ AND <br/>
 <p>
 <span class="keyword">FUNCTION</span> IfcGradient<br/>
 
-(GradientCurve : <a href="#ifcgradientcurve">IfcGradientCurve</a>) : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>&nbsp;&nbsp;RETURN(1);
+(GradientCurve : <a href="#ifcgradientcurve">IfcGradientCurve</a>) : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>&nbsp;&nbsp;RETURN(1);<br/>
 <br/>
 
 <span class="keyword">END_FUNCTION</span>;
@@ -9948,7 +10035,7 @@ AND <br/>
 <p>
 <span class="keyword">FUNCTION</span> IfcShapeRepresentationTypes<br/>
 
-(RepType : <a href="#ifclabel">IfcLabel</a>; Items : SET OF <a href="#ifcrepresentationitem">IfcRepresentationItem</a>) : LOGICAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count : INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_LOCAL;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;CASE RepType OF <br/>&nbsp;&nbsp;&nbsp;&nbsp;'Point' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'PointCloud' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccartesianpointlist3d">IfcCartesianPointList3D</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifccurve">IfcCurve</a>.Dim = 2)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve3D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifccurve">IfcCurve</a>.Dim = 3)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifcsurface">IfcSurface</a>.Dim = 2)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface3D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifcsurface">IfcSurface</a>.Dim = 3)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'FillArea' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcannotationfillarea">IfcAnnotationFillArea</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Text' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifctextliteral">IfcTextLiteral</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedSurface' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | 'IFCGEOMETRYRESOURCE.<a href="#ifcbsplinesurface">IfcBSplineSurface</a>' IN TYPEOF(temp)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Annotation2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | (<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIZEOF(TYPEOF(temp) * [<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometriccurveset">IfcGeometricCurveSet</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCPRESENTATIONDEFINITIONRESOURCE.<a href="#ifcannotationfillarea">IfcAnnotationFillArea</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCPRESENTATIONDEFINITIONRESOURCE.<a href="#ifctextliteral">IfcTextLiteral</a>']) = 1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'GeometricSet' : <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'GeometricCurveSet' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometriccurveset">IfcGeometricCurveSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REPEAT i:=1 TO HIINDEX(Items);&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(Items[i]))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (SIZEOF(QUERY(temp &lt;* Items[i]\<a href="#ifcgeometricset">IfcGeometricSet</a>.Elements | 'IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))) &gt; 0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := Count - 1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END_REPEAT;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Tessellation' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | 'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>' IN TYPEOF(temp)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SurfaceOrSolidModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcshellbasedsurfacemodel">IfcShellBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacebasedsurfacemodel">IfcFaceBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsolidmodel">IfcSolidModel</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SurfaceModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcshellbasedsurfacemodel">IfcShellBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacebasedsurfacemodel">IfcFaceBasedSurfaceModel</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SolidModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcsolidmodel">IfcSolidModel</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SweptSolid' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | (SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcextrudedareasolid">IfcExtrudedAreaSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcrevolvedareasolid">IfcRevolvedAreaSolid</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) AND (SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcextrudedareasolidtapered">IfcExtrudedAreaSolidTapered</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcrevolvedareasolidtapered">IfcRevolvedAreaSolidTapered</a>'] * TYPEOF(temp)) = 0<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedSweptSolid' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsweptareasolid">IfcSweptAreaSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsweptdisksolid">IfcSweptDiskSolid</a>'] *&nbsp;&nbsp;TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'CSG' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcbooleanresult">IfcBooleanResult</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgprimitive3d">IfcCsgPrimitive3D</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgsolid">IfcCsgSolid</a>'] *&nbsp;&nbsp;TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Clipping' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgsolid">IfcCsgSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcbooleanclippingresult">IfcBooleanClippingResult</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )); <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Brep' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacetedbrep">IfcFacetedBrep</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedBrep' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcmanifoldsolidbrep">IfcManifoldSolidBrep</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'BoundingBox' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcboundingbox">IfcBoundingBox</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF (SIZEOF(Items) &gt; 1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SectionedSpine' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcsectionedspine">IfcSectionedSpine</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'LightSource' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCPRESENTATIONORGANIZATIONRESOURCE.<a href="#ifclightsource">IfcLightSource</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'MappedRepresentation' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcmappeditem">IfcMappedItem</a>' IN TYPEOF(temp))));&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp; OTHERWISE : RETURN(?);<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_CASE;<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (Count = SIZEOF(Items));<br/>
+(RepType : <a href="#ifclabel">IfcLabel</a>; Items : SET OF <a href="#ifcrepresentationitem">IfcRepresentationItem</a>) : LOGICAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count : INTEGER := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_LOCAL;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;CASE RepType OF <br/>&nbsp;&nbsp;&nbsp;&nbsp;'Point' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'PointCloud' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccartesianpointlist3d">IfcCartesianPointList3D</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifccurve">IfcCurve</a>.Dim = 2)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Curve3D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifccurve">IfcCurve</a>.Dim = 3)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifcsurface">IfcSurface</a>.Dim = 2)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Surface3D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp)) <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND (temp\<a href="#ifcsurface">IfcSurface</a>.Dim = 3)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'FillArea' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcannotationfillarea">IfcAnnotationFillArea</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Text' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifctextliteral">IfcTextLiteral</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedSurface' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | 'IFCGEOMETRYRESOURCE.<a href="#ifcbsplinesurface">IfcBSplineSurface</a>' IN TYPEOF(temp)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Annotation2D' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | (<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIZEOF(TYPEOF(temp) * [<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometriccurveset">IfcGeometricCurveSet</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCPRESENTATIONDEFINITIONRESOURCE.<a href="#ifcannotationfillarea">IfcAnnotationFillArea</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCPRESENTATIONDEFINITIONRESOURCE.<a href="#ifctextliteral">IfcTextLiteral</a>']) = 1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'GeometricSet' : <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'GeometricCurveSet' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometriccurveset">IfcGeometricCurveSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifcpoint">IfcPoint</a>' IN TYPEOF(temp))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR ('IFCGEOMETRYRESOURCE.<a href="#ifccurve">IfcCurve</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REPEAT i:=1 TO HIINDEX(Items);&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF ('IFCGEOMETRYRESOURCE.<a href="#ifcgeometricset">IfcGeometricSet</a>' IN TYPEOF(Items[i]))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (SIZEOF(QUERY(temp &lt;* Items[i]\<a href="#ifcgeometricset">IfcGeometricSet</a>.Elements | 'IFCGEOMETRYRESOURCE.<a href="#ifcsurface">IfcSurface</a>' IN TYPEOF(temp))) &gt; 0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := Count - 1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END_REPEAT;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Tessellation' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | 'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>' IN TYPEOF(temp)));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SurfaceOrSolidModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcshellbasedsurfacemodel">IfcShellBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacebasedsurfacemodel">IfcFaceBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsolidmodel">IfcSolidModel</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SurfaceModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifctessellateditem">IfcTessellatedItem</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcshellbasedsurfacemodel">IfcShellBasedSurfaceModel</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacebasedsurfacemodel">IfcFaceBasedSurfaceModel</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SolidModel' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcsolidmodel">IfcSolidModel</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SweptSolid' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | (SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcextrudedareasolid">IfcExtrudedAreaSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcrevolvedareasolid">IfcRevolvedAreaSolid</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) AND (SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcextrudedareasolidtapered">IfcExtrudedAreaSolidTapered</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcrevolvedareasolidtapered">IfcRevolvedAreaSolidTapered</a>'] * TYPEOF(temp)) = 0<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedSweptSolid' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsweptareasolid">IfcSweptAreaSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsweptdisksolid">IfcSweptDiskSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcsectionedsolidhorizontal">IfcSectionedSolidHorizontal</a>'] *&nbsp;&nbsp;TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'CSG' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcbooleanresult">IfcBooleanResult</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgprimitive3d">IfcCsgPrimitive3D</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgsolid">IfcCsgSolid</a>'] *&nbsp;&nbsp;TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Clipping' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | SIZEOF([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifccsgsolid">IfcCsgSolid</a>',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'IFCGEOMETRICMODELRESOURCE.<a href="#ifcbooleanclippingresult">IfcBooleanClippingResult</a>'] * TYPEOF(temp)) &gt;= 1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )); <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'Brep' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcfacetedbrep">IfcFacetedBrep</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'AdvancedBrep' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcmanifoldsolidbrep">IfcManifoldSolidBrep</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'BoundingBox' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcboundingbox">IfcBoundingBox</a>' IN TYPEOF(temp))));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF (SIZEOF(Items) &gt; 1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := 0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'SectionedSpine' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRICMODELRESOURCE.<a href="#ifcsectionedspine">IfcSectionedSpine</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'LightSource' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCPRESENTATIONORGANIZATIONRESOURCE.<a href="#ifclightsource">IfcLightSource</a>' IN TYPEOF(temp))));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;'MappedRepresentation' :<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count := SIZEOF(QUERY(temp &lt;* Items | ('IFCGEOMETRYRESOURCE.<a href="#ifcmappeditem">IfcMappedItem</a>' IN TYPEOF(temp))));&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp; OTHERWISE : RETURN(?);<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_CASE;<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (Count = SIZEOF(Items));<br/>
 <br/>
 
 <span class="keyword">END_FUNCTION</span>;

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_VesselLineCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 7 index3 4 index4 30 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.7.4.31");
+//-->
+</script>
+
+<h4 class="std">7.7.4.31 Pset_VesselLineCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcsharedcomponentelements/lexical/ifcmechanicalfastener.htm">IfcMechanicalFastener</a>
+ / <span class="self-ref">ROPE,IfcMechanicalFastenerType</span>
+ / <span class="self-ref">ROPE</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/15MrSyk291LxDRVgoh5BoK/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_VesselLineCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>LineIdentifier</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+</td><td>
+Reference ID relative to a design vessel in the project
+
+</td></tr>
+<tr><td>MidshipToFairLead</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+Distance from the vessel midship to the fairlead for the line
+
+</td></tr>
+<tr><td>CentreLineToFairlead</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+Distance from the vessel centreline to the fairlead for the line
+
+</td></tr>
+<tr><td>HeightAboveMainDeck</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+Height of the fairlead above the main deck of the vessel
+
+</td></tr>
+<tr><td>FairleadToTermination</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>
+</td><td>
+Distance from the fairlead to the bitt or winch on the vessel where the line terminates
+
+</td></tr>
+<tr><td>WinchBreakLimit</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcforcemeasure.htm">IfcForceMeasure</a>
+</td><td>
+Line force at which the winch starts to release the line (maximum load)
+
+</td></tr>
+<tr><td>PreTensionAim</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcforcemeasure.htm">IfcForceMeasure</a>
+</td><td>
+Line force that the winch is set to maintain (minimum load)
+
+</td></tr>
+<tr><td>LineType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Mooring line type
+
+</td></tr>
+<tr><td>LineStrength</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcforcemeasure.htm">IfcForceMeasure</a>
+</td><td>
+Breaking load of the line (note that ultimate stress is not part of any of the material Psets)
+
+</td></tr>
+<tr><td>TailLength</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Length of the tail
+
+</td></tr>
+<tr><td>TailDiameter</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Diameter of the tail
+
+</td></tr>
+<tr><td>TailType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Mooring tail type
+
+</td></tr>
+<tr><td>TailStrength</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcforcemeasure.htm">IfcForceMeasure</a>
+</td><td>
+Breaking load of the tail (note that ultimate stress is not part of any of the material Psets)
+
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_vessellinecommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

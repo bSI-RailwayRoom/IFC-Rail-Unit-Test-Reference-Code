@@ -292,14 +292,14 @@ IFC4 CHANGE Attribute added
 <summary>Concept usage</summary>
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 14.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 15.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 14 &mdash; IfcTask Object Typing</td></tr></table>
+<tr><td><p class="table">Table 15 &mdash; IfcTask Object Typing</td></tr></table>
 
 <p>The <span class="self-ref">IfcTask</span> defines the anticipated or actual occurrence of any task; common information about task types is handled by <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>.</p>
 <blockquote class="example">
@@ -310,25 +310,25 @@ IFC4 CHANGE Attribute added
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 15.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 16.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PredefinedType</b></th><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
 <tr><td>MOVE</td><td><a href="../../ifcsharedmgmtelements/pset/pset_packinginstructions.htm">Pset_PackingInstructions</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 15 &mdash; IfcTask Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 16 &mdash; IfcTask Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="object-nesting" />
 <p class="use-head">Nesting</p>
 <p>The <a href="../../templates/object-nesting.htm">Object Nesting</a> concept applies to this entity.</p><p><span class="self-ref">IfcTask</span> may be contained within an <span class="self-ref">IfcTask</span> using the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship. An <span class="self-ref">IfcTask</span> may in turn nest other <span class="self-ref">IfcTask</span>, <a href="../../ifcprocessextension/lexical/ifcprocedure.htm">IfcProcedure</a> or <a href="../../ifcprocessextension/lexical/ifcevent.htm">IfcEvent</a> entities. Such nesting indicates decomposed level of detail. From IFC4 onwards it is required to have a summary task (root of all tasks), which is used to define a link to the work plan or work schedule. All subtasks of the summary tasks are then implicitly linked to this work plan or work schedule. Please note that the summary task is used for data organization and not meant to store typical task information as defined by the user. It is therefore recommended that the summary task is hidden from the user to avoid confusion. Please also note that <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> is used to show the dependency between regular tasks and recurring task definitions (please see the section about time and duration use definitions).</p>
-<p>As shown in Figure 153, the installation of a number of items of equipment within a particular space may be the subject of a single task which is identified as 'fix equipment in space 123'. <span class="self-ref">IfcTask</span> represents the occurrence of a work performance of a type of process in a construction plan.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_example.png" alt="&quot;task example&quot;" title="Figure 153 &mdash; Task visualization"></td></tr><tr><td><p class="figure">Figure 153 &mdash; Task visualization</p></td></tr></table></p>
-<p>A task may nest other tasks as sub-items; the nesting relationship is modeled by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> as shown in Figure 154. For example, the construction of a stud wall may be designated as a nesting task named 'install wall #1' including other tasks such as 'install dry wall', 'install studs', 'wall taping', and 'erect wall' as sub-processes. A value that indicates the relative tree view position of the task (in comparison to the tree view position of other tasks and the task hierarchy defined by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a>).</p>
+<p>As shown in Figure 154, the installation of a number of items of equipment within a particular space may be the subject of a single task which is identified as 'fix equipment in space 123'. <span class="self-ref">IfcTask</span> represents the occurrence of a work performance of a type of process in a construction plan.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_example.png" alt="&quot;task example&quot;" title="Figure 154 &mdash; Task visualization"></td></tr><tr><td><p class="figure">Figure 154 &mdash; Task visualization</p></td></tr></table></p>
+<p>A task may nest other tasks as sub-items; the nesting relationship is modeled by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> as shown in Figure 155. For example, the construction of a stud wall may be designated as a nesting task named 'install wall #1' including other tasks such as 'install dry wall', 'install studs', 'wall taping', and 'erect wall' as sub-processes. A value that indicates the relative tree view position of the task (in comparison to the tree view position of other tasks and the task hierarchy defined by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a>).</p>
 <p>The task order information that is used for viewing purposes is derived from the order defined by the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship and thus is independent of the logical task order defined through <a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>. The hierarchy and order defined through <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> enables to order the tasks in a tree view or list view structure.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_instantiation_diagram.png" alt="&quot;task instantiation diagram&quot;" title="Figure 154 &mdash; Task nesting relationships"></td></tr><tr><td><p class="figure">Figure 154 &mdash; Task nesting relationships</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_instantiation_diagram.png" alt="&quot;task instantiation diagram&quot;" title="Figure 155 &mdash; Task nesting relationships"></td></tr><tr><td><p class="figure">Figure 155 &mdash; Task nesting relationships</p></td></tr></table></p>
 <p>A top-level task is declared within the <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> using the <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> relationship.</p>
 
 <br/><br/>
@@ -363,7 +363,7 @@ IFC4 CHANGE Attribute added
 
 <a id="constraint-association" />
 <p class="use-head">Constraint</p>
-<p>The <a href="../../templates/constraint-association.htm">Constraint Association</a> concept template applies to this entity as shown in Table 16.<table>
+<p>The <a href="../../templates/constraint-association.htm">Constraint Association</a> concept template applies to this entity as shown in Table 17.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Description</b></th></tr>
@@ -371,7 +371,7 @@ IFC4 CHANGE Attribute added
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 16 &mdash; IfcTask Constraint Association</td></tr></table>
+<tr><td><p class="table">Table 17 &mdash; IfcTask Constraint Association</td></tr></table>
 
 <p>Constraints may be applied to a task to indicate fixed task duration, fixed start or fixed finish, where <a href="../../ifcconstraintresource/lexical/ifcmetric.htm">IfcMetric</a>.ReferencePath is set to the corresponding attribute on the <a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a> entity.</p>
 

@@ -58,16 +58,16 @@
 <p>EXAMPLE  In split level houses, a storey is split into two or more partial storeys, each with a different elevation. It can be handled by defining a storey, which includes two or more partial storeys with the individual elevations.</p>
 </blockquote>
 <p>The <span class="self-ref">IfcBuildingStorey</span> is used to build the spatial structure of a building (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together by using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.</p>
-<p>Figure 161 shows the <span class="self-ref">IfcBuildingStorey</span> as part of the s patial structure. It also serves as the spatial container for building and other elements.</p>
+<p>Figure 162 shows the <span class="self-ref">IfcBuildingStorey</span> as part of the s patial structure. It also serves as the spatial container for building and other elements.</p>
 <blockquote class="note">
 <p>NOTE  Detailed requirements on mandatory element containment and placement structure relationships are given in view definitions and implementer agreements.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuildingstorey-spatialstructure.png" alt="&quot;IfcBuildingStorey as part of a spatial structure&quot;" title="Figure 161 &mdash; Building storey composition"></td></tr><tr><td><p class="figure">Figure 161 &mdash; Building storey composition</p></td></tr></table></p>
-<p>Figure 162 describes the heights and elevations of the <span class="self-ref">IfcBuildingStorey</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuildingstorey-spatialstructure.png" alt="&quot;IfcBuildingStorey as part of a spatial structure&quot;" title="Figure 162 &mdash; Building storey composition"></td></tr><tr><td><p class="figure">Figure 162 &mdash; Building storey composition</p></td></tr></table></p>
+<p>Figure 163 describes the heights and elevations of the <span class="self-ref">IfcBuildingStorey</span>.</p>
 <p>* elevation of storey provided by: <i>IfcBuildingStorey.Elevation</i> as a local height value relative to <i>IfcBuilding.ElevationOfRefHeight</i>, it is usually the top of construction slab<br>
 * net height of storey, also referred to as total height or system height (top of construction slab to top of construction slab above): provided by BaseQuantity with Name=&quot;GrossHeight&quot;<br>
 * net height of storey (top of construction slab to bottom of construction slab above): provided by BaseQuantity with Name=&quot;NetHeight&quot;</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuildingstorey_heights.png" alt="&quot;space heights&quot;" title="Figure 162 &mdash; Building storey elevations"></td></tr><tr><td><p class="figure">Figure 162 &mdash; Building storey elevations</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbuildingstorey_heights.png" alt="&quot;space heights&quot;" title="Figure 163 &mdash; Building storey elevations"></td></tr><tr><td><p class="figure">Figure 163 &mdash; Building storey elevations</p></td></tr></table></p>
 <blockquote class="history">
 <p>HISTORY  New entity in IFC1.0</p>
 </blockquote>
@@ -246,7 +246,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 <summary>Concept usage</summary>
 <a id="spatial-composition" />
 <p class="use-head">Spatial Composition</p>
-<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 37.<table>
+<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 38.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingObject</b></th><th><b>Description</b></th></tr>
@@ -254,7 +254,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 37 &mdash; IfcBuildingStorey Spatial Composition</td></tr></table>
+<tr><td><p class="table">Table 38 &mdash; IfcBuildingStorey Spatial Composition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcBuildingStorey.Decomposes</i> it references (<a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a> || <span class="self-ref">IfcBuildingStorey</span>) through <i>IfcRelAggregates.RelatingObject_IfcBuildingStorey</i>, the referenced
@@ -267,7 +267,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 
 <a id="spatial-decomposition" />
 <p class="use-head">Spatial Decomposition</p>
-<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 38.<table>
+<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 39.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -275,7 +275,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 38 &mdash; IfcBuildingStorey Spatial Decomposition</td></tr></table>
+<tr><td><p class="table">Table 39 &mdash; IfcBuildingStorey Spatial Decomposition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcBuildingStorey.IsDecomposedBy</i> it references <span class="self-ref">IfcBuildingStorey</span> || <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> through <i>IfcRelAggregates.RelatedObjects</i>. If it refers to another instance of <span class="self-ref">IfcBuildingStorey</span>, the referenced <span class="self-ref">IfcBuildingStorey</span> needs to have a different and lower <i>CompositionType</i>, i.e. ELEMENT (if the other <span class="self-ref">IfcBuildingStorey</span> has COMPLEX), or PARTIAL (if the other <span class="self-ref">IfcBuildingStorey</span> has ELEMENT).</p>
@@ -298,7 +298,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 39.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 40.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -314,20 +314,20 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 39 &mdash; IfcBuildingStorey Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 40 &mdash; IfcBuildingStorey Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 40.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 41.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
 <tr><td><a href="../../ifcproductextension/qset/qto_buildingstoreybasequantities.htm">Qto_BuildingStoreyBaseQuantities</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 40 &mdash; IfcBuildingStorey Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 41 &mdash; IfcBuildingStorey Quantity Sets</td></tr></table>
 
 <br/><br/>
 
@@ -343,10 +343,10 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 
 <a id="footprint-geomset-geometry" />
 <p class="use-head">FootPrint GeomSet Geometry</p>
-<p>The <a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a> concept template applies to this entity as shown in Table 41.<table>
+<p>The <a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a> concept template applies to this entity as shown in Table 42.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 41 &mdash; IfcBuildingStorey FootPrint GeomSet Geometry</td></tr></table>
+<tr><td><p class="table">Table 42 &mdash; IfcBuildingStorey FootPrint GeomSet Geometry</td></tr></table>
 
 <p>The foot print representation of <span class="self-ref">IfcBuildingStorey</span> is given by either a single 2D curve (such as <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a> or <a href="../../ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a>), or by a list of 2D curves (in case of inner boundaries), if the building storey has an independent geometric representation.</p>
 <blockquote class="note">
@@ -357,14 +357,14 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 
 <a id="body-geometry" />
 <p class="use-head">Body Geometry</p>
-<p>The <a href="../../templates/body-geometry.htm">Body Geometry</a> concept template applies to this entity as shown in Table 42.<table>
+<p>The <a href="../../templates/body-geometry.htm">Body Geometry</a> concept template applies to this entity as shown in Table 43.<table>
 <tr><td>
 <table class="gridtable">
 <tr></tr>
 <tr></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 42 &mdash; IfcBuildingStorey Body Geometry</td></tr></table>
+<tr><td><p class="table">Table 43 &mdash; IfcBuildingStorey Body Geometry</td></tr></table>
 
 <p>The body (or solid model) geometric representation (if the building storey has an independent geometric representation) of <span class="self-ref">IfcBuildingStorey</span> is defined using faceted B-Rep capabilities (with or without voids), based on the <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm">IfcFacetedBrep</a> or on the <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrepwithvoids.htm">IfcFacetedBrepWithVoids</a>.</p>
 <blockquote class="note">
@@ -446,6 +446,7 @@ NOTE  If the geometric data is provided (<i>ObjectPlacement</i> is specified), 
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm">IfcBuildingStorey</a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm#spatial-composition">Spatial Composition</a></td><td><a href="../../templates/spatial-composition.htm">Spatial Composition</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm#spatial-decomposition">Spatial Decomposition</a></td><td><a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a></td><td>General Usage</td></tr>

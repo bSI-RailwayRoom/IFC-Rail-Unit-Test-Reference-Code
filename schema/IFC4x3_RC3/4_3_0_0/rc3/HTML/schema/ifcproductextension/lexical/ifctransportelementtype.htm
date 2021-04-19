@@ -220,8 +220,15 @@ The type denotes a particular type that indicates the object further. The use ha
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementtypeselect.htm">IfcTransportElementTypeSelect</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) AND (PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) OR<br/>
-(((PredefinedType = <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED) OR (PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)) AND EXISTS(SELF\<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+((PredefinedType = <a href="../../ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifctransportelementnonfixedtypeenum.htm">IfcTransportElementNonFixedTypeEnum</a>.USERDEFINED)<br/>
+AND<br/>
+EXISTS(SELF\<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>.ElementType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

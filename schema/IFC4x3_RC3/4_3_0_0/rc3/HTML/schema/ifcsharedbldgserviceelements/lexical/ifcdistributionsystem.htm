@@ -67,6 +67,13 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 </td><td>X</td></tr>
 </table>
 </details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either the <i>PredefinedType</i> attribute is unset, or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
+</table>
+
+</details>
 </section>
 <section>
 <h5 class="num">Inherited definitions from supertypes</h5>
@@ -189,7 +196,7 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 <summary>Concept usage</summary>
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 232.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 233.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -198,22 +205,22 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 232 &mdash; IfcDistributionSystem Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 233 &mdash; IfcDistributionSystem Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="aggregation" />
 <p class="use-head">Aggregation</p>
-<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 233.<table>
+<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 234.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 233 &mdash; IfcDistributionSystem Aggregation</td></tr></table>
+<tr><td><p class="table">Table 234 &mdash; IfcDistributionSystem Aggregation</td></tr></table>
 
 <br/><br/>
 
 <a id="group-assignment" />
 <p class="use-head">Group Assignment</p>
-<p>The <a href="../../templates/group-assignment.htm">Group Assignment</a> concept template applies to this entity as shown in Table 234.<table>
+<p>The <a href="../../templates/group-assignment.htm">Group Assignment</a> concept template applies to this entity as shown in Table 235.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>IsGrouped</b></th><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -221,7 +228,7 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 234 &mdash; IfcDistributionSystem Group Assignment</td></tr></table>
+<tr><td><p class="table">Table 235 &mdash; IfcDistributionSystem Group Assignment</td></tr></table>
 
 <p>For the most common case of an <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> subtype containing ports of a particular <i>PredefinedType</i> that all belong to the same distribution system, the <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> is assigned to the <span class="self-ref">IfcDistributionSystem</span> via the <a href="../../ifckernel/lexical/ifcrelassignstogroup.htm">IfcRelAssignsToGroup</a> relationship, where <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a>'s are implied as part of the corresponding system based on their <i>PredefinedType</i>. An <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> may belong to multiple systems, however only one <span class="self-ref">IfcDistributionSystem</span> of a particular <i>PredefinedType</i>.</p>
 <p>For rare cases where an <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> subtype contains ports of the same <i>PredefinedType</i> yet different ports belong to different systems, alternatively each <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a> may be directly assigned to a single <span class="self-ref">IfcDistributionSystem</span> via the <a href="../../ifckernel/lexical/ifcrelassignstogroup.htm">IfcRelAssignsToGroup</a> relationship, where the <i>PredefinedType</i> must match. Such assignment indicates that the <span class="self-ref">IfcDistributionSystem</span> assigned from the <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a> overrides any such system of the same <i>PredefinedType</i> assigned from the containing <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a>, if any.</p>
@@ -229,8 +236,8 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 <blockquote class="example">
 <p>EXAMPLE  A gas-powered hot water heater may have three ports: GAS, DOMESTICCOLDWATER, and DOMESTICHOTWATER. The heater is a member of two systems (GAS and DOMESTICCOLDWATER), and hosts one system (DOMESTICHOTWATER) at the corresponding port.</p>
 </blockquote>
-<p>Figure 284 illustrates a distribution system for an electrical circuit.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcdistributionsystem-01.png" alt="&quot;Instance diagram for electrical circuit&quot;" title="Figure 284 &mdash; Distribution system assignment"></td></tr><tr><td><p class="figure">Figure 284 &mdash; Distribution system assignment</p></td></tr></table></p>
+<p>Figure 285 illustrates a distribution system for an electrical circuit.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcdistributionsystem-01.png" alt="&quot;Instance diagram for electrical circuit&quot;" title="Figure 285 &mdash; Distribution system assignment"></td></tr><tr><td><p class="figure">Figure 285 &mdash; Distribution system assignment</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -310,7 +317,10 @@ NOTE  In many scenarios the <i>Name</i> attribute refers to the short name or n
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcsystem.htm">IfcSystem</a>)<b>;</b><br/>
 &nbsp;&nbsp;LongName : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
 &nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcsharedbldgserviceelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

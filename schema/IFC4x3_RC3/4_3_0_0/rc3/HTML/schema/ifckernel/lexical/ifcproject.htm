@@ -191,7 +191,7 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 <summary>Concept usage</summary>
 <a id="project-units" />
 <p class="use-head">Project Units</p>
-<p>The <a href="../../templates/project-units.htm">Project Units</a> concept template applies to this entity as shown in Table 6.<table>
+<p>The <a href="../../templates/project-units.htm">Project Units</a> concept template applies to this entity as shown in Table 7.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasUnits</b></th><th><b>Description</b></th></tr>
@@ -199,13 +199,13 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 6 &mdash; IfcProject Project Units</td></tr></table>
+<tr><td><p class="table">Table 7 &mdash; IfcProject Project Units</td></tr></table>
 
 <br/><br/>
 
 <a id="project-representation-context" />
 <p class="use-head">Project Representation Context</p>
-<p>The <a href="../../templates/project-representation-context.htm">Project Representation Context</a> concept template applies to this entity as shown in Table 7.<table>
+<p>The <a href="../../templates/project-representation-context.htm">Project Representation Context</a> concept template applies to this entity as shown in Table 8.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>ContextIdentifier</b></th><th><b>ContextType</b></th><th><b>Description</b></th></tr>
@@ -215,7 +215,7 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 7 &mdash; IfcProject Project Representation Context</td></tr></table>
+<tr><td><p class="table">Table 8 &mdash; IfcProject Project Representation Context</td></tr></table>
 
 <br/><br/>
 
@@ -239,7 +239,7 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 
 <a id="project-declaration" />
 <p class="use-head">Project Declaration</p>
-<p>The <a href="../../templates/project-declaration.htm">Project Declaration</a> concept template applies to this entity as shown in Table 8.<table>
+<p>The <a href="../../templates/project-declaration.htm">Project Declaration</a> concept template applies to this entity as shown in Table 9.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Type</b></th><th><b>Description</b></th></tr>
@@ -261,7 +261,7 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 8 &mdash; IfcProject Project Declaration</td></tr></table>
+<tr><td><p class="table">Table 9 &mdash; IfcProject Project Declaration</td></tr></table>
 
 <p>The <span class="self-ref">IfcProject</span> is also the context for other information about the construction project such as a work plan. Non-product structures are assigned by their first level object to <span class="self-ref">IfcProject</span> using the <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> relationship. The <span class="self-ref">IfcProject</span> provides the context for work plans (or other non-product based) descriptions of the construction project. It is handled by the objectified relationship <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a>.</p>
 <blockquote class="note">
@@ -273,14 +273,14 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 <blockquote class="note">
 <p>NOTE  The products and tasks can have direct linking relationships. For example the <a href="../../ifcsharedbldgelements/lexical/ifccurtainwall.htm">IfcCurtainWall</a> can be assigned to a <a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a> as an input or output for a construction schedule.</p>
 </blockquote>
-<p>Figure 143 illustrates the use of <span class="self-ref">IfcProject</span> as context for work plans or work schedules.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcproject_fig-1.png" alt="&quot;project relationships&quot;" title="Figure 143 &mdash; Project spatial and work plan structure"></td></tr><tr><td><p class="figure">Figure 143 &mdash; Project spatial and work plan structure</p></td></tr></table></p>
+<p>Figure 144 illustrates the use of <span class="self-ref">IfcProject</span> as context for work plans or work schedules.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcproject_fig-1.png" alt="&quot;project relationships&quot;" title="Figure 144 &mdash; Project spatial and work plan structure"></td></tr><tr><td><p class="figure">Figure 144 &mdash; Project spatial and work plan structure</p></td></tr></table></p>
 
 <br/><br/>
 
 <a id="spatial-decomposition" />
 <p class="use-head">Spatial Decomposition</p>
-<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 9.<table>
+<p>The <a href="../../templates/spatial-decomposition.htm">Spatial Decomposition</a> concept template applies to this entity as shown in Table 10.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -288,7 +288,7 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 9 &mdash; IfcProject Spatial Decomposition</td></tr></table>
+<tr><td><p class="table">Table 10 &mdash; IfcProject Spatial Decomposition</td></tr></table>
 
 <p>The <span class="self-ref">IfcProject</span> is used to reference the root of the spatial structure of a building or other construction project (that serves as the primary project breakdown and is required to be hierarchical). The spatial structure elements are linked together, and to the <span class="self-ref">IfcProject</span>, by using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.</p>
 <p>The following constraints are applied to using the relationshio <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a> in context of <span class="self-ref">IfcProject</span></p>
@@ -299,8 +299,8 @@ NOTE  The spatial hiearchy is assigned to <a href="../../ifckernel/lexical/ifcp
 <li><span class="self-ref">IfcProject</span>.Decomposes -- it shall be NIL, i.e. the <span class="self-ref">IfcProject</span> shall be on top of the root of the spatial structure tree.</li>
 <li><span class="self-ref">IfcProject</span>.IsDecomposedBy -- referencing (<a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a> || <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a> || <a href="../../ifcproductextension/lexical/ifcspatialzone.htm">IfcSpatialZone</a>) by using <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.RelatedObjects. The <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>, <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a>, or <a href="../../ifcproductextension/lexical/ifcspatialzone.htm">IfcSpatialZone</a> being referenced shall be the root of the spatial structure.</li>
 </ul>
-<p>Figure 144 illustrates project relationships with spatial structures, elements, and element type libraries.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcproject_fig-2.png" alt="&quot;spatial decomposition relationships&quot;" title="Figure 144 &mdash; Project spatial structure, products and product type library"></td></tr><tr><td><p class="figure">Figure 144 &mdash; Project spatial structure, products and product type library</p></td></tr></table></p>
+<p>Figure 145 illustrates project relationships with spatial structures, elements, and element type libraries.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcproject_fig-2.png" alt="&quot;spatial decomposition relationships&quot;" title="Figure 145 &mdash; Project spatial structure, products and product type library"></td></tr><tr><td><p class="figure">Figure 145 &mdash; Project spatial structure, products and product type library</p></td></tr></table></p>
 
 <br/><br/>
 

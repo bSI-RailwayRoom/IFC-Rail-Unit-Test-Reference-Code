@@ -42,10 +42,19 @@ NOTE Definition from ISO 6707-1: road, runway, or similar construction above the
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
 <th>G</th></tr>
-<tr><td>9</td><td>Flexible</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a></td><td>? </td><td>
 Boolean to identify the pavement type as a Flexible or Rigid structure.
 </td><td>X</td></tr>
 </table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either the <i>PredefinedType</i> attribute is unset(e.g. because an <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtype.htm">IfcPavementType</a> is associated), or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
+<tr><td>CorrectTypeAssigned</td><td>Either there is no type object associated, i.e. the <i>IsTypedBy</i> inverse relationship is not provided, or the associated type object has to be of type <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtype.htm">IfcPavementType</a>.
+</td></tr>
+</table>
+
 </details>
 </section>
 <section>
@@ -190,7 +199,7 @@ IFC4 CHANGE New inverse relationship.
 </td><td>X</td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a></td></tr>
 <tr><td colspan="6"><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavement.htm">IfcPavement</a></td></tr>
-<tr><td>9</td><td>Flexible</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a></td><td>? </td><td>
 Boolean to identify the pavement type as a Flexible or Rigid structure.
 </td><td>X</td></tr>
 </table>
@@ -216,6 +225,7 @@ Boolean to identify the pavement type as a Flexible or Rigid structure.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
@@ -247,7 +257,7 @@ Boolean to identify the pavement type as a Flexible or Rigid structure.
 &nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcsharedinfrastructureelements/lexical/ifcpavement.htm">IfcPavement</a>&quot;&gt;<br/>
 &nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a>&quot;&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Flexible&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
 &nbsp;&lt;/xs:complexType&gt;<br/>
@@ -255,8 +265,12 @@ Boolean to identify the pavement type as a Flexible or Rigid structure.
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">ENTITY</span> IfcPavement<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcbuiltelement.htm">IfcBuiltElement</a>)<b>;</b><br/>
-&nbsp;&nbsp;Flexible : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>.USERDEFINED) OR<br/>
+((PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtypeenum.htm">IfcPavementTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+(&#39;IFCSHAREDINFRASTRUCTUREELEMENTS.<a href="../../ifcsharedinfrastructureelements/lexical/ifcpavementtype.htm">IfcPavementType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcsharedinfrastructureelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

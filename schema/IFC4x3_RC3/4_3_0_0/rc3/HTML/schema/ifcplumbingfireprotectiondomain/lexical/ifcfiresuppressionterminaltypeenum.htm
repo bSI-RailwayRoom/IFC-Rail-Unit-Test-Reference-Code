@@ -32,6 +32,13 @@
 <tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des types d'appareil terminal d'extinction d'incendie</b></td></tr>
 </table>
 </details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcfiresuppressionterminaltypeenum.htm">IfcFireSuppressionTerminalTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIREMONITOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
 <section>
 <h5 class="num">Semantic definitions at the type</h5>
 <details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcFireSuppressionTerminalTypeEnum</span> defines the range of different types of fire suppression terminal that can be specified.</p>
@@ -46,7 +53,7 @@
 </td></tr><tr><td>HOSEREEL</td><td>A supporting framework on which a hose may be wound.
 </td></tr><tr><td>SPRINKLER</td><td>Device for sprinkling water from a pipe under pressure over an area.
 </td></tr><tr><td>SPRINKLERDEFLECTOR</td><td>Device attached to a sprinkler to deflect the water flow into a spread pattern to cover the required area.
-</td></tr><tr><td>USERDEFINED</td><td>User-defined type
+</td></tr><tr><td>FIREMONITOR</td><td></td></tr><tr><td>USERDEFINED</td><td>User-defined type
 </td></tr><tr><td>NOTDEFINED</td><td>Underined type.
 </td></tr></table>
 </details>
@@ -60,6 +67,7 @@
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;hosereel&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sprinkler&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sprinklerdeflector&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;firemonitor&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
@@ -67,7 +75,7 @@
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcFireSuppressionTerminalTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;BREECHINGINLET, <br/>&nbsp;FIREHYDRANT, <br/>&nbsp;HOSEREEL, <br/>&nbsp;SPRINKLER, <br/>&nbsp;SPRINKLERDEFLECTOR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;BREECHINGINLET, <br/>&nbsp;FIREHYDRANT, <br/>&nbsp;HOSEREEL, <br/>&nbsp;SPRINKLER, <br/>&nbsp;SPRINKLERDEFLECTOR, <br/>&nbsp;FIREMONITOR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcplumbingfireprotectiondomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

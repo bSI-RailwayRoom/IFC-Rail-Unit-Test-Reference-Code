@@ -11,7 +11,7 @@
     <title>IfcSegmentedReferenceCurve</title>
 
     <style type="text/css">
-      body { counter-reset: index1 8 index2 9 index3 3 index4 63 index5 0; }
+      body { counter-reset: index1 8 index2 9 index3 3 index4 62 index5 0; }
     </style>
   </head>
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 <!--
-    parent.index.location.replace("../../toc-8.htm#8.9.3.64");
+    parent.index.location.replace("../../toc-8.htm#8.9.3.63");
 //-->
 </script>
 
@@ -43,9 +43,10 @@
 </details>
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
-<details open="open"><summary>Entity definition</summary><p>A segmented reference curve is constructed from a reference base curve that should in most cases (there can be exceptions) be used for positioning of a list of <i>IfcReferenceSegment</i>. The type of the base curve that IfcReferenceSegment references provide the information of the interpolation method between the start point of the segment and its end point defined by the segment length (measured along the segments IfcLinearPacement.PlacmeentMeasuredAlong curve).</p>
-<p>Figure 385 shows a cross section of a <span class="self-ref">IfcSegmentedReferenceCurve</span> usage for an alignmnent representation featuring cant</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/IfcSegmentedReferenceCurve.JPG" alt="&quot;segmented reference curve usage&quot;" title="Figure 385 &mdash; use of a segmented reference curve on a cant segment based on a gradient curve"></td></tr><tr><td><p class="figure">Figure 385 &mdash; use of a segmented reference curve on a cant segment based on a gradient curve</p></td></tr></table></p>
+<details open="open"><summary>Entity definition</summary><p>A segmented reference curve is constructed from a referenced base curve (<i>BaseCurve</i>) that should in most cases (there can be exceptions) be used for positioning of a list of <a href="../../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a> occurrences. The type of the base curve that <a href="../../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a> references provides the information of the interpolation method between the start point of the segment and its end point defined by the segment length of the <a href="../../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a>.<i>ParentCurve</i>.</p>
+<p>The parametrization of <i>IfcSegmentReferenceCurve</i> is based on the parametrization of <i>BaseCurve</i> and is not altered by the <i>Segments</i>.</p>
+<p>Figure 386 shows a cross section of a <span class="self-ref">IfcSegmentedReferenceCurve</span> usage for an alignmnent representation featuring cant</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/IfcSegmentedReferenceCurve.JPG" alt="&quot;segmented reference curve usage&quot;" title="Figure 386 &mdash; use of a segmented reference curve on a cant segment based on a gradient curve"></td></tr><tr><td><p class="figure">Figure 386 &mdash; use of a segmented reference curve on a cant segment based on a gradient curve</p></td></tr></table></p>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>

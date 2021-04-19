@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -120,6 +120,13 @@ TYPE IfcImpactProtectionDeviceTypeEnum = ENUMERATION OF
 	,DAMPINGSYSTEM
 	,FENDER
 	,BUMPER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcPavementTypeEnum = ENUMERATION OF
+	(FLEXIBLE
+	,RIGID
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -285,9 +292,21 @@ ENTITY IfcImpactProtectionDevice
  SUBTYPE OF (IfcElementComponent);
 	PredefinedType : OPTIONAL IfcImpactProtectionDeviceTypeSelect;
  WHERE
-	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
-(PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
-((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType))
+OR
+((PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcVibrationIsolatorTypeEnum.USERDEFINED))
+ OR
+(((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcVibrationIsolatorTypeEnum.USERDEFINED))
+AND
+EXISTS(SELF\IfcObject.ObjectType));
 	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
 ('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCIMPACTPROTECTIONDEVICETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
@@ -296,18 +315,38 @@ ENTITY IfcImpactProtectionDeviceType
  SUBTYPE OF (IfcElementComponentType);
 	PredefinedType : IfcImpactProtectionDeviceTypeSelect;
  WHERE
-	CorrectPredefinedType : (PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED) OR
-((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+	CorrectPredefinedType : ((PredefinedType <> IfcImpactProtectionDeviceTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcVibrationIsolatorTypeEnum.USERDEFINED))
+OR
+(((PredefinedType = IfcImpactProtectionDeviceTypeEnum.USERDEFINED)
+OR 
+(PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED)
+OR 
+(PredefinedType = IfcVibrationIsolatorTypeEnum.USERDEFINED))
+AND
+EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcPavement
  SUBTYPE OF (IfcBuiltElement);
-	Flexible : OPTIONAL IfcBoolean;
+	PredefinedType : OPTIONAL IfcPavementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcPavementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcPavementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDINFRASTRUCTUREELEMENTS.IFCPAVEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
 
 ENTITY IfcPavementType
  SUBTYPE OF (IfcBuiltElementType);
-	Flexible : IfcBoolean;
+	PredefinedType : IfcPavementTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcPavementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcPavementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
 END_ENTITY;
 
 ENTITY IfcPlant

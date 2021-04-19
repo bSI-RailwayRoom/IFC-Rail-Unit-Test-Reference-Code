@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-17 February 2021
+19 April 2021
 
 *)
 
@@ -117,7 +117,6 @@ REFERENCE FROM IFCMEASURERESOURCE
 
 REFERENCE FROM IFCPRESENTATIONAPPEARANCERESOURCE
 (
-  IfcNullStyle
 );
 
 REFERENCE FROM IFCPROPERTYRESOURCE
@@ -344,6 +343,7 @@ TYPE IfcSpaceTypeEnum = ENUMERATION OF
 	,GFA
 	,INTERNAL
 	,EXTERNAL
+	,BERTH
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -368,6 +368,7 @@ TYPE IfcTransportElementFixedTypeEnum = ENUMERATION OF
 	,MOVINGWALKWAY
 	,CRANEWAY
 	,LIFTINGGEAR
+	,HAULINGGEAR
 	,USERDEFINED
 	,NOTDEFINED);
 END_TYPE;
@@ -406,6 +407,10 @@ END_ENTITY;
 ENTITY IfcBridge
  SUBTYPE OF (IfcFacility);
 	PredefinedType : OPTIONAL IfcBridgeTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcBridgeTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcBridgeTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcBuilding
@@ -615,6 +620,28 @@ ENTITY IfcFacilityPart
  SUBTYPE OF (IfcSpatialStructureElement);
 	PredefinedType : IfcFacilityPartTypeSelect;
 	UsageType : IfcFacilityUsageEnum;
+ WHERE
+	CorrectPredefinedType : ((PredefinedType <> IfcBridgePartTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcRailwayPartTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcRoadPartTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcMarinePartTypeEnum.USERDEFINED)
+OR
+(PredefinedType <> IfcFacilityPartCommonTypeEnum.USERDEFINED))
+OR
+(((PredefinedType = IfcBridgePartTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcRailwayPartTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcRoadPartTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcMarinePartTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcFacilityPartCommonTypeEnum.USERDEFINED))
+AND
+EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcFeatureElement
@@ -623,6 +650,8 @@ ENTITY IfcFeatureElement
     ,IfcFeatureElementSubtraction
     ,IfcSurfaceFeature))
  SUBTYPE OF (IfcElement);
+ WHERE
+	NotContained : SIZEOF(ContainedInStructure) = 0;
 END_ENTITY;
 
 ENTITY IfcFeatureElementAddition
@@ -702,7 +731,6 @@ ENTITY IfcLinearPositioningElement
  SUPERTYPE OF (ONEOF
     (IfcAlignment))
  SUBTYPE OF (IfcPositioningElement);
-	Axis : IfcCurve;
 END_ENTITY;
 
 ENTITY IfcOpeningElement
@@ -712,6 +740,10 @@ ENTITY IfcOpeningElement
 	PredefinedType : OPTIONAL IfcOpeningElementTypeEnum;
  INVERSE
 	HasFillings : SET [0:?] OF IfcRelFillsElement FOR RelatingOpeningElement;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcOpeningElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcOpeningElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcOpeningStandardCase
@@ -744,6 +776,10 @@ END_ENTITY;
 ENTITY IfcProjectionElement
  SUBTYPE OF (IfcFeatureElementAddition);
 	PredefinedType : OPTIONAL IfcProjectionElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcProjectionElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcProjectionElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
 END_ENTITY;
 
 ENTITY IfcReferent
@@ -1016,9 +1052,17 @@ ENTITY IfcTransportElement
  SUBTYPE OF (IfcElement);
 	PredefinedType : OPTIONAL IfcTransportElementTypeSelect;
  WHERE
-	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
-((PredefinedType <> IfcTransportElementFixedTypeEnum.USERDEFINED) AND (PredefinedType <> IfcTransportElementNonFixedTypeEnum.USERDEFINED)) OR
-(((PredefinedType = IfcTransportElementFixedTypeEnum.USERDEFINED) OR (PredefinedType = IfcTransportElementNonFixedTypeEnum.USERDEFINED)) AND EXISTS(SELF\IfcObject.ObjectType));
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType))
+OR
+((PredefinedType <> IfcTransportElementFixedTypeEnum.USERDEFINED)
+AND
+(PredefinedType <> IfcTransportElementNonFixedTypeEnum.USERDEFINED))
+OR
+(((PredefinedType = IfcTransportElementFixedTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcTransportElementNonFixedTypeEnum.USERDEFINED))
+AND
+EXISTS(SELF\IfcElementType.ElementType));
 	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
   ('IFCPRODUCTEXTENSION.IFCTRANSPORTELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
 END_ENTITY;
@@ -1027,8 +1071,15 @@ ENTITY IfcTransportElementType
  SUBTYPE OF (IfcElementType);
 	PredefinedType : IfcTransportElementTypeSelect;
  WHERE
-	CorrectPredefinedType : ((PredefinedType <> IfcTransportElementFixedTypeEnum.USERDEFINED) AND (PredefinedType <> IfcTransportElementNonFixedTypeEnum.USERDEFINED)) OR
-(((PredefinedType = IfcTransportElementFixedTypeEnum.USERDEFINED) OR (PredefinedType = IfcTransportElementNonFixedTypeEnum.USERDEFINED)) AND EXISTS(SELF\IfcElementType.ElementType));
+	CorrectPredefinedType : ((PredefinedType <> IfcTransportElementFixedTypeEnum.USERDEFINED)
+AND
+(PredefinedType <> IfcTransportElementNonFixedTypeEnum.USERDEFINED))
+OR
+((PredefinedType = IfcTransportElementFixedTypeEnum.USERDEFINED)
+OR
+(PredefinedType = IfcTransportElementNonFixedTypeEnum.USERDEFINED)
+AND
+EXISTS(SELF\IfcElementType.ElementType));
 END_ENTITY;
 
 ENTITY IfcVirtualElement

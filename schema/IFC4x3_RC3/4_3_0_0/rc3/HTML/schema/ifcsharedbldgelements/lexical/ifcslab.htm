@@ -255,20 +255,20 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 <summary>Concept usage</summary>
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 177.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 178.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcsharedbldgelements/lexical/ifcslabtype.htm">IfcSlabType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 177 &mdash; IfcSlab Object Typing</td></tr></table>
+<tr><td><p class="table">Table 178 &mdash; IfcSlab Object Typing</td></tr></table>
 
 <br/><br/>
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 178.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 179.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -357,20 +357,20 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 178 &mdash; IfcSlab Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 179 &mdash; IfcSlab Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 179.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 180.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
 <tr><td><a href="../../ifcsharedbldgelements/qset/qto_slabbasequantities.htm">Qto_SlabBaseQuantities</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 179 &mdash; IfcSlab Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 180 &mdash; IfcSlab Quantity Sets</td></tr></table>
 
 <br/><br/>
 
@@ -385,7 +385,7 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 
 <a id="spatial-containment" />
 <p class="use-head">Spatial Containment</p>
-<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 180.<table>
+<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 181.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingStructure</b></th><th><b>Description</b></th></tr>
@@ -397,7 +397,7 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 180 &mdash; IfcSlab Spatial Containment</td></tr></table>
+<tr><td><p class="table">Table 181 &mdash; IfcSlab Spatial Containment</td></tr></table>
 
 <p>The <span class="self-ref">IfcSlab</span>, as any subtype of <i>IfcBuildingElement</i>, may participate alternatively in one of the two different containment relationships:</p>
 <ul>
@@ -423,11 +423,11 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 <li><strong>Profile</strong>: <i>IfcArbitraryClosedProfileDef, IfcRectangleProfileDef, IfcCircleProfileDef, IfcEllipseProfileDef</i> shall be supported.</li>
 <li><strong>Extrusion</strong>: The profile can be extruded perpendicularly or non-perpendicularly to the plane of the swept profile.</li>
 </ul>
-<p>Figure 255 illustrates a 'SweptSolid' geometric representation.</p>
+<p>Figure 256 illustrates a 'SweptSolid' geometric representation.</p>
 <blockquote class="note">
 <p>NOTE  The following interpretation of dimension parameter applies for polygonal slabs (in ground floor view): &gt; * <i>IfcArbitraryClosedProfileDef.OuterCurve</i>: closed bounded curve interpreted as area (or foot print) of the slab.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcslab_standard-layout1.gif" alt="&quot;standard slab&quot;" title="Figure 255 &mdash; Slab body extrusion"></td></tr><tr><td><p class="figure">Figure 255 &mdash; Slab body extrusion</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcslab_standard-layout1.gif" alt="&quot;standard slab&quot;" title="Figure 256 &mdash; Slab body extrusion"></td></tr><tr><td><p class="figure">Figure 256 &mdash; Slab body extrusion</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -440,14 +440,14 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 <li><strong>Extrusion</strong>: see 'SweptSolid' shape representation,</li>
 <li><strong>Boolean result</strong>: The <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a> shall be supported, allowing for Boolean differences between the swept solid (here <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>) and one or several <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a>.</li>
 </ul>
-<p>Figure 256 illustrates a 'Clipping' geometric representation with definition of a roof slab using advanced geometric representation. The profile is extruded non-perpendicular and the slab body is clipped at the eave.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcslab_advanced-layout1.gif" alt="&quot;advanced slab&quot;" title="Figure 256 &mdash; Slab body clipping"></td></tr><tr><td><p class="figure">Figure 256 &mdash; Slab body clipping</p></td></tr></table></p>
+<p>Figure 257 illustrates a 'Clipping' geometric representation with definition of a roof slab using advanced geometric representation. The profile is extruded non-perpendicular and the slab body is clipped at the eave.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcslab_advanced-layout1.gif" alt="&quot;advanced slab&quot;" title="Figure 257 &mdash; Slab body clipping"></td></tr><tr><td><p class="figure">Figure 257 &mdash; Slab body clipping</p></td></tr></table></p>
 
 <br/><br/>
 
 <a id="element-voiding" />
 <p class="use-head">Voiding</p>
-<p>The <a href="../../templates/element-voiding.htm">Element Voiding</a> concept template applies to this entity as shown in Table 181.<table>
+<p>The <a href="../../templates/element-voiding.htm">Element Voiding</a> concept template applies to this entity as shown in Table 182.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasOpenings</b></th><th><b>HasFillings</b></th><th><b>RelatedFillings</b></th><th><b>Description</b></th></tr>
@@ -455,13 +455,13 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 181 &mdash; IfcSlab Element Voiding</td></tr></table>
+<tr><td><p class="table">Table 182 &mdash; IfcSlab Element Voiding</td></tr></table>
 
 <br/><br/>
 
 <a id="product-assignment" />
 <p class="use-head">Product Assignment</p>
-<p>The <a href="../../templates/product-assignment.htm">Product Assignment</a> concept template applies to this entity as shown in Table 182.<table>
+<p>The <a href="../../templates/product-assignment.htm">Product Assignment</a> concept template applies to this entity as shown in Table 183.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Type</b></th><th><b>Description</b></th></tr>
@@ -471,7 +471,7 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 182 &mdash; IfcSlab Product Assignment</td></tr></table>
+<tr><td><p class="table">Table 183 &mdash; IfcSlab Product Assignment</td></tr></table>
 
 <br/><br/>
 
@@ -562,6 +562,7 @@ IFC2x CHANGE The attribute has been changed into an OPTIONAL attribute.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>

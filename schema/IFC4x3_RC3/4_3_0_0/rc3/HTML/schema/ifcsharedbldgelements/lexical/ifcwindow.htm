@@ -97,17 +97,17 @@ Construction for closing a vertical or near vertical opening in a wall or pitche
 <p class="use-head">
 Parameteric Representation using parameters at <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a></p>
 <p>The parameters, which define the shape of the <span class="self-ref">IfcWindow</span>, are given at the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> and the property sets, which are included in the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>. The <span class="self-ref">IfcWindow</span> only defines the local placement. The overall size of the <span class="self-ref">IfcWindow</span> to be used to apply the lining or panel parameter provided by the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> is determined by the IfcShapeRepresentation with the RepresentationIdentifier = 'Profile'. Only in case of an <span class="self-ref">IfcWindow</span> inserted into an <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> using the <a href="../../ifcproductextension/lexical/ifcrelfillselement.htm">IfcRelFillsElement</a> relatioship, having a horizontal extrusion (along the y-axis of the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>), the overall size is determined by the extrusion profile of the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a>.</p>
-<p>Figure 276 illustrates the insertion of a window into the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> by creating an instance of <span class="self-ref">IfcWindow</span> with <i>PartitioningType = DoublePanelHorizontal</i>. The parameters <i>OverallHeight</i> and <i>OverallWidth</i> show the extent of the window in the positive Z and X axis of the local placement of the window. The lining and the transom are created by the given parameters.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout1.gif" alt="&quot;window 1&quot;" title="Figure 276 &mdash; Window placement"></td></tr><tr><td><p class="figure">Figure 276 &mdash; Window placement</p></td></tr></table></p>
-<p>Figure 277 illustrates the final window (DoublePanelHorizontal) with first panel having <i>PanelPosition = TOP</i>, <i>OperationType = BOTTOMHUNG</i> and second panel having <i>PanelPosition = BOTTOM</i> and <i>OperationType = TILTANDTURNLEFTHAND</i>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout2.gif" alt="&quot;window 2&quot;" title="Figure 277 &mdash; Window planes"></td></tr><tr><td><p class="figure">Figure 277 &mdash; Window planes</p></td></tr></table></p>
+<p>Figure 277 illustrates the insertion of a window into the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> by creating an instance of <span class="self-ref">IfcWindow</span> with <i>PartitioningType = DoublePanelHorizontal</i>. The parameters <i>OverallHeight</i> and <i>OverallWidth</i> show the extent of the window in the positive Z and X axis of the local placement of the window. The lining and the transom are created by the given parameters.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout1.gif" alt="&quot;window 1&quot;" title="Figure 277 &mdash; Window placement"></td></tr><tr><td><p class="figure">Figure 277 &mdash; Window placement</p></td></tr></table></p>
+<p>Figure 278 illustrates the final window (DoublePanelHorizontal) with first panel having <i>PanelPosition = TOP</i>, <i>OperationType = BOTTOMHUNG</i> and second panel having <i>PanelPosition = BOTTOM</i> and <i>OperationType = TILTANDTURNLEFTHAND</i>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwindow-layout2.gif" alt="&quot;window 2&quot;" title="Figure 278 &mdash; Window planes"></td></tr><tr><td><p class="figure">Figure 278 &mdash; Window planes</p></td></tr></table></p>
 <p class="use-head">
 Window opening operation by window type</p>
 <p>The parameters that defines the shape of the <span class="self-ref">IfcWindow</span>, are given at the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a> and the property sets, which are included in the <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>. The <span class="self-ref">IfcWindow</span> only defines the local placement which determines the opening direction of the window. The overall layout of the <span class="self-ref">IfcWindow</span> is determined by its <i>IfcWindowType.PartitioningType</i>. Each window panel has its own operation type, provided by <i>IfcWindowPanelProperties.OperationType</i>. All window panels are assumed to open into the same direction (if relevant for the particular window panel operation. The hindge side (whether a window opens to the left or to the right) is determined by the <a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelproperties.htm">IfcWindowPanelProperties</a>.<i>OperationType</i>.</p>
 <blockquote class="note">
 <p>NOTE   There are different conventions in different countries on how to show the symbolic presentation of the window panel operation (the &quot;triangles&quot;). Either as seen from the exterior, or from the interior side. The following figures show the symbolics from the exterior side (the convention as used predominately in Europe).</p>
 </blockquote>
-<p>Figure 278 illustrates window operation types.</p>
+<p>Figure 279 illustrates window operation types.</p>
 <table><tr><td><table border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr valign="top">
@@ -153,7 +153,7 @@ window, given by <i>IfcWindowPanelProperties.OperationType</i>
 </tbody>
 </table>
 </td></tr>
-<tr><td><p class="figure">Figure 278 &mdash; Window operations</p></td></tr>
+<tr><td><p class="figure">Figure 279 &mdash; Window operations</p></td></tr>
 </table>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
@@ -200,6 +200,10 @@ Designator for the user defined partitioning type, shall only be provided, if th
 <blockquote class="note">
 NOTEnbsp; The deprecated type <a href="../../ifcarchitecturedomain/lexical/ifcwindowstyle.htm">IfcWindowStyle</a> is still included for backward compatibility reasons.
 </blockquote>
+</td></tr>
+<tr><td>CorrectPredefinedType</td><td>Either the <i>PredefinedType</i> attribute is unset (e.g. because an <i>IfcWIndowType</i> is associated), or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED.
+</td></tr>
+<tr><td>CorrectTypeAssigned</td><td>Either there is no door type object associated, i.e. the <i>IsTypedBy</i> inverse relationship is not provided, or the associated type object has to be of type <a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>.
 </td></tr>
 </table>
 
@@ -395,7 +399,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
 
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets for Objects</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 209.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 210.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
@@ -420,39 +424,39 @@ Designator for the user defined partitioning type, shall only be provided, if th
 </table></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 209 &mdash; IfcWindow Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 210 &mdash; IfcWindow Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 210.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 211.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 210 &mdash; IfcWindow Object Typing</td></tr></table>
+<tr><td><p class="table">Table 211 &mdash; IfcWindow Object Typing</td></tr></table>
 
 <br/><br/>
 
 <a id="quantity-sets" />
 <p class="use-head">Quantity Sets</p>
-<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 211.<table>
+<p>The <a href="../../templates/quantity-sets.htm">Quantity Sets</a> concept template applies to this entity as shown in Table 212.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>QsetName</b></th><th><b>Quantities</b></th></tr>
 <tr><td><a href="../../ifcsharedbldgelements/qset/qto_windowbasequantities.htm">Qto_WindowBaseQuantities</a></td><td></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 211 &mdash; IfcWindow Quantity Sets</td></tr></table>
+<tr><td><p class="table">Table 212 &mdash; IfcWindow Quantity Sets</td></tr></table>
 
 <br/><br/>
 
 <a id="material-constituent-set" />
 <p class="use-head">Material Constituent Set</p>
-<p>The <a href="../../templates/material-constituent-set.htm">Material Constituent Set</a> concept template applies to this entity as shown in Table 212.<table>
+<p>The <a href="../../templates/material-constituent-set.htm">Material Constituent Set</a> concept template applies to this entity as shown in Table 213.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Description</b></th></tr>
@@ -460,7 +464,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 212 &mdash; IfcWindow Material Constituent Set</td></tr></table>
+<tr><td><p class="table">Table 213 &mdash; IfcWindow Material Constituent Set</td></tr></table>
 
 <p>The material of the <span class="self-ref">IfcWindow</span> is defined by the <a href="../../ifcmaterialresource/lexical/ifcmaterialconstituentset.htm">IfcMaterialConstituentSet</a> or as fall back by <a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a> and attached by the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>.<i>RelatingMaterial</i>. It is accessible by the inverse <i>HasAssociations</i> relationship.</p>
 <p>If the fall back single <a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a> is referenced, it applies to the lining and framing of the window.</p>
@@ -469,21 +473,21 @@ Designator for the user defined partitioning type, shall only be provided, if th
 
 <a id="spatial-containment" />
 <p class="use-head">Spatial Containment</p>
-<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 213.<table>
+<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 214.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingStructure</b></th></tr>
 <tr><td><a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm">IfcBuildingStorey</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 213 &mdash; IfcWindow Spatial Containment</td></tr></table>
+<tr><td><p class="table">Table 214 &mdash; IfcWindow Spatial Containment</td></tr></table>
 
 <p>The <span class="self-ref">IfcWindow</span>, as any subtype of <i>IfcBuildingElement</i>, may participate alternatively in one of the two different containment relationships:</p>
 <ul>
 <li>the <i>Spatial Containment</i> (defined here), or</li>
 <li>the <i>Element Composition</i>.</li>
 </ul>
-<p>The <span class="self-ref">IfcWindow</span> may also be connected to the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> in which it is placed as a filler. In this case, the spatial containment relationship shall be provided, see Figure 279.</p>
+<p>The <span class="self-ref">IfcWindow</span> may also be connected to the <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> in which it is placed as a filler. In this case, the spatial containment relationship shall be provided, see Figure 280.</p>
 <table>
  
 <tr valign="bottom">
@@ -496,7 +500,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
  </tr>
  
 <tr>
-  <td><p class="figure">Figure 279 &mdash; Window spatial containment</p></td>
+  <td><p class="figure">Figure 280 &mdash; Window spatial containment</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -505,10 +509,10 @@ Designator for the user defined partitioning type, shall only be provided, if th
 
 <a id="product-local-placement" />
 <p class="use-head">Product Local Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 214.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 215.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 214 &mdash; IfcWindow Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 215 &mdash; IfcWindow Product Local Placement</td></tr></table>
 
 <p>The following restriction is imposed:</p>
 <ol>
@@ -614,6 +618,7 @@ Designator for the user defined partitioning type, shall only be provided, if th
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>
@@ -671,7 +676,10 @@ Designator for the user defined partitioning type, shall only be provided, if th
 &nbsp;&nbsp;UserDefinedPartitioningType : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;CorrectStyleAssigned : (SIZEOF(IsTypedBy) = 0) <br/>
-OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
+OR (&#39;IFCSHAREDBLDGELEMENTS.<a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR<br/>
+ (PredefinedType &lt;&gt; <a href="../../ifcsharedbldgelements/lexical/ifcwindowtypeenum.htm">IfcWindowTypeEnum</a>.USERDEFINED) OR<br/>
+ ((PredefinedType = <a href="../../ifcsharedbldgelements/lexical/ifcwindowtypeenum.htm">IfcWindowTypeEnum</a>.USERDEFINED) AND EXISTS (SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/>&nbsp;&nbsp;CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR<br/>
+  (&#39;IFCSHAREDBLDGELEMENTS.<a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>&#39; IN TYPEOF(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.IsTypedBy[1].RelatingType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcsharedbldgelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

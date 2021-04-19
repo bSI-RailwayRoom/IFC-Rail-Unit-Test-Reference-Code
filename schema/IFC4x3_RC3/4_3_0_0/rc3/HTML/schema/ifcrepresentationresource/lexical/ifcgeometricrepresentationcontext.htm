@@ -42,7 +42,7 @@
 </details>
 <section>
 <h5 class="num">Semantic definitions at the entity</h5>
-<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcGeometricRepresentationContext</span> defines the context that applies to several shape representations of products within a project. It defines the type of the context in which the shape representation is defined, and the numeric precision applicable to the geometric representation items defined in this context. In addition it can be used to offset the project coordinate system from a global point of origin, using the <i>WorldCoordinateSystem</i> attribute. The main representation context may also provide the true north direction, see Figure 437.</p>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcGeometricRepresentationContext</span> defines the context that applies to several shape representations of products within a project. It defines the type of the context in which the shape representation is defined, and the numeric precision applicable to the geometric representation items defined in this context. In addition it can be used to offset the project coordinate system from a global point of origin, using the <i>WorldCoordinateSystem</i> attribute. The main representation context may also provide the true north direction, see Figure 438.</p>
 <table border="0" summary="true north">
  <tr>
   <td width="505" valign="top">
@@ -59,12 +59,12 @@
   </td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 437 &mdash; Definition of the true north direction</p>
+  <td><p class="figure">Figure 438 &mdash; Definition of the true north direction</p>
   </td>
   <td>&nbsp;</td>
  </tr>   
 </table>
-<p>The use of one instance of <span class="self-ref">IfcGeometricRepresentationContext</span> to represent the model (3D) view is mandatory, the use of a second instance of <span class="self-ref">IfcGeometricRepresentationContext</span> to represent the plan (2D) view is optional (but needs to be given, if there are scale dependent plan views), the additional scale or view dependent contexts need to be handled by using the subtype <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a> pointing to the model view (or the plan view) as the <i>ParentContext</i>. See Figure 438 for an example using geometric representation contexts for 3D and 2D with assigned sub contexts.</p>
+<p>The use of one instance of <span class="self-ref">IfcGeometricRepresentationContext</span> to represent the model (3D) view is mandatory, the use of a second instance of <span class="self-ref">IfcGeometricRepresentationContext</span> to represent the plan (2D) view is optional (but needs to be given, if there are scale dependent plan views), the additional scale or view dependent contexts need to be handled by using the subtype <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a> pointing to the model view (or the plan view) as the <i>ParentContext</i>. See Figure 439 for an example using geometric representation contexts for 3D and 2D with assigned sub contexts.</p>
 <blockquote class="note">
 <p>NOTE  The inherited attribute <i>ContextType</i> shall have one of the following recognized values: 'Model', 'Plan', 'NotDefined'.</p>
 </blockquote>
@@ -80,7 +80,7 @@
   </td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 438 &mdash; Example of using geometric representation contexts</p>
+  <td><p class="figure">Figure 439 &mdash; Example of using geometric representation contexts</p>
   </td>
   <td>&nbsp;</td>
  </tr>    

@@ -9,7 +9,7 @@
   </ApplicableClasses>
   <ApplicableTypeValue>IfcMech/RAILJOINT</ApplicableTypeValue>
   <PropertyDefs>
-    <PropertyDef ifdguid="510fd2da41364262b1e0ba601675eb8d">
+    <PropertyDef ifdguid="9a39b9f37f2342628164099b571a83a5">
       <Name>IsInsulated</Name>
       <Definition />
       <PropertyType>

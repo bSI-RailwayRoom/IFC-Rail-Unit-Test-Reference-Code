@@ -36,6 +36,9 @@
 <tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifctransportelementfixedtypeenum.htm">IfcTransportElementFixedTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HAULINGGEAR</td><td></td><td></td><td>ADDED</td><td></td></tr>
 </table>
 </details>
 <section>
@@ -52,7 +55,7 @@
 </td></tr><tr><td>MOVINGWALKWAY</td><td>Moving walkway being a transport device to move people horizontally or on an incline. It is a slow conveyor belt that transports people.
 </td></tr><tr><td>CRANEWAY</td><td>A crane way system, normally including the crane rails, fasteners and the crane. It is primarily used to move heavy goods in a factory or other industry buildings.
 </td></tr><tr><td>LIFTINGGEAR</td><td>A device used for lifting or lowering heavy goods. It may be manually operated or electrically or pneumatically driven.
-</td></tr><tr><td>USERDEFINED</td><td></td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
+</td></tr><tr><td>HAULINGGEAR</td><td></td></tr><tr><td>USERDEFINED</td><td></td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
 </details>
 </section>
 <section>
@@ -64,6 +67,7 @@
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;movingwalkway&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;craneway&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;liftinggear&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;haulinggear&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
@@ -71,7 +75,7 @@
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcTransportElementFixedTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;ELEVATOR, <br/>&nbsp;ESCALATOR, <br/>&nbsp;MOVINGWALKWAY, <br/>&nbsp;CRANEWAY, <br/>&nbsp;LIFTINGGEAR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;ELEVATOR, <br/>&nbsp;ESCALATOR, <br/>&nbsp;MOVINGWALKWAY, <br/>&nbsp;CRANEWAY, <br/>&nbsp;LIFTINGGEAR, <br/>&nbsp;HAULINGGEAR, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

@@ -6,13 +6,34 @@
   <Applicability />
   <ApplicableClasses />
   <PropertyDefs>
-    <PropertyDef ifdguid="a06240e92da94ab292aefb5ae9928022">
+    <PropertyDef ifdguid="52834ea804d7431d89717aa6920072cf">
       <Name>Side</Name>
-      <Definition>Specifies if the superelevation is measured to the RIGHT or to the LEFT of the curve referenced by the placement, or if the same value is applied to BOTH sides.</Definition>
+      <Definition>Specifies if the width is measured to the RIGHT or to the LEFT of the curve referenced by the placement, or if the same value is applied to BOTH sides.</Definition>
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_SideType">
+            <EnumItem>LEFT</EnumItem>
+            <EnumItem>RIGHT</EnumItem>
+            <EnumItem>BOTH</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>LEFT</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>RIGHT</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+            <ConstantDef>
+              <Name>BOTH</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />
@@ -29,12 +50,21 @@
       <DefinitionAliases />
     </PropertyDef>
     <PropertyDef ifdguid="7750fcb38c9241d0b6bfa8abeaa576f0">
-      <Name>Transition</Name>
+      <Name>TransitionSuperelevation</Name>
       <Definition>The type of transition of superelevation from previous event to this one.</Definition>
       <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
+        <TypePropertyEnumeratedValue>
+          <EnumList name="PEnum_TransitionSuperelevationType">
+            <EnumItem>LINEAR</EnumItem>
+          </EnumList>
+          <ConstantList>
+            <ConstantDef>
+              <Name>LINEAR</Name>
+              <NameAliases />
+              <DefinitionAliases />
+            </ConstantDef>
+          </ConstantList>
+        </TypePropertyEnumeratedValue>
       </PropertyType>
       <NameAliases />
       <DefinitionAliases />

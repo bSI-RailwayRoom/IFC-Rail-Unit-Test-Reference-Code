@@ -48,7 +48,7 @@
 <details open="open"><summary>Entity definition</summary><p>A door panel is normally a door leaf that opens to allow people or goods to pass. The parameters of the door panel define the geometrically relevant parameter of the panel,</p>
 <p>The <span class="self-ref">IfcDoorPanelProperties</span> are used to parametrically describe the shape and operation of door panels. The parametric definition can be added solely or additionally to the explicit shape representation of the door.</p>
 <p>The <a href="../../ifcsharedbldgelements/lexical/ifcdoortype.htm">IfcDoorType</a> can define doors consisting of more then one panel. In this case, one instance of <span class="self-ref">IfcDoorPanelProperties</span> has to be included for each door panel. The <i>PanelPosition</i> attribute, in conjunction with the <i>IfcDoorStyle.OperationType</i> attribute, determines to which panel the <span class="self-ref">IfcDoorPanelProperties</span> apply. The <span class="self-ref">IfcDoorPanelProperties</span> are included in the list of properties , given by attribute <i>HasPropertySets</i> of the <a href="../../ifcsharedbldgelements/lexical/ifcdoortype.htm">IfcDoorType</a>. More information about the door panel can be included in the same list of the <a href="../../ifcarchitecturedomain/lexical/ifcdoorstyle.htm">IfcDoorStyle</a> using the <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> for dynamic extensions.</p>
-<p>The <span class="self-ref">IfcDoorPanelProperties</span> does not hold a geometric representation. However it defines parameters which can be used to create the shape of the door type(which is inserted by the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a> into the spatial context of the project) as shown in Figure 305.</p>
+<p>The <span class="self-ref">IfcDoorPanelProperties</span> does not hold a geometric representation. However it defines parameters which can be used to create the shape of the door type(which is inserted by the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a> into the spatial context of the project) as shown in Figure 306.</p>
 <p>The parameters of the <span class="self-ref">IfcDoorPanelProperties</span> define a standard door panel, including (if given) a proportional width to define non-uniform double swing (or sliding, or folding) doors. The outer boundary of the panel is determined by the 'Profile' shape representation assigned to the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>, which inserts the <a href="../../ifcsharedbldgelements/lexical/ifcdoortype.htm">IfcDoorType</a>. It has to take the lining parameter into account as well.</p>
 <p> </p>
 <table>
@@ -76,7 +76,7 @@
   </td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 305 &mdash; Door panel properties</p></td>
+  <td><p class="figure">Figure 306 &mdash; Door panel properties</p></td>
  </tr>
 </table>
 <blockquote class="history">

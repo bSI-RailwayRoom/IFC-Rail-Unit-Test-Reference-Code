@@ -46,6 +46,10 @@
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc1-to-ifc4x3_rc2/index.htm">IFC4x3_RC1 to IFC4x3_RC2</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcalignment.htm">IfcAlignment</a></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Axis</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcLinearAxisSelect</i> to <i>IfcCurve</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcalignment.htm">IfcAlignment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Axis</i> to <i>PredefinedType</i>. <br/>Type changed from <i>IfcCurve</i> to <i>IfcAlignmentTypeEnum</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td>X</td><td></td><td>DELETED</td><td></td></tr>
 </table>
 </details>
 <section>
@@ -75,7 +79,7 @@
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
 <th>G</th></tr>
-<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcproductextension/lexical/ifcalignmenttypeenum.htm">IfcAlignmentTypeEnum</a></td><td>? </td><td>
+<tr><td>8</td><td>PredefinedType</td><td><a href="../../ifcproductextension/lexical/ifcalignmenttypeenum.htm">IfcAlignmentTypeEnum</a></td><td>? </td><td>
 </td><td>X</td></tr>
 </table>
 </details>
@@ -194,11 +198,8 @@ IFC4 CHANGE  The inverse relationship has been promoted from <a href="../../ifc
 </td><td>X</td></tr>
 <tr><td></td><td><i>Positions</i></td><td><a href="../../ifcproductextension/lexical/ifcrelpositions.htm">IfcRelPositions</a><br/>@RelatingPositioningElement</td><td>S[0:?]</td><td></td><td>X</td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifclinearpositioningelement.htm">IfcLinearPositioningElement</a></td></tr>
-<tr><td>8</td><td>Axis</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
-The curve to be used for positioning.
-</td><td>X</td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcalignment.htm">IfcAlignment</a></td></tr>
-<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcproductextension/lexical/ifcalignmenttypeenum.htm">IfcAlignmentTypeEnum</a></td><td>? </td><td>
+<tr><td>8</td><td>PredefinedType</td><td><a href="../../ifcproductextension/lexical/ifcalignmenttypeenum.htm">IfcAlignmentTypeEnum</a></td><td>? </td><td>
 </td><td>X</td></tr>
 </table>
 </details>
@@ -210,36 +211,36 @@ The curve to be used for positioning.
 <summary>Concept usage</summary>
 <a id="alignment-decomposition" />
 <p class="use-head">Alignment Decomposition</p>
-<p>The <a href="../../templates/alignment-decomposition.htm">Alignment Decomposition</a> concept template applies to this entity as shown in Table 20.<table>
+<p>The <a href="../../templates/alignment-decomposition.htm">Alignment Decomposition</a> concept template applies to this entity as shown in Table 21.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 20 &mdash; IfcAlignment Alignment Decomposition</td></tr></table>
+<tr><td><p class="table">Table 21 &mdash; IfcAlignment Alignment Decomposition</td></tr></table>
 
 <br/><br/>
 
 <a id="alignment-geometry-gradient" />
 <p class="use-head">Alignment Geometry Gradient</p>
-<p>The <a href="../../templates/alignment-geometry-gradient.htm">Alignment Geometry Gradient</a> concept template applies to this entity as shown in Table 21.<table>
+<p>The <a href="../../templates/alignment-geometry-gradient.htm">Alignment Geometry Gradient</a> concept template applies to this entity as shown in Table 22.<table>
 <tr><td>
 <table class="gridtable">
 <tr></tr>
 <tr></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 21 &mdash; IfcAlignment Alignment Geometry Gradient</td></tr></table>
+<tr><td><p class="table">Table 22 &mdash; IfcAlignment Alignment Geometry Gradient</td></tr></table>
 
 <br/><br/>
 
 <a id="object-nesting" />
 <p class="use-head">Referent Nesting</p>
-<p>The <a href="../../templates/object-nesting.htm">Object Nesting</a> concept template applies to this entity as shown in Table 22.<table>
+<p>The <a href="../../templates/object-nesting.htm">Object Nesting</a> concept template applies to this entity as shown in Table 23.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>Type</b></th></tr>
 <tr><td><a href="../../ifcproductextension/lexical/ifcreferent.htm">IfcReferent</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 22 &mdash; IfcAlignment Object Nesting</td></tr></table>
+<tr><td><p class="table">Table 23 &mdash; IfcAlignment Object Nesting</td></tr></table>
 
 <br/><br/>
 
@@ -294,6 +295,7 @@ The curve to be used for positioning.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm"><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm">IfcPositioningElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm#product-local-placement">Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcpositioningelement.htm#footprint-geometry">Footprint Geometry</a></td><td><a href="../../templates/footprint-geometry.htm">FootPrint Geometry</a></td><td>General Usage</td></tr>

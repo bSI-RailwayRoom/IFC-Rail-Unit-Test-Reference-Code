@@ -10,12 +10,12 @@ HISTORY: IFC4 - NominalLength deleted. To be handled as a quantity measure</Defi
   </ApplicableClasses>
   <ApplicableTypeValue>IfcCableCarrierSegment/CABLETRAYSEGMENT</ApplicableTypeValue>
   <PropertyDefs>
-    <PropertyDef ifdguid="8f8df300d1c611e1800000215ad4efdf">
+    <PropertyDef ifdguid="a28e9f226e204a909976810e633a45f4">
       <Name>NominalWidth</Name>
-      <Definition>The nominal width of the segment.</Definition>
+      <Definition>The nominal width of the object.</Definition>
       <PropertyType>
         <TypePropertySingleValue>
-          <DataType type="IfcPositiveLengthMeasure" />
+          <DataType type="IfcNonNegativeLengthMeasure" />
         </TypePropertySingleValue>
       </PropertyType>
       <NameAliases>

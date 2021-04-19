@@ -11,7 +11,7 @@
     <title>IfcStyledItem</title>
 
     <style type="text/css">
-      body { counter-reset: index1 8 index2 12 index3 3 index4 27 index5 0; }
+      body { counter-reset: index1 8 index2 12 index3 3 index4 26 index5 0; }
     </style>
   </head>
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 <!--
-    parent.index.location.replace("../../toc-8.htm#8.12.3.28");
+    parent.index.location.replace("../../toc-8.htm#8.12.3.27");
 //-->
 </script>
 
@@ -37,6 +37,9 @@
 <td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Styles</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>IfcPresentationStyleAssignment</i> to <i>IfcStyleAssignmentSelect</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Styles</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcStyleAssignmentSelect</i> to <i>IfcPresentationStyle</i>. <br/></td></tr>
 </table>
 </details>
 <section>
@@ -63,19 +66,19 @@ The styled item is an assignment of style for presentation to a geometric repres
 <p>IFC2x3 CHANGE The attribute <i>Item</i> has been made optional, upward compatibility for file based exchange is guaranteed.</p>
 </blockquote>
 <blockquote class="change-ifc2x4">
-<p>IFC4 CHANGE The subtype <i>IfcAnnotationOccurrence</i> and its subtypes are deleted. Use <span class="self-ref">IfcStyledItem</span> for all instantiations. The data type of <i>Styles</i> has been changed to <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></p>
+<p>IFC4 CHANGE The subtype <i>IfcAnnotationOccurrence</i> and its subtypes are deleted. Use <span class="self-ref">IfcStyledItem</span> for all instantiations. The data type of <i>Styles</i> has been changed to <i>IfcStyleAssignmentSelect</i></p>
 </blockquote>
 <p class="use-head">
 Use Definition</p>
-<p>Figure 403 illustrates use of <span class="self-ref">IfcStyledItem</span> for the two usage examples:</p>
+<p>Figure 404 illustrates use of <span class="self-ref">IfcStyledItem</span> for the two usage examples:</p>
 <ul>
 <li><small>As a presentation for a geometric representation item</small></li>
 <li><small>As a presentation for a material definition</small></li>
 </ul>
 <blockquote class="note">
-<p>NOTE  The new <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a> allows the direct assignment styles, such as <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm">IfcSurfaceStyle</a> without using the intermediate <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a></p>
+<p>NOTE  The new <i>IfcStyleAssignmentSelect</i> allows the direct assignment styles, such as <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm">IfcSurfaceStyle</a> without using the intermediate <i>IfcPresentationStyleAssignment</i></p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstyleditem_fig-1.png" alt="&quot;2x4 example&quot;" title="Figure 403 &mdash; Styled item"></td></tr><tr><td><p class="figure">Figure 403 &mdash; Styled item</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcstyleditem_fig-1.png" alt="&quot;2x4 example&quot;" title="Figure 404 &mdash; Styled item"></td></tr><tr><td><p class="figure">Figure 404 &mdash; Styled item</p></td></tr></table></p>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
@@ -86,14 +89,14 @@ A geometric representation item to which the style is assigned.
 IFC2x2 Add2 CHANGE The attribute <i>Item</i> has been made optional. Upward compatibility for file based exchange is guaranteed.
 </blockquote>
 </td><td>X</td></tr>
-<tr><td>2</td><td>Styles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></td><td>S[1:?]</td><td>
+<tr><td>2</td><td>Styles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></td><td>S[1:?]</td><td>
 Representation styles which are assigned, either to an geometric representation item, or to a material definition.
 
 <blockquote>
-IFC4 CHANGE The data type has been changed to <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a> with upward compatibility for file based exchange.
+IFC4 CHANGE The data type has been changed to <i>IfcStyleAssignmentSelect</i> with upward compatibility for file based exchange.
 </blockquote>
 <blockquote class="note">
-NOTE  Only the select item <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a> shall be used from IFC4 onwards, the <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a> has been deprecated.
+NOTE  Only the select item <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a> shall be used from IFC4 onwards, the <i>IfcPresentationStyleAssignment</i> has been deprecated.
 </blockquote>
 </td><td>X</td></tr>
 <tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
@@ -140,14 +143,14 @@ A geometric representation item to which the style is assigned.
 IFC2x2 Add2 CHANGE The attribute <i>Item</i> has been made optional. Upward compatibility for file based exchange is guaranteed.
 </blockquote>
 </td><td>X</td></tr>
-<tr><td>2</td><td>Styles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a></td><td>S[1:?]</td><td>
+<tr><td>2</td><td>Styles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></td><td>S[1:?]</td><td>
 Representation styles which are assigned, either to an geometric representation item, or to a material definition.
 
 <blockquote>
-IFC4 CHANGE The data type has been changed to <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a> with upward compatibility for file based exchange.
+IFC4 CHANGE The data type has been changed to <i>IfcStyleAssignmentSelect</i> with upward compatibility for file based exchange.
 </blockquote>
 <blockquote class="note">
-NOTE  Only the select item <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a> shall be used from IFC4 onwards, the <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a> has been deprecated.
+NOTE  Only the select item <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a> shall be used from IFC4 onwards, the <i>IfcPresentationStyleAssignment</i> has been deprecated.
 </blockquote>
 </td><td>X</td></tr>
 <tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
@@ -166,8 +169,10 @@ The word, or group of words, by which the styled item is referred to.
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Styles&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
@@ -182,7 +187,7 @@ The word, or group of words, by which the styled item is referred to.
 <span class="keyword">ENTITY</span> IfcStyledItem<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>)<b>;</b><br/>
 &nbsp;&nbsp;Item : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>;<br/>
-&nbsp;&nbsp;Styles : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleassignmentselect.htm">IfcStyleAssignmentSelect</a>;<br/>
+&nbsp;&nbsp;Styles : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>;<br/>
 &nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
 &nbsp;&nbsp;ApplicableItem : NOT(&#39;IFCPRESENTATIONAPPEARANCERESOURCE.<a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>&#39; IN TYPEOF(Item));<br/><span class="keyword">END_ENTITY;</span><br/>

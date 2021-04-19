@@ -7,29 +7,6 @@
     <ClassName>IfcAlignment</ClassName>
   </ApplicableClasses>
   <ApplicableTypeValue>IfcAlignment</ApplicableTypeValue>
-  <PropertyDefs>
-    <PropertyDef ifdguid="52978d5917b24e869208445d8587af34">
-      <Name>CantRotationAxis</Name>
-      <Definition />
-      <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
-      </PropertyType>
-      <NameAliases />
-      <DefinitionAliases />
-    </PropertyDef>
-    <PropertyDef ifdguid="bd0b64c8278d42b68c01d2ec6e36f999">
-      <Name>VerticalReferenceAxis</Name>
-      <Definition />
-      <PropertyType>
-        <TypePropertySingleValue>
-          <DataType />
-        </TypePropertySingleValue>
-      </PropertyType>
-      <NameAliases />
-      <DefinitionAliases />
-    </PropertyDef>
-  </PropertyDefs>
+  <PropertyDefs />
   <PsetDefinitionAliases />
 </PropertySetDef>

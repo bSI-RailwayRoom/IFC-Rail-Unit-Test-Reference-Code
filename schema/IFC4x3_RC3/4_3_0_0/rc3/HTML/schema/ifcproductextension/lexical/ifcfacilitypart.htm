@@ -55,6 +55,13 @@
 </td><td>X</td></tr>
 </table>
 </details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CorrectPredefinedType</td><td>Either <i>PredefinedType</i> is unset or the inherited attribute <i>ObjectType</i> shall be provided, if the <i>PredefinedType</i> is set to USERDEFINED or <i>PredefinedType</i>.
+</td></tr>
+</table>
+
+</details>
 </section>
 <section>
 <h5 class="num">Inherited definitions from supertypes</h5>
@@ -214,7 +221,7 @@ IFC4 CHANGE  Attribute made optional.
 <summary>Concept usage</summary>
 <a id="spatial-composition" />
 <p class="use-head">Spatial Composition</p>
-<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 61.<table>
+<p>The <a href="../../templates/spatial-composition.htm">Spatial Composition</a> concept template applies to this entity as shown in Table 62.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingObject</b></th><th><b>Description</b></th></tr>
@@ -222,7 +229,7 @@ IFC4 CHANGE  Attribute made optional.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 61 &mdash; IfcFacilityPart Spatial Composition</td></tr></table>
+<tr><td><p class="table">Table 62 &mdash; IfcFacilityPart Spatial Composition</td></tr></table>
 
 <blockquote class="note">
 <p>NOTE  By using the inverse relationship <i>IfcFacilityPart.Decomposes</i> it references (<a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a> || <span class="self-ref">IfcFacilityPart</span>) through <i>IfcRelAggregates.RelatingObject_IfcFacilityPart</i>, the referenced
@@ -255,14 +262,14 @@ IFC4 CHANGE  Attribute made optional.
 
 <a id="body-geometry" />
 <p class="use-head">Body Geometry</p>
-<p>The <a href="../../templates/body-geometry.htm">Body Geometry</a> concept template applies to this entity as shown in Table 62.<table>
+<p>The <a href="../../templates/body-geometry.htm">Body Geometry</a> concept template applies to this entity as shown in Table 63.<table>
 <tr><td>
 <table class="gridtable">
 <tr></tr>
 <tr></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 62 &mdash; IfcFacilityPart Body Geometry</td></tr></table>
+<tr><td><p class="table">Table 63 &mdash; IfcFacilityPart Body Geometry</td></tr></table>
 
 <p>The body (or solid model) geometric representation (if the facility part has an independent geometric representation) of <span class="self-ref">IfcFacilityPart</span> is defined using faceted B-Rep capabilities (with or without voids), based on the <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm">IfcFacetedBrep</a> or on the <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrepwithvoids.htm">IfcFacetedBrepWithVoids</a> or in the case of alignment based infrastructure using <a href="../../ifcgeometricmodelresource/lexical/ifcsectionedsolidhorizontal.htm">IfcSectionedSolidHorizontal</a> optionally <a href="../../ifcgeometricmodelresource/lexical/ifcsweptareasolid.htm">IfcSweptAreaSolid</a>.</p>
 <blockquote class="note">
@@ -322,6 +329,7 @@ IFC4 CHANGE  Attribute made optional.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm"><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm#footprint-geomset-geometry">FootPrint GeomSet Geometry</a></td><td><a href="../../templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a></td><td>General Usage</td></tr>
 
@@ -359,7 +367,28 @@ IFC4 CHANGE  Attribute made optional.
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcspatialstructureelement.htm">IfcSpatialStructureElement</a>)<b>;</b><br/>
 &nbsp;&nbsp;PredefinedType : <a href="../../ifcsharedinfrastructureelements/lexical/ifcfacilityparttypeselect.htm">IfcFacilityPartTypeSelect</a>;<br/>
 &nbsp;&nbsp;UsageType : <a href="../../ifcsharedinfrastructureelements/lexical/ifcfacilityusageenum.htm">IfcFacilityUsageEnum</a>;<br/>
-<span class="keyword">END_ENTITY;</span><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CorrectPredefinedType : ((PredefinedType &lt;&gt; <a href="../../ifcproductextension/lexical/ifcbridgeparttypeenum.htm">IfcBridgePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcrail/lexical/ifcrailwayparttypeenum.htm">IfcRailwayPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcroad/lexical/ifcroadparttypeenum.htm">IfcRoadPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcportsandwaterways/lexical/ifcmarineparttypeenum.htm">IfcMarinePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType &lt;&gt; <a href="../../ifcsharedinfrastructureelements/lexical/ifcfacilitypartcommontypeenum.htm">IfcFacilityPartCommonTypeEnum</a>.USERDEFINED))<br/>
+OR<br/>
+(((PredefinedType = <a href="../../ifcproductextension/lexical/ifcbridgeparttypeenum.htm">IfcBridgePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcrail/lexical/ifcrailwayparttypeenum.htm">IfcRailwayPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcroad/lexical/ifcroadparttypeenum.htm">IfcRoadPartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcportsandwaterways/lexical/ifcmarineparttypeenum.htm">IfcMarinePartTypeEnum</a>.USERDEFINED)<br/>
+OR<br/>
+(PredefinedType = <a href="../../ifcsharedinfrastructureelements/lexical/ifcfacilitypartcommontypeenum.htm">IfcFacilityPartCommonTypeEnum</a>.USERDEFINED))<br/>
+AND<br/>
+EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

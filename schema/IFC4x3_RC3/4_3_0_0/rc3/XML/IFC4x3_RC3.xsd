@@ -753,16 +753,6 @@ of the material. The information contained in this document is subject to change
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="IfcBlossCurve" type="ifc:IfcBlossCurve" substitutionGroup="ifc:IfcSpiral" nillable="true"/>
-	<xs:complexType name="IfcBlossCurve">
-		<xs:complexContent>
-			<xs:extension base="ifc:IfcSpiral">
-				<xs:attribute name="QubicTerm" type="ifc:IfcLengthMeasure" use="optional"/>
-				<xs:attribute name="QuadraticTerm" type="ifc:IfcLengthMeasure" use="optional"/>
-				<xs:attribute name="LinearTerm" type="ifc:IfcLengthMeasure" use="optional"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
 	<xs:element name="IfcBoiler" type="ifc:IfcBoiler" substitutionGroup="ifc:IfcEnergyConversionDevice" nillable="true"/>
 	<xs:complexType name="IfcBoiler">
 		<xs:complexContent>
@@ -3992,16 +3982,6 @@ of the material. The information contained in this document is subject to change
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="IfcHelmertCurve" type="ifc:IfcHelmertCurve" substitutionGroup="ifc:IfcSpiral" nillable="true"/>
-	<xs:complexType name="IfcHelmertCurve">
-		<xs:complexContent>
-			<xs:extension base="ifc:IfcSpiral">
-				<xs:attribute name="QuadraticTerm" type="ifc:IfcLengthMeasure" use="optional"/>
-				<xs:attribute name="LinearTerm" type="ifc:IfcLengthMeasure" use="optional"/>
-				<xs:attribute name="ConstantTerm" type="ifc:IfcReal" use="optional"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
 	<xs:element name="IfcHumidifier" type="ifc:IfcHumidifier" substitutionGroup="ifc:IfcEnergyConversionDevice" nillable="true"/>
 	<xs:complexType name="IfcHumidifier">
 		<xs:complexContent>
@@ -4553,11 +4533,7 @@ of the material. The information contained in this document is subject to change
 	<xs:element name="IfcLinearPositioningElement" type="ifc:IfcLinearPositioningElement" substitutionGroup="ifc:IfcPositioningElement" nillable="true"/>
 	<xs:complexType name="IfcLinearPositioningElement">
 		<xs:complexContent>
-			<xs:extension base="ifc:IfcPositioningElement">
-				<xs:sequence>
-					<xs:element name="Axis" type="ifc:IfcCurve" nillable="true"/>
-				</xs:sequence>
-			</xs:extension>
+			<xs:extension base="ifc:IfcPositioningElement"/>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcLiquidTerminal" type="ifc:IfcLiquidTerminal" substitutionGroup="ifc:IfcFlowTerminal" nillable="true"/>
@@ -5466,7 +5442,7 @@ of the material. The information contained in this document is subject to change
 	<xs:complexType name="IfcPavement">
 		<xs:complexContent>
 			<xs:extension base="ifc:IfcBuiltElement">
-				<xs:attribute name="Flexible" type="ifc:IfcBoolean" use="optional"/>
+				<xs:attribute name="PredefinedType" type="ifc:IfcPavementTypeEnum" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -5474,7 +5450,7 @@ of the material. The information contained in this document is subject to change
 	<xs:complexType name="IfcPavementType">
 		<xs:complexContent>
 			<xs:extension base="ifc:IfcBuiltElementType">
-				<xs:attribute name="Flexible" type="ifc:IfcBoolean" use="optional"/>
+				<xs:attribute name="PredefinedType" type="ifc:IfcPavementTypeEnum" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -6074,23 +6050,6 @@ of the material. The information contained in this document is subject to change
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="IfcPresentationStyleAssignment" type="ifc:IfcPresentationStyleAssignment" substitutionGroup="ifc:Entity" nillable="true"/>
-	<xs:complexType name="IfcPresentationStyleAssignment">
-		<xs:complexContent>
-			<xs:extension base="ifc:Entity">
-				<xs:sequence>
-					<xs:element name="Styles">
-						<xs:complexType>
-							<xs:group ref="ifc:IfcPresentationStyleSelect" maxOccurs="unbounded"/>
-							<xs:attribute ref="ifc:itemType" fixed="ifc:IfcPresentationStyleSelect"/>
-							<xs:attribute ref="ifc:cType" fixed="set"/>
-							<xs:attribute ref="ifc:arraySize" use="optional"/>
-						</xs:complexType>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
 	<xs:element name="IfcProcedure" type="ifc:IfcProcedure" substitutionGroup="ifc:IfcProcess" nillable="true"/>
 	<xs:complexType name="IfcProcedure">
 		<xs:complexContent>
@@ -6642,7 +6601,9 @@ of the material. The information contained in this document is subject to change
 	<xs:element name="IfcRailway" type="ifc:IfcRailway" substitutionGroup="ifc:IfcFacility" nillable="true"/>
 	<xs:complexType name="IfcRailway">
 		<xs:complexContent>
-			<xs:extension base="ifc:IfcFacility"/>
+			<xs:extension base="ifc:IfcFacility">
+				<xs:attribute name="PredefinedType" type="ifc:IfcRailwayTypeEnum" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcRamp" type="ifc:IfcRamp" substitutionGroup="ifc:IfcBuiltElement" nillable="true"/>
@@ -7886,7 +7847,9 @@ of the material. The information contained in this document is subject to change
 	<xs:element name="IfcRoad" type="ifc:IfcRoad" substitutionGroup="ifc:IfcFacility" nillable="true"/>
 	<xs:complexType name="IfcRoad">
 		<xs:complexContent>
-			<xs:extension base="ifc:IfcFacility"/>
+			<xs:extension base="ifc:IfcFacility">
+				<xs:attribute name="PredefinedType" type="ifc:IfcRoadTypeEnum" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcRoof" type="ifc:IfcRoof" substitutionGroup="ifc:IfcBuiltElement" nillable="true"/>
@@ -7972,6 +7935,16 @@ of the material. The information contained in this document is subject to change
 	<xs:complexType name="IfcSeamCurve">
 		<xs:complexContent>
 			<xs:extension base="ifc:IfcSurfaceCurve"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IfcSecondOrderPolynomialSpiral" type="ifc:IfcSecondOrderPolynomialSpiral" substitutionGroup="ifc:IfcSpiral" nillable="true"/>
+	<xs:complexType name="IfcSecondOrderPolynomialSpiral">
+		<xs:complexContent>
+			<xs:extension base="ifc:IfcSpiral">
+				<xs:attribute name="QuadraticTerm" type="ifc:IfcLengthMeasure" use="optional"/>
+				<xs:attribute name="LinearTerm" type="ifc:IfcLengthMeasure" use="optional"/>
+				<xs:attribute name="ConstantTerm" type="ifc:IfcReal" use="optional"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcSectionProperties" type="ifc:IfcSectionProperties" substitutionGroup="ifc:IfcPreDefinedProperties" nillable="true"/>
@@ -8930,8 +8903,10 @@ of the material. The information contained in this document is subject to change
 				<xs:sequence>
 					<xs:element name="Styles">
 						<xs:complexType>
-							<xs:group ref="ifc:IfcStyleAssignmentSelect" maxOccurs="unbounded"/>
-							<xs:attribute ref="ifc:itemType" fixed="ifc:IfcStyleAssignmentSelect"/>
+							<xs:sequence>
+								<xs:element ref="ifc:IfcPresentationStyle" maxOccurs="unbounded"/>
+							</xs:sequence>
+							<xs:attribute ref="ifc:itemType" fixed="ifc:IfcPresentationStyle"/>
 							<xs:attribute ref="ifc:cType" fixed="set"/>
 							<xs:attribute ref="ifc:arraySize" use="optional"/>
 						</xs:complexType>
@@ -9779,6 +9754,16 @@ of the material. The information contained in this document is subject to change
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IfcThirdOrderPolynomialSpiral" type="ifc:IfcThirdOrderPolynomialSpiral" substitutionGroup="ifc:IfcSpiral" nillable="true"/>
+	<xs:complexType name="IfcThirdOrderPolynomialSpiral">
+		<xs:complexContent>
+			<xs:extension base="ifc:IfcSpiral">
+				<xs:attribute name="QubicTerm" type="ifc:IfcLengthMeasure" use="optional"/>
+				<xs:attribute name="QuadraticTerm" type="ifc:IfcLengthMeasure" use="optional"/>
+				<xs:attribute name="LinearTerm" type="ifc:IfcLengthMeasure" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -11070,15 +11055,6 @@ of the material. The information contained in this document is subject to change
 			<xs:element ref="ifc:IfcVertexPoint"/>
 		</xs:choice>
 	</xs:group>
-	<xs:group name="IfcPresentationStyleSelect">
-		<xs:choice>
-			<xs:element ref="ifc:IfcCurveStyle"/>
-			<xs:element ref="ifc:IfcFillAreaStyle"/>
-			<xs:element ref="ifc:IfcNullStyle-wrapper"/>
-			<xs:element ref="ifc:IfcSurfaceStyle"/>
-			<xs:element ref="ifc:IfcTextStyle"/>
-		</xs:choice>
-	</xs:group>
 	<xs:group name="IfcProcessSelect">
 		<xs:choice>
 			<xs:element ref="ifc:IfcProcess"/>
@@ -11204,12 +11180,6 @@ of the material. The information contained in this document is subject to change
 		<xs:choice>
 			<xs:element ref="ifc:IfcElement"/>
 			<xs:element ref="ifc:IfcStructuralItem"/>
-		</xs:choice>
-	</xs:group>
-	<xs:group name="IfcStyleAssignmentSelect">
-		<xs:choice>
-			<xs:element ref="ifc:IfcPresentationStyle"/>
-			<xs:element ref="ifc:IfcPresentationStyleAssignment"/>
 		</xs:choice>
 	</xs:group>
 	<xs:group name="IfcSurfaceOrFaceSurface">
@@ -11528,6 +11498,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="cubic"/>
 			<xs:enumeration value="biquadraticparabola"/>
 			<xs:enumeration value="blosscurve"/>
+			<xs:enumeration value="cubicspiral"/>
 			<xs:enumeration value="cosinecurve"/>
 			<xs:enumeration value="sinecurve"/>
 			<xs:enumeration value="viennesebend"/>
@@ -12231,19 +12202,21 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="bracket"/>
 			<xs:enumeration value="shoe"/>
 			<xs:enumeration value="expansion_joint_device"/>
-			<xs:enumeration value="birdprotection"/>
 			<xs:enumeration value="cablearranger"/>
 			<xs:enumeration value="insulator"/>
 			<xs:enumeration value="lock"/>
 			<xs:enumeration value="tensioningequipment"/>
 			<xs:enumeration value="railpad"/>
 			<xs:enumeration value="slidingchair"/>
+			<xs:enumeration value="rail_lubrication"/>
 			<xs:enumeration value="panel_strengthening"/>
 			<xs:enumeration value="railbrace"/>
 			<xs:enumeration value="elastic_cushion"/>
 			<xs:enumeration value="soundabsorption"/>
-			<xs:enumeration value="rail_lubrication"/>
+			<xs:enumeration value="pointmachinemountingdevice"/>
+			<xs:enumeration value="point_machine_locking_device"/>
 			<xs:enumeration value="rail_mechanical_equipment"/>
+			<xs:enumeration value="birdprotection"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -12425,22 +12398,27 @@ of the material. The information contained in this document is subject to change
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="single_swing_left"/>
 			<xs:enumeration value="single_swing_right"/>
-			<xs:enumeration value="double_door_single_swing"/>
-			<xs:enumeration value="double_door_single_swing_opposite_left"/>
-			<xs:enumeration value="double_door_single_swing_opposite_right"/>
+			<xs:enumeration value="double_panel_single_swing"/>
+			<xs:enumeration value="double_panel_single_swing_opposite_left"/>
+			<xs:enumeration value="double_panel_single_swing_opposite_right"/>
 			<xs:enumeration value="double_swing_left"/>
 			<xs:enumeration value="double_swing_right"/>
-			<xs:enumeration value="double_door_double_swing"/>
+			<xs:enumeration value="double_panel_double_swing"/>
 			<xs:enumeration value="sliding_to_left"/>
 			<xs:enumeration value="sliding_to_right"/>
-			<xs:enumeration value="double_door_sliding"/>
+			<xs:enumeration value="double_panel_sliding"/>
 			<xs:enumeration value="folding_to_left"/>
 			<xs:enumeration value="folding_to_right"/>
-			<xs:enumeration value="double_door_folding"/>
-			<xs:enumeration value="revolving"/>
+			<xs:enumeration value="double_panel_folding"/>
+			<xs:enumeration value="revolving_horizontal"/>
 			<xs:enumeration value="rollingup"/>
 			<xs:enumeration value="swing_fixed_left"/>
 			<xs:enumeration value="swing_fixed_right"/>
+			<xs:enumeration value="double_panel_lifting_vertical"/>
+			<xs:enumeration value="lifting_horizontal"/>
+			<xs:enumeration value="lifting_vertical_left"/>
+			<xs:enumeration value="lifting_vertical_right"/>
+			<xs:enumeration value="revolving_vertical"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -12756,6 +12734,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="hosereel"/>
 			<xs:enumeration value="sprinkler"/>
 			<xs:enumeration value="sprinklerdeflector"/>
+			<xs:enumeration value="firemonitor"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -13048,7 +13027,7 @@ of the material. The information contained in this document is subject to change
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="canal"/>
 			<xs:enumeration value="waterwayshiplift"/>
-			<xs:enumeration value="embankment"/>
+			<xs:enumeration value="revetment"/>
 			<xs:enumeration value="launchrecovery"/>
 			<xs:enumeration value="marinedefence"/>
 			<xs:enumeration value="hydrolift"/>
@@ -13197,11 +13176,6 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="IfcNullStyle">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="null"/>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="IfcObjectTypeEnum">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="product"/>
@@ -13259,6 +13233,14 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="poweroutlet"/>
 			<xs:enumeration value="dataoutlet"/>
 			<xs:enumeration value="telephoneoutlet"/>
+			<xs:enumeration value="userdefined"/>
+			<xs:enumeration value="notdefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IfcPavementTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="flexible"/>
+			<xs:enumeration value="rigid"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -13493,6 +13475,12 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="IfcRailwayTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="userdefined"/>
+			<xs:enumeration value="notdefined"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="IfcRampFlightTypeEnum">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="straight"/>
@@ -13628,6 +13616,12 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="layby"/>
 			<xs:enumeration value="carriageway"/>
 			<xs:enumeration value="trafficisland"/>
+			<xs:enumeration value="userdefined"/>
+			<xs:enumeration value="notdefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IfcRoadTypeEnum">
+		<xs:restriction base="xs:string">
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -13883,6 +13877,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="gfa"/>
 			<xs:enumeration value="internal"/>
 			<xs:enumeration value="external"/>
+			<xs:enumeration value="berth"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -14183,6 +14178,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="movingwalkway"/>
 			<xs:enumeration value="craneway"/>
 			<xs:enumeration value="liftinggear"/>
+			<xs:enumeration value="haulinggear"/>
 			<xs:enumeration value="userdefined"/>
 			<xs:enumeration value="notdefined"/>
 		</xs:restriction>
@@ -15638,15 +15634,6 @@ of the material. The information contained in this document is subject to change
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="ifc:IfcNormalisedRatioMeasure">
-					<xs:attributeGroup ref="ifc:instanceAttributes"/>
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="IfcNullStyle-wrapper" nillable="true">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="ifc:IfcNullStyle">
 					<xs:attributeGroup ref="ifc:instanceAttributes"/>
 				</xs:extension>
 			</xs:simpleContent>

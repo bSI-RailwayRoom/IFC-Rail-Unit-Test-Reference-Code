@@ -239,37 +239,37 @@ A designation of where the assembly is intended to take place defined by an Enum
 <summary>Concept usage</summary>
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 55.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 56.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcproductextension/lexical/ifcelementassemblytype.htm">IfcElementAssemblyType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 55 &mdash; IfcElementAssembly Object Typing</td></tr></table>
+<tr><td><p class="table">Table 56 &mdash; IfcElementAssembly Object Typing</td></tr></table>
 
 <br/><br/>
 
 <a id="aggregation" />
 <p class="use-head">Aggregation</p>
-<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 56.<table>
+<p>The <a href="../../templates/aggregation.htm">Aggregation</a> concept template applies to this entity as shown in Table 57.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 56 &mdash; IfcElementAssembly Aggregation</td></tr></table>
+<tr><td><p class="table">Table 57 &mdash; IfcElementAssembly Aggregation</td></tr></table>
 
 <p>The <span class="self-ref">IfcElementAssembly</span> shall represent an aggregate, i.e. it should have other elements, being subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>, as contained (sub)parts. The table above only represents a selection of subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> that are legitimate as parts in an <span class="self-ref">IfcElementAssembly</span></p>
 <ul>
 <li>The <span class="self-ref">IfcElementAssembly</span> is an aggregate i.e. being composed by other elements and acting as an assembly using the objectified relationship <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>, refering to it by its inverse attribute <i>SELF\IfcObjectDefinition.IsDecomposedBy</i>. Components of an assembly are described by instances of subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>.</li>
 <li>In this case, the contained subtypes of <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a> shall not be additionally contained in the project spatial hierarchy, i.e. the inverse attribute <i>SELF\IfcElement.ContainedInStructure</i> of those <a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>'s shall be <i>NIL.</i></li>
 </ul>
-<p>Figure 166 illustrates spatial containment and element aggregation relationships.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcelementassembly-containment.png" alt="&quot;containment relationships&quot;" title="Figure 166 &mdash; Element assembly containment"></td></tr><tr><td><p class="figure">Figure 166 &mdash; Element assembly containment</p></td></tr></table></p>
+<p>Figure 167 illustrates spatial containment and element aggregation relationships.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcelementassembly-containment.png" alt="&quot;containment relationships&quot;" title="Figure 167 &mdash; Element assembly containment"></td></tr><tr><td><p class="figure">Figure 167 &mdash; Element assembly containment</p></td></tr></table></p>
 
 <br/><br/>
 
 <a id="spatial-containment" />
 <p class="use-head">Spatial Containment</p>
-<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 57.<table>
+<p>The <a href="../../templates/spatial-containment.htm">Spatial Containment</a> concept template applies to this entity as shown in Table 58.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>RelatingStructure</b></th><th><b>Description</b></th></tr>
@@ -281,7 +281,7 @@ A designation of where the assembly is intended to take place defined by an Enum
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 57 &mdash; IfcElementAssembly Spatial Containment</td></tr></table>
+<tr><td><p class="table">Table 58 &mdash; IfcElementAssembly Spatial Containment</td></tr></table>
 
 <p>The <span class="self-ref">IfcElementAssembly</span> should have a relationship for its containment in the hierachical spatial structure of the project. Only if the <span class="self-ref">IfcElementAssembly</span> is itself a part of another assembly this relationship should be omitted.</p>
 
@@ -340,6 +340,7 @@ A designation of where the assembly is intended to take place defined by an Enum
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_Tolerance</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 23 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.24");
+//-->
+</script>
+
+<h4 class="std">5.4.4.24 Pset_Tolerance</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<span class="self-ref">IfcProduct,IfcTypeProduct</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/21852yrKD2guJGHXYCvyB6/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_Tolerance.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>ToleranceDescription</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>
+</td><td>
+General description of the tolerance associated to the element or feature, its source and implications.
+
+</td></tr>
+<tr><td>ToleranceBasis</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_tolerancebasis.htm">PEnum_ToleranceBasis</a></td><td>
+Indication of the basis of the tolerance requirement
+
+</td></tr>
+<tr><td>OverallTolerance</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range tolerance associated to the intended shape and position in XYZ.
+
+</td></tr>
+<tr><td>HorizontalTolerance</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range tolerance associated to the horizontal shape and position in X, if different to the overall tolerance.
+
+</td></tr>
+<tr><td>OrthogonalTolerance</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range tolerance associated to the horizontal shape and position in Y, if different to the overall tolerance.
+
+</td></tr>
+<tr><td>VerticalTolerance</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range tolerance associated to the vertical shape and position in Z, if different to the overall tolerance.
+
+</td></tr>
+<tr><td>PlanarFlatness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range flatness associated to the intended shape and position in XYZ.
+
+</td></tr>
+<tr><td>HorizontalFlatness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range flatness associated to the horizontal surface in XY, if different to the overall flatness.
+
+</td></tr>
+<tr><td>ElevationalFlatness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range flatness associated to the elevational surface in ZX, if different to the overall flatness.
+
+</td></tr>
+<tr><td>SideFlatness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range flatness associated to the side surface in YZ, if different to the overall flatness.
+
+</td></tr>
+<tr><td>OverallOrthogonality</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+Indicative (95%-100%) range orthogonality associated to the intended shape and orientation in XYZ.
+
+</td></tr>
+<tr><td>HorizontalOrthogonality</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+Indicative (95%-100%) range orthogonality associated to the horizontal shape and orientation in X, if different to the overall orthogonality.
+
+</td></tr>
+<tr><td>OrthogonalOrthogonality</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+Indicative (95%-100%) range orthogonality associated to the horizontal shape and orientation in Y, if different to the overall orthogonality.
+
+</td></tr>
+<tr><td>VerticalOrthogonality</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcplaneanglemeasure.htm">IfcPlaneAngleMeasure</a>
+</td><td>
+Indicative (95%-100%) range orthogonality associated to the vertical shape and orientation in Z, if different to the overall orthogonality.
+
+</td></tr>
+<tr><td>OverallStraightness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range straightness associated to the intended shape.
+
+</td></tr>
+<tr><td>HorizontalStraightness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range straightness  associated to the horizontal shape in X, if different to the overall straightness.
+
+</td></tr>
+<tr><td>OrthogonalStraightness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range straightness  associated to the horizontal shape  in Y, if different to the overall straightness.
+
+</td></tr>
+<tr><td>VerticalStraightness</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+Indicative (95%-100%) range straightness associated to the vertical shape in Z, if different to the overall straightness.
+
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_tolerance.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -90,11 +90,11 @@
 <blockquote class="note">
 <p>NOTE  Global units are defined at the single <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> instance, given by <i>UnitsInContext:IfcUnitAssignment</i>, the same units are used for the geometric representation items and for the style definitions.</p>
 </blockquote>
-<p>The measure values for hatch or tile pattern apply to the model space with a target plot scale provided for the correct appearance in the default plot scale. For different scale and projection dependent fill area styles a different instance of <span class="self-ref">IfcFillAreaStyle</span> needs to be used by <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a> for different <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a> dependent representations.</p>
+<p>The measure values for hatch or tile pattern apply to the model space with a target plot scale provided for the correct appearance in the default plot scale. For different scale and projection dependent fill area styles a different instance of <span class="self-ref">IfcFillAreaStyle</span> needs to be used by <i>IfcPresentationStyleAssignment</i> for different <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a> dependent representations.</p>
 <blockquote class="note">
 <p>NOTE  the target plot scale is given by <i>IfcGeometricRepresentationSubContext.TargetScale</i>.</p>
 </blockquote>
-<p>An <span class="self-ref">IfcFillAreaStyle</span> can be assigned to <i>IfcFillArea</i> via the <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleassignment.htm">IfcPresentationStyleAssignment</a> through an intermediate <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> or subtype <i>IfcAnnotationFillAreaOccurrence</i>.</p>
+<p>An <span class="self-ref">IfcFillAreaStyle</span> can be assigned to <i>IfcFillArea</i> via the <i>IfcPresentationStyleAssignment</i> through an intermediate <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> or subtype <i>IfcAnnotationFillAreaOccurrence</i>.</p>
 <blockquote class="extDef">
 <p>NOTE  Definition according to ISO/CD 10303-46:1992<br>
 The style for filling visible curve segments, annotation fill areas or surfaces with tiles or hatches.</p>
@@ -202,7 +202,6 @@ IFC4 CHANGE  New attribute.
 </code></div>
 </details>
 </section>
-<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyleselect.htm">IfcPresentationStyleSelect</a>
 </p>
 <p><a href="../../../link/ifcfillareastyle.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
   </body>

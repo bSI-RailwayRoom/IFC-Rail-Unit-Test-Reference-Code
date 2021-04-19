@@ -235,14 +235,14 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <summary>Concept usage</summary>
 <a id="object-typing" />
 <p class="use-head">Object Typing</p>
-<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 145.<table>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 146.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
 <tr><td></td><td><a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a></td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 145 &mdash; IfcMemberStandardCase Object Typing</td></tr></table>
+<tr><td><p class="table">Table 146 &mdash; IfcMemberStandardCase Object Typing</td></tr></table>
 
 <p>The <span class="self-ref">IfcMemberStandardCase</span> defines in addition that the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a> should have a unique <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a>, that is referenced by the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a> assigned to all occurrences of this <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a>.</p>
 
@@ -250,10 +250,10 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 
 <a id="material-profile-set-usage" />
 <p class="use-head">Material Profile Set Usage</p>
-<p>The <a href="../../templates/material-profile-set-usage.htm">Material Profile Set Usage</a> concept applies to this entity.</p><p>Figure 237 illustrates assignment of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a> and <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> to the <span class="self-ref">IfcMemberStandardCase</span> as the member occurrence and to the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a>. The same <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> shall be shared by many occurrences of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a>. This relationship shall be consistent to the relationship between the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a> and the <span class="self-ref">IfcMemberStandardCase</span>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmemberstandardcase-01.png" alt="&quot;Material profile set and usage&quot;" title="Figure 237 &mdash; Member profile usage"></td></tr><tr><td><p class="figure">Figure 237 &mdash; Member profile usage</p></td></tr></table></p>
-<p>Figure 238 illustrates assignment of a composite profile by using <i>IfcCompositeProfile</i> for geometric representation and several <a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>'s within the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a>. The number of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>'s within the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> is restricted to maximal 2 and requires the use of <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolidtapered.htm">IfcExtrudedAreaSolidTapered</a>, or <a href="../../ifcgeometricmodelresource/lexical/ifcrevolvedareasolidtapered.htm">IfcRevolvedAreaSolidTapered</a> for the correct 'Body' shape representation.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmemberstandardcase-02.png" alt="&quot;Material profile set and usage&quot;" title="Figure 238 &mdash; Member composite profiles"></td></tr><tr><td><p class="figure">Figure 238 &mdash; Member composite profiles</p></td></tr></table></p>
+<p>The <a href="../../templates/material-profile-set-usage.htm">Material Profile Set Usage</a> concept applies to this entity.</p><p>Figure 238 illustrates assignment of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a> and <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> to the <span class="self-ref">IfcMemberStandardCase</span> as the member occurrence and to the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a>. The same <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> shall be shared by many occurrences of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a>. This relationship shall be consistent to the relationship between the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a> and the <span class="self-ref">IfcMemberStandardCase</span>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmemberstandardcase-01.png" alt="&quot;Material profile set and usage&quot;" title="Figure 238 &mdash; Member profile usage"></td></tr><tr><td><p class="figure">Figure 238 &mdash; Member profile usage</p></td></tr></table></p>
+<p>Figure 239 illustrates assignment of a composite profile by using <i>IfcCompositeProfile</i> for geometric representation and several <a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>'s within the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a>. The number of <a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>'s within the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> is restricted to maximal 2 and requires the use of <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolidtapered.htm">IfcExtrudedAreaSolidTapered</a>, or <a href="../../ifcgeometricmodelresource/lexical/ifcrevolvedareasolidtapered.htm">IfcRevolvedAreaSolidTapered</a> for the correct 'Body' shape representation.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmemberstandardcase-02.png" alt="&quot;Material profile set and usage&quot;" title="Figure 239 &mdash; Member composite profiles"></td></tr><tr><td><p class="figure">Figure 239 &mdash; Member composite profiles</p></td></tr></table></p>
 <p>The material of the <span class="self-ref">IfcMemberStandardCase</span> is defined by <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a> and attached by the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>.<i>RelatingMaterial</i>. It is accessible by the inverse <i>HasAssociations</i> relationship. Composite profile members can be represented by refering to several <a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>'s within the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> that is referenced from the <a href="../../ifcmaterialresource/lexical/ifcmaterialprofilesetusage.htm">IfcMaterialProfileSetUsage</a>.</p>
 <p>Material information can also be given at the <a href="../../ifcsharedbldgelements/lexical/ifcmembertype.htm">IfcMemberType</a>, defining the common attribute data for all occurrences of the same type. It is then accessible by the inverse <i>IsDefinedBy</i> relationship pointing to <i>IfcMemberType.HasAssociations</i> and via <i>IfcRelAssociatesMaterial.RelatingMaterial</i>. See <strong>Type Use
 Definition</strong> for additional agreements for standard members.</p>
@@ -262,10 +262,10 @@ Definition</strong> for additional agreements for standard members.</p>
 
 <a id="product-local-placement" />
 <p class="use-head">Product Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 146.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 147.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 146 &mdash; IfcMemberStandardCase Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 147 &mdash; IfcMemberStandardCase Product Local Placement</td></tr></table>
 
 <p>The following restriction is imposed:</p>
 <ul>
@@ -276,10 +276,10 @@ Definition</strong> for additional agreements for standard members.</p>
 
 <a id="axis-3d-geometry" />
 <p class="use-head">Axis 3D Geometry</p>
-<p>The <a href="../../templates/axis-3d-geometry.htm">Axis 3D Geometry</a> concept template applies to this entity as shown in Table 147.<table>
+<p>The <a href="../../templates/axis-3d-geometry.htm">Axis 3D Geometry</a> concept template applies to this entity as shown in Table 148.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 147 &mdash; IfcMemberStandardCase Axis 3D Geometry</td></tr></table>
+<tr><td><p class="table">Table 148 &mdash; IfcMemberStandardCase Axis 3D Geometry</td></tr></table>
 
 <p>The following additional constraints apply to the 'Axis' representation, if the 'Body' shape representation has the <i>RepresentationType</i> : 'SweptSolid':</p>
 <ul>
@@ -300,7 +300,7 @@ Definition</strong> for additional agreements for standard members.</p>
  </td>
  </tr>
  <tr>
-  <td><p class="figure">Figure 239 &mdash; Member axis representation</p></td>
+  <td><p class="figure">Figure 240 &mdash; Member axis representation</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -313,7 +313,7 @@ Definition</strong> for additional agreements for standard members.</p>
  </tr>
  
 <tr>
-  <td><p class="figure">Figure 240 &mdash; Member axis cardinal point</p></td>
+  <td><p class="figure">Figure 241 &mdash; Member axis cardinal point</p></td>
   <td>&nbsp;</td>
  </tr>
 </table>
@@ -330,7 +330,7 @@ Definition</strong> for additional agreements for standard members.</p>
 <li><strong>Extrusion</strong>: perpendicular to the profile direction.</li>
 <li><strong>Orientation</strong>: The y-axis of the profile, as determined by <i>IfcSweptAreaSolid.Position.P[2]</i> shall point to the Z-Axis. It indicates the &quot;role&quot; of the column, a role=0° means y-axis of profile = Z-axis of reference coordinate system. In the exception of a vertical member, the y-axis shall point to the Y-axis.</li>
 </ul>
-<p>Figure 241 illustrates a 'SweptSolid' geometric representation with cardinal point applied as <strong>1</strong> (bottom left).</p>
+<p>Figure 242 illustrates a 'SweptSolid' geometric representation with cardinal point applied as <strong>1</strong> (bottom left).</p>
 <p>The following interpretation of dimension parameter applies for rectangular members:</p>
 <ul>
 <li><small><i>IfcRectangleProfileDef.YDim</i> interpreted as member width</small></li>
@@ -340,7 +340,7 @@ Definition</strong> for additional agreements for standard members.</p>
 <ul>
 <li><small><i>IfcCircleProfileDef.Radius</i> interpreted as beam radius.</small></li>
 </ul>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbeamstandardcase_sweptsolid-01.png" alt="&quot;standard member&quot;" title="Figure 241 &mdash; Member body extrusion"></td></tr><tr><td><p class="figure">Figure 241 &mdash; Member body extrusion</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbeamstandardcase_sweptsolid-01.png" alt="&quot;standard member&quot;" title="Figure 242 &mdash; Member body extrusion"></td></tr><tr><td><p class="figure">Figure 242 &mdash; Member body extrusion</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -374,8 +374,8 @@ NOTE  Using <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasol
 <li><strong>Extrusion</strong>: see 'SweptSolid' geometric representation</li>
 <li><strong>Boolean result</strong>: The <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a> shall be supported, allowing for Boolean differences between the swept solid (here <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>) and one or several <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> (or its subtypes).</li>
 </ul>
-<p>Figure 242 illustrates an advanced geometric representation with use of <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a> between an <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a> and an <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> to create a clipped body, with cardinal point applied as <strong>4</strong> (mid-depth left).</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbeamstandardcase_clipping-01.png" alt="&quot;clipped beam&quot;" title="Figure 242 &mdash; Member body clipping"></td></tr><tr><td><p class="figure">Figure 242 &mdash; Member body clipping</p></td></tr></table></p>
+<p>Figure 243 illustrates an advanced geometric representation with use of <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanclippingresult.htm">IfcBooleanClippingResult</a> between an <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a> and an <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> to create a clipped body, with cardinal point applied as <strong>4</strong> (mid-depth left).</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcbeamstandardcase_clipping-01.png" alt="&quot;clipped beam&quot;" title="Figure 243 &mdash; Member body clipping"></td></tr><tr><td><p class="figure">Figure 243 &mdash; Member body clipping</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -434,6 +434,7 @@ NOTE  Using <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasol
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>

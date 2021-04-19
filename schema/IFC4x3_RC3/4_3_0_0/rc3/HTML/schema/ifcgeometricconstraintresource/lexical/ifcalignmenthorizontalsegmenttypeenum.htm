@@ -32,13 +32,12 @@
 <tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc1-to-ifc4x3_rc2/index.htm">IFC4x3_RC1 to IFC4x3_RC2</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
-<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-update/index.htm">IFC4x3_RC2 Update</a></b></td>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUBICPARABOLA</td><td></td><td></td><td>ADDED</td><td></td></tr>
 <td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUBIC</td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>CUBICPARABOLA</i> to <i>CUBIC</i>. <br/></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUBICSPIRAL</td><td>X</td><td>X</td><td>DELETED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-update/index.htm">IFC4x3_RC2 Update</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegmenttypeenum.htm">IfcAlignmentHorizontalSegmentTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUBICPARABOLA</td><td></td><td></td><td>ADDED</td><td></td></tr>
 </table>
 </details>
 <section>
@@ -53,6 +52,7 @@
 </td></tr><tr><td>BIQUADRATICPARABOLA</td><td>Helmert transition.<br>
 NOTE  also referred to as Schramm curve.
 </td></tr><tr><td>BLOSSCURVE</td><td>Bloss transition.
+</td></tr><tr><td>CUBICSPIRAL</td><td>Cubic spiral transition.
 </td></tr><tr><td>COSINECURVE</td><td>Cosine transition.
 </td></tr><tr><td>SINECURVE</td><td>Sine transition.
 NOTE  also referred to as Klein curve.
@@ -69,6 +69,7 @@ NOTE  also referred to as Klein curve.
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubic&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;biquadraticparabola&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blosscurve&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubicspiral&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cosinecurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sinecurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;viennesebend&quot;/&gt;<br/>
@@ -77,7 +78,7 @@ NOTE  also referred to as Klein curve.
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcAlignmentHorizontalSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

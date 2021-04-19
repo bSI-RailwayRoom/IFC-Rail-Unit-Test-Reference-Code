@@ -59,9 +59,9 @@
 <li><a href="../../ifcsharedbldgelements/lexical/ifcbuildingelementproxy.htm">IfcBuildingElementProxy</a>.</li>
 </ul>
 <blockquote class="example">
-<p>EXAMPLE Elemented walls may extend the concepts of standard walls with the following features, as shown in Figure 266, including the <a href="../../ifcproductextension/lexical/ifcrelconnectswithrealizingelements.htm">IfcRelConnectsWithRealizingElements</a> relationship to define fasteners and accessories.</p>
+<p>EXAMPLE Elemented walls may extend the concepts of standard walls with the following features, as shown in Figure 267, including the <a href="../../ifcproductextension/lexical/ifcrelconnectswithrealizingelements.htm">IfcRelConnectsWithRealizingElements</a> relationship to define fasteners and accessories.</p>
 </blockquote>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwallelementedcase-partitioning.png" alt="&quot;voiding&quot;" title="Figure 266 &mdash; Wall elemented case"></td></tr><tr><td><p class="figure">Figure 266 &mdash; Wall elemented case</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwallelementedcase-partitioning.png" alt="&quot;voiding&quot;" title="Figure 267 &mdash; Wall elemented case"></td></tr><tr><td><p class="figure">Figure 267 &mdash; Wall elemented case</p></td></tr></table></p>
 <blockquote class="history">
 <p>HISTORY  New entity in IFC4.</p>
 </blockquote>
@@ -237,10 +237,10 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 <summary>Concept usage</summary>
 <a id="product-local-placement" />
 <p class="use-head">Product Local Placement</p>
-<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 204.<table>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept template applies to this entity as shown in Table 205.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 204 &mdash; IfcWallElementedCase Product Local Placement</td></tr></table>
+<tr><td><p class="table">Table 205 &mdash; IfcWallElementedCase Product Local Placement</td></tr></table>
 
 <p>The use of local placement is defined at the supertype <a href="../../ifcsharedbldgelements/lexical/ifcwall.htm">IfcWall</a>. The local placement of the <span class="self-ref">IfcWallElementedCase</span> defines the parent coordinate systems for the parts within the decomposition. All parts shall be positioned relative to the <span class="self-ref">IfcWallElementedCase</span>.</p>
 
@@ -257,7 +257,7 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 
 <a id="element-decomposition" />
 <p class="use-head">Element Decomposition</p>
-<p>The <a href="../../templates/element-decomposition.htm">Element Decomposition</a> concept template applies to this entity as shown in Table 205.<table>
+<p>The <a href="../../templates/element-decomposition.htm">Element Decomposition</a> concept template applies to this entity as shown in Table 206.<table>
 <tr><td>
 <table class="gridtable">
 <tr><th><b>IsDecomposedBy</b></th><th><b>RelatedObjects</b></th><th><b>Description</b></th></tr>
@@ -267,7 +267,7 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 </td></tr>
 </table>
 </td></tr>
-<tr><td><p class="table">Table 205 &mdash; IfcWallElementedCase Element Decomposition</td></tr></table>
+<tr><td><p class="table">Table 206 &mdash; IfcWallElementedCase Element Decomposition</td></tr></table>
 
 <p>An elemented wall is decomposed into parts for particular components such as framing and panels on each side. There must be an object corresponding to each type of part, however there may be single object instance indicating multiple placements (via mapping geometry) for each part, or multiple instances corresponding to each placement. For minimizing file size, it is recommended to use a single object with multiple placement unless there are specific connectivity relationships indicated (e.g. a junction box connected to a specific stud).</p>
 
@@ -275,13 +275,13 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 
 <a id="element-voiding" />
 <p class="use-head">Element Voiding</p>
-<p>The <a href="../../templates/element-voiding.htm">Element Voiding</a> concept template applies to this entity as shown in Table 206.<table>
+<p>The <a href="../../templates/element-voiding.htm">Element Voiding</a> concept template applies to this entity as shown in Table 207.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 206 &mdash; IfcWallElementedCase Element Voiding</td></tr></table>
+<tr><td><p class="table">Table 207 &mdash; IfcWallElementedCase Element Voiding</td></tr></table>
 
-<p>As shown in Figure 267, openings within the composite wall are directly assigned to <span class="self-ref">IfcWallElementedCase</span> using <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> pointing to <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> and apply to all aggregated parts. If individual parts have cutting and other voiding features, then the decomposed parts have a separate voiding relationship <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> pointing to <a href="../../ifcstructuralelementsdomain/lexical/ifcvoidingfeature.htm">IfcVoidingFeature</a>.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwallelementedcase_fig01.png" alt="&quot;voiding&quot;" title="Figure 267 &mdash; Wall elemented voiding"></td></tr><tr><td><p class="figure">Figure 267 &mdash; Wall elemented voiding</p></td></tr></table></p>
+<p>As shown in Figure 268, openings within the composite wall are directly assigned to <span class="self-ref">IfcWallElementedCase</span> using <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> pointing to <a href="../../ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a> and apply to all aggregated parts. If individual parts have cutting and other voiding features, then the decomposed parts have a separate voiding relationship <a href="../../ifcproductextension/lexical/ifcrelvoidselement.htm">IfcRelVoidsElement</a> pointing to <a href="../../ifcstructuralelementsdomain/lexical/ifcvoidingfeature.htm">IfcVoidingFeature</a>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcwallelementedcase_fig01.png" alt="&quot;voiding&quot;" title="Figure 268 &mdash; Wall elemented voiding"></td></tr><tr><td><p class="figure">Figure 268 &mdash; Wall elemented voiding</p></td></tr></table></p>
 
 <br/><br/>
 
@@ -332,6 +332,7 @@ IFC4 CHANGE The attribute has been added at the end of the entity definition.
 
 <tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
 
 <tr><td colspan="3"><a href="../../ifcproductextension/lexical/ifcelement.htm"><a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a></a></td></tr><tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#cog-geometry">CoG Geometry</a></td><td><a href="../../templates/cog-geometry.htm">CoG Geometry</a></td><td>General Usage</td></tr>
 <tr><td> </td><td><a href="../../ifcproductextension/lexical/ifcelement.htm#box-geometry">Box Geometry</a></td><td><a href="../../templates/box-geometry.htm">Box Geometry</a></td><td>General Usage</td></tr>

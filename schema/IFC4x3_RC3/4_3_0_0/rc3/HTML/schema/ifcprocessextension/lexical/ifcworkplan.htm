@@ -56,9 +56,9 @@
 </blockquote>
 <p>A work plan contains a set of work schedules for different purposes (including construction and facilities management). Contained work schedules are defined through the <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a> relationship. Through inheritance from <a href="../../ifcprocessextension/lexical/ifcworkcontrol.htm">IfcWorkControl</a> it is also possible to define references to activities (for example, <a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>) and resources used in the work plan.</p>
 <p>A work plan has information such as start date, finish date, total free float, and so on. <span class="self-ref">IfcWorkPlan</span> can also refer to the construction project represented by the single <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> instance (please also check the definition of <a href="../../ifcprocessextension/lexical/ifcworkcontrol.htm">IfcWorkControl</a>).</p>
-<p>Figure 157 shows the backbone structure of a work plan that defines (1) contained work schedules through <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a> and (2), if not assigned otherwise to contained work schedules, assigned tasks and resources through <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>.</p>
+<p>Figure 158 shows the backbone structure of a work plan that defines (1) contained work schedules through <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a> and (2), if not assigned otherwise to contained work schedules, assigned tasks and resources through <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>.</p>
 <p>If an assigned <a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a> is a root-level task, such task must be declared on the <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> using the <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> relationship.</p>
-<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcworkplan_instantiation_diagram.png" alt="&quot;work plan instantiation diagram&quot;" title="Figure 157 &mdash; Work plan relationships"></td></tr><tr><td><p class="figure">Figure 157 &mdash; Work plan relationships</p></td></tr></table></p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcworkplan_instantiation_diagram.png" alt="&quot;work plan instantiation diagram&quot;" title="Figure 158 &mdash; Work plan relationships"></td></tr><tr><td><p class="figure">Figure 158 &mdash; Work plan relationships</p></td></tr></table></p>
 </details>
 <details open="open"><summary>Attribute definitions</summary><table class="attributes">
 <tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
@@ -214,10 +214,10 @@ the type required may be set.
 <summary>Concept usage</summary>
 <a id="property-sets-for-objects" />
 <p class="use-head">Property Sets</p>
-<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 18.<table>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 19.<table>
 <tr><td>
 </td></tr>
-<tr><td><p class="table">Table 18 &mdash; IfcWorkPlan Property Sets for Objects</td></tr></table>
+<tr><td><p class="table">Table 19 &mdash; IfcWorkPlan Property Sets for Objects</td></tr></table>
 
 <br/><br/>
 
