@@ -19,8 +19,7 @@
 
 #include	"clothoid.h"
 
-
-extern	double	Pi;
+#include	"engineControlStatic.h"
 
 
 double	TaylorSeriesCosQubic(
@@ -446,19 +445,19 @@ double	SpiralX(
 				double	s
 			)
 {
-	TaylorSeriesCos(
-			(qubicTerm) ?
-				1. / (qubicTerm * qubicTerm * qubicTerm) :
-				0.,
-			(quadraticTerm) ?
-				1. / (quadraticTerm * quadraticTerm) :
-				0.,
-			(linearTerm) ?
-				1. / linearTerm :
-				0.,
-			constantTerm,
-			s
-		);
+	return	TaylorSeriesCos(
+					(qubicTerm) ?
+						1. / (qubicTerm * qubicTerm * qubicTerm) :
+						0.,
+					(quadraticTerm) ?
+						1. / (quadraticTerm * quadraticTerm) :
+						0.,
+					(linearTerm) ?
+						1. / linearTerm :
+						0.,
+					constantTerm,
+					s
+				);
 }
 
 double	SpiralY(
@@ -469,19 +468,19 @@ double	SpiralY(
 				double	s
 			)
 {
-	TaylorSeriesSin(
-			(qubicTerm) ?
-				1. / (qubicTerm * qubicTerm * qubicTerm) :
-				0.,
-			(quadraticTerm) ?
-				1. / (quadraticTerm * quadraticTerm) :
-				0.,
-			(linearTerm) ?
-				1. / linearTerm :
-				0.,
-			constantTerm,
-			s
-		);
+	return	TaylorSeriesSin(
+					(qubicTerm) ?
+						1. / (qubicTerm * qubicTerm * qubicTerm) :
+						0.,
+					(quadraticTerm) ?
+						1. / (quadraticTerm * quadraticTerm) :
+						0.,
+					(linearTerm) ?
+						1. / linearTerm :
+						0.,
+					constantTerm,
+					s
+				);
 }
 
 double	ClothoidX(
