@@ -24,7 +24,6 @@
 
 double	TaylorSeriesCosQubic(
 				int_t	i,
-				double	qubicFactor,
 				double	s
 			)
 {
@@ -49,12 +48,11 @@ double	TaylorSeriesCosQubic(
 		}
 	}
 
-	return	qubicFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesCosQuadratic(
 				int_t	i,
-				double	quadraticFactor,
 				double	s
 			)
 {
@@ -79,12 +77,11 @@ double	TaylorSeriesCosQuadratic(
 		}
 	}
 
-	return	quadraticFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesCosLinear(
 				int_t	i,
-				double	linearFactor,
 				double	s
 			)
 {
@@ -109,13 +106,12 @@ double	TaylorSeriesCosLinear(
 		}
 	}
 
-	return	linearFactor * value;
+	return	value;
 }
 
 
 double	TaylorSeriesCosConstant(
 				int_t	i,
-				double	constantFactor,
 				double	s
 			)
 {
@@ -140,7 +136,7 @@ double	TaylorSeriesCosConstant(
 		}
 	}
 
-	return	constantFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesCos(
@@ -154,35 +150,35 @@ double	TaylorSeriesCos(
 {
 	double	value =
 					qubicFactor ?
-						TaylorSeriesCosQubic(
-								i,
-								qubicFactor,
-								s
-							) :
+						qubicFactor *
+							TaylorSeriesCosQubic(
+									i,
+									s / qubicFactor
+								) :
 						0.
 				+
 					quadraticFactor ?
-						TaylorSeriesCosQuadratic(
-								i,
-								quadraticFactor,
-								s
-							) :
+						quadraticFactor *
+							TaylorSeriesCosQuadratic(
+									i,
+									s / quadraticFactor
+								) :
 						0.
 				+
 					linearFactor ?
-						TaylorSeriesCosLinear(
-								i,
-								linearFactor,
-								s
-							) :
+						linearFactor *
+							TaylorSeriesCosLinear(
+									i,
+									s / linearFactor
+								) :
 						0.
 				+
 					constantFactor ?
-						TaylorSeriesCosConstant(
-								i,
-								constantFactor,
-								s
-							) :
+						constantFactor *
+							TaylorSeriesCosConstant(
+									i,
+									s / constantFactor
+								) :
 						0.;
 
 	if (i % 2) {
@@ -195,7 +191,6 @@ double	TaylorSeriesCos(
 
 double	TaylorSeriesSinQubic(
 				int_t	i,
-				double	qubicFactor,
 				double	s
 			)
 {
@@ -220,12 +215,11 @@ double	TaylorSeriesSinQubic(
 		}
 	}
 
-	return	qubicFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesSinQuadratic(
 				int_t	i,
-				double	quadraticFactor,
 				double	s
 			)
 {
@@ -250,12 +244,11 @@ double	TaylorSeriesSinQuadratic(
 		}
 	}
 
-	return	quadraticFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesSinLinear(
 				int_t	i,
-				double	linearFactor,
 				double	s
 			)
 {
@@ -280,12 +273,11 @@ double	TaylorSeriesSinLinear(
 		}
 	}
 
-	return	linearFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesSinConstant(
 				int_t	i,
-				double	constantFactor,
 				double	s
 			)
 {
@@ -310,7 +302,7 @@ double	TaylorSeriesSinConstant(
 		}
 	}
 
-	return	constantFactor * value;
+	return	value;
 }
 
 double	TaylorSeriesSin(
@@ -324,35 +316,35 @@ double	TaylorSeriesSin(
 {
 	double	value =
 					qubicFactor ?
-						TaylorSeriesSinQubic(
-								i,
-								qubicFactor,
-								s
-							) :
+						qubicFactor *
+							TaylorSeriesSinQubic(
+									i,
+									s / std::fabs(qubicFactor)
+								) :
 						0.
 				+
 					quadraticFactor ?
-						TaylorSeriesSinQuadratic(
-								i,
-								quadraticFactor,
-								s
-							) :
+						quadraticFactor *
+							TaylorSeriesSinQuadratic(
+									i,
+									s / std::fabs(quadraticFactor)
+								) :
 						0.
 				+
 					linearFactor ?
-						TaylorSeriesSinLinear(
-								i,
-								linearFactor,
-								s
-							) :
+						linearFactor *
+							TaylorSeriesSinLinear(
+									i,
+									s / std::fabs(linearFactor)
+								) :
 						0.
 				+
 					constantFactor ?
-						TaylorSeriesSinConstant(
-								i,
-								constantFactor,
-								s
-							) :
+						constantFactor *
+							TaylorSeriesSinConstant(
+									i,
+									s / std::fabs(constantFactor)
+								) :
 						0.;
 
 	if (i % 2) {
@@ -372,7 +364,7 @@ double	TaylorSeriesCos(
 			)
 {
 	int_t	minSteps = 6, maxSteps = 500;
-	double	borderValue = 0.0001;
+	double	borderValue = 0.00001;
 
 	//
 	// SUM [0 .. inf]
@@ -389,7 +381,6 @@ double	TaylorSeriesCos(
 		value += deviation;
 
 		if (std::fabs(deviation) < borderValue) {
-			assert(std::fabs(value) < 2.);
 			return value;
 		}
 	}
@@ -409,7 +400,7 @@ double	TaylorSeriesSin(
 			)
 {
 	int_t	minSteps = 6, maxSteps = 500;
-	double	borderValue = 0.0001;
+	double	borderValue = 0.00001;
 
 	//
 	// SUM [0 .. inf]
@@ -426,7 +417,6 @@ double	TaylorSeriesSin(
 		value += deviation;
 
 		if (std::fabs(deviation) < borderValue) {
-			assert(std::fabs(value) < 2.);
 			return value;
 		}
 	}
@@ -446,15 +436,9 @@ double	SpiralX(
 			)
 {
 	return	TaylorSeriesCos(
-					(qubicTerm) ?
-						1. / (qubicTerm * qubicTerm * qubicTerm) :
-						0.,
-					(quadraticTerm) ?
-						1. / (quadraticTerm * quadraticTerm) :
-						0.,
-					(linearTerm) ?
-						1. / linearTerm :
-						0.,
+					qubicTerm,
+					quadraticTerm,
+					linearTerm,
 					constantTerm,
 					s
 				);
@@ -469,15 +453,9 @@ double	SpiralY(
 			)
 {
 	return	TaylorSeriesSin(
-					(qubicTerm) ?
-						1. / (qubicTerm * qubicTerm * qubicTerm) :
-						0.,
-					(quadraticTerm) ?
-						1. / (quadraticTerm * quadraticTerm) :
-						0.,
-					(linearTerm) ?
-						1. / linearTerm :
-						0.,
+					qubicTerm,
+					quadraticTerm,
+					linearTerm,
 					constantTerm,
 					s
 				);
@@ -488,9 +466,9 @@ double	ClothoidX(
 				double	s
 			)
 {
-	return	SpiralX(
+	return	TaylorSeriesCos(
 					0.,
-					sqrt(Pi / 2.) * clothoidConstant / 2.,
+					clothoidConstant * sqrt(2.),
 					0.,
 					0.,
 					s
@@ -502,9 +480,9 @@ double	ClothoidY(
 				double	s
 			)
 {
-	return	SpiralY(
+	return	TaylorSeriesSin(
 					0.,
-					(clothoidConstant / std::fabs(clothoidConstant)) * sqrt(Pi / 2.) * clothoidConstant / 2.,
+					clothoidConstant * sqrt(2.),
 					0.,
 					0.,
 					s
