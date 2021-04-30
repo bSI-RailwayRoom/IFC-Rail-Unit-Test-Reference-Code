@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-19 April 2021
+28 April 2021
 
 *)
 
@@ -4010,7 +4010,6 @@ END_ENTITY;
 
 ENTITY IfcAlignmentHorizontal
  SUBTYPE OF (IfcLinearElement);
-	StartDistAlong : OPTIONAL IfcLengthMeasure;
 END_ENTITY;
 
 ENTITY IfcAlignmentHorizontalSegment
@@ -5801,6 +5800,10 @@ ENTITY IfcDirectrixCurveSweptAreaSolid
 (SIZEOF(['IFC4X3_RC3.IFCCONIC', 'IFC4X3_RC3.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);
 END_ENTITY;
 
+ENTITY IfcDirectrixDerivedReferenceSweptAreaSolid
+ SUBTYPE OF (IfcFixedReferenceSweptAreaSolid);
+END_ENTITY;
+
 ENTITY IfcDirectrixDistanceSweptAreaSolid
  ABSTRACT SUPERTYPE OF (ONEOF
     (IfcInclinedReferenceSweptAreaSolid))
@@ -6934,6 +6937,8 @@ ENTITY IfcFireSuppressionTerminalType
 END_ENTITY;
 
 ENTITY IfcFixedReferenceSweptAreaSolid
+ SUPERTYPE OF (ONEOF
+    (IfcDirectrixDerivedReferenceSweptAreaSolid))
  SUBTYPE OF (IfcDirectrixCurveSweptAreaSolid);
 	FixedReference : IfcDirection;
 END_ENTITY;
@@ -8768,6 +8773,7 @@ ENTITY IfcPolynomialCurve
 	CoefficientsZ : OPTIONAL LIST [2:?] OF IfcReal;
  WHERE
 	ValidCoefficients : (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ));
+	CorrectPositionDim : ((Position.Dim=2) AND (NOT EXISTS(CoefficientsZ))) OR (Position.Dim=3);
 END_ENTITY;
 
 ENTITY IfcPort
@@ -10355,7 +10361,7 @@ END_ENTITY;
 
 ENTITY IfcSectionedSolidHorizontal
  SUBTYPE OF (IfcSectionedSolid);
-	CrossSectionPositions : LIST [2:?] OF IfcCurveMeasureSelect;
+	CrossSectionPositions : LIST [2:?] OF IfcAxis2PlacementLinear;
 	FixedAxisVertical : IfcBoolean;
  WHERE
 	CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);
@@ -12937,10 +12943,10 @@ FUNCTION IfcCurveDim
     THEN RETURN(2);
   END_IF;
   IF ('IFC4X3_RC3.IFCPOLYNOMIALCURVE' IN TYPEOF(Curve)) THEN
-    IF (NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsX) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsY) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsZ))
-      THEN RETURN(2);
-    ELSE
-      RETURN(3);
+    IF ( NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsZ) AND (Curve\IfcPolynomialCurve.Position.Dim = 2 ))
+        THEN RETURN(2);
+    END_IF;
+    RETURN(3);
   END_IF;
   IF ('IFC4X3_RC3.IFCPCURVE' IN TYPEOF(Curve))
     THEN RETURN(3);

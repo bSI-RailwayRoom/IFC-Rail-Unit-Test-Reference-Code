@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-19 April 2021
+28 April 2021
 
 *)
 
@@ -385,7 +385,6 @@ END_ENTITY;
 
 ENTITY IfcAlignmentHorizontal
  SUBTYPE OF (IfcLinearElement);
-	StartDistAlong : OPTIONAL IfcLengthMeasure;
 END_ENTITY;
 
 ENTITY IfcAlignmentSegment

@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-19 April 2021
+28 April 2021
 
 *)
 
@@ -47,7 +47,8 @@ REFERENCE FROM IFCGEOMETRYRESOURCE
   IfcDotProduct,
   IfcBSplineCurve,
   IfcBoundedCurve,
-  IfcCurveMeasureSelect
+  IfcCurveMeasureSelect,
+  IfcAxis2PlacementLinear
 );
 
 REFERENCE FROM IFCGEOMETRYRESOURCE
@@ -231,6 +232,10 @@ ENTITY IfcCsgSolid
 	TreeRootExpression : IfcCsgSelect;
 END_ENTITY;
 
+ENTITY IfcDirectrixDerivedReferenceSweptAreaSolid
+ SUBTYPE OF (IfcFixedReferenceSweptAreaSolid);
+END_ENTITY;
+
 ENTITY IfcExtrudedAreaSolid
  SUPERTYPE OF (ONEOF
     (IfcExtrudedAreaSolidTapered))
@@ -267,6 +272,8 @@ ENTITY IfcFacetedBrepWithVoids
 END_ENTITY;
 
 ENTITY IfcFixedReferenceSweptAreaSolid
+ SUPERTYPE OF (ONEOF
+    (IfcDirectrixDerivedReferenceSweptAreaSolid))
  SUBTYPE OF (IfcDirectrixCurveSweptAreaSolid);
 	FixedReference : IfcDirection;
 END_ENTITY;
@@ -397,7 +404,7 @@ END_ENTITY;
 
 ENTITY IfcSectionedSolidHorizontal
  SUBTYPE OF (IfcSectionedSolid);
-	CrossSectionPositions : LIST [2:?] OF IfcCurveMeasureSelect;
+	CrossSectionPositions : LIST [2:?] OF IfcAxis2PlacementLinear;
 	FixedAxisVertical : IfcBoolean;
  WHERE
 	CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);

@@ -249,9 +249,7 @@ of the material. The information contained in this document is subject to change
 	<xs:element name="IfcAlignmentHorizontal" type="ifc:IfcAlignmentHorizontal" substitutionGroup="ifc:IfcLinearElement" nillable="true"/>
 	<xs:complexType name="IfcAlignmentHorizontal">
 		<xs:complexContent>
-			<xs:extension base="ifc:IfcLinearElement">
-				<xs:attribute name="StartDistAlong" type="ifc:IfcLengthMeasure" use="optional"/>
-			</xs:extension>
+			<xs:extension base="ifc:IfcLinearElement"/>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcAlignmentHorizontalSegment" type="ifc:IfcAlignmentHorizontalSegment" substitutionGroup="ifc:IfcAlignmentParameterSegment" nillable="true"/>
@@ -2477,6 +2475,12 @@ of the material. The information contained in this document is subject to change
 					</xs:element>
 				</xs:sequence>
 			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IfcDirectrixDerivedReferenceSweptAreaSolid" type="ifc:IfcDirectrixDerivedReferenceSweptAreaSolid" substitutionGroup="ifc:IfcFixedReferenceSweptAreaSolid" nillable="true"/>
+	<xs:complexType name="IfcDirectrixDerivedReferenceSweptAreaSolid">
+		<xs:complexContent>
+			<xs:extension base="ifc:IfcFixedReferenceSweptAreaSolid"/>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="IfcDirectrixDistanceSweptAreaSolid" type="ifc:IfcDirectrixDistanceSweptAreaSolid" abstract="true" substitutionGroup="ifc:IfcSweptAreaSolid" nillable="true"/>
@@ -8010,8 +8014,10 @@ of the material. The information contained in this document is subject to change
 				<xs:sequence>
 					<xs:element name="CrossSectionPositions">
 						<xs:complexType>
-							<xs:group ref="ifc:IfcCurveMeasureSelect" minOccurs="2" maxOccurs="unbounded"/>
-							<xs:attribute ref="ifc:itemType" fixed="ifc:IfcCurveMeasureSelect"/>
+							<xs:sequence>
+								<xs:element ref="ifc:IfcAxis2PlacementLinear" minOccurs="2" maxOccurs="unbounded"/>
+							</xs:sequence>
+							<xs:attribute ref="ifc:itemType" fixed="ifc:IfcAxis2PlacementLinear"/>
 							<xs:attribute ref="ifc:cType" fixed="list"/>
 							<xs:attribute ref="ifc:arraySize" use="optional"/>
 						</xs:complexType>

@@ -74,14 +74,6 @@
 <p>NOTE  Georeferencing is provided by <a href="../../ifcrepresentationresource/lexical/ifcmapconversion.htm">IfcMapConversion</a> through the <a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a> defined at <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a>.</p>
 </blockquote>
 </details>
-<details open="open"><summary>Attribute definitions</summary><table class="attributes">
-<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
-<th>G</th></tr>
-<tr><td>8</td><td>StartDistAlong</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
-The value of the distance along at the start of the horizontal alignment. If omited (standard) it is set to zero.
-</td><td>X</td></tr>
-</table>
-</details>
 </section>
 <section>
 <h5 class="num">Inherited definitions from supertypes</h5>
@@ -186,9 +178,6 @@ Reference to the representations of the product, being either a representation (
 <tr><td></td><td><i>ReferencedInStructures</i></td><td><a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a><br/>@RelatedElements</td><td>S[0:?]</td><td></td><td>X</td></tr>
 <tr><td colspan="6"><i><a href="../../ifcproductextension/lexical/ifclinearelement.htm">IfcLinearElement</a></i></td></tr>
 <tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a></td></tr>
-<tr><td>8</td><td>StartDistAlong</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
-The value of the distance along at the start of the horizontal alignment. If omited (standard) it is set to zero.
-</td><td>X</td></tr>
 </table>
 </details>
 </section>
@@ -224,16 +213,13 @@ The value of the distance along at the start of the horizontal alignment. If omi
 <details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a>&quot; type=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcproductextension/lexical/ifclinearelement.htm">IfcLinearElement</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
 &nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcproductextension/lexical/ifcalignmenthorizontal.htm">IfcAlignmentHorizontal</a>&quot;&gt;<br/>
 &nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifclinearelement.htm">IfcLinearElement</a>&quot;&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;StartDistAlong&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifclinearelement.htm">IfcLinearElement</a>&quot;/&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
 &nbsp;&lt;/xs:complexType&gt;<br/>
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">ENTITY</span> IfcAlignmentHorizontal<br/>
 &nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifclinearelement.htm">IfcLinearElement</a>)<b>;</b><br/>
-&nbsp;&nbsp;StartDistAlong : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

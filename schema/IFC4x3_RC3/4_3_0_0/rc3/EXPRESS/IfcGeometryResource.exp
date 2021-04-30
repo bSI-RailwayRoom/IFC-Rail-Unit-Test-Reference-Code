@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-19 April 2021
+28 April 2021
 
 *)
 
@@ -742,6 +742,7 @@ ENTITY IfcPolynomialCurve
 	CoefficientsZ : OPTIONAL LIST [2:?] OF IfcReal;
  WHERE
 	ValidCoefficients : (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ)) OR (EXISTS(CoefficientsX) AND EXISTS(CoefficientsY) AND EXISTS(CoefficientsZ));
+	CorrectPositionDim : ((Position.Dim=2) AND (NOT EXISTS(CoefficientsZ))) OR (Position.Dim=3);
 END_ENTITY;
 
 ENTITY IfcRationalBSplineCurveWithKnots
@@ -1191,10 +1192,10 @@ FUNCTION IfcCurveDim
     THEN RETURN(2);
   END_IF;
   IF ('IFCGEOMETRYRESOURCE.IFCPOLYNOMIALCURVE' IN TYPEOF(Curve)) THEN
-    IF (NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsX) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsY) OR NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsZ))
-      THEN RETURN(2);
-    ELSE
-      RETURN(3);
+    IF ( NOT EXISTS(Curve\IfcPolynomialCurve.CoefficientsZ) AND (Curve\IfcPolynomialCurve.Position.Dim = 2 ))
+        THEN RETURN(2);
+    END_IF;
+    RETURN(3);
   END_IF;
   IF ('IFCGEOMETRYRESOURCE.IFCPCURVE' IN TYPEOF(Curve))
     THEN RETURN(3);
