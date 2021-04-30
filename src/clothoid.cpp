@@ -27,6 +27,36 @@ double	TaylorSeriesCosQubic(
 				double	s
 			)
 {
+	double	value = s / (8 * i + 1);
+
+	{
+		double	sq = s * s * s * s * s * s * s * s;
+		int_t	tA = i,
+				tB = 2 * i;
+		while (tA) {
+			value *= sq;
+			while (value > sq && tB > 1) {
+				value /= (double) tB;
+				tB--;
+			}
+			tA--;
+		}
+
+		while (tB > 1) {
+			value /= (double) tB;
+			tB--;
+		}
+	}
+
+	return	value;
+}
+
+//double	TaylorSeriesCosQubic(
+double	TaylorSeriesCosQuadratic(
+				int_t	i,
+				double	s
+			)
+{
 	double	value = s / (6 * i + 1);
 
 	{
@@ -51,7 +81,8 @@ double	TaylorSeriesCosQubic(
 	return	value;
 }
 
-double	TaylorSeriesCosQuadratic(
+//double	TaylorSeriesCosQuadratic(
+double	TaylorSeriesCosLinear(
 				int_t	i,
 				double	s
 			)
@@ -80,7 +111,8 @@ double	TaylorSeriesCosQuadratic(
 	return	value;
 }
 
-double	TaylorSeriesCosLinear(
+//double	TaylorSeriesCosLinear(
+double	TaylorSeriesCosConstant(
 				int_t	i,
 				double	s
 			)
@@ -109,7 +141,7 @@ double	TaylorSeriesCosLinear(
 	return	value;
 }
 
-
+/*
 double	TaylorSeriesCosConstant(
 				int_t	i,
 				double	s
@@ -137,47 +169,47 @@ double	TaylorSeriesCosConstant(
 	}
 
 	return	value;
-}
+}	//	*/
 
 double	TaylorSeriesCos(
 				int_t	i,
-				double	qubicFactor,
-				double	quadraticFactor,
-				double	linearFactor,
-				double	constantFactor,
+				double	qubicTerm,
+				double	quadraticTerm,
+				double	linearTerm,
+				double	constantTerm,
 				double	s
 			)
 {
 	double	value =
-					qubicFactor ?
-						qubicFactor *
+					qubicTerm ?
+						qubicTerm *
 							TaylorSeriesCosQubic(
 									i,
-									s / qubicFactor
+									s / qubicTerm
 								) :
 						0.
 				+
-					quadraticFactor ?
-						quadraticFactor *
+					quadraticTerm ?
+						quadraticTerm *
 							TaylorSeriesCosQuadratic(
 									i,
-									s / quadraticFactor
+									s / quadraticTerm
 								) :
 						0.
 				+
-					linearFactor ?
-						linearFactor *
+					linearTerm ?
+						linearTerm *
 							TaylorSeriesCosLinear(
 									i,
-									s / linearFactor
+									s / linearTerm
 								) :
 						0.
 				+
-					constantFactor ?
-						constantFactor *
+					constantTerm ?
+						constantTerm *
 							TaylorSeriesCosConstant(
 									i,
-									s / constantFactor
+									s / constantTerm
 								) :
 						0.;
 
@@ -190,6 +222,36 @@ double	TaylorSeriesCos(
 }
 
 double	TaylorSeriesSinQubic(
+				int_t	i,
+				double	s
+			)
+{
+	double	value = s * s * s * s * s / (8 * i + 5);
+
+	{
+		double	sq = s * s * s * s * s * s * s * s;
+		int_t	tA = i,
+				tB = 2 * i + 1;
+		while (tA) {
+			value *= sq;
+			while (value > sq && tB > 1) {
+				value /= (double) tB;
+				tB--;
+			}
+			tA--;
+		}
+
+		while (tB > 1) {
+			value /= (double) tB;
+			tB--;
+		}
+	}
+
+	return	value;
+}
+
+//double	TaylorSeriesSinQubic(
+double	TaylorSeriesSinQuadratic(
 				int_t	i,
 				double	s
 			)
@@ -218,7 +280,8 @@ double	TaylorSeriesSinQubic(
 	return	value;
 }
 
-double	TaylorSeriesSinQuadratic(
+//double	TaylorSeriesSinQuadratic(
+double	TaylorSeriesSinLinear(
 				int_t	i,
 				double	s
 			)
@@ -247,7 +310,8 @@ double	TaylorSeriesSinQuadratic(
 	return	value;
 }
 
-double	TaylorSeriesSinLinear(
+//double	TaylorSeriesSinLinear(
+double	TaylorSeriesSinConstant(
 				int_t	i,
 				double	s
 			)
@@ -276,7 +340,7 @@ double	TaylorSeriesSinLinear(
 	return	value;
 }
 
-double	TaylorSeriesSinConstant(
+/*double	TaylorSeriesSinConstant(
 				int_t	i,
 				double	s
 			)
@@ -303,47 +367,47 @@ double	TaylorSeriesSinConstant(
 	}
 
 	return	value;
-}
+}	//	*/
 
 double	TaylorSeriesSin(
 				int_t	i,
-				double	qubicFactor,
-				double	quadraticFactor,
-				double	linearFactor,
-				double	constantFactor,
+				double	qubicTerm,
+				double	quadraticTerm,
+				double	linearTerm,
+				double	constantTerm,
 				double	s
 			)
 {
 	double	value =
-					qubicFactor ?
-						qubicFactor *
+					qubicTerm ?
+						qubicTerm *
 							TaylorSeriesSinQubic(
 									i,
-									s / std::fabs(qubicFactor)
+									s / std::fabs(qubicTerm)
 								) :
 						0.
 				+
-					quadraticFactor ?
-						quadraticFactor *
+					quadraticTerm ?
+						quadraticTerm *
 							TaylorSeriesSinQuadratic(
 									i,
-									s / std::fabs(quadraticFactor)
+									s / std::fabs(quadraticTerm)
 								) :
 						0.
 				+
-					linearFactor ?
-						linearFactor *
+					linearTerm ?
+						linearTerm *
 							TaylorSeriesSinLinear(
 									i,
-									s / std::fabs(linearFactor)
+									s / std::fabs(linearTerm)
 								) :
 						0.
 				+
-					constantFactor ?
-						constantFactor *
+					constantTerm ?
+						constantTerm *
 							TaylorSeriesSinConstant(
 									i,
-									s / std::fabs(constantFactor)
+									s / std::fabs(constantTerm)
 								) :
 						0.;
 
@@ -356,10 +420,10 @@ double	TaylorSeriesSin(
 }
 
 double	TaylorSeriesCos(
-				double	qubicFactor,
-				double	quadraticFactor,
-				double	linearFactor,
-				double	constantFactor,
+				double	qubicTerm,
+				double	quadraticTerm,
+				double	linearTerm,
+				double	constantTerm,
 				double	s
 			)
 {
@@ -373,11 +437,27 @@ double	TaylorSeriesCos(
 
 	int_t i = 0;
 	for (; i < minSteps; i++) {
-		value += TaylorSeriesCos(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+		value +=
+			TaylorSeriesCos(
+					i,
+					qubicTerm,
+					quadraticTerm,
+					linearTerm,
+					constantTerm,
+					s
+				);
 	}
 
 	for (; i < maxSteps; i++) {
-		double deviation = TaylorSeriesCos(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+		double	deviation =
+					TaylorSeriesCos(
+							i,
+							qubicTerm,
+							quadraticTerm,
+							linearTerm,
+							constantTerm,
+							s
+						);
 		value += deviation;
 
 		if (std::fabs(deviation) < borderValue) {
@@ -385,17 +465,25 @@ double	TaylorSeriesCos(
 		}
 	}
 
-	value += TaylorSeriesCos(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+	value +=
+		TaylorSeriesCos(
+				i,
+				qubicTerm,
+				quadraticTerm,
+				linearTerm,
+				constantTerm,
+				s
+			);
 
 	assert(i == maxSteps);
 	return value;
 }
 
 double	TaylorSeriesSin(
-				double	qubicFactor,
-				double	quadraticFactor,
-				double	linearFactor,
-				double	constantFactor,
+				double	qubicTerm,
+				double	quadraticTerm,
+				double	linearTerm,
+				double	constantTerm,
 				double	s
 			)
 {
@@ -409,11 +497,27 @@ double	TaylorSeriesSin(
 
 	int_t i = 0;
 	for (; i < minSteps; i++) {
-		value += TaylorSeriesSin(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+		value +=
+			TaylorSeriesSin(
+					i,
+					qubicTerm,
+					quadraticTerm,
+					linearTerm,
+					constantTerm,
+					s
+				);
 	}
 
 	for (; i < maxSteps; i++) {
-		double deviation = TaylorSeriesSin(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+		double	deviation =
+					TaylorSeriesSin(
+							i,
+							qubicTerm,
+							quadraticTerm,
+							linearTerm,
+							constantTerm,
+							s
+						);
 		value += deviation;
 
 		if (std::fabs(deviation) < borderValue) {
@@ -421,7 +525,15 @@ double	TaylorSeriesSin(
 		}
 	}
 
-	value += TaylorSeriesSin(i, qubicFactor, quadraticFactor, linearFactor, constantFactor, s);
+	value +=
+		TaylorSeriesSin(
+				i,
+				qubicTerm,
+				quadraticTerm,
+				linearTerm,
+				constantTerm,
+				s
+			);
 
 	assert(i == maxSteps);
 	return value;
@@ -468,8 +580,8 @@ double	ClothoidX(
 {
 	return	TaylorSeriesCos(
 					0.,
-					clothoidConstant * sqrt(2.),
 					0.,
+					clothoidConstant * sqrt(2.),
 					0.,
 					s
 				);
@@ -482,8 +594,8 @@ double	ClothoidY(
 {
 	return	TaylorSeriesSin(
 					0.,
-					clothoidConstant * sqrt(2.),
 					0.,
+					clothoidConstant * sqrt(2.),
 					0.,
 					s
 				);
