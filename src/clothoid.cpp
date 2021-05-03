@@ -51,7 +51,6 @@ double	TaylorSeriesCosQubic(
 	return	value;
 }
 
-//double	TaylorSeriesCosQubic(
 double	TaylorSeriesCosQuadratic(
 				int_t	i,
 				double	s
@@ -81,7 +80,6 @@ double	TaylorSeriesCosQuadratic(
 	return	value;
 }
 
-//double	TaylorSeriesCosQuadratic(
 double	TaylorSeriesCosLinear(
 				int_t	i,
 				double	s
@@ -111,7 +109,6 @@ double	TaylorSeriesCosLinear(
 	return	value;
 }
 
-//double	TaylorSeriesCosLinear(
 double	TaylorSeriesCosConstant(
 				int_t	i,
 				double	s
@@ -141,36 +138,6 @@ double	TaylorSeriesCosConstant(
 	return	value;
 }
 
-/*
-double	TaylorSeriesCosConstant(
-				int_t	i,
-				double	s
-			)
-{
-	double	value = s / (0 * i + 1);
-
-	{
-		double	sq = 1.;
-		int_t	tA = i,
-				tB = 2 * i;
-		while (tA) {
-			value *= sq;
-			while (value > sq && tB > 1) {
-				value /= (double) tB;
-				tB--;
-			}
-			tA--;
-		}
-
-		while (tB > 1) {
-			value /= (double) tB;
-			tB--;
-		}
-	}
-
-	return	value;
-}	//	*/
-
 double	TaylorSeriesCos(
 				int_t	i,
 				double	qubicTerm,
@@ -185,7 +152,7 @@ double	TaylorSeriesCos(
 						qubicTerm *
 							TaylorSeriesCosQubic(
 									i,
-									s / qubicTerm
+									s / std::fabs(qubicTerm)
 								) :
 						0.
 				+
@@ -193,7 +160,7 @@ double	TaylorSeriesCos(
 						quadraticTerm *
 							TaylorSeriesCosQuadratic(
 									i,
-									s / quadraticTerm
+									s / std::fabs(quadraticTerm)
 								) :
 						0.
 				+
@@ -201,7 +168,7 @@ double	TaylorSeriesCos(
 						linearTerm *
 							TaylorSeriesCosLinear(
 									i,
-									s / linearTerm
+									s / std::fabs(linearTerm)
 								) :
 						0.
 				+
@@ -209,7 +176,7 @@ double	TaylorSeriesCos(
 						constantTerm *
 							TaylorSeriesCosConstant(
 									i,
-									s / constantTerm
+									s / std::fabs(constantTerm)
 								) :
 						0.;
 
@@ -250,7 +217,6 @@ double	TaylorSeriesSinQubic(
 	return	value;
 }
 
-//double	TaylorSeriesSinQubic(
 double	TaylorSeriesSinQuadratic(
 				int_t	i,
 				double	s
@@ -280,7 +246,6 @@ double	TaylorSeriesSinQuadratic(
 	return	value;
 }
 
-//double	TaylorSeriesSinQuadratic(
 double	TaylorSeriesSinLinear(
 				int_t	i,
 				double	s
@@ -310,7 +275,6 @@ double	TaylorSeriesSinLinear(
 	return	value;
 }
 
-//double	TaylorSeriesSinLinear(
 double	TaylorSeriesSinConstant(
 				int_t	i,
 				double	s
@@ -339,35 +303,6 @@ double	TaylorSeriesSinConstant(
 
 	return	value;
 }
-
-/*double	TaylorSeriesSinConstant(
-				int_t	i,
-				double	s
-			)
-{
-	double	value = s / (0 * i + 1);
-
-	{
-		double	sq = 1.;
-		int_t	tA = i,
-				tB = 2 * i + 1;
-		while (tA) {
-			value *= sq;
-			while (value > sq && tB > 1) {
-				value /= (double) tB;
-				tB--;
-			}
-			tA--;
-		}
-
-		while (tB > 1) {
-			value /= (double) tB;
-			tB--;
-		}
-	}
-
-	return	value;
-}	//	*/
 
 double	TaylorSeriesSin(
 				int_t	i,
