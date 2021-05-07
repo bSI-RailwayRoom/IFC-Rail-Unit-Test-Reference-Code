@@ -152,7 +152,8 @@ double	TaylorSeriesCos(
 						qubicTerm *
 							TaylorSeriesCosQubic(
 									i,
-									s / std::fabs(qubicTerm)
+//									s / std::fabs(qubicTerm)
+									s / qubicTerm
 								) :
 						0.
 				+
@@ -160,7 +161,8 @@ double	TaylorSeriesCos(
 						quadraticTerm *
 							TaylorSeriesCosQuadratic(
 									i,
-									s / std::fabs(quadraticTerm)
+//									s / std::fabs(quadraticTerm)
+									s / quadraticTerm
 								) :
 						0.
 				+
@@ -168,7 +170,8 @@ double	TaylorSeriesCos(
 						linearTerm *
 							TaylorSeriesCosLinear(
 									i,
-									s / std::fabs(linearTerm)
+//									s / std::fabs(linearTerm)
+									s / linearTerm
 								) :
 						0.
 				+
@@ -176,7 +179,8 @@ double	TaylorSeriesCos(
 						constantTerm *
 							TaylorSeriesCosConstant(
 									i,
-									s / std::fabs(constantTerm)
+//									s / std::fabs(constantTerm)
+									s / constantTerm
 								) :
 						0.;
 
