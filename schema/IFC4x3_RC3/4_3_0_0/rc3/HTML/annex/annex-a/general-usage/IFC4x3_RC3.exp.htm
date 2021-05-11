@@ -473,11 +473,11 @@ OR
 <br/>
 <a name="ifcalignmentcantsegmenttypeenum" />
 <span class="keyword">TYPE</span> IfcAlignmentCantSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;CONSTANTCANT, <br/>&nbsp;LINEARTRANSITION, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;CONSTANTCANT, <br/>&nbsp;LINEARTRANSITION, <br/>&nbsp;HELMERTCURVE, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcalignmenthorizontalsegmenttypeenum" />
 <span class="keyword">TYPE</span> IfcAlignmentHorizontalSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;LINE, <br/>&nbsp;CIRCULARARC, <br/>&nbsp;CLOTHOID, <br/>&nbsp;CUBIC, <br/>&nbsp;HELMERTCURVE, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;CUBICSPIRAL, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 <br/>
 <a name="ifcalignmenttypeenum" />
 <span class="keyword">TYPE</span> IfcAlignmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
@@ -1877,7 +1877,6 @@ TYPEOF(SELF\<a href="#ifcfacesurface">IfcFaceSurface</a>.FaceSurface)) = 1;<br/>
 &nbsp;&nbsp;EndCantLeft : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
 &nbsp;&nbsp;StartCantRight : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
 &nbsp;&nbsp;EndCantRight : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
-&nbsp;&nbsp;SmoothingLength : <span class="keyword">OPTIONAL</span> <a href="#ifcpositivelengthmeasure">IfcPositiveLengthMeasure</a>;<br/>
 &nbsp;&nbsp;PredefinedType : <a href="#ifcalignmentcantsegmenttypeenum">IfcAlignmentCantSegmentTypeEnum</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
@@ -7670,7 +7669,7 @@ OR <br/>
 &nbsp;&nbsp;CrossSectionPositions : <span class="keyword">LIST</span> [2:?] OF <a href="#ifcaxis2placementlinear">IfcAxis2PlacementLinear</a>;<br/>
 &nbsp;&nbsp;FixedAxisVertical : <a href="#ifcboolean">IfcBoolean</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);<br/>&nbsp;&nbsp;NoLongitudinalOffsets : SIZEOF(QUERY(temp &lt;* CrossSectionPositions | EXISTS(temp.OffsetLongitudinal))) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);<br/>&nbsp;&nbsp;NoLongitudinalOffsets : SIZEOF(QUERY(temp &lt;* CrossSectionPositions | EXISTS(temp.Location.OffsetLongitudinal))) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifcsectionedspine" />
 <span class="keyword">ENTITY</span> IfcSectionedSpine<br/>
@@ -8988,6 +8987,7 @@ EXISTS (MessagingIDs);<br/><span class="keyword">END_ENTITY;</span><br/>
 &nbsp;&nbsp;QubicTerm : <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
 &nbsp;&nbsp;QuadraticTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
 &nbsp;&nbsp;LinearTerm : <span class="keyword">OPTIONAL</span> <a href="#ifclengthmeasure">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;ConstantTerm : <span class="keyword">OPTIONAL</span> <a href="#ifcreal">IfcReal</a>;<br/>
 <span class="keyword">END_ENTITY;</span><br/>
 <br/>
 <a name="ifctimeperiod" />

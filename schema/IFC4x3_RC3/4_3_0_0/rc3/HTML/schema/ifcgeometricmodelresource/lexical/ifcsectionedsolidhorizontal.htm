@@ -159,7 +159,7 @@ Indicates whether <i>Sections</i> are oriented with the Y axis of each profile f
 &nbsp;&nbsp;CrossSectionPositions : <span class="keyword">LIST</span> [2:?] OF <a href="../../ifcgeometryresource/lexical/ifcaxis2placementlinear.htm">IfcAxis2PlacementLinear</a>;<br/>
 &nbsp;&nbsp;FixedAxisVertical : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
 &nbsp;<span class="keyword">WHERE</span><br/>
-&nbsp;&nbsp;CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);<br/>&nbsp;&nbsp;NoLongitudinalOffsets : SIZEOF(QUERY(temp &lt;* CrossSectionPositions | EXISTS(temp.OffsetLongitudinal))) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
+&nbsp;&nbsp;CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);<br/>&nbsp;&nbsp;NoLongitudinalOffsets : SIZEOF(QUERY(temp &lt;* CrossSectionPositions | EXISTS(temp.Location.OffsetLongitudinal))) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
 <p class="std"><a href="../../../annex/annex-d/ifcgeometricmodelresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>
 </details>

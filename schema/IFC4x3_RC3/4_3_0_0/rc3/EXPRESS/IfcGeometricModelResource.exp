@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-28 April 2021
+11 May 2021
 
 *)
 
@@ -408,7 +408,7 @@ ENTITY IfcSectionedSolidHorizontal
 	FixedAxisVertical : IfcBoolean;
  WHERE
 	CorrespondingSectionPositions : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);
-	NoLongitudinalOffsets : SIZEOF(QUERY(temp <* CrossSectionPositions | EXISTS(temp.OffsetLongitudinal))) = 0;
+	NoLongitudinalOffsets : SIZEOF(QUERY(temp <* CrossSectionPositions | EXISTS(temp.Location.OffsetLongitudinal))) = 0;
 END_ENTITY;
 
 ENTITY IfcSectionedSpine

@@ -260,7 +260,6 @@ of the material. The information contained in this document is subject to change
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;EndCantLeft&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;StartCantRight&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;EndCantRight&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SmoothingLength&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../../schema/ifcgeometricconstraintresource/lexical/ifcalignmentcantsegmenttypeenum.htm">IfcAlignmentCantSegmentTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
@@ -9789,6 +9788,7 @@ of the material. The information contained in this document is subject to change
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;QubicTerm&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;QuadraticTerm&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;LinearTerm&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ConstantTerm&quot; type=&quot;ifc:<a href="../../../schema/ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>&quot; use=&quot;optional&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
 &nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
 &nbsp;&lt;/xs:complexType&gt;<br/>
@@ -11508,7 +11508,7 @@ of the material. The information contained in this document is subject to change
 &nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;constantcant&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;lineartransition&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;biquadraticparabola&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;helmertcurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blosscurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cosinecurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sinecurve&quot;/&gt;<br/>
@@ -11521,7 +11521,7 @@ of the material. The information contained in this document is subject to change
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;circulararc&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;clothoid&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubic&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;biquadraticparabola&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;helmertcurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blosscurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cubicspiral&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cosinecurve&quot;/&gt;<br/>

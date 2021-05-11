@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-28 April 2021
+11 May 2021
 
 *)
 
@@ -926,6 +926,7 @@ ENTITY IfcThirdOrderPolynomialSpiral
 	QubicTerm : IfcLengthMeasure;
 	QuadraticTerm : OPTIONAL IfcLengthMeasure;
 	LinearTerm : OPTIONAL IfcLengthMeasure;
+	ConstantTerm : OPTIONAL IfcReal;
 END_ENTITY;
 
 ENTITY IfcToroidalSurface

@@ -19,7 +19,7 @@ for incidental consequential damages in connection with the furnishing, performa
 of the material. The information contained in this document is subject to change without notice.
 
 Issue date:
-28 April 2021
+11 May 2021
 
 *)
 
@@ -97,7 +97,7 @@ REFERENCE FROM IFCTOPOLOGYRESOURCE
 TYPE IfcAlignmentCantSegmentTypeEnum = ENUMERATION OF
 	(CONSTANTCANT
 	,LINEARTRANSITION
-	,BIQUADRATICPARABOLA
+	,HELMERTCURVE
 	,BLOSSCURVE
 	,COSINECURVE
 	,SINECURVE
@@ -109,7 +109,7 @@ TYPE IfcAlignmentHorizontalSegmentTypeEnum = ENUMERATION OF
 	,CIRCULARARC
 	,CLOTHOID
 	,CUBIC
-	,BIQUADRATICPARABOLA
+	,HELMERTCURVE
 	,BLOSSCURVE
 	,CUBICSPIRAL
 	,COSINECURVE
@@ -158,7 +158,6 @@ ENTITY IfcAlignmentCantSegment
 	EndCantLeft : OPTIONAL IfcLengthMeasure;
 	StartCantRight : IfcLengthMeasure;
 	EndCantRight : OPTIONAL IfcLengthMeasure;
-	SmoothingLength : OPTIONAL IfcPositiveLengthMeasure;
 	PredefinedType : IfcAlignmentCantSegmentTypeEnum;
 END_ENTITY;
 

@@ -40,7 +40,7 @@
 <details open="open"><summary>Enumeration definition</summary><table class="attributes">
 <tr><th>Constant</th><th>Description</th></tr>
 <tr><td>CONSTANTCANT</td><td></td></tr><tr><td>LINEARTRANSITION</td><td>Linear cant.
-</td></tr><tr><td>BIQUADRATICPARABOLA</td><td>Helmert transition.<br>
+</td></tr><tr><td>HELMERTCURVE</td><td>Helmert transition.<br>
 NOTE  also referred to as Schramm curve.
 </td></tr><tr><td>BLOSSCURVE</td><td>Bloss transition.
 </td></tr><tr><td>COSINECURVE</td><td>Cosine transition.
@@ -55,7 +55,7 @@ NOTE  also referred to as Klein curve.
 &nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;constantcant&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;lineartransition&quot;/&gt;<br/>
-&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;biquadraticparabola&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;helmertcurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blosscurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;cosinecurve&quot;/&gt;<br/>
 &nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;sinecurve&quot;/&gt;<br/>
@@ -65,7 +65,7 @@ NOTE  also referred to as Klein curve.
 </code></div></details>
 <details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
 <span class="keyword">TYPE</span> IfcAlignmentCantSegmentTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
-&nbsp;CONSTANTCANT, <br/>&nbsp;LINEARTRANSITION, <br/>&nbsp;BIQUADRATICPARABOLA, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
+&nbsp;CONSTANTCANT, <br/>&nbsp;LINEARTRANSITION, <br/>&nbsp;HELMERTCURVE, <br/>&nbsp;BLOSSCURVE, <br/>&nbsp;COSINECURVE, <br/>&nbsp;SINECURVE, <br/>&nbsp;VIENNESEBEND);<br/><span class="keyword">END_TYPE;</span><br/>
 </p>
 <p class="std"><a href="../../../annex/annex-d/ifcgeometricconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
 </code></div>

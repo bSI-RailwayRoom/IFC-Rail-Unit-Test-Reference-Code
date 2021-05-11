@@ -241,7 +241,6 @@ of the material. The information contained in this document is subject to change
 				<xs:attribute name="EndCantLeft" type="ifc:IfcLengthMeasure" use="optional"/>
 				<xs:attribute name="StartCantRight" type="ifc:IfcLengthMeasure" use="optional"/>
 				<xs:attribute name="EndCantRight" type="ifc:IfcLengthMeasure" use="optional"/>
-				<xs:attribute name="SmoothingLength" type="ifc:IfcPositiveLengthMeasure" use="optional"/>
 				<xs:attribute name="PredefinedType" type="ifc:IfcAlignmentCantSegmentTypeEnum" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -9770,6 +9769,7 @@ of the material. The information contained in this document is subject to change
 				<xs:attribute name="QubicTerm" type="ifc:IfcLengthMeasure" use="optional"/>
 				<xs:attribute name="QuadraticTerm" type="ifc:IfcLengthMeasure" use="optional"/>
 				<xs:attribute name="LinearTerm" type="ifc:IfcLengthMeasure" use="optional"/>
+				<xs:attribute name="ConstantTerm" type="ifc:IfcReal" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -11489,7 +11489,7 @@ of the material. The information contained in this document is subject to change
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="constantcant"/>
 			<xs:enumeration value="lineartransition"/>
-			<xs:enumeration value="biquadraticparabola"/>
+			<xs:enumeration value="helmertcurve"/>
 			<xs:enumeration value="blosscurve"/>
 			<xs:enumeration value="cosinecurve"/>
 			<xs:enumeration value="sinecurve"/>
@@ -11502,7 +11502,7 @@ of the material. The information contained in this document is subject to change
 			<xs:enumeration value="circulararc"/>
 			<xs:enumeration value="clothoid"/>
 			<xs:enumeration value="cubic"/>
-			<xs:enumeration value="biquadraticparabola"/>
+			<xs:enumeration value="helmertcurve"/>
 			<xs:enumeration value="blosscurve"/>
 			<xs:enumeration value="cubicspiral"/>
 			<xs:enumeration value="cosinecurve"/>
