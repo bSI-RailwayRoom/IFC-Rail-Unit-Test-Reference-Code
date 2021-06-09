@@ -1,0 +1,193 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLabel</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 11 index3 2 index4 35 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.11.2.36");
+//-->
+</script>
+
+<h4 class="num">IfcLabel</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Label</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Étiquette</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>A label is the term by which something may be referred to. It is a string which represents the human-interpretable name of something and shall have a natural-language meaning.</p>
+<p>Type: STRING of up to 255 characters</p>
+<blockquote class="note">
+<p>NOTE  Type adapted from <strong>label</strong> defined in ISO 10303-41.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Previously recommended size restriction of 255 characters is now mandatory.</p>
+</blockquote>
+<p class="use-head">
+Value restrictions</p>
+<p>As a human-readable string for naming purposes, a label is usually human-specified and locale-dependent (in contrast to purely machine-readable identifiers, <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>).</p>
+<blockquote class="note">
+<p>NOTE  The set of characters that may appear in STRINGs exchanged in the exchange structure as defined in ISO 10303.21 is provided in ISO 10646. The encoding of characters in case of file-based exchange is defined in ISO 10303-21 and ISO 10303-28. Among else, these specifications define the encoding of 8-bit characters from ISO 8859-1...-16 and of 2-byte and 4-byte Unicode characters from ISO 10646.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  While <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a> is restricted to 255 characters, the size in exchange files after encoding may be considerably larger than 255 octets, depending on the particular encoding and on the contents of the identifier.</p>
+</blockquote>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:normalizedString&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:maxLength value=&quot;255&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcLabel = <span class="self-ref">STRING</span> (255);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcmeasureresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifccontrolextension/lexical/ifcperformancehistory.htm">IfcPerformanceHistory</a>
+<a href="../../ifccontrolextension/lexical/ifcrelassociatesconstraint.htm">IfcRelAssociatesConstraint</a>
+<a href="../../ifckernel/lexical/ifccomplexpropertytemplate.htm">IfcComplexPropertyTemplate</a>
+<a href="../../ifckernel/lexical/ifccontext.htm">IfcContext</a>
+<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>
+<a href="../../ifckernel/lexical/ifcproxy.htm">IfcProxy</a>
+<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>
+<a href="../../ifckernel/lexical/ifcsimplepropertytemplate.htm">IfcSimplePropertyTemplate</a>
+<a href="../../ifckernel/lexical/ifctypeprocess.htm">IfcTypeProcess</a>
+<a href="../../ifckernel/lexical/ifctypeproduct.htm">IfcTypeProduct</a>
+<a href="../../ifckernel/lexical/ifctyperesource.htm">IfcTypeResource</a>
+<a href="../../ifcprocessextension/lexical/ifcevent.htm">IfcEvent</a>
+<a href="../../ifcprocessextension/lexical/ifceventtype.htm">IfcEventType</a>
+<a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>
+<a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>
+<a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>
+<a href="../../ifcprocessextension/lexical/ifcworkcontrol.htm">IfcWorkControl</a>
+<a href="../../ifcproductextension/lexical/ifcelementquantity.htm">IfcElementQuantity</a>
+<a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a>
+<a href="../../ifcproductextension/lexical/ifcrelconnectswithrealizingelements.htm">IfcRelConnectsWithRealizingElements</a>
+<a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>
+<a href="../../ifcproductextension/lexical/ifcspacetype.htm">IfcSpaceType</a>
+<a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a>
+<a href="../../ifcproductextension/lexical/ifcspatialelementtype.htm">IfcSpatialElementType</a>
+<a href="../../ifcproductextension/lexical/ifcspatialzonetype.htm">IfcSpatialZoneType</a>
+<a href="../../ifcproductextension/lexical/ifczone.htm">IfcZone</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcbuildingsystem.htm">IfcBuildingSystem</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcdoortype.htm">IfcDoorType</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcwindow.htm">IfcWindow</a>
+<a href="../../ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a>
+<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystem.htm">IfcDistributionSystem</a>
+<a href="../../ifcsharedinfrastructureelements/lexical/ifcbuiltsystem.htm">IfcBuiltSystem</a>
+<a href="../../ifcsharedmgmtelements/lexical/ifcactionrequest.htm">IfcActionRequest</a>
+<a href="../../ifcsharedmgmtelements/lexical/ifccostschedule.htm">IfcCostSchedule</a>
+<a href="../../ifcsharedmgmtelements/lexical/ifcpermit.htm">IfcPermit</a>
+<a href="../../ifcsharedmgmtelements/lexical/ifcprojectorder.htm">IfcProjectOrder</a>
+<a href="../../ifcroad/lexical/ifcopencrossprofiledef.htm">IfcOpenCrossProfileDef</a>
+<a href="../../ifcstructuralanalysisdomain/lexical/ifcstructuralloadgroup.htm">IfcStructuralLoadGroup</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifcreinforcementdefinitionproperties.htm">IfcReinforcementDefinitionProperties</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifcreinforcingbartype.htm">IfcReinforcingBarType</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifcreinforcingelement.htm">IfcReinforcingElement</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifcreinforcingmeshtype.htm">IfcReinforcingMeshType</a>
+<a href="../../ifcactorresource/lexical/ifcactorrole.htm">IfcActorRole</a>
+<a href="../../ifcactorresource/lexical/ifcaddress.htm">IfcAddress</a>
+<a href="../../ifcactorresource/lexical/ifcorganization.htm">IfcOrganization</a>
+<a href="../../ifcactorresource/lexical/ifcperson.htm">IfcPerson</a>
+<a href="../../ifcactorresource/lexical/ifcpostaladdress.htm">IfcPostalAddress</a>
+<a href="../../ifcactorresource/lexical/ifctelecomaddress.htm">IfcTelecomAddress</a>
+<a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>
+<a href="../../ifcconstraintresource/lexical/ifcconstraint.htm">IfcConstraint</a>
+<a href="../../ifcconstraintresource/lexical/ifcmetric.htm">IfcMetric</a>
+<a href="../../ifcconstraintresource/lexical/ifcobjective.htm">IfcObjective</a>
+<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>
+<a href="../../ifccostresource/lexical/ifcappliedvalue.htm">IfcAppliedValue</a>
+<a href="../../ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a>
+<a href="../../ifcdatetimeresource/lexical/ifcschedulingtime.htm">IfcSchedulingTime</a>
+<a href="../../ifcdatetimeresource/lexical/ifctimeseries.htm">IfcTimeSeries</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcdocumentinformation.htm">IfcDocumentInformation</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcdocumentinformationrelationship.htm">IfcDocumentInformationRelationship</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcexternalreference.htm">IfcExternalReference</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifclibraryinformation.htm">IfcLibraryInformation</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a>
+<a href="../../ifcgeometricconstraintresource/lexical/ifcalignmentparametersegment.htm">IfcAlignmentParameterSegment</a>
+<a href="../../ifcgeometricconstraintresource/lexical/ifcgridaxis.htm">IfcGridAxis</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist2d.htm">IfcCartesianPointList2D</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist3d.htm">IfcCartesianPointList3D</a>
+<a href="../../ifcgeometryresource/lexical/ifcoffsetcurvebydistances.htm">IfcOffsetCurveByDistances</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialconstituent.htm">IfcMaterialConstituent</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialconstituentset.htm">IfcMaterialConstituentSet</a>
+<a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a>
+<a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialrelationship.htm">IfcMaterialRelationship</a>
+<a href="../../ifcmeasureresource/lexical/ifccontextdependentunit.htm">IfcContextDependentUnit</a>
+<a href="../../ifcmeasureresource/lexical/ifcconversionbasedunit.htm">IfcConversionBasedUnit</a>
+<a href="../../ifcmeasureresource/lexical/ifcderivedunit.htm">IfcDerivedUnit</a>
+<a href="../../ifcmeasureresource/lexical/ifcmonetaryunit.htm">IfcMonetaryUnit</a>
+<a href="../../ifcmeasureresource/lexical/ifcsimplevalue.htm">IfcSimpleValue</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccolourspecification.htm">IfcColourSpecification</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccurvestylefont.htm">IfcCurveStyleFont</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccurvestylefontandscaling.htm">IfcCurveStyleFontAndScaling</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcpredefineditem.htm">IfcPreDefinedItem</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinategenerator.htm">IfcTextureCoordinateGenerator</a>
+<a href="../../ifcpresentationorganizationresource/lexical/ifclightsource.htm">IfcLightSource</a>
+<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a>
+<a href="../../ifcprofileresource/lexical/ifccompositeprofiledef.htm">IfcCompositeProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcderivedprofiledef.htm">IfcDerivedProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a>
+<a href="../../ifcpropertyresource/lexical/ifcpropertyenumeration.htm">IfcPropertyEnumeration</a>
+<a href="../../ifcquantityresource/lexical/ifcphysicalcomplexquantity.htm">IfcPhysicalComplexQuantity</a>
+<a href="../../ifcquantityresource/lexical/ifcphysicalquantity.htm">IfcPhysicalQuantity</a>
+<a href="../../ifcquantityresource/lexical/ifcquantityarea.htm">IfcQuantityArea</a>
+<a href="../../ifcquantityresource/lexical/ifcquantitycount.htm">IfcQuantityCount</a>
+<a href="../../ifcquantityresource/lexical/ifcquantitylength.htm">IfcQuantityLength</a>
+<a href="../../ifcquantityresource/lexical/ifcquantitytime.htm">IfcQuantityTime</a>
+<a href="../../ifcquantityresource/lexical/ifcquantityvolume.htm">IfcQuantityVolume</a>
+<a href="../../ifcquantityresource/lexical/ifcquantityweight.htm">IfcQuantityWeight</a>
+<a href="../../ifcrepresentationresource/lexical/ifccoordinatereferencesystem.htm">IfcCoordinateReferenceSystem</a>
+<a href="../../ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a>
+<a href="../../ifcrepresentationresource/lexical/ifcproductrepresentation.htm">IfcProductRepresentation</a>
+<a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a>
+<a href="../../ifcrepresentationresource/lexical/ifcrepresentationcontext.htm">IfcRepresentationContext</a>
+<a href="../../ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a>
+<a href="../../ifcstructuralloadresource/lexical/ifcboundarycondition.htm">IfcBoundaryCondition</a>
+<a href="../../ifcstructuralloadresource/lexical/ifcstructuralconnectioncondition.htm">IfcStructuralConnectionCondition</a>
+<a href="../../ifcstructuralloadresource/lexical/ifcstructuralload.htm">IfcStructuralLoad</a>
+<a href="../../ifcutilityresource/lexical/ifcapplication.htm">IfcApplication</a>
+<a href="../../ifcutilityresource/lexical/ifctable.htm">IfcTable</a>
+<a href="../../ifcutilityresource/lexical/ifctablecolumn.htm">IfcTableColumn</a>
+</p>
+<p><a href="../../../link/ifclabel.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

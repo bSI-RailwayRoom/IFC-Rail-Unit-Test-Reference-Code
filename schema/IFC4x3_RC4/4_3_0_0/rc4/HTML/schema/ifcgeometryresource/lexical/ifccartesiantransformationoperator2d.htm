@@ -1,0 +1,164 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCartesianTransformationOperator2D</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 13 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.14");
+//-->
+</script>
+
+<h4 class="num">IfcCartesianTransformationOperator2D</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Kartesische Transformation -  zweidimensional (2D)</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cartesian Transformation Operator 2D</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Opérateur 2D de transformation cartésienne</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcCartesianTransformationOperator2D</span> defines a geometric transformation in two-dimensional space.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A Cartesian transformation operator 2d defines a geometric transformation in two-dimensional space composed of translation, rotation, mirroring and uniform scaling. The list of normalized vectors u defines the columns of an orthogonal matrix <strong>T</strong>. These vectors are computed from the direction attributes axis1 and axis2 by the base axis function. If <strong>|T|= -1</strong>, the transformation includes mirroring.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>cartesian_transformation_operator_2d</strong> defined in ISO10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td></td><td>U<br/>:=IfcBaseAxis(2,SELF\IfcCartesianTransformationOperator.Axis1,
+SELF\IfcCartesianTransformationOperator.Axis2,?)</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td>L[2:2]</td><td>The list of mutually orthogonal, normalized vectors defining the transformation matrix T. They are derived from the explicit attributes Axis1 and Axis2 in that order.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>DimEqual2</td><td>The coordinate space dimensionality of this entity shall be 2.
+</td></tr>
+<tr><td>Axis1Is2D</td><td>The inherited Axis1 should have (if given) the dimensionality of 2.
+</td></tr>
+<tr><td>Axis2Is2D</td><td>The inherited Axis2 should have (if given) the dimensionality of 2.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifccartesiantransformationoperator2d.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,242,114" href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator2dnonuniform.htm" alt="IfcCartesianTransformationOperator2DnonUniform" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm" alt="IfcCartesianTransformationOperator" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a></i></td></tr>
+<tr><td>1</td><td>Axis1</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td>? </td><td>
+The direction used to determine U[1], the derived X axis direction.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Axis2</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td>? </td><td>
+The direction used to determine U[2], the derived Y axis direction.
+</td><td>X</td></tr>
+<tr><td>3</td><td>LocalOrigin</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td></td><td>
+The required translation, specified as a cartesian point. The actual translation included in the transformation is from the geometric origin to the local origin.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Scale</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>? </td><td>
+The scaling value specified for the transformation.
+</td><td>X</td></tr>
+<tr><td></td><td>Scl<br/>:=NVL(Scale, 1.0)</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td></td><td>The derived scale S of the transformation, equal to scale if that exists, or 1.0 otherwise.
+</td>
+<td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=LocalOrigin.Dim</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this class, determined by the space dimensionality of the local origin.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a></td></tr>
+<tr><td></td><td>U<br/>:=IfcBaseAxis(2,SELF\IfcCartesianTransformationOperator.Axis1,
+SELF\IfcCartesianTransformationOperator.Axis2,?)</td><td><a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td>L[2:2]</td><td>The list of mutually orthogonal, normalized vectors defining the transformation matrix T. They are derived from the explicit attributes Axis1 and Axis2 in that order.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcCartesianTransformationOperator2D<br/>
+&nbsp;<span class="keyword">SUPERTYPE OF</span>(<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator2dnonuniform.htm">IfcCartesianTransformationOperator2DnonUniform</a>)<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>)<b>;</b><br/>
+&nbsp;<span class="keyword">DERIVE</span><br/>
+&nbsp;&nbsp;U : <span class="keyword">LIST</span> [2:2] OF <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a> := IfcBaseAxis(2,SELF\IfcCartesianTransformationOperator.Axis1,
+SELF\IfcCartesianTransformationOperator.Axis2,?);<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;DimEqual2 : SELF\<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>.Dim = 2;<br/>&nbsp;&nbsp;Axis1Is2D : NOT(EXISTS(SELF\<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>.Axis1)) OR <br/>
+(SELF\<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>.Axis1.Dim = 2);<br/>&nbsp;&nbsp;Axis2Is2D : NOT(EXISTS(SELF\<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>.Axis2)) OR <br/>
+(SELF\<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>.Axis2.Dim = 2);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a>
+<a href="../../ifcprofileresource/lexical/ifcderivedprofiledef.htm">IfcDerivedProfileDef</a>
+<a href="../../ifcprofileresource/lexical/ifcmirroredprofiledef.htm">IfcMirroredProfileDef</a>
+</p>
+<p><a href="../../../link/ifccartesiantransformationoperator2d.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

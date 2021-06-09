@@ -1,0 +1,229 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcRationalBSplineCurveWithKnots</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 53 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.54");
+//-->
+</script>
+
+<h4 class="num">IfcRationalBSplineCurveWithKnots</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Rationale Bézier-Spline - Kurve mit Kontrollpunkten</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Rational BSpline Curve With Knots</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Courbes Bsplines rationnelles avec nœuds</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Degree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClosedCurve</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KnotMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeightsData</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositioningElement</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositioningElement</td><td></td><td></td><td>MODIFIED</td><td>Aggregation changed from <i>NONE</i> to <i>SET</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc2-to-ifc4x3_rc3/index.htm">IFC4x3_RC2 to IFC4x3_RC3</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>PositioningElement</i></td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>A rational B-spline curve with knots is a B-spline curve described in terms of control points and basic functions. It describes weights in addition to the control points defined at the supertype <a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a>.</p>
+<p>All weights shall be positive and the curve is given by:</p>
+<blockquote>
+<p><img src="../../../figures/ifcrationalbsplinecurvewithknots-math1.gif" alt="Math"></p>
+</blockquote>
+<p>where</p>
+<table>
+<tr>
+<td width="100" align="right"><i>k</i>+1</td>
+<td>number of control points</td>
+</tr>
+<tr>
+<td align="right">P<sub><i>i</i></sub></td>
+<td>control points</td>
+</tr>
+<tr>
+<td align="right"><i>w<sub>i</sub></i></td>
+<td>weights</td>
+</tr>
+<tr>
+<td align="right"><i>d</i></td>
+<td>degree</td>
+</tr>
+</table>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>rational_b_spline_curve</strong> in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>9</td><td>WeightsData</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>L[2:?]</td><td>
+The supplied values of the weights.
+</td><td>X</td></tr>
+<tr><td></td><td>Weights<br/>:=IfcListToArray(WeightsData,0,SELF\IfcBSplineCurve.UpperIndexOnControlPoints)</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>A[0:UpperIndexOnControlPoints]</td><td>The array of weights associated with the control points. This is derived from the weights data.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>SameNumOfWeightsAndPoints</td><td>There shall be the same number of weights as control points.
+</td></tr>
+<tr><td>WeightsGreaterZero</td><td>All the weights shall have values greater than 0.0.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcrationalbsplinecurvewithknots.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="66,126,278,138" href="../../../schema/ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm" alt="IfcBSplineCurveWithKnots" />
+<area shape="rect" coords="54,102,290,114" href="../../../schema/ifcgeometryresource/lexical/ifcbsplinecurve.htm" alt="IfcBSplineCurve" />
+<area shape="rect" coords="42,78,302,90" href="../../../schema/ifcgeometryresource/lexical/ifcboundedcurve.htm" alt="IfcBoundedCurve" />
+<area shape="rect" coords="30,54,314,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
+<area shape="rect" coords="18,30,326,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,338,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=IfcCurveDim(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this abstract class, defined differently for all subtypes, i.e. for IfcLine, IfcConic and IfcBoundedCurve.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcboundedcurve.htm">IfcBoundedCurve</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a></i></td></tr>
+<tr><td>1</td><td>Degree</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td></td><td>
+The algebraic degree of the basis functions.
+</td><td>X</td></tr>
+<tr><td>2</td><td>ControlPointsList</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td>L[2:?]</td><td>
+The list of control points for the curve.
+</td><td>X</td></tr>
+<tr><td>3</td><td>CurveForm</td><td><a href="../../ifcgeometryresource/lexical/ifcbsplinecurveform.htm">IfcBSplineCurveForm</a></td><td></td><td>
+Used to identify particular types of curve; it is for information only.
+</td><td>X</td></tr>
+<tr><td>4</td><td>ClosedCurve</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+Indication of whether the curve is closed; it is for information only.
+</td><td>X</td></tr>
+<tr><td>5</td><td>SelfIntersect</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+Indication whether the curve self-intersects or not; it is for information only.
+</td><td>X</td></tr>
+<tr><td></td><td>UpperIndexOnControlPoints<br/>:=(SIZEOF(ControlPointsList) - 1)</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td></td><td>The upper index on the array of control points; the lower index is 0.
+This value is derived from the control points list.
+</td>
+<td>X</td></tr>
+<tr><td></td><td>ControlPoints<br/>:=IfcListToArray(ControlPointsList,0,UpperIndexOnControlPoints)</td><td><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td><td>A[0:UpperIndexOnControlPoints]</td><td>The array of control points used to define the geometry of the curve. This is derived from the list of control points.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a></td></tr>
+<tr><td>6</td><td>KnotMultiplicities</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>L[2:?]</td><td>
+The multiplicities of the knots. This list defines the number of times each knot in the knots list is to be repeated in constructing the knot array.
+</td><td>X</td></tr>
+<tr><td>7</td><td>Knots</td><td><a href="../../ifcmeasureresource/lexical/ifcparametervalue.htm">IfcParameterValue</a></td><td>L[2:?]</td><td>
+The list of distinct knots used to define the B-spline basis functions.
+</td><td>X</td></tr>
+<tr><td>8</td><td>KnotSpec</td><td><a href="../../ifcgeometryresource/lexical/ifcknottype.htm">IfcKnotType</a></td><td></td><td>
+The description of the knot type. This is for information only.
+</td><td>X</td></tr>
+<tr><td></td><td>UpperIndexOnKnots<br/>:=SIZEOF(Knots)</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td></td><td>The upper index on the knot arrays; the lower index is 1.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td></tr>
+<tr><td>9</td><td>WeightsData</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>L[2:?]</td><td>
+The supplied values of the weights.
+</td><td>X</td></tr>
+<tr><td></td><td>Weights<br/>:=IfcListToArray(WeightsData,0,SELF\IfcBSplineCurve.UpperIndexOnControlPoints)</td><td><a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a></td><td>A[0:UpperIndexOnControlPoints]</td><td>The array of weights associated with the control points. This is derived from the weights data.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;WeightsData&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:minLength value=&quot;2&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcRationalBSplineCurveWithKnots<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a>)<b>;</b><br/>
+&nbsp;&nbsp;WeightsData : <span class="keyword">LIST</span> [2:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>;<br/>
+&nbsp;<span class="keyword">DERIVE</span><br/>
+&nbsp;&nbsp;Weights : <span class="keyword">ARRAY</span> [0:UpperIndexOnControlPoints] OF <a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a> := IfcListToArray(WeightsData,0,SELF\IfcBSplineCurve.UpperIndexOnControlPoints);<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;SameNumOfWeightsAndPoints : SIZEOF(WeightsData) = SIZEOF(SELF\<a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a>.ControlPointsList);<br/>&nbsp;&nbsp;WeightsGreaterZero : <a href="../../ifcgeometryresource/lexical/ifccurveweightspositive.htm">IfcCurveWeightsPositive</a>(SELF);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcrationalbsplinecurvewithknots.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

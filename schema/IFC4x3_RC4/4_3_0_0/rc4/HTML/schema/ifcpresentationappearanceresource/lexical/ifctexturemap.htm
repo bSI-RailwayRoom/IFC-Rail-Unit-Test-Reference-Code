@@ -1,0 +1,179 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcTextureMap</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 3 index4 40 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.3.41");
+//-->
+</script>
+
+<h4 class="num">IfcTextureMap</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Texturmapping</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Texture Map</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Image de texture</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCPRESENTATIONDEFINITIONRESOURCE</i> to <i>IFCPRESENTATIONAPPEARANCERESOURCE</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maps</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>TextureMaps</i> to <i>Maps</i>. <br/>Type changed from <i>IfcVertexBasedTextureMap</i> to <i>IfcSurfaceTexture</i>. <br/>Aggregation changed from <i>SET</i> to <i>LIST</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vertices</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MappedTo</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcTextureMap</span> provides the mapping of the 2-dimensional texture coordinates to the surface onto which it is mapped. It is used for mapping the texture to surfaces of vertex based geometry models, such as</p>
+<ul>
+<li><a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm">IfcFacetedBrep</a></li>
+<li><a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrepwithvoids.htm">IfcFacetedBrepWithVoids</a></li>
+<li><a href="../../ifcgeometricmodelresource/lexical/ifcfacebasedsurfacemodel.htm">IfcFaceBasedSurfaceModel</a></li>
+<li><a href="../../ifcgeometricmodelresource/lexical/ifcshellbasedsurfacemodel.htm">IfcShellBasedSurfaceModel</a></li>
+</ul>
+<p>The <span class="self-ref">IfcTextureMap</span> has a list of <i>TextureVertex</i>, that corresponds to the points of the outer face bound of the vertex based geometry item. The corresponding pair of lists is:</p>
+<ol>
+<li>the list of <i>Polygon</i> of the <a href="../../ifctopologyresource/lexical/ifcfaceouterbound.htm">IfcFaceOuterBound</a> of type <a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>, and</li>
+<li>the list of <i>Vertices</i> of type <a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a>.</li>
+</ol>
+<p>Each <a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a> (given as S, T coordinates of the 2-dimension texture coordinate system) corresponds to the geometric coordinates of the <a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a> (given as 3-dimension X, Y, and Z coordinates within the object coordinate system of the geometric item).</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/IEC 19775-1:<br>
+The TextureCoordinate node is a geometry property node that specifies a set of 2D texture coordinates used by vertex-based geometry nodes to map textures to vertices.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  In contrary to the X3D vertext based geometry, for example IndexedFaceSet and ElevationGrid, the vertext based geometry in IFC may include inner loops. The areas of inner loops have to be cut-out from the texture applied to the outer loop.</p>
+</blockquote>
+<table summary="texture map use">
+      <tr>
+        <td>
+          <img src="../../../figures/ifctexturemap_fig-1.png" width="620" height="600" alt="IfcTextureMap_fig-1.png 35,6 KB">
+        </td>
+				<td style=" vertical-align:bottom;"><span style=" font-size:x-small;">Figure 407 illustrates applying a texture map to a vertex
+      based geometry.</span>
+				</td>
+      </tr>
+      <tr>
+        <td>
+          <p class="figure">Figure 407 &mdash; Texture map</p>
+        </td>
+				<td>&nbsp;</td>
+      </tr>
+    </table>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The attribute Texture is deleted, and the attribute TextureMaps is added.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The attribute TextureMap is replaced by <i>Vertices</i>, and the attribute <i>AppliedTo</i> is added.</p>
+</blockquote>
+<p class="spec-head">
+Informal Propositions:</p>
+<ol>
+<li>The <a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a> referenced in <i>AppliedTo</i> shall be used by the vertex based geometry, to which this texture map is assigned to by through the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>.</li>
+</ol>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>Vertices</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a></td><td>L[3:?]</td><td>
+List of texture coordinate vertices that are applied to the corresponding points of the polyloop defining a face bound.
+</td><td>X</td></tr>
+<tr><td>3</td><td>MappedTo</td><td><a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a></td><td></td><td>
+The face that defines the corresponding list of points along the bounding poly loop of the face outer bound.
+<blockquote class="note">
+NOTE  The face may have additional inner loops. The <span class="self-ref">IfcTextureMap</span> and its <i>Vertices</i> only correspond with the coordinates of the <i>IfcPolyloop</i> representing the outer bound.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifctexturemap.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,230,42" href="../../../schema/ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm" alt="IfcTextureCoordinate" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm" alt="IfcPresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationdefinitionresource/lexical/ifcpresentationitem.htm">IfcPresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a></i></td></tr>
+<tr><td>1</td><td>Maps</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a></td><td>L[1:?]</td><td>
+Reference to the one (or many in case of multi textures with identity transformation to geometric surfaces) subtype(s) of <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacetexture.htm">IfcSurfaceTexture</a> that are mapped to a geometric surface by the texture coordinate transformation.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a></td></tr>
+<tr><td>2</td><td>Vertices</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a></td><td>L[3:?]</td><td>
+List of texture coordinate vertices that are applied to the corresponding points of the polyloop defining a face bound.
+</td><td>X</td></tr>
+<tr><td>3</td><td>MappedTo</td><td><a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a></td><td></td><td>
+The face that defines the corresponding list of points along the bounding poly loop of the face outer bound.
+<blockquote class="note">
+NOTE  The face may have additional inner loops. The <span class="self-ref">IfcTextureMap</span> and its <i>Vertices</i> only correspond with the coordinates of the <i>IfcPolyloop</i> representing the outer bound.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Vertices&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a>&quot; minOccurs=&quot;3&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;MappedTo&quot; type=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcTextureMap<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpresentationappearanceresource/lexical/ifctexturecoordinate.htm">IfcTextureCoordinate</a>)<b>;</b><br/>
+&nbsp;&nbsp;Vertices : <span class="keyword">LIST</span> [3:?] <span class="keyword">OF</span> <a href="../../ifcpresentationappearanceresource/lexical/ifctexturevertex.htm">IfcTextureVertex</a>;<br/>
+&nbsp;&nbsp;MappedTo : <a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>
+</p>
+<p><a href="../../../link/ifctexturemap.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

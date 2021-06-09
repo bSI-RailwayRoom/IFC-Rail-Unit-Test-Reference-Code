@@ -1,0 +1,216 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_DistributionPortTypePipe</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 2 index3 4 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.2.4.17");
+//-->
+</script>
+
+<h4 class="std">6.2.4.17 Pset_DistributionPortTypePipe</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a>
+ / <span class="self-ref">PIPE</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Distribution Port Type Pipe</b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/pset/pset_distributionporttypepipe.htm">Pset_DistributionPortTypePipe</a></td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>IfcDistributionPort/CHEMICAL</i> to <i>IfcDistributionPort/PIPE</i>. <br/></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3eMMVMiSDCF9C30UzZZqUF/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_DistributionPortTypePipe.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>ConnectionType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_pipeendstyletreatment.htm">PEnum_PipeEndStyleTreatment</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Connection Type</b></td><td>The end-style treatment of the pipe port:
+BRAZED: Brazed.
+COMPRESSION: Compression.
+FLANGED: Flanged.
+GROOVED: Grooved.
+OUTSIDESLEEVE: Outside Sleeve.
+SOLDERED: Soldered.
+SWEDGE: Swedge.
+THREADED: Threaded.
+WELDED: Welded.
+OTHER: Another type of end-style has been applied.
+NONE: No end-style has been applied.
+USERDEFINED: User-defined port connection type.
+NOTDEFINED: Undefined port connection type.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>接続タイプ</b></td><td>物理ポート接続：
+<ul>
+<li>Coaxial: 同軸コネクタ.</li>
+<li>DSub: D-Subコネクタ.</li>
+<li>Infrared:赤外線</li>
+<li>RJ: 登録済みジャック.</li>
+<li>Radio: 無線</li>
+<li>USB: USB.</li>
+</ul>
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ConnectionSubType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Connection Sub Type</b></td><td>The physical port connection subtype that further qualifies the ConnectionType.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>接続サブタイプ</b></td><td>物理ポート接続のサブタイプ。接続タイプ以外の情報を設定する場合に使用。下記の値を設定：
+<ul>
+<li>DSub: DA15, DB25, DC37, DD50, DE9, DE15</li>
+<li>Radio: IEEE802.11g, IEEE802.11n</li>
+<li>RJ: 4P4C, 6P2C, 8P8C</li>
+<li>USB: A, B, MiniA, MiniB, MicroA, MicroB</li>
+</ul>
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NominalDiameter</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Nominal Diameter</b></td><td>The nominal diameter of the pipe connection.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>呼び径</b></td><td>配管の呼び径。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>InnerDiameter</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Inner Diameter</b></td><td>The actual inner diameter of the pipe.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>内径</b></td><td>配管の実内径。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>OuterDiameter</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Outer Diameter</b></td><td>The actual outer diameter of the pipe.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>外径</b></td><td>配管の実外径。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Temperature</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Temperature</b></td><td>Temperature of the fluid.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>温度</b></td><td>流体の温度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>VolumetricFlowRate</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Volumetric Flow Rate</b></td><td>The volumetric flow rate of the fluid.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>体積流量</b></td><td>流体の体積流量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>MassFlowRate</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassflowratemeasure.htm">IfcMassFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Mass Flow Rate</b></td><td>The mass flow rate of the fluid.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>質量流量</b></td><td>流体の質量流量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FlowCondition</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Flow Condition</b></td><td>Defines the flow condition as a percentage of the cross-sectional area.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>流動状態</b></td><td>断面の充満率で流動状態を定義する。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Velocity</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclinearvelocitymeasure.htm">IfcLinearVelocityMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Velocity</b></td><td>The velocity of the fluid.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>速度</b></td><td>流体の速度。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Pressure</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Pressure</b></td><td>The pressure of the fluid.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>圧力</b></td><td>流体の圧力。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_distributionporttypepipe.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcReference</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 3 index3 3 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.3.3.4");
+//-->
+</script>
+
+<h4 class="num">IfcReference</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bezug</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Référence</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ListPositions</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>This entity is used to refer to a value of an attribute on an instance. It may refer to the value of a scalar attribute or a value within a collection-based attribute. Referenced attributes may be direct values, object references, collections, inverse object references, and inverse collections. References may be chained to form a path of object-attribute references.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>TypeIdentifier</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+Optional identifier of the entity or type such as 'IfcMaterialLayerSet'. For entity, type, or select-based references within a collection, this resolves the reference to such type.
+If omitted, the type is assumed to be the same as the declared referencing attribute.
+<blockquote class="example">
+EXAMPLE  <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>.<i>RelatingMaterial</i> may be resolved to <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>AttributeIdentifier</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+Optionally identifies a direct or inverse attribute within an entity such as 'MaterialLayers'.
+If <i>TypeIdentifier</i> is specified and refers to an entity, the attribute must exist within the referenced entity.
+A null value indicates a reference to the type or entity itself, such as for indicating that the type of a value must match a specified constraint.
+</td><td>X</td></tr>
+<tr><td>3</td><td>InstanceName</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optionally identifies an instance within a collection according to name.  If the instance has an attribute called 'Name', such attribute is used for comparison; otherwise the first STRING-based attribute of the entity is used.
+<blockquote class="example">
+EXAMPLE  <a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>-based entities such as <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> use the <i>Name</i> attribute; <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> entities use the <i>RepresentationIdentifier</i> attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>ListPositions</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? L[1:?]</td><td>
+Optionally identifies an instance within a collection according to position starting at 1.  For referencing single-level collections, this attribute contains a single member; for referencing multi-level collections, then this LIST attribute contains multiple members starting from the outer-most index.
+</td><td>X</td></tr>
+<tr><td>5</td><td>InnerReference</td><td><a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td><td>? </td><td>
+Optional reference to an inner value for ENTITY, SELECT, SET, or LIST attributes.
+A path may be formed by linking <span class="self-ref">IfcReference</span> instances together.
+<blockquote class="example">
+EXAMPLE  A material layer thickness may be referenced using several instances: #1=IFCREFERENCE($,'IfcSlab','HasAssociations',#2); #2=IFCREFERENCE($,'IfcMaterialLayerSet','MaterialLayers',#3); #3=IFCREFERENCE('Core','IfcMaterialLayer','LayerThickness',$);
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcreference.png" usemap="#f"/>
+<map name="f">
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td></tr>
+<tr><td>1</td><td>TypeIdentifier</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+Optional identifier of the entity or type such as 'IfcMaterialLayerSet'. For entity, type, or select-based references within a collection, this resolves the reference to such type.
+If omitted, the type is assumed to be the same as the declared referencing attribute.
+<blockquote class="example">
+EXAMPLE  <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a>.<i>RelatingMaterial</i> may be resolved to <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>AttributeIdentifier</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+Optionally identifies a direct or inverse attribute within an entity such as 'MaterialLayers'.
+If <i>TypeIdentifier</i> is specified and refers to an entity, the attribute must exist within the referenced entity.
+A null value indicates a reference to the type or entity itself, such as for indicating that the type of a value must match a specified constraint.
+</td><td>X</td></tr>
+<tr><td>3</td><td>InstanceName</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optionally identifies an instance within a collection according to name.  If the instance has an attribute called 'Name', such attribute is used for comparison; otherwise the first STRING-based attribute of the entity is used.
+<blockquote class="example">
+EXAMPLE  <a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>-based entities such as <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> use the <i>Name</i> attribute; <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> entities use the <i>RepresentationIdentifier</i> attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>ListPositions</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? L[1:?]</td><td>
+Optionally identifies an instance within a collection according to position starting at 1.  For referencing single-level collections, this attribute contains a single member; for referencing multi-level collections, then this LIST attribute contains multiple members starting from the outer-most index.
+</td><td>X</td></tr>
+<tr><td>5</td><td>InnerReference</td><td><a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td><td>? </td><td>
+Optional reference to an inner value for ENTITY, SELECT, SET, or LIST attributes.
+A path may be formed by linking <span class="self-ref">IfcReference</span> instances together.
+<blockquote class="example">
+EXAMPLE  A material layer thickness may be referenced using several instances: #1=IFCREFERENCE($,'IfcSlab','HasAssociations',#2); #2=IFCREFERENCE($,'IfcMaterialLayerSet','MaterialLayers',#3); #3=IFCREFERENCE('Core','IfcMaterialLayer','LayerThickness',$);
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>&quot; type=&quot;ifc:<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;InnerReference&quot; type=&quot;ifc:<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;TypeIdentifier&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;AttributeIdentifier&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;InstanceName&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ListPositions&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcReference<b>;</b><br/>
+&nbsp;&nbsp;TypeIdentifier : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>;<br/>
+&nbsp;&nbsp;AttributeIdentifier : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>;<br/>
+&nbsp;&nbsp;InstanceName : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;ListPositions : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;InnerReference : <span class="keyword">OPTIONAL</span> <a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcconstraintresource/lexical/ifcmetric.htm">IfcMetric</a>
+<a href="../../ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a>
+<a href="../../ifcconstraintresource/lexical/ifcmetricvalueselect.htm">IfcMetricValueSelect</a>
+<a href="../../ifccostresource/lexical/ifcappliedvalueselect.htm">IfcAppliedValueSelect</a>
+<a href="../../ifcutilityresource/lexical/ifctablecolumn.htm">IfcTableColumn</a>
+</p>
+<p><a href="../../../link/ifcreference.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

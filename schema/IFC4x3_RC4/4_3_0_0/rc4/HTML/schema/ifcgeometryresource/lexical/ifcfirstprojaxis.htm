@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcFirstProjAxis</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 10 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.11");
+//-->
+</script>
+
+<h4 class="num">IfcFirstProjAxis</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>First Proj Axis</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function produces a three dimensional direction which is, with fully defined input, the projection of arg onto the plane normal to the z-axis. With arg defaulted the result is the projection of (1.0,0.0,0.0) onto this plane except that if z-axis = (1.0,0.0,0.0) then (0.0,1.0,0.0) is used as initial value of arg. A violation occurs if arg is in the same direction as the input z-axis.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>first_proj_axis</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC1.5</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcFirstProjAxis<br/>
+
+&nbsp;&nbsp;(ZAxis, Arg : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>) : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>LOCAL<br/>&nbsp;&nbsp;XAxis : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>&nbsp;&nbsp;V&nbsp;&nbsp;&nbsp;&nbsp; : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>&nbsp;&nbsp;Z&nbsp;&nbsp;&nbsp;&nbsp; : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>&nbsp;&nbsp;XVec&nbsp;&nbsp;: <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>;<br/>END_LOCAL;<br/><br/>&nbsp;&nbsp;IF (NOT EXISTS(ZAxis)) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (?) ;<br/>&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;Z := <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(ZAxis);<br/>&nbsp;&nbsp;&nbsp;&nbsp;IF NOT EXISTS(Arg) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF (Z.DirectionRatios &lt;&gt; [1.0,0.0,0.0]) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V := <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>([1.0,0.0,0.0]);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V := <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>([0.0,1.0,0.0]);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF (Arg.Dim &lt;&gt; 3) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN (?) ;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF ((<a href="../../ifcgeometryresource/lexical/ifccrossproduct.htm">IfcCrossProduct</a>(Arg,Z).Magnitude) = 0.0) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN (?);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V := <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(Arg);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;XVec&nbsp;&nbsp;:= <a href="../../ifcgeometryresource/lexical/ifcscalartimesvector.htm">IfcScalarTimesVector</a>(<a href="../../ifcgeometryresource/lexical/ifcdotproduct.htm">IfcDotProduct</a>(V, Z), Z);<br/>&nbsp;&nbsp;&nbsp;&nbsp;XAxis := <a href="../../ifcgeometryresource/lexical/ifcvectordifference.htm">IfcVectorDifference</a>(V, XVec).Orientation;<br/>&nbsp;&nbsp;&nbsp;&nbsp;XAxis := <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a>(XAxis);<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;RETURN(XAxis);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcfirstprojaxis.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

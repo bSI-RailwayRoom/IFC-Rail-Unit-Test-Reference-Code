@@ -1,0 +1,173 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcTriangulatedIrregularNetwork</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 3 index4 45 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.8.3.46");
+//-->
+</script>
+
+<h4 class="num">IfcTriangulatedIrregularNetwork</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Triangulated Irregular Network</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x1-final-4_1_0_0/index.htm">IFC4x1 Final 4.1.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifctriangulatedirregularnetwork.htm">IfcTriangulatedIrregularNetwork</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcTriangulatedIrregularNetwork</span> is a triangulated face set for representing horizontal surfaces (one unique Z coordinate for all X and Y coordinates within domain) with additional flags for each face indicating breaklines between faces or designation as a hole or void. Triangles shall be defined with vertices in counterclockwise order as viewing from above (following right-hand rule).</p>
+<p>For visualization, applications should not display faces where flags are set as negative (either a hole, void, or possible future extension).</p>
+<p>The flag <i>Void</i> shall be used to indicate that faces are to be excluded without falling back on any other geometry. Such designation could be used for portions of a site beneath a building or other structure.</p>
+<p>The flag <i>Hole</i> shall be used to indicate that faces are to be excluded but may fall back on other geometry. Such designation could be used for portions of a proposed site that are to remain unchanged (conforming to an existing site that may also be defined)</p>
+<p>For scenarios where multiple surfaces used as input are to be combined, any triangles marked <i>Void</i> shall be retained as voids, while any triangles marked as <i>Hole</i> shall be overridden if another surface has visible geometry defined within the same horizontal location.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>6</td><td>Flags</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>L[1:?]</td><td>
+Indicates attributes of each triangle in a compact form as follows: -2 = invisible void; -1 = invisible hole; 0 = no breaklines; 1 = breakline at edge 1; 2 = breakline at edge 2; 3 = breakline at edges 1 and 2; 4 = breakline at edge 3; 5 = breakline at edges 1 and 3; 6 = breakline at edges 2 and 3; 7 = breakline at edges 1, 2, and 3.
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>NotClosed</td><td>The triangulated face set shall not be closed.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifctriangulatedirregularnetwork.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,266,114" href="../../../schema/ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm" alt="IfcTriangulatedFaceSet" />
+<area shape="rect" coords="42,78,278,90" href="../../../schema/ifcgeometricmodelresource/lexical/ifctessellatedfaceset.htm" alt="IfcTessellatedFaceSet" />
+<area shape="rect" coords="30,54,290,66" href="../../../schema/ifcgeometricmodelresource/lexical/ifctessellateditem.htm" alt="IfcTessellatedItem" />
+<area shape="rect" coords="18,30,302,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,314,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricmodelresource/lexical/ifctessellateditem.htm">IfcTessellatedItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricmodelresource/lexical/ifctessellatedfaceset.htm">IfcTessellatedFaceSet</a></i></td></tr>
+<tr><td>1</td><td>Coordinates</td><td><a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist3d.htm">IfcCartesianPointList3D</a></td><td></td><td>
+An ordered list of Cartesian points used by the coordinate index defined at the subtypes of <span class="self-ref">IfcTessellatedFaceSet</span>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasColours</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcindexedcolourmap.htm">IfcIndexedColourMap</a><br/>@MappedTo</td><td>S[0:1]</td><td>Reference to the indexed colour map providing the corresponding colour RGB values to the faces of the subtypes of <span class="self-ref">IfcTessellatedFaceSet</span>.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasTextures</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcindexedtexturemap.htm">IfcIndexedTextureMap</a><br/>@MappedTo</td><td>S[0:?]</td><td>Reference to the indexed texture map providing the corresponding texture coordinates to the vertices bounding the faces of the subtypes of <span class="self-ref">IfcTessellatedFaceSet</span>.
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=3</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this geometric representation item, it is always 3.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a></td></tr>
+<tr><td>2</td><td>Normals</td><td><a href="../../ifcmeasureresource/lexical/ifcparametervalue.htm">IfcParameterValue</a></td><td>? L[1:?] L[3:3]</td><td>
+An ordered list of three directions for normals. It is a two-dimensional list of directions provided by three parameter
+values.
+<ul>
+<li>The first dimension corresponds to the vertex indices of the <i>Coordindex</i></li>
+<li>The second dimension has exactly three values, [1] the x-direction, [2] the y-direction and [3] the z-directions</li>
+</ul>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Closed</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td>? </td><td>
+Indication whether the <span class="self-ref">IfcTriangulatedFaceSet</span> is a closed shell or not. If omited no such information can be provided.
+</td><td>X</td></tr>
+<tr><td>4</td><td>CoordIndex</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveinteger.htm">IfcPositiveInteger</a></td><td>L[1:?] L[3:3]</td><td>
+Two-dimensional list for the indexed-based triangles, where
+<ul>
+<li>The first dimension represents the triangles (from 1 to N)</li>
+<li>The second dimension has exactly three values representing the indices to three vertex points (from 1 to 3).</li>
+</ul>
+<blockquote class="note">
+NOTE  The coordinates of the vertices are provided by the indexed list of <i>SELF\IfcTessellatedFaceSet.Coordinates.CoordList</i>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>5</td><td>PnIndex</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveinteger.htm">IfcPositiveInteger</a></td><td>? L[1:?]</td><td>
+The list of integers defining the locations in the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist3d.htm">IfcCartesianPointList3D</a> to obtain the point coordinates for the indices withint the <i>CoordIndex</i>. If the <i>PnIndex</i> is not provided the indices point directly into the <a href="../../ifcgeometricmodelresource/lexical/ifccartesianpointlist3d.htm">IfcCartesianPointList3D</a>.
+</td><td>X</td></tr>
+<tr><td></td><td>NumberOfTriangles<br/>:=SIZEOF(CoordIndex)</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td></td><td>Derived number of triangles used for this triangulation.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedirregularnetwork.htm">IfcTriangulatedIrregularNetwork</a></td></tr>
+<tr><td>6</td><td>Flags</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>L[1:?]</td><td>
+Indicates attributes of each triangle in a compact form as follows: -2 = invisible void; -1 = invisible hole; 0 = no breaklines; 1 = breakline at edge 1; 2 = breakline at edge 2; 3 = breakline at edges 1 and 2; 4 = breakline at edge 3; 5 = breakline at edges 1 and 3; 6 = breakline at edges 2 and 3; 7 = breakline at edges 1, 2, and 3.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedirregularnetwork.htm">IfcTriangulatedIrregularNetwork</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedirregularnetwork.htm">IfcTriangulatedIrregularNetwork</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedirregularnetwork.htm">IfcTriangulatedIrregularNetwork</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Flags&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcTriangulatedIrregularNetwork<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a>)<b>;</b><br/>
+&nbsp;&nbsp;Flags : <span class="keyword">LIST</span> [1:?] OF <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;NotClosed : SELF\<a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a>.Closed = FALSE;<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricmodelresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifctriangulatedirregularnetwork.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

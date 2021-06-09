@@ -1,0 +1,121 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcOffsetCurve</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 39 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.40");
+//-->
+</script>
+
+<h4 class="num">IfcOffsetCurve</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Offset Curve</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x1-final-4_1_0_0/index.htm">IFC4x1 Final 4.1.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurve.htm">IfcOffsetCurve</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcOffsetCurve</span> is an abstract entity describing a curve that is defined relative to another curve according to an offset that may be constant or variable along the referenced curve.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>BasisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+The curve that is being offset.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcoffsetcurve.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,242,114" href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurve2d.htm" alt="IfcOffsetCurve2D" />
+<area shape="rect" coords="54,126,242,138" href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurve3d.htm" alt="IfcOffsetCurve3D" />
+<area shape="rect" coords="54,150,242,162" href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurvebydistances.htm" alt="IfcOffsetCurveByDistances" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=IfcCurveDim(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this abstract class, defined differently for all subtypes, i.e. for IfcLine, IfcConic and IfcBoundedCurve.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcoffsetcurve.htm">IfcOffsetCurve</a></i></td></tr>
+<tr><td>1</td><td>BasisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+The curve that is being offset.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcoffsetcurve.htm">IfcOffsetCurve</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcoffsetcurve.htm">IfcOffsetCurve</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcoffsetcurve.htm">IfcOffsetCurve</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;BasisCurve&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcOffsetCurve<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcgeometryresource/lexical/ifcoffsetcurve2d.htm">IfcOffsetCurve2D</a>, <a href="../../ifcgeometryresource/lexical/ifcoffsetcurve3d.htm">IfcOffsetCurve3D</a>, <a href="../../ifcgeometryresource/lexical/ifcoffsetcurvebydistances.htm">IfcOffsetCurveByDistances</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>)<b>;</b><br/>
+&nbsp;&nbsp;BasisCurve : <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcoffsetcurve.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

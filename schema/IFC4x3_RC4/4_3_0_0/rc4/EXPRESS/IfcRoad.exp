@@ -1,0 +1,109 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCROAD;
+
+REFERENCE FROM IFCGEOMETRYRESOURCE
+(
+  IfcPointByDistanceExpression
+);
+
+TYPE IfcRoadPartTypeEnum = ENUMERATION OF
+	(ROADSIDEPART
+	,BUS_STOP
+	,HARDSHOULDER
+	,INTERSECTION
+	,PASSINGBAY
+	,ROADWAYPLATEAU
+	,ROADSIDE
+	,REFUGEISLAND
+	,TOLLPLAZA
+	,CENTRALRESERVE
+	,SIDEWALK
+	,PARKINGBAY
+	,RAILWAYCROSSING
+	,PEDESTRIAN_CROSSING
+	,SOFTSHOULDER
+	,BICYCLECROSSING
+	,CENTRALISLAND
+	,SHOULDER
+	,TRAFFICLANE
+	,ROADSEGMENT
+	,ROUNDABOUT
+	,LAYBY
+	,CARRIAGEWAY
+	,TRAFFICISLAND
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcRoadTypeEnum = ENUMERATION OF
+	(USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcKerb
+ SUBTYPE OF (IfcBuiltElement);
+	Mountable : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcKerbType
+ SUBTYPE OF (IfcBuiltElementType);
+	Mountable : IfcBoolean;
+END_ENTITY;
+
+ENTITY IfcOpenCrossProfileDef
+ SUBTYPE OF (IfcProfileDef);
+	HorizontalWidths : IfcBoolean;
+	Widths : LIST [1:?] OF IfcNonNegativeLengthMeasure;
+	Slopes : LIST [1:?] OF IfcPlaneAngleMeasure;
+	Tags : OPTIONAL LIST [2:?] OF IfcLabel;
+ WHERE
+	CorrectProfileType : SELF\IfcProfileDef.ProfileType = IfcProfileTypeEnum.CURVE;
+	CorrespondingSlopeWidths : SIZEOF(Slopes) = SIZEOF(Widths);
+	CorrespondingTags : (NOT EXISTS (Tags)) OR (SIZEOF(Tags) = (SIZEOF(Slopes) + 1));
+END_ENTITY;
+
+ENTITY IfcRelAssociatesProfileDef
+ SUBTYPE OF (IfcRelAssociates);
+	RelatingProfileDef : IfcProfileDef;
+END_ENTITY;
+
+ENTITY IfcRoad
+ SUBTYPE OF (IfcFacility);
+	PredefinedType : OPTIONAL IfcRoadTypeEnum;
+ WHERE
+	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcRoadTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);
+END_ENTITY;
+
+ENTITY IfcSectionedSurface
+ SUBTYPE OF (IfcSurface);
+	Directrix : IfcCurve;
+	CrossSectionPositions : LIST [2:?] OF IfcPointByDistanceExpression;
+	CrossSections : LIST [2:?] OF IfcProfileDef;
+	FixedAxisVertical : IfcBoolean;
+END_ENTITY;
+
+END_SCHEMA;

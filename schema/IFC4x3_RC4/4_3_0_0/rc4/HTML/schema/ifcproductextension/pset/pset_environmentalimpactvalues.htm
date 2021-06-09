@@ -1,0 +1,285 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_EnvironmentalImpactValues</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 13 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.14");
+//-->
+</script>
+
+<h4 class="std">5.4.4.14 Pset_EnvironmentalImpactValues</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Environmental Impact Values</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/pset/pset_environmentalimpactvalues.htm">Pset_EnvironmentalImpactValues</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LeadInTime</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duration</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LeadOutTime</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3_B7e0qU4HuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_EnvironmentalImpactValues.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>TotalPrimaryEnergyConsumption</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcenergymeasure.htm">IfcEnergyMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total Primary Energy Consumption</b></td><td>Quantity of energy used as defined in ISO21930:2007.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ConsommationTotaleEnergiePrimaire</b></td><td>Consommation d'énergie primaire utilisée, telle que définie dans les normes ISO21930:2007 [NDT : ou NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>主なエネルギー消費の総量</b></td><td>ISO21930:2007.で定義されているエネルギー量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WaterConsumption</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumemeasure.htm">IfcVolumeMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Water Consumption</b></td><td>Quantity of water used.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ConsommationEau</b></td><td>Quantité d'eau utilisée [NDT : telle que définie dans la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>水消費量</b></td><td>水の消費量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HazardousWaste</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Hazardous Waste</b></td><td>Quantity of hazardous waste generated.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DechetsDangereux</b></td><td>Quantité de déchets dangereux générés [NDT : tels que définis dans la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>有害廃棄物</b></td><td>生成される有害廃棄物の量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NonHazardousWaste</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Non Hazardous Waste</b></td><td>Quantity of non hazardous waste generated.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DechetsNonDangereux</b></td><td>Quantité de déchets non dangereux générés [NDT : tels que définis dans la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>一般廃棄物</b></td><td>生成される一般廃棄物の量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ClimateChange</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Climate Change</b></td><td>Quantity of greenhouse gases emitted calculated in equivalent CO2.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ChangementClimatique</b></td><td>Quantité d'émissions de gaz à effet de serre exprimée en Kg d'équivalent CO2, selon les normes PrEN15804:2008 [NDT : ou NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>気候変化</b></td><td>算出されたCO2と等しい放出される温室効果ガスの量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>AtmosphericAcidification</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Atmospheric Acidification</b></td><td>Quantity of gases responsible for the atmospheric acidification calculated in equivalent SO2.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>AcidificationAtmospherique</b></td><td>Quantité de gaz responsables de l'acidification atmosphérique exprimée en Kg d'équivalent SO2, selon les normes PrEN15804:2008 [NDT : ou NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>大気の酸性化</b></td><td>算出されたSO2と等しい大気中の酸性化の責任を負うガスの量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RenewableEnergyConsumption</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcenergymeasure.htm">IfcEnergyMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Renewable Energy Consumption</b></td><td>Quantity of renewable energy used as defined in ISO21930:2007
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ConsommationEnergieRenouvelable</b></td><td>Consommation d'énergie renouvelable telle que définie dans les normes ISO21930:2007 [NDT : ou NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>継続可能なエネルギー消費量</b></td><td>ISO21930:2007 で定義されている継続可能なエネルギー消費量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>NonRenewableEnergyConsumption</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcenergymeasure.htm">IfcEnergyMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Non Renewable Energy Consumption</b></td><td>Quantity of non-renewable energy used as defined in ISO21930:2007
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ConsommationEnergieNonRenouvelable</b></td><td>Consommation d'énergie non renouvelable telle que définie dans les normes ISO21930:2007 [NDT : ou NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>継続不可能なエネルギー消費量</b></td><td>ISO21930:2007 で定義されている継続不可能なエネルギー消費量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>ResourceDepletion</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Resource Depletion</b></td><td>Quantity of resources used calculated in equivalent antimony.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>EpuisementRessources</b></td><td>Quantité de ressources consommées exprimée en équivalent Antimoine [NDT : selon la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>資源の枯渇</b></td><td>算出されたアンチモンと同等な資源の量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>InertWaste</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Inert Waste</b></td><td>Quantity of inert waste generated .
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DechetsInertes</b></td><td>Quantité de déchets inertes générés  [NDT : selon la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>安定廃棄物</b></td><td>生成される安定廃棄物の量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>RadioactiveWaste</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Radioactive Waste</b></td><td>Quantity of radioactive waste generated.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DechetsRadioactifs</b></td><td>Quantité de déchets radioactifs générés [NDT : selon la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>放射性廃棄物</b></td><td>生成される放射性廃棄物の量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>StratosphericOzoneLayerDestruction</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Stratospheric Ozone Layer Destruction</b></td><td>Quantity of gases destroying the stratospheric ozone layer calculated in equivalent CFC-R11.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DestructionCoucheOzoneStartospherique</b></td><td>Quantité de gaz destructeurs de la couche d'ozone exprimée en équivalent CFC-R11  [NDT : selon la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>大気オゾン層破壊</b></td><td>算出された CFC-R11と等しい大気オゾン層を破壊するガスの量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PhotochemicalOzoneFormation</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Photochemical Ozone Formation</b></td><td>Quantity of gases creating the photochemical ozone calculated in equivalent ethylene.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>FormationOzonePhotochimique</b></td><td>Quantité de gaz producteurs d'ozone photochimique exprimée en équivalent ethylène  [NDT : selon la norme NF P01-010]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>光化学オゾン生成</b></td><td>算出された エチレンと等しい光化学オゾン層を生成するガスの量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Eutrophication</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcmassmeasure.htm">IfcMassMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Eutrophication</b></td><td>Quantity of eutrophicating compounds calculated in equivalent PO4.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Eutrophisation</b></td><td>Quantité de composés responsables de l'eutrophisation exprimée en équivalent P04 [NDT : selon la norme PrEN15804:2008]
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>富栄養化</b></td><td>算出されたPO4と等しい富栄養化を混合する量。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>LeadInTime</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Lead In Time</b></td><td>Lead in time before start of process.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Duration</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Duration</b></td><td>Duration of process.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>LeadOutTime</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Lead Out Time</b></td><td>Lead out time after end of process.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_environmentalimpactvalues.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

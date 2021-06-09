@@ -1,0 +1,287 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcClassification</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 6 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.6.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcClassification</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Klassifikationssystem</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Classification</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Classification</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edition</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditionDate</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcCalendarDate</i> to <i>IfcDate</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReferenceTokens</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcClassification</span> is used for the arrangement of objects into a class or category according to a common purpose or their possession of common characteristics. A classification in the sense of <span class="self-ref">IfcClassification</span> is taxonomy, or taxonomic scheme, arranged in a hierarchical structure. A category of objects relates to other categories in a generalization-specialization relationship. Therefore the classification items in an classification are organized in a tree structure.</p>
+<p>The <span class="self-ref">IfcClassification</span> identifies the classification system or source to which a classification reference refers to. Each classification reference may reference an instance of <span class="self-ref">IfcClassification</span>. A classification system declared may be either formally published, or it may be a locally defined method of classifiying information.</p>
+<blockquote class="note">
+<p>NOTE  Examples for such formally published classifications are Omniclass, Uniclass, Masterformat, or DIN277.</p>
+</blockquote>
+<p>There are two methods to define and reference a classification system:</p>
+<ol>
+<li>Including the classification system structure within the dataset: Here a hierarchical tree of <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a>'s is included that defines the classification system including the relationship between the classification items. The <i>ReferencedSource</i> attribute of <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> links the classification item to the parent item, and the parent item finally to the <span class="self-ref">IfcClassification</span>.</li>
+<li>Referencing the classification system by a classification key or id: Here the <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> is used to assign a classification id or key as <i>Identification</i> attribute and it may link by <i>ReferencedSource</i> attribute directly to the <span class="self-ref">IfcClassification</span>.</li>
+</ol>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.5</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC 2x4 CHANGE  Attribute <i>Edition</i> made optional. Attributes: <i>Description</i>, <i>Location</i>, and <i>ReferenceTokens</i> and inverse attribute <i>HasReferences</i> added.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Source</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Source (or publisher) for this classification.
+<blockquote class="note">
+NOTE  that the source of the classification means the person or organization that was the original author or the person or organization currently acting as the publisher.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>Edition</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The edition or version of the classification system from which the classification notation is derived.
+<blockquote class="note">
+NOTE  the version labeling system is specific to the classification system.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE The attribute has been changed to be optional.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>EditionDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date on which the edition of the classification used became valid.
+<blockquote class="note">
+NOTE  The indication of edition may be sufficient to identify the classification source uniquely but the edition date is provided as an optional attribute to enable more precise identification where required.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE The data type has been changed to <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>, the date string according to ISO8601.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+The name or label by which the classification used is normally known.
+<blockquote class="note">
+NOTE  Examples of names include CI/SfB, Masterformat, BSAB, Uniclass, STABU, DIN276, DIN277 etc.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>5</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Additional description provided for the classification.
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>Location</td><td><a href="../../ifcexternalreferenceresource/lexical/ifcurireference.htm">IfcURIReference</a></td><td>? </td><td>
+Resource identifier or locator, provided as URI, URN or URL, of the classification.<br>
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>ReferenceTokens</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? L[1:?]</td><td>
+The delimiter tokens that are used to mark the boundaries of individual facets (substrings) in a classification reference.
+This typically applies then the <span class="self-ref">IfcClassification</span> is used in
+conjuction with <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a>'s. If only one <i>ReferenceToken</i> is provided, it applies to all boundaries of individual facets, if more than one <i>ReferenceToken</i> are provided, the first token applies to the first boundary, the second token to the second boundary, and the n<sup>th</sup> token to the n<sup>th</sup> and any additional boundary.
+<blockquote class="note">
+NOTE  Tokens are typically recommended within the classification itself and each token will have a particular role.
+</blockquote>
+<blockquote class="example">
+EXAMPLE 1 To indicate that the facet delimiter used for DIN277-2 reference key &quot;2.1&quot; (&quot;Office rooms&quot;) is &quot;.&quot;, a single <i>ReferenceToken</i> ['.'] is provided. To indicate that the facet delimiter used for Omniclass Table 13 (space by function) reference key &quot;13-15 11 34 11&quot; (&quot;Office&quot;) are &quot;-&quot; and &quot; &quot;, two <i>ReferenceToken</i>'s ['-', ' '] are provided.
+</blockquote>
+<blockquote class="example">
+EXAMPLE 2 The use of <i>ReferenceTokens</i> can also be extended to include masks. The use need to be agreed in view definitions or implementer agreements that stipulates a &quot;mask syntax&quot; that should be used.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ClassificationForObjects</i></td><td><a href="../../ifckernel/lexical/ifcrelassociatesclassification.htm">IfcRelAssociatesClassification</a><br/>@RelatingClassification</td><td>S[0:?]</td><td>The classification with which objects are associated.
+
+<blockquote>
+IFC4 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a><br/>@ReferencedSource</td><td>S[0:?]</td><td>The classification references to which the classification applies. It can either be the final classification notation, or an intermediate classification item.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcclassification.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcexternalreferenceresource/lexical/ifcexternalinformation.htm" alt="IfcExternalInformation" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcexternalreferenceresource/lexical/ifcexternalinformation.htm">IfcExternalInformation</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a></td></tr>
+<tr><td>1</td><td>Source</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Source (or publisher) for this classification.
+<blockquote class="note">
+NOTE  that the source of the classification means the person or organization that was the original author or the person or organization currently acting as the publisher.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>Edition</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The edition or version of the classification system from which the classification notation is derived.
+<blockquote class="note">
+NOTE  the version labeling system is specific to the classification system.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE The attribute has been changed to be optional.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>EditionDate</td><td><a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a></td><td>? </td><td>
+The date on which the edition of the classification used became valid.
+<blockquote class="note">
+NOTE  The indication of edition may be sufficient to identify the classification source uniquely but the edition date is provided as an optional attribute to enable more precise identification where required.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE The data type has been changed to <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>, the date string according to ISO8601.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>4</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+The name or label by which the classification used is normally known.
+<blockquote class="note">
+NOTE  Examples of names include CI/SfB, Masterformat, BSAB, Uniclass, STABU, DIN276, DIN277 etc.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>5</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Additional description provided for the classification.
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>Location</td><td><a href="../../ifcexternalreferenceresource/lexical/ifcurireference.htm">IfcURIReference</a></td><td>? </td><td>
+Resource identifier or locator, provided as URI, URN or URL, of the classification.<br>
+
+<blockquote>
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>ReferenceTokens</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? L[1:?]</td><td>
+The delimiter tokens that are used to mark the boundaries of individual facets (substrings) in a classification reference.
+This typically applies then the <span class="self-ref">IfcClassification</span> is used in
+conjuction with <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a>'s. If only one <i>ReferenceToken</i> is provided, it applies to all boundaries of individual facets, if more than one <i>ReferenceToken</i> are provided, the first token applies to the first boundary, the second token to the second boundary, and the n<sup>th</sup> token to the n<sup>th</sup> and any additional boundary.
+<blockquote class="note">
+NOTE  Tokens are typically recommended within the classification itself and each token will have a particular role.
+</blockquote>
+<blockquote class="example">
+EXAMPLE 1 To indicate that the facet delimiter used for DIN277-2 reference key &quot;2.1&quot; (&quot;Office rooms&quot;) is &quot;.&quot;, a single <i>ReferenceToken</i> ['.'] is provided. To indicate that the facet delimiter used for Omniclass Table 13 (space by function) reference key &quot;13-15 11 34 11&quot; (&quot;Office&quot;) are &quot;-&quot; and &quot; &quot;, two <i>ReferenceToken</i>'s ['-', ' '] are provided.
+</blockquote>
+<blockquote class="example">
+EXAMPLE 2 The use of <i>ReferenceTokens</i> can also be extended to include masks. The use need to be agreed in view definitions or implementer agreements that stipulates a &quot;mask syntax&quot; that should be used.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  New attribute added at the end of the attribute list.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ClassificationForObjects</i></td><td><a href="../../ifckernel/lexical/ifcrelassociatesclassification.htm">IfcRelAssociatesClassification</a><br/>@RelatingClassification</td><td>S[0:?]</td><td>The classification with which objects are associated.
+
+<blockquote>
+IFC4 CHANGE  New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a><br/>@ReferencedSource</td><td>S[0:?]</td><td>The classification references to which the classification applies. It can either be the final classification notation, or an intermediate classification item.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a>&quot; type=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcexternalinformation.htm">IfcExternalInformation</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcexternalreferenceresource/lexical/ifcclassification.htm">IfcClassification</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcexternalinformation.htm">IfcExternalInformation</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;ReferenceTokens&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>-wrapper&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>-wrapper&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;list&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;HasReferences&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a>&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Source&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Edition&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;EditionDate&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Name&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Description&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Location&quot; type=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcurireference.htm">IfcURIReference</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcClassification<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcexternalreferenceresource/lexical/ifcexternalinformation.htm">IfcExternalInformation</a>)<b>;</b><br/>
+&nbsp;&nbsp;Source : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Edition : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;EditionDate : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>;<br/>
+&nbsp;&nbsp;Name : <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Description : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>;<br/>
+&nbsp;&nbsp;Location : <span class="keyword">OPTIONAL</span> <a href="../../ifcexternalreferenceresource/lexical/ifcurireference.htm">IfcURIReference</a>;<br/>
+&nbsp;&nbsp;ReferenceTokens : <span class="keyword">OPTIONAL</span> <span class="keyword">LIST</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;ClassificationForObjects : <span class="keyword">SET</span> [0:?] OF <a href="../../ifckernel/lexical/ifcrelassociatesclassification.htm">IfcRelAssociatesClassification</a> <span class="keyword">FOR</span> RelatingClassification;<br/>
+&nbsp;&nbsp;HasReferences : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreference.htm">IfcClassificationReference</a> <span class="keyword">FOR</span> ReferencedSource;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcexternalreferenceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcexternalreferenceresource/lexical/ifcclassificationreferenceselect.htm">IfcClassificationReferenceSelect</a>
+<a href="../../ifcexternalreferenceresource/lexical/ifcclassificationselect.htm">IfcClassificationSelect</a>
+</p>
+<p><a href="../../../link/ifcclassification.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

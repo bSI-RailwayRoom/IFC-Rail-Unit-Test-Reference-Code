@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_LinearReferencingMethod</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 5 index3 4 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.5.4.5");
+//-->
+</script>
+
+<h4 class="std">6.5.4.5 Pset_LinearReferencingMethod</h4>
+<p><span class="self-ref"></span>
+/
+<span class="self-ref">IfcAlignment,IfcReferent</span>
+ / <span class="self-ref">(.POSITION.)</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc3-to-rc4/index.htm">IFC4x3_RC3 to RC4</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedinfrastructureelements/pset/pset_linearreferencingmethod.htm">Pset_LinearReferencingMethod</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/2asvNF1gz5OerpkzPVlCZQ/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_LinearReferencingMethod.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>LRMName</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Gives the name of this Linear Referencing Method, such as “kilometre-point”.
+<blockquote class="note">
+NOTE Definition according to ISO 19148:2021.
+NOTE Names of commonly used Linear Referencing Methods are included in ISO 19148, Annex C, along with recognized name aliases.
+</blockquote>
+
+</td></tr>
+<tr><td>LRMType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_lrmtype.htm">PEnum_LRMType</a></td><td>
+Gives the type of this Linear Referencing Method.
+<blockquote class="note">
+NOTE Definition according to ISO 19148:2021, LRMType.
+</blockquote>
+<blockquote class="note">
+NOTE Since the definition in ISO 19148:2021, LRMType is stereotyped as a CodeList it is open for user defined extensions. In this Pset this is handled by adding the enumeration constant <em>LRM_USERDEFINED</em> and the additional property <em>UserDefinedLRMType</em>
+</blockquote>
+
+</td></tr>
+<tr><td>UserDefinedLRMType</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Gives the user defined type of this Linear Referencing Method when property <em>LRMType</em> is <em>LRM_USERDEFINED</em>.
+
+</td></tr>
+<tr><td>LRMUnit</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Specifies the units of measure used by this Linear Referencing Method for measures along the linear element being measured.
+<blockquote class="note">
+NOTE Definition according to ISO 19148:2021.
+</blockquote>
+
+</td></tr>
+<tr><td>LRMConstraint</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Allows for the specification of constraints imposed by this Linear Referencing Method. For example, a Reference Post Linear Referencing Method may specify that referents be of type “reference marker”.
+<blockquote class="note">
+NOTE definition according to ISO 19148:2021
+</blockquote>
+
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_linearreferencingmethod.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

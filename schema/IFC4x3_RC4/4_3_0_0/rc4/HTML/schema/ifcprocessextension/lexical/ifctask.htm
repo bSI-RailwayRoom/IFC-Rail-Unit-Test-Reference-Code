@@ -1,0 +1,495 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcTask</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 3 index3 3 index4 5 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.3.3.6");
+//-->
+</script>
+
+<h4 class="num">IfcTask</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Aufgabe</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Task</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Tâche</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprocessextension/lexical/ifctask.htm">IfcTask</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Identification</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>TaskId</i> to <i>Identification</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LongDescription</td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>Status</i> to <i>LongDescription</i>. <br/>Type changed from <i>IfcLabel</i> to <i>IfcText</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>WorkMethod</i> to <i>Status</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WorkMethod</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>IsMilestone</i> to <i>WorkMethod</i>. <br/>Type changed from <i>BOOLEAN</i> to <i>IfcLabel</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsMilestone</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Priority</i> to <i>IsMilestone</i>. <br/>Type changed from <i>INTEGER</i> to <i>BOOLEAN</i>. <br/>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TaskTime</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprocessextension/lexical/ifctask.htm">IfcTask</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsMilestone</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcTask</span> is an identifiable unit of work to be carried out in a construction project.</p>
+<p>A task is typically used to describe an activity for the construction or installation of products, but is not limited to these types. For example it might be used to describe design processes, move operations and other design, construction and operation related activities as well.</p>
+<p>Quantities of resources consumed by the task are dealt with by defining the <a href="../../ifcproductextension/lexical/ifcelementquantity.htm">IfcElementQuantity</a> for the resource and not at the instance of <span class="self-ref">IfcTask</span>.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0. Renamed from <i>IfcWorkTask</i> in IFC2x.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Attributes <i>TaskTime</i> and <i>PredefinedType</i> added. IfcMove and IfcOrderRequest has been removed in IFC4 and are now represented by <span class="self-ref">IfcTask</span>. IfcRelAssignsTasks relationship has been removed as well.</p>
+</blockquote>
+<p class="use-head">
+Attribute use definition</p>
+<p>Each occurrence of <span class="self-ref">IfcTask</span> is given a name that is indicative of its content (<i>IfcRoot.Name</i>). A textual description of the task may be provided and this may be further elaborated by a narrative long description (<i>IfcProcess.LongDescription</i>). A work method may be declared for the method of work used in carrying out a task. A task is identified as being either a milestone task or not. A milestone task is defined by the marker <i>IsMilestone</i>. and has no duration. A status and priority for each task may also be set.</p>
+<p class="use-head">
+Time and duration use definition</p>
+<p>Compared to previous IFC releases, basic task time information (scheduled start time, scheduled finish time, duration) is now directly attached to <span class="self-ref">IfcTask</span> through the <i>TaskTime</i> attribute. Regular tasks are defined through <a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a>. Recurring tasks are defined through <a href="../../ifcdatetimeresource/lexical/ifctasktimerecurring.htm">IfcTaskTimeRecurring</a>. In case a regular task is derived from a recurring task both tasks should be linked together through a <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship, where <i>IfcRelNests.IsNestedBy</i> points to the recurring task and <i>IfcRelNests.Nests</i> points to all regular tasks that have been derived from the recurring task.</p>
+<p class="use-head">
+Representation of other activities</p>
+<p>The use definitions for <span class="self-ref">IfcTask</span> have been generalised to represent other activities as well, including activities that had been defined by own entities in previous IFC releases. This includes</p>
+<ul>
+<li>Order actions</li>
+<li>Move operations</li>
+</ul>
+<p><span class="self-ref">IfcTask</span> represents an order that might be carried out by a Helpdesk acting the role of interface for the organization between the facility user and the functional requirement of fulfilling their needs. The actual task represented by the <span class="self-ref">IfcTask</span> entity is turning a request into an order and initiating the action that will enable the order to be completed. The <a href="../../ifcsharedmgmtelements/lexical/ifcprojectorder.htm">IfcProjectOrder</a> or one of its subtypes including maintenance work order, is related to the <span class="self-ref">IfcTask</span> using <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>.</p>
+<p><span class="self-ref">IfcTask</span> can also be used to describe an activity that moves people, groups within an organization or complete organizations together with their associated furniture and equipment from one place to another. It thus replaces the previous IFC entity IfcMove. The functionality is represented in <span class="self-ref">IfcTask</span> as follows:</p>
+<ul>
+<li>Move from: The place from which actors and their associated equipment are moving.   Use <a href="../../ifckernel/lexical/ifcrelassignstoprocess.htm">IfcRelAssignsToProcess</a> where <i>RelatingProcess</i> points to the task and <i>RelatedObjects</i> holds the location(s) from which to move.</li>
+<li>Move to: The place to which actors and their associated equipment are moving.   Use <a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a> where <i>RelatedObjects</i> points to the task(s) and <i>RelatingProduct</i> points to the location to which to move.</li>
+<li>Punch list: A list of points concerning a move that require attention.   Use <i>LongDescription</i> or else identify sub-tasks to track punch list items individually via <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a>.</li>
+</ul>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>8</td><td>Status</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Current status of the task.
+<blockquote class="note">
+NOTE  Particular values for status are not specified, these should be determined and agreed by local usage. Examples of possible status values include 'Not Yet Started', 'Started', 'Completed'.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>9</td><td>WorkMethod</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The method of work used in carrying out a task.
+<blockquote class="note">
+NOTE  This attribute should not be used if the work method is specified for the <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>10</td><td>IsMilestone</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+Identifies whether a task is a milestone task (=TRUE) or not
+(= FALSE).
+<blockquote class="note">
+NOTE  In small project planning applications, a milestone task may be understood to be a task having no duration. As such, it represents a singular point in time.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>11</td><td>Priority</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+A value that indicates the relative priority of the task (in
+comparison to the priorities of other tasks).
+</td><td>X</td></tr>
+<tr><td>12</td><td>TaskTime</td><td><a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a></td><td>? </td><td>
+Time related information for the task.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>13</td><td>PredefinedType</td><td><a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a></td><td>? </td><td>
+Identifies the predefined types of a task from which
+the type required may be set.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>HasName</td><td>The Name attribute should be inserted to describe the task name.
+</td></tr>
+<tr><td>CorrectPredefinedType</td><td>The attribute ObjectType must be asserted when the value of PredefinedType is set to USERDEFINED.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifctask.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifckernel/lexical/ifcprocess.htm" alt="IfcProcess" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifckernel/lexical/ifcobject.htm" alt="IfcObject" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifckernel/lexical/ifcobjectdefinition.htm" alt="IfcObjectDefinition" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasAssignments</i></td><td><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that assign (by an association relationship) other subtypes of IfcObject to this object instance. Examples are the association to products, processes, controls, resources or groups.
+</td><td>X</td></tr>
+<tr><td></td><td><i>Nests</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is a part within an ordered whole/part decomposition relationship. An object occurrence or type can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>Decomposes</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsNestedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is the whole within an ordered whole/part decomposition relationship. An object or object type can be nested by several other objects (occurrences or types).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>IsDecomposedBy</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td>References to the context providing context information such as project unit or representation context. It should only be asserted for the uppermost non-spatial object.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDecomposedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is whole within an unordered whole/part decomposition relationship. An object definitions can be aggregated by several other objects (occurrences or parts).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Decomposes</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is a part within an unordered whole/part decomposition relationship. An object definitions can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that associates external references or other resource definitions to the object.. Examples are the association to library, documentation or classification.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></i></td></tr>
+<tr><td>5</td><td>ObjectType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The type denotes a particular type that indicates the object further. The use has to be established at the level of instantiable subtypes. In particular it holds the user defined type, if the enumeration of the attribute <i>PredefinedType</i> is set to USERDEFINED.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDeclaredBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Link to the relationship object pointing to the declaring object that provides the object definitions for this object occurrence. The declaring object has to be part of an object type decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, contains the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Declares</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatingObject</td><td>S[0:?]</td><td>Link to the relationship object pointing to the reflected object(s) that receives the object definitions. The reflected object has to be part of an object occurrence decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, provides the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsTypedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Set of relationships to the object type that provides the type definitions for this object occurrence. The then associated <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a>, or its subtypes, contains the specific information (or type, or style), that is common to all instances of <span class="self-ref">IfcObject</span>, or its subtypes, referring to the same type.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, the link to <a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a> had previously be included in the inverse relationship <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a>. Change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDefinedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Set of relationships to property set definitions attached to this object. Those statically or dynamically defined properties contain alphanumeric information content that further defines the object.
+
+<blockquote>
+IFC4 CHANGE  The data type has been changed from <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a> to <a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a></i></td></tr>
+<tr><td>6</td><td>Identification</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+An identifying designation given to a process or activity.
+It is the identifier at the occurrence level.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute promoted from subtypes.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>7</td><td>LongDescription</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+An extended description or narrative that may be provided.
+
+<blockquote>
+IFC4 CHANGE  New attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsPredecessorTo</i></td><td><a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a><br/>@RelatingProcess</td><td>S[0:?]</td><td>Dependency between two activities, it refers to the subsequent activity for which this activity is the predecessor. The link between two activities can include a link type and a lag time.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsSuccessorFrom</i></td><td><a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a><br/>@RelatedProcess</td><td>S[0:?]</td><td>Dependency between two activities, it refers to the previous activity for which this activity is the successor. The link between two activities can include a link type and a lag time.
+</td><td>X</td></tr>
+<tr><td></td><td><i>OperatesOn</i></td><td><a href="../../ifckernel/lexical/ifcrelassignstoprocess.htm">IfcRelAssignsToProcess</a><br/>@RelatingProcess</td><td>S[0:?]</td><td>Set of relationships to other objects, e.g. products, processes, controls, resources or actors, that are operated on by the process.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a></td></tr>
+<tr><td>8</td><td>Status</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Current status of the task.
+<blockquote class="note">
+NOTE  Particular values for status are not specified, these should be determined and agreed by local usage. Examples of possible status values include 'Not Yet Started', 'Started', 'Completed'.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>9</td><td>WorkMethod</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The method of work used in carrying out a task.
+<blockquote class="note">
+NOTE  This attribute should not be used if the work method is specified for the <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>10</td><td>IsMilestone</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+Identifies whether a task is a milestone task (=TRUE) or not
+(= FALSE).
+<blockquote class="note">
+NOTE  In small project planning applications, a milestone task may be understood to be a task having no duration. As such, it represents a singular point in time.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>11</td><td>Priority</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+A value that indicates the relative priority of the task (in
+comparison to the priorities of other tasks).
+</td><td>X</td></tr>
+<tr><td>12</td><td>TaskTime</td><td><a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a></td><td>? </td><td>
+Time related information for the task.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>13</td><td>PredefinedType</td><td><a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a></td><td>? </td><td>
+Identifies the predefined types of a task from which
+the type required may be set.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE Attribute added
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifctask.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="object-typing" />
+<p class="use-head">Object Typing</p>
+<p>The <a href="../../templates/object-typing.htm">Object Typing</a> concept template applies to this entity as shown in Table 15.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>HasType</b></th><th><b>RelatingType</b></th></tr>
+<tr><td></td><td><a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 15 &mdash; IfcTask Object Typing</td></tr></table>
+
+<p>The <span class="self-ref">IfcTask</span> defines the anticipated or actual occurrence of any task; common information about task types is handled by <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a>.</p>
+<blockquote class="example">
+<p>EXAMPLE  It includes fixed duration, fixed unit or fixed work. An <span class="self-ref">IfcTask</span> can be aggregated to a task type in order to specify a task sequence or any time related information, e.g. the duration of a task. Please see the documentation of <a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a> for further information.</p>
+</blockquote>
+
+<br/><br/>
+
+<a id="property-sets-for-objects" />
+<p class="use-head">Property Sets</p>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 16.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PredefinedType</b></th><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
+<tr><td>MOVE</td><td><a href="../../ifcsharedmgmtelements/pset/pset_packinginstructions.htm">Pset_PackingInstructions</a></td><td></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 16 &mdash; IfcTask Property Sets for Objects</td></tr></table>
+
+<br/><br/>
+
+<a id="object-nesting" />
+<p class="use-head">Nesting</p>
+<p>The <a href="../../templates/object-nesting.htm">Object Nesting</a> concept applies to this entity.</p><p><span class="self-ref">IfcTask</span> may be contained within an <span class="self-ref">IfcTask</span> using the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship. An <span class="self-ref">IfcTask</span> may in turn nest other <span class="self-ref">IfcTask</span>, <a href="../../ifcprocessextension/lexical/ifcprocedure.htm">IfcProcedure</a> or <a href="../../ifcprocessextension/lexical/ifcevent.htm">IfcEvent</a> entities. Such nesting indicates decomposed level of detail. From IFC4 onwards it is required to have a summary task (root of all tasks), which is used to define a link to the work plan or work schedule. All subtasks of the summary tasks are then implicitly linked to this work plan or work schedule. Please note that the summary task is used for data organization and not meant to store typical task information as defined by the user. It is therefore recommended that the summary task is hidden from the user to avoid confusion. Please also note that <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> is used to show the dependency between regular tasks and recurring task definitions (please see the section about time and duration use definitions).</p>
+<p>As shown in Figure 154, the installation of a number of items of equipment within a particular space may be the subject of a single task which is identified as 'fix equipment in space 123'. <span class="self-ref">IfcTask</span> represents the occurrence of a work performance of a type of process in a construction plan.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_example.png" alt="&quot;task example&quot;" title="Figure 154 &mdash; Task visualization"></td></tr><tr><td><p class="figure">Figure 154 &mdash; Task visualization</p></td></tr></table></p>
+<p>A task may nest other tasks as sub-items; the nesting relationship is modeled by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> as shown in Figure 155. For example, the construction of a stud wall may be designated as a nesting task named 'install wall #1' including other tasks such as 'install dry wall', 'install studs', 'wall taping', and 'erect wall' as sub-processes. A value that indicates the relative tree view position of the task (in comparison to the tree view position of other tasks and the task hierarchy defined by <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a>).</p>
+<p>The task order information that is used for viewing purposes is derived from the order defined by the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship and thus is independent of the logical task order defined through <a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>. The hierarchy and order defined through <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> enables to order the tasks in a tree view or list view structure.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifctask_instantiation_diagram.png" alt="&quot;task instantiation diagram&quot;" title="Figure 155 &mdash; Task nesting relationships"></td></tr><tr><td><p class="figure">Figure 155 &mdash; Task nesting relationships</p></td></tr></table></p>
+<p>A top-level task is declared within the <a href="../../ifckernel/lexical/ifcproject.htm">IfcProject</a> using the <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> relationship.</p>
+
+<br/><br/>
+
+<a id="sequential-connectivity" />
+<p class="use-head">Sequential Connectivity</p>
+<p>The <a href="../../templates/sequential-connectivity.htm">Sequential Connectivity</a> concept applies to this entity.</p><p>The relationship <a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a> is used to indicate control flow. An <span class="self-ref">IfcTask</span> as a successor to an <span class="self-ref">IfcTask</span> indicates logical sequence how these tasks should be performed. <span class="self-ref">IfcTask</span>'s can be triggered or can trigger <a href="../../ifcprocessextension/lexical/ifcevent.htm">IfcEvent</a>'s, which is also defined through the relationship <a href="../../ifcprocessextension/lexical/ifcrelsequence.htm">IfcRelSequence</a>.</p>
+
+<br/><br/>
+
+<a id="control-assignment" />
+<p class="use-head">Control Assignment</p>
+<p>The <a href="../../templates/control-assignment.htm">Control Assignment</a> concept applies to this entity.</p><p>Occurrences of <span class="self-ref">IfcTask</span> may be assigned to an <a href="../../ifcprocessextension/lexical/ifcworkcontrol.htm">IfcWorkControl</a> (either a work plan or a work schedule) through <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>. Please note that the <i>IfcRelAssignsTasks</i> relationship class has been removed in IFC4 and is no longer available.</p>
+
+<br/><br/>
+
+<a id="process-assignment" />
+<p class="use-head">Process Assignment</p>
+<p>The <a href="../../templates/process-assignment.htm">Process Assignment</a> concept applies to this entity.</p><p>It is suggested to use the 'summary task' (root element of the task hierarchy that is required for task management purposes) to assign all subtask to a work plan or work schedule. Resources used by tasks are assigned by <a href="../../ifckernel/lexical/ifcrelassignstoprocess.htm">IfcRelAssignsToProcess</a>.</p>
+
+<br/><br/>
+
+<a id="product-assignment" />
+<p class="use-head">Product Assignment</p>
+<p>The <a href="../../templates/product-assignment.htm">Product Assignment</a> concept applies to this entity.</p><br/><br/>
+
+<a id="classification-association" />
+<p class="use-head">Classification</p>
+<p>The <a href="../../templates/classification-association.htm">Classification Association</a> concept applies to this entity.</p><p>An <span class="self-ref">IfcTask</span> may be assigned a Work Breakdown Structure (WBS) code. A WBS code is dealt with as a classification of task and is associated to a task occurrence using the <a href="../../ifckernel/lexical/ifcrelassociatesclassification.htm">IfcRelAssociatesClassification</a> relationship class. As well as being to designate the code, the classification structure also enables the source of the work breakdown structure classification to be identified.</p>
+
+<br/><br/>
+
+<a id="constraint-association" />
+<p class="use-head">Constraint</p>
+<p>The <a href="../../templates/constraint-association.htm">Constraint Association</a> concept template applies to this entity as shown in Table 17.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Description</b></th></tr>
+<tr><td>Indicate fixed duration of task with ConstraintGrade=HARD and Benchmark=EQUALTO such that changes to an assigned <i>IfcConstructionResource.ResourceTime.ScheduleWork</i> should impact <i>IfcConstructionResource.ResourceTime.ScheduleUsage</i>, and vice-versa.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 17 &mdash; IfcTask Constraint Association</td></tr></table>
+
+<p>Constraints may be applied to a task to indicate fixed task duration, fixed start or fixed finish, where <a href="../../ifcconstraintresource/lexical/ifcmetric.htm">IfcMetric</a>.ReferencePath is set to the corresponding attribute on the <a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a> entity.</p>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;21853f8a-16d3-49f2-b896-17d1682b4d49&quot; name=&quot;IfcTask&quot; applicableRootEntity=&quot;IfcTask&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;12dcc939-4507-4491-b675-d677656aa7ac&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;34452f8b-af1c-4ae0-bcb4-db8735a50f22&quot; name=&quot;Object Typing&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;35a2e10e-20df-40f4-ab2f-dacf0a6744f4&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;RelatingType[Type]=&amp;apos;IfcTaskType&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;9d37e4e0-b3ba-4419-aa74-234234155370&quot; name=&quot;Property Sets&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;f74255a6-0c0e-4f31-84ad-24981db62461&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PredefinedType[Value]=&amp;apos;MOVE&amp;apos; AND PsetName[Value]=&amp;apos;Pset_PackingInstructions&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;72ca9e97-eded-4e6d-a1f0-3d2436d9d4f5&quot; name=&quot;Nesting&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;38ca8788-5e47-411c-8294-d56f9e9a5691&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;21bda0ee-ffb5-4b65-a177-d7c12dbb8473&quot; name=&quot;Sequential Connectivity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;c9f11880-8cf6-47fe-abac-05c73b4041b1&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;e534dc2e-f002-42f8-9e8b-4b660a9344fc&quot; name=&quot;Control Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;813e73fe-5641-4648-a680-8887cf4359f1&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;1c5f7dc6-eaff-4524-b809-185ed4679b32&quot; name=&quot;Process Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;e841d02b-ccfd-4d1f-9433-da4084658468&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;a5dbb564-e023-4ec6-9730-06c2a2450fd0&quot; name=&quot;Product Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;ec9cfb04-adfe-4868-8168-d78fe995a913&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;79db4b23-5b43-4ea1-9068-d96f6b374cd4&quot; name=&quot;Classification&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;4a224609-6578-4c75-afcf-8affa86e5ef2&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;216de181-6d09-4242-8fd5-42b11dfa2c15&quot; name=&quot;Constraint&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;c08b264c-f7c6-479f-af7f-5d645c130ea8&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicate fixed duration of task with ConstraintGrade=HARD and Benchmark=EQUALTO such that changes to an assigned _IfcConstructionResource.ResourceTime.ScheduleWork_ should impact _IfcConstructionResource.ResourceTime.ScheduleUsage_, and vice-versa.&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicate constrained start date with ConstraintGrade=HARD and Benchmark of EQUALTO, GREATERTHANOREQUALTO, or LESSTHANOREQUALTO to indicate &amp;quot;must start on&amp;quot;, &amp;quot;start no earlier than&amp;quot; or &amp;quot;start no later than&amp;quot; respectively where _IfcMetric.DataValue_ indicates the specific _IfcDateTime_. Use SOFT constraint having LESSTHAN benchmark to indicate &amp;quot;start as soon as possible&amp;quot;.&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicate constrained finish date with ConstraintGrade=HARD and Benchmark of EQUALTO, GREATERTHANOREQUALTO, or LESSTHANOREQUALTO to indicate &amp;quot;must finish on&amp;quot;, &amp;quot;finish no earlier than&amp;quot; or &amp;quot;finish no later than&amp;quot; respectively where _IfcMetric.DateValue_ indicates the specific _IfcDateTime_. Use SOFT constraint having GREATERTHAN benchmark to indicate &amp;quot;finish as late as possible&amp;quot;.&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobject.htm"><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-user-identity">Object User Identity</a></td><td><a href="../../templates/object-user-identity.htm">Object User Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-predefined-type">Object Predefined Type</a></td><td><a href="../../templates/object-predefined-type.htm">Object Predefined Type</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#property-sets-with-override">Property Sets with Override</a></td><td><a href="../../templates/property-sets-with-override.htm">Property Sets with Override</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a></td></tr><tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#object-typing">Object Typing</a></td><td><a href="../../templates/object-typing.htm">Object Typing</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#property-sets-for-objects">Property Sets</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#object-nesting">Nesting</a></td><td><a href="../../templates/object-nesting.htm">Object Nesting</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#sequential-connectivity">Sequential Connectivity</a></td><td><a href="../../templates/sequential-connectivity.htm">Sequential Connectivity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#control-assignment">Control Assignment</a></td><td><a href="../../templates/control-assignment.htm">Control Assignment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#process-assignment">Process Assignment</a></td><td><a href="../../templates/process-assignment.htm">Process Assignment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#product-assignment">Product Assignment</a></td><td><a href="../../templates/product-assignment.htm">Product Assignment</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#classification-association">Classification</a></td><td><a href="../../templates/classification-association.htm">Classification Association</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcprocessextension/lexical/ifctask.htm#constraint-association">Constraint</a></td><td><a href="../../templates/constraint-association.htm">Constraint Association</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>&quot; type=&quot;ifc:<a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprocessextension/lexical/ifctask.htm">IfcTask</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;TaskTime&quot; type=&quot;ifc:<a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Status&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;WorkMethod&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;IsMilestone&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Priority&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcTask<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcprocess.htm">IfcProcess</a>)<b>;</b><br/>
+&nbsp;&nbsp;Status : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;WorkMethod : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;IsMilestone : <a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>;<br/>
+&nbsp;&nbsp;Priority : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;TaskTime : <span class="keyword">OPTIONAL</span> <a href="../../ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a>;<br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;HasName : EXISTS(SELF\<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>.Name);<br/>&nbsp;&nbsp;CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType &lt;&gt; <a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a>.USERDEFINED) OR ((PredefinedType = <a href="../../ifcprocessextension/lexical/ifctasktypeenum.htm">IfcTaskTypeEnum</a>.USERDEFINED) AND EXISTS(SELF\<a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a>.ObjectType));<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprocessextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifctask.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

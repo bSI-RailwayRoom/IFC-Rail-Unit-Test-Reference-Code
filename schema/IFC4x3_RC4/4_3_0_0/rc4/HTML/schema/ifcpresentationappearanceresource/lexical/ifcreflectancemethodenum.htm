@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcReflectanceMethodEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 2 index4 10 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.2.11");
+//-->
+</script>
+
+<h4 class="num">IfcReflectanceMethodEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reflectance Method Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des méthodes de réflexion</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcReflectanceMethodEnum</span> defines the range of different reflectance methods available.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration type in IFC2x2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>BLINN</td><td>A reflectance model providing a smooth, slightly shiny appearance.
+</td></tr><tr><td>FLAT</td><td>A reflectance model providing a constant colour. This model ignores the effect of all light sources.
+</td></tr><tr><td>GLASS</td><td>A reflectance model that supports an approximation of glass-like materials that have both reflective and transmissive properties.
+</td></tr><tr><td>MATT</td><td>A reflectance model providing a dull matte appearance.
+</td></tr><tr><td>METAL</td><td>A reflectance model providing a specular metallic appearance.
+</td></tr><tr><td>MIRROR</td><td>A reflectance model that supports secondary mirrored views through ray tracing.
+</td></tr><tr><td>PHONG</td><td>A reflectance model conforming with the Phong model in which reflections are greatest in the `mirror' direction of a surface opposite the viewing direction with respect to the surface normal.
+</td></tr><tr><td>PLASTIC</td><td>A reflectance model providing a specular effect which is similar to the Phong model.
+</td></tr><tr><td>STRAUSS</td><td>A reflectance model for metallic and non-metallic appearance based on a limited set of control parameter.
+</td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcreflectancemethodenum.htm">IfcReflectanceMethodEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;blinn&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;flat&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;glass&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;matt&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;metal&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;mirror&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;phong&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;plastic&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;strauss&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcReflectanceMethodEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;BLINN, <br/>&nbsp;FLAT, <br/>&nbsp;GLASS, <br/>&nbsp;MATT, <br/>&nbsp;METAL, <br/>&nbsp;MIRROR, <br/>&nbsp;PHONG, <br/>&nbsp;PLASTIC, <br/>&nbsp;STRAUSS, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestylerendering.htm">IfcSurfaceStyleRendering</a>
+</p>
+<p><a href="../../../link/ifcreflectancemethodenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

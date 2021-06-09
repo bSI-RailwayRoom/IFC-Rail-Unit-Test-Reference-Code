@@ -1,0 +1,65 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcUniqueQuantityNames</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 17 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.17.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcUniqueQuantityNames</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Unique Quantity Names</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function gets the set of <a href="../../ifcquantityresource/lexical/ifcphysicalquantity.htm">IfcPhysicalQuantity</a>'s.
+It iterates through the <i>Name</i> attibute of the <a href="../../ifcquantityresource/lexical/ifcphysicalquantity.htm">IfcPhysicalQuantity</a>'s
+and verifies that no <i>Name</i> appears twice.</p>
+<blockquote class="history">
+<p><span style="font-size:smaller;color:blue">HISTORY 
+New function in IFC2x4</span></p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcUniqueQuantityNames<br/>
+
+(Properties : SET [1:?] OF <a href="../../ifcquantityresource/lexical/ifcphysicalquantity.htm">IfcPhysicalQuantity</a>)<br/>:LOGICAL;<br/><br/>LOCAL<br/>&nbsp;&nbsp;Names : SET OF <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a> := [];<br/>END_LOCAL;<br/><br/>REPEAT i:=1 TO HIINDEX(Properties);<br/>&nbsp;&nbsp;Names := Names + Properties[i].Name;<br/>END_REPEAT;<br/>RETURN (SIZEOF(Names) = SIZEOF(Properties));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcelementquantity.htm">IfcElementQuantity</a>
+<a href="../../ifcquantityresource/lexical/ifcphysicalcomplexquantity.htm">IfcPhysicalComplexQuantity</a>
+</p>
+<p><a href="../../../link/ifcuniquequantitynames.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

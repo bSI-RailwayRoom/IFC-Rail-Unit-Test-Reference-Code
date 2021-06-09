@@ -1,0 +1,408 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcDistributionPort</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 2 index3 3 index4 7 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.2.3.8");
+//-->
+</script>
+
+<h4 class="num">IfcDistributionPort</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Anschluss / Port</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Distribution Port</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Port de distribution</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PredefinedType</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SystemType</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-candidate-4_2_0_0/index.htm">IFC4x2 Candidate 4.2.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PositionedRelativeTo</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReferencedInStructures</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>A distribution port is an inlet or outlet of a product through which a particular substance may flow.</p>
+<p>Distribution ports are used for passage of solid, liquid, or gas substances, as well as electricity for power or communications. Flow segments (pipes, ducts, cables) may be used to connect ports across products. Distribution ports are defined by system type and flow direction such that for two ports to be connected, they must share the same system type and have opposite flow directions (one side being a <i>SOURCE</i> and the other being a <i>SINK</i>). Ports are similar to openings in that they do not have any visible geometry; such geometry is captured at the shape representation of the enclosing element or element type. Ports may have placement that indicates the position and orientation of the connection.</p>
+<p>Ports are assigned the distribution systems in order to indicate its role in a particular system, e.g. cold water inlet.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Ports are now related to products and product types using the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship; use of <a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a> is now reserved for dynamically attached ports (such as drilling a hole in a tank).</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>8</td><td>FlowDirection</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcflowdirectionenum.htm">IfcFlowDirectionEnum</a></td><td>? </td><td>
+Enumeration that identifies if this port is a Sink (inlet), a Source (outlet) or both a SinkAndSource.
+</td><td>X</td></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionporttypeenum.htm">IfcDistributionPortTypeEnum</a></td><td>? </td><td>
+</td><td>X</td></tr>
+<tr><td>10</td><td>SystemType</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a></td><td>? </td><td>
+Enumeration that identifies the system type.  If a system type is defined, the port may only be connected to other ports having the same system type.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcdistributionport.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,266,114" href="../../../schema/ifcproductextension/lexical/ifcport.htm" alt="IfcPort" />
+<area shape="rect" coords="42,78,278,90" href="../../../schema/ifckernel/lexical/ifcproduct.htm" alt="IfcProduct" />
+<area shape="rect" coords="30,54,290,66" href="../../../schema/ifckernel/lexical/ifcobject.htm" alt="IfcObject" />
+<area shape="rect" coords="18,30,302,42" href="../../../schema/ifckernel/lexical/ifcobjectdefinition.htm" alt="IfcObjectDefinition" />
+<area shape="rect" coords="6,6,314,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasAssignments</i></td><td><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that assign (by an association relationship) other subtypes of IfcObject to this object instance. Examples are the association to products, processes, controls, resources or groups.
+</td><td>X</td></tr>
+<tr><td></td><td><i>Nests</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is a part within an ordered whole/part decomposition relationship. An object occurrence or type can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>Decomposes</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsNestedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is the whole within an ordered whole/part decomposition relationship. An object or object type can be nested by several other objects (occurrences or types).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>IsDecomposedBy</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td>References to the context providing context information such as project unit or representation context. It should only be asserted for the uppermost non-spatial object.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDecomposedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is whole within an unordered whole/part decomposition relationship. An object definitions can be aggregated by several other objects (occurrences or parts).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Decomposes</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is a part within an unordered whole/part decomposition relationship. An object definitions can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that associates external references or other resource definitions to the object.. Examples are the association to library, documentation or classification.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></i></td></tr>
+<tr><td>5</td><td>ObjectType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The type denotes a particular type that indicates the object further. The use has to be established at the level of instantiable subtypes. In particular it holds the user defined type, if the enumeration of the attribute <i>PredefinedType</i> is set to USERDEFINED.
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDeclaredBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Link to the relationship object pointing to the declaring object that provides the object definitions for this object occurrence. The declaring object has to be part of an object type decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, contains the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Declares</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyobject.htm">IfcRelDefinesByObject</a><br/>@RelatingObject</td><td>S[0:?]</td><td>Link to the relationship object pointing to the reflected object(s) that receives the object definitions. The reflected object has to be part of an object occurrence decomposition. The associated <span class="self-ref">IfcObject</span>, or its subtypes, provides the specific information (as part of a type, or style, definition), that is common to all reflected instances of the declaring <span class="self-ref">IfcObject</span>, or its subtypes.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsTypedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>Set of relationships to the object type that provides the type definitions for this object occurrence. The then associated <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a>, or its subtypes, contains the specific information (or type, or style), that is common to all instances of <span class="self-ref">IfcObject</span>, or its subtypes, referring to the same type.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, the link to <a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a> had previously be included in the inverse relationship <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a>. Change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDefinedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Set of relationships to property set definitions attached to this object. Those statically or dynamically defined properties contain alphanumeric information content that further defines the object.
+
+<blockquote>
+IFC4 CHANGE  The data type has been changed from <a href="../../ifckernel/lexical/ifcreldefines.htm">IfcRelDefines</a> to <a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a> with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></i></td></tr>
+<tr><td>6</td><td>ObjectPlacement</td><td><a href="../../ifcgeometricconstraintresource/lexical/ifcobjectplacement.htm">IfcObjectPlacement</a></td><td>? </td><td>
+Placement of the product in space, the placement can either be absolute (relative to the world coordinate system), relative (relative to the object placement of another product), or constraint (e.g. relative to grid axes). It is determined by the various subtypes of IfcObjectPlacement, which includes the axis placement information to determine the  transformation for the object coordinate system.
+</td><td>X</td></tr>
+<tr><td>7</td><td>Representation</td><td><a href="../../ifcrepresentationresource/lexical/ifcproductrepresentation.htm">IfcProductRepresentation</a></td><td>? </td><td>
+Reference to the representations of the product, being either a representation (IfcProductRepresentation) or as a special case a shape representations (IfcProductDefinitionShape). The product definition shape provides for multiple geometric representations of the shape property of the object within the same object coordinate system, defined by the object placement.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ReferencedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a><br/>@RelatingProduct</td><td>S[0:?]</td><td>Reference to the <a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a> relationship, by which other products, processes, controls, resources or actors (as subtypes of <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>) can be related to this product.
+</td><td>X</td></tr>
+<tr><td></td><td><i>PositionedRelativeTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelpositions.htm">IfcRelPositions</a><br/>@RelatedProducts</td><td>S[0:?]</td><td></td><td>X</td></tr>
+<tr><td></td><td><i>ReferencedInStructures</i></td><td><a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a><br/>@RelatedElements</td><td>S[0:?]</td><td></td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a></i></td></tr>
+<tr><td></td><td><i>ContainedIn</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a><br/>@RelatingPort</td><td>S[0:1]</td><td>Reference to the element to port connection relationship. The relationship then refers to the element in which this port is contained.
+
+<blockquote>
+IFC4 CHANGE  The cardinality has been changed from 1:1 to 0:1. IFC4 DEPRECATION  The inverse relationship is deprecated for fixed ports due to deprecation of <a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a> for this usage. Use inverse relationship <i>Nests</i> instead.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ConnectedFrom</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectsports.htm">IfcRelConnectsPorts</a><br/>@RelatedPort</td><td>S[0:1]</td><td>Reference to a port that is connected by the objectified relationship.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ConnectedTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelconnectsports.htm">IfcRelConnectsPorts</a><br/>@RelatingPort</td><td>S[0:1]</td><td>Reference to the port connection relationship. The relationship then refers to the other port to which this port is connected.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a></td></tr>
+<tr><td>8</td><td>FlowDirection</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcflowdirectionenum.htm">IfcFlowDirectionEnum</a></td><td>? </td><td>
+Enumeration that identifies if this port is a Sink (inlet), a Source (outlet) or both a SinkAndSource.
+</td><td>X</td></tr>
+<tr><td>9</td><td>PredefinedType</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionporttypeenum.htm">IfcDistributionPortTypeEnum</a></td><td>? </td><td>
+</td><td>X</td></tr>
+<tr><td>10</td><td>SystemType</td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a></td><td>? </td><td>
+Enumeration that identifies the system type.  If a system type is defined, the port may only be connected to other ports having the same system type.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifcdistributionport.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="product-local-placement" />
+<p class="use-head">Product Local Placement</p>
+<p>The <a href="../../templates/product-local-placement.htm">Product Local Placement</a> concept applies to this entity.</p><p>The placement of a port indicates the position and orientation of how it may connect to a compatible port on another product. The placement shall be relative to the nesting <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a>, <a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a>, or enclosing <span class="self-ref">IfcDistributionPort</span>.</p>
+<p>The <i>Location</i> is the midpoint of the physical connection, unless otherwise indicated by cardinal point on a material profile.</p>
+<p>The <i>Axis</i> points in the direction of the physical connection away from the product if <i>FlowDirection</i> equals <i>SOURCE</i> (or <i>SOURCEANDSINK</i> or <i>NOTDEFINED</i>), or points opposite direction (to the product) if the <i>FlowDirection</i> equals <i>SINK</i>.</p>
+<blockquote class="note">
+<p>NOTE  The rationale for positioning the <i>Axis</i> in the direction of flow is to allow for the same geometry to be used, such as for connectors with polarized cross-section.</p>
+</blockquote>
+<p>The <i>RefDirection</i> points in the direction of the local X axis of the material profile, where the local Y axis points up if looking towards the <i>Axis</i> where the local X axis points right.</p>
+<p>Upon connecting elements through ports with rigid connections, each object shall be aligned such that the effective <i>Location</i>, <i>Axis</i>, and <i>RefDirection</i> of each port is aligned to be equal (with exception for circular profiles where the <i>RefDirection</i> need not be equal).</p>
+
+<br/><br/>
+
+<a id="property-sets-for-objects" />
+<p class="use-head">Property Sets for Objects</p>
+<p>The <a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a> concept template applies to this entity as shown in Table 231.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>PsetName</b></th><th><b>Properties</b></th></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/pset/pset_distributionportcommon.htm">Pset_DistributionPortCommon</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>PortNumber</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ColorCode</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/pset/pset_distributionporttypecable.htm">Pset_DistributionPortTypeCable</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th><th>UpperValue</th><th>LowerValue</th><th>SetValue</th><th>Reference</th></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>ConnectionType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td><a href="../../..//penum/penum_distributionportelectricaltype.htm">PEnum_DistributionPortElectricalType</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ConnectionSubtype</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>ConnectionGender</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td><a href="../../..//penum/penum_distributionportgender.htm">PEnum_DistributionPortGender</a></td></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>ConductorFunction</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td><a href="../../..//penum/penum_conductorfunctionenum.htm">PEnum_ConductorFunctionEnum</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>CurrentContent3rdHarmonic</td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Current</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcelectriccurrentmeasure.htm">IfcElectricCurrentMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Voltage</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcelectricvoltagemeasure.htm">IfcElectricVoltageMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Power</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcpowermeasure.htm">IfcPowerMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/list-value.htm">List Value</a></td><td>Protocols</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td></td><td></td><td></td><td></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/pset/pset_distributionporttypeduct.htm">Pset_DistributionPortTypeDuct</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th><th>UpperValue</th><th>LowerValue</th><th>SetValue</th><th>Reference</th></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>ConnectionType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td><a href="../../..//penum/penum_ductconnectiontype.htm">PEnum_DuctConnectionType</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ConnectionSubType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>NominalWidth</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>NominalHeight</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>NominalThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>DryBulbTemperature</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>WetBulbTemperature</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>VolumetricFlowRate</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Velocity</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifclinearvelocitymeasure.htm">IfcLinearVelocityMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Pressure</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a></td><td></td></tr>
+</table></td></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/pset/pset_distributionporttypepipe.htm">Pset_DistributionPortTypePipe</a></td><td><table class="gridtable"><tr><th>Template</th><th>PropertyName</th><th>Value</th><th>UpperValue</th><th>LowerValue</th><th>SetValue</th><th>Reference</th></tr>
+<tr><td><a href="../../templates/enumerated-value.htm">Enumerated Value</a></td><td>ConnectionType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td><a href="../../..//penum/penum_pipeendstyletreatment.htm">PEnum_PipeEndStyleTreatment</a></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>ConnectionSubType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>NominalDiameter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>InnerDiameter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/single-value.htm">Single Value</a></td><td>OuterDiameter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Temperature</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcthermodynamictemperaturemeasure.htm">IfcThermodynamicTemperatureMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>VolumetricFlowRate</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>MassFlowRate</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcmassflowratemeasure.htm">IfcMassFlowRateMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>FlowCondition</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Velocity</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifclinearvelocitymeasure.htm">IfcLinearVelocityMeasure</a></td><td></td></tr>
+<tr><td><a href="../../templates/bounded-value.htm">Bounded Value</a></td><td>Pressure</td><td></td><td></td><td></td><td><a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a></td><td></td></tr>
+</table></td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 231 &mdash; IfcDistributionPort Property Sets for Objects</td></tr></table>
+
+<br/><br/>
+
+<a id="port-nesting" />
+<p class="use-head">Port Nesting</p>
+<p>The <a href="../../templates/port-nesting.htm">Port Nesting</a> concept applies to this entity.</p><p>Distribution ports are indicated on products and product types using the <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> relationship where <i>RelatingObject</i> refers to the enclosing <a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> or <a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a> respectively. The order of ports indicates logical ordering such within outlets, junction boxes, or communications equipment.</p>
+<p>Ports may be further nested into sub-ports, for indicating specific connections on components or pins.</p>
+
+<br/><br/>
+
+<a id="port-connectivity" />
+<p class="use-head">Port Connectivity</p>
+<p>The <a href="../../templates/port-connectivity.htm">Port Connectivity</a> concept applies to this entity.</p><p><strong>IfcDistributionPort</strong> may be connected to other objects as follows using the indicated relationship:</p>
+<ul>
+<li><strong>IfcDistributionPort</strong> (<a href="../../ifcproductextension/lexical/ifcrelconnectsports.htm">IfcRelConnectsPorts</a>) : Indicates a connection to another port having the same type and opposite flow direction. For port connections between elements, the <i>RelatingPort</i> is set to a port having <i>FlowDirection=SOURCE</i> and the <i>RelatedPort</i> is set to a port having <i>FlowDirection=SINK</i>. For aggregation scenarios, ports on a device may be mapped to aggregated devices within, in which case ports on the outer device indicate a single <i>FlowDirection</i> but have an additional connection internally to a port on an aggregated inner device. Refer to <a href="../../ifchvacdomain/lexical/ifcunitaryequipment.htm">IfcUnitaryEquipment</a> for an example.</li>
+<li><a href="../../ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a> (through <a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a>): For dynamic ports, indicates the containing element.</li>
+</ul>
+<p>Figure 284 illustrates distribution port connectivity.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcdistributionport-connection.png" alt="&quot;Connection Use Definition&quot;" title="Figure 284 &mdash; Distribution port connectivity"></td></tr><tr><td><p class="figure">Figure 284 &mdash; Distribution port connectivity</p></td></tr></table></p>
+
+<br/><br/>
+
+<a id="product-assignment" />
+<p class="use-head">Product Assignment</p>
+<p>The <a href="../../templates/product-assignment.htm">Product Assignment</a> concept template applies to this entity as shown in Table 232.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Type</b></th><th><b>Description</b></th></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystem.htm">IfcDistributionSystem</a></td><td>Indicates a system that is hosted by the port, as the origination.
+</td></tr>
+<tr><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncircuit.htm">IfcDistributionCircuit</a></td><td>Indicates a circuit that is switched by the port, as the origination.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 232 &mdash; IfcDistributionPort Product Assignment</td></tr></table>
+
+<p>The <strong>IfcDistributionPort</strong> may be assigned to the following entities using relationships as indicated:</p>
+<ul>
+<li><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystem.htm">IfcDistributionSystem</a> (through <a href="../../ifckernel/lexical/ifcrelassignstogroup.htm">IfcRelAssignsToGroup</a>): Indicates a system containing interconnected devices.</li>
+<li><a href="../../ifccontrolextension/lexical/ifcperformancehistory.htm">IfcPerformanceHistory</a>&lt; (through <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>): Indicates real time or historical infomation captured for the device.</li>
+</ul>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;1df86983-1a73-46b6-a5d7-8165a884e288&quot; name=&quot;IfcDistributionPort&quot; applicableRootEntity=&quot;IfcDistributionPort&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;ae45ef43-c8fd-4d60-9764-381b457e21c1&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;2454212e-305f-4fea-80b7-77529bfb99f8&quot; name=&quot;Product Local Placement&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;cbe85b5f-7912-4a43-8bb7-1e63bf40b26d&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;96e376f7-2387-4543-ba0f-ddf98b88bb32&quot; name=&quot;Property Sets for Objects&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;f74255a6-0c0e-4f31-84ad-24981db62461&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_DistributionPortCommon&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_DistributionPortTypeCable&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_DistributionPortTypeDuct&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Parameters=&quot;PsetName[Value]=&amp;apos;Pset_DistributionPortTypePipe&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;bdefca5c-a1db-48ff-a5ce-f07e973390a9&quot; name=&quot;Port Nesting&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;bafc93b7-d0e2-42d8-84cf-5da20ee1480a&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;62a878e5-30a1-45a7-bf7b-f8f9e3dbcb9c&quot; name=&quot;Port Connectivity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;16fe846f-32b1-4595-bbb0-c4ad053dab24&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;3fd562be-cb3e-413b-b0e1-6b4a2c58a5c4&quot; name=&quot;Product Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;ec9cfb04-adfe-4868-8168-d78fe995a913&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates a system that is hosted by the port, as the origination.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcDistributionSystem&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates a circuit that is switched by the port, as the origination.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcDistributionCircuit&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm#classification-association">Classification Association</a></td><td><a href="../../templates/classification-association.htm">Classification Association</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobject.htm"><a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-user-identity">Object User Identity</a></td><td><a href="../../templates/object-user-identity.htm">Object User Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-predefined-type">Object Predefined Type</a></td><td><a href="../../templates/object-predefined-type.htm">Object Predefined Type</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#object-typing">Object Typing</a></td><td><a href="../../templates/object-typing.htm">Object Typing</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcobject.htm#property-sets-with-override">Property Sets with Override</a></td><td><a href="../../templates/property-sets-with-override.htm">Property Sets with Override</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcproduct.htm"><a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-placement">Product Placement</a></td><td><a href="../../templates/product-placement.htm">Product Placement</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-geometric-representation">Product Geometric Representation</a></td><td><a href="../../templates/product-geometric-representation.htm">Product Geometric Representation</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcproduct.htm#product-relative-positioning">Relative Position</a></td><td><a href="../../templates/product-relative-positioning.htm">Product Relative Positioning</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a></td></tr><tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm#product-local-placement">Product Local Placement</a></td><td><a href="../../templates/product-local-placement.htm">Product Local Placement</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm#property-sets-for-objects">Property Sets for Objects</a></td><td><a href="../../templates/property-sets-for-objects.htm">Property Sets for Objects</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm#port-nesting">Port Nesting</a></td><td><a href="../../templates/port-nesting.htm">Port Nesting</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm#port-connectivity">Port Connectivity</a></td><td><a href="../../templates/port-connectivity.htm">Port Connectivity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm#product-assignment">Product Assignment</a></td><td><a href="../../templates/product-assignment.htm">Product Assignment</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a>&quot; type=&quot;ifc:<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionport.htm">IfcDistributionPort</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FlowDirection&quot; type=&quot;ifc:<a href="../../ifcsharedbldgserviceelements/lexical/ifcflowdirectionenum.htm">IfcFlowDirectionEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PredefinedType&quot; type=&quot;ifc:<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionporttypeenum.htm">IfcDistributionPortTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SystemType&quot; type=&quot;ifc:<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcDistributionPort<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcport.htm">IfcPort</a>)<b>;</b><br/>
+&nbsp;&nbsp;FlowDirection : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedbldgserviceelements/lexical/ifcflowdirectionenum.htm">IfcFlowDirectionEnum</a>;<br/>
+&nbsp;&nbsp;PredefinedType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionporttypeenum.htm">IfcDistributionPortTypeEnum</a>;<br/>
+&nbsp;&nbsp;SystemType : <span class="keyword">OPTIONAL</span> <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributionsystemenum.htm">IfcDistributionSystemEnum</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcsharedbldgserviceelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcdistributionport.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

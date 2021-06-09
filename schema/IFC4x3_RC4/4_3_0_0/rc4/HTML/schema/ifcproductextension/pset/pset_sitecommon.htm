@@ -1,0 +1,147 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_SiteCommon</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 4 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.4.17");
+//-->
+</script>
+
+<h4 class="std">5.4.4.17 Pset_SiteCommon</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Site Common</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b></b></td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b></b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3AP4i0qWSHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_SiteCommon.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>Reference</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Referenz ID</b></td><td>Identifikator der projektinternen Referenz für dieses Grundstück, z.B. nach der Grundstückklassifizierung des Bauherrn. Wird verwendet, wenn keine allgemein anerkanntes Klassifizierungssystem angewandt wird.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reference</b></td><td>Reference ID for this specified type in this project (e.g. type 'A-1'). Used to store the non-classification driven internal project type.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Reference</b></td><td>Référence à l'identifiant d'un type spécifié dans le contexte du projet (exemple : &quot;type A1&quot;). Utilisé pour enregistrer un type sans recourir à une classification.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>参照記号</b></td><td>このプロジェクトにおける参照記号(例：A-1)。分類コードではなく内部で使用されるプロジェクトタイプとして使用されるもの。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BuildableArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>bebaubare Fläche</b></td><td>bebaubare Fläche als maximale überbaubare Fläche des Grundstücks.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Buildable Area</b></td><td>The area of site utilization expressed as a maximum value according to local building codes.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ValeurSurfaceConstructible</b></td><td>Surface constructible maximale en fonction des contraintes d'urbanisme.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建築可能面積</b></td><td>建築基準により建築可能な最大の面積。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SiteCoverageRatio</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Grundflächenzahl</b></td><td>Grundflächenzahl als Verhältnis der bebaubaren Fläche zur Bruttogrundstücksfläche.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Site Coverage Ratio</b></td><td>The ratio of the utilization,  TotalArea / BuildableArea, expressed as a maximum value. The ratio value may be used to derive BuildableArea.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RatioSurfaceConstructible</b></td><td>Valeur maximale de la surface constructible exprimée en ratio. La valeur du ratio peut être utilisée pour déterminer la surface constructible.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建蔽率</b></td><td>建築基準により最大となる、敷地面積(IfcElementQuantity)と建築面積(IfcBuildingのIfcElementQuantity)の比率。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>FloorAreaRatio</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositiveratiomeasure.htm">IfcPositiveRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Geschossflächenzahl</b></td><td>Geschossflächenzahl als Verhältnis der gesamten Geschossfläche aller Vollgeschosse der baulichen Anlagen auf einem Baugrundstück zu der Fläche des Baugrundstücks.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Floor Area Ratio</b></td><td>The ratio of all floor areas to the buildable area as the maximum floor area utilization of the site as a maximum value according to local building codes.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>ratio de surface de planchers</b></td><td>Ratio de la surface totale de planchers à la surface constructible, indication de la valeur maximale de la surface de planchers selon la règlementation locale (coefficient d'occupation des sols, N.d.T.)
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>容積率</b></td><td>建築基準により最大となる床面積と敷地面積(IfcElementQuantities)の比率。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BuildingHeightLimit</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>maximale Bebauungshöhe</b></td><td>Maximale Bebauungshöhe die auf diesem Grundstück zulässig ist.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Building Height Limit</b></td><td>Allowed maximum height of buildings on this site - according to local building codes.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>HauteurMaximale</b></td><td>Hauteur maximale des bâtiments autorisée sur ce site.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>建物高さ制限</b></td><td>各地域の建築基準により許可される建物の高さの最大値。
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TotalArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bruttogrundstücksfläche</b></td><td>Gesamte Grundstücksfläche für diese Bauaufgabe.
+</td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total Area</b></td><td>Total planned area for the site. Used for programming the site space.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceBruteProgrammee</b></td><td>Surface totale brute. Définie en phase de programmation.
+</td></tr>
+<tr><td><img src="../../../img/locale-ja.png" /></td><td><b>延べ面積</b></td><td>敷地にたいする延べ計画面積。敷地空間の計画に使用。
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_sitecommon.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

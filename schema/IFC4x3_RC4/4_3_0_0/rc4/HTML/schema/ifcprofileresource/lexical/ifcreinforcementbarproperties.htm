@@ -1,0 +1,149 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcReinforcementBarProperties</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 15 index3 3 index4 19 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.15.3.20");
+//-->
+</script>
+
+<h4 class="num">IfcReinforcementBarProperties</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bewehrungsstab - Merkmale</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Reinforcement Bar Properties</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Propriétés du ferraillage</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a></td><td></td><td></td><td>MOVED</td><td>Schema changed from <i>IFCPROFILEPROPERTYRESOURCE</i> to <i>IFCPROFILERESOURCE</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><i>IfcReinforcementProperties</i> defines the set of properties for a specific combination of reinforcement bar steel grade, bar type and effective depth.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<p>The total cross section area for the specific steel grade is always provided. Additionally also general reinforcing bar configurations as a count of bars may be provided as defined in attribute <i>BarCount</i>. In this case the nominal bar diameter should be identical for all given bars as defined in attribute <i>NominalBarDiameter</i>.</p>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>TotalCrossSectionArea</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td><td></td><td>
+The total effective cross-section area of the reinforcement of a specific steel grade.
+</td><td>X</td></tr>
+<tr><td>2</td><td>SteelGrade</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+The nominal steel grade defined according to local standards.
+</td><td>X</td></tr>
+<tr><td>3</td><td>BarSurface</td><td><a href="../../ifcprofileresource/lexical/ifcreinforcingbarsurfaceenum.htm">IfcReinforcingBarSurfaceEnum</a></td><td>? </td><td>
+Indicator for whether the bar surface is plain or textured.
+</td><td>X</td></tr>
+<tr><td>4</td><td>EffectiveDepth</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+The effective depth, i.e. the distance of the specific reinforcement cross section area or reinforcement configuration in a row, counted from a common specific reference point. Usually the reference point is the upper surface (for beams and slabs) or a similar projection in a plane (for columns).
+</td><td>X</td></tr>
+<tr><td>5</td><td>NominalBarDiameter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+The nominal diameter defining the cross-section size of the reinforcing bar. The bar diameter should be identical for all bars included in the specific reinforcement configuration.
+</td><td>X</td></tr>
+<tr><td>6</td><td>BarCount</td><td><a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a></td><td>? </td><td>
+The number of bars with identical nominal diameter and steel grade included in the specific reinforcement configuration.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcreinforcementbarproperties.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,230,42" href="../../../schema/ifcpropertyresource/lexical/ifcpredefinedproperties.htm" alt="IfcPreDefinedProperties" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcpropertyresource/lexical/ifcpropertyabstraction.htm" alt="IfcPropertyAbstraction" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcpropertyabstraction.htm">IfcPropertyAbstraction</a></i></td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to an external reference, e.g. library, classification, or document information, that is associated to the property definition.
+
+<blockquote>
+IFC4 CHANGE New inverse attribute.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcpropertyresource/lexical/ifcpredefinedproperties.htm">IfcPreDefinedProperties</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a></td></tr>
+<tr><td>1</td><td>TotalCrossSectionArea</td><td><a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a></td><td></td><td>
+The total effective cross-section area of the reinforcement of a specific steel grade.
+</td><td>X</td></tr>
+<tr><td>2</td><td>SteelGrade</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+The nominal steel grade defined according to local standards.
+</td><td>X</td></tr>
+<tr><td>3</td><td>BarSurface</td><td><a href="../../ifcprofileresource/lexical/ifcreinforcingbarsurfaceenum.htm">IfcReinforcingBarSurfaceEnum</a></td><td>? </td><td>
+Indicator for whether the bar surface is plain or textured.
+</td><td>X</td></tr>
+<tr><td>4</td><td>EffectiveDepth</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+The effective depth, i.e. the distance of the specific reinforcement cross section area or reinforcement configuration in a row, counted from a common specific reference point. Usually the reference point is the upper surface (for beams and slabs) or a similar projection in a plane (for columns).
+</td><td>X</td></tr>
+<tr><td>5</td><td>NominalBarDiameter</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+The nominal diameter defining the cross-section size of the reinforcing bar. The bar diameter should be identical for all bars included in the specific reinforcement configuration.
+</td><td>X</td></tr>
+<tr><td>6</td><td>BarCount</td><td><a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a></td><td>? </td><td>
+The number of bars with identical nominal diameter and steel grade included in the specific reinforcement configuration.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a>&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcpredefinedproperties.htm">IfcPreDefinedProperties</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcprofileresource/lexical/ifcreinforcementbarproperties.htm">IfcReinforcementBarProperties</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpropertyresource/lexical/ifcpredefinedproperties.htm">IfcPreDefinedProperties</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;TotalCrossSectionArea&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;SteelGrade&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;BarSurface&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcreinforcingbarsurfaceenum.htm">IfcReinforcingBarSurfaceEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;EffectiveDepth&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;NominalBarDiameter&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;BarCount&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcReinforcementBarProperties<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpropertyresource/lexical/ifcpredefinedproperties.htm">IfcPreDefinedProperties</a>)<b>;</b><br/>
+&nbsp;&nbsp;TotalCrossSectionArea : <a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>;<br/>
+&nbsp;&nbsp;SteelGrade : <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;BarSurface : <span class="keyword">OPTIONAL</span> <a href="../../ifcprofileresource/lexical/ifcreinforcingbarsurfaceenum.htm">IfcReinforcingBarSurfaceEnum</a>;<br/>
+&nbsp;&nbsp;EffectiveDepth : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;NominalBarDiameter : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;BarCount : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifccountmeasure.htm">IfcCountMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcprofileresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcprofileresource/lexical/ifcsectionreinforcementproperties.htm">IfcSectionReinforcementProperties</a>
+</p>
+<p><a href="../../../link/ifcreinforcementbarproperties.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

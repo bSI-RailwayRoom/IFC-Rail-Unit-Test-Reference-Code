@@ -1,0 +1,474 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IFC4 Addendum 1 4.0.1.0</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 0 index2 0 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-f.htm");
+//-->
+</script>
+
+<h4 class="std">F.2.1 Entities</h4>
+<table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<tr><td colspan="5"><b>CORE DATA SCHEMAS</b></td>
+<tr><td>&nbsp;&nbsp;<b>IFCPROCESSEXTENSION</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcprocessextension/lexical/ifctask.htm">IfcTask</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsMilestone</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCPRODUCTEXTENSION</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifccivilelement.htm">IfcCivilElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcdistributionelement.htm">IfcDistributionElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcelementassembly.htm">IfcElementAssembly</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcfurnishingelement.htm">IfcFurnishingElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcgeographicelement.htm">IfcGeographicElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcopeningelement.htm">IfcOpeningElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcopeningstandardcase.htm">IfcOpeningStandardCase</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcprojectionelement.htm">IfcProjectionElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifctransportelement.htm">IfcTransportElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcvirtualelement.htm">IfcVirtualElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td colspan="5"><b>SHARED ELEMENT DATA SCHEMAS</b></td>
+<tr><td>&nbsp;&nbsp;<b>IFCSHAREDBLDGELEMENTS</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcbuildingsystem.htm">IfcBuildingSystem</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LongName</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcdoortype.htm">IfcDoorType</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParameterTakesPrecedence</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcrelconnectspathelements.htm">IfcRelConnectsPathElements</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatingPriorities</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>NUMBER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatedPriorities</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>NUMBER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcstairflight.htm">IfcStairFlight</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NumberOfRisers</td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>NumberOfRiser</i> to <i>NumberOfRisers</i>. <br/>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NumberOfTreads</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgelements/lexical/ifcwindowtype.htm">IfcWindowType</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParameterTakesPrecedence</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCSHAREDBLDGSERVICEELEMENTS</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributionchamberelement.htm">IfcDistributionChamberElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelement.htm">IfcDistributionControlElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcdistributionflowelement.htm">IfcDistributionFlowElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcenergyconversiondevice.htm">IfcEnergyConversionDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowcontroller.htm">IfcFlowController</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowfitting.htm">IfcFlowFitting</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowmovingdevice.htm">IfcFlowMovingDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowsegment.htm">IfcFlowSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowstoragedevice.htm">IfcFlowStorageDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowterminal.htm">IfcFlowTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedbldgserviceelements/lexical/ifcflowtreatmentdevice.htm">IfcFlowTreatmentDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCSHAREDCOMPONENTELEMENTS</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedcomponentelements/lexical/ifcbuildingelementpart.htm">IfcBuildingElementPart</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedcomponentelements/lexical/ifcdiscreteaccessory.htm">IfcDiscreteAccessory</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedcomponentelements/lexical/ifcfastener.htm">IfcFastener</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedcomponentelements/lexical/ifcmechanicalfastener.htm">IfcMechanicalFastener</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCSHAREDFACILITIESELEMENTS</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedfacilitieselements/lexical/ifcfurniture.htm">IfcFurniture</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedfacilitieselements/lexical/ifcsystemfurnitureelement.htm">IfcSystemFurnitureElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td colspan="5"><b>DOMAIN SPECIFIC DATA SCHEMAS</b></td>
+<tr><td>&nbsp;&nbsp;<b>IFCARCHITECTUREDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcarchitecturedomain/lexical/ifcdoorstyle.htm">IfcDoorStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParameterTakesPrecedence</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizeable</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcarchitecturedomain/lexical/ifcwindowstyle.htm">IfcWindowStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParameterTakesPrecedence</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizeable</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCBUILDINGCONTROLSDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcsensortypeenum.htm">IfcSensorTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CO2SENSOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROSTSENSOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDENTIFIERSENSOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcactuator.htm">IfcActuator</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcalarm.htm">IfcAlarm</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifccontroller.htm">IfcController</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcflowinstrument.htm">IfcFlowInstrument</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcsensor.htm">IfcSensor</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcunitarycontrolelement.htm">IfcUnitaryControlElement</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCELECTRICALDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcaudiovisualappliance.htm">IfcAudioVisualAppliance</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifccablecarrierfitting.htm">IfcCableCarrierFitting</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifccablecarriersegment.htm">IfcCableCarrierSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifccablefitting.htm">IfcCableFitting</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifccablesegment.htm">IfcCableSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifccommunicationsappliance.htm">IfcCommunicationsAppliance</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectricappliance.htm">IfcElectricAppliance</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectricdistributionboard.htm">IfcElectricDistributionBoard</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectricflowstoragedevice.htm">IfcElectricFlowStorageDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectricgenerator.htm">IfcElectricGenerator</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectricmotor.htm">IfcElectricMotor</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcelectrictimecontrol.htm">IfcElectricTimeControl</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcjunctionbox.htm">IfcJunctionBox</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifclamp.htm">IfcLamp</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifclightfixture.htm">IfcLightFixture</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcmotorconnection.htm">IfcMotorConnection</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcoutlet.htm">IfcOutlet</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcprotectivedevice.htm">IfcProtectiveDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcprotectivedevicetrippingunit.htm">IfcProtectiveDeviceTrippingUnit</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcsolardevice.htm">IfcSolarDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifcswitchingdevice.htm">IfcSwitchingDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcelectricaldomain/lexical/ifctransformer.htm">IfcTransformer</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCHVACDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcairterminal.htm">IfcAirTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcairterminalbox.htm">IfcAirTerminalBox</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcairtoairheatrecovery.htm">IfcAirToAirHeatRecovery</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcboiler.htm">IfcBoiler</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcburner.htm">IfcBurner</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcchiller.htm">IfcChiller</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccoil.htm">IfcCoil</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccompressor.htm">IfcCompressor</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccondenser.htm">IfcCondenser</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccooledbeam.htm">IfcCooledBeam</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifccoolingtower.htm">IfcCoolingTower</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcdamper.htm">IfcDamper</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcductfitting.htm">IfcDuctFitting</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcductsegment.htm">IfcDuctSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcductsilencer.htm">IfcDuctSilencer</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcengine.htm">IfcEngine</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcevaporativecooler.htm">IfcEvaporativeCooler</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcevaporator.htm">IfcEvaporator</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcfan.htm">IfcFan</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcfilter.htm">IfcFilter</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcflowmeter.htm">IfcFlowMeter</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcheatexchanger.htm">IfcHeatExchanger</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifchumidifier.htm">IfcHumidifier</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcmedicaldevice.htm">IfcMedicalDevice</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcpipefitting.htm">IfcPipeFitting</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcpipesegment.htm">IfcPipeSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcpump.htm">IfcPump</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcspaceheater.htm">IfcSpaceHeater</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifctank.htm">IfcTank</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifctubebundle.htm">IfcTubeBundle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcunitaryequipment.htm">IfcUnitaryEquipment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcvalve.htm">IfcValve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/lexical/ifcvibrationisolator.htm">IfcVibrationIsolator</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCPLUMBINGFIREPROTECTIONDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcfiresuppressionterminal.htm">IfcFireSuppressionTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcinterceptor.htm">IfcInterceptor</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcsanitaryterminal.htm">IfcSanitaryTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcstackterminal.htm">IfcStackTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcwasteterminal.htm">IfcWasteTerminal</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCSTRUCTURALANALYSISDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructuralcurveaction.htm">IfcStructuralCurveAction</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestabilizingLoad</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructurallinearaction.htm">IfcStructuralLinearAction</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestabilizingLoad</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructuralplanaraction.htm">IfcStructuralPlanarAction</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestabilizingLoad</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructuralpointaction.htm">IfcStructuralPointAction</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestabilizingLoad</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructuralresultgroup.htm">IfcStructuralResultGroup</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsLinear</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralanalysisdomain/lexical/ifcstructuralsurfaceaction.htm">IfcStructuralSurfaceAction</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestabilizingLoad</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCSTRUCTURALELEMENTSDOMAIN</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifcreinforcingbar.htm">IfcReinforcingBar</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifcreinforcingmesh.htm">IfcReinforcingMesh</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifcsurfacefeature.htm">IfcSurfaceFeature</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifctendon.htm">IfcTendon</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifctendonanchor.htm">IfcTendonAnchor</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcstructuralelementsdomain/lexical/ifcvoidingfeature.htm">IfcVoidingFeature</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoverings</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td colspan="5"><b>RESOURCE DEFINITION DATA SCHEMAS</b></td>
+<tr><td>&nbsp;&nbsp;<b>IFCCONSTRAINTRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifcmetric.htm">IfcMetric</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DataValue</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropertiesForConstraint</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConstrainedResources</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConstrainedObjects</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifcobjective.htm">IfcObjective</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropertiesForConstraint</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConstrainedResources</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConstrainedObjects</td><td></td><td></td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifcreference.htm">IfcReference</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ListPositions</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCDATETIMERESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifcresourcetime.htm">IfcResourceTime</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsOverAllocated</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifctasktime.htm">IfcTaskTime</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsCritical</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcdatetimeresource/lexical/ifctasktimerecurring.htm">IfcTaskTimeRecurring</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsCritical</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recurrence</td><td></td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Recurrance</i> to <i>Recurrence</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCGEOMETRICMODELRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifcboxedhalfspace.htm">IfcBoxedHalfSpace</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AgreementFlag</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifccartesianpointlist2d.htm">IfcCartesianPointList2D</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AgreementFlag</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifcpolygonalboundedhalfspace.htm">IfcPolygonalBoundedHalfSpace</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AgreementFlag</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closed</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoordIndex</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcPositiveInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NormalIndex</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcPositiveInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCGEOMETRYRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcarcindex.htm">IfcArcIndex</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifclineindex.htm">IfcLineIndex</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcsegmentindexselect.htm">IfcSegmentIndexSelect</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcboundarycurve.htm">IfcBoundaryCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcbsplinecurvewithknots.htm">IfcBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Degree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClosedCurve</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KnotMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcbsplinesurfacewithknots.htm">IfcBSplineSurfaceWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UDegree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VDegree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UClosed</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VClosed</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator2d.htm">IfcCartesianTransformationOperator2D</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator2dnonuniform.htm">IfcCartesianTransformationOperator2DnonUniform</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale2</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator3d.htm">IfcCartesianTransformationOperator3D</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccartesiantransformationoperator3dnonuniform.htm">IfcCartesianTransformationOperator3DnonUniform</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale2</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale3</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccompositecurve.htm">IfcCompositeCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccompositecurveonsurface.htm">IfcCompositeCurveOnSurface</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccompositecurvesegment.htm">IfcCompositeCurveSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifccurveboundedsurface.htm">IfcCurveBoundedSurface</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ImplicitOuter</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DirectionRatios</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcindexedpolycurve.htm">IfcIndexedPolyCurve</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurve2d.htm">IfcOffsetCurve2D</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcoffsetcurve3d.htm">IfcOffsetCurve3D</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcouterboundarycurve.htm">IfcOuterBoundaryCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinecurvewithknots.htm">IfcRationalBSplineCurveWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Degree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClosedCurve</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KnotMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeightsData</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrationalbsplinesurfacewithknots.htm">IfcRationalBSplineSurfaceWithKnots</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UDegree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VDegree</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UClosed</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VClosed</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelfIntersect</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VMultiplicities</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeightsData</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcrectangulartrimmedsurface.htm">IfcRectangularTrimmedSurface</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vsense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcreparametrisedcompositecurvesegment.htm">IfcReparametrisedCompositeCurveSegment</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SenseAgreement</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCMEASURERESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmeasureresource/lexical/ifcbinary.htm">IfcBinary</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmeasureresource/lexical/ifcpositiveinteger.htm">IfcPositiveInteger</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmeasureresource/lexical/ifcsimplevalue.htm">IfcSimpleValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IfcPositiveInteger</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCPRESENTATIONAPPEARANCERESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcblobtexture.htm">IfcBlobTexture</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatS</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatT</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RasterCode</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BINARY</i> to <i>IfcBinary</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModelOrDraughting</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModelorDraughting</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcimagetexture.htm">IfcImageTexture</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatS</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatT</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcindexedcolourmap.htm">IfcIndexedColourMap</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opacity</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Overrides</i> to <i>Opacity</i>. <br/>Type changed from <i>IfcSurfaceStyleShading</i> to <i>IfcNormalisedRatioMeasure</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ColourIndex</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcPositiveInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcindexedtriangletexturemap.htm">IfcIndexedTriangleTextureMap</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TexCoordIndex</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>INTEGER</i> to <i>IfcPositiveInteger</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcpixeltexture.htm">IfcPixelTexture</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatS</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RepeatT</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixel</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BINARY (32)</i> to <i>IfcBinary</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifcsurfacestyleshading.htm">IfcSurfaceStyleShading</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transparency</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationappearanceresource/lexical/ifctextstyle.htm">IfcTextStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModelOrDraughting</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCPRESENTATIONORGANIZATIONRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerOn</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerFrozen</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerBlocked</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCPROPERTYRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifccomplexproperty.htm">IfcComplexProperty</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertyboundedvalue.htm">IfcPropertyBoundedValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertyenumeratedvalue.htm">IfcPropertyEnumeratedValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertylistvalue.htm">IfcPropertyListValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertyreferencevalue.htm">IfcPropertyReferenceValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertysinglevalue.htm">IfcPropertySingleValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpropertyresource/lexical/ifcpropertytablevalue.htm">IfcPropertyTableValue</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasConstraints</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasApprovals</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCREPRESENTATIONRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm">IfcGeometricRepresentationContext</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Precision</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoordinateOperation</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationsubcontext.htm">IfcGeometricRepresentationSubContext</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Precision</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoordinateOperation</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Precision</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>REAL</i> to <i>IfcReal</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcrepresentationresource/lexical/ifcprojectedcrs.htm">IfcProjectedCRS</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GeodeticDatum</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HasCoordinateOperation</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProductDefinitional</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCTOPOLOGYRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcfacebound.htm">IfcFaceBound</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orientation</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcfaceouterbound.htm">IfcFaceOuterBound</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orientation</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcorientededge.htm">IfcOrientedEdge</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orientation</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;<b>IFCUTILITYRESOURCE</b></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcutilityresource/lexical/ifctablerow.htm">IfcTableRow</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsHeading</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OfTable</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+<p><a href="../../../link/ifc4-addendum-1-4_0_1_0-changelog.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

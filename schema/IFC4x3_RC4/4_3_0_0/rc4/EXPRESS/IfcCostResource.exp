@@ -1,0 +1,99 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCCOSTRESOURCE;
+
+REFERENCE FROM IFCCONSTRAINTRESOURCE
+(
+  IfcReference
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcDateTime,
+  IfcDate
+);
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+  IfcLibraryInformation,
+  IfcExternalReferenceRelationship,
+  IfcResourceLevelRelationship
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcMonetaryUnit,
+  IfcMeasureWithUnit,
+  IfcPositiveRatioMeasure,
+  IfcLabel,
+  IfcText,
+  IfcValue
+);
+
+TYPE IfcArithmeticOperatorEnum = ENUMERATION OF
+	(ADD
+	,DIVIDE
+	,MULTIPLY
+	,SUBTRACT);
+END_TYPE;
+
+TYPE IfcAppliedValueSelect = SELECT
+	(IfcMeasureWithUnit
+	,IfcReference
+	,IfcValue);
+END_TYPE;
+
+ENTITY IfcAppliedValue
+ SUPERTYPE OF (ONEOF
+    (IfcCostValue));
+	Name : OPTIONAL IfcLabel;
+	Description : OPTIONAL IfcText;
+	AppliedValue : OPTIONAL IfcAppliedValueSelect;
+	UnitBasis : OPTIONAL IfcMeasureWithUnit;
+	ApplicableDate : OPTIONAL IfcDate;
+	FixedUntilDate : OPTIONAL IfcDate;
+	Category : OPTIONAL IfcLabel;
+	Condition : OPTIONAL IfcLabel;
+	ArithmeticOperator : OPTIONAL IfcArithmeticOperatorEnum;
+	Components : OPTIONAL LIST [1:?] OF IfcAppliedValue;
+ INVERSE
+	HasExternalReference : SET [0:?] OF IfcExternalReferenceRelationship FOR RelatedResourceObjects;
+END_ENTITY;
+
+ENTITY IfcCostValue
+ SUBTYPE OF (IfcAppliedValue);
+END_ENTITY;
+
+ENTITY IfcCurrencyRelationship
+ SUBTYPE OF (IfcResourceLevelRelationship);
+	RelatingMonetaryUnit : IfcMonetaryUnit;
+	RelatedMonetaryUnit : IfcMonetaryUnit;
+	ExchangeRate : IfcPositiveRatioMeasure;
+	RateDateTime : OPTIONAL IfcDateTime;
+	RateSource : OPTIONAL IfcLibraryInformation;
+END_ENTITY;
+
+END_SCHEMA;

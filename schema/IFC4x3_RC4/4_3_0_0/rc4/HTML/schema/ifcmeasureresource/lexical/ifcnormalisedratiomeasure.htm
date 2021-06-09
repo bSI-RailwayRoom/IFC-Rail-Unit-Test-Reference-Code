@@ -1,0 +1,80 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcNormalisedRatioMeasure</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 11 index3 2 index4 60 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.11.2.61");
+//-->
+</script>
+
+<h4 class="num">IfcNormalisedRatioMeasure</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Normalised Ratio Measure</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Mesure de ratio normé</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p><span class="self-ref">IfcNormalisedRatioMeasure</span> is a dimensionless measure to express ratio values ranging from 0.0 to 1.0.</p>
+<p>Type: REAL</p>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x.</p>
+</blockquote>
+</details>
+</section>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>WR1</td><td>Normalized ratio shall be a non-negative value less than or equal to 1.0
+</td></tr>
+</table>
+
+</details>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcratiomeasure.htm">IfcRatioMeasure</a>&quot;/&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcNormalisedRatioMeasure = <a href="../../ifcmeasureresource/lexical/ifcratiomeasure.htm">IfcRatioMeasure</a>;<br/>&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;WR1 : {0.0 &lt;= SELF &lt;= 1.0}<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcmeasureresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcarchitecturedomain/lexical/ifcdoorpanelproperties.htm">IfcDoorPanelProperties</a>
+<a href="../../ifcarchitecturedomain/lexical/ifcwindowliningproperties.htm">IfcWindowLiningProperties</a>
+<a href="../../ifcstructuralelementsdomain/lexical/ifctendon.htm">IfcTendon</a>
+<a href="../../ifcmaterialresource/lexical/ifcmaterialconstituent.htm">IfcMaterialConstituent</a>
+<a href="../../ifcmeasureresource/lexical/ifcmeasurevalue.htm">IfcMeasureValue</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccolourrgb.htm">IfcColourRgb</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccolourrgblist.htm">IfcColourRgbList</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcindexedcolourmap.htm">IfcIndexedColourMap</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyleshading.htm">IfcSurfaceStyleShading</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifccolourorfactor.htm">IfcColourOrFactor</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcsizeselect.htm">IfcSizeSelect</a>
+<a href="../../ifcpresentationorganizationresource/lexical/ifclightsource.htm">IfcLightSource</a>
+</p>
+<p><a href="../../../link/ifcnormalisedratiomeasure.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

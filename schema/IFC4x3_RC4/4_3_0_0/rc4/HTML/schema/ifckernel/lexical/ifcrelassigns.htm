@@ -1,0 +1,178 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcRelAssigns</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 2 index3 3 index4 21 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.2.3.22");
+//-->
+</script>
+
+<h4 class="num">IfcRelAssigns</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Weist zu - Relation</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Rel Assigns</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Assignation</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The assignment relationship, <span class="self-ref">IfcRelAssigns</span>, is a generalization of &quot;link&quot; relationships among instances of <a href="../../ifckernel/lexical/ifcobject.htm">IfcObject</a> and its various 1<sup>st</sup> level subtypes. A link denotes the specific association through which one object (the client) applies the services of other objects (the suppliers), or through which one object may navigate to other objects.</p>
+<p>The client is denoted as the relating object and is established at the level of the specific, instantiable subtypes of <span class="self-ref">IfcRelAssigns</span>. The suppliers are denoted as the related objects and they are established by the <i>RelatedObjects</i> attribute.</p>
+<blockquote class="note">
+<p>NOTE  The terms &quot;client&quot; and &quot;supplier&quot; are used in a general concept and do not imply any meaning for implementations of systems (like client-server).</p>
+</blockquote>
+<blockquote class="example">
+<p>EXAMPLE  A resource may receive information about its nature of representing real building products by establishing a link between <a href="../../ifckernel/lexical/ifcresource.htm">IfcResource</a> and <i>IfcBuildingElement</i> (subtype of <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>) through the assignment relationship <a href="../../ifckernel/lexical/ifcrelassignstoresource.htm">IfcRelAssignsToResource</a>. The resource is then the client that applies the services of other objects (here building elements) to express the particular view of elements to be consumed as a resource in a process.</p>
+</blockquote>
+<p>The assignment relationship establishs a bi-directional relationship among the participating objects and does not imply any dependency. The subtypes of <span class="self-ref">IfcRelAssigns</span> establishes the particular semantic meaning of the assignment relationship.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>5</td><td>RelatedObjects</td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></td><td>S[1:?]</td><td>
+Related objects, which are assigned to a single object. The type of the single (or relating) object is defined in the subtypes of IfcRelAssigns.
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatedObjectsType</td><td><a href="../../ifckernel/lexical/ifcobjecttypeenum.htm">IfcObjectTypeEnum</a></td><td>? </td><td>
+Particular type of the assignment relationship. It can constrain the applicable object types, used within the role of <i>RelatedObjects</i>.
+
+<blockquote>
+IFC4 CHANGE  The attribute is deprecated and shall no longer be used. A NIL value should always be assigned.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>WR1</td><td>Rule checks whether the types of the assigned related objects comply with the contraint given by the RelatedObjectsType. The rule is important for constraint checks at subtypes of IfcRelAssigns or at subtypes of IfcObject, which refers to assignment relationships through the inverse HasAssignments relation.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcrelassigns.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,230,90" href="../../../schema/ifckernel/lexical/ifcrelassignstoactor.htm" alt="IfcRelAssignsToActor" />
+<area shape="rect" coords="42,102,230,114" href="../../../schema/ifckernel/lexical/ifcrelassignstocontrol.htm" alt="IfcRelAssignsToControl" />
+<area shape="rect" coords="42,126,230,138" href="../../../schema/ifckernel/lexical/ifcrelassignstogroup.htm" alt="IfcRelAssignsToGroup" />
+<area shape="rect" coords="42,150,230,162" href="../../../schema/ifckernel/lexical/ifcrelassignstoprocess.htm" alt="IfcRelAssignsToProcess" />
+<area shape="rect" coords="42,174,230,186" href="../../../schema/ifckernel/lexical/ifcrelassignstoproduct.htm" alt="IfcRelAssignsToProduct" />
+<area shape="rect" coords="42,198,230,210" href="../../../schema/ifckernel/lexical/ifcrelassignstoresource.htm" alt="IfcRelAssignsToResource" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifckernel/lexical/ifcrelationship.htm" alt="IfcRelationship" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a></i></td></tr>
+<tr><td>5</td><td>RelatedObjects</td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></td><td>S[1:?]</td><td>
+Related objects, which are assigned to a single object. The type of the single (or relating) object is defined in the subtypes of IfcRelAssigns.
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatedObjectsType</td><td><a href="../../ifckernel/lexical/ifcobjecttypeenum.htm">IfcObjectTypeEnum</a></td><td>? </td><td>
+Particular type of the assignment relationship. It can constrain the applicable object types, used within the role of <i>RelatedObjects</i>.
+
+<blockquote>
+IFC4 CHANGE  The attribute is deprecated and shall no longer be used. A NIL value should always be assigned.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a>&quot; type=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatedObjects&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;RelatedObjectsType&quot; type=&quot;ifc:<a href="../../ifckernel/lexical/ifcobjecttypeenum.htm">IfcObjectTypeEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcRelAssigns<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifckernel/lexical/ifcrelassignstoactor.htm">IfcRelAssignsToActor</a>, <a href="../../ifckernel/lexical/ifcrelassignstocontrol.htm">IfcRelAssignsToControl</a>, <a href="../../ifckernel/lexical/ifcrelassignstogroup.htm">IfcRelAssignsToGroup</a>, <a href="../../ifckernel/lexical/ifcrelassignstoprocess.htm">IfcRelAssignsToProcess</a>, <a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a>, <a href="../../ifckernel/lexical/ifcrelassignstoresource.htm">IfcRelAssignsToResource</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a>)<b>;</b><br/>
+&nbsp;&nbsp;RelatedObjects : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>;<br/>
+&nbsp;&nbsp;RelatedObjectsType : <span class="keyword">OPTIONAL</span> <a href="../../ifckernel/lexical/ifcobjecttypeenum.htm">IfcObjectTypeEnum</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;WR1 : <a href="../../ifckernel/lexical/ifccorrectobjectassignment.htm">IfcCorrectObjectAssignment</a>(RelatedObjectsType, RelatedObjects);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifckernel/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>
+</p>
+<p><a href="../../../link/ifcrelassigns.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

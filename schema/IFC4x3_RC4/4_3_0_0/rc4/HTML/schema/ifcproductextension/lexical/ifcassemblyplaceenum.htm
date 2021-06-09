@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcAssemblyPlaceEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 2 index4 1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.2.2");
+//-->
+</script>
+
+<h4 class="num">IfcAssemblyPlaceEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Assembly Place Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des lieux d'assemblage</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>This enumeration defines where the assembly is intended to take place, either in a factory or on the building site.</p>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC2x2.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>SITE</td><td>This assembly is assembled at site.
+</td></tr><tr><td>FACTORY</td><td>This assembly is assembled in a factory.
+</td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcproductextension/lexical/ifcassemblyplaceenum.htm">IfcAssemblyPlaceEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;site&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;factory&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcAssemblyPlaceEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;SITE, <br/>&nbsp;FACTORY, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcproductextension/lexical/ifcelementassembly.htm">IfcElementAssembly</a>
+<a href="../../ifcsharedfacilitieselements/lexical/ifcfurnituretype.htm">IfcFurnitureType</a>
+</p>
+<p><a href="../../../link/ifcassemblyplaceenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

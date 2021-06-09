@@ -1,0 +1,172 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcAnnotationFillArea</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 13 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.13.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcAnnotationFillArea</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Gefüllte (schraffierte) Fläche</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Annotation Fill Area</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Zone de remplissage d'annotation</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcAnnotationFillArea</span> defines an area by a definite <i>OuterBoundary</i>, that might include <i>InnerBoundaries</i>. The areas defined by the <i>InnerBoundaries</i> are excluded from applying the fill area style. The <i>InnerBoundaries</i> shall not intersect with the <i>OuterBoundary</i> nor being outside of the <i>OuterBoundary</i>.</p>
+<p>The fill area style that is applied to the <span class="self-ref">IfcAnnotationFillArea</span> is declared using the <a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a>, associated to the area by an <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>. Applicable fill area styles are a solid color, a hatching, tiles, or a combination of those styles.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO 10303-46:<br>
+An annotation fill area is a set of curves that may be filled with hatching, colour or tiling. The annotation fill are is described by boundaries which consist of non-intersecting, non-self-intersecting closed curves. These curves form the boundary of planar areas to be filled according to the style for the annotation fill area.</p>
+</blockquote>
+<p>Figure 410 illustrates annotation fill area.</p>
+<table>
+<tr>
+<td>&nbsp; &nbsp; <img src="../../../figures/ifcannotationfillarea_fig1.png" alt="annotation fill area" border="0"></td>
+</tr>
+<tr>
+<td>
+<p class="figure">Figure 410 &mdash; Annotation fill area</p>
+</td>
+</tr>
+</table>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>annotation_fill_area</strong> defined in ISO10303-46</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The two attributes <i>OuterBoundary</i> and <i>InnerBoundaries</i> are added and replace the previous single boundary.</p>
+</blockquote>
+<p class="spec-head">
+Informal Propositions:</p>
+<ol>
+<li>Any curve that describes an inner boundary shall not intersect with, nor include, another curve defining an inner boundary.</li>
+<li>The curve defining the outer boundary shall not intersect with any curve defining an inner boundary, nor shall it be surrounded by a curve defining an inner boundary.</li>
+</ol>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>OuterBoundary</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+A closed curve that defines the outer boundary of the fill area. The areas defined by the outer boundary (minus potentially defined inner boundaries) is filled by the fill area style.
+
+<blockquote>
+IFC2x3 CHANGE  The two new attributes <i>OuterBoundary</i> and <i>InnerBoundaries</i> replace the old single attribute Boundaries.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>InnerBoundaries</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td>? S[1:?]</td><td>
+A set of inner curves that define the inner boundaries of the fill area. The areas defined by the inner boundaries are excluded from applying the fill area style.
+
+<blockquote>
+IFC2x3 CHANGE  The two new attributes <i>OuterBoundary</i> and <i>InnerBoundaries</i> replace the old single attribute Boundaries.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcannotationfillarea.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,230,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationdefinitionresource/lexical/ifcannotationfillarea.htm">IfcAnnotationFillArea</a></td></tr>
+<tr><td>1</td><td>OuterBoundary</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+A closed curve that defines the outer boundary of the fill area. The areas defined by the outer boundary (minus potentially defined inner boundaries) is filled by the fill area style.
+
+<blockquote>
+IFC2x3 CHANGE  The two new attributes <i>OuterBoundary</i> and <i>InnerBoundaries</i> replace the old single attribute Boundaries.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>2</td><td>InnerBoundaries</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td>? S[1:?]</td><td>
+A set of inner curves that define the inner boundaries of the fill area. The areas defined by the inner boundaries are excluded from applying the fill area style.
+
+<blockquote>
+IFC2x3 CHANGE  The two new attributes <i>OuterBoundary</i> and <i>InnerBoundaries</i> replace the old single attribute Boundaries.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationdefinitionresource/lexical/ifcannotationfillarea.htm">IfcAnnotationFillArea</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationdefinitionresource/lexical/ifcannotationfillarea.htm">IfcAnnotationFillArea</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationdefinitionresource/lexical/ifcannotationfillarea.htm">IfcAnnotationFillArea</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;OuterBoundary&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;InnerBoundaries&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcAnnotationFillArea<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>)<b>;</b><br/>
+&nbsp;&nbsp;OuterBoundary : <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>;<br/>
+&nbsp;&nbsp;InnerBoundaries : <span class="keyword">OPTIONAL</span> <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationdefinitionresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcannotationfillarea.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

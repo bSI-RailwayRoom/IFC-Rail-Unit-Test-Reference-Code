@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../details-shim.css">
+    <script type="text/javascript" src="../../details-shim.js"></script>
+    <title>Spatial Container</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 0 index2 0 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../toc-4.htm#4.5.8.1");
+//-->
+</script>
+
+<h4 class="std">4.5.8.1 Spatial Container</h4>
+<p>The <i>Spatial Container</i> concept defines a spatial element as being the spatial container for physical elements, or other elements being directly related to the spatial container, such as annotations or grids.</p>
+<blockquote class="example">
+<p>EXAMPLE  A building story is a logical spatial container of building elements, distribution elements, or furnishing elements.</p>
+</blockquote>
+<p>The <i>Spatial Container</i> concept is realized by using the <a href="../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a> objectified relationship between subtypes of <a href="../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a> and the elements contained. The inverse relationship <i>ContainsElements</i> at the subtypes of <a href="../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a> refers to the contained physical elements.</p>
+<p class="fig-ref">Figure 47 illustrates an instance diagram.</p>
+<table><tr><td><img alt="Spatial Container" src="./diagrams/spatial-container.png" usemap="#f47"><map name="f47"><area shape="rect" coords="8,8,176,320" href="../ifcproductextension/lexical/ifcspatialelement.htm" alt="IfcSpatialElement" /><area shape="rect" coords="208,8,376,92" href="../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm" alt="IfcRelContainedInSpatialStructure" /><area shape="rect" coords="408,8,576,272" href="../ifckernel/lexical/ifcproduct.htm" alt="IfcProduct" /></map></td></tr><tr><td><p class="figure">Figure 47 &mdash; Spatial Container</p></td></tr></table>
+
+<details><summary>mvdXML Specification</summary><div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot;?&gt;<br/>
+&lt;ConceptTemplate xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;61dd08ed-fd01-4955-9337-8afd284a0e6f&quot; name=&quot;Spatial Container&quot; applicableSchema=&quot;IFC4&quot; applicableEntity=&quot;<a href="../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;Rules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRule AttributeName=&quot;ContainsElements&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRule EntityName=&quot;<a href="../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRule RuleID=&quot;Type&quot; AttributeName=&quot;RelatedElements&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRule EntityName=&quot;<a href="../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRule&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRule&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRule&gt;<br/>
+&nbsp;&nbsp;&lt;/Rules&gt;<br/>
+&lt;/ConceptTemplate&gt;<br/>
+</code></div>
+</details>
+</p>
+<p><a href="../../link/spatial-container.htm" target="_top" ><img src="../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

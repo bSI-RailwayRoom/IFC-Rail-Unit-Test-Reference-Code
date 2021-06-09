@@ -1,0 +1,140 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcApprovalRelationship</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 2 index3 2 index4 1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.2.2.2");
+//-->
+</script>
+
+<h4 class="num">IfcApprovalRelationship</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Genehmigung - Relation</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Approval Relationship</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Relation d'approbation</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcapprovalresource/lexical/ifcapprovalrelationship.htm">IfcApprovalRelationship</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>RelatedApproval</i> to <i>Name</i>. <br/>Type changed from <i>IfcApproval</i> to <i>IfcLabel</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>RelatingApproval</i> to <i>Description</i>. <br/>Type changed from <i>IfcApproval</i> to <i>IfcText</i>. <br/>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatingApproval</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Description</i> to <i>RelatingApproval</i>. <br/>Type changed from <i>IfcText</i> to <i>IfcApproval</i>. <br/>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatedApprovals</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>Name</i> to <i>RelatedApprovals</i>. <br/>Type changed from <i>IfcLabel</i> to <i>IfcApproval</i>. <br/>Aggregation changed from <i>NONE</i> to <i>SET</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcApprovalRelationship</span> associates approvals (one relating approval and one or more related approvals), each having different status or level as the approval process or the approved objects evolve.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Subtyped from <a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a>, order of attributes changed.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>3</td><td>RelatingApproval</td><td><a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a></td><td></td><td>
+The approval that other approval is related to.
+</td><td>X</td></tr>
+<tr><td>4</td><td>RelatedApprovals</td><td><a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a></td><td>S[1:?]</td><td>
+The approvals that are related to another (relating) approval.
+
+<blockquote>
+IFC4 CHANGE  The cardinality of this attribute has been changed to SET.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcapprovalrelationship.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm" alt="IfcResourceLevelRelationship" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+A name used to identify or qualify the relationship.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+A description that may apply additional information about the relationship.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcapprovalresource/lexical/ifcapprovalrelationship.htm">IfcApprovalRelationship</a></td></tr>
+<tr><td>3</td><td>RelatingApproval</td><td><a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a></td><td></td><td>
+The approval that other approval is related to.
+</td><td>X</td></tr>
+<tr><td>4</td><td>RelatedApprovals</td><td><a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a></td><td>S[1:?]</td><td>
+The approvals that are related to another (relating) approval.
+
+<blockquote>
+IFC4 CHANGE  The cardinality of this attribute has been changed to SET.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcapprovalresource/lexical/ifcapprovalrelationship.htm">IfcApprovalRelationship</a>&quot; type=&quot;ifc:<a href="../../ifcapprovalresource/lexical/ifcapprovalrelationship.htm">IfcApprovalRelationship</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcapprovalresource/lexical/ifcapprovalrelationship.htm">IfcApprovalRelationship</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatingApproval&quot; type=&quot;ifc:<a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatedApprovals&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcApprovalRelationship<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcexternalreferenceresource/lexical/ifcresourcelevelrelationship.htm">IfcResourceLevelRelationship</a>)<b>;</b><br/>
+&nbsp;&nbsp;RelatingApproval : <a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>;<br/>
+&nbsp;&nbsp;RelatedApprovals : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcapprovalresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcapprovalresource/lexical/ifcapproval.htm">IfcApproval</a>
+</p>
+<p><a href="../../../link/ifcapprovalrelationship.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,315 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLogicalOperatorEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 3 index3 2 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.3.2.3");
+//-->
+</script>
+
+<h4 class="num">IfcLogicalOperatorEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Logical Operator Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des opérateurs logiques</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcconstraintresource/lexical/ifclogicaloperatorenum.htm">IfcLogicalOperatorEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOGICALXOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOGICALNOTAND</td><td></td><td></td><td>ADDED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOGICALNOTOR</td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p><span class="self-ref">IfcLogicalOperatorEnum</span> is an enumeration that defines the logical operators that may be applied for the satisfaction of one or more operands (<a href="../../ifcconstraintresource/lexical/ifcconstraint.htm">IfcConstraint</a>) at a time.</p>
+<p>Table 694 illustrates application of <span class="self-ref">IfcLogicalOperatorEnum</span> in a case of three operands, A, B and C, for each operator.</p>
+<table><tr><td>
+<table border="1" cellspacing="0" cellpadding="0">
+<th align="left" colspan="9">LOGICALAND(A,B,C)</th>
+<tr>
+<td><b>A</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>B</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr><tr>
+<td><b>C</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>RESULT</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<th align="left" colspan="9">LOGICALOR(A,B,C)</th>
+<tr>
+<td><b>A</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>B</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr><tr>
+<td><b>C</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>RESULT</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<th align="left" colspan="9">LOGICALXOR(A,B,C)</th>
+<tr>
+<td><b>A</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>B</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr><tr>
+<td><b>C</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>RESULT</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<th align="left" colspan="9">LOGICALNOTAND(A,B,C)</th>
+<tr>
+<td><b>A</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>B</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr><tr>
+<td><b>C</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>RESULT</b></td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<th align="left" colspan="9">LOGICALNOTOR(A,B,C)</th>
+<tr>
+<td><b>A</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>B</b></td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr><tr>
+<td><b>C</b></td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td><b>RESULT</b></td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 694 &mdash; Logical operators</p></td></tr>
+</table>
+<blockquote class="history">
+<p>HISTORY  New enumeration in IFC2.0.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Extended to include LOGICALXOR, LOGICALNOTAND and LOGICALNOTOR.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>LOGICALAND</td><td>Defines a relationship between operands whereby the result is true if all operands are true, and false if at least one operand is false.
+</td></tr><tr><td>LOGICALOR</td><td>Defines a relationship between operands whereby the result is true if at least one operand is true, and false if all operands are false.
+</td></tr><tr><td>LOGICALXOR</td><td>Defines a relationship between operands whereby the result is true if exactly one operand is true (exclusive or).
+</td></tr><tr><td>LOGICALNOTAND</td><td>Defines a relationship between operands whereby the result is true if at least one operand is false, and false if all operands are true.
+</td></tr><tr><td>LOGICALNOTOR</td><td>Defines a relationship between operands whereby the result is true if all operands are false, and false if at least one operand is true.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcconstraintresource/lexical/ifclogicaloperatorenum.htm">IfcLogicalOperatorEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;logicaland&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;logicalor&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;logicalxor&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;logicalnotand&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;logicalnotor&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcLogicalOperatorEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;LOGICALAND, <br/>&nbsp;LOGICALOR, <br/>&nbsp;LOGICALXOR, <br/>&nbsp;LOGICALNOTAND, <br/>&nbsp;LOGICALNOTOR);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcconstraintresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcconstraintresource/lexical/ifcobjective.htm">IfcObjective</a>
+</p>
+<p><a href="../../../link/ifclogicaloperatorenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

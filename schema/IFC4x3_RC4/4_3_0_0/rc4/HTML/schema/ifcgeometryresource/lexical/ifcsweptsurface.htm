@@ -1,0 +1,155 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcSweptSurface</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 71 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.72");
+//-->
+</script>
+
+<h4 class="num">IfcSweptSurface</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Oberfläche - Entlang einem Pfad extrudiert</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Swept Surface</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Surface produite par extrusion d'une courbe le long d'une courbe</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcSweptSurface</span> is a surface defined by sweeping a curve. The swept surface is defined by a open or closed curve, represented by a subtype if <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>, that is provided as a two-dimensional curve on an implicit plane, and by the sweeping operation.</p>
+<ul>
+<li>The swept curve is defined by positioning the profile in the xy plane of the object coordinate system,</li>
+<li>The sweeping operation is applied to the swept curve as defined within the subtypes of <span class="self-ref">IfcSweptSurface</span>;</li>
+</ul>
+<p>The optional _Positio_n coordinate system allows for re-positioning the resulting swept surface relative to the object coordinate system.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A swept surface is one that is constructed by sweeping a curve along another curve.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>swept_surface</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  The attribute <i>Position</i> has been changed to OPTIONAL with upward compatibility for file-based exchange.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>SweptCurve</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+The curve to be swept in defining the surface. The curve is defined as a profile within the position coordinate system.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement3d.htm">IfcAxis2Placement3D</a></td><td>? </td><td>
+Position coordinate system for the swept surface, provided by a profile definition within the XY plane of the <i>Position</i> coordinates. If not provided, the position of the profile being swept is determined by the object coordinate system. In this case, the swept surface is not repositioned.
+
+<blockquote>
+IFC4 CHANGE  The attribute has been changed to OPTIONAL with upward compatibility for file-based exchange.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcsweptsurface.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="54,102,242,114" href="../../../schema/ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm" alt="IfcSurfaceOfLinearExtrusion" />
+<area shape="rect" coords="54,126,242,138" href="../../../schema/ifcgeometryresource/lexical/ifcsurfaceofrevolution.htm" alt="IfcSurfaceOfRevolution" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifcsurface.htm" alt="IfcSurface" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=3</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of IfcSurface. It is always a three-dimensional geometric representation item.
+
+<blockquote>
+IFC4 CHANGE Derived attribute promoted from subtypes.
+</blockquote>
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a></i></td></tr>
+<tr><td>1</td><td>SweptCurve</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+The curve to be swept in defining the surface. The curve is defined as a profile within the position coordinate system.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement3d.htm">IfcAxis2Placement3D</a></td><td>? </td><td>
+Position coordinate system for the swept surface, provided by a profile definition within the XY plane of the <i>Position</i> coordinates. If not provided, the position of the profile being swept is determined by the object coordinate system. In this case, the swept surface is not repositioned.
+
+<blockquote>
+IFC4 CHANGE  The attribute has been changed to OPTIONAL with upward compatibility for file-based exchange.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;SweptCurve&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Position&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcaxis2placement3d.htm">IfcAxis2Placement3D</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcSweptSurface<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcgeometryresource/lexical/ifcsurfaceoflinearextrusion.htm">IfcSurfaceOfLinearExtrusion</a>, <a href="../../ifcgeometryresource/lexical/ifcsurfaceofrevolution.htm">IfcSurfaceOfRevolution</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a>)<b>;</b><br/>
+&nbsp;&nbsp;SweptCurve : <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>;<br/>
+&nbsp;&nbsp;Position : <span class="keyword">OPTIONAL</span> <a href="../../ifcgeometryresource/lexical/ifcaxis2placement3d.htm">IfcAxis2Placement3D</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;SweptCurveType : SweptCurve.ProfileType = <a href="../../ifcprofileresource/lexical/ifcprofiletypeenum.htm">IfcProfileTypeEnum</a>.Curve;<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcsweptsurface.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

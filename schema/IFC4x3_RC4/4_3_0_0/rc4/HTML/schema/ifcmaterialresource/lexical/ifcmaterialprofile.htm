@@ -1,0 +1,189 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcMaterialProfile</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 10 index3 3 index4 10 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.10.3.11");
+//-->
+</script>
+
+<h4 class="num">IfcMaterialProfile</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Profil mit Material</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Material Profile</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Matériau de profil</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcMaterialProfile</span> is a single and identifiable cross section of an element which is constructed of a number of profiles (one or more).</p>
+<blockquote class="note">
+<p>NOTE  In case of multiple <i>MaterialProfiles</i>, the relative positioning of individual profiles in <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> are defined using the concept of <a href="../../ifcprofileresource/lexical/ifccompositeprofiledef.htm">IfcCompositeProfileDef</a> in <i>IfcProfileResource</i> schema; otherwise, only one <i>MaterialProfile</i> is given and defined by an individual <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a> (subtype).</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY New entity in IFC4</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The name by which the material profile is known.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Definition of the material profile in descriptive terms.
+</td><td>X</td></tr>
+<tr><td>3</td><td>Material</td><td><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td><td>? </td><td>
+Optional reference to the material from which the profile is constructed.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Profile</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+Identification of the profile for which this material profile is associating material.
+</td><td>X</td></tr>
+<tr><td>5</td><td>Priority</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+The relative priority of the profile, expressed as normalised integer range [0..100]. Controls how profiles intersect in connections and corners of building elements: A profile from one element protrudes into (i.e. displaces) a profile from another element in a joint of these elements if the former element's profile has higher priority than the latter. The priority value for a material profile in an element has to be set and maintained by software applications in relation to the material profiles in connected elements.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Category of the material profile, e.g. the role it has in the profile set it belongs to. The list of keywords might be extended by model view definitions, however the following keywords shall apply in general:
+<ul>
+<li>'LoadBearing' — the material profile having a load bearing function.</li>
+<li>'Insulation' — the material profile having an insolating function.</li>
+<li>'Finish' — the material profile being the finish.</li>
+</ul>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ToMaterialProfileSet</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a><br/>@MaterialProfiles</td><td></td><td>Material profile set in which this material profile is included.
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>NormalizedPriority</td><td>The <i>Property</i> shall all be given as a normalized integer range [0..100], where 0 is the lowest and 100 the highest priority of the material profile.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcmaterialprofile.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,218,66" href="../../../schema/ifcmaterialresource/lexical/ifcmaterialprofilewithoffsets.htm" alt="IfcMaterialProfileWithOffsets" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcmaterialresource/lexical/ifcmaterialdefinition.htm" alt="IfcMaterialDefinition" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a></i></td></tr>
+<tr><td></td><td><i>AssociatedTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a><br/>@RelatingMaterial</td><td>S[0:?]</td><td>Use of the <span class="self-ref">IfcMaterialDefinition</span> subtypes within the material association of an element occurrence or element type. The association is established by the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a> relationship.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external references, e.g. library, classification, or document information, that are associated to the material.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialproperties.htm">IfcMaterialProperties</a><br/>@Material</td><td>S[0:?]</td><td>Material properties assigned to instances of subtypes of <span class="self-ref">IfcMaterialDefinition</span>.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The name by which the material profile is known.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Definition of the material profile in descriptive terms.
+</td><td>X</td></tr>
+<tr><td>3</td><td>Material</td><td><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td><td>? </td><td>
+Optional reference to the material from which the profile is constructed.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Profile</td><td><a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a></td><td></td><td>
+Identification of the profile for which this material profile is associating material.
+</td><td>X</td></tr>
+<tr><td>5</td><td>Priority</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+The relative priority of the profile, expressed as normalised integer range [0..100]. Controls how profiles intersect in connections and corners of building elements: A profile from one element protrudes into (i.e. displaces) a profile from another element in a joint of these elements if the former element's profile has higher priority than the latter. The priority value for a material profile in an element has to be set and maintained by software applications in relation to the material profiles in connected elements.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Category of the material profile, e.g. the role it has in the profile set it belongs to. The list of keywords might be extended by model view definitions, however the following keywords shall apply in general:
+<ul>
+<li>'LoadBearing' — the material profile having a load bearing function.</li>
+<li>'Insulation' — the material profile having an insolating function.</li>
+<li>'Finish' — the material profile being the finish.</li>
+</ul>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ToMaterialProfileSet</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a><br/>@MaterialProfiles</td><td></td><td>Material profile set in which this material profile is included.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>&quot; type=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmaterialprofile.htm">IfcMaterialProfile</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Material&quot; type=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;Profile&quot; type=&quot;ifc:<a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Name&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Description&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Priority&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Category&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcMaterialProfile<br/>
+&nbsp;<span class="keyword">SUPERTYPE OF</span>(<a href="../../ifcmaterialresource/lexical/ifcmaterialprofilewithoffsets.htm">IfcMaterialProfileWithOffsets</a>)<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a>)<b>;</b><br/>
+&nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;&nbsp;Description : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>;<br/>
+&nbsp;&nbsp;Material : <span class="keyword">OPTIONAL</span> <a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a>;<br/>
+&nbsp;&nbsp;Profile : <a href="../../ifcprofileresource/lexical/ifcprofiledef.htm">IfcProfileDef</a>;<br/>
+&nbsp;&nbsp;Priority : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a>;<br/>
+&nbsp;&nbsp;Category : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;ToMaterialProfileSet : <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a> <span class="keyword">FOR</span> MaterialProfiles;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;NormalizedPriority : NOT(EXISTS(Priority)) OR {0 &lt;= Priority &lt;= 100};<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcmaterialresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcmaterialresource/lexical/ifcmaterialprofileset.htm">IfcMaterialProfileSet</a>
+</p>
+<p><a href="../../../link/ifcmaterialprofile.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

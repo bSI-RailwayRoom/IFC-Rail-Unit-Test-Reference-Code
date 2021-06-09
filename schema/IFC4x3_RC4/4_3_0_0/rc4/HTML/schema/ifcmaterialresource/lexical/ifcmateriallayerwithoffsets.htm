@@ -1,0 +1,203 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcMaterialLayerWithOffsets</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 10 index3 3 index4 8 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.10.3.9");
+//-->
+</script>
+
+<h4 class="num">IfcMaterialLayerWithOffsets</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Materialschicht mit Versätzen</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Material Layer With Offsets</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Couche de matériau avec décalage</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcmaterialresource/lexical/ifcmateriallayerwithoffsets.htm">IfcMaterialLayerWithOffsets</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcMaterialLayerWithOffsets</span> is a specialization of <a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a> enabling definition of offset values along edges (within the material layer set usage in parent layer set).</p>
+<p>It defines the assignment of two offset values for a material layer in its intended use within a material layer set. Offsets are applied to the edges of layered elements (that is, in directions perpendicular to the layer set direction). Offsets shall not be used in layer set direction, that is, for modelling gaps (or overlaps) between layers; gaps shall be modeled as layers with appropriate material assignment for the void.</p>
+<blockquote class="example">
+<p>EXAMPLE  At the top of a standard wall, with shape representation 'SweptSolid', offset of a given layer can be specified in the direction of the extrusion (positive Z axis), applied at the start or end (extruded from bottom to top), and with a positive (extending above extrusion) or negative (ending below extrusion).</p>
+<p>Take a standard wall with the outer material layer for the external isolation extending above extrusion by 100mm, but starting at the same base height. In this case the following values are set: &gt; * <i>OffsetDirection</i> = .AXIS3.</p>
+<ul>
+<li><i>OffsetValues[1]</i> = 0.0</li>
+<li><i>OffsetValues[2]</i> = 100.0 (default unit assumed to be mm)</li>
+</ul>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  The 'Body' shape representation of an <a href="../../ifcsharedbldgelements/lexical/ifcwall.htm">IfcWall</a> or an <a href="../../ifcsharedbldgelements/lexical/ifcwallstandardcase.htm">IfcWallStandardCase</a> may have multiple <i>Items</i> each being an <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a> corresponding to the <a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a> and <span class="self-ref">IfcMaterialLayerWithOffsets</span>.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4.
+Informal Propositions:</p>
+</blockquote>
+<ol>
+<li>The <i>OffsetDirection</i> shall not be identical to the <i>LayerSetDirection</i> of the corresponding <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a>.</li>
+<li>The attribute ReferenceExtent shall be asserted at the corresponding <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a>.</li>
+</ol>
+</blockquote>
+<p class="use-head">
+Attribute use definition</p>
+<blockquote>
+<p>The <i>OffsetValues</i> and <i>OffsetDirection</i> correspond to the definitions <i>ReferenceExtent</i> and <i>LayerSetDirection</i> at the <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a>. Figure 394 shows an example of applying the <i>OffsetValues</i> to the material layers of a standard wall.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcmateriallayerwithoffsets_fig-1.png" alt="&quot;IfcMaterialLayerWithOffsets_fig-1&quot;" title="Figure 394 &mdash; Material layer with offsets"></td></tr><tr><td><p class="figure">Figure 394 &mdash; Material layer with offsets</p></td></tr></table></p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>8</td><td>OffsetDirection</td><td><a href="../../ifcmaterialresource/lexical/ifclayersetdirectionenum.htm">IfcLayerSetDirectionEnum</a></td><td></td><td>
+Orientation of the offset; shall be perpendicular to the parent layer set direction.
+</td><td>X</td></tr>
+<tr><td>9</td><td>OffsetValues</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>A[1:2]</td><td>
+The numerical value of layer offset, in the direction of the axis assigned by the attribute <i>OffsetDirection</i>. The <i>OffsetValues[1]</i> identifies the offset from the lower position along the axis direction (normally the start of the standard extrusion), the <i>OffsetValues[2]</i> identifies the offset from the upper position along the axis direction (normally the end of the standard extrusion).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcmateriallayerwithoffsets.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,230,42" href="../../../schema/ifcmaterialresource/lexical/ifcmateriallayer.htm" alt="IfcMaterialLayer" />
+<area shape="rect" coords="6,6,242,18" href="../../../schema/ifcmaterialresource/lexical/ifcmaterialdefinition.htm" alt="IfcMaterialDefinition" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcmaterialresource/lexical/ifcmaterialdefinition.htm">IfcMaterialDefinition</a></i></td></tr>
+<tr><td></td><td><i>AssociatedTo</i></td><td><a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a><br/>@RelatingMaterial</td><td>S[0:?]</td><td>Use of the <span class="self-ref">IfcMaterialDefinition</span> subtypes within the material association of an element occurrence or element type. The association is established by the <a href="../../ifcproductextension/lexical/ifcrelassociatesmaterial.htm">IfcRelAssociatesMaterial</a> relationship.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasExternalReferences</i></td><td><a href="../../ifcexternalreferenceresource/lexical/ifcexternalreferencerelationship.htm">IfcExternalReferenceRelationship</a><br/>@RelatedResourceObjects</td><td>S[0:?]</td><td>Reference to external references, e.g. library, classification, or document information, that are associated to the material.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasProperties</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmaterialproperties.htm">IfcMaterialProperties</a><br/>@Material</td><td>S[0:?]</td><td>Material properties assigned to instances of subtypes of <span class="self-ref">IfcMaterialDefinition</span>.
+
+<blockquote>
+IFC4 CHANGE  The inverse attribute has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a></td></tr>
+<tr><td>1</td><td>Material</td><td><a href="../../ifcmaterialresource/lexical/ifcmaterial.htm">IfcMaterial</a></td><td>? </td><td>
+Optional reference to the material from which the layer is constructed. Note that if this value is not given, it does not denote a layer with no material (an air gap), it only means that the material is not specified at that point.
+</td><td>X</td></tr>
+<tr><td>2</td><td>LayerThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcnonnegativelengthmeasure.htm">IfcNonNegativeLengthMeasure</a></td><td></td><td>
+The thickness of the material layer. The meaning of &quot;thickness&quot; depends on its usage. In case of building elements elements utilizing <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a>, the dimension is measured along the positive <i>LayerSetDirection</i> as specified in <a href="../../ifcmaterialresource/lexical/ifcmateriallayersetusage.htm">IfcMaterialLayerSetUsage</a>.
+<blockquote class="note">
+NOTE  The attribute value can be 0. for material thicknesses very close to zero, such as for a membrane. Material layers with thickess 0. may not be rendered in the geometric representation.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute datatype has been changed to <a href="../../ifcmeasureresource/lexical/ifcnonnegativelengthmeasure.htm">IfcNonNegativeLengthMeasure</a> allowing for 0. as thickness.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>IsVentilated</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td>? </td><td>
+Indication of whether the material layer represents an air layer (or cavity).
+<ul>
+<li>set to TRUE if the material layer is an air gap and provides air exchange from the layer to the outside air.</li>
+<li>set to UNKNOWN if the material layer is an air gap and does not provide air exchange (or when this information about air exchange of the air gap is not available).</li>
+<li>set to FALSE if the material layer is a solid material layer (the default).</li>
+</ul>
+</td><td>X</td></tr>
+<tr><td>4</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The name by which the material layer is known.
+</td><td>X</td></tr>
+<tr><td>5</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Definition of the material layer in more descriptive terms than given by attributes Name or Category.
+</td><td>X</td></tr>
+<tr><td>6</td><td>Category</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Category of the material layer, e.g. the role it has in the layer set it belongs to (such as 'load bearing', 'thermal insulation' etc.). The list of keywords might be extended by model view definitions, however the following keywords shall apply in general:
+<ul>
+<li>'LoadBearing' — for all material layers having a load bearing function.</li>
+<li>'Insulation' — for all material layers having an insolating function.</li>
+<li>'Inner finish' — for the material layer being the inner finish.</li>
+<li>'Outer finish' — for the material layer being the outer finish.</li>
+</ul>
+</td><td>X</td></tr>
+<tr><td>7</td><td>Priority</td><td><a href="../../ifcmeasureresource/lexical/ifcinteger.htm">IfcInteger</a></td><td>? </td><td>
+The relative priority of the layer, expressed as normalised integer range [0..100]. Controls how layers intersect in connections and corners of building elements: a layer from one element protrudes into (i.e. displaces) a layer from another element in a joint of these elements if the former element's layer has higher priority than the latter. The priority value for a material layer in an element has to be set and maintained by software applications in relation to the material layers in connected elements.
+<blockquote class="note">
+NOTE  The layer priority at a connection may be overridden by the priority attributes of <a href="../../ifcsharedbldgelements/lexical/ifcrelconnectspathelements.htm">IfcRelConnectsPathElements</a> if that relationship is used to establish a logical connection between two building elements having a layer structure.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>ToMaterialLayerSet</i></td><td><a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a><br/>@MaterialLayers</td><td></td><td>Reference to the <a href="../../ifcmaterialresource/lexical/ifcmateriallayerset.htm">IfcMaterialLayerSet</a> in which the material layer is included.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcmaterialresource/lexical/ifcmateriallayerwithoffsets.htm">IfcMaterialLayerWithOffsets</a></td></tr>
+<tr><td>8</td><td>OffsetDirection</td><td><a href="../../ifcmaterialresource/lexical/ifclayersetdirectionenum.htm">IfcLayerSetDirectionEnum</a></td><td></td><td>
+Orientation of the offset; shall be perpendicular to the parent layer set direction.
+</td><td>X</td></tr>
+<tr><td>9</td><td>OffsetValues</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>A[1:2]</td><td>
+The numerical value of layer offset, in the direction of the axis assigned by the attribute <i>OffsetDirection</i>. The <i>OffsetValues[1]</i> identifies the offset from the lower position along the axis direction (normally the start of the standard extrusion), the <i>OffsetValues[2]</i> identifies the offset from the upper position along the axis direction (normally the end of the standard extrusion).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmateriallayerwithoffsets.htm">IfcMaterialLayerWithOffsets</a>&quot; type=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmateriallayerwithoffsets.htm">IfcMaterialLayerWithOffsets</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcmaterialresource/lexical/ifcmateriallayerwithoffsets.htm">IfcMaterialLayerWithOffsets</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OffsetDirection&quot; type=&quot;ifc:<a href="../../ifcmaterialresource/lexical/ifclayersetdirectionenum.htm">IfcLayerSetDirectionEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OffsetValues&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:minLength value=&quot;2&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:maxLength value=&quot;2&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcMaterialLayerWithOffsets<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcmaterialresource/lexical/ifcmateriallayer.htm">IfcMaterialLayer</a>)<b>;</b><br/>
+&nbsp;&nbsp;OffsetDirection : <a href="../../ifcmaterialresource/lexical/ifclayersetdirectionenum.htm">IfcLayerSetDirectionEnum</a>;<br/>
+&nbsp;&nbsp;OffsetValues : <span class="keyword">ARRAY</span> [1:2] OF <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcmaterialresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcmateriallayerwithoffsets.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

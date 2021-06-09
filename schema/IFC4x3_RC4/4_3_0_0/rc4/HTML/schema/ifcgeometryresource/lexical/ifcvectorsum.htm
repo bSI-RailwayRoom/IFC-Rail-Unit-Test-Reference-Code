@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcVectorSum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 4 index4 25 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.4.26");
+//-->
+</script>
+
+<h4 class="num">IfcVectorSum</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Vector Sum</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+This function returns the sum of the input arguments as (Arg1 - Arg2). The function returns as a vector the vector difference of the two input vectors. The input arguments shall both be of the same dimensionality but may be either directions or vectors. If both input arguments are vectors they must be expressed in the same units, if both are directions a unitless result is produced. A zero sum vector produces a vector of zero magnitude. If both input arguments are directions the result is unitless.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Function adapted from <strong>vector_sum</strong> defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New function in IFC2x</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcVectorSum<br/>
+
+&nbsp;&nbsp;(Arg1, Arg2 : <a href="../../ifcgeometryresource/lexical/ifcvectorordirection.htm">IfcVectorOrDirection</a>) <br/>&nbsp;&nbsp;&nbsp;&nbsp;: <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>;<br/>LOCAL<br/>&nbsp;&nbsp;Result : <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>;<br/>&nbsp;&nbsp;Res, Vec1, Vec2 : <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>;<br/>&nbsp;&nbsp;Mag, Mag1, Mag2 : REAL;<br/>&nbsp;&nbsp;Ndim : INTEGER;<br/>END_LOCAL;<br/><br/>&nbsp;&nbsp;IF ((NOT EXISTS (Arg1)) OR (NOT EXISTS (Arg2))) OR (Arg1.Dim &lt;&gt; Arg2.Dim) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (?) ;<br/>&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;BEGIN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF 'IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>' IN TYPEOF(Arg1) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag1 := Arg1\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Magnitude;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec1 := Arg1\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Orientation;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag1 := 1.0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec1 := Arg1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF 'IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>' IN TYPEOF(Arg2) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag2 := Arg2\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Magnitude;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec2 := Arg2\<a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>.Orientation;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag2 := 1.0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec2 := Arg2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec1 := <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a> (Vec1);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vec2 := <a href="../../ifcgeometryresource/lexical/ifcnormalise.htm">IfcNormalise</a> (Vec2);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ndim := SIZEOF(Vec1.DirectionRatios);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag&nbsp;&nbsp;:= 0.0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Res&nbsp;&nbsp;:= <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcdirection.htm">IfcDirection</a>([0.0:Ndim]);<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPEAT i := 1 TO Ndim;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Res.DirectionRatios[i] := Mag1*Vec1.DirectionRatios[i] + Mag2*Vec2.DirectionRatios[i];<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mag := Mag + (Res.DirectionRatios[i]*Res.DirectionRatios[i]);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_REPEAT;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF (Mag &gt; 0.0 ) THEN<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result := <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>( Res, SQRT(Mag));<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result := <a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a>() || <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a> () || <a href="../../ifcgeometryresource/lexical/ifcvector.htm">IfcVector</a>( Vec1, 0.0);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END;<br/>&nbsp;&nbsp;END_IF;<br/>&nbsp;&nbsp;RETURN (Result);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcvectorsum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

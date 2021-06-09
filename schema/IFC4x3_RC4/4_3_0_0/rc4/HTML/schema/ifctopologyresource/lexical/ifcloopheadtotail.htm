@@ -1,0 +1,61 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLoopHeadToTail</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 20 index3 4 index4 1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.20.4.2");
+//-->
+</script>
+
+<h4 class="num">IfcLoopHeadToTail</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Loop Head To Tail</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>This function returns TRUE if for the edges of the input edge loop the end vertex of each edge is the same as the start vertex of its successor.</p>
+<blockquote class="history">
+<p>HISTORY  New function in IFC2x2</p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcLoopHeadToTail<br/>
+
+(ALoop : <a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>) : LOGICAL;<br/>&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp; N : INTEGER;<br/>&nbsp;&nbsp;&nbsp;&nbsp; P : LOGICAL := TRUE;<br/>&nbsp;&nbsp;&nbsp;END_LOCAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp; <br/>&nbsp;&nbsp;&nbsp;&nbsp; N := SIZEOF (ALoop.EdgeList);<br/>&nbsp;&nbsp;&nbsp;&nbsp; REPEAT i := 2 TO N;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P := P AND (ALoop.EdgeList[i-1].EdgeEnd :=:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALoop.EdgeList[i].EdgeStart);<br/>&nbsp;&nbsp;&nbsp;&nbsp; END_REPEAT;&nbsp;&nbsp;&nbsp;&nbsp; <br/>&nbsp;&nbsp;&nbsp;&nbsp; RETURN (P);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>
+</p>
+<p><a href="../../../link/ifcloopheadtotail.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

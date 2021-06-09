@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../details-shim.css">
+    <script type="text/javascript" src="../details-shim.js"></script>
+    <title>Resource definition data schemas</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 0 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("toc-8.htm#");
+//-->
+</script>
+
+<h1 class="num" id="scope">Resource definition data schemas</h1>
+<p>The resource definition data schemas consist of supporting data structures as shown highlighted in blue. Entities and types defined in this layer can be referenced by all entities in the layers below.</p>
+<p>Unlike entities in other layers, resource definition data structures cannot exist independently, but can only exist if referenced (directly or indirectly) by one or more entities deriving from <a href="ifckernel/lexical/ifcroot.htm">IfcRoot</a>. As resource definitions do not have a concept of identity (such as a GUID), multiple objects referencing the same instance of a resource entity does not imply a relationship. For example, two polylines (<a href="ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>) sharing the same instance for a point (<a href="ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>), and two polylines using different instances for identical points (such as both having cordinates 0,0,0) are semantically equivalent. It is recommended (but not required) for applications to minimize file size by sharing identical resource definition instances where possible.</p>
+<blockquote class="note">
+<p>NOTE  The resource definition layer should not be confused with construction resource entities (<a href="ifckernel/lexical/ifcresource.htm">IfcResource</a> subtypes). While the terms are similar, they are unrelated concepts.</p>
+</blockquote>
+<p>
+<a class="listing-link" href="ifcactorresource/content.htm">8.1 IfcActorResource</a><br>
+<a class="listing-link" href="ifcapprovalresource/content.htm">8.2 IfcApprovalResource</a><br>
+<a class="listing-link" href="ifcconstraintresource/content.htm">8.3 IfcConstraintResource</a><br>
+<a class="listing-link" href="ifccostresource/content.htm">8.4 IfcCostResource</a><br>
+<a class="listing-link" href="ifcdatetimeresource/content.htm">8.5 IfcDateTimeResource</a><br>
+<a class="listing-link" href="ifcexternalreferenceresource/content.htm">8.6 IfcExternalReferenceResource</a><br>
+<a class="listing-link" href="ifcgeometricconstraintresource/content.htm">8.7 IfcGeometricConstraintResource</a><br>
+<a class="listing-link" href="ifcgeometricmodelresource/content.htm">8.8 IfcGeometricModelResource</a><br>
+<a class="listing-link" href="ifcgeometryresource/content.htm">8.9 IfcGeometryResource</a><br>
+<a class="listing-link" href="ifcmaterialresource/content.htm">8.10 IfcMaterialResource</a><br>
+<a class="listing-link" href="ifcmeasureresource/content.htm">8.11 IfcMeasureResource</a><br>
+<a class="listing-link" href="ifcpresentationappearanceresource/content.htm">8.12 IfcPresentationAppearanceResource</a><br>
+<a class="listing-link" href="ifcpresentationdefinitionresource/content.htm">8.13 IfcPresentationDefinitionResource</a><br>
+<a class="listing-link" href="ifcpresentationorganizationresource/content.htm">8.14 IfcPresentationOrganizationResource</a><br>
+<a class="listing-link" href="ifcprofileresource/content.htm">8.15 IfcProfileResource</a><br>
+<a class="listing-link" href="ifcpropertyresource/content.htm">8.16 IfcPropertyResource</a><br>
+<a class="listing-link" href="ifcquantityresource/content.htm">8.17 IfcQuantityResource</a><br>
+<a class="listing-link" href="ifcrepresentationresource/content.htm">8.18 IfcRepresentationResource</a><br>
+<a class="listing-link" href="ifcstructuralloadresource/content.htm">8.19 IfcStructuralLoadResource</a><br>
+<a class="listing-link" href="ifctopologyresource/content.htm">8.20 IfcTopologyResource</a><br>
+<a class="listing-link" href="ifcutilityresource/content.htm">8.21 IfcUtilityResource</a><br>
+</p>
+<p><a href="../link/chapter-8.htm" target="_top" ><img src="../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

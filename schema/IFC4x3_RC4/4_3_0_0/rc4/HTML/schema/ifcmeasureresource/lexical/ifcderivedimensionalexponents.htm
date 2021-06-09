@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcDeriveDimensionalExponents</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 11 index3 4 index4 2 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.11.4.3");
+//-->
+</script>
+
+<h4 class="num">IfcDeriveDimensionalExponents</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Derive Dimensional Exponents</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p><strong>Definition from ISO/CD 10303-41:1992</strong>: The function determines the dimensional exponents of a unit. For named units the dimensions attribute is returned and for derived units the dimensional exponents are calculated from its elements.</p>
+<p>Argument definitions:<br>
+X: (input) the unit that the dimensional exponents are being derived from.</p>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcDeriveDimensionalExponents<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements : SET [1:?] OF <a href="../../ifcmeasureresource/lexical/ifcderivedunitelement.htm">IfcDerivedUnitElement</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;: <a href="../../ifcmeasureresource/lexical/ifcdimensionalexponents.htm">IfcDimensionalExponents</a>;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;LOCAL<br/>&nbsp;&nbsp;&nbsp;&nbsp;Result : <a href="../../ifcmeasureresource/lexical/ifcdimensionalexponents.htm">IfcDimensionalExponents</a> :=<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../ifcmeasureresource/lexical/ifcdimensionalexponents.htm">IfcDimensionalExponents</a>(0, 0, 0, 0, 0, 0, 0);&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_LOCAL;<br/>&nbsp;&nbsp;&nbsp;&nbsp;REPEAT i := LOINDEX(UnitElements) TO HIINDEX(UnitElements);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.LengthExponent := Result.LengthExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.LengthExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.MassExponent := Result.MassExponent&nbsp;&nbsp;+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.MassExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.TimeExponent := Result.TimeExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.TimeExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.ElectricCurrentExponent := Result.ElectricCurrentExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.ElectricCurrentExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.ThermodynamicTemperatureExponent := Result.ThermodynamicTemperatureExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.ThermodynamicTemperatureExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.AmountOfSubstanceExponent := Result.AmountOfSubstanceExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.AmountOfSubstanceExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result.LuminousIntensityExponent := Result.LuminousIntensityExponent +<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(UnitElements[i].Exponent *<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitElements[i].Unit.Dimensions.LuminousIntensityExponent);<br/>&nbsp;&nbsp;&nbsp;&nbsp;END_REPEAT;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;RETURN (Result);<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+</p>
+<p><a href="../../../link/ifcderivedimensionalexponents.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

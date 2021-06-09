@@ -1,0 +1,205 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPermeableCoveringProperties</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 1 index3 3 index4 3 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.1.3.4");
+//-->
+</script>
+
+<h4 class="num">IfcPermeableCoveringProperties</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Festdefinierte Merkmale einer luftdurchlässigen Abdeckung</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Permeable Covering Properties</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x1-final-4_1_0_0/index.htm">IFC4x1 Final 4.1.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShapeAspectStyle</td><td></td><td></td><td>MODIFIED</td><td>Status changed to <i>Deprecated</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>This entity is a description of a panel within a door or window (as fillers for opening) which allows for air flow. It is given by its properties (<span class="self-ref">IfcPermeableCoveringProperties</span>). A permeable covering is a casement, such as a component, fixed or opening, consisting essentially of a frame and the infilling. The infilling is normally a grill, a louver or a screen. The way of operation is defined in the operation type.</p>
+<p>The <span class="self-ref">IfcPermeableCoveringProperties</span> are included in the list of properties (<i>HasPropertySets</i>) of the <a href="../../ifcarchitecturedomain/lexical/ifcwindowstyle.htm">IfcWindowStyle</a> or the <a href="../../ifcarchitecturedomain/lexical/ifcdoorstyle.htm">IfcDoorStyle</a>. More information about the permeable covering can be included in the same list of the window or door style using the <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a> for dynamic extensions. This particularly applies for additional properties for the various operation types</p>
+<p>The <span class="self-ref">IfcPermeableCoveringProperties</span> does not hold a geometric representation. However it defines parameters which can be used to create the shape of the <a href="../../ifcarchitecturedomain/lexical/ifcwindowstyle.htm">IfcWindowStyle</a> (which is inserted by the <a href="../../ifcsharedbldgelements/lexical/ifcwindow.htm">IfcWindow</a> into the spatial context of the project), or of the <a href="../../ifcarchitecturedomain/lexical/ifcdoorstyle.htm">IfcDoorStyle</a> (which is inserted by the <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>).</p>
+<p>The parameters at the <span class="self-ref">IfcPermeableCoveringProperties</span> define a standard permeable covering. The outer boundary of the panel is determined by the occurrence parameter assigned to the <a href="../../ifcsharedbldgelements/lexical/ifcwindow.htm">IfcWindow</a> or <a href="../../ifcsharedbldgelements/lexical/ifcdoor.htm">IfcDoor</a>. It has to take the lining parameter into account as well. The position of the permeable covering within the overall window or door is determined by the <i>PanelPosition</i> attribute.</p>
+<p>Figure 307 illustrates the panel applied to the position within the lining, as defined by the panel position attribute. The following parameters apply to that panel: <i>FrameDepth</i>, <i>FrameThickness</i>.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcpermeablecoveringproperties.gif" alt="&quot;covering&quot;" title="Figure 307 &mdash; Permeable covering properties"></td></tr><tr><td><p class="figure">Figure 307 &mdash; Permeable covering properties</p></td></tr></table></p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2.0, it had been renamed from <i>IfcPermeableCovering</i> in IFC2x.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Supertype changed to new <a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a>.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>5</td><td>OperationType</td><td><a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringoperationenum.htm">IfcPermeableCoveringOperationEnum</a></td><td></td><td>
+Types of permeable covering operations. Also used to assign standard symbolic presentations according to national building standards.
+</td><td>X</td></tr>
+<tr><td>6</td><td>PanelPosition</td><td><a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelpositionenum.htm">IfcWindowPanelPositionEnum</a></td><td></td><td>
+Position of this permeable covering panel within the overall window or door type.
+</td><td>X</td></tr>
+<tr><td>7</td><td>FrameDepth</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Depth of panel frame (used to include the permeable covering), measured from front face to back face horizontally (i.e. perpendicular to the window or door (elevation) plane.
+</td><td>X</td></tr>
+<tr><td>8</td><td>FrameThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Width of panel frame (used to include the permeable covering), measured from inside of panel (at permeable covering) to outside of panel (at lining), i.e. parallel to the window or door (elevation) plane.
+</td><td>X</td></tr>
+<tr><td>9</td><td>ShapeAspectStyle</td><td><a href="../../ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a></td><td>? </td><td>
+Optional link to a shape aspect definition, which points to the part of the geometric representation of the window style, which is used to represent the permeable covering.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpermeablecoveringproperties.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifckernel/lexical/ifcpredefinedpropertyset.htm" alt="IfcPreDefinedPropertySet" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifckernel/lexical/ifcpropertysetdefinition.htm" alt="IfcPropertySetDefinition" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifckernel/lexical/ifcpropertydefinition.htm" alt="IfcPropertyDefinition" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcpropertydefinition.htm">IfcPropertyDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td></td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship IfcRelAssociates and thus to those externally defined concepts, like classifications, documents, or library information, which are associated to the property definition.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a></i></td></tr>
+<tr><td></td><td><i>DefinesType</i></td><td><a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a><br/>@HasPropertySets</td><td>S[0:?]</td><td>The type object to which the property set is assigned. The property set acts as a shared property set to all occurrences of the type object.
+<blockquote class="note">
+NOTE  The relationship between the <span class="self-ref">IfcPropertySetDefinition</span> and the <a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a> is a direct relationship, not utilizing <a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a>, for maintaining compatibility with earlier releases of this standard.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The cardinality has been changed from 0:1 to 0:? with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDefinedBy</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytemplate.htm">IfcRelDefinesByTemplate</a><br/>@RelatedPropertySets</td><td>S[0:?]</td><td>Relation to the property set template, via the objectified relationship <a href="../../ifckernel/lexical/ifcreldefinesbytemplate.htm">IfcRelDefinesByTemplate</a>, that, if given, provides the definition template for the property set or quantity set and its properties.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship, change made with upward compatibility for file based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>DefinesOccurrence</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbyproperties.htm">IfcRelDefinesByProperties</a><br/>@RelatingPropertyDefinition</td><td>S[0:?]</td><td>Reference to the relation to one or many object occurrences that are characterized by the property set definition. A single property set can be assigned to multiple object occurrences using the objectified relationship <i>IfcRefDefinesByProperties</i>.
+
+<blockquote>
+IFC4 CHANGE Inverse attribute renamed from PropertyDefinitionOf with upward compatibility for file-based exchange.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a></td></tr>
+<tr><td>5</td><td>OperationType</td><td><a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringoperationenum.htm">IfcPermeableCoveringOperationEnum</a></td><td></td><td>
+Types of permeable covering operations. Also used to assign standard symbolic presentations according to national building standards.
+</td><td>X</td></tr>
+<tr><td>6</td><td>PanelPosition</td><td><a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelpositionenum.htm">IfcWindowPanelPositionEnum</a></td><td></td><td>
+Position of this permeable covering panel within the overall window or door type.
+</td><td>X</td></tr>
+<tr><td>7</td><td>FrameDepth</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Depth of panel frame (used to include the permeable covering), measured from front face to back face horizontally (i.e. perpendicular to the window or door (elevation) plane.
+</td><td>X</td></tr>
+<tr><td>8</td><td>FrameThickness</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td>? </td><td>
+Width of panel frame (used to include the permeable covering), measured from inside of panel (at permeable covering) to outside of panel (at lining), i.e. parallel to the window or door (elevation) plane.
+</td><td>X</td></tr>
+<tr><td>9</td><td>ShapeAspectStyle</td><td><a href="../../ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a></td><td>? </td><td>
+Optional link to a shape aspect definition, which points to the part of the geometric representation of the window style, which is used to represent the permeable covering.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a>&quot; type=&quot;ifc:<a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringproperties.htm">IfcPermeableCoveringProperties</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;ShapeAspectStyle&quot; type=&quot;ifc:<a href="../../ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a>&quot; nillable=&quot;true&quot; minOccurs=&quot;0&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OperationType&quot; type=&quot;ifc:<a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringoperationenum.htm">IfcPermeableCoveringOperationEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;PanelPosition&quot; type=&quot;ifc:<a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelpositionenum.htm">IfcWindowPanelPositionEnum</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FrameDepth&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;FrameThickness&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPermeableCoveringProperties<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a>)<b>;</b><br/>
+&nbsp;&nbsp;OperationType : <a href="../../ifcarchitecturedomain/lexical/ifcpermeablecoveringoperationenum.htm">IfcPermeableCoveringOperationEnum</a>;<br/>
+&nbsp;&nbsp;PanelPosition : <a href="../../ifcarchitecturedomain/lexical/ifcwindowpanelpositionenum.htm">IfcWindowPanelPositionEnum</a>;<br/>
+&nbsp;&nbsp;FrameDepth : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;FrameThickness : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+&nbsp;&nbsp;ShapeAspectStyle : <span class="keyword">OPTIONAL</span> <a href="../../ifcrepresentationresource/lexical/ifcshapeaspect.htm">IfcShapeAspect</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcarchitecturedomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcpermeablecoveringproperties.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

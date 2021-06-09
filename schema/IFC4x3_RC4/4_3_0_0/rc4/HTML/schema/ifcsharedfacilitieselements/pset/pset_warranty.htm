@@ -1,0 +1,136 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_Warranty</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 4 index3 4 index4 16 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.4.4.17");
+//-->
+</script>
+
+<h4 class="std">6.4.4.17 Pset_Warranty</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifcproductextension/lexical/ifcelement.htm">IfcElement</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcsharedfacilitieselements/pset/pset_warranty.htm">Pset_Warranty</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WarrantyPeriod</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>IfcTimeMeasure</i> to <i>IfcDuration</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PointOfContact</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed from <i>P_REFERENCEVALUE</i> to <i>P_SINGLEVALUE</i>. <br/>Type changed from <i>IfcOrganization</i> to <i>IfcLabel</i>. <br/></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/01GLs0qXOHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_Warranty.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>WarrantyIdentifier</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty Identifier</b></td><td>The identifier assigned to a warranty.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WarrantyStartDate</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty Start Date</b></td><td>The date on which the warranty commences.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WarrantyEndDate</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcdate.htm">IfcDate</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty End Date</b></td><td>The date on which the warranty expires.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>IsExtendedWarranty</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Is Extended Warranty</b></td><td>Indication of whether this is an extended warranty whose duration is greater than that normally assigned to an artefact (=TRUE) or not (= FALSE).
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WarrantyPeriod</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcdatetimeresource/lexical/ifcduration.htm">IfcDuration</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty Period</b></td><td>The time duration during which a manufacturer or supplier guarantees or warrants the performance of an artefact.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WarrantyContent</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Warranty Content</b></td><td>The content of the warranty.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PointOfContact</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Point Of Contact</b></td><td>The organization that should be contacted for action under the terms of the warranty. Note that the role of the organization (manufacturer, supplier, installer etc.) is determined by the IfcActorRole attribute of IfcOrganization.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>Exclusions</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Exclusions</b></td><td>Items, conditions or actions that may be excluded from the warranty or that may cause the warranty to become void.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_warranty.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

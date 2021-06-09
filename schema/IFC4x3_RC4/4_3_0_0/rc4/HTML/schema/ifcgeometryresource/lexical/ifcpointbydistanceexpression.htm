@@ -1,0 +1,164 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPointByDistanceExpression</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 48 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.49");
+//-->
+</script>
+
+<h4 class="num">IfcPointByDistanceExpression</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Distance Expression</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x3_rc1-to-ifc4x3_rc2/index.htm">IFC4x3_RC1 to IFC4x3_RC2</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a></td><td></td><td></td><td>MODIFIED</td><td>Name changed from <i>IfcDistanceExpression</i> to <i>IfcPointByDistanceExpression</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DistanceAlong</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcLengthMeasure</i> to <i>IfcCurveMeasureSelect</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BasisCurve</td><td>X</td><td>X</td><td>MODIFIED</td><td>Name changed from <i>AlongHorizontal</i> to <i>BasisCurve</i>. <br/>Type changed from <i>IfcBoolean</i> to <i>IfcCurve</i>. <br/>Instantiation changed from <i>OPTIONAL</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcPointByDistanceExpression</span> describes a point relative to a basis curve according to distance along the basis curve. The offsets default  to the initial context of the curve relative to it's tangent either specified in <i>IfcProduct.Placement</i> or in the case of a segmented curve to the <a href="../../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a> <i>StartPlacement</i> where the values correspond to the following:</p>
+<ul>
+<li>lateral to the basis curve</li>
+<li>offset vertical to the basis curve</li>
+<li>optional additional offset parallel to the basis curve that may be used to address locations otherwise unreachable where the basis curve is tangentially discontinuous.</li>
+</ul>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>DistanceAlong</td><td><a href="../../ifcgeometryresource/lexical/ifccurvemeasureselect.htm">IfcCurveMeasureSelect</a></td><td></td><td>
+The distance along the basis curve measured as either a <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a> or <a href="../../ifcmeasureresource/lexical/ifcparametervalue.htm">IfcParameterValue</a>.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OffsetLateral</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Default offset horizontally is measured perpendicular to the basis curve, where positive values indicate to the left of the basis curve as facing in the positive parametrization direction of the basis curve, and negative values indicate to the right. If DistanceAlong coincides with a point of tangential discontinuity (within precision limits), then the tangent of the previous segment governs.
+</td><td>X</td></tr>
+<tr><td>3</td><td>OffsetVertical</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Default offset vertical to the basis curve where positive values indicate perpendicular to the tangent at DistanceAlong in the plane of the tangent perpendicular to the global XY plane.
+</td><td>X</td></tr>
+<tr><td>4</td><td>OffsetLongitudinal</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Offset parallel to the basis curve after applying DistanceAlong, OffsetLateral, and OffsetVertical to reach locations for the case of a tangentially discontinuous basis curve.
+</td><td>X</td></tr>
+<tr><td>5</td><td>BasisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=BasisCurve.Dim</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td></td>
+<td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpointbydistanceexpression.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcgeometryresource/lexical/ifcpoint.htm" alt="IfcPoint" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a></td></tr>
+<tr><td>1</td><td>DistanceAlong</td><td><a href="../../ifcgeometryresource/lexical/ifccurvemeasureselect.htm">IfcCurveMeasureSelect</a></td><td></td><td>
+The distance along the basis curve measured as either a <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a> or <a href="../../ifcmeasureresource/lexical/ifcparametervalue.htm">IfcParameterValue</a>.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OffsetLateral</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Default offset horizontally is measured perpendicular to the basis curve, where positive values indicate to the left of the basis curve as facing in the positive parametrization direction of the basis curve, and negative values indicate to the right. If DistanceAlong coincides with a point of tangential discontinuity (within precision limits), then the tangent of the previous segment governs.
+</td><td>X</td></tr>
+<tr><td>3</td><td>OffsetVertical</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Default offset vertical to the basis curve where positive values indicate perpendicular to the tangent at DistanceAlong in the plane of the tangent perpendicular to the global XY plane.
+</td><td>X</td></tr>
+<tr><td>4</td><td>OffsetLongitudinal</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>? </td><td>
+Offset parallel to the basis curve after applying DistanceAlong, OffsetLateral, and OffsetVertical to reach locations for the case of a tangentially discontinuous basis curve.
+</td><td>X</td></tr>
+<tr><td>5</td><td>BasisCurve</td><td><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></td><td></td><td>
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=BasisCurve.Dim</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td></td>
+<td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifcpointbydistanceexpression.htm">IfcPointByDistanceExpression</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;DistanceAlong&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurvemeasureselect.htm">IfcCurveMeasureSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;BasisCurve&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OffsetLateral&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OffsetVertical&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;OffsetLongitudinal&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPointByDistanceExpression<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>)<b>;</b><br/>
+&nbsp;&nbsp;DistanceAlong : <a href="../../ifcgeometryresource/lexical/ifccurvemeasureselect.htm">IfcCurveMeasureSelect</a>;<br/>
+&nbsp;&nbsp;OffsetLateral : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;OffsetVertical : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;OffsetLongitudinal : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;&nbsp;BasisCurve : <a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a>;<br/>
+&nbsp;<span class="keyword">DERIVE</span><br/>
+&nbsp;&nbsp;Dim : <a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a> := BasisCurve.Dim;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcrail/lexical/ifcdirectrixdistancesweptareasolid.htm">IfcDirectrixDistanceSweptAreaSolid</a>
+<a href="../../ifcroad/lexical/ifcsectionedsurface.htm">IfcSectionedSurface</a>
+<a href="../../ifcgeometryresource/lexical/ifcoffsetcurvebydistances.htm">IfcOffsetCurveByDistances</a>
+</p>
+<p><a href="../../../link/ifcpointbydistanceexpression.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

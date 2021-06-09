@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcUniquePropertyName</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 16 index3 4 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.16.4.1");
+//-->
+</script>
+
+<h4 class="num">IfcUniquePropertyName</h4>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Unique Property Name</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the function</h5>
+<details open="open"><summary>Function Definition</summary><p>
+<p>The function gets the set of names, used by elements in a set (e.g. by individual properties in the set of a property set. It verifies that no name appears twice.</p>
+<blockquote class="history">
+<p><small><font color="#0000FF">HISTORY  New function in
+Release IFC2x2</font></small></p>
+</blockquote>
+</p>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details open="open"><summary>EXPRESS Specification</summary><div class="xsd"><code class="xsd"><p>
+<span class="keyword">FUNCTION</span> IfcUniquePropertyName<br/>
+
+(Properties : SET [1:?] OF <a href="../../ifcpropertyresource/lexical/ifcproperty.htm">IfcProperty</a>)<br/>:LOGICAL;<br/><br/>LOCAL<br/>&nbsp;&nbsp;Names : SET OF <a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a> := [];<br/>END_LOCAL;<br/><br/>REPEAT i:=1 TO HIINDEX(Properties);<br/>&nbsp;&nbsp;Names := Names + Properties[i].Name;<br/>END_REPEAT;<br/>RETURN (SIZEOF(Names) = SIZEOF(Properties));<br/>
+<br/>
+
+<span class="keyword">END_FUNCTION</span>;
+
+</p>
+
+</code></div></details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a>
+<a href="../../ifcpropertyresource/lexical/ifccomplexproperty.htm">IfcComplexProperty</a>
+</p>
+<p><a href="../../../link/ifcuniquepropertyname.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

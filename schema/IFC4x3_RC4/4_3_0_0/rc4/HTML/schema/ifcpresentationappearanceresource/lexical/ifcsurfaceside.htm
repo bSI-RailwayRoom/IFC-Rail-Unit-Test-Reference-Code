@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcSurfaceSide</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 2 index4 11 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.2.12");
+//-->
+</script>
+
+<h4 class="num">IfcSurfaceSide</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Surface Side</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p><span class="self-ref">IfcSurfaceSide</span> is a denotion of whether negative, positive or both sides of a surface are being referenced.</p>
+<blockquote class="note">
+<p>NOTE  Type adapted from <strong>surface_side</strong> defined in ISO10303-46.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New enumeration type in IFC2.0</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>POSITIVE</td><td>The side of a surface which is in the same direction as the surface normal derived from the mathematical definition.
+</td></tr><tr><td>NEGATIVE</td><td>The side of a surface which is in the opposite direction than the surface normal derived from the mathematical definition.
+</td></tr><tr><td>BOTH</td><td>Both, positive and negative side.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcsurfaceside.htm">IfcSurfaceSide</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;positive&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;negative&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;both&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcSurfaceSide = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;POSITIVE, <br/>&nbsp;NEGATIVE, <br/>&nbsp;BOTH);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm">IfcSurfaceStyle</a>
+</p>
+<p><a href="../../../link/ifcsurfaceside.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

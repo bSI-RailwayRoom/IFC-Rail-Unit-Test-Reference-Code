@@ -1,0 +1,187 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCACTORRESOURCE;
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+  IfcExternalReferenceRelationship,
+  IfcURIReference,
+  IfcResourceLevelRelationship
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcIdentifier,
+  IfcLabel,
+  IfcText
+);
+
+TYPE IfcAddressTypeEnum = ENUMERATION OF
+	(OFFICE
+	,SITE
+	,HOME
+	,DISTRIBUTIONPOINT
+	,USERDEFINED);
+END_TYPE;
+
+TYPE IfcRoleEnum = ENUMERATION OF
+	(SUPPLIER
+	,MANUFACTURER
+	,CONTRACTOR
+	,SUBCONTRACTOR
+	,ARCHITECT
+	,STRUCTURALENGINEER
+	,COSTENGINEER
+	,CLIENT
+	,BUILDINGOWNER
+	,BUILDINGOPERATOR
+	,MECHANICALENGINEER
+	,ELECTRICALENGINEER
+	,PROJECTMANAGER
+	,FACILITIESMANAGER
+	,CIVILENGINEER
+	,COMMISSIONINGENGINEER
+	,ENGINEER
+	,OWNER
+	,CONSULTANT
+	,CONSTRUCTIONMANAGER
+	,FIELDCONSTRUCTIONMANAGER
+	,RESELLER
+	,USERDEFINED);
+END_TYPE;
+
+TYPE IfcActorSelect = SELECT
+	(IfcOrganization
+	,IfcPerson
+	,IfcPersonAndOrganization);
+END_TYPE;
+
+ENTITY IfcActorRole;
+	Role : IfcRoleEnum;
+	UserDefinedRole : OPTIONAL IfcLabel;
+	Description : OPTIONAL IfcText;
+ INVERSE
+	HasExternalReference : SET [0:?] OF IfcExternalReferenceRelationship FOR RelatedResourceObjects;
+ WHERE
+	WR1 : (Role <> IfcRoleEnum.USERDEFINED) OR
+((Role = IfcRoleEnum.USERDEFINED) AND
+  EXISTS(SELF.UserDefinedRole));
+END_ENTITY;
+
+ENTITY IfcAddress
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcPostalAddress
+    ,IfcTelecomAddress));
+	Purpose : OPTIONAL IfcAddressTypeEnum;
+	Description : OPTIONAL IfcText;
+	UserDefinedPurpose : OPTIONAL IfcLabel;
+ INVERSE
+	OfPerson : SET [0:?] OF IfcPerson FOR Addresses;
+	OfOrganization : SET [0:?] OF IfcOrganization FOR Addresses;
+ WHERE
+	WR1 : (NOT(EXISTS(Purpose))) OR
+((Purpose <> IfcAddressTypeEnum.USERDEFINED) OR
+((Purpose = IfcAddressTypeEnum.USERDEFINED) AND
+  EXISTS(SELF.UserDefinedPurpose)));
+END_ENTITY;
+
+ENTITY IfcOrganization;
+	Identification : OPTIONAL IfcIdentifier;
+	Name : IfcLabel;
+	Description : OPTIONAL IfcText;
+	Roles : OPTIONAL LIST [1:?] OF IfcActorRole;
+	Addresses : OPTIONAL LIST [1:?] OF IfcAddress;
+ INVERSE
+	IsRelatedBy : SET [0:?] OF IfcOrganizationRelationship FOR RelatedOrganizations;
+	Relates : SET [0:?] OF IfcOrganizationRelationship FOR RelatingOrganization;
+	Engages : SET [0:?] OF IfcPersonAndOrganization FOR TheOrganization;
+END_ENTITY;
+
+ENTITY IfcOrganizationRelationship
+ SUBTYPE OF (IfcResourceLevelRelationship);
+	RelatingOrganization : IfcOrganization;
+	RelatedOrganizations : SET [1:?] OF IfcOrganization;
+END_ENTITY;
+
+ENTITY IfcPerson;
+	Identification : OPTIONAL IfcIdentifier;
+	FamilyName : OPTIONAL IfcLabel;
+	GivenName : OPTIONAL IfcLabel;
+	MiddleNames : OPTIONAL LIST [1:?] OF IfcLabel;
+	PrefixTitles : OPTIONAL LIST [1:?] OF IfcLabel;
+	SuffixTitles : OPTIONAL LIST [1:?] OF IfcLabel;
+	Roles : OPTIONAL LIST [1:?] OF IfcActorRole;
+	Addresses : OPTIONAL LIST [1:?] OF IfcAddress;
+ INVERSE
+	EngagedIn : SET [0:?] OF IfcPersonAndOrganization FOR ThePerson;
+ WHERE
+	IdentifiablePerson : EXISTS(Identification) OR EXISTS(FamilyName) OR EXISTS(GivenName);
+	ValidSetOfNames : NOT EXISTS(MiddleNames) OR EXISTS(FamilyName) OR EXISTS(GivenName);
+END_ENTITY;
+
+ENTITY IfcPersonAndOrganization;
+	ThePerson : IfcPerson;
+	TheOrganization : IfcOrganization;
+	Roles : OPTIONAL LIST [1:?] OF IfcActorRole;
+END_ENTITY;
+
+ENTITY IfcPostalAddress
+ SUBTYPE OF (IfcAddress);
+	InternalLocation : OPTIONAL IfcLabel;
+	AddressLines : OPTIONAL LIST [1:?] OF IfcLabel;
+	PostalBox : OPTIONAL IfcLabel;
+	Town : OPTIONAL IfcLabel;
+	Region : OPTIONAL IfcLabel;
+	PostalCode : OPTIONAL IfcLabel;
+	Country : OPTIONAL IfcLabel;
+ WHERE
+	WR1 : EXISTS (InternalLocation) OR 
+EXISTS (AddressLines) OR
+EXISTS (PostalBox) OR
+EXISTS (PostalCode) OR
+EXISTS (Town) OR 
+EXISTS (Region) OR  
+EXISTS (Country);
+END_ENTITY;
+
+ENTITY IfcTelecomAddress
+ SUBTYPE OF (IfcAddress);
+	TelephoneNumbers : OPTIONAL LIST [1:?] OF IfcLabel;
+	FacsimileNumbers : OPTIONAL LIST [1:?] OF IfcLabel;
+	PagerNumber : OPTIONAL IfcLabel;
+	ElectronicMailAddresses : OPTIONAL LIST [1:?] OF IfcLabel;
+	WWWHomePageURL : OPTIONAL IfcURIReference;
+	MessagingIDs : OPTIONAL LIST [1:?] OF IfcURIReference;
+ WHERE
+	MinimumDataProvided : EXISTS (TelephoneNumbers) OR
+EXISTS (FacsimileNumbers) OR 
+EXISTS (PagerNumber) OR
+EXISTS (ElectronicMailAddresses) OR 
+EXISTS (WWWHomePageURL) OR
+EXISTS (MessagingIDs);
+END_ENTITY;
+
+END_SCHEMA;

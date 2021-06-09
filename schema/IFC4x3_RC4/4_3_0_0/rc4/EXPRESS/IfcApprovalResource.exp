@@ -1,0 +1,106 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCAPPROVALRESOURCE;
+
+REFERENCE FROM IFCACTORRESOURCE
+(
+  IfcActorSelect,
+  IfcPerson,
+  IfcPersonAndOrganization,
+  IfcPostalAddress
+);
+
+REFERENCE FROM IFCCONTROLEXTENSION
+(
+  IfcRelAssociatesApproval
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcDateTime
+);
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+  IfcDocumentInformation,
+  IfcDocumentReference,
+  IfcExternalReferenceRelationship,
+  IfcResourceObjectSelect,
+  IfcResourceLevelRelationship
+);
+
+REFERENCE FROM IFCMATERIALRESOURCE
+(
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcText,
+  IfcLabel,
+  IfcIdentifier
+);
+
+REFERENCE FROM IFCPROFILERESOURCE
+(
+);
+
+REFERENCE FROM IFCPROPERTYRESOURCE
+(
+);
+
+ENTITY IfcApproval;
+	Identifier : OPTIONAL IfcIdentifier;
+	Name : OPTIONAL IfcLabel;
+	Description : OPTIONAL IfcText;
+	TimeOfApproval : OPTIONAL IfcDateTime;
+	Status : OPTIONAL IfcLabel;
+	Level : OPTIONAL IfcLabel;
+	Qualifier : OPTIONAL IfcText;
+	RequestingApproval : OPTIONAL IfcActorSelect;
+	GivingApproval : OPTIONAL IfcActorSelect;
+ INVERSE
+	HasExternalReferences : SET [0:?] OF IfcExternalReferenceRelationship FOR RelatedResourceObjects;
+	ApprovedObjects : SET [0:?] OF IfcRelAssociatesApproval FOR RelatingApproval;
+	ApprovedResources : SET [0:?] OF IfcResourceApprovalRelationship FOR RelatingApproval;
+	IsRelatedWith : SET [0:?] OF IfcApprovalRelationship FOR RelatedApprovals;
+	Relates : SET [0:?] OF IfcApprovalRelationship FOR RelatingApproval;
+ WHERE
+	HasIdentifierOrName : EXISTS (Identifier) OR EXISTS (Name);
+END_ENTITY;
+
+ENTITY IfcApprovalRelationship
+ SUBTYPE OF (IfcResourceLevelRelationship);
+	RelatingApproval : IfcApproval;
+	RelatedApprovals : SET [1:?] OF IfcApproval;
+END_ENTITY;
+
+ENTITY IfcResourceApprovalRelationship
+ SUBTYPE OF (IfcResourceLevelRelationship);
+	RelatedResourceObjects : SET [1:?] OF IfcResourceObjectSelect;
+	RelatingApproval : IfcApproval;
+END_ENTITY;
+
+END_SCHEMA;

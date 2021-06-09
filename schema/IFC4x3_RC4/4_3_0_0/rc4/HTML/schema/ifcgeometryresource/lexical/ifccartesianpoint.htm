@@ -1,0 +1,154 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCartesianPoint</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 11 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.12");
+//-->
+</script>
+
+<h4 class="num">IfcCartesianPoint</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Kartesischer Punkt</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Cartesian Point</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Point cartésien</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcCartesianPoint</span> defines a point by coordinates in an orthogonal, right-handed Cartesian coordinate system. For the purpose of this specification only two and three dimensional Cartesian points are used.</p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A cartesian_point is a point defined by its coordinates in a rectangular Cartesian coordinate system, or in a parameter space. The entity is defined in a one, two or three-dimensional space as determined by the number of coordinates in the list. Depending upon the geometric representation context in which the point is used the names of the coordinates may be (x,y,z), or (u,v), or any other chosen values.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>cartesian_point</strong> defined in ISO 10303-42</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Coordinates</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>L[1:3]</td><td>
+The first, second, and third coordinate of the point location. If placed in a two or three dimensional rectangular Cartesian coordinate system, Coordinates[1] is the X coordinate, Coordinates[2] is the Y coordinate, and Coordinates[3] is the Z coordinate.
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=HIINDEX(Coordinates)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this class, determined by the number of coordinates in the List of Coordinates.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>CP2Dor3D</td><td>Only two or three dimensional points are in scope.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifccartesianpoint.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcgeometryresource/lexical/ifcpoint.htm" alt="IfcPoint" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a></td></tr>
+<tr><td>1</td><td>Coordinates</td><td><a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a></td><td>L[1:3]</td><td>
+The first, second, and third coordinate of the point location. If placed in a two or three dimensional rectangular Cartesian coordinate system, Coordinates[1] is the X coordinate, Coordinates[2] is the Y coordinate, and Coordinates[3] is the Z coordinate.
+</td><td>X</td></tr>
+<tr><td></td><td>Dim<br/>:=HIINDEX(Coordinates)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this class, determined by the number of coordinates in the List of Coordinates.
+</td>
+<td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifccartesianpoint.htm">IfcCartesianPoint</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Coordinates&quot; use=&quot;optional&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:list itemType=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:maxLength value=&quot;3&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcCartesianPoint<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcpoint.htm">IfcPoint</a>)<b>;</b><br/>
+&nbsp;&nbsp;Coordinates : <span class="keyword">LIST</span> [1:3] OF <a href="../../ifcmeasureresource/lexical/ifclengthmeasure.htm">IfcLengthMeasure</a>;<br/>
+&nbsp;<span class="keyword">DERIVE</span><br/>
+&nbsp;&nbsp;Dim : <a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a> := HIINDEX(Coordinates);<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;CP2Dor3D : HIINDEX(Coordinates) &gt;= 2;<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcgeometricconstraintresource/lexical/ifcalignmenthorizontalsegment.htm">IfcAlignmentHorizontalSegment</a>
+<a href="../../ifcgeometricmodelresource/lexical/ifcboundingbox.htm">IfcBoundingBox</a>
+<a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a>
+<a href="../../ifcgeometryresource/lexical/ifcbsplinesurface.htm">IfcBSplineSurface</a>
+<a href="../../ifcgeometryresource/lexical/ifccartesiantransformationoperator.htm">IfcCartesianTransformationOperator</a>
+<a href="../../ifcgeometryresource/lexical/ifcline.htm">IfcLine</a>
+<a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>
+<a href="../../ifcgeometryresource/lexical/ifctrimmingselect.htm">IfcTrimmingSelect</a>
+<a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastylehatching.htm">IfcFillAreaStyleHatching</a>
+<a href="../../ifcpresentationorganizationresource/lexical/ifclightsourcepositional.htm">IfcLightSourcePositional</a>
+<a href="../../ifctopologyresource/lexical/ifcpolyloop.htm">IfcPolyLoop</a>
+</p>
+<p><a href="../../../link/ifccartesianpoint.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

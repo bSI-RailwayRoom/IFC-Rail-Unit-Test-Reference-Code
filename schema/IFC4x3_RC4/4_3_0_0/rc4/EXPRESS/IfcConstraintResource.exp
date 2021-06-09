@@ -1,0 +1,187 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCCONSTRAINTRESOURCE;
+
+REFERENCE FROM IFCACTORRESOURCE
+(
+  IfcPerson,
+  IfcPersonAndOrganization,
+  IfcPostalAddress,
+  IfcActorSelect
+);
+
+REFERENCE FROM IFCCOSTRESOURCE
+(
+  IfcAppliedValue
+);
+
+REFERENCE FROM IFCDATETIMERESOURCE
+(
+  IfcTimeSeries,
+  IfcDateTime
+);
+
+REFERENCE FROM IFCEXTERNALREFERENCERESOURCE
+(
+  IfcClassificationReference,
+  IfcDocumentReference,
+  IfcExternalReferenceRelationship,
+  IfcResourceObjectSelect,
+  IfcResourceLevelRelationship
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcMeasureWithUnit,
+  IfcUnit,
+  IfcDerivedUnit,
+  IfcNamedUnit,
+  IfcSiUnit,
+  IfcConversionBasedUnit,
+  IfcLabel,
+  IfcText,
+  IfcLengthMeasure,
+  IfcValue,
+  IfcIdentifier,
+  IfcInteger
+);
+
+REFERENCE FROM IFCPROPERTYRESOURCE
+(
+);
+
+REFERENCE FROM IFCUTILITYRESOURCE
+(
+  IfcTable
+);
+
+TYPE IfcBenchmarkEnum = ENUMERATION OF
+	(GREATERTHAN
+	,GREATERTHANOREQUALTO
+	,LESSTHAN
+	,LESSTHANOREQUALTO
+	,EQUALTO
+	,NOTEQUALTO
+	,INCLUDES
+	,NOTINCLUDES
+	,INCLUDEDIN
+	,NOTINCLUDEDIN);
+END_TYPE;
+
+TYPE IfcConstraintEnum = ENUMERATION OF
+	(HARD
+	,SOFT
+	,ADVISORY
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcLogicalOperatorEnum = ENUMERATION OF
+	(LOGICALAND
+	,LOGICALOR
+	,LOGICALXOR
+	,LOGICALNOTAND
+	,LOGICALNOTOR);
+END_TYPE;
+
+TYPE IfcObjectiveEnum = ENUMERATION OF
+	(CODECOMPLIANCE
+	,CODEWAIVER
+	,DESIGNINTENT
+	,EXTERNAL
+	,HEALTHANDSAFETY
+	,MERGECONFLICT
+	,MODELVIEW
+	,PARAMETER
+	,REQUIREMENT
+	,SPECIFICATION
+	,TRIGGERCONDITION
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcMetricValueSelect = SELECT
+	(IfcAppliedValue
+	,IfcMeasureWithUnit
+	,IfcReference
+	,IfcTable
+	,IfcTimeSeries
+	,IfcValue);
+END_TYPE;
+
+ENTITY IfcConstraint
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcMetric
+    ,IfcObjective));
+	Name : IfcLabel;
+	Description : OPTIONAL IfcText;
+	ConstraintGrade : IfcConstraintEnum;
+	ConstraintSource : OPTIONAL IfcLabel;
+	CreatingActor : OPTIONAL IfcActorSelect;
+	CreationTime : OPTIONAL IfcDateTime;
+	UserDefinedGrade : OPTIONAL IfcLabel;
+ INVERSE
+	HasExternalReferences : SET [0:?] OF IfcExternalReferenceRelationship FOR RelatedResourceObjects;
+	PropertiesForConstraint : SET [0:?] OF IfcResourceConstraintRelationship FOR RelatingConstraint;
+ WHERE
+	WR11 : (ConstraintGrade <> IfcConstraintEnum.USERDEFINED) OR
+((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));
+END_ENTITY;
+
+ENTITY IfcMetric
+ SUBTYPE OF (IfcConstraint);
+	Benchmark : IfcBenchmarkEnum;
+	ValueSource : OPTIONAL IfcLabel;
+	DataValue : OPTIONAL IfcMetricValueSelect;
+	ReferencePath : OPTIONAL IfcReference;
+END_ENTITY;
+
+ENTITY IfcObjective
+ SUBTYPE OF (IfcConstraint);
+	BenchmarkValues : OPTIONAL LIST [1:?] OF IfcConstraint;
+	LogicalAggregator : OPTIONAL IfcLogicalOperatorEnum;
+	ObjectiveQualifier : IfcObjectiveEnum;
+	UserDefinedQualifier : OPTIONAL IfcLabel;
+ WHERE
+	WR21 : (ObjectiveQualifier <> IfcObjectiveEnum.USERDEFINED) OR
+((ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED) AND EXISTS(SELF\IfcObjective.UserDefinedQualifier));
+END_ENTITY;
+
+ENTITY IfcReference;
+	TypeIdentifier : OPTIONAL IfcIdentifier;
+	AttributeIdentifier : OPTIONAL IfcIdentifier;
+	InstanceName : OPTIONAL IfcLabel;
+	ListPositions : OPTIONAL LIST [1:?] OF IfcInteger;
+	InnerReference : OPTIONAL IfcReference;
+END_ENTITY;
+
+ENTITY IfcResourceConstraintRelationship
+ SUBTYPE OF (IfcResourceLevelRelationship);
+	RelatingConstraint : IfcConstraint;
+	RelatedResourceObjects : SET [1:?] OF IfcResourceObjectSelect;
+END_ENTITY;
+
+END_SCHEMA;

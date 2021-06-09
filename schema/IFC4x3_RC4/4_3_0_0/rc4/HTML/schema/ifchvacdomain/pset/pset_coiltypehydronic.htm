@@ -1,0 +1,224 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_CoilTypeHydronic</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 5 index3 4 index4 17 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.5.4.18");
+//-->
+</script>
+
+<h4 class="std">7.5.4.18 Pset_CoilTypeHydronic</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<a href="../../ifchvacdomain/lexical/ifccoil.htm">IfcCoil</a>
+</p><details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Type Hydronic</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifchvacdomain/pset/pset_coiltypehydronic.htm">Pset_CoilTypeHydronic</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fluid</td><td></td><td></td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/3OatQ0qSaHuO00025QrE$V/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_CoilTypeHydronic.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>FluidPressureRange</td><td>
+<span class="self-ref">P_BOUNDEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Fluid Pressure Range</b></td><td>Allowable water working pressure range inside the tube.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>PlagePressionFluide</b></td><td>Plage de pression hydraulique fonctionnelle admissible dans le tube.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoilCoolant</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coilcoolant.htm">PEnum_CoilCoolant</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Coolant</b></td><td>The fluid used for heating or cooling used by the hydronic coil.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RefrigerantBatterie</b></td><td>Le fluide utilisé pour chauffer ou refroidir dans la batterie deux tubes.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoilConnectionDirection</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coilconnectiondirection.htm">PEnum_CoilConnectionDirection</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Connection Direction</b></td><td>Coil connection direction (facing into the air stream).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DirectionConnexionBatterie</b></td><td>Direction de la connexion à la batterie (en face du jet d'air)
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoilFluidArrangement</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_coilfluidarrangement.htm">PEnum_CoilFluidArrangement</a></td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Fluid Arrangement</b></td><td>Fluid flow arrangement of the coil.
+CrossCounterFlow: Air and water flow enter in different directions.
+CrossFlow: Air and water flow are perpendicular.
+CrossParallelFlow: Air and water flow enter in same directions.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>DispositionFluideBatterie</b></td><td>Disposition du flux du fluide dans la batterie.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>CoilFaceArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Coil Face Area</b></td><td>Coil face area in the direction against air the flow.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceEchangeBatterie</b></td><td>Surface d'échange de la batterie dans la direction contraire du jet.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>HeatExchangeSurfaceArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Heat Exchange Surface Area</b></td><td>Heat exchange surface area associated with U-value.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceEchangeThermique</b></td><td>Surface d'échange thermique associé à la valeur U.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>PrimarySurfaceArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Primary Surface Area</b></td><td>Primary heat transfer surface area of the tubes and headers.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceEchangePrimaire</b></td><td>Surface d'échange thermique au primaire des tubes et aux collecteurs.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SecondarySurfaceArea</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcareameasure.htm">IfcAreaMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Secondary Surface Area</b></td><td>Secondary heat transfer surface area created by fins.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>SurfaceEchangeSecondaire</b></td><td>Surface d'échange thermique au secondaire crée par les ailettes.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>TotalUACurves</td><td>
+<span class="self-ref">P_TABLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Total UACurves</b></td><td>Total UA curves, UA - air and water velocities, UA = [(C1 * AirFlowRate^0.8)^-1 + (C2 * WaterFlowRate^0.8)^-1]^-1.  Note: as two variables are used, DefiningValues and DefinedValues are null, and values are stored in IfcTable in the following order: AirFlowRate,WaterFlowRate,UA.  The IfcTable is related to IfcPropertyTableValue using IfcMetric and IfcPropertyConstraintRelationship.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>CourbesCoefficientTransmissionThermiqueTotal</b></td><td>Courbes de coefficient de transmission thermique total - vitesses de l'eau et de l'air, U.S = [(C1<em>DébitAéraulique<sup>0,8)</sup>-1 + (C2</em>DébitHydraulique<sup>0,8)</sup>-1]^-1.
+Remarque: comme deux variables sont utilisées, ValeursDefinir et ValeursDéfinies sont nulles, et les valeurs sont enregistrées dans IfcTable dans l'ordre suivant:
+DébitAéraulique, DebitHydraulique, U.S.
+Le IfcTable est lié à IfcPropertyTableValue en utilisant IfcMetric et IfcPropertyConstraintRelationship.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WaterPressureDropCurve</td><td>
+<span class="self-ref">P_TABLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcvolumetricflowratemeasure.htm">IfcVolumetricFlowRateMeasure</a>
+/
+<a href="../../ifcmeasureresource/lexical/ifcpressuremeasure.htm">IfcPressureMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Water Pressure Drop Curve</b></td><td>Water pressure drop curve, pressure drop – flow rate curve, WaterPressureDrop = f(WaterflowRate).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>CourbePerteChargeHydraulique</b></td><td>Courbe de perte de charge hydraulique, courbe perte de charge - débit, perte de charge = f(DébitHydraulique).
+</td></tr>
+</table>
+</td></tr>
+<tr><td>BypassFactor</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Bypass Factor</b></td><td>Fraction of air that is bypassed by the coil (0-1).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>FacteurBypass</b></td><td>Fraction de l'air qui est bypassé par la batterie (0 à 1).
+</td></tr>
+</table>
+</td></tr>
+<tr><td>SensibleHeatRatio</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Sensible Heat Ratio</b></td><td>Air-side sensible heat ratio, or fraction of sensible heat transfer to the total heat transfer.
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>RatioChaleurSensible</b></td><td>Ratio de chaleur sensible, ou fraction d'échange thermique sensible sur la chaleur thermique totale échangée.
+</td></tr>
+</table>
+</td></tr>
+<tr><td>WetCoilFraction</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifcnormalisedratiomeasure.htm">IfcNormalisedRatioMeasure</a>
+</td><td>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Wet Coil Fraction</b></td><td>Fraction of coil surface area that is wet (0-1).
+</td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>FractionBatterieHumide</b></td><td>Fraction de la surface de la batterie qui est humide (0 à 1).
+</td></tr>
+</table>
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_coiltypehydronic.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

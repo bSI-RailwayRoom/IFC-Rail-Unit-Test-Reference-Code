@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../details-shim.css">
+    <script type="text/javascript" src="../../details-shim.js"></script>
+    <title>IfcGeometricModelResource</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../toc-8.htm#8.8");
+//-->
+</script>
+
+<h2 class="std">8.8 IfcGeometricModelResource</h2>
+<h3 class="std">8.8.1 Schema Definition</h3>
+<p>The schema <i>IfcGeometricModelResource</i> defines the resources used for geometric model representations. The primary application of this resource is for representation of the shape or geometric form of a product model.</p>
+<p>The following is within the scope of the geometric model representation in the current version of the geometric model resource:</p>
+<ul>
+<li>data describing the precise geometric form of three-dimensional solid objects;</li>
+<li>constructive solid geometry (CSG) models;</li>
+<li>definition of half-spaces;</li>
+<li>creation of solid models by sweeping operations;</li>
+<li>manifold boundary representation (brep) models;</li>
+<li>surface models;</li>
+<li>tessellated models;</li>
+<li>geometric sets.</li>
+</ul>
+<p> </p>
+<blockquote class="note">
+<p>NOTE  Many definitions of this schema are adapted from definitions defined within <a href="../../bibliography.htm#iso-10303-42" class="int-ref">ISO 10303-42</a>. The <i>IfcGeometricModelResource</i> refers to the clause 6, &quot;Geometric Model&quot; of <a href="../../bibliography.htm#iso-10303-42" class="int-ref">ISO 10303-42</a>. The definitions of geometric and topological representation, when quoted from <a href="../../bibliography.htm#iso-10303-42" class="int-ref">ISO 10303-42</a>, are explicitly excluded from the copyright of this specification.</p>
+</blockquote>
+<p> </p>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO 10303-42<br>
+The constructive solid geometry models are represented by their component primitives and the sequence of Boolean operations (union, intersection, or difference) used in their construction. The entity which communicates the logical sequence of Boolean operations is the boolean result (<a href="../ifcgeometricmodelresource/lexical/ifcbooleanresult.htm">IfcBooleanResult</a>) which identifies an operator and two operands. Since the operands can themselves be Boolean results thus enabling nested operations. Swept solids and half-space solids are permissible Boolean operands. The swept solids are the solid of revolution and the solid of linear extrusion. The swept solids are obtained by extruding or sweeping a planar face which may contain holes. The half space solid is essentially defined as a semi-infinite solid on one side of a surface; it may be limited by a box domain.</p>
+</blockquote>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO 10303-42<br>
+Brep models are represented by the set of shells defining the exterior or interior boundaries. The faceted brep is restricted to represent breps in which all faces are planar and every loop is a poly loop. For such a solid this entity provides a more efficient form of representation. The shell based surface model, the face based surface model and the geometric set entities do not enforce the integrity checks of the manifold solid brep and can be used for the communication of incomplete models (including two-dimensional models).</p>
+</blockquote>
+<p><a href="../../annex/annex-d/ifcgeometricmodelresource/index.htm" ><img src="../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</p>
+<p><a href="../../link/ifcgeometricmodelresource.htm" target="_top" ><img src="../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

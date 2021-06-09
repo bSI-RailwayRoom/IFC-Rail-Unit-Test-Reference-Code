@@ -1,0 +1,168 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcAdvancedFace</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 20 index3 3 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.20.3.1");
+//-->
+</script>
+
+<h4 class="num">IfcAdvancedFace</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Fläche - komplex</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Advanced Face</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Face avancée</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a></td><td></td><td></td><td>ADDED</td><td></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SameSense</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>BOOLEAN</i> to <i>IfcBoolean</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An advanced face is a specialization of a face surface that has to meet requirements on using particular topological and geometric representation items for the definition of the faces, edges and vertices.</p>
+<p>An <span class="self-ref">IfcAdvancedFace</span> is restricted to:</p>
+<ul>
+<li>have a face surface geometry of type <a href="../../ifcgeometryresource/lexical/ifcelementarysurface.htm">IfcElementarySurface</a>, <a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a> or <a href="../../ifcgeometryresource/lexical/ifcbsplinesurface.htm">IfcBSplineSurface</a>,</li>
+<li>have one <a href="../../ifctopologyresource/lexical/ifcfaceouterbound.htm">IfcFaceOuterBound</a> as the bound of the face, with the exception of closed surfaces,</li>
+<li>have all faces to be bound by <a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a> or <a href="../../ifctopologyresource/lexical/ifcvertexloop.htm">IfcVertexLoop</a>,</li>
+<li>have all edges to have an edge curve geometry,</li>
+<li>have the edge curve geometry restricted to <a href="../../ifcgeometryresource/lexical/ifcline.htm">IfcLine</a>, <a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>, <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>, or <a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a></li>
+</ul>
+<p>In case of closed faces with periodic surfaces, such as cylindrical or spherical surfaces, the following applies:</p>
+<ul>
+<li>the edges of the closed surface, in case of a cylindrical surface the upper and lower cap, refer to the same instance of <a href="../../ifctopologyresource/lexical/ifcvertexpoint.htm">IfcVertexPoint</a> twice,</li>
+<li>no <a href="../../ifctopologyresource/lexical/ifcfaceouterbound.htm">IfcFaceOuterBound</a> is provided, or the <a href="../../ifctopologyresource/lexical/ifcfaceouterbound.htm">IfcFaceOuterBound</a> is constructed using an <a href="../../ifcgeometryresource/lexical/ifcseamcurve.htm">IfcSeamCurve</a> at the periodic end of the underlying closed surface, in case of a cylindrical surface at 0./360. degree.</li>
+</ul>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcadvancedface_01.png" alt="&quot;cylindrical surface&quot;" title="Figure 443 &mdash; Use of IfcCylindricalSurface as underlying surface of an IfcAdvancedFace"></td></tr><tr><td><p class="figure">Figure 443 &mdash; Use of <a href="../../ifcgeometryresource/lexical/ifccylindricalsurface.htm">IfcCylindricalSurface</a> as underlying surface of an <span class="self-ref">IfcAdvancedFace</span></p></td></tr></table></p>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>advanced_face</strong> defined in ISO 10303-511.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC4</p>
+</blockquote>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>ApplicableSurface</td><td>The geometry used in the definition of the face shall be restricted. The face geometry shall be an <a href="../../ifcgeometryresource/lexical/ifcelementarysurface.htm">IfcElementarySurface</a>, <a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>, or <a href="../../ifcgeometryresource/lexical/ifcbsplinesurface.htm">IfcBSplineSurface</a>.
+</td></tr>
+<tr><td>RequiresEdgeCurve</td><td>The geometry of all bounding edges of the face shall be fully defined as <a href="../../ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a>'s.
+</td></tr>
+<tr><td>ApplicableEdgeCurves</td><td>The types of curve used to define the geometry of edges shall be restricted to <a href="../../ifcgeometryresource/lexical/ifcline.htm">IfcLine</a>, <a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>, <a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>, or <a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a>.
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcadvancedface.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifctopologyresource/lexical/ifcfacesurface.htm" alt="IfcFaceSurface" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifctopologyresource/lexical/ifcface.htm" alt="IfcFace" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifctopologyresource/lexical/ifctopologicalrepresentationitem.htm" alt="IfcTopologicalRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifctopologyresource/lexical/ifctopologicalrepresentationitem.htm">IfcTopologicalRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a></td></tr>
+<tr><td>1</td><td>Bounds</td><td><a href="../../ifctopologyresource/lexical/ifcfacebound.htm">IfcFaceBound</a></td><td>S[1:?]</td><td>
+Boundaries of the face.
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasTextureMaps</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifctexturemap.htm">IfcTextureMap</a><br/>@MappedTo</td><td>S[0:?]</td><td></td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a></td></tr>
+<tr><td>2</td><td>FaceSurface</td><td><a href="../../ifcgeometryresource/lexical/ifcsurface.htm">IfcSurface</a></td><td></td><td>
+The surface which defines the internal shape of the face. This surface may be unbounded. The domain of the face is defined by this surface and the bounding loops in the inherited attribute SELF\FaceBounds.
+</td><td>X</td></tr>
+<tr><td>3</td><td>SameSense</td><td><a href="../../ifcmeasureresource/lexical/ifcboolean.htm">IfcBoolean</a></td><td></td><td>
+This flag indicates whether the sense of the surface normal agrees with (TRUE), or opposes (FALSE), the sense of the topological normal to the face.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a></td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a>&quot; type=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifctopologyresource/lexical/ifcadvancedface.htm">IfcAdvancedFace</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcAdvancedFace<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a>)<b>;</b><br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;ApplicableSurface : SIZEOF (<br/>
+[&#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcelementarysurface.htm">IfcElementarySurface</a>&#39;,<br/>
+ &#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcsweptsurface.htm">IfcSweptSurface</a>&#39;,<br/>
+ &#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcbsplinesurface.htm">IfcBSplineSurface</a>&#39;] *<br/>
+TYPEOF(SELF\<a href="../../ifctopologyresource/lexical/ifcfacesurface.htm">IfcFaceSurface</a>.FaceSurface)) = 1;<br/>&nbsp;&nbsp;RequiresEdgeCurve : SIZEOF(QUERY (ElpFbnds &lt;* <br/>
+  QUERY (Bnds &lt;* SELF\<a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>.Bounds |<br/>
+    &#39;IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>&#39; IN TYPEOF(Bnds.Bound)) |<br/>
+     NOT (SIZEOF (QUERY (Oe &lt;* ElpFbnds.Bound\<a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>.EdgeList |<br/>
+       NOT(&#39;IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a>&#39; IN <br/>
+       TYPEOF(Oe\<a href="../../ifctopologyresource/lexical/ifcorientededge.htm">IfcOrientedEdge</a>.EdgeElement)<br/>
+  ))) = 0<br/>
+))) = 0;<br/>&nbsp;&nbsp;ApplicableEdgeCurves : SIZEOF(QUERY (ElpFbnds &lt;* <br/>
+  QUERY (Bnds &lt;* SELF\<a href="../../ifctopologyresource/lexical/ifcface.htm">IfcFace</a>.Bounds |<br/>
+    &#39;IFCTOPOLOGYRESOURCE.<a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>&#39; IN TYPEOF(Bnds.Bound)) |<br/>
+     NOT (SIZEOF (QUERY (Oe &lt;* ElpFbnds.Bound\<a href="../../ifctopologyresource/lexical/ifcedgeloop.htm">IfcEdgeLoop</a>.EdgeList |<br/>
+       NOT (SIZEOF ([&#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcline.htm">IfcLine</a>&#39;,<br/>
+                     &#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>&#39;,<br/>
+                     &#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcpolyline.htm">IfcPolyline</a>&#39;,<br/>
+                     &#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcbsplinecurve.htm">IfcBSplineCurve</a>&#39;] *<br/>
+         TYPEOF(Oe\<a href="../../ifctopologyresource/lexical/ifcorientededge.htm">IfcOrientedEdge</a>.EdgeElement\<a href="../../ifctopologyresource/lexical/ifcedgecurve.htm">IfcEdgeCurve</a>.EdgeGeometry)) = 1 )<br/>
+  )) = 0<br/>
+))) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifctopologyresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcadvancedface.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

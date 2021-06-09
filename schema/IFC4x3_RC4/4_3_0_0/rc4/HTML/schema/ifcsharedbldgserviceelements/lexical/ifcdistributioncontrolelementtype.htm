@@ -1,0 +1,247 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcDistributionControlElementType</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 2 index3 3 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.2.3.5");
+//-->
+</script>
+
+<h4 class="num">IfcDistributionControlElementType</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Komponente der Gebäudeautomation (allgemein) - Typ</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Distribution Control Element Type</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Type d'élément de circuit de distribution</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The element type <span class="self-ref">IfcDistributionControlElementType</span> defines a list of commonly shared property set definitions of an element and an optional set of product representations. It is used to define an element specification (the specific product information that is common to all occurrences of that product type).</p>
+<p>Distribution control element types (or the instantiable subtypes) may be exchanged without being already assigned to occurrences.</p>
+<p>The occurrences of the <span class="self-ref">IfcDistributionControlElementType</span> are represented by instances of <a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelement.htm">IfcDistributionControlElement</a> or its subtypes.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x4">
+<p>IFC4 CHANGE  Ports may now be defined using <a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a> to enable definition of ports at type definitions (both forward and backward compatible), provide a logical order, and reduce the number of relationship objects needed. The relationship <a href="../../ifcproductextension/lexical/ifcrelconnectsporttoelement.htm">IfcRelConnectsPortToElement</a> is still supported on occurrence objects, however is now specific to dynamically connected ports.</p>
+</blockquote>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcdistributioncontrolelementtype.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="90,174,278,186" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcactuatortype.htm" alt="IfcActuatorType" />
+<area shape="rect" coords="90,198,278,210" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcalarmtype.htm" alt="IfcAlarmType" />
+<area shape="rect" coords="90,222,278,234" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifccontrollertype.htm" alt="IfcControllerType" />
+<area shape="rect" coords="350,174,538,186" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcflowinstrumenttype.htm" alt="IfcFlowInstrumentType" />
+<area shape="rect" coords="350,198,538,210" href="../../../schema/ifcelectricaldomain/lexical/ifcprotectivedevicetrippingunittype.htm" alt="IfcProtectiveDeviceTrippingUnitType" />
+<area shape="rect" coords="350,222,538,234" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcsensortype.htm" alt="IfcSensorType" />
+<area shape="rect" coords="610,174,798,186" href="../../../schema/ifcbuildingcontrolsdomain/lexical/ifcunitarycontrolelementtype.htm" alt="IfcUnitaryControlElementType" />
+<area shape="rect" coords="66,126,822,138" href="../../../schema/ifcproductextension/lexical/ifcdistributionelementtype.htm" alt="IfcDistributionElementType" />
+<area shape="rect" coords="54,102,834,114" href="../../../schema/ifcproductextension/lexical/ifcelementtype.htm" alt="IfcElementType" />
+<area shape="rect" coords="42,78,846,90" href="../../../schema/ifckernel/lexical/ifctypeproduct.htm" alt="IfcTypeProduct" />
+<area shape="rect" coords="30,54,858,66" href="../../../schema/ifckernel/lexical/ifctypeobject.htm" alt="IfcTypeObject" />
+<area shape="rect" coords="18,30,870,42" href="../../../schema/ifckernel/lexical/ifcobjectdefinition.htm" alt="IfcObjectDefinition" />
+<area shape="rect" coords="6,6,882,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasAssignments</i></td><td><a href="../../ifckernel/lexical/ifcrelassigns.htm">IfcRelAssigns</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that assign (by an association relationship) other subtypes of IfcObject to this object instance. Examples are the association to products, processes, controls, resources or groups.
+</td><td>X</td></tr>
+<tr><td></td><td><i>Nests</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is a part within an ordered whole/part decomposition relationship. An object occurrence or type can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>Decomposes</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsNestedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelnests.htm">IfcRelNests</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being a nesting. It determines that this object definition is the whole within an ordered whole/part decomposition relationship. An object or object type can be nested by several other objects (occurrences or types).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added and separated from <i>IsDecomposedBy</i> defined at <span class="self-ref">IfcObjectDefinition</span>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td>References to the context providing context information such as project unit or representation context. It should only be asserted for the uppermost non-spatial object.
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>IsDecomposedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatingObject</td><td>S[0:?]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is whole within an unordered whole/part decomposition relationship. An object definitions can be aggregated by several other objects (occurrences or parts).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Decomposes</i></td><td><a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a><br/>@RelatedObjects</td><td>S[0:1]</td><td>References to the decomposition relationship being an aggregation. It determines that this object definition is a part within an unordered whole/part decomposition relationship. An object definitions can only be part of a single decomposition (to allow hierarchical strutures only).
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute datatype has been changed from the supertype <a href="../../ifckernel/lexical/ifcreldecomposes.htm">IfcRelDecomposes</a> to subtype <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship objects, that associates external references or other resource definitions to the object.. Examples are the association to library, documentation or classification.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifckernel/lexical/ifctypeobject.htm">IfcTypeObject</a></td></tr>
+<tr><td>5</td><td>ApplicableOccurrence</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+The attribute optionally defines the data type of the occurrence object, to which the assigned type object can relate. If not present, no instruction is given to which occurrence object the type object is applicable. The following conventions are used:
+<ul>
+<li>The IFC entity name of the applicable occurrence using the IFC naming convention, CamelCase with IFC prefix</li>
+<li>It can be optionally followed by the predefined type after the separator &quot;/&quot; (forward slash), using uppercase</li>
+<li>If one type object is applicable to many occurrence objects, then those occurrence object names should be separate by comma &quot;,&quot; forming a comma separated string.</li>
+</ul>
+<blockquote class="example">
+EXAMPLE Refering to a furniture as applicable occurrence entity would be expressed as 'IfcFurnishingElement', refering to a brace as applicable entity would be expressed as 'IfcMember/BRACE', refering to a wall and wall standard case would be expressed as 'IfcWall, IfcWallStandardCase'.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>6</td><td>HasPropertySets</td><td><a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a></td><td>? S[1:?]</td><td>
+Set <del>list</del> of unique property sets, that are associated with the object type and are common to all object occurrences referring to this object type.
+
+<blockquote>
+IFC2x3 CHANGE  The attribute aggregate type has been changed from LIST to SET.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>Types</i></td><td><a href="../../ifckernel/lexical/ifcreldefinesbytype.htm">IfcRelDefinesByType</a><br/>@RelatingType</td><td>S[0:1]</td><td>Reference to the relationship IfcRelDefinedByType and thus to those occurrence objects, which are defined by this type.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifckernel/lexical/ifctypeproduct.htm">IfcTypeProduct</a></td></tr>
+<tr><td>7</td><td>RepresentationMaps</td><td><a href="../../ifcgeometryresource/lexical/ifcrepresentationmap.htm">IfcRepresentationMap</a></td><td>? L[1:?]</td><td>
+List of unique representation maps. Each representation map describes a block definition of the shape of the product style. By providing more than one representation map, a multi-view block definition can be given.
+</td><td>X</td></tr>
+<tr><td>8</td><td>Tag</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The tag (or label) identifier at the particular type of a product, e.g. the article number (like the EAN). It is the identifier at the specific level.
+</td><td>X</td></tr>
+<tr><td></td><td><i>ReferencedBy</i></td><td><a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a><br/>@RelatingProduct</td><td>S[0:?]</td><td>Reference to the <a href="../../ifckernel/lexical/ifcrelassignstoproduct.htm">IfcRelAssignsToProduct</a> relationship, by which other products, processes, controls, resources or actors (as subtypes of <a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a>) can be related to this product type.
+
+<blockquote>
+IFC4 CHANGE  New inverse relationship.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcproductextension/lexical/ifcelementtype.htm">IfcElementType</a></i></td></tr>
+<tr><td>9</td><td>ElementType</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+The type denotes a particular type that indicates the object further. The use has to be established at the level of instantiable subtypes. In particular it holds the user defined type, if the enumeration of the attribute 'PredefinedType' is set to USERDEFINED.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm">IfcDistributionControlElementType</a></i></td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<p><a href="../../../annex/annex-d/general-usage/ifcdistributioncontrolelementtype.htm"><img style="border: 0px" src="../../../img/diagram.png" />&nbsp;Instance diagram</a></p><hr />
+<h5></h5><details open="open">
+<summary>Concept usage</summary>
+<a id="product-type-assignment" />
+<p class="use-head">Product Type Assignment</p>
+<p>The <a href="../../templates/product-type-assignment.htm">Product Type Assignment</a> concept template applies to this entity as shown in Table 223.<table>
+<tr><td>
+<table class="gridtable">
+<tr><th><b>Type</b></th><th><b>Description</b></th></tr>
+<tr><td><a href="../../ifcprocessextension/lexical/ifctasktype.htm">IfcTaskType</a></td><td>Indicates task types available to purchase, install, renovate, demolish, operate, or otherwise act upon occurrences of the element type.  Such task types may be instantiated as task occurrences assigned to occurrences of the element type.  Prices (such as for purchasing or shipping) may be established by resource types assigned to task types.
+</td></tr>
+<tr><td><a href="../../ifcprocessextension/lexical/ifcproceduretype.htm">IfcProcedureType</a></td><td>Indicates procedure types available to operate occurrences of the element type.  Such procedure types may be instantiated as procedure occurrences assigned to occurrences of the element type.
+</td></tr>
+<tr><td><a href="../../ifcprocessextension/lexical/ifceventtype.htm">IfcEventType</a></td><td>Indicates event types available to be raised by occurrences of the element type, sequenced by procedures to be followed.  Such event types may be instantiated as event occurrences assigned to occurrences of the element type.
+</td></tr>
+</table>
+</td></tr>
+<tr><td><p class="table">Table 223 &mdash; IfcDistributionControlElementType Product Type Assignment</td></tr></table>
+
+<br/><br/>
+
+</details>
+<details><summary>mvdXML Specification</summary>
+<div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;<br/>
+&lt;ConceptRoot xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;6a038274-a625-46d7-944a-ec07c91011f8&quot; name=&quot;IfcDistributionControlElementType&quot; applicableRootEntity=&quot;IfcDistributionControlElementType&quot;&gt;<br/>
+&nbsp;&lt;Applicability&gt;<br/>
+&nbsp;&nbsp;&lt;Template ref=&quot;5d52b8e5-f0d9-447e-8268-096941b0d5cb&quot; /&gt;<br/>
+&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&lt;/Applicability&gt;<br/>
+&nbsp;&lt;Concepts&gt;<br/>
+&nbsp;&nbsp;&lt;Concept uuid=&quot;430a797d-916b-43c7-bb2b-67ec261a2c0c&quot; name=&quot;Product Type Assignment&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;Template ref=&quot;8b9545ad-f9e9-403d-8682-5460bfeb2706&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;TemplateRules operator=&quot;and&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates task types available to purchase, install, renovate, demolish, operate, or otherwise act upon occurrences of the element type.  Such task types may be instantiated as task occurrences assigned to occurrences of the element type.  Prices (such as for purchasing or shipping) may be established by resource types assigned to task types.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcTaskType&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates procedure types available to operate occurrences of the element type.  Such procedure types may be instantiated as procedure occurrences assigned to occurrences of the element type.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcProcedureType&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;TemplateRule Description=&quot;Indicates event types available to be raised by occurrences of the element type, sequenced by procedures to be followed.  Such event types may be instantiated as event occurrences assigned to occurrences of the element type.&quot; Parameters=&quot;Type[Type]=&amp;apos;IfcEventType&amp;apos;&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/TemplateRules&gt;<br/>
+&nbsp;&nbsp;&lt;/Concept&gt;<br/>
+&nbsp;&lt;/Concepts&gt;<br/>
+&lt;/ConceptRoot&gt;<br/>
+
+</code></div></details>
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm"><a href="../../ifckernel/lexical/ifcobjectdefinition.htm">IfcObjectDefinition</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcobjectdefinition.htm#classification-association">Classification Association</a></td><td><a href="../../templates/classification-association.htm">Classification Association</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifctypeproduct.htm">IfcTypeProduct</a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifctypeproduct.htm#product-type-shape">Product Type Shape</a></td><td><a href="../../templates/product-type-shape.htm">Product Type Shape</a></td><td>General Usage</td></tr>
+
+<tr><td colspan="3"><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm"><span class="self-ref">IfcDistributionControlElementType</span></a></td></tr><tr><td> </td><td><a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm#product-type-assignment">Product Type Assignment</a></td><td><a href="../../templates/product-type-assignment.htm">Product Type Assignment</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm">IfcDistributionControlElementType</a>&quot; type=&quot;ifc:<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm">IfcDistributionControlElementType</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelementtype.htm">IfcDistributionControlElementType</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcDistributionControlElementType<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcbuildingcontrolsdomain/lexical/ifcactuatortype.htm">IfcActuatorType</a>, <a href="../../ifcbuildingcontrolsdomain/lexical/ifcalarmtype.htm">IfcAlarmType</a>, <a href="../../ifcbuildingcontrolsdomain/lexical/ifccontrollertype.htm">IfcControllerType</a>, <a href="../../ifcbuildingcontrolsdomain/lexical/ifcflowinstrumenttype.htm">IfcFlowInstrumentType</a>, <a href="../../ifcelectricaldomain/lexical/ifcprotectivedevicetrippingunittype.htm">IfcProtectiveDeviceTrippingUnitType</a>, <a href="../../ifcbuildingcontrolsdomain/lexical/ifcsensortype.htm">IfcSensorType</a>, <a href="../../ifcbuildingcontrolsdomain/lexical/ifcunitarycontrolelementtype.htm">IfcUnitaryControlElementType</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcproductextension/lexical/ifcdistributionelementtype.htm">IfcDistributionElementType</a>)<b>;</b><br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcsharedbldgserviceelements/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcdistributioncontrolelementtype.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

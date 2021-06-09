@@ -1,0 +1,1190 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../details-shim.css">
+    <script type="text/javascript" src="../details-shim.js"></script>
+    <title>Fundamental concepts and assumptions</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 3 index2 0 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("toc-4.htm#");
+//-->
+</script>
+
+<h1 class="num" id="scope">Fundamental concepts and assumptions</h1>
+<p>This specification consists of a schema defining data types, along with common concepts indicating use of data types for particular scenarios. This chapter defines such common concepts, which are applied at entities having specific use. Such concepts also form the basis of model views, which are supplementary specifications that adapt the scope and rules of this schema for targeted domains within the building industry.</p>
+<p>The concepts assigned to General usage definitions are for clarity purposes and do not represent all official concept templates which might be assigned to entities in domain specific model views.</p>
+<p>Each concept template defines a graph of entities and attributes, with constraints and parameters set for particular attributes and instance types. Various entities within this schema reference such concept templates and adapt them for particular use according to parameters.</p>
+<blockquote class="example">
+<p>EXAMPLE  The 'Ports' concept template defines distribution system connectivity for mechanical, electrical, and plumbing systems; a pipe segment defines an application of the 'Ports' concept, having one port as an inlet and another as an outlet.</p>
+</blockquote>
+<details open="open"><summary>Concept templates</summary><table class="gridtable">
+<tr><th>Template</th>
+<th>General Usage</th>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-assignment.htm">Object Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/actor-assignment.htm">Actor Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/control-assignment.htm">Control Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/group-assignment.htm">Group Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/process-assignment.htm">Process Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-assignment.htm">Product Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-type-assignment.htm">Product Type Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/resource-assignment.htm">Resource Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/resource-type-assignment.htm">Resource Type Assignment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-association.htm">Object Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/approval-association.htm">Approval Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/classification-association.htm">Classification Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/constraint-association.htm">Constraint Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/document-association.htm">Document Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/material-association.htm">Material Association</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-constituent-set.htm">Material Constituent Set</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-layer-set-usage.htm">Material Layer Set Usage</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-layer-set.htm">Material Layer Set</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-profile-set-usage.htm">Material Profile Set Usage</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-profile-set.htm">Material Profile Set</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-single.htm">Material Single</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-attributes.htm">Object Attributes</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/object-occurrence-attributes.htm">Object Occurrence Attributes</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/element-occurrence-attributes.htm">Element Occurrence Attributes</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/door-attributes.htm">Door Attributes</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/object-predefined-type.htm">Object Predefined Type</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/object-user-identity.htm">Object User Identity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/revision-control.htm">Revision Control</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/software-identity.htm">Software Identity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-composition.htm">Object Composition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/aggregation.htm">Aggregation</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/alignment-decomposition.htm">Alignment Decomposition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/element-composition.htm">Element Composition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/element-decomposition.htm">Element Decomposition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/spatial-composition.htm">Spatial Composition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/spatial-decomposition.htm">Spatial Decomposition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/element-projecting.htm">Element Projecting</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/element-voiding.htm">Element Voiding</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/nesting.htm">Nesting</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/element-nesting.htm">Element Nesting</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/object-nesting.htm">Object Nesting</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/port-nesting.htm">Port Nesting</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-connectivity.htm">Object Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/control-flow.htm">Control Flow</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/element-connectivity.htm">Element Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/path-connectivity.htm">Path Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/port-connectivity.htm">Port Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/element-filling.htm">Element Filling</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-relative-positioning.htm">Product Relative Positioning</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/sequential-connectivity.htm">Sequential Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/space-boundaries.htm">Space Boundaries</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/space-boundaries-1st-level.htm">Space Boundaries 1st Level</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/space-boundaries-2nd-level.htm">Space Boundaries 2nd Level</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/spatial-service-connectivity.htm">Spatial Service Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/spatial-structure.htm">Spatial Structure</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/spatial-container.htm">Spatial Container</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/spatial-containment.htm">Spatial Containment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/structural-activity.htm">Structural Activity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/structural-connectivity.htm">Structural Connectivity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/object-definition.htm">Object Definition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/object-typing.htm">Object Typing</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/property-sets.htm">Property Sets</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/property-sets-for-objects.htm">Property Sets for Objects</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/property-sets-with-override.htm">Property Sets with Override</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/property-sets-for-performance.htm">Property Sets for Performance</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/property-sets-for-types.htm">Property Sets for Types</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/quantity-sets.htm">Quantity Sets</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/product-shape.htm">Product Shape</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-geometric-representation.htm">Product Geometric Representation</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/alignment-geometry.htm">Alignment Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/alignment-geometry-gradient.htm">Alignment Geometry Gradient</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/annotation-geometry.htm">Annotation Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/annotation-2d-geometry.htm">Annotation 2D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/annotation-3d-geometry.htm">Annotation 3D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/axis-geometry.htm">Axis Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/axis-2d-geometry.htm">Axis 2D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/axis-3d-geometry.htm">Axis 3D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-geometry.htm">Body Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-advancedbrep-geometry.htm">Body AdvancedBrep Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-advancedsweptsolid-geometry.htm">Body AdvancedSweptSolid Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-brep-geometry.htm">Body Brep Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-clipping-geometry.htm">Body Clipping Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-csg-geometry.htm">Body CSG Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-surfacemodel-geometry.htm">Body SurfaceModel Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-surfaceorsolidmodel-geometry.htm">Body SurfaceOrSolidModel Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-sweptsolid-geometry.htm">Body SweptSolid Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/body-tessellation-geometry.htm">Body Tessellation Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/box-geometry.htm">Box Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/clearance-geometry.htm">Clearance Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/cog-geometry.htm">CoG Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/footprint-geometry.htm">FootPrint Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/footprint-geomset-geometry.htm">FootPrint GeomSet Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/lighting-geometry.htm">Lighting Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/mapped-geometry.htm">Mapped Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/profile-geometry.htm">Profile Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/profile-3d-geometry.htm">Profile 3D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/reference-geometry.htm">Reference Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/surface-geometry.htm">Surface Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/surface-3d-geometry.htm">Surface 3D Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/survey-points-geometry.htm">Survey Points Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-placement.htm">Product Placement</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/product-linear-placement.htm">Product Linear Placement</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/product-local-placement.htm">Product Local Placement</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-topology-representation.htm">Product Topology Representation</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/reference-topology.htm">Reference Topology</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/product-type-shape.htm">Product Type Shape</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/product-type-geometric-representation.htm">Product Type Geometric Representation</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/type-axis-geometry.htm">Type Axis Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/type-body-geometry.htm">Type Body Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/type-clearance-geometry.htm">Type Clearance Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/type-lighting-geometry.htm">Type Lighting Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/project-context.htm">Project Context</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-classification-information.htm">Project Classification Information</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-declaration.htm">Project Declaration</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-document-information.htm">Project Document Information</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-global-positioning.htm">Project Global Positioning</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-library-information.htm">Project Library Information</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-representation-context.htm">Project Representation Context</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/project-units.htm">Project Units</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+<a href="../schema/templates/resource-limits.htm">Resource Limits</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/resource-cost.htm">Resource Cost</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/resource-quantity.htm">Resource Quantity</a>
+</td>
+<td>X</td>
+</tr>
+</table>
+</details>
+<p>
+<details open="open"><summary>Partial templates in use</summary><table class="gridtable">
+<tr><th>Template</th>
+<th>General Usage</th>
+</tr>
+<tr><td>
+<a href="../schema/templates/partial-templates.htm">Partial Templates</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/geometry-styles.htm">Geometry Styles</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/geometry-curve-style.htm">Geometry Curve Style</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/geometry-fill-area-style.htm">Geometry Fill Area Style</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/geometry-text-style.htm">Geometry Text Style</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/geometry.htm">Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/curve-segment-geometry.htm">Curve Segment Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/arc-segment.htm">Arc Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/bloss-transition-segment.htm">Bloss Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/clothoid-transition-segment.htm">Clothoid Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/cosine-transition-segment.htm">Cosine Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/cubic-transition-segment.htm">Cubic Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/helmert-transition-segment.htm">Helmert Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/linear-segment.htm">Linear Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/parabolic-transition-segment.htm">Parabolic Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/sine-transition-segment.htm">Sine Transition Segment</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/solid-model-geometry.htm">Solid Model Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/advanced-brep-geometry.htm">Advanced Brep Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/faceted-brep-geometry.htm">Faceted Brep Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/surface-model-geometry.htm">Surface Model Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/tessellated-geometry.htm">Tessellated Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/polygonal-geometry.htm">Polygonal Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/triangulated-geometry.htm">Triangulated Geometry</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/triangulated-geometry-with-textures.htm">Triangulated Geometry With Textures</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/material-definition.htm">Material Definition</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material.htm">Material</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/material-styles.htm">Material Styles</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-surface-style.htm">Material Surface Style</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/material-surface-color-style.htm">Material Surface Color Style</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/quantities.htm">Quantities</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/area-quantity.htm">Area Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/count-quantity.htm">Count Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/length-quantity.htm">Length Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/time-quantity.htm">Time Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/volume-quantity.htm">Volume Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/weight-quantity.htm">Weight Quantity</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/texture.htm">Texture</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/image-texture.htm">Image Texture</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/texture-map.htm">Texture Map</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="../schema/templates/indexed-texture-map.htm">Indexed Texture Map</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+<a href="../schema/templates/values.htm">Values</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/bounded-value.htm">Bounded Value</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/enumerated-value.htm">Enumerated Value</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/list-value.htm">List Value</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/single-value.htm">Single Value</a>
+</td>
+<td>X</td>
+</tr>
+<tr><td>
+&nbsp;
+&nbsp;
+<a href="../schema/templates/table-value.htm">Table Value</a>
+</td>
+<td>X</td>
+</tr>
+</table>
+</details>
+<p>
+</p>
+<p><a href="../link/chapter-4.htm" target="_top" ><img src="../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,243 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCSHAREDCOMPONENTELEMENTS;
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcPositiveLengthMeasure
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcElement,
+  IfcElementType
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+);
+
+TYPE IfcBuildingElementPartTypeEnum = ENUMERATION OF
+	(INSULATION
+	,PRECASTPANEL
+	,APRON
+	,ARMOURUNIT
+	,SAFETYCAGE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDiscreteAccessoryTypeEnum = ENUMERATION OF
+	(ANCHORPLATE
+	,BRACKET
+	,SHOE
+	,EXPANSION_JOINT_DEVICE
+	,CABLEARRANGER
+	,INSULATOR
+	,LOCK
+	,TENSIONINGEQUIPMENT
+	,RAILPAD
+	,SLIDINGCHAIR
+	,RAIL_LUBRICATION
+	,PANEL_STRENGTHENING
+	,RAILBRACE
+	,ELASTIC_CUSHION
+	,SOUNDABSORPTION
+	,POINTMACHINEMOUNTINGDEVICE
+	,POINT_MACHINE_LOCKING_DEVICE
+	,RAIL_MECHANICAL_EQUIPMENT
+	,BIRDPROTECTION
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcFastenerTypeEnum = ENUMERATION OF
+	(GLUE
+	,MORTAR
+	,WELD
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcMechanicalFastenerTypeEnum = ENUMERATION OF
+	(ANCHORBOLT
+	,BOLT
+	,DOWEL
+	,NAIL
+	,NAILPLATE
+	,RIVET
+	,SCREW
+	,SHEARCONNECTOR
+	,STAPLE
+	,STUDSHEARCONNECTOR
+	,COUPLER
+	,RAILJOINT
+	,RAILFASTENING
+	,CHAIN
+	,ROPE
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcVibrationDamperTypeEnum = ENUMERATION OF
+	(BENDING_YIELD
+	,SHEAR_YIELD
+	,AXIAL_YIELD
+	,FRICTION
+	,VISCOUS
+	,RUBBER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcBuildingElementPart
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcBuildingElementPartTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcBuildingElementPartTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcBuildingElementPartTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDCOMPONENTELEMENTS.IFCBUILDINGELEMENTPARTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcBuildingElementPartType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcBuildingElementPartTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcBuildingElementPartTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcBuildingElementPartTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcDiscreteAccessory
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcDiscreteAccessoryTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcDiscreteAccessoryTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcDiscreteAccessoryTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDCOMPONENTELEMENTS.IFCDISCRETEACCESSORYTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcDiscreteAccessoryType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcDiscreteAccessoryTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcDiscreteAccessoryTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcDiscreteAccessoryTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcElementComponent
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBuildingElementPart
+    ,IfcDiscreteAccessory
+    ,IfcFastener
+    ,IfcImpactProtectionDevice
+    ,IfcMechanicalFastener
+    ,IfcReinforcingElement
+    ,IfcSign
+    ,IfcVibrationDamper
+    ,IfcVibrationIsolator))
+ SUBTYPE OF (IfcElement);
+END_ENTITY;
+
+ENTITY IfcElementComponentType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcBuildingElementPartType
+    ,IfcDiscreteAccessoryType
+    ,IfcFastenerType
+    ,IfcImpactProtectionDeviceType
+    ,IfcMechanicalFastenerType
+    ,IfcReinforcingElementType
+    ,IfcSignType
+    ,IfcVibrationDamperType
+    ,IfcVibrationIsolatorType))
+ SUBTYPE OF (IfcElementType);
+END_ENTITY;
+
+ENTITY IfcFastener
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcFastenerTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcFastenerTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFastenerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDCOMPONENTELEMENTS.IFCFASTENERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcFastenerType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcFastenerTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcFastenerTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFastenerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcMechanicalFastener
+ SUBTYPE OF (IfcElementComponent);
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	NominalLength : OPTIONAL IfcPositiveLengthMeasure;
+	PredefinedType : OPTIONAL IfcMechanicalFastenerTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcMechanicalFastenerTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcMechanicalFastenerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDCOMPONENTELEMENTS.IFCMECHANICALFASTENERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcMechanicalFastenerType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : IfcMechanicalFastenerTypeEnum;
+	NominalDiameter : OPTIONAL IfcPositiveLengthMeasure;
+	NominalLength : OPTIONAL IfcPositiveLengthMeasure;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcMechanicalFastenerTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcMechanicalFastenerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcVibrationDamper
+ SUBTYPE OF (IfcElementComponent);
+	PredefinedType : OPTIONAL IfcVibrationDamperTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR
+('IFCSHAREDCOMPONENTELEMENTS.IFCVIBRATIONDAMPERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcVibrationDamperType
+ SUBTYPE OF (IfcElementComponentType);
+	PredefinedType : OPTIONAL IfcVibrationDamperTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcVibrationDamperTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcVibrationDamperTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+END_SCHEMA;

@@ -1,0 +1,172 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>Pset_Risk</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 6 index2 4 index3 4 index4 10 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-6.htm#6.4.4.11");
+//-->
+</script>
+
+<h4 class="std">6.4.4.11 Pset_Risk</h4>
+<p><span class="self-ref">PSET_TYPEDRIVENOVERRIDE</span>
+/
+<span class="self-ref">IfcProcess,IfcTypeProcess,IfcProduct,IfcTypeProduct,IfcGroup</span>
+</p><details open="open"><summary>Natural language names</summary><table>
+</details>
+<details open="open"><summary>Properties</summary><p><a href="http://lookup.bsdd.buildingsmart.com/api/4.0/IfdPSet/2HuDtqrhf5uxQ9eGKGllIy/ifcVersion/2x4" target="ifd"><img border="0" src="../../../img/external.png" title="Link to IFD"/> buildingSMART Data Dictionary</a></p>
+
+<p><a href="../../../psd/Pset_Risk.xml"><img border="0" src="../../../img/diagram.png" title="Link to PSD-XML"/> PSD-XML</a></p>
+
+
+<table class="gridtable">
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>RiskName</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+A locally unique identifier for the risk entry that can be used to track the development and mitiagtion of the risk throughout the project life cycle
+
+</td></tr>
+<tr><td>RiskType</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_risktype.htm">PEnum_RiskType</a></td><td>
+Identifies the predefined types of risk from which the type required may be set.
+
+</td></tr>
+<tr><td>NatureOfRisk</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+A description of the generic nature of the context or hazard that might be encountered.
+
+</td></tr>
+<tr><td>RiskAssessmentMethodology</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+An indication or link to the chosen risk assessment methodology, for example PAS1192-6 or a chosen ISO13100 annex.
+
+</td></tr>
+<tr><td>UnmitigatedRiskLikelihood</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the likelihood of the hazard prior to any specific mitigation.
+
+</td></tr>
+<tr><td>UnmitigatedRiskConsequence</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the consequence of the hazard prior to any specific mitigation.
+
+</td></tr>
+<tr><td>UnmitigatedRiskSignificance</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the signifiance of the risk given the likelihood and consequence prior to any specific mitigation.
+
+</td></tr>
+<tr><td>MitigationPlanned</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+The planned (agreed and irrevocable) mitigation of the likelhood and consequences of the hazard.
+
+</td></tr>
+<tr><td>MitigatedRiskLikelihood</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the likelihood of the hazard given the planned mitigation.
+
+</td></tr>
+<tr><td>MitigatedRiskConsequence</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the consequence of the hazard given the planned mitigation.
+
+</td></tr>
+<tr><td>MitigatedRiskSignificance</td><td>
+<span class="self-ref">P_ENUMERATEDVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+/
+ <a href="../../../penum/penum_riskrating.htm">PEnum_RiskRating</a></td><td>
+Identifies the signifiance of the risk given the mitigation of likelihood and consequence.
+
+</td></tr>
+<tr><td>MitigationProposed</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+Any proposed, but not yet agreed and irrevocable, mitigation of the likelhood and consequences of the hazard.
+
+</td></tr>
+<tr><td>AssociatedProduct</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+An indication or link to any associated product or material that may trigger the hazard. If used directly on an annotation or semantic object. for an alternative see group use encording template
+
+</td></tr>
+<tr><td>AssociatedActivity</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+An indication or link to any associated activity or process that may trigger the hazard. If used directly on an annotation or semantic object. for an alternative see group use encording template
+
+</td></tr>
+<tr><td>AssociatedLocation</td><td>
+<span class="self-ref">P_SINGLEVALUE</span>
+/
+<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>
+</td><td>
+An indication or link to any associated location or space that may trigger the hazard. If used directly on an annotation or semantic object. for an alternative see group use encording template
+
+</td></tr>
+</table>
+</details>
+</p>
+<p><a href="../../../link/pset_risk.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

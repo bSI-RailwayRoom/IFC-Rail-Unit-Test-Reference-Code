@@ -1,0 +1,182 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcRelReferencedInSpatialStructure</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 4 index3 3 index4 49 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.4.3.50");
+//-->
+</script>
+
+<h4 class="num">IfcRelReferencedInSpatialStructure</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Bezieht sich auf eine räumliche Struktur - Relation</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Rel Referenced In Spatial Structure</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OwnerHistory</td><td></td><td></td><td>MODIFIED</td><td>Instantiation changed to <i>OPTIONAL</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatingStructure</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcSpatialStructureElement</i> to <i>IfcSpatialElement</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-2-4_0_2_0/index.htm">IFC4 Addendum 2 4.0.2.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatingStructure</td><td></td><td>X</td><td>MODIFIED</td><td>Xsdformat changed from <i>Attribute</i> to <i>Hidden</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4x2-to-ifc4x3_rc1/index.htm">IFC4x2 to IFC4x3_RC1</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelatedElements</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>IfcProduct</i> to <i>IfcSpatialReferenceSelect</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The objectified relationship, <span class="self-ref">IfcRelReferencedInSpatialStructure</span> is used to assign elements in addition to those levels of the project spatial\S\ structure, in which they are referenced, but not primarily contained. <font color="#ff0000">It is also used to connect a system to the relevant spatial element that it serves.</font><br>
+NOTE The primary containment relationship between an element and the spatial structure is handled by <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a>.<br>
+Any element can be referenced to zero, one or several levels of the spatial structure. Whereas the <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a> relationship is required to be hierarchical (an element can only be contained in exactly one spatial structure element), the <span class="self-ref">IfcRelReferencedInSpatialStructure</span> is not restricted to be hierarchical.<br>
+EXAMPLE A wall might be normally contained within a storey, and since it does not span through several stories, it is not referenced in any additional storey. However a curtain wall might span through several stories, in this case it can be contained within the ground floor, but it would be referenced by all additional stories, it spans.<br>
+Predefined spatial structure elements to which elements can be assigned are</p>
+<ul>
+<li>site as <a href="../../ifcproductextension/lexical/ifcsite.htm">IfcSite</a></li>
+<li>facility as <a href="../../ifcproductextension/lexical/ifcfacility.htm">IfcFacility</a> or its subtypes <a href="../../ifcproductextension/lexical/ifcbridge.htm">IfcBridge</a>, <a href="../../ifcproductextension/lexical/ifcbuilding.htm">IfcBuilding</a>, <a href="../../ifcportsandwaterways/lexical/ifcmarinefacility.htm">IfcMarineFacility</a>, <a href="../../ifcrail/lexical/ifcrailway.htm">IfcRailway</a> or <a href="../../ifcroad/lexical/ifcroad.htm">IfcRoad</a></li>
+<li>part of facility as <i>IfcFaciltityPart</i>, or more specifically as <a href="../../ifcproductextension/lexical/ifcbuildingstorey.htm">IfcBuildingStorey</a> or <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a></li>
+</ul>
+<p>Elements can also be references in a spatial zone that is provided as <a href="../../ifcproductextension/lexical/ifcspatialzone.htm">IfcSpatialZone</a>.<br>
+Figure 167 shows the use of <a href="../../ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">IfcRelContainedInSpatialStructure</a> and <span class="self-ref">IfcRelReferencedInSpatialStructure</span> to assign an <a href="../../ifcsharedbldgelements/lexical/ifccurtainwall.htm">IfcCurtainWall</a> to two different levels within the spatial structure. It is primarily contained within the ground floor, and additionally referenced within the first and second floor.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifcrelreferencedinspatialstructure-fig1.png" alt="&quot;reference and containment&quot;" title="Figure 181 &mdash; Relationship for spatial structure referencing"></td></tr><tr><td><p class="figure">Figure 181 &mdash; Relationship for spatial structure referencing</p></td></tr></table></p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x3.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>5</td><td>RelatedElements</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcspatialreferenceselect.htm">IfcSpatialReferenceSelect</a></td><td>S[1:?]</td><td>
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatingStructure</td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></td><td></td><td>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>AllowedRelatedElements</td><td>The relationship object shall not be used to include other spatial structure elements into a spatial structure element. The hierarchy of the spatial structure is defined using <a href="../../ifckernel/lexical/ifcrelaggregates.htm">IfcRelAggregates</a>. Exception: an <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> can be referenced by another spatial structure element, in particular by an <a href="../../ifcproductextension/lexical/ifcspatialzone.htm">IfcSpatialZone</a>.
+
+<blockquote>
+IFC4 CHANGE  The relaxation to allow <a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a> has been included.
+</blockquote>
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcrelreferencedinspatialstructure.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifckernel/lexical/ifcrelconnects.htm" alt="IfcRelConnects" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifckernel/lexical/ifcrelationship.htm" alt="IfcRelationship" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelationship.htm">IfcRelationship</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a></i></td></tr>
+<tr><td colspan="6"><a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a></td></tr>
+<tr><td>5</td><td>RelatedElements</td><td><a href="../../ifcsharedinfrastructureelements/lexical/ifcspatialreferenceselect.htm">IfcSpatialReferenceSelect</a></td><td>S[1:?]</td><td>
+</td><td>X</td></tr>
+<tr><td>6</td><td>RelatingStructure</td><td><a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a></td><td></td><td>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a>&quot; type=&quot;ifc:<a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcproductextension/lexical/ifcrelreferencedinspatialstructure.htm">IfcRelReferencedInSpatialStructure</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;RelatedElements&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcsharedinfrastructureelements/lexical/ifcspatialreferenceselect.htm">IfcSpatialReferenceSelect</a>&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcsharedinfrastructureelements/lexical/ifcspatialreferenceselect.htm">IfcSpatialReferenceSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcRelReferencedInSpatialStructure<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcrelconnects.htm">IfcRelConnects</a>)<b>;</b><br/>
+&nbsp;&nbsp;RelatedElements : <span class="keyword">SET</span> [1:?] <span class="keyword">OF</span> <a href="../../ifcsharedinfrastructureelements/lexical/ifcspatialreferenceselect.htm">IfcSpatialReferenceSelect</a>;<br/>
+&nbsp;&nbsp;RelatingStructure : <a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;AllowedRelatedElements : SIZEOF(QUERY(temp &lt;* RelatedElements | (&#39;IFCPRODUCTEXTENSION.<a href="../../ifcproductextension/lexical/ifcspatialstructureelement.htm">IfcSpatialStructureElement</a>&#39; IN TYPEOF(temp)) AND (NOT (&#39;IFCPRODUCTEXTENSION.<a href="../../ifcproductextension/lexical/ifcspace.htm">IfcSpace</a>&#39; IN TYPEOF(temp)))<br/>
+)) = 0;<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcproductextension/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifcproduct.htm">IfcProduct</a>
+<a href="../../ifcproductextension/lexical/ifcspatialelement.htm">IfcSpatialElement</a>
+<a href="../../ifcproductextension/lexical/ifcsystem.htm">IfcSystem</a>
+</p>
+<p><a href="../../../link/ifcrelreferencedinspatialstructure.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

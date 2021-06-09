@@ -1,0 +1,438 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCSHAREDBLDGSERVICEELEMENTS;
+
+REFERENCE FROM IFCKERNEL
+(
+  IfcRelConnects
+);
+
+REFERENCE FROM IFCMEASURERESOURCE
+(
+  IfcLabel
+);
+
+REFERENCE FROM IFCPRODUCTEXTENSION
+(
+  IfcDistributionElement,
+  IfcPort,
+  IfcDistributionElementType,
+  IfcSystem
+);
+
+TYPE IfcDistributionChamberElementTypeEnum = ENUMERATION OF
+	(FORMEDDUCT
+	,INSPECTIONCHAMBER
+	,INSPECTIONPIT
+	,MANHOLE
+	,METERCHAMBER
+	,SUMP
+	,TRENCH
+	,VALVECHAMBER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDistributionPortTypeEnum = ENUMERATION OF
+	(CABLE
+	,CABLECARRIER
+	,DUCT
+	,PIPE
+	,WIRELESS
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcDistributionSystemEnum = ENUMERATION OF
+	(AIRCONDITIONING
+	,AUDIOVISUAL
+	,CHEMICAL
+	,CHILLEDWATER
+	,COMMUNICATION
+	,COMPRESSEDAIR
+	,CONDENSERWATER
+	,CONTROL
+	,CONVEYING
+	,DATA
+	,DISPOSAL
+	,DOMESTICCOLDWATER
+	,DOMESTICHOTWATER
+	,DRAINAGE
+	,EARTHING
+	,ELECTRICAL
+	,ELECTROACOUSTIC
+	,EXHAUST
+	,FIREPROTECTION
+	,FUEL
+	,GAS
+	,HAZARDOUS
+	,HEATING
+	,LIGHTING
+	,LIGHTNINGPROTECTION
+	,MUNICIPALSOLIDWASTE
+	,OIL
+	,OPERATIONAL
+	,POWERGENERATION
+	,RAINWATER
+	,REFRIGERATION
+	,SECURITY
+	,SEWAGE
+	,SIGNAL
+	,STORMWATER
+	,TELEPHONE
+	,TV
+	,VACUUM
+	,VENT
+	,VENTILATION
+	,WASTEWATER
+	,WATERSUPPLY
+	,CATENARY_SYSTEM
+	,OVERHEAD_CONTACTLINE_SYSTEM
+	,RETURN_CIRCUIT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcFlowDirectionEnum = ENUMERATION OF
+	(SOURCE
+	,SINK
+	,SOURCEANDSINK
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcDistributionChamberElement
+ SUBTYPE OF (IfcDistributionFlowElement);
+	PredefinedType : OPTIONAL IfcDistributionChamberElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcDistributionChamberElementTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcDistributionChamberElementTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+('IFCSHAREDBLDGSERVICEELEMENTS.IFCDISTRIBUTIONCHAMBERELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcDistributionChamberElementType
+ SUBTYPE OF (IfcDistributionFlowElementType);
+	PredefinedType : IfcDistributionChamberElementTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcDistributionChamberElementTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcDistributionChamberElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcDistributionCircuit
+ SUBTYPE OF (IfcDistributionSystem);
+END_ENTITY;
+
+ENTITY IfcDistributionControlElement
+ SUPERTYPE OF (ONEOF
+    (IfcActuator
+    ,IfcAlarm
+    ,IfcController
+    ,IfcFlowInstrument
+    ,IfcProtectiveDeviceTrippingUnit
+    ,IfcSensor
+    ,IfcUnitaryControlElement))
+ SUBTYPE OF (IfcDistributionElement);
+ INVERSE
+	AssignedToFlowElement : SET [0:1] OF IfcRelFlowControlElements FOR RelatedControlElements;
+END_ENTITY;
+
+ENTITY IfcDistributionControlElementType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcActuatorType
+    ,IfcAlarmType
+    ,IfcControllerType
+    ,IfcFlowInstrumentType
+    ,IfcProtectiveDeviceTrippingUnitType
+    ,IfcSensorType
+    ,IfcUnitaryControlElementType))
+ SUBTYPE OF (IfcDistributionElementType);
+END_ENTITY;
+
+ENTITY IfcDistributionFlowElement
+ SUPERTYPE OF (ONEOF
+    (IfcDistributionChamberElement
+    ,IfcEnergyConversionDevice
+    ,IfcFlowController
+    ,IfcFlowFitting
+    ,IfcFlowMovingDevice
+    ,IfcFlowSegment
+    ,IfcFlowStorageDevice
+    ,IfcFlowTerminal
+    ,IfcFlowTreatmentDevice))
+ SUBTYPE OF (IfcDistributionElement);
+ INVERSE
+	HasControlElements : SET [0:1] OF IfcRelFlowControlElements FOR RelatingFlowElement;
+END_ENTITY;
+
+ENTITY IfcDistributionFlowElementType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcDistributionChamberElementType
+    ,IfcEnergyConversionDeviceType
+    ,IfcFlowControllerType
+    ,IfcFlowFittingType
+    ,IfcFlowMovingDeviceType
+    ,IfcFlowSegmentType
+    ,IfcFlowStorageDeviceType
+    ,IfcFlowTerminalType
+    ,IfcFlowTreatmentDeviceType))
+ SUBTYPE OF (IfcDistributionElementType);
+END_ENTITY;
+
+ENTITY IfcDistributionPort
+ SUBTYPE OF (IfcPort);
+	FlowDirection : OPTIONAL IfcFlowDirectionEnum;
+	PredefinedType : OPTIONAL IfcDistributionPortTypeEnum;
+	SystemType : OPTIONAL IfcDistributionSystemEnum;
+END_ENTITY;
+
+ENTITY IfcDistributionSystem
+ SUPERTYPE OF (ONEOF
+    (IfcDistributionCircuit))
+ SUBTYPE OF (IfcSystem);
+	LongName : OPTIONAL IfcLabel;
+	PredefinedType : OPTIONAL IfcDistributionSystemEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR
+(PredefinedType <> IfcDistributionSystemEnum.USERDEFINED) OR
+((PredefinedType = IfcDistributionSystemEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));
+END_ENTITY;
+
+ENTITY IfcEnergyConversionDevice
+ SUPERTYPE OF (ONEOF
+    (IfcAirToAirHeatRecovery
+    ,IfcBoiler
+    ,IfcBurner
+    ,IfcChiller
+    ,IfcCoil
+    ,IfcCondenser
+    ,IfcCooledBeam
+    ,IfcCoolingTower
+    ,IfcElectricGenerator
+    ,IfcElectricMotor
+    ,IfcEngine
+    ,IfcEvaporativeCooler
+    ,IfcEvaporator
+    ,IfcHeatExchanger
+    ,IfcHumidifier
+    ,IfcMotorConnection
+    ,IfcSolarDevice
+    ,IfcTransformer
+    ,IfcTubeBundle
+    ,IfcUnitaryEquipment))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcEnergyConversionDeviceType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAirToAirHeatRecoveryType
+    ,IfcBoilerType
+    ,IfcBurnerType
+    ,IfcChillerType
+    ,IfcCoilType
+    ,IfcCondenserType
+    ,IfcCooledBeamType
+    ,IfcCoolingTowerType
+    ,IfcElectricGeneratorType
+    ,IfcElectricMotorType
+    ,IfcEngineType
+    ,IfcEvaporativeCoolerType
+    ,IfcEvaporatorType
+    ,IfcHeatExchangerType
+    ,IfcHumidifierType
+    ,IfcMotorConnectionType
+    ,IfcSolarDeviceType
+    ,IfcTransformerType
+    ,IfcTubeBundleType
+    ,IfcUnitaryEquipmentType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowController
+ SUPERTYPE OF (ONEOF
+    (IfcAirTerminalBox
+    ,IfcDamper
+    ,IfcDistributionBoard
+    ,IfcElectricDistributionBoard
+    ,IfcElectricTimeControl
+    ,IfcFlowMeter
+    ,IfcProtectiveDevice
+    ,IfcSwitchingDevice
+    ,IfcValve))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowControllerType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAirTerminalBoxType
+    ,IfcDamperType
+    ,IfcDistributionBoardType
+    ,IfcElectricDistributionBoardType
+    ,IfcElectricTimeControlType
+    ,IfcFlowMeterType
+    ,IfcProtectiveDeviceType
+    ,IfcSwitchingDeviceType
+    ,IfcValveType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowFitting
+ SUPERTYPE OF (ONEOF
+    (IfcCableCarrierFitting
+    ,IfcCableFitting
+    ,IfcDuctFitting
+    ,IfcJunctionBox
+    ,IfcPipeFitting))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowFittingType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCableCarrierFittingType
+    ,IfcCableFittingType
+    ,IfcDuctFittingType
+    ,IfcJunctionBoxType
+    ,IfcPipeFittingType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowMovingDevice
+ SUPERTYPE OF (ONEOF
+    (IfcCompressor
+    ,IfcFan
+    ,IfcPump))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowMovingDeviceType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCompressorType
+    ,IfcFanType
+    ,IfcPumpType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowSegment
+ SUPERTYPE OF (ONEOF
+    (IfcCableCarrierSegment
+    ,IfcCableSegment
+    ,IfcConveyorSegment
+    ,IfcDuctSegment
+    ,IfcPipeSegment))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowSegmentType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcCableCarrierSegmentType
+    ,IfcCableSegmentType
+    ,IfcConveyorSegmentType
+    ,IfcDuctSegmentType
+    ,IfcPipeSegmentType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowStorageDevice
+ SUPERTYPE OF (ONEOF
+    (IfcElectricFlowStorageDevice
+    ,IfcTank))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowStorageDeviceType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcElectricFlowStorageDeviceType
+    ,IfcTankType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowTerminal
+ SUPERTYPE OF (ONEOF
+    (IfcAirTerminal
+    ,IfcAudioVisualAppliance
+    ,IfcCommunicationsAppliance
+    ,IfcElectricAppliance
+    ,IfcFireSuppressionTerminal
+    ,IfcLamp
+    ,IfcLightFixture
+    ,IfcLiquidTerminal
+    ,IfcMedicalDevice
+    ,IfcMobileTelecommunicationsAppliance
+    ,IfcOutlet
+    ,IfcSanitaryTerminal
+    ,IfcSignal
+    ,IfcSpaceHeater
+    ,IfcStackTerminal
+    ,IfcWasteTerminal))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowTerminalType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcAirTerminalType
+    ,IfcAudioVisualApplianceType
+    ,IfcCommunicationsApplianceType
+    ,IfcElectricApplianceType
+    ,IfcFireSuppressionTerminalType
+    ,IfcLampType
+    ,IfcLightFixtureType
+    ,IfcLiquidTerminalType
+    ,IfcMedicalDeviceType
+    ,IfcMobileTelecommunicationsApplianceType
+    ,IfcOutletType
+    ,IfcSanitaryTerminalType
+    ,IfcSignalType
+    ,IfcSpaceHeaterType
+    ,IfcStackTerminalType
+    ,IfcWasteTerminalType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcFlowTreatmentDevice
+ SUPERTYPE OF (ONEOF
+    (IfcDuctSilencer
+    ,IfcElectricFlowTreatmentDevice
+    ,IfcFilter
+    ,IfcInterceptor))
+ SUBTYPE OF (IfcDistributionFlowElement);
+END_ENTITY;
+
+ENTITY IfcFlowTreatmentDeviceType
+ ABSTRACT SUPERTYPE OF (ONEOF
+    (IfcDuctSilencerType
+    ,IfcElectricFlowTreatmentDeviceType
+    ,IfcFilterType
+    ,IfcInterceptorType))
+ SUBTYPE OF (IfcDistributionFlowElementType);
+END_ENTITY;
+
+ENTITY IfcRelFlowControlElements
+ SUBTYPE OF (IfcRelConnects);
+	RelatedControlElements : SET [1:?] OF IfcDistributionControlElement;
+	RelatingFlowElement : IfcDistributionFlowElement;
+END_ENTITY;
+
+END_SCHEMA;

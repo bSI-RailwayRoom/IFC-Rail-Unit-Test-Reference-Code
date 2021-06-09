@@ -1,0 +1,139 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCsgSolid</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 8 index3 3 index4 11 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.8.3.12");
+//-->
+</script>
+
+<h4 class="num">IfcCsgSolid</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>CSG - Festkörper</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Constructive Solid Geometry Solid</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Solid Csg</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcCsgSolid</span> is the representation of a 3D shape using constructive solid geometry model. It is represented by a single 3D CSG primitive, or as a result of a Boolean operation. The operants of a Boolean operation can be Boolean operations themselves forming a CSG tree. The following volumes can be parts of the CSG tree:</p>
+<ul>
+<li>Boundary representation models, such as <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm">IfcFacetedBrep</a>, <a href="../../ifcgeometricmodelresource/lexical/ifcfacetedbrepwithvoids.htm">IfcFacetedBrepWithVoids</a>,</li>
+<li>Closed tesselated representation modles, such as <a href="../../ifcgeometricmodelresource/lexical/ifcpolygonalfaceset.htm">IfcPolygonalFaceSet</a>, <a href="../../ifcgeometricmodelresource/lexical/ifctriangulatedfaceset.htm">IfcTriangulatedFaceSet</a>,</li>
+<li>Swept area solids, such as <a href="../../ifcgeometricmodelresource/lexical/ifcextrudedareasolid.htm">IfcExtrudedAreaSolid</a>, <a href="../../ifcgeometricmodelresource/lexical/ifcrevolvedareasolid.htm">IfcRevolvedAreaSolid</a>, and their subtypes for tapering,</li>
+<li>Advanced swept area solids, such as <a href="../../ifcgeometricmodelresource/lexical/ifcsurfacecurvesweptareasolid.htm">IfcSurfaceCurveSweptAreaSolid</a>), <a href="../../ifcgeometricmodelresource/lexical/ifcfixedreferencesweptareasolid.htm">IfcFixedReferenceSweptAreaSolid</a>, <a href="../../ifcgeometricmodelresource/lexical/ifcsweptdisksolid.htm">IfcSweptDiskSolid</a></li>
+<li>Half space solids, such as <a href="../../ifcgeometricmodelresource/lexical/ifchalfspacesolid.htm">IfcHalfSpaceSolid</a> and its subtypes), and</li>
+<li>CSG primitives, the subtypes of <a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>.</li>
+</ul>
+<blockquote class="extDef">
+<p>NOTE  Definition according to ISO/CD 10303-42:1992<br>
+A solid represented as a CSG model is defined by a collection of so-called primitive solids, combined using regularized Boolean operations. The allowed operations are intersection, union, and difference. As a special case a CSG solid can also consists of a single CSG primitive.</p>
+<p>A CSG solid requires two kinds of information for its complete definition: geometric and structural. &gt; * The geometric information is conveyed by solid models. These typically primitive volumes such as cylinders, wedges and extrusions, but can include general B-Rep models. Solid models can also be half space solids.</p>
+<ul>
+<li>The structural information is in a tree (strictly an acyclic directed graph) of Boolean result and CSG solids, which represent a ‘recipe’ for building the solid. The terminal nodes are the geometric primitives and other solids. Every CSG solid has precisely one Boolean result associated with it which is the root of the tree that defines the solid. (There may be further Boolean results within the tree as operands). The significance of a CSG solid entity is that the solid defined by the associated tree is thus identified as a significant object itself, and in this way it is distinguished from other Boolean result entities representing intermediate results during the construction process.</li>
+</ul>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>csg_solid</strong> is defined in ISO 10303-42.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.5.1</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>TreeRootExpression</td><td><a href="../../ifcgeometricmodelresource/lexical/ifccsgselect.htm">IfcCsgSelect</a></td><td></td><td>
+Boolean expression of primitives and regularized operators describing the solid. The root of the tree of Boolean expressions is given explicitly as an <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanresult.htm">IfcBooleanResult</a> entitiy or as a primitive (subtypes of <a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifccsgsolid.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,242,66" href="../../../schema/ifcgeometricmodelresource/lexical/ifcsolidmodel.htm" alt="IfcSolidModel" />
+<area shape="rect" coords="18,30,254,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,266,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometricmodelresource/lexical/ifcsolidmodel.htm">IfcSolidModel</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=3</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this class, it is always 3.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometricmodelresource/lexical/ifccsgsolid.htm">IfcCsgSolid</a></td></tr>
+<tr><td>1</td><td>TreeRootExpression</td><td><a href="../../ifcgeometricmodelresource/lexical/ifccsgselect.htm">IfcCsgSelect</a></td><td></td><td>
+Boolean expression of primitives and regularized operators describing the solid. The root of the tree of Boolean expressions is given explicitly as an <a href="../../ifcgeometricmodelresource/lexical/ifcbooleanresult.htm">IfcBooleanResult</a> entitiy or as a primitive (subtypes of <a href="../../ifcgeometricmodelresource/lexical/ifccsgprimitive3d.htm">IfcCsgPrimitive3D</a>).
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifccsgsolid.htm">IfcCsgSolid</a>&quot; type=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifccsgsolid.htm">IfcCsgSolid</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifcsolidmodel.htm">IfcSolidModel</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometricmodelresource/lexical/ifccsgsolid.htm">IfcCsgSolid</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifcsolidmodel.htm">IfcSolidModel</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;TreeRootExpression&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:group ref=&quot;ifc:<a href="../../ifcgeometricmodelresource/lexical/ifccsgselect.htm">IfcCsgSelect</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcCsgSolid<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometricmodelresource/lexical/ifcsolidmodel.htm">IfcSolidModel</a>)<b>;</b><br/>
+&nbsp;&nbsp;TreeRootExpression : <a href="../../ifcgeometricmodelresource/lexical/ifccsgselect.htm">IfcCsgSelect</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometricmodelresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifccsgsolid.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

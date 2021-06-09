@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcLightDistributionCurveEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 14 index3 2 index4 0 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.14.2.1");
+//-->
+</script>
+
+<h4 class="num">IfcLightDistributionCurveEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Light Distribution Curve Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des courbes de distribution lumineuse</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>There are three kinds of light distribution curves, see Figure 412.</p>
+<blockquote class="note">
+<p>NOTE  The classification as type A, B, C is according to Standard CEN TC 169, prEN 13032-1, CIE 121:</p>
+</blockquote>
+<table></table><tr><td>
+<table border="1"> 
+<tr> 
+  <td><img src="../../../figures/ifclightdistributioncurveenum_b-plane.gif" alt="B-Type" width="300" height="300" border="0"></td> 
+  <td><img src="../../../figures/ifclightdistributioncurveenum_c-plane.gif" alt="C-Type" width="300" height="300" border="0"></td> 
+</tr> 
+<tr> 
+  <td>B-Type System</td> 
+  <td>C-Type System</td> 
+</tr> 
+</table> 
+</td></tr><tr><td><p class="figure">Figure 412 &mdash; Light distribution curves</p></td></tr>
+> HISTORY&nbsp; New enumeration in IFC2x2.
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>TYPE_A</td><td>Type A is basically not used. For completeness the Type A Photometry equals the Type B rotated 90° around the Z-Axis counter clockwise.
+</td></tr><tr><td>TYPE_B</td><td>Type B is sometimes used for floodlights. The B-Plane System has a horizontal axis. B-Angles are valid from -180° to +180° with B 0° at the bottom and B180°/B-180° at the top, β-Angles are valid from -90° to +90°.
+</td></tr><tr><td>TYPE_C</td><td>Type C is the recommended standard system. The C-Plane system equals a globe with a vertical axis. C-Angles are valid from 0° to 360°, γ-Angles are valid from 0° (south pole) to 180° (north pole).
+</td></tr><tr><td>NOTDEFINED</td><td></td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifclightdistributioncurveenum.htm">IfcLightDistributionCurveEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;type_a&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;type_b&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;type_c&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcLightDistributionCurveEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;TYPE_A, <br/>&nbsp;TYPE_B, <br/>&nbsp;TYPE_C, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationorganizationresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationorganizationresource/lexical/ifclightintensitydistribution.htm">IfcLightIntensityDistribution</a>
+</p>
+<p><a href="../../../link/ifclightdistributioncurveenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

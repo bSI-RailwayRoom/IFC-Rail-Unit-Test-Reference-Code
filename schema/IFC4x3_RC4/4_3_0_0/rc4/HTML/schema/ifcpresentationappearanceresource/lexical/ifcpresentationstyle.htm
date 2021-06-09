@@ -1,0 +1,103 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPresentationStyle</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 12 index3 3 index4 25 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.12.3.26");
+//-->
+</script>
+
+<h4 class="num">IfcPresentationStyle</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Präsentationsstil</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Presentation Style</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Style de présentation</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>The <span class="self-ref">IfcPresentationStyle</span> is an abstract generalization of style table for presentation information assigned to geometric representation items. It includes styles for curves, areas, surfaces, and text. Style information may include colour, hatching, rendering, and text fonts.</p>
+<p>The different styles may include length measures (directly as a length measure with infered unit, or indirectly as a ratio in relation to another length measure). They may apply to curve pattern, hatch line distances, text spacing and font sizes. The attribute <i>ModelOrDraughting</i> determines whether those length measures are provided as model or draughting measures.</p>
+<ul>
+<li>Model measures, also called scale dependent measures, define the distance, size or other length measures as being always the same in model space and the distance size or other length measures on paper depend on the plotting scale.</li>
+<li>Draughting measures, also called scale independent measures, define the distance , size or other length measures as being always the same, when plotted on paper, independent of the plot scale.</li>
+</ul>
+<p>Each subtype of  <span class="self-ref">IfcPresentationStyle</span> is assigned to the <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>'s through an intermediate <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x3.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Name of the presentation style.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpresentationstyle.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="18,30,206,42" href="../../../schema/ifcpresentationappearanceresource/lexical/ifccurvestyle.htm" alt="IfcCurveStyle" />
+<area shape="rect" coords="18,54,206,66" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm" alt="IfcFillAreaStyle" />
+<area shape="rect" coords="18,78,206,90" href="../../../schema/ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm" alt="IfcSurfaceStyle" />
+<area shape="rect" coords="18,102,206,114" href="../../../schema/ifcpresentationappearanceresource/lexical/ifctextstyle.htm" alt="IfcTextStyle" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></i></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Name of the presentation style.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:Entity&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:Entity&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Name&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPresentationStyle<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm">IfcSurfaceStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifctextstyle.htm">IfcTextStyle</a>))<b>;</b><br/>
+&nbsp;&nbsp;Name : <span class="keyword">OPTIONAL</span> <a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationappearanceresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a>
+<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a>
+</p>
+<p><a href="../../../link/ifcpresentationstyle.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

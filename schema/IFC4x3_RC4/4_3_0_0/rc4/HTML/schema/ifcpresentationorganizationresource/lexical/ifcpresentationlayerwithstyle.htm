@@ -1,0 +1,189 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPresentationLayerWithStyle</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 14 index3 3 index4 9 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.14.3.10");
+//-->
+</script>
+
+<h4 class="num">IfcPresentationLayerWithStyle</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Zuordnung zu Präsentations-Layer mit Stilvorgaben</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Presentation Layer With Style</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Assignation de calque avec style</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerStyles</td><td>X</td><td>X</td><td>MODIFIED</td><td>Type changed from <i>IfcPresentationStyleSelect</i> to <i>IfcPresentationStyle</i>. <br/></td></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc4-addendum-1-4_0_1_0/index.htm">IFC4 Addendum 1 4.0.1.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerOn</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerFrozen</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayerBlocked</td><td></td><td></td><td>MODIFIED</td><td>Type changed from <i>LOGICAL</i> to <i>IfcLogical</i>. <br/></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <i>IfcPresentationLayerAssignmentWithStyle</i> extends the presentation layer assignment with capabilities to define visibility control, access control and common style information.</p>
+<p>The visibility control allows to define a layer to be either 'on' or 'off', and/or 'frozen' or 'not frozen'. The access control allows to block graphical entities from manipulations by setting a layer to be either 'blocked' or 'not blocked'. Common style information can be given to the layer.</p>
+<blockquote class="note">
+<p>NOTE  Style information assigned to layers is often restricted to 'layer colour', 'curve font', and/or 'curve width'. These styles are assigned by using the <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a> within the <i>LayerStyles</i>.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  If a styled item is assigned to a layer using the <i>IfcPresentationLayerAssignmentWithStyle</i>, it inherits the style information from the layer. In this case, it should omit its own style information. If the styled item has style information assigned (such as by <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcfillareastyle.htm">IfcFillAreaStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifctextstyle.htm">IfcTextStyle</a>, <a href="../../ifcpresentationappearanceresource/lexical/ifcsurfacestyle.htm">IfcSurfaceStyle</a>, <i>IfcSymbolStyle</i>), then it overrides the style provided by the <i>IfcPresentationLayerAssignmentWithStyle</i>.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  The <i>IfcPresentationLayerAssignmentWithStyle</i> extends the presentation_layer_assignment entity as defined in ISO/IS 10303-46:1994, p. 36.</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2x2.</p>
+</blockquote>
+<blockquote class="change-ifc2x3">
+<p>IFC2x3 CHANGE  The attributes have been modified without upward compatibility.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>5</td><td>LayerOn</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'On', FALSE that the layer is set to 'Off', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>6</td><td>LayerFrozen</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'Frozen', FALSE that the layer is set to 'Not frozen', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>7</td><td>LayerBlocked</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'Blocked', FALSE that the layer is set to 'Not blocked', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>8</td><td>LayerStyles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></td><td>S[0:?]</td><td>
+Assignment of presentation styles to the layer to provide a default style for representation items.
+<blockquote class="note">
+NOTE  In most cases the assignment of styles to a layer is restricted to an <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a> representing the layer curve colour, layer curve thickness, and layer curve type.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The data type has been changed from <i>IfcPresentationStyleSelect</i> (now deprecated) to <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+<details open="open"><summary>Formal Propositions</summary><table class="propositions">
+<tr><th>Rule</th><th>Description</th></tr>
+<tr><td>ApplicableOnlyToItems</td><td>The <span class="self-ref">IfcPresentationLayerWithStyle</span> shall only be used to assign subtypes of <a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>'s and to <a href="../../ifcgeometryresource/lexical/ifcmappeditem.htm">IfcMappedItem</a>. There shall be no instance of subtypes of <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> in the set of <i>AssignedItem</i>'s.
+
+<blockquote>
+IFC4 CHANGE  New where rule.
+</blockquote>
+</td></tr>
+</table>
+
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpresentationlayerwithstyle.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="6,6,218,18" href="../../../schema/ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm" alt="IfcPresentationLayerAssignment" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a></td></tr>
+<tr><td>1</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td></td><td>
+Name of the layer.
+</td><td>X</td></tr>
+<tr><td>2</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Additional description of the layer.
+</td><td>X</td></tr>
+<tr><td>3</td><td>AssignedItems</td><td><a href="../../ifcpresentationorganizationresource/lexical/ifclayereditem.htm">IfcLayeredItem</a></td><td>S[1:?]</td><td>
+The set of layered items, which are assigned to this layer.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Identifier</td><td><a href="../../ifcmeasureresource/lexical/ifcidentifier.htm">IfcIdentifier</a></td><td>? </td><td>
+An (internal) identifier assigned to the layer.
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a></td></tr>
+<tr><td>5</td><td>LayerOn</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'On', FALSE that the layer is set to 'Off', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>6</td><td>LayerFrozen</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'Frozen', FALSE that the layer is set to 'Not frozen', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>7</td><td>LayerBlocked</td><td><a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a></td><td></td><td>
+A logical setting, TRUE indicates that the layer is set to 'Blocked', FALSE that the layer is set to 'Not blocked', UNKNOWN that such information is not available.
+</td><td>X</td></tr>
+<tr><td>8</td><td>LayerStyles</td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a></td><td>S[0:?]</td><td>
+Assignment of presentation styles to the layer to provide a default style for representation items.
+<blockquote class="note">
+NOTE  In most cases the assignment of styles to a layer is restricted to an <a href="../../ifcpresentationappearanceresource/lexical/ifccurvestyle.htm">IfcCurveStyle</a> representing the layer curve colour, layer curve thickness, and layer curve type.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The data type has been changed from <i>IfcPresentationStyleSelect</i> (now deprecated) to <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>.
+</blockquote>
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a>&quot; type=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerwithstyle.htm">IfcPresentationLayerWithStyle</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;LayerStyles&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:itemType&quot; fixed=&quot;ifc:<a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:cType&quot; fixed=&quot;set&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;ifc:arraySize&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;LayerOn&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;LayerFrozen&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;LayerBlocked&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPresentationLayerWithStyle<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a>)<b>;</b><br/>
+&nbsp;&nbsp;LayerOn : <a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>;<br/>
+&nbsp;&nbsp;LayerFrozen : <a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>;<br/>
+&nbsp;&nbsp;LayerBlocked : <a href="../../ifcmeasureresource/lexical/ifclogical.htm">IfcLogical</a>;<br/>
+&nbsp;&nbsp;LayerStyles : <span class="keyword">SET</span> [0:?] OF <a href="../../ifcpresentationappearanceresource/lexical/ifcpresentationstyle.htm">IfcPresentationStyle</a>;<br/>
+&nbsp;<span class="keyword">WHERE</span><br/>
+&nbsp;&nbsp;ApplicableOnlyToItems : SIZEOF(QUERY(temp &lt;* AssignedItems | (SIZEOF(TYPEOF(temp) * [&#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a>&#39;,&#39;IFCGEOMETRYRESOURCE.<a href="../../ifcgeometryresource/lexical/ifcmappeditem.htm">IfcMappedItem</a>&#39;]) &gt;= 1))) = SIZEOF(AssignedItems);<br/><span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcpresentationorganizationresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifcpresentationlayerwithstyle.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

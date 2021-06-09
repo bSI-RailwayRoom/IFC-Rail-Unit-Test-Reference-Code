@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcWasteTerminalTypeEnum</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 7 index2 6 index3 2 index4 4 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-7.htm#7.6.2.5");
+//-->
+</script>
+
+<h4 class="num">IfcWasteTerminalTypeEnum</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Waste Terminal Type Enum</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Enumération des type de stockage de déchets</b></td></tr>
+</table>
+</details>
+<details open="open"><summary>Change log</summary><table class="gridtable">
+<tr><th>Item</th><th>SPF</th><th>XML</th><th>Change</th><th>Description</th></tr>
+<td colspan=5><b><a href="../../../annex/annex-f/ifc2x3-to-ifc4-4_0_0_0/index.htm">IFC2x3 to IFC4 4.0.0.0</a></b></td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../../schema/ifcplumbingfireprotectiondomain/lexical/ifcwasteterminaltypeenum.htm">IfcWasteTerminalTypeEnum</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GREASEINTERCEPTOR</td><td>X</td><td>X</td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OILINTERCEPTOR</td><td>X</td><td>X</td><td>DELETED</td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PETROLINTERCEPTOR</td><td>X</td><td>X</td><td>DELETED</td><td></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the type</h5>
+<details open="open"><summary>Type definition</summary><p>The <span class="self-ref">IfcWasteTerminalTypeEnum</span> defines the range of different types of waste terminal that can be specified.</p>
+<blockquote class="history">
+<p>HISTORY  New type in IFC2x2. GREASEINTERCEPTOR, OILINTERCEPTOR, PETROLINTERCEPTOR moved to IfcInterceptorTypeEnum in IFC4.</p>
+</blockquote>
+</details>
+<details open="open"><summary>Enumeration definition</summary><table class="attributes">
+<tr><th>Constant</th><th>Description</th></tr>
+<tr><td>FLOORTRAP</td><td>Pipe fitting, set into the floor, that retains liquid to prevent the passage of foul air
+</td></tr><tr><td>FLOORWASTE</td><td>Pipe fitting, set into the floor, that collects waste water and discharges it to a separate trap.
+</td></tr><tr><td>GULLYSUMP</td><td>Pipe fitting or assembly of fittings to receive surface water or waste water, fitted with a grating or sealed cover.
+</td></tr><tr><td>GULLYTRAP</td><td>Pipe fitting or assembly of fittings that receives surface water or waste water; fitted with a grating or sealed cover that discharges water through a trap.
+</td></tr><tr><td>ROOFDRAIN</td><td>Pipe fitting, set into the roof, that collects rainwater for discharge into the rainwater system.
+</td></tr><tr><td>WASTEDISPOSALUNIT</td><td>Electrically operated device that reduces kitchen or other waste into fragments small enough to be flushed into a drainage system.
+</td></tr><tr><td>WASTETRAP</td><td>Pipe fitting, set adjacent to a sanitary terminal, that retains liquid to prevent the passage of foul air.
+</td></tr><tr><td>USERDEFINED</td><td>User-defined type.
+</td></tr><tr><td>NOTDEFINED</td><td>Undefined type.
+</td></tr></table>
+</details>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:simpleType name=&quot;<a href="../../ifcplumbingfireprotectiondomain/lexical/ifcwasteterminaltypeenum.htm">IfcWasteTerminalTypeEnum</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;floortrap&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;floorwaste&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;gullysump&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;gullytrap&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;roofdrain&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;wastedisposalunit&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;wastetrap&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;userdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;notdefined&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:restriction&gt;<br/>
+&nbsp;&lt;/xs:simpleType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">TYPE</span> IfcWasteTerminalTypeEnum = <span class="keyword">ENUMERATION OF</span> (<br/>
+&nbsp;FLOORTRAP, <br/>&nbsp;FLOORWASTE, <br/>&nbsp;GULLYSUMP, <br/>&nbsp;GULLYTRAP, <br/>&nbsp;ROOFDRAIN, <br/>&nbsp;WASTEDISPOSALUNIT, <br/>&nbsp;WASTETRAP, <br/>&nbsp;USERDEFINED, <br/>&nbsp;NOTDEFINED);<br/><span class="keyword">END_TYPE;</span><br/>
+</p>
+<p class="std"><a href="../../../annex/annex-d/ifcplumbingfireprotectiondomain/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifcplumbingfireprotectiondomain/lexical/ifcwasteterminal.htm">IfcWasteTerminal</a>
+<a href="../../ifcplumbingfireprotectiondomain/lexical/ifcwasteterminaltype.htm">IfcWasteTerminalType</a>
+</p>
+<p><a href="../../../link/ifcwasteterminaltypeenum.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

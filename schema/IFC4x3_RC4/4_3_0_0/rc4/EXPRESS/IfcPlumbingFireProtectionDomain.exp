@@ -1,0 +1,186 @@
+(*
+Copyright by:
+buildingSMART International Limited, 1996-2021
+
+Any technical documentation made available by buildingSMART International Limited
+is the copyrighted work of buildingSMART International Limited and is owned by the 
+buildingSMART International Limited. It may be photocopied, used in software development, 
+or translated into another computer language without prior written consent from 
+buildingSMART International Limited provided that full attribution is given. 
+Prior written consent is required if changes are made to the technical specification.
+
+This material is delivered to you as is and buildingSMART International Limited makes 
+no warranty of any kind with regard to it, including, but not limited to, the implied 
+warranties as to its accuracy or fitness for a particular purpose. Any use of the 
+technical documentation or the information contained therein is at the risk of the user. 
+Documentation may include technical or other inaccuracies or typographical errors. 
+buildingSMART International Limited shall not be liable for errors contained therein or 
+for incidental consequential damages in connection with the furnishing, performance or use 
+of the material. The information contained in this document is subject to change without notice.
+
+Issue date:
+09 June 2021
+
+*)
+
+SCHEMA IFCPLUMBINGFIREPROTECTIONDOMAIN;
+
+REFERENCE FROM IFCSHAREDBLDGSERVICEELEMENTS
+(
+  IfcFlowTerminalType,
+  IfcFlowTerminal,
+  IfcFlowTreatmentDeviceType,
+  IfcFlowTreatmentDevice
+);
+
+TYPE IfcFireSuppressionTerminalTypeEnum = ENUMERATION OF
+	(BREECHINGINLET
+	,FIREHYDRANT
+	,HOSEREEL
+	,SPRINKLER
+	,SPRINKLERDEFLECTOR
+	,FIREMONITOR
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcInterceptorTypeEnum = ENUMERATION OF
+	(CYCLONIC
+	,GREASE
+	,OIL
+	,PETROL
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcSanitaryTerminalTypeEnum = ENUMERATION OF
+	(BATH
+	,BIDET
+	,CISTERN
+	,SHOWER
+	,SINK
+	,SANITARYFOUNTAIN
+	,TOILETPAN
+	,URINAL
+	,WASHHANDBASIN
+	,WCSEAT
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcStackTerminalTypeEnum = ENUMERATION OF
+	(BIRDCAGE
+	,COWL
+	,RAINWATERHOPPER
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+TYPE IfcWasteTerminalTypeEnum = ENUMERATION OF
+	(FLOORTRAP
+	,FLOORWASTE
+	,GULLYSUMP
+	,GULLYTRAP
+	,ROOFDRAIN
+	,WASTEDISPOSALUNIT
+	,WASTETRAP
+	,USERDEFINED
+	,NOTDEFINED);
+END_TYPE;
+
+ENTITY IfcFireSuppressionTerminal
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcFireSuppressionTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcFireSuppressionTerminalTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcFireSuppressionTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+  ('IFCPLUMBINGFIREPROTECTIONDOMAIN.IFCFIRESUPPRESSIONTERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcFireSuppressionTerminalType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcFireSuppressionTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcFireSuppressionTerminalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcFireSuppressionTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcInterceptor
+ SUBTYPE OF (IfcFlowTreatmentDevice);
+	PredefinedType : OPTIONAL IfcInterceptorTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcInterceptorTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcInterceptorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+  ('IFCPLUMBINGFIREPROTECTIONDOMAIN.IFCINTERCEPTORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcInterceptorType
+ SUBTYPE OF (IfcFlowTreatmentDeviceType);
+	PredefinedType : IfcInterceptorTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcInterceptorTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcInterceptorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcSanitaryTerminal
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcSanitaryTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcSanitaryTerminalTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcSanitaryTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+  ('IFCPLUMBINGFIREPROTECTIONDOMAIN.IFCSANITARYTERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcSanitaryTerminalType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcSanitaryTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcSanitaryTerminalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcSanitaryTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcStackTerminal
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcStackTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcStackTerminalTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcStackTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+  ('IFCPLUMBINGFIREPROTECTIONDOMAIN.IFCSTACKTERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcStackTerminalType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcStackTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcStackTerminalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcStackTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+ENTITY IfcWasteTerminal
+ SUBTYPE OF (IfcFlowTerminal);
+	PredefinedType : OPTIONAL IfcWasteTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR 
+ (PredefinedType <> IfcWasteTerminalTypeEnum.USERDEFINED) OR 
+ ((PredefinedType = IfcWasteTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));
+	CorrectTypeAssigned : (SIZEOF(IsTypedBy) = 0) OR 
+  ('IFCPLUMBINGFIREPROTECTIONDOMAIN.IFCWASTETERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));
+END_ENTITY;
+
+ENTITY IfcWasteTerminalType
+ SUBTYPE OF (IfcFlowTerminalType);
+	PredefinedType : IfcWasteTerminalTypeEnum;
+ WHERE
+	CorrectPredefinedType : (PredefinedType <> IfcWasteTerminalTypeEnum.USERDEFINED) OR
+((PredefinedType = IfcWasteTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));
+END_ENTITY;
+
+END_SCHEMA;

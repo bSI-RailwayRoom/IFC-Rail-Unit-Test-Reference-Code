@@ -1,0 +1,159 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcCircle</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 8 index2 9 index3 3 index4 17 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-8.htm#8.9.3.18");
+//-->
+</script>
+
+<h4 class="num">IfcCircle</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Kreis</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Circle</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Cercle</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p>An <span class="self-ref">IfcCircle</span> is a curve consisting of a set of points having equal distance from the center.</p>
+<blockquote class="note">
+<p>NOTE  A circular arc segment is defined by using the <a href="../../ifcgeometryresource/lexical/ifctrimmedcurve.htm">IfcTrimmedCurve</a> with <i>BasisCurve</i> being an <span class="self-ref">IfcCircle</span>.</p>
+</blockquote>
+<p>Figure 375 illustrates the definition of <span class="self-ref">IfcCircle</span> within a three-dimensional position coordinate system placed within the object coordinate system of an element.</p>
+<p><table><tr><td style="width: 600px"><img src="../../../figures/ifccircle-layout1.gif" alt="&quot;axis1 placement&quot;" title="Figure 375 &mdash; Circle layout"></td></tr><tr><td><p class="figure">Figure 375 &mdash; Circle layout</p></td></tr></table></p>
+<p> </p>
+<blockquote class="extDef">
+<p>NOTE Definition according to ISO/CD 10303-42:1992<br>
+A circle is defined by a radius and the location and orientation of the circle. Interpretation of data should be as follows:</p>
+<blockquote>
+<pre><code>C = SELF\IfcConic.Position.Location  
+x = SELF\IfcConic.Position.P[1]  
+y = SELF\IfcConic.Position.P[2]  
+z = SELF\IfcConic.Position.P[3]  
+R = Radius
+</code></pre>
+</blockquote>
+<p>and the circle is parameterized as</p>
+<blockquote>
+<blockquote>
+<p><img src="../../../figures/ifccircle-math1.gif" alt="formula"></p>
+</blockquote>
+</blockquote>
+<p>The parameterization range is 0 ≤ <i>u</i> ≤ 2π (0 ≤ <i>u</i> ≤ 360 degree).<br>
+In the placement coordinate system defined above, the circle is the equation <i>C</i> = 0, where</p>
+<blockquote>
+<blockquote>
+<p><img src="../../../figures/ifccircle-math2.gif" alt="formula"></p>
+</blockquote>
+</blockquote>
+<p>The positive sense of the circle at any point is in the tangent direction, <strong>T</strong>, to the curve at the point, where</p>
+<blockquote>
+<blockquote>
+<p><img src="../../../figures/ifccircle-math3.gif" alt="formula"></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Entity adapted from <strong>circle</strong> defined in ISO 10303-42</p>
+</blockquote>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC1.0</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td>2</td><td>Radius</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The radius of the circle, which shall be greater than zero.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifccircle.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="42,78,254,90" href="../../../schema/ifcgeometryresource/lexical/ifcconic.htm" alt="IfcConic" />
+<area shape="rect" coords="30,54,266,66" href="../../../schema/ifcgeometryresource/lexical/ifccurve.htm" alt="IfcCurve" />
+<area shape="rect" coords="18,30,278,42" href="../../../schema/ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm" alt="IfcGeometricRepresentationItem" />
+<area shape="rect" coords="6,6,290,18" href="../../../schema/ifcgeometryresource/lexical/ifcrepresentationitem.htm" alt="IfcRepresentationItem" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcrepresentationitem.htm">IfcRepresentationItem</a></i></td></tr>
+<tr><td></td><td><i>LayerAssignment</i></td><td><a href="../../ifcpresentationorganizationresource/lexical/ifcpresentationlayerassignment.htm">IfcPresentationLayerAssignment</a><br/>@AssignedItems</td><td>S[0:1]</td><td>Assignment of the representation item to a single or multiple layer(s). The <i>LayerAssignments</i> can override a <i>LayerAssignments</i> of the <a href="../../ifcrepresentationresource/lexical/ifcrepresentation.htm">IfcRepresentation</a> it is used  within the list of <i>Items</i>.
+
+<blockquote>
+IFC2x3 CHANGE  The inverse attribute <i>LayerAssignments</i> has been added.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The inverse attribute <i>LayerAssignment</i> has been restricted to max 1. Upward compatibility for file based exchange is guaranteed.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td></td><td><i>StyledByItem</i></td><td><a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a><br/>@Item</td><td>S[0:1]</td><td>Reference to the <a href="../../ifcpresentationappearanceresource/lexical/ifcstyleditem.htm">IfcStyledItem</a> that provides presentation information to the representation, e.g. a curve style, including colour and thickness to a geometric curve.
+<blockquote class="change-ifc2x3">
+IFC2x3 CHANGE  The inverse attribute <i>StyledByItem</i> has been added.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcgeometricrepresentationitem.htm">IfcGeometricRepresentationItem</a></i></td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifccurve.htm">IfcCurve</a></i></td></tr>
+<tr><td></td><td>Dim<br/>:=IfcCurveDim(SELF)</td><td><a href="../../ifcgeometryresource/lexical/ifcdimensioncount.htm">IfcDimensionCount</a></td><td></td><td>The space dimensionality of this abstract class, defined differently for all subtypes, i.e. for IfcLine, IfcConic and IfcBoundedCurve.
+</td>
+<td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a></i></td></tr>
+<tr><td>1</td><td>Position</td><td><a href="../../ifcgeometryresource/lexical/ifcaxis2placement.htm">IfcAxis2Placement</a></td><td></td><td>
+The location and orientation of the conic. Further details of the interpretation of this attribute are given for the individual subtypes.&quot;
+</td><td>X</td></tr>
+<tr><td colspan="6"><a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a></td></tr>
+<tr><td>2</td><td>Radius</td><td><a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a></td><td></td><td>
+The radius of the circle, which shall be greater than zero.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a>&quot; type=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a>&quot; substitutionGroup=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifcgeometryresource/lexical/ifccircle.htm">IfcCircle</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;Radius&quot; type=&quot;ifc:<a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>&quot; use=&quot;optional&quot;/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcCircle<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifcgeometryresource/lexical/ifcconic.htm">IfcConic</a>)<b>;</b><br/>
+&nbsp;&nbsp;Radius : <a href="../../ifcmeasureresource/lexical/ifcpositivelengthmeasure.htm">IfcPositiveLengthMeasure</a>;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifcgeometryresource/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+</p>
+<p><a href="../../../link/ifccircle.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

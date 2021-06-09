@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../details-shim.css">
+    <script type="text/javascript" src="../../details-shim.js"></script>
+    <title>Cubic Transition Segment</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 0 index2 0 index3 0 index4 -1 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../toc-4.htm#4.7.2.1.5");
+//-->
+</script>
+
+<h5 class="std">4.7.2.1.5 Cubic Transition Segment</h5>
+<p>The cubic transition segment is modelled with <a href="../ifcgeometryresource/lexical/ifcpolynomialcurve.htm">IfcPolynomialCurve</a> with certain restrictions. The size of the attribute CoefficientsY is restricted to 4. The cubic term is on position 4. In general, the CoefficietsX size would be restricted to 2 and values specified as [0, 1]. This produces the following result:</p>
+<p>y = CoefficientsX[3]*x³, where other values in CoefficientsY are 0.</p>
+<p class="fig-ref">Figure 65 illustrates an instance diagram.</p>
+<table><tr><td><img alt="Cubic Transition Segment" src="./diagrams/cubic-transition-segment.png" usemap="#f65"><map name="f65"><area shape="rect" coords="8,8,176,116" href="../ifcgeometryresource/lexical/ifccurvesegment.htm" alt="IfcCurveSegment" /><area shape="rect" coords="208,8,376,92" href="../ifcgeometryresource/lexical/ifcpolynomialcurve.htm" alt="IfcPolynomialCurve" /><area shape="rect" coords="408,8,576,20" href="../ifcmeasureresource/lexical/ifcreal.htm" alt="IfcReal" /><area shape="rect" coords="408,40,576,52" href="../ifcmeasureresource/lexical/ifcreal.htm" alt="IfcReal" /></map></td></tr><tr><td><p class="figure">Figure 65 &mdash; Cubic Transition Segment</p></td></tr></table>
+
+<details><summary>mvdXML Specification</summary><div class="xsd"><code class="xsd">
+&lt;?xml version=&quot;1.0&quot;?&gt;<br/>
+&lt;ConceptTemplate xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; uuid=&quot;27d2cc42-f560-4879-9c8e-3547bcadf796&quot; name=&quot;Cubic Transition Segment&quot; applicableSchema=&quot;IFC4&quot; applicableEntity=&quot;<a href="../ifcgeometryresource/lexical/ifccurvesegment.htm">IfcCurveSegment</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;Rules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRule AttributeName=&quot;ParentCurve&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRule EntityName=&quot;<a href="../ifcgeometryresource/lexical/ifcpolynomialcurve.htm">IfcPolynomialCurve</a>&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRule AttributeName=&quot;CoefficientsX&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRule EntityName=&quot;<a href="../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRule&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AttributeRule AttributeName=&quot;CoefficientsY&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;EntityRule EntityName=&quot;<a href="../ifcmeasureresource/lexical/ifcreal.htm">IfcReal</a>&quot; /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRule&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRule&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EntityRules&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AttributeRule&gt;<br/>
+&nbsp;&nbsp;&lt;/Rules&gt;<br/>
+&lt;/ConceptTemplate&gt;<br/>
+</code></div>
+</details>
+</p>
+<p><a href="../../link/cubic-transition-segment.htm" target="_top" ><img src="../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../../../ifc-styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../details-shim.css">
+    <script type="text/javascript" src="../../../details-shim.js"></script>
+    <title>IfcPropertyDefinition</title>
+
+    <style type="text/css">
+      body { counter-reset: index1 5 index2 2 index3 3 index4 12 index5 0; }
+    </style>
+  </head>
+
+  <body>
+
+
+<script type="text/javascript">
+<!--
+    parent.index.location.replace("../../toc-5.htm#5.2.3.13");
+//-->
+</script>
+
+<h4 class="num">IfcPropertyDefinition</h4>
+<a href="../../views/general-usage/index.htm" ><img src="../../../img/view-general-usage.png" title="General Usage"/></a>
+<details open="open"><summary>Natural language names</summary><table>
+<table class="gridtable">
+<tr><td><img src="../../../img/locale-de.png" /></td><td><b>Merkmal - Definition</b></td></tr>
+<tr><td><img src="../../../img/locale-en.png" /></td><td><b>Property Definition</b></td></tr>
+<tr><td><img src="../../../img/locale-fr.png" /></td><td><b>Définition de propriété</b></td></tr>
+</table>
+</details>
+<section>
+<h5 class="num">Semantic definitions at the entity</h5>
+<details open="open"><summary>Entity definition</summary><p><span class="self-ref">IfcPropertyDefinition</span> defines the generalization of all characteristics (i.e. a grouping of individual properties), that may be assigned to objects. Currently, subtypes of <span class="self-ref">IfcPropertyDefinition</span> include property set occurrences, property set templates, and property templates.</p>
+<ul>
+<li><strong>Property set template</strong> - <a href="../../ifckernel/lexical/ifcpropertysettemplate.htm">IfcPropertySetTemplate</a>, a collection of property templates that determine the definition of properties used within a project context.</li>
+<li><strong>Property template</strong> - <a href="../../ifckernel/lexical/ifcpropertytemplate.htm">IfcPropertyTemplate</a>, a single template that determines the definition of a particular property used in the same project context. The template may determine the name, description, data type, the unit, or a standard expression for each property that is based on that template.</li>
+<li><strong>Property set occurrence</strong> - <a href="../../ifckernel/lexical/ifcpropertyset.htm">IfcPropertySet</a>, a set of individual properties (that may or may not be determined by a property template) holding individual values, measure types and units, and are associated to an object occurrence or object type.</li>
+</ul>
+<blockquote class="note">
+<p>NOTE  The subtype hierarchy of <span class="self-ref">IfcPropertyDefinition</span> also includes statically defined property sets as <a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a>. Those are rarely used collections of fixed attributes combined in an entity definition. The <a href="../../ifckernel/lexical/ifcpredefinedpropertyset.htm">IfcPreDefinedPropertySet</a> can not be determined by an <a href="../../ifckernel/lexical/ifcpropertysettemplate.htm">IfcPropertySetTemplate</a>.</p>
+</blockquote>
+<blockquote class="note">
+<p>NOTE  Individual properties, (subtypes of <a href="../../ifcpropertyresource/lexical/ifcproperty.htm">IfcProperty</a>), are currently not included in the subtype hierarchy of <span class="self-ref">IfcPropertyDefinition</span>. This anomaly is due to upward compatibility reasons with earlier releases of this standard.</p>
+</blockquote>
+<p>Property definitions define information that is shared among multiple instances of objects, either object occurrences or object types. <span class="self-ref">IfcPropertyDefinition</span>'s (by their instantiable subtypes) can participate within the following relationships:</p>
+<ul>
+<li><strong>Assignment to a project context</strong> - an <i>HasContext</i> relationship to <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> that establishes the project context in which this property definition is declared. This relationship is predominately applicable to subtypes of <a href="../../ifckernel/lexical/ifcpropertytemplatedefinition.htm">IfcPropertyTemplateDefinition</a>.</li>
+<li><strong>Association to external resources</strong> - an <i>HasAssociation</i> relationship to <a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a> that refers to external sources of information (most notably a classification or document) and creates a uni-directional association. There is no dependency implied by the association.</li>
+</ul>
+<p>Subtypes are included in more specific relationships, see <a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a> and <a href="../../ifckernel/lexical/ifcpropertytemplatedefinition.htm">IfcPropertyTemplateDefinition</a> for details.</p>
+<blockquote class="history">
+<p>HISTORY  New entity in IFC2.0</p>
+</blockquote>
+</details>
+<details open="open"><summary>Attribute definitions</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th>
+<th>G</th></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td></td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship IfcRelAssociates and thus to those externally defined concepts, like classifications, documents, or library information, which are associated to the property definition.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Inherited definitions from supertypes</h5>
+<details open="open"><summary>Entity inheritance</summary><img src="../../../diagrams/ifcpropertydefinition.png" usemap="#f"/>
+<map name="f">
+<area shape="rect" coords="30,54,218,66" href="../../../schema/ifckernel/lexical/ifcpropertysetdefinition.htm" alt="IfcPropertySetDefinition" />
+<area shape="rect" coords="290,54,478,66" href="../../../schema/ifckernel/lexical/ifcpropertytemplatedefinition.htm" alt="IfcPropertyTemplateDefinition" />
+<area shape="rect" coords="6,6,502,18" href="../../../schema/ifckernel/lexical/ifcroot.htm" alt="IfcRoot" />
+</map>
+</details>
+<details><summary>Attribute inheritance</summary><table class="attributes">
+<tr><th>#</th><th>Attribute</th><th>Type</th><th>Cardinality</th><th>Description</th><th>G</th></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></i></td></tr>
+<tr><td>1</td><td>GlobalId</td><td><a href="../../ifcutilityresource/lexical/ifcgloballyuniqueid.htm">IfcGloballyUniqueId</a></td><td></td><td>
+Assignment of a globally unique identifier within the entire software world.
+</td><td>X</td></tr>
+<tr><td>2</td><td>OwnerHistory</td><td><a href="../../ifcutilityresource/lexical/ifcownerhistory.htm">IfcOwnerHistory</a></td><td>? </td><td>
+Assignment of the information about the current ownership of that object, including owning actor, application, local identification and information captured about the recent changes of the object,
+<blockquote class="note">
+NOTE  only the last modification in stored - either as addition, deletion or modification.
+</blockquote>
+<blockquote class="change-ifc2x4">
+IFC4 CHANGE  The attribute has been changed to be OPTIONAL.
+</blockquote>
+</td><td>X</td></tr>
+<tr><td>3</td><td>Name</td><td><a href="../../ifcmeasureresource/lexical/ifclabel.htm">IfcLabel</a></td><td>? </td><td>
+Optional name for use by the participating software systems or users. For some subtypes of IfcRoot the insertion of the Name attribute may be required. This would be enforced by a where rule.
+</td><td>X</td></tr>
+<tr><td>4</td><td>Description</td><td><a href="../../ifcmeasureresource/lexical/ifctext.htm">IfcText</a></td><td>? </td><td>
+Optional description, provided for exchanging informative comments.
+</td><td>X</td></tr>
+<tr><td colspan="6"><i><a href="../../ifckernel/lexical/ifcpropertydefinition.htm">IfcPropertyDefinition</a></i></td></tr>
+<tr><td></td><td><i>HasContext</i></td><td><a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a><br/>@RelatedDefinitions</td><td>S[0:1]</td><td></td><td>X</td></tr>
+<tr><td></td><td><i>HasAssociations</i></td><td><a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a><br/>@RelatedObjects</td><td>S[0:?]</td><td>Reference to the relationship IfcRelAssociates and thus to those externally defined concepts, like classifications, documents, or library information, which are associated to the property definition.
+</td><td>X</td></tr>
+</table>
+</details>
+</section>
+<section>
+<h5 class="num">Definitions applying to General Usage</h5>
+<hr />
+<section>
+<details>
+<summary>Concept inheritance</summary>
+<p><table class="attributes">
+<tr><th><b>#</b></th><th><b>Concept</b></th><th><b>Template</b></th><th><b>Model View</b></th></tr>
+<tr><td colspan="3"><a href="../../ifckernel/lexical/ifcroot.htm"><a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a></a></td></tr><tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#software-identity">Identity</a></td><td><a href="../../templates/software-identity.htm">Software Identity</a></td><td>General Usage</td></tr>
+<tr><td> </td><td><a href="../../ifckernel/lexical/ifcroot.htm#revision-control">Revision Control</a></td><td><a href="../../templates/revision-control.htm">Revision Control</a></td><td>General Usage</td></tr>
+
+</table>
+</details>
+</section>
+</section>
+<section>
+<h5 class="num">Formal representations</h5>
+<details><summary>XML Specification</summary><div class="xsd"><code class="xsd">&nbsp;&lt;xs:element name=&quot;<a href="../../ifckernel/lexical/ifcpropertydefinition.htm">IfcPropertyDefinition</a>&quot; type=&quot;ifc:<a href="../../ifckernel/lexical/ifcpropertydefinition.htm">IfcPropertyDefinition</a>&quot; abstract=&quot;true&quot; substitutionGroup=&quot;ifc:<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>&quot; nillable=&quot;true&quot;/&gt;<br/>
+&nbsp;&lt;xs:complexType name=&quot;<a href="../../ifckernel/lexical/ifcpropertydefinition.htm">IfcPropertyDefinition</a>&quot; abstract=&quot;true&quot;&gt;<br/>
+&nbsp;&nbsp;&lt;xs:complexContent&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;ifc:<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>&quot;/&gt;<br/>
+&nbsp;&nbsp;&lt;/xs:complexContent&gt;<br/>
+&nbsp;&lt;/xs:complexType&gt;<br/>
+</code></div></details>
+<details><summary>EXPRESS Specification</summary><div class="express"><code class="express">
+<span class="keyword">ENTITY</span> IfcPropertyDefinition<br/>
+&nbsp;<span class="keyword">ABSTRACT</span> <span class="keyword">SUPERTYPE OF</span>(<span class="keyword">ONEOF</span>(<a href="../../ifckernel/lexical/ifcpropertysetdefinition.htm">IfcPropertySetDefinition</a>, <a href="../../ifckernel/lexical/ifcpropertytemplatedefinition.htm">IfcPropertyTemplateDefinition</a>))<br/>
+&nbsp;<span class="keyword">SUBTYPE OF</span> (<a href="../../ifckernel/lexical/ifcroot.htm">IfcRoot</a>)<b>;</b><br/>
+&nbsp;<span class="keyword">INVERSE</span><br/>
+&nbsp;&nbsp;HasContext : <span class="keyword">SET</span> [0:1] OF <a href="../../ifckernel/lexical/ifcreldeclares.htm">IfcRelDeclares</a> <span class="keyword">FOR</span> RelatedDefinitions;<br/>
+&nbsp;&nbsp;HasAssociations : <span class="keyword">SET</span> [0:?] OF <a href="../../ifckernel/lexical/ifcrelassociates.htm">IfcRelAssociates</a> <span class="keyword">FOR</span> RelatedObjects;<br/>
+<span class="keyword">END_ENTITY;</span><br/>
+<p class="std"><a href="../../../annex/annex-d/ifckernel/diagram_0000.htm" ><img src="../../../img/diagram.png" style="border: 0px" title="Link to EXPRESS-G diagram" alt="Link to EXPRESS-G diagram">&nbsp;EXPRESS-G diagram</a></p>
+</code></div>
+</details>
+</section>
+<p><img src="../../../img/external.png" style="border: 0px" title="References" alt="References"/>&nbsp; References: <a href="../../ifckernel/lexical/ifcdefinitionselect.htm">IfcDefinitionSelect</a>
+</p>
+<p><a href="../../../link/ifcpropertydefinition.htm" target="_top" ><img src="../../../img/permlink.png" style="border: 0px" title="Link to this page" alt="Link to this page"/>&nbsp; Link to this page</a></p>
+  </body>
+</html>
