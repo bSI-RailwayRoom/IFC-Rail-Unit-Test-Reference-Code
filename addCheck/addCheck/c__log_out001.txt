@@ -1,0 +1,5 @@
+<sdaiOpenModelBNUnicode>
+  argument repository as int_t  '0'
+    <fileName location="in" type="void" ptr="11527268"></fileName>
+    <schemaName location="in" type="void" ptr="2033464000"></schemaName>
+</sdaiOpenModelBNUnicode>
