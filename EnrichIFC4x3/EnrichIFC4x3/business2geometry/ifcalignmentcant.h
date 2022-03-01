@@ -7,6 +7,7 @@
 #include "ifccosine.h"
 #include "ifcline.h"
 #include "ifcproductdefinitionshape.h"
+#include "ifcsecondorderpolynomialspiral.h"
 #include "ifcseventhorderpolynomialspiral.h"
 #include "ifcsine.h"
 #include "ifcthirdorderpolynomialspiral.h"
@@ -150,12 +151,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight);
 
                 //
-                //  SmoothingLength
-                //
-                double  smoothingLength = 0.;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "SmoothingLength", sdaiREAL, &smoothingLength);
-
-                //
                 //  Transition
                 //
                 if (i == noSegmentInstances - 1) {
@@ -212,15 +207,15 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                 //
                 //  Parse the individual segments
-                //      BIQUADRATICPARABOLA  =>  is removed
                 //      BLOSSCURVE
                 //      CONSTANTCANT
                 //      COSINECURVE
-                //      HELMERTCURVE
                 //      LINEARTRANSITION
+                //      HELMERTCURVE
                 //      SINECURVE
                 //      VIENNESEBEND
                 //
+
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
                 if (___equals(predefinedType, (char*) "CONSTANTCANT")) {
@@ -270,52 +265,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-/*                else if (___equals(predefinedType, (char*)"BIQUADRATICPARABOLA")) {
-                    matrix._11 = 1.;
-                    matrix._12 = 0.;
-                    matrix._13 = 0.;
-
-                    double  factor__ = -(startCantLeft - startCantRight);
-                    matrix._31 = - factor__ * matrix._12;
-                    matrix._32 = factor__ * matrix._11;
-                    matrix._33 = railHeadDistance;
-                    ___Vec3Normalize((___VECTOR3*) &matrix._31);
-
-                    ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
-
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
-
-                    double  factor = ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.,
-                            polynomialConstantsCant[3] = {
-                                      1. * factor / horizontalLength,
-                                      1. * factor / horizontalLength,
-                                      1. * factor / horizontalLength
-                                };
-                    int_t   ifcBiquadraticParabolaInstance =
-                                ___CreateBiquadraticParabola(
-                                        model,
-                                        polynomialConstantsCant[2],
-                                        polynomialConstantsCant[1],
-                                        polynomialConstantsCant[0]
-                                    );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBiquadraticParabolaInstance);
-
-                    //
-                    //  SegmentStart
-                    //
-                    double  offsetAsParameter = 0.;
-                    void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offsetAsParameter);
-                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                    //
-                    //  SegmentLength
-                    //
-                    double  segmentLengthAsLength = horizontalLength;
-                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
-                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                }   //  */
                 else if (___equals(predefinedType, (char*) "BLOSSCURVE")) {
                     matrix._11 = 1.;
                     matrix._12 = 0.;
@@ -335,25 +284,18 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
                                     1. / horizontalLength,
-                            polynomialConstantsCant[4] = {
-                                      0.,   //  (startCantLeft + startCantRight) / 2.,
-                                      0.,
-                                      3. * factor,
-                                    - 2. * factor
-                                };
-
-double  a = polynomialConstantsCant[7] * 1.,
-        b = polynomialConstantsCant[6] * 1.,
-        c = polynomialConstantsCant[5] * 1.,
-        d = polynomialConstantsCant[4] * 1.;
+                            constantTerm  =   0. * factor + (startCantLeft + startCantRight) / 2.,
+                            linearTerm    =   0. * factor,
+                            quadraticTerm =   3. * factor,
+                            cubicTerm     = - 2. * factor;
 
                     int_t   ifcBlossCurveInstance =
                                 ___CreateBlossCurve(
                                         model,
-                                        a ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * a), -1. / 8.) * a / std::fabs(a) : 0.,
-                                        b ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * b), -1. / 7.) * b / std::fabs(b) : 0.,
-                                        c ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * c), -1. / 6.) * c / std::fabs(c) : 0.,
-                                        d ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * d), -1. / 5.) * d / std::fabs(d) : 0.
+                                        cubicTerm     ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
+                                        quadraticTerm ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                        linearTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                        constantTerm  ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveInstance);
 
@@ -392,10 +334,15 @@ double  a = polynomialConstantsCant[7] * 1.,
                                 (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
                                     1. / horizontalLength,
-                            constantTerm = 0.,  //  (startCantLeft + startCantRight) / 2.,
-                            cosineTerm = factor;
+                            constantTerm = 0. * factor + (startCantLeft + startCantRight) / 2.,
+                            cosineTerm   = 1. * factor;
 
-                    int_t   ifcSineCurveInstance = ___CreateCosineCurve(model, cosineTerm, constantTerm);
+                    int_t   ifcSineCurveInstance =
+                                ___CreateCosineCurve(
+                                        model,
+                                        cosineTerm,
+                                        constantTerm
+                                    );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveInstance);
 
                     //
@@ -433,93 +380,17 @@ double  a = polynomialConstantsCant[7] * 1.,
                                 (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
                                     1. / horizontalLength,
-                            constantTerm = 0.,  //  (startCantLeft + startCantRight) / 2.,
-                            sineTerm = factor;
+                            constantTerm = 0. * factor + (startCantLeft + startCantRight) / 2.,
+                            sineTerm     = 1. * factor;
 
-                    int_t   ifcSineCurveInstance = ___CreateSineCurve(model, sineTerm, constantTerm, horizontalLength);
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveInstance);
-
-                    //
-                    //  SegmentStart
-                    //
-                    double  offsetAsParameter = 0.;
-                    void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offsetAsParameter);
-                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                    //
-                    //  SegmentLength
-                    //
-                    double  segmentLengthAsLength = horizontalLength;
-                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
-                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                }
-                else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
-                    matrix._11 = 1.;
-                    matrix._12 = 0.;
-                    matrix._13 = 0.;
-
-                    double  factor__ = -(startCantLeft - startCantRight);
-                    matrix._31 = - factor__ * matrix._12;
-                    matrix._32 = factor__ * matrix._11;
-                    matrix._33 = railHeadDistance;
-                    ___Vec3Normalize((___VECTOR3*) &matrix._31);
-
-                    ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
-
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
-
-                    //
-                    //  ... => helmert not yet correctly mapped, waiting for examples
-                    //
-
-                    double  factor =
-                                (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
-                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
-                                    1. / horizontalLength,
-                            polynomialConstantsCant[8] = {
-                                      0.,   //  (startCantLeft + startCantRight) / 2.,
-                                      0.,
-                                      0.,
-                                      0.,
-                                      35. * factor, // horizontalLength,
-                                    - 84. * factor, // horizontalLength,
-                                      70. * factor, // horizontalLength,
-                                    - 20. * factor // horizontalLength
-                                   };
-
-double  a = polynomialConstantsCant[7] * 1.,
-        b = polynomialConstantsCant[6] * 1.,
-        c = polynomialConstantsCant[5] * 1.,
-        d = polynomialConstantsCant[4] * 1.,
-        e = polynomialConstantsCant[3] * 1.,
-        f = polynomialConstantsCant[2] * 1.,
-        g = polynomialConstantsCant[1] * 1.,
-        h = polynomialConstantsCant[0] * 1.;
-
-                    int_t   ifcVienneseBendInstance =
-                                ___CreateVienneseBend(
+                    int_t   ifcSineCurveInstance =
+                                ___CreateSineCurve(
                                         model,
-                                        a ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * a), -1. / 8.) * a / std::fabs(a) : 0.,
-                                        b ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * b), -1. / 7.) * b / std::fabs(b) : 0.,
-                                        c ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * c), -1. / 6.) * c / std::fabs(c) : 0.,
-                                        d ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * d), -1. / 5.) * d / std::fabs(d) : 0.,
-                                        e ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * e), -1. / 4.) * e / std::fabs(e) : 0.,
-                                        f ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * f), -1. / 3.) * f / std::fabs(f) : 0.,
-                                        g ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * g), -1. / 2.) * g / std::fabs(g) : 0.,
-                                        h ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * h), -1. / 1.) * h / std::fabs(h) : 0.
-
-          /*                              polynomialConstantsCant[7],
-                                        polynomialConstantsCant[6],
-                                        polynomialConstantsCant[5],
-                                        polynomialConstantsCant[4],
-                                        polynomialConstantsCant[3],
-                                        polynomialConstantsCant[2],
-                                        polynomialConstantsCant[1],
-                                        polynomialConstantsCant[0]  //  */
+                                        sineTerm,
+                                        constantTerm,
+                                        horizontalLength
                                     );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendInstance);
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveInstance);
 
                     //
                     //  SegmentStart
@@ -556,46 +427,26 @@ double  a = polynomialConstantsCant[7] * 1.,
                                 (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
                                     1. / horizontalLength,
-                            polynomialConstantsCant[8] = {
-                                      0.,   //  (startCantLeft + startCantRight) / 2.,
-                                      0.,
-                                      0.,
-                                      0.,
-                                      35. * factor, // horizontalLength,
-                                    - 84. * factor, // horizontalLength,
-                                      70. * factor, // horizontalLength,
-                                    - 20. * factor // horizontalLength
-                                   };
-
-double  a = polynomialConstantsCant[7] * 1.,
-        b = polynomialConstantsCant[6] * 1.,
-        c = polynomialConstantsCant[5] * 1.,
-        d = polynomialConstantsCant[4] * 1.,
-        e = polynomialConstantsCant[3] * 1.,
-        f = polynomialConstantsCant[2] * 1.,
-        g = polynomialConstantsCant[1] * 1.,
-        h = polynomialConstantsCant[0] * 1.;
+                            constantTerm  =    0. * factor + (startCantLeft + startCantRight) / 2.,
+                            linearTerm    =    0. * factor,
+                            quadraticTerm =    0. * factor,
+                            cubicTerm     =    0. * factor,
+                            quarticTerm   =   35. * factor,
+                            quinticTerm   = - 84. * factor,
+                            sexticTerm    =   70. * factor,
+                            septicTerm    = - 20. * factor;
 
                     int_t   ifcVienneseBendInstance =
                                 ___CreateVienneseBend(
                                         model,
-                                        a ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * a), -1. / 8.) * a / std::fabs(a) : 0.,
-                                        b ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * b), -1. / 7.) * b / std::fabs(b) : 0.,
-                                        c ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * c), -1. / 6.) * c / std::fabs(c) : 0.,
-                                        d ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * d), -1. / 5.) * d / std::fabs(d) : 0.,
-                                        e ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * e), -1. / 4.) * e / std::fabs(e) : 0.,
-                                        f ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * f), -1. / 3.) * f / std::fabs(f) : 0.,
-                                        g ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * g), -1. / 2.) * g / std::fabs(g) : 0.,
-                                        h ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * h), -1. / 1.) * h / std::fabs(h) : 0.
-
-          /*                              polynomialConstantsCant[7],
-                                        polynomialConstantsCant[6],
-                                        polynomialConstantsCant[5],
-                                        polynomialConstantsCant[4],
-                                        polynomialConstantsCant[3],
-                                        polynomialConstantsCant[2],
-                                        polynomialConstantsCant[1],
-                                        polynomialConstantsCant[0]  //  */
+                                        septicTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * septicTerm),    -1. / 8.) * septicTerm    / std::fabs(septicTerm)    : 0.,
+                                        sexticTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * sexticTerm),    -1. / 7.) * sexticTerm    / std::fabs(sexticTerm)    : 0.,
+                                        quinticTerm   ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quinticTerm),   -1. / 6.) * quinticTerm   / std::fabs(quinticTerm)   : 0.,
+                                        quarticTerm   ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quarticTerm),   -1. / 5.) * quarticTerm   / std::fabs(quarticTerm)   : 0.,
+                                        cubicTerm     ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
+                                        quadraticTerm ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                        linearTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                        constantTerm  ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendInstance);
 
@@ -614,6 +465,112 @@ double  a = polynomialConstantsCant[7] * 1.,
                     void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                }
+                else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
+                    {
+                        matrix._11 = 1.;
+                        matrix._12 = 0.;
+                        matrix._13 = 0.;
+
+                        double  factor__ = -(startCantLeft - startCantRight);
+                        matrix._31 = - factor__ * matrix._12;
+                        matrix._32 = factor__ * matrix._11;
+                        matrix._33 = railHeadDistance;
+                        ___Vec3Normalize((___VECTOR3*) &matrix._31);
+
+                        ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
+
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+
+                        double  factor =
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
+                                        ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
+                                        1. / horizontalLength,
+                                constantTerm  = 0. * factor + (startCantLeft + startCantRight) / 2.,
+                                linearTerm    = 0. * factor,
+                                quadraticTerm = 2. * factor;
+
+                        int_t   ifcHelmertCurveInstance =
+                                    ___CreateHelmert(
+                                            model,
+                                            quadraticTerm ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                            linearTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                            constantTerm  ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                            &matrix
+                                        );
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertCurveInstance);
+
+                        //
+                        //  SegmentStart
+                        //
+                        double  offsetAsParameter = 0.;
+                        void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offsetAsParameter);
+                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                        //
+                        //  SegmentLength
+                        //
+                        double  segmentLengthAsLength = horizontalLength / 2.;
+                        void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
+                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+
+                        sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+                    }
+
+                    matrix._41 += horizontalLength / 2.;
+                    matrix._42 += ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 4.;
+
+                    {
+                        matrix._11 = 1.;
+                        matrix._12 = 0.;
+                        matrix._13 = 0.;
+
+                        double  factor__ = -(startCantLeft - startCantRight) + ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.;
+                        matrix._31 = - factor__ * matrix._12;
+                        matrix._32 = factor__ * matrix._11;
+                        matrix._33 = railHeadDistance;
+                        ___Vec3Normalize((___VECTOR3*) &matrix._31);
+
+                        ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
+
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+
+                        double  factor =
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
+                                        ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
+                                        1. / horizontalLength,
+                                constantTerm  = - 1. * factor + (startCantLeft + startCantRight) / 2.,
+                                linearTerm    =   4. * factor,
+                                quadraticTerm = - 2. * factor;
+
+                        int_t   ifcHelmertCurveInstance =
+                                    ___CreateHelmert(
+                                            model,
+                                            quadraticTerm ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                            linearTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                            constantTerm  ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                            &matrix
+                                        );
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertCurveInstance);
+
+                        //
+                        //  SegmentStart
+                        //
+                        double  offsetAsParameter = 0.;
+                        void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offsetAsParameter);
+                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                        //
+                        //  SegmentLength
+                        //
+                        double  segmentLengthAsLength = horizontalLength / 2.;
+                        void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
+                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                    }
                 }
                 else {
                     assert(false);

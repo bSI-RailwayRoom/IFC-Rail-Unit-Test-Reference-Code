@@ -465,56 +465,65 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
 
-                    double  offset = 0.;
-                    double  a = -2., b = 3., c = 0., d = 0.;
+                    double  offset = 0.,
+                            constantTerm,
+                            linearTerm,
+                            quadraticTerm,
+                            cubicTerm;
 
                     assert(segmentLength > 0.);
                     if (startRadiusOfCurvature == 0.) {
                         assert(endRadiusOfCurvature);
-                        a /= endRadiusOfCurvature;
-                        b /= endRadiusOfCurvature;
-//                        c /= endRadiusOfCurvature;
-//                        d /= endRadiusOfCurvature;
+                        double  factor =
+                                    endRadiusOfCurvature ?
+                                        1. / endRadiusOfCurvature :
+                                        0.;
+                        constantTerm  =   0. * factor;
+                        linearTerm    =   0. * factor;
+                        quadraticTerm =   3. * factor;
+                        cubicTerm     = - 2. * factor;
                     }
                     else if (endRadiusOfCurvature == 0.) {
                         assert(startRadiusOfCurvature);
-                        a /= startRadiusOfCurvature;
-                        b /= startRadiusOfCurvature;
-//                        c /= startRadiusOfCurvature;
-//                        d /= startRadiusOfCurvature;
-                        offset = segmentLength;
-                        segmentLength = -segmentLength;
+                        double  factor =
+                                    startRadiusOfCurvature ?
+                                        1. / startRadiusOfCurvature :
+                                        0.;
+                        constantTerm  =   0. * factor;
+                        linearTerm    =   0. * factor;
+                        quadraticTerm =   3. * factor;
+                        cubicTerm     = - 2. * factor;
+                        offset        =   segmentLength;
+                        segmentLength = - segmentLength;
                     }
                     else if (std::fabs(startRadiusOfCurvature) > std::fabs(endRadiusOfCurvature)) {
                         assert(startRadiusOfCurvature / std::fabs(startRadiusOfCurvature) == endRadiusOfCurvature / std::fabs(endRadiusOfCurvature));
-                        double  factor = (1. / endRadiusOfCurvature - 1. / startRadiusOfCurvature);
-                        a *= factor;
-                        b *= factor;
-                        c *= factor;
-                        d = 1. / startRadiusOfCurvature;
+                        double  factor =
+                                    (1. / endRadiusOfCurvature - 1. / startRadiusOfCurvature);
+                        constantTerm  =   0. * factor + 1. / startRadiusOfCurvature;
+                        linearTerm    =   0. * factor;
+                        quadraticTerm =   3. * factor;
+                        cubicTerm     = - 2. * factor;
                     }
                     else {
                         assert(startRadiusOfCurvature / std::fabs(startRadiusOfCurvature) == endRadiusOfCurvature / std::fabs(endRadiusOfCurvature));
-                        double  factor = (1. / endRadiusOfCurvature - 1. / startRadiusOfCurvature);
-                        a *= factor;
-                        b *= factor;
-                        c *= factor;
-                        d = 1. / startRadiusOfCurvature;
+                        double  factor =
+                                    (1. / endRadiusOfCurvature - 1. / startRadiusOfCurvature);
+                        constantTerm  =   0. * factor + 1. / startRadiusOfCurvature;
+                        linearTerm    =   0. * factor;
+                        quadraticTerm =   3. * factor;
+                        cubicTerm     = - 2. * factor;
                     }
 
-    //                double  aaB = a ? segmentLength * pow(std::fabs(a), -1. / 3.) * a / std::fabs(a) : 0.;
- //                   double  bB = b ? segmentLength * pow(std::fabs(b), -1. / 2.) * b / std::fabs(b) : 0.;
-  //                  double  cB = c ? segmentLength * pow(std::fabs(c / segmentLength), -1. / 1.) * c / std::fabs(c) : 0.;
-                    double  aB = a ? segmentLength * pow(std::fabs(segmentLength * a), -1. / 4.) * a / std::fabs(a) : 0.;
-                    double  bB = b ? segmentLength * pow(std::fabs(segmentLength * b), -1. / 3.) * b / std::fabs(b) : 0.;
-                    double  cB = c ? segmentLength * pow(std::fabs(segmentLength * c), -1. / 2.) * c / std::fabs(c) : 0.;
-                    double  dB = d ? segmentLength * pow(std::fabs(segmentLength * d), -1. / 1.) * d / std::fabs(d) : 0.;
 
-    //                double ABC = 1. / pow(aaB, 3);
-    //                double ABC_ = 1. / pow(aB, 4);
-
-
-                    int_t   ifcBlossCurveInstance = ___CreateBlossCurve(model, aB, bB, cB, dB);
+                    int_t   ifcBlossCurveInstance =
+                                ___CreateBlossCurve(
+                                        model,
+                                        cubicTerm     ? std::fabs(segmentLength) * pow(std::fabs(segmentLength * cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
+                                        quadraticTerm ? std::fabs(segmentLength) * pow(std::fabs(segmentLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                        linearTerm    ? std::fabs(segmentLength) * pow(std::fabs(segmentLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                        constantTerm  ? std::fabs(segmentLength) * pow(std::fabs(segmentLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
+                                    );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveInstance);
 
                     //
