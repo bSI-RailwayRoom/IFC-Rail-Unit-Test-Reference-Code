@@ -85,7 +85,6 @@ static  inline  double   GetCantAngle(
 
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
-int_t exID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
             if (startDistAlong == offset && horizontalLength == length) {
                 double  startCantLeft = 0., endCantLeft = 0., startCantRight = 0., endCantRight = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
@@ -141,8 +140,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                             )
 {
 	int_t	ifcCompositeCurveInstance = sdaiCreateInstanceBN(model, "IFCCOMPOSITECURVE"),
-            * aggrCurveSegment = sdaiCreateAggrBN(ifcCompositeCurveInstance, "Segments"),
-        	* aggrSegments = nullptr;
+            * aggrCurveSegment = sdaiCreateAggrBN(ifcCompositeCurveInstance, "Segments");
 
     char    selfIntersect[2] = "F";
     sdaiPutAttrBN(ifcCompositeCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
@@ -711,7 +709,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
 
 
 #ifdef _DEBUG
-int_t   * aggrItems = nullptr;
+int_t   * aggrItems__DEBUG = nullptr;
 sdaiPutAttrBN(
         sdaiCreateInstanceBN(
                 model,
@@ -722,14 +720,14 @@ sdaiPutAttrBN(
         (void*) ___CreateProductDefinitionShape(
                         model,
                         ifcHelmertInstance,
-                        &aggrItems,
+                        &aggrItems__DEBUG,
                         true
                     )
     );
 {
     ___VECTOR2  pnt = { -1., 0. }, dir = { 1., 0. };
     sdaiAppend(
-            (int_t) aggrItems,
+            (int_t) aggrItems__DEBUG,
             sdaiINSTANCE,
             (void*) ___CreateLine(
                             model,
@@ -739,7 +737,7 @@ sdaiPutAttrBN(
         );
     pnt.x = 0.;
     sdaiAppend(
-            (int_t) aggrItems,
+            (int_t) aggrItems__DEBUG,
             sdaiINSTANCE,
             (void*) ___CreateLine(
                             model,
@@ -751,7 +749,7 @@ sdaiPutAttrBN(
 {
     ___VECTOR2  pnt = { 0., -1. }, dir = { 0., 1. };
     sdaiAppend(
-            (int_t) aggrItems,
+            (int_t) aggrItems__DEBUG,
             sdaiINSTANCE,
             (void*) ___CreateLine(
                             model,
@@ -761,7 +759,7 @@ sdaiPutAttrBN(
         );
     pnt.y = 0.;
     sdaiAppend(
-            (int_t) aggrItems,
+            (int_t) aggrItems__DEBUG,
             sdaiINSTANCE,
             (void*) ___CreateLine(
                             model,
@@ -812,7 +810,6 @@ else {
 }
 
 double  angleFirst = ___AngleByAngleDeviationPolynomial(0., as, bs, cs, 0.5);// segmentLengthHalf);
-double  angleSecond = ___AngleByAngleDeviationPolynomial(0., ae, be, ce, 0.5);// segmentLengthHalf);
 double  angle = angleFirst + startDirection + ANGLE;
 
 matrixI._11 = cos(angle);
@@ -1013,8 +1010,8 @@ cantComponent *= startRadiusOfCurvature * factor;
                                 };
 
                     if (flip) {
-                        for (int_t i = 0; i < 8; i++) {
-                            polynomialConstants[i] = -polynomialConstants[i];
+                        for (int_t ii = 0; ii < 8; ii++) {
+                            polynomialConstants[ii] = -polynomialConstants[ii];
                         }
                     }
 

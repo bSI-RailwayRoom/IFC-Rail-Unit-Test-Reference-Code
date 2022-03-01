@@ -41,9 +41,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
     double  epsilon = 0.0000001;
 
 	int_t	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE"),
-            * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments"),
-        	* aggrSegments = nullptr;
-
+            * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
     char    selfIntersect[2] = "F";
     sdaiPutAttrBN(ifcGradientCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
 
@@ -53,9 +51,6 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         ifcVerticalAlignmentInstance,
                         nullptr
                     );
-#ifdef _DEBUG
-            int_t   expressID_VA = internalGetP21Line(ifcVerticalAlignmentInstance);
-#endif // _DEBUG
 
     if (noSegmentInstances) {
         int_t   * segmentInstances = new int_t[noSegmentInstances];
@@ -143,21 +138,9 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
-#ifdef _DEBUG
-            int_t   expressID_AS = internalGetP21Line(ifcAlignmentSegmentInstance);
-
-//            int_t   expressID_AS_MAPPED = internalGetP21Line(myMapExpressID[expressID_AS]);
-#endif // _DEBUG
-
             int_t   ifcAlignmentVerticalSegmentInstance = 0;
             sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentVerticalSegmentInstance);
             assert(sdaiGetInstanceType(ifcAlignmentVerticalSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICALSEGMENT"));
-
-#ifdef _DEBUG
-            int_t   expressID_AVS = internalGetP21Line(ifcAlignmentVerticalSegmentInstance);
-#endif // _DEBUG
-
-            int_t   expressLine = internalGetP21Line(ifcAlignmentVerticalSegmentInstance);
 
             {
                 int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
@@ -287,8 +270,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                             endAngle = std::atan(endGradient__);
                     assert(startAngle > -___Pi && startAngle < ___Pi && endAngle > -___Pi && endAngle < ___Pi);
 
-                    double      radius;
-                    ___VECTOR2  origin;
+                    double  radius;
+#ifdef _DEBUG
+                    ___VECTOR2 origin;
+#endif // _DEBUG
                     if (startAngle < endAngle) {
  ///                       assert(radiusOfCurvature > 0.);
                         //
@@ -304,10 +289,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         //
                         //  offsetY = (cos( startAngle ) - cos( endAngle )) * radius;
                         //
+#ifdef _DEBUG
                         double  offsetY = (cos(startAngle) - cos(endAngle)) * radius;
 
                         origin.x = -sin(startAngle) * radius;
                         origin.y = cos(startAngle) * radius;
+#endif // _DEBUG
 
                         assert(std::fabs(origin.x - (horizontalLength - sin(endAngle) * radius)) < epsilon);
                         assert(std::fabs(origin.y - (offsetY + cos(endAngle) * radius)) < epsilon);
@@ -315,8 +302,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         startAngle += 3. * ___Pi / 2.;
                         endAngle += 3. * ___Pi / 2.;
 
-                        origin.x = -cos(startAngle) * radius;
-                        origin.y = -sin(startAngle) * radius;
+//                        origin.x = -cos(startAngle) * radius;
+//                        origin.y = -sin(startAngle) * radius;
                     }
                     else {
                         assert(startAngle > endAngle);
@@ -334,10 +321,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         //
                         //  offsetY = (cos( endAngle ) - cos( startAngle )) * radius;
                         //
+#ifdef _DEBUG
                         double  offsetY = (cos(endAngle) - cos(startAngle)) * radius;
 
                         origin.x = sin(startAngle) * radius;
                         origin.y = -cos(startAngle) * radius;
+#endif // _DEBUG
 
                         assert(std::fabs(origin.x - (horizontalLength + sin(endAngle) * radius)) < epsilon);
                         assert(std::fabs(origin.y - (offsetY - cos(endAngle) * radius)) < epsilon);
@@ -345,8 +334,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         startAngle += ___Pi / 2.;
                         endAngle += ___Pi / 2.;
 
+#ifdef _DEBUG
                         origin.x = -cos(startAngle) * radius;
                         origin.y = -sin(startAngle) * radius;
+#endif // _DEBUG
                     }
 
                     int_t   ifcCircleInstance = ___CreateCircle__woRotation(model, radius);
@@ -376,25 +367,30 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         //
                         //  new definition where the context defines the radius
                         //
-                        double  startRadiusOfCurvature = pRadiusOfCurvature[i - 1],
-                                endRadiusOfCurvature = pRadiusOfCurvature[i + 1];
+                        double  startRadiusOfCurvature = pRadiusOfCurvature[i - 1];
+#ifdef _DEBUG
+                        double  endRadiusOfCurvature = pRadiusOfCurvature[i + 1];
+#endif // _DEBUG
 
                         //
                         //  HorizontalLength
                         //
-                        double  horizontalLength = 0.;
-                        sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength);
+                        double  horizontalLength__ = 0.;
+                        sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength__);
+                        assert(horizontalLength__ == horizontalLength);
 
                         if (startRadiusOfCurvature == 0.) {
                             if (true) {
-                            double  gradientSpiral = pEndGradient[i - 1];
+//                            double  gradientSpiral = pEndGradient[i - 1];
 
-                            ___VECTOR3  originSpiral = { 0., 0., 0. },
-                                        refDirectionSpiral = { 1., startGradient__, 0. },
-                                        endPoint = { horizontalLength, pStartHeight[i + 1] - pStartHeight[i], 0. },
-                                        correctedEndPoint;
+                            ___VECTOR3 	originSpiral = { 0., 0., 0. },
+                                    	correctedEndPoint;
 
+#ifdef _DEBUG
+                            ___VECTOR3		refDirectionSpiral = { 1., startGradient__, 0. },
+                                    		endPoint = { horizontalLength, pStartHeight[i + 1] - pStartHeight[i], 0. };
                             double	D = ___PointLineDistance(&correctedEndPoint, &endPoint, &originSpiral, &refDirectionSpiral);
+#endif // _DEBUG
 
                             double  correctedHorizontalLength = ___Vec3Distance(&originSpiral, &correctedEndPoint),
                                     correctedStartAngle = 0.,
@@ -417,12 +413,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 L2 = correctedEndAngle ? (correctedEndAngle / std::fabs(correctedEndAngle)) * sqrt(1. * std::fabs(correctedEndAngle) / a) : 0.;
 //                                assert(L1 < L2);
 
-                                x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1),
+                                x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1);
                                 x2 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L2);
-                                double  dist = x2 - x1;
+//                                double  dist = x2 - x1;
     //                            assert(std::fabs(dist - correctedHorizontalLength) < 0.0000001);
 
+#ifdef _DEBUG
                                 double  y2 = ___IntegralTaylorSeriesSin(polynomialConstants, 3, L2);
+#endif // _DEBUG
                                 assert(std::fabs(std::fabs(y2) - std::fabs(D)) < 0.0000001);
 
                                 double  segmentLength = L2 - L1,
@@ -459,19 +457,25 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         else {
                             if (true) {
                             assert(endRadiusOfCurvature == 0.);
+#ifdef _DEBUG
                             double  gradientSpiral = pStartGradient[i + 1];
+#endif // _DEBUG
 
-                            ___VECTOR3  originSpiral = { horizontalLength, 0., 0. },
-                                        refDirectionSpiral = { 1., gradientSpiral, 0. },
-                                        endPoint = { 0., pStartHeight[i] - pStartHeight[i + 1], 0. },
-                                        correctedEndPoint;
+                            ___VECTOR3 	originSpiral = { horizontalLength, 0., 0. },
+#ifdef _DEBUG
+                                    refDirectionSpiral = { 1., gradientSpiral, 0. },
+                                    endPoint = { 0., pStartHeight[i] - pStartHeight[i + 1], 0. },
+#endif // _DEBUG
+                                    correctedEndPoint;
 
-                            ___VECTOR3  secondPointSpiral = {
-                                                originSpiral.x + 10. * refDirectionSpiral.x,
-                                                originSpiral.y + 10. * refDirectionSpiral.y,
-                                                originSpiral.z + 10. * refDirectionSpiral.z
-                                            };
+#ifdef _DEBUG
+                            ___VECTOR3 	secondPointSpiral = {
+	                                            originSpiral.x + 10. * refDirectionSpiral.x,
+	                                            originSpiral.y + 10. * refDirectionSpiral.y,
+	                                            originSpiral.z + 10. * refDirectionSpiral.z
+	                                        };
                             double	D = ___PointLineDistance(&correctedEndPoint, &endPoint, &originSpiral, &secondPointSpiral);
+#endif // _DEBUG
 
                             double  correctedHorizontalLength = ___Vec3Distance(&originSpiral, &correctedEndPoint),
                                     correctedStartAngle = startAngle - endAngle,
@@ -494,12 +498,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 L2 = correctedEndAngle ? (correctedEndAngle / std::fabs(correctedEndAngle)) * sqrt(1. * std::fabs(correctedEndAngle) / a) : 0.;
     //                            assert(L1 < L2);
 
-                                x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1),
+                                x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1);
                                 x2 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L2);
-                                double  dist = x2 - x1;
+//                                double  dist = x2 - x1;
     //                            assert(std::fabs(dist - correctedHorizontalLength) < 0.0000001);
 
+#ifdef _DEBUG
                                 double  y1 = ___IntegralTaylorSeriesSin(polynomialConstants, 3, L1);
+#endif // _DEBUG
                                 assert(std::fabs(std::fabs(y1) - std::fabs(D)) < 0.0000001);
 
                                 double  segmentLength = L2 - L1,
