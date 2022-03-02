@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\business2geometry">
+      <UniqueIdentifier>{9b28cacd-e76a-4481-af9a-aff8183fd0a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{6f43bb69-ba70-402e-9492-90dd6ad56a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\alignmentconsistency">
+      <UniqueIdentifier>{ba7a546d-be00-4fe5-a380-5b0cac22839a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="business2geometry\spiral.cpp">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="alignmentconsistency\alignmentconsistency.cpp">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClCompile>
+    <ClCompile Include="alignmentconsistency\issues.cpp">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClCompile>
+    <ClCompile Include="alignmentconsistency\alignmentconsistencyalignment.cpp">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClCompile>
+    <ClCompile Include="alignmentconsistency\alignmentconsistencyalignmentmirror.cpp">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClCompile>
+    <ClCompile Include="alignmentconsistency\alignmentconsistencyfile.cpp">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="alignmentconsistency.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\alignmentconsistency.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\clothoid.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\engdef.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\generic.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcalignment.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcalignmentcant.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcalignmenthorizontal.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcalignmentvertical.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcaxis2placement2d.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcaxis2placement3d.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifccartesianpoint.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifccartesiantransformationoperator2d.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifccircle.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcclothoid.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcderivedprofiledef.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcdirection.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcengine.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcfixedreferencesweptareasolid.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcline.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcnamedunit.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcpolynomialcurve.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcproductdefinitionshape.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcproject.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcshaperepresentation.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcunitassignment.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcvector.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\mathematics.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\spiral.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifccosine.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcsecondorderpolynomialspiral.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcseventhorderpolynomialspiral.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcsine.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="business2geometry\ifcthirdorderpolynomialspiral.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engdef.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ifcengine.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistency.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\issues.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistencyalignment.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistencyalignmentmirror.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistencyfile.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistencyPage.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+    <ClInclude Include="alignmentconsistency\alignmentconsistencyTEXT.h">
+      <Filter>Header Files\alignmentconsistency</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="alignmentconsistency.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

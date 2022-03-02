@@ -1,0 +1,19 @@
+; alignmentconsistency.def : Declares the module parameters for the DLL.
+
+LIBRARY
+
+EXPORTS
+    OpenModelC
+    OpenModelW
+    CloseModel
+    CheckConsistencyFile
+    CheckConsistencyAlignment
+    GetIssueC
+    GetIssueW
+    GetGroupNameC
+    GetGroupNameW
+    GetGroupDescriptionC
+    GetGroupDescriptionW
+    GetPageC
+    GetPageW
+    ; Explicit exports can go here
