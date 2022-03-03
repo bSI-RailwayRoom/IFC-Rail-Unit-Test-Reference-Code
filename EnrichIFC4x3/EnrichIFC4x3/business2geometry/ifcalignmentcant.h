@@ -72,8 +72,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
             sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
             assert(sdaiGetInstanceType(ifcAlignmentCantSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTCANTSEGMENT"));
 
-//            int_t   expressLine = internalGetP21Line(ifcAlignmentCantSegmentInstance);
-
             {
                 int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
 

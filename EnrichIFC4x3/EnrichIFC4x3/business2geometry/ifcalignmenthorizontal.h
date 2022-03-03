@@ -599,11 +599,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     else {
                         assert(startRadiusOfCurvature / std::fabs(startRadiusOfCurvature) == endRadiusOfCurvature / std::fabs(endRadiusOfCurvature));
                         double  factor = (1. / endRadiusOfCurvature - 1. / startRadiusOfCurvature);
-//                       as = -2.; bs = 4.; cs = -1.;
-//                       ae = 2.; be = 0.; ce = 0.;
-
-//factor = -factor;
-
                         as *= factor;
                         bs *= factor;
                         cs *= factor;
