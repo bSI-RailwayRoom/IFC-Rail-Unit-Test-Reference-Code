@@ -190,7 +190,7 @@ size_t	WriteHeader(char * fpc, char * ifcFileName, int issueCnt, double absolute
 		size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "        <span class=\"success\">Success</span>\n");
 	}
 	int percetage = (int) (100. * (double) (checkTypeCnt - checkTypeErrorCnt) / (double) checkTypeCnt);
-//	size += printInternal(fpc ? &fpc[size] : nullptr, "        Tests passed: <strong>%i / %i</strong> (%i%%)\n", checkTypeCnt - checkTypeErrorCnt, checkTypeCnt, percetage);
+//	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "        Tests passed: <strong>%i / %i</strong> (%i%%)\n", checkTypeCnt - checkTypeErrorCnt, checkTypeCnt, percetage);
 	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "        Tests passed: <strong>");
 	size += printInternal(fpc ? &fpc[size] : nullptr, checkTypeCnt - checkTypeErrorCnt);
 	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " / ");
@@ -241,7 +241,7 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 
 			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "    <!-- section ignored -->\n");
 
-//			size += printInternal(fpc ? &fpc[size] : nullptr, "        <h2>%s</h2>\n", GetGroupNameC(group, -1));
+//			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "        <h2>%s</h2>\n", GetGroupNameC(group, -1));
 			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "        <h2>");
 			size += printInternal(fpc ? &fpc[size] : nullptr, GetGroupNameC(group, -1));
 			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "</h2>\n");
@@ -255,7 +255,7 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 			}
 			int percetage = (int) (100. * (double) (checkCnt - checkErrorCnt) / (double) checkCnt);
 
-//			size += printInternal(fpc ? &fpc[size] : nullptr, "            Tests passed: <strong>%i / %i</strong> (%i%%)\n", checkCnt - checkErrorCnt, checkCnt, percetage);
+//			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "            Tests passed: <strong>%i / %i</strong> (%i%%)\n", checkCnt - checkErrorCnt, checkCnt, percetage);
 			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "            Tests passed: <strong>");
 			size += printInternal(fpc ? &fpc[size] : nullptr, checkCnt - checkErrorCnt);
 			size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " / ");
@@ -289,7 +289,7 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 							size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "            <li class=\"success\">\n");
 						}
 
-//						size += printInternal(fpc ? &fpc[size] : nullptr, "                %s\n", GetGroupNameC(group, subGroup));
+//						size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                %s\n", GetGroupNameC(group, subGroup));
 						size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                ");
 						size += printInternal(fpc ? &fpc[size] : nullptr, GetGroupNameC(group, subGroup));
 						size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "\n");
@@ -303,7 +303,7 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 								if (isError) {
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				<p class=\"failure\"> \n");
 
-//									size += printInternal(fpc ? &fpc[size] : nullptr, "					Assertion Failed: %s <br />\n", myIssue);
+//									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "					Assertion Failed: %s <br />\n", myIssue);
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "					Assertion Failed: ");
 									size += printInternal(fpc ? &fpc[size] : nullptr, myIssue);
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " <br />\n");
@@ -313,7 +313,7 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 								else {
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				<p class=\"success\">\n");
 
-//									size += printInternal(fpc ? &fpc[size] : nullptr, "                    For info: %s <br />\n", myIssue);
+//									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                    For info: %s <br />\n", myIssue);
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                    For info: ");
 									size += printInternal(fpc ? &fpc[size] : nullptr, myIssue);
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " <br />\n");

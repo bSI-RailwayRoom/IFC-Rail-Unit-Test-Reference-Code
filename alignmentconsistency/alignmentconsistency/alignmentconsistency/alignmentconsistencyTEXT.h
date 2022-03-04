@@ -40,24 +40,24 @@ static	inline	char	* GetGroupText(
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "IFC Schema Validation Issues" :
-								(char*) "inconsistency against the latest IFC4x3 schema";
+								(char*) "IFC schema validation issues" :
+								(char*) "Check if the model has issues against the IFC schema";
 				case  0:
 					return  isName ?
-								(char*) "Mandatory Attribute Missing" :
-								(char*) "Description of Mandatory Attribute Missing";
+								(char*) "Mandatory attributes missing" :
+								(char*) "Check if the model misses mandatory attributes according to the IFC schema";
 				case  1:
 					return  isName ?
 								(char*) "REAL value boundary issues" :
-								(char*) "Description of REAL value boundary issues";
+								(char*) "Check if the model has real value attributes exceeds the boundary defined in the schema";
 				case  2:
 					return  isName ?
 								(char*) "Incorrect ENUMERATION values" :
-								(char*) "Description of Incorrect ENUMERATION values";
+								(char*) "Check if the model has incorrect ENUMERATION values according to the IFC schema";
 				case  3:
 					return  isName ?
 								(char*) "File schema definition" :
-								(char*) "Description of File schema definition";
+								(char*) "Check if the file schema is not defined correctly";
 				default:
 					break;
 			}
@@ -66,20 +66,20 @@ static	inline	char	* GetGroupText(
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "Relation Inconsistencies" :
-								(char*) "valid against the schema, however inconsistent according to agreements";
+								(char*) "Alignment strucutre issues" :
+								(char*) "Check if alignment layouts are structured correctly";
 				case  0:
 					return  isName ?
-								(char*) "Horizontal Alignment inconsistencies" :
-								(char*) "Description of Horizontal Alignment inconsistencies";
+								(char*) "Alignment horizontal issues" :
+								(char*) "Check if a horizontal alignment has segments other than alignment horizontal segments nested";
 				case  1:
 					return  isName ?
-								(char*) "Vertical Alignment inconsistencies" :
-								(char*) "Description of Vertical Alignment inconsistencies";
+								(char*) "Alignment vertical issues" :
+								(char*) "Check if a vertical alignment has segments other than alignment vertical segments nested";
 				case  2:
 					return  isName ?
-								(char*) "Cant Alignment inconsistencies" :
-								(char*) "Description of Cant Alignment inconsistencies";
+								(char*) "Alignment cant inconsistencies" :
+								(char*) "Check if a cant alignment has segments other than alignment cant segments nested";
 				default:
 					break;
 			}
@@ -88,28 +88,28 @@ static	inline	char	* GetGroupText(
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "Geometrical Distances" :
-								(char*) "based on Business Logic Knowledge";
+								(char*) "Alignment continuity issues" :
+								(char*) "Check if an alignment is continous based on the parameters of alignment segments";
 				case  0:
 					return  isName ?
-								(char*) "Horizontal Alignment distances / deviations" :
-								(char*) "Description of Horizontal Alignment distances / deviations";
+								(char*) "Alignment horizontal continuity" :
+								(char*) "Check if the deviation between an alignment horizontal segment and the subsequent segment exceeds the defined epsilon";
 				case  1:
 					return  isName ?
-								(char*) "Vertical Alignment distances / deviations" :
-								(char*) "Description of Vertical Alignment distances / deviations";
+								(char*) "Alignment vertical continuity" :
+								(char*) "Check if the deviation between an alignment vertical segment and the subsequent segment exceeds the defined epsilon";
 				case  2:
 					return  isName ?
-								(char*) "Cant Alignment distances / deviations" :
-								(char*) "Description of Cant Alignment distances / deviations";
+								(char*) "Alignment cant continuity" :
+								(char*) "Check if the deviation between an alignment cant segment and the subsequent segment exceeds the defined epsilon";
 				case  3:
 					return  isName ?
-								(char*) "Horizontal Alignment Angle differences" :
-								(char*) "Description of Horizontal Alignment Angle differences";
+								(char*) "Alignment horizontal tangential continuity" :
+								(char*) "Check if an alignment horizontal segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				case  4:
 					return  isName ?
-								(char*) "Vertical Alignment Angle differences" :
-								(char*) "Description of Vertical Alignment Angle differences";
+								(char*) "Alignment vertical tangential continuity" :
+								(char*) "Check if an alignment vertical segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				default:
 					break;
 			}
