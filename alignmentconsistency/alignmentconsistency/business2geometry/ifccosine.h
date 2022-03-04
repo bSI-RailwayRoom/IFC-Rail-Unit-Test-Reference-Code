@@ -14,19 +14,19 @@ static	inline	int_t   ___CreateCosineCurve__NESTED(
                                 double      constantTerm
                             )
 {
-    int_t	ifcCosineInstance = sdaiCreateInstanceBN(model, (char*) "IFCCOSINE");
+    int_t	ifcCosineSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCCOSINESPIRAL");
 
-//    sdaiPutAttrBN(ifcCosineInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+//    sdaiPutAttrBN(ifcCosineSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
 
-    sdaiPutAttrBN(ifcCosineInstance, "CosineTerm", sdaiREAL, &cosineTerm);
+    sdaiPutAttrBN(ifcCosineSpiralInstance, "CosineTerm", sdaiREAL, &cosineTerm);
 
     if (constantTerm) {
-        sdaiPutAttrBN(ifcCosineInstance, "ConstantTerm", sdaiREAL, &constantTerm);
+        sdaiPutAttrBN(ifcCosineSpiralInstance, "ConstantTerm", sdaiREAL, &constantTerm);
     }
 
-    assert(ifcCosineInstance);
+    assert(ifcCosineSpiralInstance);
 
-    return	ifcCosineInstance;
+    return	ifcCosineSpiralInstance;
 }
 
 static	inline	int_t   ___CreateCosineCurve(

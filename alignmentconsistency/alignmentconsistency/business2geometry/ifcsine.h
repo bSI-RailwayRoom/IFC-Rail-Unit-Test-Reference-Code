@@ -15,23 +15,23 @@ static	inline	int_t   ___CreateSineCurve__NESTED(
                                 double      constantTerm
                             )
 {
-    int_t	ifcSineInstance = sdaiCreateInstanceBN(model, (char*) "IFCSINE");
+    int_t	ifcSineSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSINESPIRAL");
 
-//    sdaiPutAttrBN(ifcSineInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+//    sdaiPutAttrBN(ifcSineSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
 
-    sdaiPutAttrBN(ifcSineInstance, "SineTerm", sdaiREAL, &sineTerm);
+    sdaiPutAttrBN(ifcSineSpiralInstance, "SineTerm", sdaiREAL, &sineTerm);
 
     if (linearTerm) {
-        sdaiPutAttrBN(ifcSineInstance, "LinearTerm", sdaiREAL, &linearTerm);
+        sdaiPutAttrBN(ifcSineSpiralInstance, "LinearTerm", sdaiREAL, &linearTerm);
     }
 
     if (constantTerm) {
-        sdaiPutAttrBN(ifcSineInstance, "ConstantTerm", sdaiREAL, &constantTerm);
+        sdaiPutAttrBN(ifcSineSpiralInstance, "ConstantTerm", sdaiREAL, &constantTerm);
     }
 
-    assert(ifcSineInstance);
+    assert(ifcSineSpiralInstance);
 
-    return	ifcSineInstance;
+    return	ifcSineSpiralInstance;
 }
 
 static	inline	int_t   ___CreateSineCurve(
