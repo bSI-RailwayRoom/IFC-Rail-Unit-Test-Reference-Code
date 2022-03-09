@@ -2086,13 +2086,26 @@ int_t	GetGeometryFromGK(
 int_t	GetGeometryFromIFC(
 				int_t		model,
 				int_t		ifcAlignmentSegmentInstance,
+				int_t		ifcAlignmentInstance,
 				___VECTOR3	* startVec,
 				___VECTOR3	* endVec
 			)
 {
 	int64_t	owlModel = 0, owlInstance = 0;
 	owlGetModel(model, &owlModel);
-	owlBuildInstance(model, ifcAlignmentSegmentInstance, &owlInstance);
+//	owlBuildInstance(model, ifcAlignmentSegmentInstance, &owlInstance);
+//	owlBuildInstanceInContext(ifcAlignmentSegmentInstance, ifcAlignmentInstance, &owlInstance);
+	owlBuildInstanceInContext(ifcAlignmentSegmentInstance, sdaiGetInstanceType(ifcAlignmentInstance), &owlInstance);
+
+#ifdef _DEBUG
+	int_t	expressID_segment = internalGetP21Line(ifcAlignmentSegmentInstance);
+	int_t	expressID_boundeccurve = internalGetP21Line(ifcAlignmentInstance);
+
+
+	sdaiSaveModelBN(model, "C:\\IFCRAIL\\acca2__.ifc");
+#endif // _DEBUG
+
+
 
 	return	(int_t) GetGeometryFromGK(
 							owlModel,
@@ -2130,7 +2143,7 @@ void	CheckGeometrySegments(
 		___VECTOR3	previousEndVec = { 0., 0., 0. };
 		for (int_t i = 0; i < noSegmentInstances; i++) {
 			___VECTOR3	startVec = { 0., 0., 0. }, endVec = { 0., 0., 0. };
-			int_t cnt = GetGeometryFromIFC(model, segmentInstances[i], &startVec, &endVec);
+			int_t cnt = GetGeometryFromIFC(model, segmentInstances[i], ifcAlignmentNestedInstance, &startVec, &endVec);
 			if (cnt) {
 				if (i) {
 					double	distance = ___Vec3Distance(&previousEndVec, &startVec);
