@@ -4,7 +4,7 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateClothoid__V(
+static	inline	int_t   ___CreateClothoidInstance(
                                 int_t       model,
                                 double      linearTerm
                             )
@@ -15,14 +15,13 @@ static	inline	int_t   ___CreateClothoid__V(
 
     sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
 
-    double  a = (linearTerm / std::fabs(linearTerm)) * sqrt(std::fabs(linearTerm));
-    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &a);
+    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &linearTerm);
 
     assert(ifcClothoidInstance);
     return	ifcClothoidInstance;
 }
 
-static	inline	int_t   ___CreateCircle__woRotation(
+static	inline	int_t   ___CreateCircleInstance__woRotation(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
@@ -38,7 +37,7 @@ static	inline	int_t   ___CreateCircle__woRotation(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircle(
+static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
@@ -69,7 +68,7 @@ static	inline	int_t   ___CreateCircle(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircle(
+static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 ___VECTOR2  * origin,
                                 double      radius

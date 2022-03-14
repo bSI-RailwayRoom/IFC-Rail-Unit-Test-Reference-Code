@@ -9,7 +9,7 @@
 
 
 
-static	inline	int_t   ___CreateHelmert(
+static	inline	int_t   ___CreatSecondOrderPolynomialSpiralInstance(
                                 int_t       model,
                                 double      quadraticTerm,
                                 double      linearTerm,

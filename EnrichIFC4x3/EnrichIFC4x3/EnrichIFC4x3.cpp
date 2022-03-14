@@ -142,7 +142,8 @@ void    CheckResults(char * fileName)
 
                 int64_t owlInstance = 0;
 //                owlBuildInstance(ifcModel, ifcSegmentInstance, &owlInstance);
-                owlBuildInstanceInContext(ifcSegmentInstance, ifcCompositeCurveInstance, &owlInstance);
+//                owlBuildInstanceInContext(ifcSegmentInstance, ifcCompositeCurveInstance, &owlInstance);
+                owlBuildInstanceInContext(ifcSegmentInstance, sdaiGetInstanceType(ifcCompositeCurveInstance), &owlInstance);
 
                 int64_t vertexBufferSize = 0, indexBufferSize = 0;
                 CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);

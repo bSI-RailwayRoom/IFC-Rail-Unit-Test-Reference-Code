@@ -9,26 +9,7 @@
 #include "ifcpolynomialcurve.h"
 
 
-static	inline	int_t   ___CreateVienneseBendCant(
-                                int_t       model,
-                                double      * polynomialConstants,
-                                int_t       polynomialConstantsCnt,
-                                double      horizontalLength
-                            )
-{
-    double  xValues[2] = { 0., horizontalLength };
-    return  ___CreatePolynomialCurve__woRotation(
-                    model,
-                    xValues,
-                    2,
-                    polynomialConstants,
-                    polynomialConstantsCnt,
-                    nullptr,
-                    0
-                );
-}
-
-static	inline	int_t   ___CreateVienneseBend(
+static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
                                 int_t       model,
                                 double      septicTerm,
                                 double      sexticTerm,

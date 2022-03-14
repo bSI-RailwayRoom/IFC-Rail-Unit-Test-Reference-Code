@@ -4,7 +4,7 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreatePolynomialCurve__woRotation(
+static	inline	int_t   ___CreatePolynomialCurveInstance(
                                 int_t   model,
                                 double  * pCoefficientsX,
                                 int_t   coefficientsXCard,
@@ -55,7 +55,7 @@ static	inline	int_t   ___CreateBiquadraticParabola(
 {
     int_t	ifcPolynomialCurveInstance = sdaiCreateInstanceBN(model, (char*) "IFCPOLYNOMIALCURVE");
 
-//    sdaiPutAttrBN(ifcPolynomialCurveInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+    sdaiPutAttrBN(ifcPolynomialCurveInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
     
     {
 	    int_t   * aggrCoefficientsX = sdaiCreateAggrBN(ifcPolynomialCurveInstance, (char*) "CoefficientsX");
@@ -87,7 +87,7 @@ static	inline	int_t   ___CreateCubic(
 {
     int_t	ifcPolynomialCurveInstance = sdaiCreateInstanceBN(model, (char*) "IFCPOLYNOMIALCURVE");
 
-//    sdaiPutAttrBN(ifcPolynomialCurveInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+    sdaiPutAttrBN(ifcPolynomialCurveInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
     
     {
 	    int_t   * aggrCoefficientsX = sdaiCreateAggrBN(ifcPolynomialCurveInstance, (char*) "CoefficientsX");

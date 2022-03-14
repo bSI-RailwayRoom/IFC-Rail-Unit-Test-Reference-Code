@@ -7,7 +7,7 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateBlossCurve(
+static	inline	int_t   ___CreateThirdOrderPolynomialSpiralInstance(
                                 int_t       model,
                                 double      cubicTerm,
                                 double      quadraticTerm,

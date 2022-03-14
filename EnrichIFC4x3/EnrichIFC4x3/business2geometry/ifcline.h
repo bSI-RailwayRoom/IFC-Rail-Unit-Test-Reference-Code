@@ -8,7 +8,7 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateLine(
+static	inline	int_t   ___CreateLineInstance(
                                 int_t       model
                             )
 {
@@ -22,7 +22,7 @@ static	inline	int_t   ___CreateLine(
     return	ifcLineInstance;
 }
 
-static	inline	int_t   ___CreateLine(
+static	inline	int_t   ___CreateLineInstance(
                                 int_t       model,
                                 ___VECTOR2  * orientation
                             )
@@ -37,7 +37,7 @@ static	inline	int_t   ___CreateLine(
     return	ifcLineInstance;
 }
 
-static	inline	int_t   ___CreateLine(
+static	inline	int_t   ___CreateLineInstance(
                                 int_t       model,
                                 ___VECTOR2  * pnt,
                                 ___VECTOR2  * dir
