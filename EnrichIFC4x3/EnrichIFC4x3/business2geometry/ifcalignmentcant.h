@@ -4,12 +4,12 @@
 #include "generic.h"
 
 #include "ifcaxis2placement3d.h"
-#include "ifccosine.h"
+#include "ifccosinespiral.h"
 #include "ifcline.h"
 #include "ifcproductdefinitionshape.h"
 #include "ifcsecondorderpolynomialspiral.h"
 #include "ifcseventhorderpolynomialspiral.h"
-#include "ifcsine.h"
+#include "ifcsinespiral.h"
 #include "ifcthirdorderpolynomialspiral.h"
 
 
@@ -42,8 +42,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
     }
 
     int_t	ifcSegmentedReferenceCurveInstance = sdaiCreateInstanceBN(model, "IFCSEGMENTEDREFERENCECURVE"),
-            * aggrCurveSegment = sdaiCreateAggrBN(ifcSegmentedReferenceCurveInstance, "Segments"),
-        	* aggrSegments = nullptr;
+            * aggrCurveSegment = sdaiCreateAggrBN(ifcSegmentedReferenceCurveInstance, "Segments");
 
     char    selfIntersect[2] = "F";
     sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
@@ -90,7 +89,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                         ifcAlignmentSegmentInstance,
                         "Representation",
                         sdaiINSTANCE,
-                        (void*) ___CreateProductDefinitionShape(
+                        (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
                                         false
@@ -184,19 +183,19 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 matrix._21 = -matrix._12;
                 matrix._22 = matrix._11;
 
-                double  factor = -(startCantLeft - startCantRight);
-                matrix._31 = - factor * matrix._12;
-                matrix._32 = factor * matrix._11;
+                double  _factor = -(startCantLeft - startCantRight);
+                matrix._31 = - _factor * matrix._12;
+                matrix._32 = _factor * matrix._11;
                 matrix._33 = railHeadDistance;
                 ___Vec3Normalize((___VECTOR3*) &matrix._31);
 
                 ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*)___CreateAxis2Placement3D(model, &matrix));
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                 if ((horizontalLength == 0.) &&
                     (i == noSegmentInstances - 1)) {
-                    sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                    sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
                 }
                 else {
                     assert(horizontalLength > 0.);
@@ -283,7 +282,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                     double  factor =
                                 (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
@@ -333,7 +332,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                     double  factor =
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
@@ -379,7 +378,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                     double  factor =
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
@@ -426,7 +425,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                     assert(horizontalLength > 0.);
                     double  factor =
@@ -496,7 +495,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                         ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                         int_t   ifcHelmertCurveParentCurve =
                                     ___CreatSecondOrderPolynomialSpiralInstance(
@@ -543,7 +542,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                         ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model, &matrix));
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                         int_t   ifcHelmertCurveInstance =
                                     ___CreatSecondOrderPolynomialSpiralInstance(

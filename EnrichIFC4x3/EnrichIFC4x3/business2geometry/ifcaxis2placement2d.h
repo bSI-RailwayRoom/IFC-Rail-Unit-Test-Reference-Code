@@ -5,7 +5,7 @@
 #include "ifcdirection.h"
 
 
-static	inline	int_t	___CreateAxis2Placement2D(
+static	inline	int_t	___CreateAxis2Placement2DInstance(
 								int_t		model
 							)
 {
@@ -21,7 +21,7 @@ static	inline	int_t	___CreateAxis2Placement2D(
 	return	ifcAxis2Placement2DInstance;
 }
 
-static	inline	int_t	___CreateAxis2Placement2D(
+static	inline	int_t	___CreateAxis2Placement2DInstance(
 								int_t		model,
 								___VECTOR2	* location,
 								___VECTOR2	* refDirection
@@ -39,15 +39,15 @@ static	inline	int_t	___CreateAxis2Placement2D(
 	return	ifcAxis2Placement2DInstance;
 }
 
-static	inline	int_t	___CreateAxis2Placement2D(
+static	inline	int_t	___CreateAxis2Placement2DInstance(
 								int_t		model,
 								___MATRIX  * matrix
 							)
 {
 	if (matrix) {
-		return	___CreateAxis2Placement2D(model, (___VECTOR2*) &matrix->_41, (___VECTOR2*) &matrix->_11);
+		return	___CreateAxis2Placement2DInstance(model, (___VECTOR2*) &matrix->_41, (___VECTOR2*) &matrix->_11);
 	}
 	else {
-		return	___CreateAxis2Placement2D(model);
+		return	___CreateAxis2Placement2DInstance(model);
 	}
 }

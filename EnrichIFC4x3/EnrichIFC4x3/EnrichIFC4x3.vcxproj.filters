@@ -119,10 +119,10 @@
     <ClInclude Include="business2geometry\ifcthirdorderpolynomialspiral.h">
       <Filter>Header Files\business2geometry</Filter>
     </ClInclude>
-    <ClInclude Include="business2geometry\ifcsine.h">
+    <ClInclude Include="business2geometry\ifccosinespiral.h">
       <Filter>Header Files\business2geometry</Filter>
     </ClInclude>
-    <ClInclude Include="business2geometry\ifccosine.h">
+    <ClInclude Include="business2geometry\ifcsinespiral.h">
       <Filter>Header Files\business2geometry</Filter>
     </ClInclude>
   </ItemGroup>

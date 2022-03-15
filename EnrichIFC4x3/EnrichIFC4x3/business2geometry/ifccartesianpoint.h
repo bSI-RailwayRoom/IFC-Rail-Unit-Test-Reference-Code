@@ -2,7 +2,6 @@
 
 
 #include "mathematics.h"
-#include "ifcengine.h"
 
 
 static	inline	int_t	___CreateCartesianPointInstance_2D(

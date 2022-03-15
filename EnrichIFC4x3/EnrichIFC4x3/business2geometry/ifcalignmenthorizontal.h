@@ -5,11 +5,11 @@
 #include "spiral.h"
 #include "ifccircle.h"
 #include "ifcclothoid.h"
-#include "ifccosine.h"
+#include "ifccosinespiral.h"
 #include "ifcline.h"
 #include "ifcpolynomialcurve.h"
 #include "ifcproductdefinitionshape.h"
-#include "ifcsine.h"
+#include "ifcsinespiral.h"
 #include "ifcsecondorderpolynomialspiral.h"
 #include "ifcseventhorderpolynomialspiral.h"
 #include "ifcthirdorderpolynomialspiral.h"
@@ -215,7 +215,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         ifcAlignmentSegmentInstance,
                         "Representation",
                         sdaiINSTANCE,
-                        (void*) ___CreateProductDefinitionShape(
+                        (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
                                         &aggrItems,
@@ -255,7 +255,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                 };
                 assert(pStartPoint[i].z == 0.);
 
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &location, &refDirection));
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
 
                 //
                 //  Parse the individual segments
@@ -266,10 +266,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
-//                    assert(startRadiusOfCurvature && startRadiusOfCurvature == endRadiusOfCurvature);
 
                     int_t   ifcCircularArcParentCurve =
-                                ___CreateCircleInstance__woRotation(
+                                ___CreateCircleInstance(
                                         model,
                                         startRadiusOfCurvature
                                     );
@@ -299,12 +298,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     //  SegmentLength
                     //
                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-//                    if (segmentLength < 0.) {
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-//                    }
-//                    else {
-//                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-//                    }
+                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "CLOTHOID")) {
@@ -538,7 +532,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
                                 sdaiINSTANCE,
-                                (void*) ___CreateProductDefinitionShape(
+                                (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 ifcCurveSegmentInstance,
                                                 false
@@ -562,7 +556,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                             endPointFirstHalf.x, endPointFirstHalf.y, 0.
                                         };
 
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &matrix));
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &matrix));
                     }
 
                     {
@@ -815,8 +809,28 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         assert(false);
                     }
 
-                    int_t   ifcCubicInstance = ___CreateCubic(model, cubicConstant);
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicInstance);
+                    double  coefficientsX[2] = {
+                                    0.,
+                                    1.
+                                },
+                            coefficientsY[4] = {
+                                    0.,
+                                    0.,
+                                    0.,
+                                    cubicConstant
+                                };
+
+                    int_t   ifcCubicParentCurve =
+                                ___CreatePolynomialCurveInstance(
+                                        model,
+                                        coefficientsX,
+                                        2,
+                                        coefficientsY,
+                                        4,
+                                        nullptr,
+                                        0
+                                    );
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicParentCurve);
 
                     //
                     //  SegmentStart

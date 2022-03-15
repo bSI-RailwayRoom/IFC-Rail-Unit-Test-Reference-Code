@@ -5,7 +5,7 @@
 #include "ifcdirection.h"
 
 
-static	inline	int_t	___CreateAxis2Placement3D(
+static	inline	int_t	___CreateAxis2Placement3DInstance(
 								int_t		model
 							)
 {
@@ -21,7 +21,7 @@ static	inline	int_t	___CreateAxis2Placement3D(
 	return	ifcAxis2Placement3DInstance;
 }
 
-static	inline	int_t	___CreateAxis2Placement3D(
+static	inline	int_t	___CreateAxis2Placement3DInstance(
 								int_t		model,
 								___MATRIX	* matrix
 							)

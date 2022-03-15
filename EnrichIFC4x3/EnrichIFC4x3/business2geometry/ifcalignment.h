@@ -4,11 +4,9 @@
 #include "ifcalignmentcant.h"
 #include "ifcalignmenthorizontal.h"
 #include "ifcalignmentvertical.h"
-#include "ifccartesianpoint.h"
 #include "ifcderivedprofiledef.h"
 #include "ifcfixedreferencesweptareasolid.h"
 #include "ifcproject.h"
-#include "ifcproductdefinitionshape.h"
 
 
 extern  int_t   reusedIfcGeometricRepresentationContextInstance;
@@ -116,7 +114,7 @@ static  inline  void    AlignmentGenerateGeometry(
                     ),
                 "Representation",
                 sdaiINSTANCE,
-                (void*) ___CreateProductDefinitionShape(
+                (void*) ___CreateProductDefinitionShapeInstance(
                                 model,
                                 ifcRepresentationItem_gradientCurveInstance,
                                 true
@@ -166,7 +164,7 @@ static  inline  void    AlignmentGenerateGeometry(
                         ),
                     "Representation",
                     sdaiINSTANCE,
-                    (void*) ___CreateProductDefinitionShape(
+                    (void*) ___CreateProductDefinitionShapeInstance(
                                     model,
                                     ifcRepresentationItem_segmentedReferenceCurveInstance,
                                     true
@@ -203,7 +201,7 @@ static  inline  void    AlignmentGenerateGeometry(
             ifcAlignmentInstance,
             "Representation",
             sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShape(
+            (void*) ___CreateProductDefinitionShapeInstance(
                             model,
                             ifcRepresentationItem,
                             true
@@ -233,7 +231,7 @@ static  inline  void    AlignmentGenerateGeometry(
                 ),
             "Representation",
             sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShape(
+            (void*) ___CreateProductDefinitionShapeInstance(
                             model,
                             ifcRepresentationItem_compositeCurveInstance,
                             false
@@ -254,14 +252,14 @@ static  inline  int_t    AlignmentGenerateSweep(
                         ifcAlignmentInstance,
                         nullptr
                     )) ?
-                    ___CreateDirectrixDerivedReferenceSweptAreaSolid(
+                    ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
                             model,
                             ___GetProductRepresentationItem(
                                     ifcAlignmentInstance
                                 ),
                             ifcProfileInstance
                         ) :
-                    ___CreateFixedReferenceSweptAreaSolid(
+                    ___CreateFixedReferenceSweptAreaSolidInstance(
                             model,
                             ___GetProductRepresentationItem(
                                     ifcAlignmentInstance
@@ -281,7 +279,7 @@ static  inline  int_t    AlignmentGenerateSweep(
             ifcProductInstance,
             "Representation",
             sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShape(
+            (void*) ___CreateProductDefinitionShapeInstance(
                             model,
                             ifcFixedReferenceSweptAreaSolidInstance,
                             true    
@@ -305,8 +303,8 @@ static  inline  int_t    AlignmentGenerateSweep(
  
     aggrProfiles = sdaiCreateAggrBN(ifcCompositeProfileDefInstance, "Profiles");
 
-    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDef(model, ifcProfileInstance, -(gauge / 2.)));
-    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDef(model, ifcProfileInstance, gauge / 2.));
+    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, -(gauge / 2.)));
+    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, gauge / 2.));
 
     return  AlignmentGenerateSweep(
                     model,
@@ -314,4 +312,4 @@ static  inline  int_t    AlignmentGenerateSweep(
                     ifcCompositeProfileDefInstance,
                     ifcProductInstance
                 );
-}
+}	//	*/

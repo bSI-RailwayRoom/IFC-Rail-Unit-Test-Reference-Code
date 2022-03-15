@@ -4,7 +4,7 @@
 #include "ifccartesiantransformationoperator2d.h"
 
 
-static	inline	int_t	___CreateDerivedProfileDef(
+static	inline	int_t	___CreateDerivedProfileDefInstance(
 							    int_t   model,
                                 int_t   ifcProfileDefInstance,
                                 double  offset

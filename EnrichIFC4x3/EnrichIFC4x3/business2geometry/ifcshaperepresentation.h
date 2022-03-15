@@ -13,7 +13,7 @@ static	inline	int_t   ___CreateObjectPlacement(
 {
     int_t   ifcObjectPlacementInstance = sdaiCreateInstanceBN(model, "IFCLOCALPLACEMENT");
 
-    sdaiPutAttrBN(ifcObjectPlacementInstance, "RelativePlacement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model));
+    sdaiPutAttrBN(ifcObjectPlacementInstance, "RelativePlacement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model));
 
     assert(ifcObjectPlacementInstance);
     return	ifcObjectPlacementInstance;
@@ -37,7 +37,7 @@ static	inline	int_t   ___CreateGeometricRepresentationContext(
 
     double  precision = 0.000001;
 	sdaiPutAttrBN(ifcGeometricRepresentationContextInstance, "Precision", sdaiREAL, &precision);
-	sdaiPutAttrBN(ifcGeometricRepresentationContextInstance, "WorldCoordinateSystem", sdaiINSTANCE, (void*) ___CreateAxis2Placement3D(model));
+	sdaiPutAttrBN(ifcGeometricRepresentationContextInstance, "WorldCoordinateSystem", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model));
 
     reusedIfcGeometricRepresentationContextInstance = ifcGeometricRepresentationContextInstance;
 
@@ -45,7 +45,7 @@ static	inline	int_t   ___CreateGeometricRepresentationContext(
     return	ifcGeometricRepresentationContextInstance;
 }
 
-static	inline	int_t   ___CreateShapeRepresentation(
+static	inline	int_t   ___CreateShapeRepresentationInstance(
                                 int_t   model,
                                 int_t   ifcRepresentationItemInstance,
                                 int_t   ** pAggrItems,
@@ -81,13 +81,13 @@ static	inline	int_t   ___CreateShapeRepresentation(
 	return	ifcShapeRepresentationInstance;
 }
 
-static	inline	int_t   ___CreateShapeRepresentation(
+static	inline	int_t   ___CreateShapeRepresentationInstance(
                                 int_t   model,
                                 int_t   ifcRepresentationItemInstance,
                                 bool    is3DCurve
                             )
 {
-    return  ___CreateShapeRepresentation(
+    return  ___CreateShapeRepresentationInstance(
                     model,
                     ifcRepresentationItemInstance,
                     nullptr,

@@ -2,7 +2,6 @@
 
 
 #include "mathematics.h"
-#include "ifcengine.h"
 
 
 static	inline	int_t	___CreateDirectionInstance(
@@ -32,10 +31,6 @@ static	inline	int_t	___CreateDirectionInstance(
 	int_t	ifcDirectionInstance, * aggrDirectionRatios;
 
 	ifcDirectionInstance = sdaiCreateInstanceBN(model, "IFCDIRECTION");
-
-	if (internalGetP21Line(ifcDirectionInstance) == 758) {
-		int u = 0;
-	}
 
 	aggrDirectionRatios = sdaiCreateAggrBN(ifcDirectionInstance, "DirectionRatios");
 

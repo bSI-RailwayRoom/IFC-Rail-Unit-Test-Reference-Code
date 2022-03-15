@@ -3,8 +3,6 @@
 
 #include "ifccartesianpoint.h"
 #include "ifcvector.h"
-
-
 #include "ifcaxis2placement2d.h"
 
 

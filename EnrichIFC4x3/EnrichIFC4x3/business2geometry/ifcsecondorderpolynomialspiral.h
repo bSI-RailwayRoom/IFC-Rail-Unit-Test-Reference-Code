@@ -3,10 +3,7 @@
 
 #include "ifccartesianpoint.h"
 #include "ifcvector.h"
-
-
 #include "ifcaxis2placement2d.h"
-
 
 
 static	inline	int_t   ___CreatSecondOrderPolynomialSpiralInstance(
@@ -19,7 +16,7 @@ static	inline	int_t   ___CreatSecondOrderPolynomialSpiralInstance(
 {
     int_t	ifcSecondOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSECONDORDERPOLYNOMIALSPIRAL");
 
-    sdaiPutAttrBN(ifcSecondOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, matrix));
+    sdaiPutAttrBN(ifcSecondOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 
     sdaiPutAttrBN(ifcSecondOrderPolynomialSpiralInstance, "QuadraticTerm", sdaiREAL, &quadraticTerm);
 

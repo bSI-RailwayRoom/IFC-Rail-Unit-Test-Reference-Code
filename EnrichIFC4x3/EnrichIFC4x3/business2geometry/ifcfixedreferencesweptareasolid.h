@@ -8,7 +8,7 @@
 #include "ifcproductdefinitionshape.h"
 
 
-static  inline  int_t   ___CreateFixedReferenceSweptAreaSolid(
+static  inline  int_t   ___CreateFixedReferenceSweptAreaSolidInstance(
                                 int_t   model,
                                 int_t   ifcAlignmentCurve,
                                 int_t   ifcProfileDef
@@ -28,7 +28,7 @@ static  inline  int_t   ___CreateFixedReferenceSweptAreaSolid(
     return  ifcFixedReferenceSweptAreaSolidInstance;
 }
 
-static  inline  int_t   ___CreateDirectrixDerivedReferenceSweptAreaSolid(
+static  inline  int_t   ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
                                 int_t   model,
                                 int_t   ifcAlignmentCurve,
                                 int_t   ifcProfileDef

@@ -3,8 +3,6 @@
 
 #include "ifccartesianpoint.h"
 #include "ifcvector.h"
-
-
 #include "ifcaxis2placement2d.h"
 #include "ifcpolynomialcurve.h"
 
@@ -31,8 +29,6 @@ static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
     //		ConstantTerm
 
     int_t	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
-
-    sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
 
     sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "SepticTerm", sdaiREAL, &septicTerm);
 

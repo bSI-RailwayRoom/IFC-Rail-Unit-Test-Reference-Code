@@ -157,7 +157,7 @@
     <ClInclude Include="business2geometry\ifccartesiantransformationoperator2d.h" />
     <ClInclude Include="business2geometry\ifccircle.h" />
     <ClInclude Include="business2geometry\ifcclothoid.h" />
-    <ClInclude Include="business2geometry\ifccosine.h" />
+    <ClInclude Include="business2geometry\ifccosinespiral.h" />
     <ClInclude Include="business2geometry\ifcderivedprofiledef.h" />
     <ClInclude Include="business2geometry\ifcfixedreferencesweptareasolid.h" />
     <ClInclude Include="business2geometry\ifcnamedunit.h" />
@@ -170,7 +170,7 @@
     <ClInclude Include="business2geometry\ifcsecondorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcseventhorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcshaperepresentation.h" />
-    <ClInclude Include="business2geometry\ifcsine.h" />
+    <ClInclude Include="business2geometry\ifcsinespiral.h" />
     <ClInclude Include="business2geometry\ifcthirdorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcunitassignment.h" />
     <ClInclude Include="business2geometry\ifcvector.h" />

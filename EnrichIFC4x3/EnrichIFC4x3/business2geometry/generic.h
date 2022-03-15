@@ -31,8 +31,6 @@ static  inline  int_t   ___GetAlignmentSegments(
 {
     int_t   alignmentSegmentCnt = 0;
 
-    int_t   expressID = internalGetP21Line(ifcAlignmentXyzInstance);
-
     {
 	    int_t	* aggrIfcRelAggregates = nullptr, noAggrIfcRelAggregates;
         sdaiGetAttrBN(ifcAlignmentXyzInstance, "IsNestedBy", sdaiAGGR, &aggrIfcRelAggregates);
