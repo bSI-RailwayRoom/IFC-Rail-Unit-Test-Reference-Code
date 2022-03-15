@@ -7,20 +7,19 @@
 
 #include <cmath>
 
-#include "clothoid.h"
 #include "ifcaxis2placement2d.h"
 
 
-static  inline  int_t   ___CreateClothoid(
-                                int_t   model,
-                                double  A
-                           )
+static	inline	int_t   ___CreateClothoidInstance(
+                                int_t       model,
+                                double      linearTerm
+                            )
 {
     int_t	ifcClothoidInstance = sdaiCreateInstanceBN(model, (char*) "IFCCLOTHOID");
 
     sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
 
-    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &A);
+    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &linearTerm);
 
     assert(ifcClothoidInstance);
 
@@ -110,7 +109,7 @@ static  inline  int_t   ___CreateClothoid(
         assert(*pOffset == 0.);
     }
 
-    return  ___CreateClothoid(
+    return  ___CreateClothoidInstance(
                     model,
                     A
                 );

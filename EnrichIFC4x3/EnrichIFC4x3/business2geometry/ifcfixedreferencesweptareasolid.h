@@ -23,7 +23,7 @@ static  inline  int_t   ___CreateFixedReferenceSweptAreaSolid(
     ___VECTOR3  fixedReference = { 0., 0., 1. };
     sdaiPutAttrBN(ifcFixedReferenceSweptAreaSolidInstance, "SweptArea", sdaiINSTANCE, (void*) ifcProfileDef);
     sdaiPutAttrBN(ifcFixedReferenceSweptAreaSolidInstance, "Directrix", sdaiINSTANCE, (void*) ifcAlignmentCurve);
-    sdaiPutAttrBN(ifcFixedReferenceSweptAreaSolidInstance, "FixedReference", sdaiINSTANCE, (void*) ___CreateDirection_3D(model, &fixedReference));
+    sdaiPutAttrBN(ifcFixedReferenceSweptAreaSolidInstance, "FixedReference", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, &fixedReference));
    
     return  ifcFixedReferenceSweptAreaSolidInstance;
 }
@@ -43,7 +43,7 @@ static  inline  int_t   ___CreateDirectrixDerivedReferenceSweptAreaSolid(
     ___VECTOR3  fixedReference = { 0., 0., 1. };
     sdaiPutAttrBN(ifcDirectrixDerivedReferenceSweptAreaSolidInstance, "SweptArea", sdaiINSTANCE, (void*) ifcProfileDef);
     sdaiPutAttrBN(ifcDirectrixDerivedReferenceSweptAreaSolidInstance, "Directrix", sdaiINSTANCE, (void*) ifcAlignmentCurve);
-    sdaiPutAttrBN(ifcDirectrixDerivedReferenceSweptAreaSolidInstance, "FixedReference", sdaiINSTANCE, (void*) ___CreateDirection_3D(model, &fixedReference));
+    sdaiPutAttrBN(ifcDirectrixDerivedReferenceSweptAreaSolidInstance, "FixedReference", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, &fixedReference));
    
     return  ifcDirectrixDerivedReferenceSweptAreaSolidInstance;
 }

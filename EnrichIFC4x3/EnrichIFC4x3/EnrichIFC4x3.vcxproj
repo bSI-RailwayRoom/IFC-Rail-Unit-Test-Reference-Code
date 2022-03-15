@@ -145,7 +145,6 @@
     <ClCompile Include="EnrichIFC4x3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="business2geometry\clothoid.h" />
     <ClInclude Include="business2geometry\engdef.h" />
     <ClInclude Include="business2geometry\generic.h" />
     <ClInclude Include="business2geometry\ifcalignment.h" />

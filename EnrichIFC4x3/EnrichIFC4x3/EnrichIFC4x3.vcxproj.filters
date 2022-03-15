@@ -32,9 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="business2geometry\clothoid.h">
-      <Filter>Header Files\business2geometry</Filter>
-    </ClInclude>
     <ClInclude Include="business2geometry\engdef.h">
       <Filter>Header Files\business2geometry</Filter>
     </ClInclude>

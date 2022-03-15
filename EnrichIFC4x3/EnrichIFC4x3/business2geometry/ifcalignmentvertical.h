@@ -3,6 +3,7 @@
 
 #include "generic.h"
 #include "mathematics.h"
+#include "ifcclothoid.h"
 #include "ifcpolynomialcurve.h"
 #include "ifcproductdefinitionshape.h"
 
@@ -438,7 +439,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 int_t   ifcClothoidInstance =
                                             ___CreateClothoidInstance(
                                                     model,
-                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
+//                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
+                                                    linearTerm ? 1. * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
                                                );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
 

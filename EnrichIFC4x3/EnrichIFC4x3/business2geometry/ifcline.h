@@ -14,7 +14,7 @@ static	inline	int_t   ___CreateLineInstance(
 {
     int_t	ifcLineInstance = sdaiCreateInstanceBN(model, (char*) "IFCLINE");
 
-    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model));
+    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance_2D(model));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model));
 
     assert(ifcLineInstance);
@@ -29,7 +29,7 @@ static	inline	int_t   ___CreateLineInstance(
 {
     int_t	ifcLineInstance = sdaiCreateInstanceBN(model, (char*) "IFCLINE");
 
-    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model));
+    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance_2D(model));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model, orientation));
 
     assert(ifcLineInstance);
@@ -45,7 +45,7 @@ static	inline	int_t   ___CreateLineInstance(
 {
     int_t	ifcLineInstance = sdaiCreateInstanceBN(model, (char*) "IFCLINE");
 
-    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model, pnt));
+    sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, pnt));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model, dir));
 
     assert(ifcLineInstance);

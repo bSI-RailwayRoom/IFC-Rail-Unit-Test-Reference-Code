@@ -5,7 +5,7 @@
 #include "ifcengine.h"
 
 
-static	inline	int_t	___CreateCartesianTransformationOperator2D(
+static	inline	int_t	___CreateCartesianTransformationOperator2DInstance(
 							    int_t   model,
                                 double  offset
 							)
@@ -14,8 +14,8 @@ static	inline	int_t	___CreateCartesianTransformationOperator2D(
 
     ifcCartesianTransformationOperator2DInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANTRANSFORMATIONOPERATOR2D");
 
-	___VECTOR3	localOrigin = { 0., offset, 0. };
-    sdaiPutAttrBN(ifcCartesianTransformationOperator2DInstance, "LocalOrigin", sdaiINSTANCE, (void*) ___CreateCartesianPoint3D(model, &localOrigin));
+	___VECTOR2	localOrigin = { 0., offset };
+    sdaiPutAttrBN(ifcCartesianTransformationOperator2DInstance, "LocalOrigin", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, &localOrigin));
 
 	assert(ifcCartesianTransformationOperator2DInstance);
 

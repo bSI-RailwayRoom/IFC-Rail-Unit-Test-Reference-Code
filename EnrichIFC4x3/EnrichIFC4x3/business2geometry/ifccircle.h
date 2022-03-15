@@ -4,23 +4,6 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateClothoidInstance(
-                                int_t       model,
-                                double      linearTerm
-                            )
-{
-    int_t	ifcClothoidInstance = sdaiCreateInstanceBN(model, (char*) "IFCCLOTHOID");
-
-    sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
-
-    sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
-
-    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &linearTerm);
-
-    assert(ifcClothoidInstance);
-    return	ifcClothoidInstance;
-}
-
 static	inline	int_t   ___CreateCircleInstance__woRotation(
                                 int_t       model,
                                 double      radiusOfCurvature
