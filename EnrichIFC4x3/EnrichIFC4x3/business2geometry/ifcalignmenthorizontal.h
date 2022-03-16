@@ -306,9 +306,26 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
 
-                    double  offset = 0.;
-                    int_t   ifcClothoidInstance = ___CreateClothoid(model, startRadiusOfCurvature, endRadiusOfCurvature, segmentLength, &offset);
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
+                    double  offset, linearTernm;
+                    if ((std::fabs(startRadiusOfCurvature) < std::fabs(endRadiusOfCurvature) && startRadiusOfCurvature) || endRadiusOfCurvature == 0.) {
+                        double  factor = segmentLength / startRadiusOfCurvature + (endRadiusOfCurvature ? segmentLength / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
+                        linearTernm = -startRadiusOfCurvature * std::sqrt(std::fabs(factor));
+                        offset = -segmentLength - (endRadiusOfCurvature ? segmentLength * startRadiusOfCurvature / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
+                    }
+                    else {
+                        assert(std::fabs(startRadiusOfCurvature) > std::fabs(endRadiusOfCurvature) || startRadiusOfCurvature == 0.);
+                        double  factor = segmentLength / endRadiusOfCurvature + (startRadiusOfCurvature ? segmentLength / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.);
+                        linearTernm = endRadiusOfCurvature * std::sqrt(std::fabs(factor));
+                        offset = startRadiusOfCurvature ? segmentLength * endRadiusOfCurvature / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.;
+                    }
+
+                    int_t   ifcClothoidParentCurve =
+                                ___CreateClothoidInstance(
+                                        model,
+                                        linearTernm,
+                                        nullptr
+                                    );
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 
                     //
                     //  SegmentStart
@@ -345,7 +362,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                 ___CreateCosineSpiralInstance(
                                         model,
                                         constantTerm ? segmentLength * pow(std::fabs(constantTerm), -1. / 1.) * constantTerm / std::fabs(constantTerm) : 0.,
-                                        cosineTerm   ? segmentLength * pow(std::fabs(cosineTerm),   -1. / 1.) * cosineTerm   / std::fabs(cosineTerm)   : 0.
+                                        cosineTerm   ? segmentLength * pow(std::fabs(cosineTerm),   -1. / 1.) * cosineTerm   / std::fabs(cosineTerm)   : 0.,
+                                        nullptr
                                     );
 
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
@@ -383,7 +401,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         model,
                                         linearTerm   ? segmentLength * pow(std::fabs(linearTerm),   -1. / 2.) * linearTerm   / std::fabs(linearTerm)   : 0.,
                                         constantTerm ? segmentLength * pow(std::fabs(constantTerm), -1. / 1.) * constantTerm / std::fabs(constantTerm) : 0.,
-                                        sineTerm     ? segmentLength * pow(std::fabs(sineTerm),     -1. / 1.) * sineTerm     / std::fabs(sineTerm)     : 0.
+                                        sineTerm     ? segmentLength * pow(std::fabs(sineTerm),     -1. / 1.) * sineTerm     / std::fabs(sineTerm)     : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
 
@@ -427,7 +446,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         cubicTerm     ? segmentLength * pow(std::fabs(cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
                                         quadraticTerm ? segmentLength * pow(std::fabs(quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
                                         linearTerm    ? segmentLength * pow(std::fabs(linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
-                                        constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
+                                        constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
 
@@ -675,7 +695,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         cubicTerm     ? segmentLength * pow(std::fabs(cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
                                         quadraticTerm ? segmentLength * pow(std::fabs(quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
                                         linearTerm    ? segmentLength * pow(std::fabs(linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
-                                        constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
+                                        constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) vienneseBendParentCurve);
 

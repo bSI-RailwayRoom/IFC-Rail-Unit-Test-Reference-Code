@@ -11,10 +11,15 @@ static	inline	int_t   ___CreateThirdOrderPolynomialSpiralInstance(
                                 double      cubicTerm,
                                 double      quadraticTerm,
                                 double      linearTerm,
-                                double      constantTerm
+                                double      constantTerm,
+                                ___MATRIX   * matrix
                             )
 {
     int_t	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCTHIRDORDERPOLYNOMIALSPIRAL");
+
+    if (matrix) {
+        sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
+    }
 
     sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "CubicTerm", sdaiREAL, &cubicTerm);
 

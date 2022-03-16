@@ -10,10 +10,15 @@ static	inline	int_t   ___CreateSineSpiralInstance(
                                 int_t       model,
                                 double      linearTerm,
                                 double      constantTerm,
-                                double      sineTerm
+                                double      sineTerm,
+                                ___MATRIX   * matrix
                             )
 {
     int_t	ifcSineSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSINESPIRAL");
+
+    if (matrix) {
+        sdaiPutAttrBN(ifcSineSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
+    }
 
     sdaiPutAttrBN(ifcSineSpiralInstance, "SineTerm", sdaiREAL, &sineTerm);
 

@@ -439,7 +439,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                             ___CreateClothoidInstance(
                                                     model,
 //                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
-                                                    linearTerm ? 1. * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
+                                                    linearTerm ? 1. * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                    nullptr
                                                );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
 
@@ -528,7 +529,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 int_t   ifcClothoidParentCurve =
                                             ___CreateClothoidInstance(
                                                     model,
-                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
+                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                    nullptr
                                                 );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 

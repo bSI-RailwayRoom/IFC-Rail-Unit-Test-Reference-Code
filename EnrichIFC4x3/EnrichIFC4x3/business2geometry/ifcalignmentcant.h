@@ -285,10 +285,10 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                     double  factor =
-                                (endCantLeft + endCantRight) - (startCantLeft + startCantRight) ?
-                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / (2. * horizontalLength) :
-                                    1. / horizontalLength,
-                            constantTerm  =   0. * factor + (startCantLeft + startCantRight) / 2.,
+                                ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
+                                    1.,
+                            constantTerm  =   0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
                             linearTerm    =   0. * factor,
                             quadraticTerm =   3. * factor,
                             cubicTerm     = - 2. * factor;
@@ -296,10 +296,11 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     int_t   ifcBlossCurveParentCurve =
                                 ___CreateThirdOrderPolynomialSpiralInstance(
                                         model,
-                                        cubicTerm     ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
-                                        quadraticTerm ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
-                                        linearTerm    ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
-                                        constantTerm  ? std::fabs(horizontalLength) * pow(std::fabs(horizontalLength * constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
+                                        cubicTerm     ? horizontalLength * pow(std::fabs(cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
+                                        quadraticTerm ? horizontalLength * pow(std::fabs(quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
+                                        linearTerm    ? horizontalLength * pow(std::fabs(linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
+                                        constantTerm  ? horizontalLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
 
@@ -314,8 +315,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     //
                     //  SegmentLength
                     //
-                    double  segmentLengthAsLength = horizontalLength;
-                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
+                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &horizontalLength);
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
@@ -345,7 +345,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 ___CreateCosineSpiralInstance(
                                         model,
                                         constantTerm ? horizontalLength * pow(std::fabs(constantTerm), -1. / 1.) * constantTerm / std::fabs(constantTerm) : 0.,
-                                        cosineTerm   ? horizontalLength * pow(std::fabs(cosineTerm),   -1. / 1.) * cosineTerm   / std::fabs(cosineTerm)   : 0.
+                                        cosineTerm   ? horizontalLength * pow(std::fabs(cosineTerm),   -1. / 1.) * cosineTerm   / std::fabs(cosineTerm)   : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
 
@@ -360,8 +361,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     //
                     //  SegmentLength
                     //
-                    double  segmentLengthAsLength = horizontalLength;
-                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsLength);
+                    void    * segmentLengthADB = sdaiCreateADB(sdaiREAL, &horizontalLength);
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
@@ -393,7 +393,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                         model,
                                         linearTerm   ? horizontalLength * pow(std::fabs(linearTerm),   -1. / 2.) * linearTerm   / std::fabs(linearTerm)   : 0.,
                                         constantTerm ? horizontalLength * pow(std::fabs(constantTerm), -1. / 1.) * constantTerm / std::fabs(constantTerm) : 0.,
-                                        sineTerm     ? horizontalLength * pow(std::fabs(sineTerm),     -1. / 1.) * sineTerm     / std::fabs(sineTerm)     : 0.
+                                        sineTerm     ? horizontalLength * pow(std::fabs(sineTerm),     -1. / 1.) * sineTerm     / std::fabs(sineTerm)     : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
 
@@ -451,7 +452,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                         cubicTerm     ? horizontalLength * pow(std::fabs(cubicTerm),     -1. / 4.) * cubicTerm     / std::fabs(cubicTerm)     : 0.,
                                         quadraticTerm ? horizontalLength * pow(std::fabs(quadraticTerm), -1. / 3.) * quadraticTerm / std::fabs(quadraticTerm) : 0.,
                                         linearTerm    ? horizontalLength * pow(std::fabs(linearTerm),    -1. / 2.) * linearTerm    / std::fabs(linearTerm)    : 0.,
-                                        constantTerm  ? horizontalLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.
+                                        constantTerm  ? horizontalLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
+                                        nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendParentCurve);
 
