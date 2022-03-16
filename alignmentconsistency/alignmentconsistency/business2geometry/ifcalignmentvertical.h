@@ -6,11 +6,6 @@
 #include "ifcpolynomialcurve.h"
 #include "ifcproductdefinitionshape.h"
 
-//#include <map>
-
-
-//extern  std::map<int_t, int_t> myMapExpressID;
-
 
 enum class enum_segment_type : unsigned char
 {
@@ -21,7 +16,6 @@ enum class enum_segment_type : unsigned char
 };
 
 static  inline  int_t   ___SegmentCount__alignmentVertical(
-                                int_t   model,
                                 int_t   ifcVerticalAlignmentInstance
                             )
 {
@@ -38,7 +32,9 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 double  startDistAlongHorizontalAlignment
                             )
 {
+#ifdef _DEBUG
     double  epsilon = 0.0000001;
+#endif // _DEBUG
 
 	int_t	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE"),
             * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
@@ -160,7 +156,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         ifcAlignmentSegmentInstance,
                         "Representation",
                         sdaiINSTANCE,
-                        (void*) ___CreateProductDefinitionShape(
+                        (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
                                         false
@@ -248,11 +244,11 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                     startHeight
                                 };
                 ___Vec2Normalize(&refDirection);
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &refDirection, &location));
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
 
                 if ((horizontalLength == 0.) &&
                     (i == noSegmentInstances - 1)) {
-                    sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &refDirection, &location));
+                    sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
                 }
                 else {
                     assert(horizontalLength > 0.);
@@ -340,8 +336,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 #endif // _DEBUG
                     }
 
-                    int_t   ifcCircleInstance = ___CreateCircle__woRotation(model, radius);
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircleInstance);
+                    int_t   ifcCircularArcParentCurve =
+                                ___CreateCircleInstance(
+                                        model,
+                                        radius
+                                    );
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
 
                     //
                     //  SegmentStart
@@ -435,6 +435,15 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 assert(std::fabs(correctedStartAngle - angle1) < 0.000001);
                                 assert(std::fabs(correctedEndAngle - angle2) < 0.000001);
 
+                                int_t   ifcClothoidInstance =
+                                            ___CreateClothoidInstance(
+                                                    model,
+//                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.
+                                                    linearTerm ? 1. * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                    nullptr
+                                               );
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
+
                                 //
                                 //  SegmentStart
                                 //
@@ -448,9 +457,6 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                                 sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-
-                                int_t   ifcClothoidInstance = ___CreateClothoid__V(model, linearTerm);
-                                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
                             }
                             }
                         }
@@ -520,6 +526,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 assert(std::fabs(correctedStartAngle - angle1) < 0.000001);
                                 assert(std::fabs(correctedEndAngle - angle2) < 0.000001);
 
+                                int_t   ifcClothoidParentCurve =
+                                            ___CreateClothoidInstance(
+                                                    model,
+                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                    nullptr
+                                                );
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
+
                                 //
                                 //  SegmentStart
                                 //
@@ -533,210 +547,22 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                                 sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-
-                                int_t   ifcClothoidInstance = ___CreateClothoid__V(model, linearTerm);
-                                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
                             }
                             }
                         }
                     }
-
-
-
-
-
-
-        //            assert(startAngle == 0. ||
-        //                   endAngle == 0. ||
-        //                   (startAngle / std::fabs(startAngle) == endAngle / std::fabs(endAngle)));
-
-                    //
-                    //  Clothoid is a linear polynomial for curvature change
-                    //      a * x + b (where b = 0 always, i.e. we clip at a certain distance)
-                    // 
-                    //  Bearing Angle:
-                    //      a * x^2 / 2 + 0 * x
-                    //          a * x1^2 / 2 = startAngle
-                    //          a * x2^2 / 2 = endAngle
-                    //          x1 - x2 = ..
-                    //        x1 = sqrt(2. * startAngle / a);
-/*
-                    bool    swop = false;
-                    if (startAngle > endAngle) {
-                        double  tmp = startAngle;
-                        startAngle = endAngle;
-                        endAngle = tmp;
-                        swop = true;
-                    }
-                    //      x1 = cos();
-//                    if ()
-//                    startAngle = std::fabs(startAngle);
-//                    endAngle = std::fabs(endAngle);
-
-                    double  L1 = startAngle ? (startAngle / std::fabs(startAngle)) * sqrt(2. * std::fabs(startAngle) / 1.) : 0.,
-                            L2 = endAngle ? (endAngle / std::fabs(endAngle)) * sqrt(2. * std::fabs(endAngle) / 1.) : 0.;
-
-                   assert(L1 < L2);
-
-                    double  polynomialConstants[3] = { 0., 0., 1. },
-                            x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1),
-                            x2 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L2);
-
-                    {
-                        double  distance = 0.;// std::fabs(x2 - x1),
-
-                        distance = x2 - x1;
-                        assert(distance > 0.);
-
-
-                        double  a = std::pow(distance / horizontalLength, 2);
-                        polynomialConstants[2] = a;
-                        L1 = startAngle ? (startAngle / std::fabs(startAngle)) * sqrt(2. * std::fabs(startAngle) / a) : 0.;
-                        L2 = endAngle ? (endAngle / std::fabs(endAngle)) * sqrt(2. * std::fabs(endAngle) / a) : 0.;
-                        assert(L1 < L2);
-
-                        x1 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L1),
-                        x2 = ___IntegralTaylorSeriesCos(polynomialConstants, 3, L2);
-                        double  dist = x2 - x1;
-                        assert(std::fabs(dist - horizontalLength) < 0.0000001);
-
-                        if (swop) {
-                            double  tmp = startAngle;
-                            startAngle = endAngle;
-                            endAngle = tmp;
-                            tmp = L1;
-                            L1 = L2;
-                            L2 = tmp;
-                            tmp = x1;
-                            x1 = x2;
-                            x2 = tmp;
-                        }
-
-                        double  segmentLength = L2 - L1,
-                                offset = L1;
-
-                        double  linearTerm = (startAngle / std::fabs(startAngle)) / a;
-
-#ifdef _DEBUG
-                        double  angle1 = AngleByAngleDeviationPolynomialByTerms(0., linearTerm, 0., L1);
-                        double  angle2 = AngleByAngleDeviationPolynomialByTerms(0., linearTerm, 0., L2);
-#endif // _DEBUG
-                        if ((startAngle / std::fabs(startAngle)) == (endAngle / std::fabs(endAngle))) {
-                            assert(std::fabs(startAngle - angle1) < 0.000001);
-                            assert(std::fabs(endAngle - angle2) < 0.000001);
-                            //
-                            //  SegmentStart
-                            //
-                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
-                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                            //
-                            //  SegmentLength
-                            //
-                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-
-                            int_t   ifcClothoidInstance = ___CreateClothoid__V(model, linearTerm);
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
-                        }
-                        else {
-                            assert(std::fabs(startAngle - angle1) < 0.000001);
-                            assert(std::fabs(endAngle + angle2) < 0.000001);
-
-                            int_t   ifcClothoidInstanceI = ___CreateClothoid__V(model, linearTerm);
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*)ifcClothoidInstanceI);
-
-                            offset = L1;
-                            segmentLength = -L1;
-
-                            //
-                            //  SegmentStart
-                            //
-                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
-                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                            //
-                            //  SegmentLength
-                            //
-                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-
-sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
-
-
-
-
-                            {
-                ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
-
-
-                //
-                //  Transition
-                //
-                if (i == noSegmentInstances - 1) {
-                    char    transitionCode[14] = "DISCONTINUOUS";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-                else {
-                    char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-
-                ___VECTOR2  refDirection = {
-                                    1.,
-                                    0.
-                                },
-                            location = {
-                                    startDistAlong - startDistAlongHorizontalAlignment + std::fabs(x1),
-                                    startHeight - ___IntegralTaylorSeriesSin(polynomialConstants, 3, L1)
-                                };
-                ___Vec2Normalize(&refDirection);
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &refDirection, &location));
-
-                if ((horizontalLength == 0.) &&
-                    (i == noSegmentInstances - 1)) {
-                    sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &refDirection, &location));
-                }
-                else {
-                    assert(horizontalLength > 0.);
-                }
-
-                            }
-
-                            int_t   ifcClothoidInstanceII = ___CreateClothoid__V(model, -linearTerm);
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*)ifcClothoidInstanceII);
-
-                            offset = 0.;
-                            segmentLength = L2;
-
-                            //
-                            //  SegmentStart
-                            //
-                            segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
-                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*)segmentStartADB);
-
-                            //
-                            //  SegmentLength
-                            //
-                            segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
-                        }
-
-                    }   //  */
                 }
                 else if (___equals(predefinedType, (char*) "CONSTANTGRADIENT")) {
                     ___VECTOR2  orientation = {
                                         1.,
                                         0.
                                     };
-                    int_t   ifcLineInstance = ___CreateLine(model, &orientation);
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineInstance);
+                    int_t   ifcLineParentCurve =
+                                ___CreateLineInstance(
+                                        model,
+                                        &orientation
+                                    );
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurve);
 
                     //
                     //  SegmentStart
@@ -788,14 +614,14 @@ sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstan
 
                     double  pCoefficientsX[] = { 0., 1. },
                             pCoefficientsY[] = { 0., 0., a };
-                    int_t   ifcPolygonalCurveInstance =
-                                ___CreatePolynomialCurve__woRotation(
+                    int_t   ifcParabolicArcParentCurve =
+                                ___CreatePolynomialCurveInstance(
                                         model,
                                         pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
                                         pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
                                         nullptr, 0
                                     );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcPolygonalCurveInstance);
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcParabolicArcParentCurve);
 
                     //
                     //  SegmentStart

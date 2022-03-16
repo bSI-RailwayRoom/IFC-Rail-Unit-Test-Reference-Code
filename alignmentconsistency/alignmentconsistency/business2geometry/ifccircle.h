@@ -4,32 +4,14 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateClothoid__V(
-                                int_t       model,
-                                double      linearTerm
-                            )
-{
-    int_t	ifcClothoidInstance = sdaiCreateInstanceBN(model, (char*) "IFCCLOTHOID");
-
-    sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
-
-    sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
-
-    double  a = (linearTerm / std::fabs(linearTerm)) * sqrt(std::fabs(linearTerm));
-    sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &a);
-
-    assert(ifcClothoidInstance);
-    return	ifcClothoidInstance;
-}
-
-static	inline	int_t   ___CreateCircle__woRotation(
+static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
 {
     int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
 
-    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model));
 
     double  radius = std::fabs(radiusOfCurvature);
     sdaiPutAttrBN(ifcCircleInstance, "Radius", sdaiREAL, &radius);
@@ -38,7 +20,7 @@ static	inline	int_t   ___CreateCircle__woRotation(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircle(
+static	inline	int_t   ___CreateCircleInstance__correctedPlacement(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
@@ -60,7 +42,7 @@ static	inline	int_t   ___CreateCircle(
     }
 
     matrix._42 = radiusOfCurvature;
-    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &matrix));
+    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &matrix));
 
     double  radius = std::fabs(radiusOfCurvature);
     sdaiPutAttrBN(ifcCircleInstance, "Radius", sdaiREAL, &radius);
@@ -69,7 +51,7 @@ static	inline	int_t   ___CreateCircle(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircle(
+static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 ___VECTOR2  * origin,
                                 double      radius
@@ -82,7 +64,7 @@ static	inline	int_t   ___CreateCircle(
     matrix._41 = origin->x;
     matrix._42 = origin->y;
 
-    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model, &matrix));
+    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &matrix));
 
     sdaiPutAttrBN(ifcCircleInstance, "Radius", sdaiREAL, &radius);
 

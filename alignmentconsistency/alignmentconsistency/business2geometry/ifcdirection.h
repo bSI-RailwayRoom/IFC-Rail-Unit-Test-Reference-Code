@@ -2,10 +2,9 @@
 
 
 #include "mathematics.h"
-#include "ifcengine.h"
 
 
-static	inline	int_t	___CreateDirection_2D(
+static	inline	int_t	___CreateDirectionInstance(
 								int_t		model,
 								___VECTOR2	* vector
 							)
@@ -24,7 +23,7 @@ static	inline	int_t	___CreateDirection_2D(
 	return	ifcDirectionInstance;
 }
 
-static	inline	int_t	___CreateDirection_3D(
+static	inline	int_t	___CreateDirectionInstance(
 								int_t		model,
 								___VECTOR3	* vector
 							)
@@ -32,10 +31,6 @@ static	inline	int_t	___CreateDirection_3D(
 	int_t	ifcDirectionInstance, * aggrDirectionRatios;
 
 	ifcDirectionInstance = sdaiCreateInstanceBN(model, "IFCDIRECTION");
-
-	if (internalGetP21Line(ifcDirectionInstance) == 758) {
-		int u = 0;
-	}
 
 	aggrDirectionRatios = sdaiCreateAggrBN(ifcDirectionInstance, "DirectionRatios");
 

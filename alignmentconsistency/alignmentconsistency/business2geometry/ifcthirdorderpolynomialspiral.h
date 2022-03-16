@@ -3,21 +3,23 @@
 
 #include "ifccartesianpoint.h"
 #include "ifcvector.h"
-
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateBlossCurve(
+static	inline	int_t   ___CreateThirdOrderPolynomialSpiralInstance(
                                 int_t       model,
                                 double      cubicTerm,
                                 double      quadraticTerm,
                                 double      linearTerm,
-                                double      constantTerm
+                                double      constantTerm,
+                                ___MATRIX   * matrix
                             )
 {
     int_t	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCTHIRDORDERPOLYNOMIALSPIRAL");
 
-    sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+    if (matrix) {
+        sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
+    }
 
     sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "CubicTerm", sdaiREAL, &cubicTerm);
 

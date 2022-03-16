@@ -2,10 +2,9 @@
 
 
 #include "mathematics.h"
-#include "ifcengine.h"
 
 
-static	inline	int_t	___CreateCartesianPoint2D(
+static	inline	int_t	___CreateCartesianPointInstance_2D(
                                 int_t       model
                             )
 {
@@ -24,7 +23,7 @@ static	inline	int_t	___CreateCartesianPoint2D(
 	return	ifcCartesianPointInstance;
 }
 
-static	inline	int_t	___CreateCartesianPoint2D(
+static	inline	int_t	___CreateCartesianPointInstance(
                                 int_t       model,
                                 ___VECTOR2  * point
                             )
@@ -43,7 +42,7 @@ static	inline	int_t	___CreateCartesianPoint2D(
 	return	ifcCartesianPointInstance;
 }
 
-static	inline	int_t	___CreateCartesianPoint3D(
+static	inline	int_t	___CreateCartesianPointInstance(
                                 int_t       model,
                                 ___VECTOR3  * point
                             )

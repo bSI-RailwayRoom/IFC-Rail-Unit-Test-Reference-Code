@@ -206,7 +206,6 @@
     <ClInclude Include="alignmentconsistency\alignmentconsistencyPage.h" />
     <ClInclude Include="alignmentconsistency\alignmentconsistencyTEXT.h" />
     <ClInclude Include="alignmentconsistency\issues.h" />
-    <ClInclude Include="business2geometry\clothoid.h" />
     <ClInclude Include="business2geometry\engdef.h" />
     <ClInclude Include="business2geometry\generic.h" />
     <ClInclude Include="business2geometry\ifcalignment.h" />
@@ -219,7 +218,7 @@
     <ClInclude Include="business2geometry\ifccartesiantransformationoperator2d.h" />
     <ClInclude Include="business2geometry\ifccircle.h" />
     <ClInclude Include="business2geometry\ifcclothoid.h" />
-    <ClInclude Include="business2geometry\ifccosine.h" />
+    <ClInclude Include="business2geometry\ifccosinespiral.h" />
     <ClInclude Include="business2geometry\ifcderivedprofiledef.h" />
     <ClInclude Include="business2geometry\ifcdirection.h" />
     <ClInclude Include="business2geometry\ifcengine.h" />
@@ -232,7 +231,7 @@
     <ClInclude Include="business2geometry\ifcsecondorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcseventhorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcshaperepresentation.h" />
-    <ClInclude Include="business2geometry\ifcsine.h" />
+    <ClInclude Include="business2geometry\ifcsinespiral.h" />
     <ClInclude Include="business2geometry\ifcthirdorderpolynomialspiral.h" />
     <ClInclude Include="business2geometry\ifcunitassignment.h" />
     <ClInclude Include="business2geometry\ifcvector.h" />

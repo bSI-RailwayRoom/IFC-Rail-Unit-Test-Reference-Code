@@ -4,7 +4,7 @@
 #include "ifcshaperepresentation.h"
 
 
-static	inline	int_t   ___CreateProductDefinitionShape(
+static	inline	int_t   ___CreateProductDefinitionShapeInstance(
 								int_t   model,
 								int_t   ifcRepresentationItemInstance,
 								bool	is3DCurve
@@ -16,13 +16,13 @@ static	inline	int_t   ___CreateProductDefinitionShape(
 
 	aggrRepresentations = sdaiCreateAggrBN(ifcProductDefinitionShapeInstance, "Representations");
 
-	sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) ___CreateShapeRepresentation(model, ifcRepresentationItemInstance, is3DCurve));
+	sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) ___CreateShapeRepresentationInstance(model, ifcRepresentationItemInstance, is3DCurve));
 
 	assert(ifcProductDefinitionShapeInstance);
 	return	ifcProductDefinitionShapeInstance;
 }
 
-static	inline	int_t   ___CreateProductDefinitionShape(
+static	inline	int_t   ___CreateProductDefinitionShapeInstance(
 								int_t   model,
 								int_t   ifcRepresentationItemInstance,
                                 int_t   ** pAggrItems,
@@ -35,7 +35,7 @@ static	inline	int_t   ___CreateProductDefinitionShape(
 
 	aggrRepresentations = sdaiCreateAggrBN(ifcProductDefinitionShapeInstance, "Representations");
 
-	sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) ___CreateShapeRepresentation(model, ifcRepresentationItemInstance, pAggrItems, is3DCurve));
+	sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) ___CreateShapeRepresentationInstance(model, ifcRepresentationItemInstance, pAggrItems, is3DCurve));
 
 	assert(ifcProductDefinitionShapeInstance);
 	return	ifcProductDefinitionShapeInstance;

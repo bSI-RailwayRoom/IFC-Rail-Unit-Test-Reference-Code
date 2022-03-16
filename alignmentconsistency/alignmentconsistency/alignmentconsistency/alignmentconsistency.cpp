@@ -211,3 +211,5 @@ wchar_t	DECL * STDC	GetPageW(
 
 #undef DECL
 #undef STDC
+
+

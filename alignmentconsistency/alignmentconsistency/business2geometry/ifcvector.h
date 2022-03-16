@@ -11,7 +11,7 @@ static	inline	int_t	___CreateVector(
     int_t	ifcVectorInstance = sdaiCreateInstanceBN(model, (char*) "IFCVECTOR");
 
     ___VECTOR2  orientation = { 1., 0. };
-    sdaiPutAttrBN(ifcVectorInstance, "Orientation", sdaiINSTANCE, (void*) ___CreateDirection_2D(model, &orientation));
+    sdaiPutAttrBN(ifcVectorInstance, "Orientation", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, &orientation));
 
     double  magnitude = 1.;
     sdaiPutAttrBN(ifcVectorInstance, "Magnitude", sdaiREAL, &magnitude);
@@ -28,7 +28,7 @@ static	inline	int_t	___CreateVector(
 {
     int_t	ifcVectorInstance = sdaiCreateInstanceBN(model, (char*) "IFCVECTOR");
 
-    sdaiPutAttrBN(ifcVectorInstance, "Orientation", sdaiINSTANCE, (void*) ___CreateDirection_2D(model, orientation));
+    sdaiPutAttrBN(ifcVectorInstance, "Orientation", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, orientation));
 
     double  magnitude = 1.;
     sdaiPutAttrBN(ifcVectorInstance, "Magnitude", sdaiREAL, &magnitude);

@@ -3,32 +3,11 @@
 
 #include "ifccartesianpoint.h"
 #include "ifcvector.h"
-
-
 #include "ifcaxis2placement2d.h"
 #include "ifcpolynomialcurve.h"
 
 
-static	inline	int_t   ___CreateVienneseBendCant(
-                                int_t       model,
-                                double      * polynomialConstants,
-                                int_t       polynomialConstantsCnt,
-                                double      horizontalLength
-                            )
-{
-    double  xValues[2] = { 0., horizontalLength };
-    return  ___CreatePolynomialCurve__woRotation(
-                    model,
-                    xValues,
-                    2,
-                    polynomialConstants,
-                    polynomialConstantsCnt,
-                    nullptr,
-                    0
-                );
-}
-
-static	inline	int_t   ___CreateVienneseBend(
+static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
                                 int_t       model,
                                 double      septicTerm,
                                 double      sexticTerm,
@@ -37,7 +16,8 @@ static	inline	int_t   ___CreateVienneseBend(
                                 double      cubicTerm,
                                 double      quadraticTerm,
                                 double      linearTerm,
-                                double      constantTerm
+                                double      constantTerm,
+                                ___MATRIX   * matrix
                             )
 {
     //		SepticTerm
@@ -51,7 +31,9 @@ static	inline	int_t   ___CreateVienneseBend(
 
     int_t	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
 
-    sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2D(model));
+    if (matrix) {
+        sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
+    }
 
     sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "SepticTerm", sdaiREAL, &septicTerm);
 

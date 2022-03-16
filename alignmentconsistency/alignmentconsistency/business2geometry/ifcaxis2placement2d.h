@@ -5,7 +5,7 @@
 #include "ifcdirection.h"
 
 
-static	inline	int_t	___CreateAxis2Placement2D(
+static	inline	int_t	___CreateAxis2Placement2DInstance(
 								int_t		model
 							)
 {
@@ -14,44 +14,40 @@ static	inline	int_t	___CreateAxis2Placement2D(
     ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT2D");
 
 	___VECTOR2	vecLocation = { 0., 0. };
-	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model, (___VECTOR2*) &vecLocation));
+	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, (___VECTOR2*) &vecLocation));
 
 	assert(ifcAxis2Placement2DInstance);
 
 	return	ifcAxis2Placement2DInstance;
 }
 
-static	inline	int_t	___CreateAxis2Placement2D(
+static	inline	int_t	___CreateAxis2Placement2DInstance(
+								int_t		model,
+								___VECTOR2	* location,
+								___VECTOR2	* refDirection
+							)
+{
+	int_t	ifcAxis2Placement2DInstance;
+
+    ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT2D");
+
+	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, location));
+	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "RefDirection", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, refDirection));
+
+	assert(ifcAxis2Placement2DInstance);
+
+	return	ifcAxis2Placement2DInstance;
+}
+
+static	inline	int_t	___CreateAxis2Placement2DInstance(
 								int_t		model,
 								___MATRIX  * matrix
 							)
 {
-	int_t	ifcAxis2Placement2DInstance;
-
-    ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT2D");
-
-	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model, (___VECTOR2*) &matrix->_41));
-	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "RefDirection", sdaiINSTANCE, (void*) ___CreateDirection_2D(model, (___VECTOR2*) &matrix->_11));
-
-	assert(ifcAxis2Placement2DInstance);
-
-	return	ifcAxis2Placement2DInstance;
-}
-
-static	inline	int_t	___CreateAxis2Placement2D(
-								int_t		model,
-								___VECTOR2	* refDirection,
-								___VECTOR2	* location
-							)
-{
-	int_t	ifcAxis2Placement2DInstance;
-
-    ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT2D");
-
-	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPoint2D(model, location));
-	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "RefDirection", sdaiINSTANCE, (void*) ___CreateDirection_2D(model, refDirection));
-
-	assert(ifcAxis2Placement2DInstance);
-
-	return	ifcAxis2Placement2DInstance;
+	if (matrix) {
+		return	___CreateAxis2Placement2DInstance(model, (___VECTOR2*) &matrix->_41, (___VECTOR2*) &matrix->_11);
+	}
+	else {
+		return	___CreateAxis2Placement2DInstance(model);
+	}
 }
