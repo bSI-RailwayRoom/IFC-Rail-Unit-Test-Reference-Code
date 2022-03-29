@@ -312,4 +312,4 @@ static  inline  int_t    AlignmentGenerateSweep(
                     ifcCompositeProfileDefInstance,
                     ifcProductInstance
                 );
-}	//	*/
+}

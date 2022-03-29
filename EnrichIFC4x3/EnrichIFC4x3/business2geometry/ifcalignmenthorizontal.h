@@ -44,7 +44,78 @@ inline  static  int_t   ___GetAlignmentCant(
                                 bool    * hasIssue
                             );
 
-static  inline  double   GetCantAngle(
+static  inline  double   GetCantStart(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length,
+                                double  * pStartCantRight,
+                                double  * pStartCantLeft,
+                                double  * pRailHeadDistance
+                            )
+{
+    (*pStartCantRight)   = 0.;
+    (*pStartCantLeft)    = 0.;
+    (*pRailHeadDistance) = 1.;
+
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  startCantLeft = 0., startCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    (*pStartCantRight)   = startCantRight;
+                    (*pStartCantLeft)    = startCantLeft;
+                    (*pRailHeadDistance) = railHeadDistance;
+
+                    return  (startCantRight - startCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantAngleStart(
                                 int_t   model,
                                 int_t   ifcAlignmentInstance,
                                 double  offset,
@@ -85,20 +156,146 @@ static  inline  double   GetCantAngle(
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
             if (startDistAlong == offset && horizontalLength == length) {
-                double  startCantLeft = 0., endCantLeft = 0., startCantRight = 0., endCantRight = 0.;
+                double  startCantLeft = 0., startCantRight = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
-
-                double  startCant = startCantRight - startCantLeft,
-                        endCant = endCantRight - endCantLeft;
 
                 double  railHeadDistance = 0.;
                 sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
                 if (railHeadDistance) {
-//                    return  std::fabs(startCant - endCant) / railHeadDistance;
-                    return  (startCant - endCant) / railHeadDistance;
+                    return  (startCantRight - startCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantEnd(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length,
+                                double  * pEndCantRight,
+                                double  * pEndCantLeft,
+                                double  * pRailHeadDistance
+                            )
+{
+    (*pEndCantRight)     = 0.;
+    (*pEndCantLeft)      = 0.;
+    (*pRailHeadDistance) = 1.;
+
+
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  endCantLeft = 0., endCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    (*pEndCantRight)     = endCantRight;
+                    (*pEndCantLeft)      = endCantLeft;
+                    (*pRailHeadDistance) = railHeadDistance;
+
+                    return  (endCantRight - endCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantAngleEnd(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length
+                            )
+{
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  endCantLeft = 0., endCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    return  (endCantRight - endCantLeft) / railHeadDistance;
                 }
             }
         }
@@ -662,16 +859,13 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     double  gravityCenterLineHeight = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "GravityCenterLineHeight", sdaiREAL, &gravityCenterLineHeight);
 
-                    double  cantAngle     = GetCantAngle(model, ifcAlignmentInstance, compositeCurveLength, segmentLength),
-                            cantComponent = -420. * (gravityCenterLineHeight / segmentLength) * cantAngle;
+                    double  startCantRight = 0., startCantLeft = 0., endCantRight = 0., endCantLeft = 0., railHeadDistance = 0.;
+                    GetCantStart(model, ifcAlignmentInstance, compositeCurveLength, segmentLength, &startCantRight, &startCantLeft, &railHeadDistance);
+                    GetCantEnd(model, ifcAlignmentInstance, compositeCurveLength, segmentLength, &endCantRight, &endCantLeft, &railHeadDistance);
 
-                    cantComponent *=
-                        ((startRadiusOfCurvature && endRadiusOfCurvature) ?
-                            ((std::fabs(startRadiusOfCurvature) < std::fabs(endRadiusOfCurvature)) ?
-                                startRadiusOfCurvature / endRadiusOfCurvature :
-                                endRadiusOfCurvature / startRadiusOfCurvature) :
-                            0.)
-                        - 1.;
+                    double  cantAngleStart = (startCantRight - startCantLeft) / railHeadDistance,
+                            cantAngleEnd   = (endCantRight - endCantLeft) / railHeadDistance,
+                            cantComponent  = -420. * (gravityCenterLineHeight / segmentLength) * (cantAngleEnd - cantAngleStart);
 
                     double  factor = 
                                   (endRadiusOfCurvature ? segmentLength / endRadiusOfCurvature : 0.)
