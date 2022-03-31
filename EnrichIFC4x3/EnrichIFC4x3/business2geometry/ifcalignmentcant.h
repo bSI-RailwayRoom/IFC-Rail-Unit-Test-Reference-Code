@@ -1,5 +1,6 @@
 #pragma once
 
+#include <math.h>
 
 #include "generic.h"
 
@@ -12,6 +13,55 @@
 #include "ifcsinespiral.h"
 #include "ifcthirdorderpolynomialspiral.h"
 
+
+
+
+static	inline		double	PolynomialCoefficientValue__DIFFERENTIAL(
+									double				* pCoefficients,
+									int_t				coefficientsCard,
+									double				t
+								)
+{
+	double	value =
+				(coefficientsCard > 1) ?
+					pCoefficients[1] :
+					0.,
+			multiplicator = 1.;
+	for (int_t i = 2; i < coefficientsCard; i++) {
+		multiplicator *= t;
+		value += i * pCoefficients[i] * multiplicator;
+	}
+
+	return	value;
+}
+
+static	inline		double	GetPolynomialCurveAngle(
+									double				* pCoefficientsX,
+									int_t				coefficientsXCard,
+									double				* pCoefficientsY,
+									int_t				coefficientsYCard,
+									double  			t
+								)
+{
+    ___VECTOR2  tangent = {
+		                PolynomialCoefficientValue__DIFFERENTIAL(
+                                pCoefficientsX,
+                                coefficientsXCard,
+				                t
+			                ),
+		                PolynomialCoefficientValue__DIFFERENTIAL(
+                                pCoefficientsY,
+                                coefficientsYCard,
+                                t
+			                )
+                    };
+
+	___Vec2Normalize(
+            &tangent
+		);
+
+    return   std::atan2(tangent.y, tangent.x);
+}
 
 static  inline  int_t   ___SegmentCount__alignmentCant(
                                 int_t   ifcCantAlignmentInstance
@@ -475,7 +525,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
                     double  factor =
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
-                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 1. :    //  / 2. :
                                     1.,
                             constantTermFirstHalf   =   0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
                             linearTermFirstHalf     =   0. * factor,
@@ -485,6 +535,31 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                             quadraticTermSecondHalf = - 2. * factor;
 
                     {
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         matrix._11 = 1.;
                         matrix._12 = 0.;
                         matrix._13 = 0.;
@@ -528,13 +603,93 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                         sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
                     }
 
-                    matrix._41 += horizontalLength / 2.;
-                    matrix._42 += ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 4.;
+
 
                     {
-                        matrix._11 = 1.;
-                        matrix._12 = 0.;
-                        matrix._13 = 0.;
+                        double  quadraticTerm = quadraticTermFirstHalf ? horizontalLength * pow(std::fabs(quadraticTermFirstHalf), -1. / 3.) * quadraticTermFirstHalf / std::fabs(quadraticTermFirstHalf) : 0.,
+                                linearTerm    = linearTermFirstHalf    ? horizontalLength * pow(std::fabs(linearTermFirstHalf),    -1. / 2.) * linearTermFirstHalf    / std::fabs(linearTermFirstHalf)    : 0.,
+                                constantTerm  = constantTermFirstHalf  ? horizontalLength * pow(std::fabs(constantTermFirstHalf),  -1. / 1.) * constantTermFirstHalf  / std::fabs(constantTermFirstHalf)  : 0.;
+                     
+                        double	FACTOR = horizontalLength / 2.;
+                        quadraticTerm /= FACTOR;
+                        linearTerm    /= FACTOR;
+                        constantTerm  /= FACTOR;
+                        double	length = 1.,
+		                        offset = 0.;
+
+                        {
+		                    double	iFACTOR = 1. / FACTOR;
+
+		                    const	int_t	coefficientsXCard = 2;
+		                    double	pCoefficientsX[coefficientsXCard] = {
+						                    0,
+						                    1.	//	(endParam - startParam) / (endParam - startParam)
+					                    };
+
+		                    const	int_t	coefficientsYCard = 3;
+		                    double	pCoefficientsY[coefficientsYCard] = {
+						                    constantTerm ?
+							                    iFACTOR / (constantTerm) :
+							                    0.,
+						                    linearTerm ?
+							                    iFACTOR * linearTerm / std::fabs(linearTerm * linearTerm * linearTerm) :
+							                    0.,
+						                    quadraticTerm ?
+							                    iFACTOR / (quadraticTerm * quadraticTerm * quadraticTerm) :
+							                    0.
+					                    };
+
+                            double  angle =
+                                        GetPolynomialCurveAngle(
+				                            pCoefficientsX,
+				                            coefficientsXCard,
+				                            pCoefficientsY,
+				                            coefficientsYCard,
+				                            0.5
+			                            );
+
+                            matrix._11 = cos(2. * angle);
+                            matrix._12 = sin(2. * angle);
+                            matrix._13 = 0.;
+                        }
+                    }
+
+                    {
+                        ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+
+                        //
+                        //  Add geometry for Ifc...Alignment...
+                        //
+                        sdaiPutAttrBN(
+                                ifcAlignmentSegmentInstance,
+                                "ObjectPlacement",
+                                sdaiINSTANCE,
+                                (void*) ___CreateObjectPlacement(
+                                                model
+                                            )
+                            );
+                        sdaiPutAttrBN(
+                                ifcAlignmentSegmentInstance,
+                                "Representation",
+                                sdaiINSTANCE,
+                                (void*) ___CreateProductDefinitionShapeInstance(
+                                                model,
+                                                ifcCurveSegmentInstance,
+                                                false
+                                            )
+                            );
+                    }
+
+                    matrix._41 += horizontalLength / 2.;
+                    matrix._42 += ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ? 
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 4. :
+                                    0.5 ;
+
+                    {
+
+        //                matrix._11 = 1.;
+        //                matrix._12 = 0.;
+        //                matrix._13 = 0.;
 
                         double  factor__ = -(startCantLeft - startCantRight) + ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.;
                         matrix._31 = - factor__ * matrix._12;
@@ -552,14 +707,14 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                             quadraticTermSecondHalf ? horizontalLength * pow(std::fabs(quadraticTermSecondHalf), -1. / 3.) * quadraticTermSecondHalf / std::fabs(quadraticTermSecondHalf) : 0.,
                                             linearTermSecondHalf    ? horizontalLength * pow(std::fabs(linearTermSecondHalf),    -1. / 2.) * linearTermSecondHalf    / std::fabs(linearTermSecondHalf)    : 0.,
                                             constantTermSecondHalf  ? horizontalLength * pow(std::fabs(constantTermSecondHalf),  -1. / 1.) * constantTermSecondHalf  / std::fabs(constantTermSecondHalf)  : 0.,
-                                            &matrix
+                                            nullptr
                                         );
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertCurveInstance);
 
                         //
                         //  SegmentStart
                         //
-                        double  offsetAsParameter = 0.;
+                        double  offsetAsParameter = horizontalLength / 2.;
                         void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offsetAsParameter);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
