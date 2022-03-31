@@ -525,7 +525,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
                     double  factor =
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
-                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 1. :    //  / 2. :
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 1. :
                                     1.,
                             constantTermFirstHalf   =   0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
                             linearTermFirstHalf     =   0. * factor,
