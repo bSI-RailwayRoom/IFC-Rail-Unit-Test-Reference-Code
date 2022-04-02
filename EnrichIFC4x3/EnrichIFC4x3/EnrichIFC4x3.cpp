@@ -51,7 +51,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                         );
 
 #ifdef _DEBUG
-                    int_t   ifcProductInstance = sdaiCreateInstanceBN(ifcModel, "IFCPROXY");
+                    int_t   ifcProductInstance = sdaiCreateInstanceBN(ifcModel, "IFCBUILDINGELEMENTPROXY");
 /*                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCCIRCLEPROFILEDEF");
 //                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCCIRCLEHOLLOWPROFILEDEF");
 
@@ -375,7 +375,7 @@ void    CheckResults(char * fileName)
 //                owlBuildInstance(ifcModel, ifcSegmentInstance, &owlInstance);
                 owlBuildInstanceInContext(ifcSegmentInstance, ifcSegmentedReferenceCurveInstance, &owlInstance);
 
-SaveInstanceTree(owlInstance, "c:\\9\\test.bin");
+//SaveInstanceTree(owlInstance, "c:\\9\\test.bin");
 //SaveInstanceTree(owlInstance, "c:\\9\\test.rdf");
                 int64_t vertexBufferSize = 0, indexBufferSize = 0;
                 CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);

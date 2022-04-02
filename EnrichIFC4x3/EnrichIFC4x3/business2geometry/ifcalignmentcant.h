@@ -5,6 +5,7 @@
 #include "generic.h"
 
 #include "ifcaxis2placement3d.h"
+#include "ifcclothoid.h"
 #include "ifccosinespiral.h"
 #include "ifcline.h"
 #include "ifcproductdefinitionshape.h"
@@ -265,9 +266,12 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
                 if (___equals(predefinedType, (char*) "CONSTANTCANT")) {
+                    ___VECTOR2  pnt = { 0., (startCantLeft + startCantRight) / 2. }, dir = { 1., 0. };
                     int_t   ifcConstantCantParentCurve =
                                 ___CreateLineInstance(
-                                        model
+                                        model,
+                                        &pnt,
+                                        &dir
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcConstantCantParentCurve);
 
@@ -289,16 +293,22 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "LINEARTRANSITION")) {
-                    ___VECTOR2  orientation = {
-                                        horizontalLength,
-                                        ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.
-                                    };
-                    ___Vec2Normalize(&orientation);
+                    double  factor =
+                                ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
+                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
+                                    1.,
+                            constantTerm  =   0. * factor + (startCantLeft + startCantRight) / 2.,
+                            linearTerm    =   1. * factor;
+
+                    ___MATRIX   myMatrix;
+                    ___MatrixIdentity(&myMatrix);
+                    myMatrix._42 = (startCantLeft + startCantRight) / (2. * horizontalLength);
 
                     int_t   ifcLinearTransitionParentCurve =
-                                ___CreateLineInstance(
+                                ___CreateClothoidInstance(
                                         model,
-                                        &orientation
+                                        linearTerm ? horizontalLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                        &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLinearTransitionParentCurve);
 
@@ -310,7 +320,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                    double  segmentLength = horizontalLength / orientation.x;
+                    double  segmentLength = horizontalLength;// / dir.x;
 
                     //
                     //  SegmentLength
@@ -338,7 +348,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
                                     1.,
-                            constantTerm  =   0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
+                            constantTerm  =   0. * factor + (startCantLeft + startCantRight) / 2.,
                             linearTerm    =   0. * factor,
                             quadraticTerm =   3. * factor,
                             cubicTerm     = - 2. * factor;
@@ -389,7 +399,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
                                     1.,
                             cosineTerm   = - 0.5 * factor,
-                            constantTerm =   0.5 * factor + horizontalLength * (startCantLeft + startCantRight) / 2.;
+                            constantTerm =   0.5 * factor + (startCantLeft + startCantRight) / 2.;
 
                     int_t   ifcCosineCurveParentCurve =
                                 ___CreateCosineSpiralInstance(
@@ -435,7 +445,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
                                     1.,
                             sineTerm     = - (1. / (2. * Pi)) * factor,
-                            constantTerm =    0.              * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
+                            constantTerm =    0.              * factor + (startCantLeft + startCantRight) / 2.,
                             linearTerm   =    1.              * factor;
 
                     int_t   ifcSineCurveParentCurve =
@@ -483,7 +493,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
                                     1.,
-                            constantTerm  =    0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
+                            constantTerm  =    0. * factor + (startCantLeft + startCantRight) / 2.,
                             linearTerm    =    0. * factor,
                             quadraticTerm =    0. * factor,
                             cubicTerm     =    0. * factor,
@@ -527,10 +537,10 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 1. :
                                     1.,
-                            constantTermFirstHalf   =   0. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
+                            constantTermFirstHalf   =   0. * factor + (startCantLeft + startCantRight) / 2.,
                             linearTermFirstHalf     =   0. * factor,
                             quadraticTermFirstHalf  =   2. * factor,
-                            constantTermSecondHalf  = - 1. * factor + horizontalLength * (startCantLeft + startCantRight) / 2.,
+                            constantTermSecondHalf  = - 1. * factor + (startCantLeft + startCantRight) / 2.,
                             linearTermSecondHalf    =   4. * factor,
                             quadraticTermSecondHalf = - 2. * factor;
 

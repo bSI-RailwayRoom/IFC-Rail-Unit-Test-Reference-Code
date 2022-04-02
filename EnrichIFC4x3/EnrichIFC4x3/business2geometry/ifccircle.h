@@ -4,7 +4,7 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateCircleInstance(
+/*static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
@@ -18,9 +18,9 @@ static	inline	int_t   ___CreateCircleInstance(
 
     assert(ifcCircleInstance);
     return	ifcCircleInstance;
-}
+}   //  */
 
-static	inline	int_t   ___CreateCircleInstance__correctedPlacement(
+static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
                                 double      radiusOfCurvature
                             )
