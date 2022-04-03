@@ -37,6 +37,8 @@ static  const   uint64_t    __flagbit15 = 32768;                      // 2^^15  
 
 static	const	double		___Pi = 3.14159265358979323846;
 
+extern  int_t   horizontalAlignmentParentCurveI, horizontalAlignmentParentCurveII;
+
 
 inline  static  int_t   ___GetAlignmentCant(
                                 int_t   model,
@@ -481,6 +483,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         radiusOfCurvature
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
+horizontalAlignmentParentCurveI = ifcCircularArcParentCurve;
 
                     if (radiusOfCurvature < 0) {
                         segmentLength = -segmentLength;
@@ -552,6 +555,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
+horizontalAlignmentParentCurveI = ifcClothoidParentCurve;
 
                     //
                     //  SegmentStart
@@ -593,6 +597,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                     );
 
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
+horizontalAlignmentParentCurveI = ifcCosineCurveParentCurve;
 
                     //
                     //  SegmentStart
@@ -631,6 +636,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
+horizontalAlignmentParentCurveI = ifcSineCurveParentCurve;
 
                     //
                     //  SegmentStart
@@ -676,6 +682,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
+horizontalAlignmentParentCurveI = ifcBlossCurveParentCurve;
 
                     //
                     //  SegmentStart
@@ -717,6 +724,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+horizontalAlignmentParentCurveI = ifcHelmertInstance;
 
                     //
                     //  SegmentStart
@@ -827,6 +835,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                     );
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+horizontalAlignmentParentCurveII = ifcHelmertInstance;
 
                     //
                     //  SegmentStart
@@ -849,11 +858,12 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "LINE")) {
-                    int_t   ifcLineParentCurve =
+                    int_t   ifcLineParentCurveInstance =
                                 ___CreateLineInstance(
                                         model
                                     );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurve);
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
+horizontalAlignmentParentCurveI = ifcLineParentCurveInstance;
 
                     //
                     //  SegmentStart
@@ -917,6 +927,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) vienneseBendParentCurve);
+horizontalAlignmentParentCurveI = vienneseBendParentCurve;
 
                     //
                     //  SegmentStart
@@ -1070,6 +1081,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         0
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicParentCurve);
+horizontalAlignmentParentCurveI = ifcCubicParentCurve;
 
                     //
                     //  SegmentStart

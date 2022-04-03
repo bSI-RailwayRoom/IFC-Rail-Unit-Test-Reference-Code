@@ -50,3 +50,33 @@ static	inline	int_t   ___CreateLineInstance(
 
     return	ifcLineInstance;
 }
+
+static	inline	int_t   ___CreateVertexInstance(
+                                int_t       model,
+                                ___VECTOR3  edge
+                            )
+{
+    int_t	ifcVertexPointInstance = sdaiCreateInstanceBN(model, (char*) "IFCVERTEXPOINT");
+
+    sdaiPutAttrBN(ifcVertexPointInstance, "VertexGeometry", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, &edge));
+
+    assert(ifcVertexPointInstance);
+
+    return	ifcVertexPointInstance;
+}
+
+static	inline	int_t   ___CreateEdgeInstance(
+                                int_t       model,
+                                ___VECTOR3  edgeStart,
+                                ___VECTOR3  edgeEnd
+                            )
+{
+    int_t	ifcEdgeInstance = sdaiCreateInstanceBN(model, (char*) "IFCEDGE");
+
+    sdaiPutAttrBN(ifcEdgeInstance, "EdgeStart", sdaiINSTANCE, (void*) ___CreateVertexInstance(model, edgeStart));
+    sdaiPutAttrBN(ifcEdgeInstance, "EdgeEnd", sdaiINSTANCE, (void*) ___CreateVertexInstance(model, edgeEnd));
+
+    assert(ifcEdgeInstance);
+
+    return	ifcEdgeInstance;
+}

@@ -534,47 +534,34 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 }
                 else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
                     double  factor =
-                                ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
-                                    ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 1. :
+                                ((endCantRight + endCantLeft) - (startCantRight + startCantLeft)) ?
+                                    ((endCantRight + endCantLeft) - (startCantRight + startCantLeft)) / 1. :
                                     1.,
-                            constantTermFirstHalf   =   0. * factor + (startCantLeft + startCantRight) / 2.,
+                            constantTermFirstHalf   =   0. * factor + (startCantRight + startCantLeft) / 1.,
                             linearTermFirstHalf     =   0. * factor,
                             quadraticTermFirstHalf  =   2. * factor,
-                            constantTermSecondHalf  = - 1. * factor + (startCantLeft + startCantRight) / 2.,
+                            constantTermSecondHalf  =              //    horizontalLength * (
+- 1. * factor +          //                                                                  (startCantLeft + startCantRight) / 2.
+                                                                            (startCantRight + startCantLeft) / 1.,
+               //                                                             + (((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ? 
+                 //                                                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
+                   //                                                               0.5),
+                                                                 //       ),
                             linearTermSecondHalf    =   4. * factor,
                             quadraticTermSecondHalf = - 2. * factor;
 
+//constantTermFirstHalf *= horizontalLength;
+//quadraticTermFirstHalf *= horizontalLength / 2.;
+//constantTermSecondHalf = 2.6;
+//linearTermSecondHalf *= horizontalLength;
+//quadraticTermSecondHalf *= horizontalLength / 2.;
+
                     {
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         matrix._11 = 1.;
                         matrix._12 = 0.;
                         matrix._13 = 0.;
 
-                        double  factor__ = -(startCantLeft - startCantRight);
+                        double  factor__ = (startCantRight - startCantLeft);
                         matrix._31 = - factor__ * matrix._12;
                         matrix._32 = factor__ * matrix._11;
                         matrix._33 = railHeadDistance;
@@ -624,8 +611,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                         quadraticTerm /= FACTOR;
                         linearTerm    /= FACTOR;
                         constantTerm  /= FACTOR;
-                        double	length = 1.,
-		                        offset = 0.;
 
                         {
 		                    double	iFACTOR = 1. / FACTOR;
@@ -633,7 +618,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 		                    const	int_t	coefficientsXCard = 2;
 		                    double	pCoefficientsX[coefficientsXCard] = {
 						                    0,
-						                    1.	//	(endParam - startParam) / (endParam - startParam)
+						                    1.
 					                    };
 
 		                    const	int_t	coefficientsYCard = 3;
@@ -701,7 +686,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
         //                matrix._12 = 0.;
         //                matrix._13 = 0.;
 
-                        double  factor__ = -(startCantLeft - startCantRight) + ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.;
+                        double  factor__ = (startCantLeft - startCantRight) + ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2.;
                         matrix._31 = - factor__ * matrix._12;
                         matrix._32 = factor__ * matrix._11;
                         matrix._33 = railHeadDistance;

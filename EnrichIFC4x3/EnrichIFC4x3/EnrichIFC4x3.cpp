@@ -28,15 +28,27 @@ static  const   uint64_t    flagbit14 = 16384;                      // 2^^14    
 static  const   uint64_t    flagbit15 = 32768;                      // 2^^15                         1000.0000..0000.0000
 
 
+int_t   horizontalAlignmentParentCurveI = 0, horizontalAlignmentParentCurveII = 0;
+
+
 int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 {
     int_t   convertedInstances = 0,
-            ifcModel = sdaiOpenModelBN(0, inputFileName, "");
+            model = sdaiOpenModelBN(0, inputFileName, "");
 
-    if (ifcModel) {
-        int_t   * ifcAlignmentInstances = sdaiGetEntityExtentBN(ifcModel, "IFCALIGNMENT"),
+    if (model) {
+        int_t   * ifcAlignmentInstances = sdaiGetEntityExtentBN(model, "IFCALIGNMENT"),
                 noIfcAlignmentInstances = sdaiGetMemberCount(ifcAlignmentInstances);
         if (noIfcAlignmentInstances) {
+            int_t   ifcRailwayInstance = 0;
+            engiGetAggrElement(sdaiGetEntityExtentBN(model, "IFCRAILWAY"), 0, sdaiINSTANCE, &ifcRailwayInstance);
+
+            int_t   ifcRelationInstance = 0;
+            engiGetAggrElement(sdaiGetEntityExtentBN(model, "IFCRELCONTAINEDINSPATIALSTRUCTURE"), 0, sdaiINSTANCE, &ifcRelationInstance);
+
+            int_t   * aggrRelatedElements = nullptr;
+            sdaiGetAttrBN(ifcRelationInstance, "RelatedElements", sdaiAGGR, &aggrRelatedElements);
+
             for (int_t i = 0; i < noIfcAlignmentInstances; i++) {
                 int_t   ifcAlignmentInstance = 0;
                 engiGetAggrElement(ifcAlignmentInstances, i, sdaiINSTANCE, &ifcAlignmentInstance);
@@ -46,16 +58,81 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
                 if (!ifcProductRepresentationInstance) {
                     AlignmentGenerateGeometry(
-                            ifcModel,
+                            model,
                             ifcAlignmentInstance
                         );
 
 #ifdef _DEBUG
-                    int_t   ifcProductInstance = sdaiCreateInstanceBN(ifcModel, "IFCBUILDINGELEMENTPROXY");
-/*                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCCIRCLEPROFILEDEF");
+                    {
+                        int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
+                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiPutAttrBN(
+                                myInstance,
+                                "Representation",
+                                sdaiINSTANCE,
+                                (void*) ___CreateProductDefinitionShapeInstance(
+                                                model,
+                                                ___CreateEdgeInstance(model, { 0., -150., 0. }, { 0. , 150., 0. }),
+                                                true    
+                                            )
+                            );
+                    }
+
+                    {
+                        int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
+                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiPutAttrBN(
+                                myInstance,
+                                "Representation",
+                                sdaiINSTANCE,
+                                (void*) ___CreateProductDefinitionShapeInstance(
+                                                model,
+                                                ___CreateEdgeInstance(model, { -150., 0., 0. }, { 150. , 0., 0. }),
+                                                true    
+                                            )
+                            );
+                    }
+
+                    {
+                        int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
+                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiPutAttrBN(
+                                myInstance,
+                                "Representation",
+                                sdaiINSTANCE,
+                                (void*) ___CreateProductDefinitionShapeInstance(
+                                                model,
+                                                horizontalAlignmentParentCurveI,
+                                                true    
+                                            )
+                            );
+
+                    }
+
+                    {
+                        if (horizontalAlignmentParentCurveII) {
+                            int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
+                            sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                            sdaiPutAttrBN(
+                                    myInstance,
+                                    "Representation",
+                                    sdaiINSTANCE,
+                                    (void*) ___CreateProductDefinitionShapeInstance(
+                                                    model,
+                                                    horizontalAlignmentParentCurveII,
+                                                    true    
+                                                )
+                                );
+                        }
+                    }
+
+
+                    int_t   ifcProductInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
+                    sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)ifcProductInstance);
+                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(model, "IFCCIRCLEPROFILEDEF");
 //                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCCIRCLEHOLLOWPROFILEDEF");
 
-                    double  radius = 0.007;// , wallThickness = 0.01;
+                    double  radius = 0.7;// , wallThickness = 0.01;
                     sdaiPutAttrBN(ifcCircleHollowProfileDefInstance, "Radius", sdaiREAL, &radius);
 //                    sdaiPutAttrBN(ifcCircleHollowProfileDefInstance, "WallThickness", sdaiREAL, &wallThickness);
 
@@ -63,14 +140,14 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                     //  Create example sweep
                     //
                     AlignmentGenerateSweep(
-                            ifcModel,
+                            model,
                             ifcAlignmentInstance,
                             ifcCircleHollowProfileDefInstance,
                             ifcProductInstance
                         );  //  */
-                   int_t   ifcRectangleProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCRECTANGLEPROFILEDEF");
+    //               int_t   ifcRectangleProfileDefInstance = sdaiCreateInstanceBN(model, "IFCRECTANGLEPROFILEDEF");
 
-                    double  x = 0.1, y = 0.2;
+            /*        double  x = 0.1, y = 0.2;
                     sdaiPutAttrBN(ifcRectangleProfileDefInstance, "XDim", sdaiREAL, &x);
                     sdaiPutAttrBN(ifcRectangleProfileDefInstance, "YDim", sdaiREAL, &y);
 
@@ -78,7 +155,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                     //  Create example sweep
                     //
                     AlignmentGenerateSweep(
-                            ifcModel,
+                            model,
                             ifcAlignmentInstance,
                             ifcRectangleProfileDefInstance,
                             ifcProductInstance,
@@ -94,10 +171,10 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
             std::cout << "No alignment instances found.\n";
         }
 
-        sdaiSaveModelBN(ifcModel, generatedFileName);
+        sdaiSaveModelBN(model, generatedFileName);
 
-        cleanMemory(ifcModel, 4);
-        sdaiCloseModel(ifcModel);
+        cleanMemory(model, 4);
+        sdaiCloseModel(model);
     }
 
     return  convertedInstances;
