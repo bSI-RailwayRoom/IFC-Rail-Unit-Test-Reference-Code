@@ -1,0 +1,10 @@
+call CheckAlignment_BlossCurve-20210629.bat
+call CheckAlignment_CircularArc-20210629.bat
+call CheckAlignment_Clothoid-20210629.bat
+call CheckAlignment_CosineCurve-20210629.bat
+call CheckAlignment_Cubic-20210629.bat
+call CheckAlignment_HelmertCurve-20210629.bat
+call CheckAlignment_Line-20210629.bat
+call CheckAlignment_SineCurve-20210829.bat
+call CheckAlignment_VienneseBend-20210629.bat
+pause:
