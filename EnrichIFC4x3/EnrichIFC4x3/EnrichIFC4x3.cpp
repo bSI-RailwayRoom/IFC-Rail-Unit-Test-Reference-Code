@@ -28,7 +28,9 @@ static  const   uint64_t    flagbit14 = 16384;                      // 2^^14    
 static  const   uint64_t    flagbit15 = 32768;                      // 2^^15                         1000.0000..0000.0000
 
 
+#ifdef _DEBUG
 int_t   horizontalAlignmentParentCurveI = 0, horizontalAlignmentParentCurveII = 0;
+#endif // _DEBUG
 
 
 int_t    ConvertFile(char * inputFileName, char * generatedFileName)
@@ -37,6 +39,10 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
             model = sdaiOpenModelBN(0, inputFileName, "");
 
     if (model) {
+#ifdef _DEBUG
+        sdaiSaveModelBN(model, inputFileName);
+#endif // _DEBUG
+
         int_t   * ifcAlignmentInstances = sdaiGetEntityExtentBN(model, "IFCALIGNMENT"),
                 noIfcAlignmentInstances = sdaiGetMemberCount(ifcAlignmentInstances);
         if (noIfcAlignmentInstances) {
