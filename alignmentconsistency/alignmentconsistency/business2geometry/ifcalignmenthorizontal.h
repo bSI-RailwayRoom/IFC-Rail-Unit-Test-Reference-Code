@@ -15,27 +15,11 @@
 #include "ifcthirdorderpolynomialspiral.h"
 
 
-static  const   uint64_t    __flagbit0 = 1;                           // 2^^0                          0000.0000..0000.0001
-static  const   uint64_t    __flagbit1 = 2;                           // 2^^1                          0000.0000..0000.0010
-static  const   uint64_t    __flagbit2 = 4;                           // 2^^2                          0000.0000..0000.0100
-static  const   uint64_t    __flagbit3 = 8;                           // 2^^3                          0000.0000..0000.1000
-
-static  const   uint64_t    __flagbit4 = 16;                          // 2^^4                          0000.0000..0001.0000
-static  const   uint64_t    __flagbit5 = 32;                          // 2^^5                          0000.0000..0010.0000
-static  const   uint64_t    __flagbit6 = 64;                          // 2^^6                          0000.0000..0100.0000
-static  const   uint64_t    __flagbit7 = 128;                         // 2^^7                          0000.0000..1000.0000
-
-static  const   uint64_t    __flagbit8 = 256;                         // 2^^8                          0000.0001..0000.0000
-static  const   uint64_t    __flagbit9 = 512;                         // 2^^9                          0000.0010..0000.0000
-static  const   uint64_t    __flagbit10 = 1024;                       // 2^^10                         0000.0100..0000.0000
-static  const   uint64_t    __flagbit11 = 2048;                       // 2^^11                         0000.1000..0000.0000
-
-static  const   uint64_t    __flagbit12 = 4096;                       // 2^^12                         0001.0000..0000.0000
-static  const   uint64_t    __flagbit13 = 8192;                       // 2^^13                         0010.0000..0000.0000
-static  const   uint64_t    __flagbit14 = 16384;                      // 2^^14                         0100.0000..0000.0000
-static  const   uint64_t    __flagbit15 = 32768;                      // 2^^15                         1000.0000..0000.0000
-
 static	const	double		___Pi = 3.14159265358979323846;
+
+#ifdef _DEBUG
+extern  int_t   horizontalAlignmentParentCurveI, horizontalAlignmentParentCurveII;
+#endif // _DEBUG
 
 
 inline  static  int_t   ___GetAlignmentCant(
@@ -44,7 +28,78 @@ inline  static  int_t   ___GetAlignmentCant(
                                 bool    * hasIssue
                             );
 
-static  inline  double   GetCantAngle(
+static  inline  double   GetCantStart(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length,
+                                double  * pStartCantRight,
+                                double  * pStartCantLeft,
+                                double  * pRailHeadDistance
+                            )
+{
+    (*pStartCantRight)   = 0.;
+    (*pStartCantLeft)    = 0.;
+    (*pRailHeadDistance) = 1.;
+
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  startCantLeft = 0., startCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    (*pStartCantRight)   = startCantRight;
+                    (*pStartCantLeft)    = startCantLeft;
+                    (*pRailHeadDistance) = railHeadDistance;
+
+                    return  (startCantRight - startCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantAngleStart(
                                 int_t   model,
                                 int_t   ifcAlignmentInstance,
                                 double  offset,
@@ -85,20 +140,146 @@ static  inline  double   GetCantAngle(
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
             if (startDistAlong == offset && horizontalLength == length) {
-                double  startCantLeft = 0., endCantLeft = 0., startCantRight = 0., endCantRight = 0.;
+                double  startCantLeft = 0., startCantRight = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
-
-                double  startCant = startCantRight - startCantLeft,
-                        endCant = endCantRight - endCantLeft;
 
                 double  railHeadDistance = 0.;
                 sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
                 if (railHeadDistance) {
-//                    return  std::fabs(startCant - endCant) / railHeadDistance;
-                    return  (startCant - endCant) / railHeadDistance;
+                    return  (startCantRight - startCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantEnd(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length,
+                                double  * pEndCantRight,
+                                double  * pEndCantLeft,
+                                double  * pRailHeadDistance
+                            )
+{
+    (*pEndCantRight)     = 0.;
+    (*pEndCantLeft)      = 0.;
+    (*pRailHeadDistance) = 1.;
+
+
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  endCantLeft = 0., endCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    (*pEndCantRight)     = endCantRight;
+                    (*pEndCantLeft)      = endCantLeft;
+                    (*pRailHeadDistance) = railHeadDistance;
+
+                    return  (endCantRight - endCantLeft) / railHeadDistance;
+                }
+            }
+        }
+
+        delete[] segmentInstances;
+    }
+
+    assert(false);
+    return  0.;
+}
+
+static  inline  double   GetCantAngleEnd(
+                                int_t   model,
+                                int_t   ifcAlignmentInstance,
+                                double  offset,
+                                double  length
+                            )
+{
+    int_t   ifcCantAlignmentInstance =
+                ___GetAlignmentCant(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    );
+
+    int_t   noSegmentInstances =
+                ___GetAlignmentSegments(
+                        model,
+                        ifcCantAlignmentInstance,
+                        nullptr
+                    );
+
+    if (noSegmentInstances) {
+        int_t   * segmentInstances = new int_t[noSegmentInstances];
+
+        ___GetAlignmentSegments(
+                model,
+                ifcCantAlignmentInstance,
+                segmentInstances
+            );
+
+        for (int_t i = 0; i < noSegmentInstances; i++) {
+            int_t   ifcAlignmentSegmentInstance = segmentInstances[i],
+                    ifcAlignmentCantSegmentInstance = 0;
+            sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
+
+            double  startDistAlong = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
+
+            double  horizontalLength = 0.;
+            sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
+            if (startDistAlong == offset && horizontalLength == length) {
+                double  endCantLeft = 0., endCantRight = 0.;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+
+                double  railHeadDistance = 0.;
+                sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
+                if (railHeadDistance) {
+                    return  (endCantRight - endCantLeft) / railHeadDistance;
                 }
             }
         }
@@ -187,6 +368,13 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
             }
         }
 
+        double  mostRecentRadius = 0.,
+                mostRecentLength = 0.;
+        int_t   mostRecentCurveSegmentInstance = 0;
+#ifdef _DEBUG
+        ___VECTOR2  mostRecentLocation = { 0., 0. };
+#endif // _DEBUG
+
         double  compositeCurveLength = 0.;
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
@@ -230,6 +418,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "SegmentLength", sdaiREAL, &segmentLength);
                 assert(segmentLength >= 0.);
 
+                mostRecentLength = segmentLength;
+
                 //
                 //  Transition
                 //
@@ -256,6 +446,10 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 assert(pStartPoint[i].z == 0.);
 
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+#ifdef _DEBUG
+                mostRecentLocation.x = location.x;
+                mostRecentLocation.y = location.y;
+#endif // _DEBUG
 
                 //
                 //  Parse the individual segments
@@ -263,22 +457,32 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
                 if (___equals(predefinedType, (char*) "CIRCULARARC")) {
-                    double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
-                    sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
-                    sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
+                    double  radiusOfCurvature;
+
+                    {
+                        double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
+                        sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
+                        sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
+
+                        if (startRadiusOfCurvature == 0.) {
+                            radiusOfCurvature = endRadiusOfCurvature;
+                        }
+                        else {
+                            radiusOfCurvature = startRadiusOfCurvature;
+                        }
+                    }
 
                     int_t   ifcCircularArcParentCurve =
                                 ___CreateCircleInstance(
                                         model,
-                                        startRadiusOfCurvature
+                                        radiusOfCurvature
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcCircularArcParentCurve;
+#endif // _DEBUG
 
-                    if (startRadiusOfCurvature == 0.) {
-                        startRadiusOfCurvature = endRadiusOfCurvature;
-                    }
-
-                    if (startRadiusOfCurvature < 0) {
+                    if (radiusOfCurvature < 0) {
                         segmentLength = -segmentLength;
                     }
 
@@ -290,8 +494,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                    if (startRadiusOfCurvature) {
-                        segmentLength = segmentLength / std::fabs(startRadiusOfCurvature);
+                    if (radiusOfCurvature) {
+                        segmentLength = segmentLength / std::fabs(radiusOfCurvature);
                     }
 
                     //
@@ -319,13 +523,38 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         offset = startRadiusOfCurvature ? segmentLength * endRadiusOfCurvature / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.;
                     }
 
+                    ___MATRIX   myMatrix;
+                    ___MatrixIdentity(&myMatrix);
+//                    myMatrix._41 = -___XclothoidByConstant(linearTernm, offset);
+//                    myMatrix._42 = -___YclothoidByConstant(linearTernm, offset);
+
+                    ___VECTOR3  myVec = {
+                                        ___XclothoidByConstant(linearTernm, offset),
+                                        ___YclothoidByConstant(linearTernm, offset),
+                                        0.
+                                    };
+
+                    double  angle = ___AngleClothoidByConstant(linearTernm, offset);
+                    myMatrix._11 = cos(-angle);
+                    myMatrix._12 = sin(-angle);
+                    myMatrix._21 = -myMatrix._12;
+                    myMatrix._22 =  myMatrix._11;
+
+                    ___Vec3Transform(&myVec, &myVec, &myMatrix);
+                    myMatrix._41 = -myVec.x;
+                    myMatrix._42 = -myVec.y;
+                    assert(myVec.z == 0.);
+
                     int_t   ifcClothoidParentCurve =
                                 ___CreateClothoidInstance(
                                         model,
                                         linearTernm,
-                                        nullptr
+                                        &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcClothoidParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -367,6 +596,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                     );
 
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcCosineCurveParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -405,6 +637,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcSineCurveParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -450,6 +685,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcBlossCurveParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -463,12 +701,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     //  SegmentLength
                     //
                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                    if (segmentLength < 0.) {
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                    }
-                    else {
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                    }
+                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
@@ -496,6 +729,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         nullptr
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcHelmertInstance;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -523,11 +759,16 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     ___VECTOR2  endPointFirstHalf = {
                                         segmentLength * ___XbyAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5),
                                         segmentLength * ___YbyAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5)
-                                    },
-                                startPointSecondHalf = {
+                                    };
+                    ___VECTOR2  startPointSecondHalf = {
                                         segmentLength * ___XbyAngleDeviationPolynomial(0., quadraticTermSecondHalf, linearTermSecondHalf, constantTermSecondHalf, 0.5),
                                         segmentLength * ___YbyAngleDeviationPolynomial(0., quadraticTermSecondHalf, linearTermSecondHalf, constantTermSecondHalf, 0.5)
                                     };
+
+#ifdef _DEBUG
+                    mostRecentLocation.x = endPointFirstHalf.x;
+                    mostRecentLocation.y = endPointFirstHalf.y;
+#endif // _DEBUG
 
                     //
                     //  SECOND INSTANCE
@@ -542,14 +783,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         //
                         sdaiPutAttrBN(
                                 ifcAlignmentSegmentInstance,
-                                "ObjectPlacement",
-                                sdaiINSTANCE,
-                                (void*) ___CreateObjectPlacement(
-                                                model
-                                            )
-                            );
-                        sdaiPutAttrBN(
-                                ifcAlignmentSegmentInstance,
                                 "Representation",
                                 sdaiINSTANCE,
                                 (void*) ___CreateProductDefinitionShapeInstance(
@@ -560,9 +793,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                             );
                         char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-
-                        int_t   ifcCartesianPointInstance = 0;
-                        sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartPoint", sdaiINSTANCE, &ifcCartesianPointInstance);
 
                         double   startDirection = 0.;
                         sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartDirection", sdaiREAL, &startDirection);
@@ -606,6 +836,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                     );
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveII = ifcHelmertInstance;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -628,11 +861,20 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "LINE")) {
-                    int_t   ifcLineParentCurve =
+                    ___VECTOR2  dir = {
+                                        refDirection.x,
+                                        refDirection.y
+                                    };
+
+                    int_t   ifcLineParentCurveInstance =
                                 ___CreateLineInstance(
-                                        model
+                                        model,
+                                        &dir
                                     );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurve);
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcLineParentCurveInstance;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -646,12 +888,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     //  SegmentLength
                     //
                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                    if (segmentLength < 0.) {
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                    }
-                    else {
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                    }
+                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else if (___equals(predefinedType, (char*) "VIENNESEBEND")) {
@@ -662,16 +899,13 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     double  gravityCenterLineHeight = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "GravityCenterLineHeight", sdaiREAL, &gravityCenterLineHeight);
 
-                    double  cantAngle     = GetCantAngle(model, ifcAlignmentInstance, compositeCurveLength, segmentLength),
-                            cantComponent = -420. * (gravityCenterLineHeight / segmentLength) * cantAngle;
+                    double  startCantRight = 0., startCantLeft = 0., endCantRight = 0., endCantLeft = 0., railHeadDistance = 0.;
+                    GetCantStart(model, ifcAlignmentInstance, compositeCurveLength, segmentLength, &startCantRight, &startCantLeft, &railHeadDistance);
+                    GetCantEnd(model, ifcAlignmentInstance, compositeCurveLength, segmentLength, &endCantRight, &endCantLeft, &railHeadDistance);
 
-                    cantComponent *=
-                        ((startRadiusOfCurvature && endRadiusOfCurvature) ?
-                            ((std::fabs(startRadiusOfCurvature) < std::fabs(endRadiusOfCurvature)) ?
-                                startRadiusOfCurvature / endRadiusOfCurvature :
-                                endRadiusOfCurvature / startRadiusOfCurvature) :
-                            0.)
-                        - 1.;
+                    double  cantAngleStart = (startCantRight - startCantLeft) / railHeadDistance,
+                            cantAngleEnd   = (endCantRight - endCantLeft) / railHeadDistance,
+                            cantComponent  = -420. * (gravityCenterLineHeight / segmentLength) * (cantAngleEnd - cantAngleStart);
 
                     double  factor = 
                                   (endRadiusOfCurvature ? segmentLength / endRadiusOfCurvature : 0.)
@@ -685,7 +919,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                             sexticTerm     =                        70. * factor,
                             septicTerm     =                      - 20. * factor;
 
-                    int_t   vienneseBendParentCurve =
+                    int_t   ifcVienneseBendParentCurve =
                                 ___CreateSeventhOrderPolynomialSpiralInstance(
                                         model,
                                         septicTerm    ? segmentLength * pow(std::fabs(septicTerm),    -1. / 8.) * septicTerm    / std::fabs(septicTerm)    : 0.,
@@ -698,7 +932,10 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
                                         nullptr
                                     );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) vienneseBendParentCurve);
+                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcVienneseBendParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -852,6 +1089,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         0
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicParentCurve);
+#ifdef _DEBUG
+                    horizontalAlignmentParentCurveI = ifcCubicParentCurve;
+#endif // _DEBUG
 
                     //
                     //  SegmentStart
@@ -893,12 +1133,138 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
 
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
                 compositeCurveLength += segmentLength;
+
+                mostRecentCurveSegmentInstance = ifcCurveSegmentInstance;
             }
+        }
+
+        if (mostRecentLength != 0.) {
+            //
+            //  Placement
+            //
+            ___VECTOR2  refDirection = {
+                                1.,
+                                0.
+                            },
+                        endPoint = {
+                                0.,
+                                0.
+                            };
+
+            ___GetEndPoint(
+                    model,
+                    &endPoint,
+#ifdef _DEBUG
+                    &mostRecentLocation,
+#endif // _DEBUG
+                    mostRecentCurveSegmentInstance,
+                    ifcCompositeCurveInstance
+                );
+
+            int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+
+            //
+            //  Transition
+            //
+            char    transitionCode[14] = "DISCONTINUOUS";
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &endPoint, &refDirection));
+
+            if (mostRecentRadius) {
+                //
+                //  IfcCircle with length zero
+                //
+                int_t   ifcCircularArcParentCurve =
+                            ___CreateCircleInstance(
+                                    model,
+                                    mostRecentRadius
+                                );
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
+            }
+            else {
+                //
+                //  IfcLine with length zero
+                //
+                int_t   ifcLineParentCurveInstance =
+                            ___CreateLineInstance(
+                                    model
+                                );
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
+            }
+
+            //
+            //  SegmentStart
+            //
+            double  offset = 0.;
+            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+            sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+            //
+            //  SegmentLength
+            //
+            double  segmentLength = 0.;
+            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+
+            sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
         }
 
         delete[] pStartDirection;
         delete[] pStartPoint;
         delete[] segmentInstances;
+    }
+    else {
+        //
+        //  IfcLine with length zero
+        //
+        int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+
+        //
+        //  Transition
+        //
+        char    transitionCode[14] = "DISCONTINUOUS";
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+
+        //
+        //  Placement
+        //
+        ___VECTOR2  refDirection = {
+                            1.,
+                            0.
+                        },
+                    location = {
+                            0.,
+                            0.
+                        };
+
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+
+        int_t   ifcLineParentCurveInstance =
+                    ___CreateLineInstance(
+                            model
+                        );
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
+
+        //
+        //  SegmentStart
+        //
+        double  offset = 0.;
+        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+        //
+        //  SegmentLength
+        //
+        double  segmentLength = 0.;
+        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+
+        sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
     }
 
     return  ifcCompositeCurveInstance;

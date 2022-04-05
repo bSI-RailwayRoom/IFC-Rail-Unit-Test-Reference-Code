@@ -781,14 +781,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
-            //            sdaiPutAttrBN(
-            //                    ifcAlignmentSegmentInstance,
-            //                    "ObjectPlacement",
-            //                    sdaiINSTANCE,
-            //                    (void*) ___CreateObjectPlacement(
-            //                                    model
-            //                                )
-            //                );
                         sdaiPutAttrBN(
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
@@ -801,9 +793,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                             );
                         char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-
-//                        int_t   ifcCartesianPointInstance = 0;
-//                        sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartPoint", sdaiINSTANCE, &ifcCartesianPointInstance);
 
                         double   startDirection = 0.;
                         sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartDirection", sdaiREAL, &startDirection);
@@ -834,7 +823,6 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                             1.,                      0.,                      0.,
                                             0.,                      1.,                      0.,
                                             0.,                      0.,                      1.,
-//                                            -endPointFirstHalf.x,    -endPointFirstHalf.y, 0.
                                             -startPointSecondHalf.x, -startPointSecondHalf.y, 0.
                                         };
                         ___MatrixMultiply(&matrix, &matrixCorrection, &matrix);

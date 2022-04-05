@@ -129,6 +129,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 pSegmentType[i] = enum_segment_type::PARABOLICARC;
             }
         }
+        
+        double  mostRecentStartDistAlong   = 0.,
+                mostRecentHorizontalLength = 0.,
+                mostRecentEndGradient      = 0.;
+        int_t   mostRecentCurveSegmentInstance = 0;
+#ifdef _DEBUG
+        ___VECTOR2  mostRecentLocation = { 0., 0. };
+#endif // _DEBUG
 
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
@@ -217,6 +225,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     }
                 }
 
+                mostRecentStartDistAlong   = startDistAlong;
+                mostRecentHorizontalLength = horizontalLength;
+                mostRecentEndGradient      = endGradient__;
+
                 //
                 //  RadiusOfCurvature
                 //
@@ -245,6 +257,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 };
                 ___Vec2Normalize(&refDirection);
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+#ifdef _DEBUG
+                mostRecentLocation.x = location.x;
+                mostRecentLocation.y = location.y;
+#endif // _DEBUG
 
                 if ((horizontalLength == 0.) &&
                     (i == noSegmentInstances - 1)) {
@@ -642,6 +658,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 }
 
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+
+                mostRecentCurveSegmentInstance = ifcCurveSegmentInstance;
             }
         }
 
@@ -652,6 +670,33 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
         delete[] pStartGradient;
 
         delete[] segmentInstances;
+
+        {
+            ___VECTOR2  endPoint = { 0., 0. };
+
+            ___GetEndPoint(
+                    model,
+                    &endPoint,
+#ifdef _DEBUG
+                    &mostRecentLocation,
+#endif // _DEBUG
+                    mostRecentCurveSegmentInstance,
+                    ifcGradientCurveInstance
+                );
+
+            ___VECTOR2  refDirection = {
+                                1.,
+                                mostRecentEndGradient
+                            },
+                        location = {
+                                endPoint.x,
+                                endPoint.y
+                            };
+            assert((mostRecentStartDistAlong + mostRecentHorizontalLength) - startDistAlongHorizontalAlignment == endPoint.x);
+
+            ___Vec2Normalize(&refDirection);
+            sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+        }
     }
 
     return  ifcGradientCurveInstance;

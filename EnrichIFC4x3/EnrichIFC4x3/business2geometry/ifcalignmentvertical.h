@@ -672,7 +672,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
         delete[] segmentInstances;
 
         {
-            ___VECTOR2  endPoint = { 0., 0., };
+            ___VECTOR2  endPoint = { 0., 0. };
 
             ___GetEndPoint(
                     model,

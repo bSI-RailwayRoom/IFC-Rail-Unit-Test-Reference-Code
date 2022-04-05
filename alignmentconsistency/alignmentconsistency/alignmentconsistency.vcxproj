@@ -207,6 +207,7 @@
     <ClInclude Include="alignmentconsistency\alignmentconsistencyTEXT.h" />
     <ClInclude Include="alignmentconsistency\issues.h" />
     <ClInclude Include="business2geometry\engdef.h" />
+    <ClInclude Include="business2geometry\engine.h" />
     <ClInclude Include="business2geometry\generic.h" />
     <ClInclude Include="business2geometry\ifcalignment.h" />
     <ClInclude Include="business2geometry\ifcalignmentcant.h" />

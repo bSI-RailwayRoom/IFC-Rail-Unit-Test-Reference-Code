@@ -533,6 +533,10 @@ int_t		DECL STDC	engiGetEntityNoArguments(
 									int_t				entity
 								);
 
+int_t		DECL STDC	engiGetArgumentType(
+									int_t				argument
+								);
+
 //
 //		engiGetEntityParent                         (http://rdf.bg/ifcdoc/CP64/engiGetEntityParent.html)
 //				int_t				entity								IN
@@ -583,6 +587,11 @@ int_t		DECL STDC	engiGetAttrInverse(
 									const void			* attribute
 								);
 
+void		DECL STDC	engiGetAttrDomain(
+									const void			* attribute,
+									char				** domainName
+								);
+
 //
 //		engiGetAttrInverseBN                        (http://rdf.bg/ifcdoc/CP64/engiGetAttrInverseBN.html)
 //				int_t				entity								IN
@@ -595,6 +604,12 @@ int_t		DECL STDC	engiGetAttrInverse(
 int_t		DECL STDC	engiGetAttrInverseBN(
 									int_t				entity,
 									const char			* attributeName
+								);
+
+void		DECL STDC	engiGetAttrDomainBN(
+									int_t				entity,
+									const char			* attributeName,
+									char				** domainName
 								);
 
 //
@@ -843,7 +858,7 @@ void		DECL STDC	sdaiDeleteADB(
 //
 void		DECL * STDC	engiGetAggrElement(
 									int_t				* aggregate,
-									int_t				elementIndex,
+									int_t				index,
 									int_t				valueType,
 									void				* value
 								);
@@ -1683,6 +1698,20 @@ void		DECL STDC	setSegmentation(
 									double				segmentationLength
 								);
 
+void		DECL STDC	setEpsilon(
+									int_t				model,
+									int_t				mask,
+									double				absoluteEpsilon,
+									double				relativeEpsilon
+								);
+
+int_t		DECL STDC	getEpsilon(
+									int_t				model,
+									int_t				mask,
+									double				* absoluteEpsilon,
+									double				* relativeEpsilon
+								);
+
 //
 //		circleSegments                              (http://rdf.bg/ifcdoc/CP64/circleSegments.html)
 //				int_t				circles								IN
@@ -1751,6 +1780,25 @@ void		DECL STDC	setBRepProperties(
 									int_t				maxVerticesSize
 								);
 
+void		DECL STDC	setBoundaryRepresentationHealing(
+									int_t				model,
+									int_t				setting,
+									int_t				mask,
+									int64_t				consistencyCheck,
+									double				fraction,
+									double				epsilon,
+									int_t				vertexBufferSizeBound
+								);
+
+int_t		DECL STDC	getBoundaryRepresentationHealing(
+									int_t				model,
+									int_t				mask,
+									int64_t				* consistencyCheck,
+									double				* fraction,
+									double				* epsilon,
+									int_t				* vertexBufferSizeBound
+								);
+
 //
 //		cleanMemory                                 (http://rdf.bg/ifcdoc/CP64/cleanMemory.html)
 //				int_t				model								IN
@@ -1775,6 +1823,11 @@ void		DECL STDC	cleanMemory(
 //
 int_t		DECL STDC	internalGetP21Line(
 									int_t				instance
+								);
+
+int_t		DECL STDC	internalForceInstanceFromP21Line(
+									int_t				model,
+									int_t				P21Line
 								);
 
 //
@@ -2137,6 +2190,17 @@ void		DECL STDC	owlBuildInstance(
 									int_t				instance,
 									int64_t				* owlInstance
 								);
+
+void		DECL STDC	owlBuildInstanceInContext(
+									int_t				instanceBase,
+									int_t				instanceContext,
+									int64_t				* owlInstance
+								);
+
+bool		DECL STDC	engiInstanceUsesSegmentation(
+									int_t				instance
+								);
+
 
 //
 //		owlBuildInstances                           (http://rdf.bg/ifcdoc/CP64/owlBuildInstances.html)
@@ -2705,6 +2769,34 @@ int_t		DECL STDC	setInstanceReference(
 int_t		DECL STDC	getInstanceReference(
 									int_t				instance
 								);
+
+int_t		DECL STDC	inferenceInstance(
+									int_t				instance
+								);
+
+int_t		DECL STDC	sdaiValidateSchemaInstance(
+									int_t				instance
+								);
+
+int_t		DECL STDC	sdaiValidateAttribute(
+									int_t				instance,
+									int_t				attribute
+								);
+
+int_t		DECL STDC	sdaiValidateAttributeBN(
+									int_t				instance,
+									int_t				attributeName
+								);
+
+int_t		DECL STDC	engiGetEntityIsAbstract(
+									int_t				entity
+								);
+
+int_t		DECL STDC	engiGetEntityIsAbstractBN(
+									int_t				model,
+									const char			* entityName
+								);
+
 
 
 #ifdef __cplusplus

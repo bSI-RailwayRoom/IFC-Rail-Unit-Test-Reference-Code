@@ -181,6 +181,9 @@
     <ClInclude Include="business2geometry\spiral.h">
       <Filter>Header Files\business2geometry</Filter>
     </ClInclude>
+    <ClInclude Include="business2geometry\engine.h">
+      <Filter>Header Files\business2geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="alignmentconsistency.rc">

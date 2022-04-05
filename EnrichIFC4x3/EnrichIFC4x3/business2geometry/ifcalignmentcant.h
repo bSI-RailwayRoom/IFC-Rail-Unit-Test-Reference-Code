@@ -278,7 +278,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
                 if (___equals(predefinedType, (char*) "CONSTANTCANT")) {
-                    ___VECTOR2  pnt = { 0., (startCantLeft + startCantRight) / 2. }, dir = { 1., 0. };
+                    ___VECTOR2  pnt = { 0., (startCantLeft + startCantRight) / 2. },
+								dir = { 1., 0. };
                     int_t   ifcConstantCantParentCurve =
                                 ___CreateLineInstance(
                                         model,
@@ -332,7 +333,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                    double  segmentLength = horizontalLength;// / dir.x;
+                    double  segmentLength = horizontalLength;
 
                     //
                     //  SegmentLength
@@ -552,21 +553,9 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                             constantTermFirstHalf   =   0. * factor + (startCantRight + startCantLeft) / 1.,
                             linearTermFirstHalf     =   0. * factor,
                             quadraticTermFirstHalf  =   2. * factor,
-                            constantTermSecondHalf  =              //    horizontalLength * (
-- 1. * factor +          //                                                                  (startCantLeft + startCantRight) / 2.
-                                                                            (startCantRight + startCantLeft) / 1.,
-               //                                                             + (((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ? 
-                 //                                                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
-                   //                                                               0.5),
-                                                                 //       ),
+                            constantTermSecondHalf  = - 1. * factor + (startCantRight + startCantLeft) / 1.,
                             linearTermSecondHalf    =   4. * factor,
                             quadraticTermSecondHalf = - 2. * factor;
-
-//constantTermFirstHalf *= horizontalLength;
-//quadraticTermFirstHalf *= horizontalLength / 2.;
-//constantTermSecondHalf = 2.6;
-//linearTermSecondHalf *= horizontalLength;
-//quadraticTermSecondHalf *= horizontalLength / 2.;
 
                     {
                         matrix._11 = 1.;
@@ -745,10 +734,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
         delete[] segmentInstances;
 
-//        ___VECTOR2  endpoint = {
-//                            (mostRecentStartDistAlong + mostRecentLength) - startDistAlongHorizontalAlignment,
-//                            (mostRecentendCantLeft + mostRecentendCantRight) / 2.
-//                        };
         {
             double  startCantLeft = mostRecentendCantLeft,
                     startCantRight = mostRecentendCantRight;

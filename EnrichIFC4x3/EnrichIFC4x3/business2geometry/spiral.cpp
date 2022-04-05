@@ -12,6 +12,10 @@
 #include	"spiral.h"
 
 
+#ifdef _DEBUG
+extern  int_t   horizontalAlignmentParentCurveI = 0, horizontalAlignmentParentCurveII = 0;
+#endif // _DEBUG
+
 int_t	reusedIfcGeometricRepresentationContextInstance = 0;
 
 

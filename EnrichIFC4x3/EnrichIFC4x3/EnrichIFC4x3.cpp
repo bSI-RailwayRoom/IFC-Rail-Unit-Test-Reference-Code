@@ -29,7 +29,7 @@ static  const   uint64_t    flagbit15 = 32768;                      // 2^^15    
 
 
 #ifdef _DEBUG
-int_t   horizontalAlignmentParentCurveI = 0, horizontalAlignmentParentCurveII = 0;
+extern  int_t   horizontalAlignmentParentCurveI, horizontalAlignmentParentCurveII;
 #endif // _DEBUG
 
 
