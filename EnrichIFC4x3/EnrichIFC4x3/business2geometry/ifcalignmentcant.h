@@ -81,6 +81,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                 double  startDistAlongHorizontalAlignment
                             )
 {
+    assert(startDistAlongHorizontalAlignment == 0.);
+
     if (ifcCantAlignmentInstance == 0) {
         return  0;
     }
@@ -113,6 +115,11 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 ifcCantAlignmentInstance,
                 segmentInstances
             );
+
+        double  mostRecentStartDistAlong = 0.,
+                mostRecentLength         = 0.,
+                mostRecentendCantLeft    = 0.,
+                mostRecentendCantRight   = 0.;
 
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
@@ -208,6 +215,11 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
                 }
+
+                mostRecentStartDistAlong = startDistAlong;
+                mostRecentLength         = horizontalLength;
+                mostRecentendCantLeft    = endCantLeft;
+                mostRecentendCantRight   = endCantRight;
 
                 //
                 //  Placement
@@ -732,6 +744,42 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
         }
 
         delete[] segmentInstances;
+
+//        ___VECTOR2  endpoint = {
+//                            (mostRecentStartDistAlong + mostRecentLength) - startDistAlongHorizontalAlignment,
+//                            (mostRecentendCantLeft + mostRecentendCantRight) / 2.
+//                        };
+        {
+            double  startCantLeft = mostRecentendCantLeft,
+                    startCantRight = mostRecentendCantRight;
+
+            //
+            //  Placement
+            //
+            ___MATRIX  matrix;
+            ___MatrixIdentity(&matrix);
+
+            matrix._41 = (mostRecentStartDistAlong + mostRecentLength) - startDistAlongHorizontalAlignment;
+            matrix._42 = (startCantLeft + startCantRight) / 2.;
+            matrix._43 = 0.;
+
+            matrix._11 = 1.;
+            matrix._12 = 0.;
+            matrix._13 = 0.;
+
+            matrix._21 = -matrix._12;
+            matrix._22 = matrix._11;
+
+            double  _factor = -(startCantLeft - startCantRight);
+            matrix._31 = - _factor * matrix._12;
+            matrix._32 = _factor * matrix._11;
+            matrix._33 = railHeadDistance;
+            ___Vec3Normalize((___VECTOR3*) &matrix._31);
+
+            ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
+
+            sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
+        }
     }
 
     return  ifcSegmentedReferenceCurveInstance;

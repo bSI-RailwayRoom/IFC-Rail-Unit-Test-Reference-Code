@@ -15,26 +15,6 @@
 #include "ifcthirdorderpolynomialspiral.h"
 
 
-static  const   uint64_t    __flagbit0 = 1;                           // 2^^0                          0000.0000..0000.0001
-static  const   uint64_t    __flagbit1 = 2;                           // 2^^1                          0000.0000..0000.0010
-static  const   uint64_t    __flagbit2 = 4;                           // 2^^2                          0000.0000..0000.0100
-static  const   uint64_t    __flagbit3 = 8;                           // 2^^3                          0000.0000..0000.1000
-
-static  const   uint64_t    __flagbit4 = 16;                          // 2^^4                          0000.0000..0001.0000
-static  const   uint64_t    __flagbit5 = 32;                          // 2^^5                          0000.0000..0010.0000
-static  const   uint64_t    __flagbit6 = 64;                          // 2^^6                          0000.0000..0100.0000
-static  const   uint64_t    __flagbit7 = 128;                         // 2^^7                          0000.0000..1000.0000
-
-static  const   uint64_t    __flagbit8 = 256;                         // 2^^8                          0000.0001..0000.0000
-static  const   uint64_t    __flagbit9 = 512;                         // 2^^9                          0000.0010..0000.0000
-static  const   uint64_t    __flagbit10 = 1024;                       // 2^^10                         0000.0100..0000.0000
-static  const   uint64_t    __flagbit11 = 2048;                       // 2^^11                         0000.1000..0000.0000
-
-static  const   uint64_t    __flagbit12 = 4096;                       // 2^^12                         0001.0000..0000.0000
-static  const   uint64_t    __flagbit13 = 8192;                       // 2^^13                         0010.0000..0000.0000
-static  const   uint64_t    __flagbit14 = 16384;                      // 2^^14                         0100.0000..0000.0000
-static  const   uint64_t    __flagbit15 = 32768;                      // 2^^15                         1000.0000..0000.0000
-
 static	const	double		___Pi = 3.14159265358979323846;
 
 #ifdef _DEBUG
@@ -391,7 +371,9 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
         double  mostRecentRadius = 0.,
                 mostRecentLength = 0.;
         int_t   mostRecentCurveSegmentInstance = 0;
+#ifdef _DEBUG
         ___VECTOR2  mostRecentLocation = { 0., 0. };
+#endif // _DEBUG
 
         double  compositeCurveLength = 0.;
         for (int_t i = 0; i < noSegmentInstances; i++) {
@@ -464,8 +446,10 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 assert(pStartPoint[i].z == 0.);
 
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+#ifdef _DEBUG
                 mostRecentLocation.x = location.x;
                 mostRecentLocation.y = location.y;
+#endif // _DEBUG
 
                 //
                 //  Parse the individual segments
@@ -776,18 +760,15 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         segmentLength * ___XbyAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5),
                                         segmentLength * ___YbyAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5)
                                     };
-//#ifdef _DEBUG
                     ___VECTOR2  startPointSecondHalf = {
                                         segmentLength * ___XbyAngleDeviationPolynomial(0., quadraticTermSecondHalf, linearTermSecondHalf, constantTermSecondHalf, 0.5),
                                         segmentLength * ___YbyAngleDeviationPolynomial(0., quadraticTermSecondHalf, linearTermSecondHalf, constantTermSecondHalf, 0.5)
                                     };
-//#endif // _DEBUG
 
-//                    assert(endPointFirstHalf.x == startPointSecondHalf.x);
-//                    assert(endPointFirstHalf.y == startPointSecondHalf.y);
-
+#ifdef _DEBUG
                     mostRecentLocation.x = endPointFirstHalf.x;
                     mostRecentLocation.y = endPointFirstHalf.y;
+#endif // _DEBUG
 
                     //
                     //  SECOND INSTANCE
@@ -1177,62 +1158,20 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                 1.,
                                 0.
                             },
-                        location = {
+                        endPoint = {
                                 0.,
                                 0.
                             };
 
-            {
-        		setFilter(model, 1 + 2, 1 + 2 + 4);	//	we need to recognize line representations
-                int64_t mask = GetFormat(0, 0),
-                        setting =
-			                  1 * __flagbit2         //    SINGLE / DOUBLE PRECISION (float / double)
-			                + 0 * __flagbit3         //    32 / 63 BIT INDEX ARRAY (int32_t / int64_t)
-
-			                + 1 * __flagbit4         //    OFF / ON VECTORS (x, y, z) 
-			                + 0 * __flagbit5         //    OFF / ON NORMALS (Nx, Ny, Nz)
-
-			                + 0 * __flagbit8         //    OFF / ON TRIANGLES
-			                + 1 * __flagbit9         //    OFF / ON LINES
-			                + 0 * __flagbit10        //    OFF / ON POINTS
-
-			                + 0 * __flagbit12        //    OFF / ON WIREFRAME FACES
-			                + 0 * __flagbit13;       //    OFF / ON WIREFRAME CONCEPTUAL FACES
-
-			    int64_t vertexElementSizeInBytes = SetFormat(model, setting, mask);
-			    assert(vertexElementSizeInBytes == 3 * sizeof(double));
-
-                int64_t elementSize = SetFormat(model, setting, mask);
-                assert(elementSize == 3 * 8);
-
-                int64_t owlInstance = 0;
-                owlBuildInstanceInContext(mostRecentCurveSegmentInstance, ifcCompositeCurveInstance, &owlInstance);
-
-                int64_t vertexBufferSize = 0, indexBufferSize = 0;
-                CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
-                if (vertexBufferSize && indexBufferSize) {
-                    double  * vertices = new double[3 * (int_t) vertexBufferSize];
-                    UpdateInstanceVertexBuffer(owlInstance, vertices);
-
-                    int32_t * indices = new int32_t[(int_t) indexBufferSize];
-                    UpdateInstanceIndexBuffer(owlInstance, indices);
-
-                    ___VECTOR3  startVec = { vertices[3 * 0 + 0], vertices[3 * 0 + 1], vertices[3 * 0 + 2] },
-                                endVec = { vertices[3 * (vertexBufferSize - 1) + 0], vertices[3 * (vertexBufferSize - 1) + 1], vertices[3 * (vertexBufferSize - 1) + 2] };
-                    assert(startVec.x == mostRecentLocation.x &&
-                           startVec.y == mostRecentLocation.y &&
-                           startVec.z == 0.);
-                    location.x = endVec.x;
-                    location.y = endVec.y;
-                    assert(endVec.z == 0.);
-
-                    delete[] vertices;
-                    delete[] indices;
-                }
-                else {
-                    assert(false);
-                }
-            }
+            ___GetEndPoint(
+                    model,
+                    &endPoint,
+#ifdef _DEBUG
+                    &mostRecentLocation,
+#endif // _DEBUG
+                    mostRecentCurveSegmentInstance,
+                    ifcCompositeCurveInstance
+                );
 
             int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
 
@@ -1242,7 +1181,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
             char    transitionCode[14] = "DISCONTINUOUS";
             sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
 
-            sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &endPoint, &refDirection));
 
             if (mostRecentRadius) {
                 //
