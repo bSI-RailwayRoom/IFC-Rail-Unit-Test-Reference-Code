@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>".\IFC-OriginalFiles\HorizontalAlignment\Line_100.0_-300_-1000_1_Meter.ifc" ".\IFC-WithGeneratedGeometry\GENERATED__HorizontalAlignment_Line_100.0_-300_-1000_1_Meter.ifc" ".\ToolboxProcessed\HorizontalAlignment\Line\Line_100.0_-300_-1000_1_Meter.txt" 100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"01.ifc"   "01-1.ifc"   "01-C.txt"   100 "2CV"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\IFCRAIL\EnrichIFC4x3\x64\Debug</LocalDebuggerWorkingDirectory>
   </PropertyGroup>

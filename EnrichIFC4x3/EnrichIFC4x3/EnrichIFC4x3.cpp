@@ -339,9 +339,17 @@ void    CheckResults(char * fileName)
                 int_t   ifcSegmentInstance = 0;
                 engiGetAggrElement(ifcSegmentInstances, j, sdaiINSTANCE, &ifcSegmentInstance);
 
+               
+#ifdef _DEBUG
+                int_t   myExpressID1 = internalGetP21Line(ifcSegmentInstance);
+                int_t   myExpressID2 = internalGetP21Line(ifcGradientCurveInstance);
+#endif // _DEBUG
+
                 int64_t owlInstance = 0;
 //                owlBuildInstance(ifcModel, ifcSegmentInstance, &owlInstance);
                 owlBuildInstanceInContext(ifcSegmentInstance, ifcGradientCurveInstance, &owlInstance);
+
+
 
                 int64_t vertexBufferSize = 0, indexBufferSize = 0;
                 CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
@@ -563,6 +571,9 @@ void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFile
         fopen_s(&fp, pointListFileName, "w");
 
         if (fp) {
+            fprintf(fp, "Horizontal Alignment Curve (each curve divided in %i parts)\n", (int)segmentationParts);
+            fprintf(fp, "[Curve Length]  [Y-Coordinate]  [X-Coordinate]\n");
+
             setSegmentation(ifcModel, segmentationParts, 0.);
 
             int64_t owlModel = 0;
@@ -656,6 +667,7 @@ void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFile
                                         fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, vec.x, vec.y, vec.z);
                                     }
                                     else {
+
                                         fprintf(fp, "%.9f\t%.16f\t%.16f\n", std::fabs(curveLength) * (double) (k + m) / (double) conceptualFaceCnt, vec.x, vec.y);
                                     }
                                     cnt++;
@@ -687,6 +699,9 @@ void    GeneratePointList__INDIRECT(char * generatedFileName, char * pointListFi
         fopen_s(&fp, pointListFileName, "w");
 
         if (fp) {
+            fprintf(fp, "Alignment Curve UV, i.e. Vertical or Cant (each curve divided in %i parts)\n", (int) segmentationParts);
+            fprintf(fp, "[U-Coordinate]  [V-Coordinate]\n");
+
             setSegmentation(ifcModel, segmentationParts, 0.);
 
             int64_t owlModel = 0;
@@ -752,6 +767,7 @@ void    GeneratePointList__INDIRECT(char * generatedFileName, char * pointListFi
                                     hasNonZeroZCoordinate = true;
                                 }
                             }
+
                             for (int_t m = 0; m < noIndicesLines; m++) {
                                 ___VECTOR3  vec = {
                                                     vertices[3 * indices[startIndicesLines + m] + 0],
@@ -814,40 +830,52 @@ int     main(int argc, char *argv[], char *envp[])
             if (argc >= 6) {
                 if ((argv[5])[0] == 'h' || (argv[5])[0] == 'H') {
                     GeneratePointList__DIRECT(
-                            argv[2],
-                            argv[3],
-                            (argc >= 5) ? atoi(argv[4]) : 36,
-                            (char*) "IFCCOMPOSITECURVE"
-                        );
+                        argv[2],
+                        argv[3],
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        (char*)"IFCCOMPOSITECURVE"
+                    );
                 }
                 else if ((argv[5])[0] == 'v' || (argv[5])[0] == 'V') {
                     GeneratePointList__DIRECT(
-                            argv[2],
-                            argv[3],
-                            (argc >= 5) ? atoi(argv[4]) : 36,
-                            (char*) "IFCGRADIENTCURVE"
-                        );
+                        argv[2],
+                        argv[3],
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        (char*)"IFCGRADIENTCURVE"
+                    );
                 }
                 else {
                     GeneratePointList__INDIRECT(
-                            argv[2],
-                            argv[3],
-                            (argc >= 5) ? atoi(argv[4]) : 36,
-                            (char*) "IFCSEGMENTEDREFERENCECURVE",
-                            2.
-                        );
+                        argv[2],
+                        argv[3],
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        (char*)"IFCSEGMENTEDREFERENCECURVE",
+                        2.
+                    );
                 }
             }
             else {
                 GeneratePointList__DIRECT(
-                        argv[2],
-                        argv[3],
-                        (argc >= 5) ? atoi(argv[4]) : 36,
-                        (char*) "IFCCOMPOSITECURVE"
-                    );
+                    argv[2],
+                    argv[3],
+                    (argc >= 5) ? atoi(argv[4]) : 36,
+                    (char*)"IFCCOMPOSITECURVE"
+                );
             }
         }
-    }
 
-    std::cout << "Ready!\n";
+        std::cout << "Ready!\n";
+    }
+    else {
+        std::cout << "Enrich - commandline IFC4.3 Alignment Business Logic Enrich Application [version 1.0." << GetRevision(nullptr) << "]\n\n";
+        std::cout << "Usage\n";
+        std::cout << "    Enrich [input ifc file] [output ifc file]\n";
+        std::cout << "    Enrich [input ifc file] [output ifc file] [point list of curve] [count of parts for each transition curve]\n";
+        std::cout << "    Enrich [input ifc file] [output ifc file] [point list of curve] [count of parts for each transition curve] [curve type, H, V or 2CS]\n";
+        std::cout << "Examples\n";
+        std::cout << "    Enrich input.ifc output.ifc\n";
+        std::cout << "    Enrich input.ifc output.ifc pointlist.txt 100\n";
+        std::cout << "    Enrich input.ifc output.ifc pointlist.txt 100 V\n";
+        std::cout << "More information and source code can be found on https:\/\/github.com\/IFCRail\/IFC-Rail-Unit-Test-Reference-Code\/tree\/master\/EnrichIFC4x3\n";
+    }
 }
