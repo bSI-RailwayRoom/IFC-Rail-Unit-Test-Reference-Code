@@ -472,10 +472,25 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         }
                     }
 
+                    ___MATRIX   myMatrix;
+                    ___MatrixIdentity(&myMatrix);
+                    myMatrix._11 = refDirection.y * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._12 = -refDirection.x * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._21 = -myMatrix._12;
+                    myMatrix._22 = myMatrix._11;
+
+                    ___VECTOR3  myOffset = { - std::fabs(radiusOfCurvature), 0., 0. };
+                    ___Vec3Transform(&myOffset, &myOffset, &myMatrix);
+
+                    myMatrix._41 = myOffset.x;
+                    myMatrix._42 = myOffset.y;
+                    assert(myOffset.z == 0.);
+
                     int_t   ifcCircularArcParentCurve =
                                 ___CreateCircleInstance(
                                         model,
-                                        radiusOfCurvature
+                                        radiusOfCurvature,
+                                        &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
 #ifdef _DEBUG
@@ -534,9 +549,10 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         0.
                                     };
 
+                    double  angleDir = atan2(refDirection.y, refDirection.x);
                     double  angle = ___AngleClothoidByConstant(linearTernm, offset);
-                    myMatrix._11 = cos(-angle);
-                    myMatrix._12 = sin(-angle);
+                    myMatrix._11 = cos(-(angle - angleDir));
+                    myMatrix._12 = sin(-(angle - angleDir));
                     myMatrix._21 = -myMatrix._12;
                     myMatrix._22 =  myMatrix._11;
 
