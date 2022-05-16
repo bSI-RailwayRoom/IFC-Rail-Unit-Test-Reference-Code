@@ -1,2 +1,4 @@
+Alignment Curve UV, i.e. Vertical or Cant (each curve divided in 100 parts)
+[U-Coordinate]  [V-Coordinate]
 0.0000000000	0.1600000000
-0.0000000000	0.0000000000
+100.0000000000	0.0000000000
