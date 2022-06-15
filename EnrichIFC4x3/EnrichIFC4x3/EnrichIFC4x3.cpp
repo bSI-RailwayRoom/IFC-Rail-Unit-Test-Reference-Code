@@ -876,6 +876,6 @@ int     main(int argc, char *argv[], char *envp[])
         std::cout << "    Enrich input.ifc output.ifc\n";
         std::cout << "    Enrich input.ifc output.ifc pointlist.txt 100\n";
         std::cout << "    Enrich input.ifc output.ifc pointlist.txt 100 V\n";
-        std::cout << "More information and source code can be found on https:\/\/github.com\/IFCRail\/IFC-Rail-Unit-Test-Reference-Code\/tree\/master\/EnrichIFC4x3\n";
+        std::cout << "More information and source code can be found on https://github.com/IFCRail/IFC-Rail-Unit-Test-Reference-Code/tree/master/EnrichIFC4x3\n";
     }
 }

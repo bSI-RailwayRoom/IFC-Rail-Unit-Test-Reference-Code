@@ -603,28 +603,39 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         endGradient__ = pStartGradient[i + 1];
                     }
 
-                    double  startAngle = std::atan(startGradient__),
-                            endAngle = std::atan(endGradient__);
+//                    double  startAngle = std::atan(startGradient__),
+//                            endAngle = std::atan(endGradient__);
 
                     //
-                    //  y = a * x^2
+                    //  y = a * x^2 + b * x^1 + c * x^0
+                    //    = a * x^2 + b * x   + c
                     //
                     //  direction
-                    //      startAngle = 2 * a * x1
-                    //      endAngle = 2 * a * x2
+                    //      startAngle = 2 * a * x1 + b
+                    //      endAngle = 2 * a * x2 + b
                     //      x2 - x1 = horizontalLength
                     //
                     //      horizontalLength = (endAngle - startAngle) / (2 * a)
                     //      a = (endAngle - startAngle) / (2 * horizontalLength)
                     // 
-                    //      x1 = startAngle / (2 * a);
+                    //      y' = 2ax + b
+                    // 
+                    //  start point (x1, y1) where x1 = 0
+                    //      startAngle = 2 * a * x1 + b => b = startAngle
+                    // 
+                    //  (x, y) in x1 => (0, startHeight)
+                    //       y = a * x^2 + b * x + c
+                    //      startHeight = a * 0.^2 + b * 0. + c => c = startHeight
                     //
 
-                    double  a = (endAngle - startAngle) / (2. * horizontalLength),
-                            offset = startAngle / (2 * a);
+//                    double  a = (endAngle - startAngle) / (2. * horizontalLength),
+                    double  a = (endGradient__ - startGradient__) / (2. * horizontalLength),
+//                            b = startAngle,
+                            b = startGradient__,
+                            c = startHeight;
 
                     double  pCoefficientsX[] = { 0., 1. },
-                            pCoefficientsY[] = { 0., 0., a };
+                            pCoefficientsY[] = { c, b, a };
                     int_t   ifcParabolicArcParentCurve =
                                 ___CreatePolynomialCurveInstance(
                                         model,
@@ -637,7 +648,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     //
                     //  SegmentStart
                     //
-                    void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+                    double  offset = 0.;
+                    void    * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
                     sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
@@ -661,14 +673,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         location.y = startHeight;
                         refDirection.x = 1.;
                         refDirection.y = startGradient__;
-                        sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*)___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+                        sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
                     }
                     else {
                         location.x = startDistAlong - startDistAlongHorizontalAlignment + horizontalLength;
                         location.y = startHeight + heightDeviation;
                         refDirection.x = 1.;
                         refDirection.y = endGradient__;
-                        sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*)___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+                        sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
                     }
                 }
                 else {
