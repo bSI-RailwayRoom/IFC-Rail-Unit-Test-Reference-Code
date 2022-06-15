@@ -366,6 +366,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthAsParameter);
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+
+                    double  radiusOfCurvature__ = 0.;
+                    sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature__);
+
+                    if (radiusOfCurvature__ == 0. && radius) {
+                        double  radiusOfCurvature = radius;
+                        sdaiPutAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature);
+                    }
                 }
                 else if (___equals(predefinedType, (char*) "CLOTHOID")) {
                     double  startAngle = std::atan(startGradient__),
@@ -662,6 +670,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+
+                    double  radiusOfCurvature__ = 0.;
+                    sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature__);
+
+                    if (radiusOfCurvature__ == 0. && a) {
+                        double  radiusOfCurvature = 1. / (2. * a);
+                        sdaiPutAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature);
+                    }
                 }
 
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
