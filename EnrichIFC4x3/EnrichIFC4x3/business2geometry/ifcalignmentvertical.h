@@ -383,9 +383,9 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         //
                         //  new definition where the context defines the radius
                         //
-                        double  startRadiusOfCurvature = pRadiusOfCurvature[i - 1];
+                        double  startRadiusOfCurvature = i ? pRadiusOfCurvature[i - 1] : pRadiusOfCurvature[i];
 #ifdef _DEBUG
-                        double  endRadiusOfCurvature = pRadiusOfCurvature[i + 1];
+                        double  endRadiusOfCurvature = (i + 1 < noSegmentInstances) ? pRadiusOfCurvature[i + 1] : pRadiusOfCurvature[i];;
 #endif // _DEBUG
 
                         //
