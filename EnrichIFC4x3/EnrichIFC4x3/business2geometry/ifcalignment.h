@@ -12,7 +12,7 @@
 extern  int_t   reusedIfcGeometricRepresentationContextInstance;
 
 
-static  inline  void    AlignmentGenerateGeometry(
+static  inline  int_t    AlignmentGenerateGeometry(
                                 int_t   model,
                                 int_t   ifcAlignmentInstance
                             )
@@ -203,16 +203,18 @@ static  inline  void    AlignmentGenerateGeometry(
                             model
                         )
         );
-    sdaiPutAttrBN(
-            ifcAlignmentInstance,
-            "Representation",
-            sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShapeInstance(
-                            model,
-                            ifcRepresentationItem,
-                            true
-                        )
-        );
+    if (ifcRepresentationItem) {
+        sdaiPutAttrBN(
+                ifcAlignmentInstance,
+                "Representation",
+                sdaiINSTANCE,
+                (void*) ___CreateProductDefinitionShapeInstance(
+                                model,
+                                ifcRepresentationItem,
+                                true
+                            )
+            );
+    }
 
     //
     //  Add geometry for IfcHorizontalAlignment
@@ -245,6 +247,8 @@ static  inline  void    AlignmentGenerateGeometry(
                                 false
                             )
             );
+
+    return  ifcRepresentationItem_compositeCurveInstance;
 }
 
 static  inline  int_t    AlignmentGenerateSweep(
@@ -283,6 +287,8 @@ static  inline  int_t    AlignmentGenerateSweep(
                             model
                         )
         );
+		
+    assert(ifcFixedReferenceSweptAreaSolidInstance);
     sdaiPutAttrBN(
             ifcProductInstance,
             "Representation",

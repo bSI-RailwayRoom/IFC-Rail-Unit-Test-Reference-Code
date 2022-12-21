@@ -94,12 +94,6 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
         railHeadDistance = 1.;
     }
 
-    int_t	ifcSegmentedReferenceCurveInstance = sdaiCreateInstanceBN(model, "IFCSEGMENTEDREFERENCECURVE"),
-            * aggrCurveSegment = sdaiCreateAggrBN(ifcSegmentedReferenceCurveInstance, "Segments");
-
-    char    selfIntersect[2] = "F";
-    sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
-
     int_t   noSegmentInstances =
                 ___GetAlignmentSegments(
                         model,
@@ -108,6 +102,12 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     );
 
     if (noSegmentInstances) {
+	    int_t	ifcSegmentedReferenceCurveInstance = sdaiCreateInstanceBN(model, "IFCSEGMENTEDREFERENCECURVE"),
+	            * aggrCurveSegment = sdaiCreateAggrBN(ifcSegmentedReferenceCurveInstance, "Segments");
+
+	    char    selfIntersect[2] = "F";
+	    sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
+
         int_t   * segmentInstances = new int_t[noSegmentInstances];
 
         ___GetAlignmentSegments(
@@ -143,6 +143,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                         model
                                     )
                     );
+					
+                assert(ifcCurveSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -664,6 +666,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                                 model
                                             )
                             );
+							
+                        assert(ifcCurveSegmentInstance);
                         sdaiPutAttrBN(
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
@@ -765,9 +769,11 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
             sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
         }
+
+        return  ifcSegmentedReferenceCurveInstance;
     }
 
-    return  ifcSegmentedReferenceCurveInstance;
+    return  0;
 }
 
 inline  static  int_t   ___GetAlignmentCant(

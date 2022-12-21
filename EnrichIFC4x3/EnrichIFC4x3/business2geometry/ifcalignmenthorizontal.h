@@ -399,6 +399,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         model
                                     )
                     );
+					
+                assert(ifcCurveSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -416,7 +418,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 //
                 double  segmentLength = 0.;
                 sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "SegmentLength", sdaiREAL, &segmentLength);
-                assert(segmentLength >= 0.);
+ ////////               assert(segmentLength >= 0.);
+segmentLength = std::fabs(segmentLength);
 
                 mostRecentLength = segmentLength;
 
@@ -797,6 +800,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
+                        assert(ifcCurveSegmentInstance);
                         sdaiPutAttrBN(
                                 ifcAlignmentSegmentInstance,
                                 "Representation",

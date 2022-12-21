@@ -36,11 +36,6 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
     double  epsilon = 0.0000001;
 #endif // _DEBUG
 
-	int_t	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE"),
-            * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
-    char    selfIntersect[2] = "F";
-    sdaiPutAttrBN(ifcGradientCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
-
     int_t   noSegmentInstances =
                 ___GetAlignmentSegments(
                         model,
@@ -49,6 +44,11 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     );
 
     if (noSegmentInstances) {
+		int_t	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE"),
+	            * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
+	    char    selfIntersect[2] = "F";
+	    sdaiPutAttrBN(ifcGradientCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
+
         int_t   * segmentInstances = new int_t[noSegmentInstances];
 
         ___GetAlignmentSegments(
@@ -160,6 +160,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                         model
                                     )
                     );
+					
+                assert(ifcCurveSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -741,9 +743,11 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
             ___Vec2Normalize(&refDirection);
             sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
         }
-    }
 
-    return  ifcGradientCurveInstance;
+        return  ifcGradientCurveInstance;
+    }
+ 
+    return  0;
 }
 
 static  inline  int_t   ___GetAlignmentVertical(
