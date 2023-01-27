@@ -4942,7 +4942,7 @@ static	inline	void	SetColor(
 				owlInstanceColor,
 				GetPropertyByName(
 						GetModel(owlInstanceColor),
-						(char*) "emissive"
+						"emissive"
 					),
 				&values,
 				&card
@@ -4967,7 +4967,7 @@ static	inline	void	SetColor(
 				owlInstanceColor,
 				GetPropertyByName(
 						GetModel(owlInstanceColor),
-						(char*) "specular"
+						"specular"
 					),
 				&values,
 				&card
@@ -5004,7 +5004,7 @@ static	inline	void	GetMaterialColor(
 			owlInstanceMaterial,
 			GetPropertyByName(
 					GetModel(owlInstanceMaterial),
-					(char*) "color"
+					"color"
 				),
 			&values,
 			&card
@@ -5049,7 +5049,7 @@ static	inline	void	SetMaterialColor(
 			owlInstanceMaterial,
 			GetPropertyByName(
 					GetModel(owlInstanceMaterial),
-					(char*) "color"
+					"color"
 				),
 			&values,
 			&card

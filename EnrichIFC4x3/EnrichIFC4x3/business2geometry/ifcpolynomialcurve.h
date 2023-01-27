@@ -14,12 +14,12 @@ static	inline	int_t   ___CreatePolynomialCurveInstance(
                                 int_t   coefficientsZCard
                             )
 {
-    int_t	ifcPolynomialCurveInstance = sdaiCreateInstanceBN(model, (char*) "IFCPOLYNOMIALCURVE");
+    int_t	ifcPolynomialCurveInstance = sdaiCreateInstanceBN(model, "IFCPOLYNOMIALCURVE");
 
     sdaiPutAttrBN(ifcPolynomialCurveInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model));
 
     if (coefficientsXCard) {
-	    int_t   * aggrCoefficientsX = sdaiCreateAggrBN(ifcPolynomialCurveInstance, (char*) "CoefficientsX");
+	    int_t   * aggrCoefficientsX = sdaiCreateAggrBN(ifcPolynomialCurveInstance, "CoefficientsX");
         
         for (int_t i = 0; i < coefficientsXCard; i++) {
             sdaiAppend((int_t) aggrCoefficientsX, sdaiREAL, &pCoefficientsX[i]);
@@ -27,7 +27,7 @@ static	inline	int_t   ___CreatePolynomialCurveInstance(
     }
 
     if (coefficientsYCard) {
-	    int_t   * aggrCoefficientsY = sdaiCreateAggrBN(ifcPolynomialCurveInstance, (char*) "CoefficientsY");
+	    int_t   * aggrCoefficientsY = sdaiCreateAggrBN(ifcPolynomialCurveInstance, "CoefficientsY");
         
         for (int_t i = 0; i < coefficientsYCard; i++) {
             sdaiAppend((int_t) aggrCoefficientsY, sdaiREAL, &pCoefficientsY[i]);
@@ -35,7 +35,7 @@ static	inline	int_t   ___CreatePolynomialCurveInstance(
     }
 
     if (coefficientsZCard) {
-	    int_t   * aggrCoefficientsZ = sdaiCreateAggrBN(ifcPolynomialCurveInstance, (char*) "CoefficientsZ");
+	    int_t   * aggrCoefficientsZ = sdaiCreateAggrBN(ifcPolynomialCurveInstance, "CoefficientsZ");
         
         for (int_t i = 0; i < coefficientsZCard; i++) {
             sdaiAppend((int_t) aggrCoefficientsZ, sdaiREAL, &pCoefficientsZ[i]);

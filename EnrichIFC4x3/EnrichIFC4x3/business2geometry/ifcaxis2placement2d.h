@@ -11,7 +11,7 @@ static	inline	int_t	___CreateAxis2Placement2DInstance(
 {
 	int_t	ifcAxis2Placement2DInstance;
 
-    ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT2D");
+    ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model, "IFCAXIS2PLACEMENT2D");
 
 	___VECTOR2	vecLocation = { 0., 0. };
 	sdaiPutAttrBN(ifcAxis2Placement2DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, (___VECTOR2*) &vecLocation));

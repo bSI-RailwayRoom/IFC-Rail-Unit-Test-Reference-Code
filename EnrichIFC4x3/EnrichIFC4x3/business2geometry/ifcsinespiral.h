@@ -14,7 +14,7 @@ static	inline	int_t   ___CreateSineSpiralInstance(
                                 ___MATRIX   * matrix
                             )
 {
-    int_t	ifcSineSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSINESPIRAL");
+    int_t	ifcSineSpiralInstance = sdaiCreateInstanceBN(model, "IFCSINESPIRAL");
 
     if (matrix) {
         sdaiPutAttrBN(ifcSineSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));

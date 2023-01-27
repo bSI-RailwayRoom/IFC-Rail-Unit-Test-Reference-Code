@@ -18,6 +18,8 @@ static	inline	int_t   ___CreateProductDefinitionShapeInstance(
 
 	sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) ___CreateShapeRepresentationInstance(model, ifcRepresentationItemInstance, is3DCurve));
 
+	assert(ifcRepresentationItemInstance);
+
 	assert(ifcProductDefinitionShapeInstance);
 	return	ifcProductDefinitionShapeInstance;
 }

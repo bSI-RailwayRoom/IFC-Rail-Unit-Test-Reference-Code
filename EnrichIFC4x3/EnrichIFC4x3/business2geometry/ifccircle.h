@@ -10,7 +10,7 @@ static	inline	int_t   ___CreateCircleInstance(
                                 ___MATRIX   * matrix
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 
@@ -26,7 +26,7 @@ static	inline	int_t   ___CreateCircleInstance(
                                 double      radiusOfCurvature
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);
@@ -58,7 +58,7 @@ static	inline	int_t   ___CreateCircleInstance(
                                 double      radius
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);

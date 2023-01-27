@@ -79,7 +79,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
             char    * predefinedType = nullptr;
             sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
-            if (___equals(predefinedType, (char*) "CIRCULARARC")) {
+            if (___equals(predefinedType, "CIRCULARARC")) {
                 //
                 //  StartGradient
                 //
@@ -102,14 +102,14 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 pRadiusOfCurvature[i] = horizontalLength / (sin(endAngle) - sin(startAngle));
                 pSegmentType[i] = enum_segment_type::CIRCULARARC;
             }
-            else if (___equals(predefinedType, (char*) "CLOTHOID")) {
+            else if (___equals(predefinedType, "CLOTHOID")) {
                 pStartGradient[i] = 0.;
                 pEndGradient[i] = 0.;
 
                 pRadiusOfCurvature[i] = 0.;
                 pSegmentType[i] = enum_segment_type::CLOTHOID;
             }
-            else if (___equals(predefinedType, (char*) "CONSTANTGRADIENT")) {
+            else if (___equals(predefinedType, "CONSTANTGRADIENT")) {
                 double  startGradient__ = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartGradient", sdaiREAL, &startGradient__);
 //                double  angle = std::atan(startGradient__);
@@ -120,7 +120,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 pSegmentType[i] = enum_segment_type::CONSTANTGRADIENT;
             }
             else {
-                assert(___equals(predefinedType, (char*) "PARABOLICARC"));
+                assert(___equals(predefinedType, "PARABOLICARC"));
 
                 pStartGradient[i] = 0.;
                 pEndGradient[i] = 0.;
@@ -161,7 +161,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                     )
                     );
 					
-                assert(ifcCurveSegmentInstance);
+                assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -218,7 +218,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
 
-                if (___equals(predefinedType, (char*) "PARABOLICARC")) {
+                if (___equals(predefinedType, "PARABOLICARC")) {
                     if (startGradient__ == 0. && i) {
                         startGradient__ = pEndGradient[i - 1];
                     }
@@ -273,7 +273,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                 //      PARABOLICARC
                 //      CLOTHOID
                 //
-                if (___equals(predefinedType, (char*) "CIRCULARARC")) {
+                if (___equals(predefinedType, "CIRCULARARC")) {
                     double  startAngle = std::atan(startGradient__),
                             endAngle = std::atan(endGradient__);
                     assert(startAngle > -___Pi && startAngle < ___Pi && endAngle > -___Pi && endAngle < ___Pi);
@@ -361,7 +361,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                     double  segmentLengthAsParameter = endAngle - startAngle;
-                    assert(std::fabs(segmentLengthAsParameter * radius) > horizontalLength);
+                    assert(std::fabs(segmentLengthAsParameter * radius) > horizontalLength * 0.9999999);
                     //
                     //  SegmentLength
                     //
@@ -377,7 +377,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         sdaiPutAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature);
                     }
                 }
-                else if (___equals(predefinedType, (char*) "CLOTHOID")) {
+                else if (___equals(predefinedType, "CLOTHOID")) {
                     double  startAngle = std::atan(startGradient__),
                             endAngle = std::atan(endGradient__);
 
@@ -570,7 +570,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         }
                     }
                 }
-                else if (___equals(predefinedType, (char*) "CONSTANTGRADIENT")) {
+                else if (___equals(predefinedType, "CONSTANTGRADIENT")) {
                     ___VECTOR2  dir = {
                                         refDirection.x,
                                         refDirection.y
@@ -603,7 +603,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
                 else {
-                    assert(___equals(predefinedType, (char*) "PARABOLICARC"));
+                    assert(___equals(predefinedType, "PARABOLICARC"));
 
                     if (startGradient__ == 0. && i) {
                         startGradient__ = pEndGradient[i - 1];

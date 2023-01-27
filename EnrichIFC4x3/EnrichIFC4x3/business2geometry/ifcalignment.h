@@ -59,6 +59,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
                     ),
             ifcRepresentationItem;
 
+    int_t   ifcRepresentationItem_gradientCurveInstance = 0;
     if (hasAlignmentVertical || hasAlignmentCant) {
         double  startDistAlongHorizontalAlignment = 0.;
         
@@ -73,7 +74,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
                 &startDistAlongHorizontalAlignment
             );
 
-        int_t   ifcRepresentationItem_gradientCurveInstance =
+        ifcRepresentationItem_gradientCurveInstance =
                     ___CreateGradientCurve__alignmentVertical(
                             model,
                             ___GetAlignmentVertical(
@@ -138,6 +139,8 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                 startDistAlongHorizontalAlignment
                             );
 
+            assert(ifcRepresentationItem_segmentedReferenceCurveInstance);
+
             sdaiPutAttrBN(
                     ifcRepresentationItem_segmentedReferenceCurveInstance,
                     "BaseCurve",
@@ -161,20 +164,27 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                     model
                                 )
                 );
-            sdaiPutAttrBN(
-                    ___GetAlignmentCant(
-                            model,
-                            ifcAlignmentInstance,
-                            nullptr
-                        ),
-                    "Representation",
-                    sdaiINSTANCE,
-                    (void*) ___CreateProductDefinitionShapeInstance(
-                                    model,
-                                    ifcRepresentationItem_segmentedReferenceCurveInstance,
-                                    true
-                                )
-                );
+
+            if (ifcRepresentationItem_segmentedReferenceCurveInstance) {
+                assert(___GetAlignmentCant(model, ifcAlignmentInstance, nullptr));
+                sdaiPutAttrBN(
+                        ___GetAlignmentCant(
+                                model,
+                                ifcAlignmentInstance,
+                                nullptr
+                            ),
+                        "Representation",
+                        sdaiINSTANCE,
+                        (void*) ___CreateProductDefinitionShapeInstance(
+                                        model,
+                                        ifcRepresentationItem_segmentedReferenceCurveInstance,
+                                        true
+                                    )
+                    );
+            }
+            else {
+                assert(false);
+            }
 
             if (ifcRepresentationItem_gradientCurveInstance) {
                 ifcRepresentationItem = ifcRepresentationItem_gradientCurveInstance;
@@ -204,6 +214,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
                         )
         );
     if (ifcRepresentationItem) {
+        assert(ifcAlignmentInstance);
         sdaiPutAttrBN(
                 ifcAlignmentInstance,
                 "Representation",
@@ -232,7 +243,8 @@ static  inline  int_t    AlignmentGenerateGeometry(
                         )
         );
 
-    if (ifcRepresentationItem != ifcRepresentationItem_compositeCurveInstance)
+    if (ifcRepresentationItem != ifcRepresentationItem_compositeCurveInstance) {
+        assert(___GetAlignmentHorizontal(model, ifcAlignmentInstance, nullptr));
         sdaiPutAttrBN(
                 ___GetAlignmentHorizontal(
                         model,
@@ -247,8 +259,9 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                 false
                             )
             );
+    }
 
-    return  ifcRepresentationItem_compositeCurveInstance;
+    return  ifcRepresentationItem_gradientCurveInstance ? ifcRepresentationItem_gradientCurveInstance : ifcRepresentationItem_compositeCurveInstance;
 }
 
 static  inline  int_t    AlignmentGenerateSweep(
@@ -288,7 +301,7 @@ static  inline  int_t    AlignmentGenerateSweep(
                         )
         );
 		
-    assert(ifcFixedReferenceSweptAreaSolidInstance);
+    assert(ifcFixedReferenceSweptAreaSolidInstance && ifcProductInstance);
     sdaiPutAttrBN(
             ifcProductInstance,
             "Representation",

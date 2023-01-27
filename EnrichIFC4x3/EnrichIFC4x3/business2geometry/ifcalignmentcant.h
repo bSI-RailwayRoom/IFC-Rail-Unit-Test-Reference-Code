@@ -144,7 +144,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                     )
                     );
 					
-                assert(ifcCurveSegmentInstance);
+                assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -279,7 +279,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
-                if (___equals(predefinedType, (char*) "CONSTANTCANT")) {
+                if (___equals(predefinedType, "CONSTANTCANT")) {
                     ___VECTOR2  pnt = { 0., (startCantLeft + startCantRight) / 2. },
 								dir = { 1., 0. };
                     int_t   ifcConstantCantParentCurve =
@@ -307,7 +307,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*)segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "LINEARTRANSITION")) {
+                else if (___equals(predefinedType, "LINEARTRANSITION")) {
                     double  factor =
                                 ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) ?
                                     ((endCantLeft + endCantRight) - (startCantLeft + startCantRight)) / 2. :
@@ -344,7 +344,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "BLOSSCURVE")) {
+                else if (___equals(predefinedType, "BLOSSCURVE")) {
                     matrix._11 = 1.;
                     matrix._12 = 0.;
                     matrix._13 = 0.;
@@ -394,7 +394,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "COSINECURVE")) {
+                else if (___equals(predefinedType, "COSINECURVE")) {
                     matrix._11 = 1.;
                     matrix._12 = 0.;
                     matrix._13 = 0.;
@@ -440,7 +440,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "SINECURVE")) {
+                else if (___equals(predefinedType, "SINECURVE")) {
                     matrix._11 = 1.;
                     matrix._12 = 0.;
                     matrix._13 = 0.;
@@ -488,7 +488,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "VIENNESEBEND")) {
+                else if (___equals(predefinedType, "VIENNESEBEND")) {
                     matrix._11 = 1.;
                     matrix._12 = 0.;
                     matrix._13 = 0.;
@@ -547,7 +547,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
+                else if (___equals(predefinedType, "HELMERTCURVE")) {
                     double  factor =
                                 ((endCantRight + endCantLeft) - (startCantRight + startCantLeft)) ?
                                     ((endCantRight + endCantLeft) - (startCantRight + startCantLeft)) / 1. :
@@ -667,7 +667,7 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                                             )
                             );
 							
-                        assert(ifcCurveSegmentInstance);
+                        assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                         sdaiPutAttrBN(
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
