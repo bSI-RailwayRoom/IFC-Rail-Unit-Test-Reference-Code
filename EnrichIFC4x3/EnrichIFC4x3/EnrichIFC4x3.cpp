@@ -243,12 +243,10 @@ void    CheckResults(char * fileName)
                     int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                     for (int_t k = 0; k < conceptualFaceCnt; k++) {
                         int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                        GetConceptualFaceEx(
+                        GetConceptualFace(
                                 owlInstance, k,
                                 nullptr, nullptr,
                                 &startIndicesLines, &noIndicesLines,
-                                nullptr, nullptr,
-                                nullptr, nullptr,
                                 nullptr, nullptr
                             );
                         assert(noIndicesLines);
@@ -366,12 +364,10 @@ void    CheckResults(char * fileName)
                     int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                     for (int_t k = 0; k < conceptualFaceCnt; k++) {
                         int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                        GetConceptualFaceEx(
+                        GetConceptualFace(
                                 owlInstance, k,
                                 nullptr, nullptr,
                                 &startIndicesLines, &noIndicesLines,
-                                nullptr, nullptr,
-                                nullptr, nullptr,
                                 nullptr, nullptr
                             );
                         assert(noIndicesLines);
@@ -483,12 +479,10 @@ void    CheckResults(char * fileName)
                     int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                     for (int_t k = 0; k < conceptualFaceCnt; k++) {
                         int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                        GetConceptualFaceEx(
+                        GetConceptualFace(
                                 owlInstance, k,
                                 nullptr, nullptr,
                                 &startIndicesLines, &noIndicesLines,
-                                nullptr, nullptr,
-                                nullptr, nullptr,
                                 nullptr, nullptr
                             );
                         assert(noIndicesLines);
@@ -629,12 +623,10 @@ void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFile
                         int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                         for (int_t k = 0; k < conceptualFaceCnt; k++) {
                             int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                            GetConceptualFaceEx(
+                            GetConceptualFace(
                                     owlInstance, k,
                                     nullptr, nullptr,
                                     &startIndicesLines, &noIndicesLines,
-                                    nullptr, nullptr,
-                                    nullptr, nullptr,
                                     nullptr, nullptr
                                 );
                             assert(noIndicesLines);
@@ -751,12 +743,10 @@ void    GeneratePointList__INDIRECT(char * generatedFileName, char * pointListFi
                         int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                         for (int_t k = 0; k < conceptualFaceCnt; k++) {
                             int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                            GetConceptualFaceEx(
+                            GetConceptualFace(
                                     owlInstance, k,
                                     nullptr, nullptr,
                                     &startIndicesLines, &noIndicesLines,
-                                    nullptr, nullptr,
-                                    nullptr, nullptr,
                                     nullptr, nullptr
                                 );
                             assert(noIndicesLines);
