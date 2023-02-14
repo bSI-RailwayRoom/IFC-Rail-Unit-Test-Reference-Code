@@ -145,7 +145,7 @@ void	assert__error(
 {
 	switch (myError) {
 		case  enum_error::UNKNOWN_SCHEMA:
-			AddIssue(0, 3, (char*) "Schema expected to be defined as 'IFC4x3_RC4', currently defined as ", argument);
+			AddIssue(0, 3, (char*) "Schema expected to be defined as 'IFC4x3_ADD1', currently defined as ", argument);
 			break;
 		default:
 			assert(false);
@@ -1719,6 +1719,13 @@ void	CompareMirror(
 			mirrorReprV = FindRepresentation(mirrorModel, mirrorIfcVerticalAlignmentInstance),
 			mirrorReprC = FindRepresentation(mirrorModel, mirrorIfcCantAlignmentInstance);
 
+	if (ifcVerticalAlignmentInstance) {
+		if (reprV == 0 && mirrorReprV == 0) {
+			reprV = reprA;
+			mirrorReprV = mirrorReprA;
+		}
+	}
+
 	assert(mirrorReprA && mirrorReprH && (mirrorReprV || ifcVerticalAlignmentInstance == 0));
 
 	if (reprA == 0) {
@@ -2382,8 +2389,8 @@ int_t	CheckConsistencyAlignment__internal(
 
 	char	* schemaName = nullptr;
 	GetSPFFHeaderItem(model, 9, 0, sdaiSTRING, &schemaName);
-	if (!equals(schemaName, (char*) "IFC4X3_RC4") &&
-		!equals(schemaName, (char*) "IFC4x3_RC4")) {
+	if (!equals(schemaName, (char*) "IFC4X3_ADD1") &&
+		!equals(schemaName, (char*) "IFC4x3_ADD1")) {
 		assert__error(enum_error::UNKNOWN_SCHEMA, schemaName);
 	}
 
@@ -2395,7 +2402,7 @@ int_t	CheckConsistencyAlignment__internal(
             int_t   ifcAlignmentInstance = 0;
             engiGetAggrElement(ifcAlignmentInstances, i, sdaiINSTANCE, &ifcAlignmentInstance);
 
-            int_t   myMirrorModel = sdaiCreateModelBN(0, nullptr, (char*) "IFC4x3");
+            int_t   myMirrorModel = sdaiCreateModelBN(0, "IFC4X3");
             setFilter(myMirrorModel, 2, 1 + 2 + 4);
 
             if (myMirrorModel) {

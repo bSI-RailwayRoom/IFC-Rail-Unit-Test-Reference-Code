@@ -1,4 +1,4 @@
-CheckAlignmentCMD.exe "c:\IFCRAIL\acca2.ifc" "test.html" 0.0001 0.0001
+CheckAlignmentCMD.exe "D:\DIANA\TESTSWE_UT_LP_4.ifc" "test.html" 0.0001 0.0001
 
 
 
