@@ -399,6 +399,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                                         model
                                     )
                     );
+					
+                assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
@@ -416,7 +418,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 //
                 double  segmentLength = 0.;
                 sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "SegmentLength", sdaiREAL, &segmentLength);
-                assert(segmentLength >= 0.);
+ ////////               assert(segmentLength >= 0.);
+segmentLength = std::fabs(segmentLength);
 
                 mostRecentLength = segmentLength;
 
@@ -456,7 +459,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                 //
                 char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
-                if (___equals(predefinedType, (char*) "CIRCULARARC")) {
+                if (___equals(predefinedType, "CIRCULARARC")) {
                     double  radiusOfCurvature;
 
                     {
@@ -472,10 +475,25 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         }
                     }
 
+                    ___MATRIX   myMatrix;
+                    ___MatrixIdentity(&myMatrix);
+                    myMatrix._11 = refDirection.y * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._12 = -refDirection.x * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._21 = -myMatrix._12;
+                    myMatrix._22 = myMatrix._11;
+
+                    ___VECTOR3  myOffset = { - std::fabs(radiusOfCurvature), 0., 0. };
+                    ___Vec3Transform(&myOffset, &myOffset, &myMatrix);
+
+                    myMatrix._41 = myOffset.x;
+                    myMatrix._42 = myOffset.y;
+                    assert(myOffset.z == 0.);
+
                     int_t   ifcCircularArcParentCurve =
                                 ___CreateCircleInstance(
                                         model,
-                                        radiusOfCurvature
+                                        radiusOfCurvature,
+                                        &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
 #ifdef _DEBUG
@@ -505,50 +523,71 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "CLOTHOID")) {
+                else if (___equals(predefinedType, "CLOTHOID")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
 
-                    double  offset, linearTernm;
+                    double  factor = 
+                                  (endRadiusOfCurvature ? segmentLength / endRadiusOfCurvature : 0.)
+                                - (startRadiusOfCurvature ? segmentLength / startRadiusOfCurvature : 0.),
+                            constantTerm  =   0. * factor + (startRadiusOfCurvature ? segmentLength / startRadiusOfCurvature : 0.),
+                            linearTerm    =   1. * factor;
+
+
+double __offset = constantTerm ? segmentLength * pow(std::fabs(constantTerm),    -1. / 1.) * constantTerm / std::fabs(constantTerm)    : 0.;
+
+double   LT = segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm);
+
+                    double sign = (startRadiusOfCurvature + endRadiusOfCurvature) / std::fabs(startRadiusOfCurvature + endRadiusOfCurvature);
+                    double  offset, __linearTernm;
                     if ((std::fabs(startRadiusOfCurvature) < std::fabs(endRadiusOfCurvature) && startRadiusOfCurvature) || endRadiusOfCurvature == 0.) {
-                        double  factor = segmentLength / startRadiusOfCurvature + (endRadiusOfCurvature ? segmentLength / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
-                        linearTernm = -startRadiusOfCurvature * std::sqrt(std::fabs(factor));
-                        offset = -segmentLength - (endRadiusOfCurvature ? segmentLength * startRadiusOfCurvature / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
+                        double  factor = segmentLength * (1. / startRadiusOfCurvature + (endRadiusOfCurvature ? 1. / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.));
+assert(segmentLength > 0. && factor * sign > 0.);
+                        __linearTernm = - startRadiusOfCurvature * std::sqrt(std::fabs(factor));
+                        offset = - segmentLength - (endRadiusOfCurvature ? segmentLength * startRadiusOfCurvature / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
+
+
+__offset *= - factor;
+assert(std::fabs(offset - __offset) < 0.000000001);
+                        double  O = - startRadiusOfCurvature * factor;
+                        assert(std::fabs(O - offset) < 0.0000001);
                     }
                     else {
                         assert(std::fabs(startRadiusOfCurvature) > std::fabs(endRadiusOfCurvature) || startRadiusOfCurvature == 0.);
-                        double  factor = segmentLength / endRadiusOfCurvature + (startRadiusOfCurvature ? segmentLength / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.);
-                        linearTernm = endRadiusOfCurvature * std::sqrt(std::fabs(factor));
+                        double  factor = segmentLength * (1. / endRadiusOfCurvature + (startRadiusOfCurvature ? 1. / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.));
+assert(segmentLength > 0. && factor * sign > 0.);
+                        __linearTernm = endRadiusOfCurvature * std::sqrt(std::fabs(factor));
                         offset = startRadiusOfCurvature ? segmentLength * endRadiusOfCurvature / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.;
                     }
 
+ assert(std::fabs(__linearTernm - LT) < 0.00001);
+
                     ___MATRIX   myMatrix;
                     ___MatrixIdentity(&myMatrix);
-//                    myMatrix._41 = -___XclothoidByConstant(linearTernm, offset);
-//                    myMatrix._42 = -___YclothoidByConstant(linearTernm, offset);
 
                     ___VECTOR3  myVec = {
-                                        ___XclothoidByConstant(linearTernm, offset),
-                                        ___YclothoidByConstant(linearTernm, offset),
+                                        ___XclothoidByConstant(__linearTernm, offset),
+                                        ___YclothoidByConstant(__linearTernm, offset),
                                         0.
                                     };
 
-                    double  angle = ___AngleClothoidByConstant(linearTernm, offset);
-                    myMatrix._11 = cos(-angle);
-                    myMatrix._12 = sin(-angle);
-                    myMatrix._21 = -myMatrix._12;
-                    myMatrix._22 =  myMatrix._11;
+                    double  angleDir = atan2(refDirection.y, refDirection.x);
+                    double  angle = ___AngleClothoidByConstant(__linearTernm, offset);
+                    myMatrix._11 = cos(-(angle - angleDir));
+                    myMatrix._12 = sin(-(angle - angleDir));
+                    myMatrix._21 = - myMatrix._12;
+                    myMatrix._22 =   myMatrix._11;
 
                     ___Vec3Transform(&myVec, &myVec, &myMatrix);
-                    myMatrix._41 = -myVec.x;
-                    myMatrix._42 = -myVec.y;
+                    myMatrix._41 = - myVec.x;
+                    myMatrix._42 = - myVec.y;
                     assert(myVec.z == 0.);
 
                     int_t   ifcClothoidParentCurve =
                                 ___CreateClothoidInstance(
                                         model,
-                                        linearTernm,
+                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
                                         &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
@@ -575,7 +614,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "COSINECURVE")) {
+                else if (___equals(predefinedType, "COSINECURVE")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
@@ -615,7 +654,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "SINECURVE")) {
+                else if (___equals(predefinedType, "SINECURVE")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
@@ -661,7 +700,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "BLOSSCURVE")) {
+                else if (___equals(predefinedType, "BLOSSCURVE")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
@@ -704,7 +743,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "HELMERTCURVE")) {
+                else if (___equals(predefinedType, "HELMERTCURVE")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
@@ -781,7 +820,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
-                        sdaiPutAttrBN(
+                        assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
+                        sdaiPutAttrBN(								//									!!!!!!!!!!!!!!! IS CREATING ISSUE IN VALIDATION
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
                                 sdaiINSTANCE,
@@ -799,14 +839,17 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                         startDirection *= planeAngleUnitConversionFactor;
 
                         double      angle = startDirection + ___AngleByAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5);
-                        ___MATRIX   matrix = {
-                                            cos(angle),          sin(angle),          0.,
-                                            -sin(angle),         cos(angle),          0.,
-                                            0.,                  0.,                  1.,
-                                            endPointFirstHalf.x, endPointFirstHalf.y, 0.
-                                        };
+ 
+                        ___VECTOR2  refDirection__2 = {
+                                            cos(angle),
+                                            sin(angle)
+                                        },
+		                            location__2 = {
+		                                    location.x + cos(startDirection) * endPointFirstHalf.x - sin(startDirection) * endPointFirstHalf.y,
+		                                    location.y + sin(startDirection) * endPointFirstHalf.x + cos(startDirection) * endPointFirstHalf.y
+		                                };
 
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &matrix));
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location__2, &refDirection__2));
                     }
 
                     {
@@ -860,7 +903,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "LINE")) {
+                else if (___equals(predefinedType, "LINE")) {
                     ___VECTOR2  dir = {
                                         refDirection.x,
                                         refDirection.y
@@ -891,7 +934,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "VIENNESEBEND")) {
+                else if (___equals(predefinedType, "VIENNESEBEND")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
@@ -957,7 +1000,7 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
                     }
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
-                else if (___equals(predefinedType, (char*) "CUBIC")) {
+                else if (___equals(predefinedType, "CUBIC")) {
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);

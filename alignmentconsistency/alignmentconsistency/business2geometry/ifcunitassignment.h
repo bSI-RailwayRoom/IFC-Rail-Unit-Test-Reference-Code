@@ -21,7 +21,7 @@ static	inline	double  ___GetPlaneAngleUnitConversionFactor(
 
             char    * unitType = nullptr;
             sdaiGetAttrBN(ifcNamedUnitInstance, "UnitType", sdaiENUM, &unitType);
-            if (___equals(unitType, (char*) "PLANEANGLEUNIT")) {
+            if (___equals(unitType, "PLANEANGLEUNIT")) {
                 return  ___GetUnitConversionFactor(
                                 model,
                                 ifcNamedUnitInstance
@@ -30,6 +30,6 @@ static	inline	double  ___GetPlaneAngleUnitConversionFactor(
         }
     }
 
-    assert(false);
+///    assert(false);
     return	1.;
 }

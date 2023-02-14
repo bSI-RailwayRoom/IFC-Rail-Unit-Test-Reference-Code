@@ -6,10 +6,27 @@
 
 static	inline	int_t   ___CreateCircleInstance(
                                 int_t       model,
+                                double      radiusOfCurvature,
+                                ___MATRIX   * matrix
+                            )
+{
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
+
+    sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
+
+    double  radius = std::fabs(radiusOfCurvature);
+    sdaiPutAttrBN(ifcCircleInstance, "Radius", sdaiREAL, &radius);
+
+    assert(ifcCircleInstance);
+    return	ifcCircleInstance;
+}
+
+static	inline	int_t   ___CreateCircleInstance(
+                                int_t       model,
                                 double      radiusOfCurvature
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);
@@ -41,7 +58,7 @@ static	inline	int_t   ___CreateCircleInstance(
                                 double      radius
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, (char*) "IFCCIRCLE");
+    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);

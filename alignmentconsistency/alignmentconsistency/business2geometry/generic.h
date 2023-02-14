@@ -30,22 +30,25 @@ static  const   uint64_t    __flagbit15 = 32768;                      // 2^^15  
 
 
 static	inline	bool    ___equals(
-                                char    * txtI,
-                                char    * txtII
+                                const char    * txtI,
+                                const char    * txtII
                             )
 {
     if (txtI && txtII) {
         int_t   i = 0;
+        
         while (txtI[i]) {
             if (txtI[i] != txtII[i]) {
                 return  false;
             }
             i++;
         }
+
         if (txtII[i] == 0) {
             return  true;
         }
     }
+
     return  false;
 }
 

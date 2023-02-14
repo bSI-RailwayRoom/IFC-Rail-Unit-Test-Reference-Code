@@ -13,7 +13,7 @@ static	inline	int_t   ___CreateCosineSpiralInstance(
                                 ___MATRIX   * matrix
                             )
 {
-    int_t	ifcCosineSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCCOSINESPIRAL");
+    int_t	ifcCosineSpiralInstance = sdaiCreateInstanceBN(model, "IFCCOSINESPIRAL");
 
     if (matrix) {
         sdaiPutAttrBN(ifcCosineSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));

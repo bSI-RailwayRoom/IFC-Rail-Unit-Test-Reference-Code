@@ -15,7 +15,7 @@ static	inline	int_t   ___CreateThirdOrderPolynomialSpiralInstance(
                                 ___MATRIX   * matrix
                             )
 {
-    int_t	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCTHIRDORDERPOLYNOMIALSPIRAL");
+    int_t	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCTHIRDORDERPOLYNOMIALSPIRAL");
 
     if (matrix) {
         sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));

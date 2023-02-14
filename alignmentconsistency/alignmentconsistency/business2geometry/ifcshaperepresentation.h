@@ -73,6 +73,8 @@ static	inline	int_t   ___CreateShapeRepresentationInstance(
 	aggrItems = sdaiCreateAggrBN(ifcShapeRepresentationInstance, "Items");
 	sdaiAppend((int_t) aggrItems, sdaiINSTANCE, (void*) ifcRepresentationItemInstance);
 
+//    assert(ifcRepresentationItemInstance);
+
     if (pAggrItems) {
         (*pAggrItems) = aggrItems;
     }

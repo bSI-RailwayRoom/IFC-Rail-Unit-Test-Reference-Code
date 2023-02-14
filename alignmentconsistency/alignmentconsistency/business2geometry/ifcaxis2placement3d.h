@@ -11,7 +11,7 @@ static	inline	int_t	___CreateAxis2Placement3DInstance(
 {
 	int_t	ifcAxis2Placement3DInstance;
 
-    ifcAxis2Placement3DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT3D");
+    ifcAxis2Placement3DInstance = sdaiCreateInstanceBN(model, "IFCAXIS2PLACEMENT3D");
 
 	___VECTOR3	vecLocation = { 0., 0., 0. };
 	sdaiPutAttrBN(ifcAxis2Placement3DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, &vecLocation));
@@ -28,7 +28,7 @@ static	inline	int_t	___CreateAxis2Placement3DInstance(
 {
 	int_t	ifcAxis2Placement3DInstance;
 
-    ifcAxis2Placement3DInstance = sdaiCreateInstanceBN(model,(char*) "IFCAXIS2PLACEMENT3D");
+    ifcAxis2Placement3DInstance = sdaiCreateInstanceBN(model, "IFCAXIS2PLACEMENT3D");
 
 	sdaiPutAttrBN(ifcAxis2Placement3DInstance, "Location", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, (___VECTOR3*) &matrix->_41));
 	sdaiPutAttrBN(ifcAxis2Placement3DInstance, "Axis", sdaiINSTANCE, (void*) ___CreateDirectionInstance(model, (___VECTOR3*) &matrix->_31));

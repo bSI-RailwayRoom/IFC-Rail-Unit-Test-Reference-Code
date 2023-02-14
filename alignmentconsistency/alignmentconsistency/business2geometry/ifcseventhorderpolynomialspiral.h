@@ -29,7 +29,7 @@ static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
     //		LinearTerm
     //		ConstantTerm
 
-    int_t	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, (char*) "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
+    int_t	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
 
     if (matrix) {
         sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));

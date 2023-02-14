@@ -10,9 +10,9 @@ static	inline	int_t	___CreateCartesianPointInstance_2D(
 {
 	int_t	ifcCartesianPointInstance, * aggrCoordinates;
 
-	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, (char*) "IFCCARTESIANPOINT");
+	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANPOINT");
 
-	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, (char*) "Coordinates");
+	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, "Coordinates");
 
     ___VECTOR2  point = { 0., 0. };
     sdaiAppend((int_t) aggrCoordinates, sdaiREAL, &point.x);
@@ -30,9 +30,9 @@ static	inline	int_t	___CreateCartesianPointInstance(
 {
 	int_t	ifcCartesianPointInstance, * aggrCoordinates;
 
-	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, (char*) "IFCCARTESIANPOINT");
+	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANPOINT");
 
-	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, (char*) "Coordinates");
+	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, "Coordinates");
 
 	sdaiAppend((int_t) aggrCoordinates, sdaiREAL, &point->x);
 	sdaiAppend((int_t) aggrCoordinates, sdaiREAL, &point->y);
@@ -49,9 +49,9 @@ static	inline	int_t	___CreateCartesianPointInstance(
 {
 	int_t	ifcCartesianPointInstance, * aggrCoordinates;
 
-	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, (char*) "IFCCARTESIANPOINT");
+	ifcCartesianPointInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANPOINT");
 
-	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, (char*) "Coordinates");
+	aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, "Coordinates");
 
 	sdaiAppend((int_t) aggrCoordinates, sdaiREAL, &point->x);
 	sdaiAppend((int_t) aggrCoordinates, sdaiREAL, &point->y);

@@ -12,7 +12,7 @@
 extern  int_t   reusedIfcGeometricRepresentationContextInstance;
 
 
-static  inline  void    AlignmentGenerateGeometry(
+static  inline  int_t    AlignmentGenerateGeometry(
                                 int_t   model,
                                 int_t   ifcAlignmentInstance
                             )
@@ -59,6 +59,7 @@ static  inline  void    AlignmentGenerateGeometry(
                     ),
             ifcRepresentationItem;
 
+    int_t   ifcRepresentationItem_gradientCurveInstance = 0;
     if (hasAlignmentVertical || hasAlignmentCant) {
         double  startDistAlongHorizontalAlignment = 0.;
         
@@ -73,7 +74,7 @@ static  inline  void    AlignmentGenerateGeometry(
                 &startDistAlongHorizontalAlignment
             );
 
-        int_t   ifcRepresentationItem_gradientCurveInstance =
+        ifcRepresentationItem_gradientCurveInstance =
                     ___CreateGradientCurve__alignmentVertical(
                             model,
                             ___GetAlignmentVertical(
@@ -84,42 +85,47 @@ static  inline  void    AlignmentGenerateGeometry(
                             startDistAlongHorizontalAlignment
                         );
 
-        sdaiPutAttrBN(
-                ifcRepresentationItem_gradientCurveInstance,
-                "BaseCurve",
-                sdaiINSTANCE,
-                (void*) ifcRepresentationItem_compositeCurveInstance
-            );
+        if (ifcRepresentationItem_gradientCurveInstance) {
+            sdaiPutAttrBN(
+                    ifcRepresentationItem_gradientCurveInstance,
+                    "BaseCurve",
+                    sdaiINSTANCE,
+                    (void*) ifcRepresentationItem_compositeCurveInstance
+                );
 
-        //
-        //  Add geometry for IfcVerticalAlignment
-        //
-        sdaiPutAttrBN(
-                ___GetAlignmentVertical(
-                        model,
-                        ifcAlignmentInstance,
-                        nullptr
-                    ),
-                "ObjectPlacement",
-                sdaiINSTANCE,
-                (void*) ___CreateObjectPlacement(
-                                model
-                            )
-            );
-        sdaiPutAttrBN(
-                ___GetAlignmentVertical(
-                        model,
-                        ifcAlignmentInstance,
-                        nullptr
-                    ),
-                "Representation",
-                sdaiINSTANCE,
-                (void*) ___CreateProductDefinitionShapeInstance(
-                                model,
-                                ifcRepresentationItem_gradientCurveInstance,
-                                true
-                            )
-            );
+            //
+            //  Add geometry for IfcVerticalAlignment
+            //
+            sdaiPutAttrBN(
+                    ___GetAlignmentVertical(
+                            model,
+                            ifcAlignmentInstance,
+                            nullptr
+                        ),
+                    "ObjectPlacement",
+                    sdaiINSTANCE,
+                    (void*) ___CreateObjectPlacement(
+                                    model
+                                )
+                );
+/*            sdaiPutAttrBN(
+                    ___GetAlignmentVertical(
+                            model,
+                            ifcAlignmentInstance,
+                            nullptr
+                        ),
+                    "Representation",
+                    sdaiINSTANCE,
+                    (void*) ___CreateProductDefinitionShapeInstance(
+                                    model,
+                                    ifcRepresentationItem_gradientCurveInstance,
+                                    true
+                                )
+                );  //  */
+        }
+        else
+            ifcRepresentationItem_gradientCurveInstance = ifcRepresentationItem_compositeCurveInstance;
+
 
         if (hasAlignmentCant) {
             int_t   ifcRepresentationItem_segmentedReferenceCurveInstance =
@@ -132,6 +138,8 @@ static  inline  void    AlignmentGenerateGeometry(
                                     ),
                                 startDistAlongHorizontalAlignment
                             );
+
+            assert(ifcRepresentationItem_segmentedReferenceCurveInstance);
 
             sdaiPutAttrBN(
                     ifcRepresentationItem_segmentedReferenceCurveInstance,
@@ -156,25 +164,33 @@ static  inline  void    AlignmentGenerateGeometry(
                                     model
                                 )
                 );
-            sdaiPutAttrBN(
-                    ___GetAlignmentCant(
-                            model,
-                            ifcAlignmentInstance,
-                            nullptr
-                        ),
-                    "Representation",
-                    sdaiINSTANCE,
-                    (void*) ___CreateProductDefinitionShapeInstance(
-                                    model,
-                                    ifcRepresentationItem_segmentedReferenceCurveInstance,
-                                    true
-                                )
-                );
+
+            if (ifcRepresentationItem_segmentedReferenceCurveInstance) {
+                assert(___GetAlignmentCant(model, ifcAlignmentInstance, nullptr));
+                sdaiPutAttrBN(
+                        ___GetAlignmentCant(
+                                model,
+                                ifcAlignmentInstance,
+                                nullptr
+                            ),
+                        "Representation",
+                        sdaiINSTANCE,
+                        (void*) ___CreateProductDefinitionShapeInstance(
+                                        model,
+                                        ifcRepresentationItem_segmentedReferenceCurveInstance,
+                                        true
+                                    )
+                    );
+            }
+            else {
+                assert(false);
+            }
 
             if (ifcRepresentationItem_gradientCurveInstance) {
                 ifcRepresentationItem = ifcRepresentationItem_gradientCurveInstance;
             }
             else {
+                assert(false);
                 ifcRepresentationItem = ifcRepresentationItem_segmentedReferenceCurveInstance;
             }
         }
@@ -197,16 +213,19 @@ static  inline  void    AlignmentGenerateGeometry(
                             model
                         )
         );
-    sdaiPutAttrBN(
-            ifcAlignmentInstance,
-            "Representation",
-            sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShapeInstance(
-                            model,
-                            ifcRepresentationItem,
-                            true
-                        )
-        );
+    if (ifcRepresentationItem) {
+        assert(ifcAlignmentInstance);
+        sdaiPutAttrBN(
+                ifcAlignmentInstance,
+                "Representation",
+                sdaiINSTANCE,
+                (void*) ___CreateProductDefinitionShapeInstance(
+                                model,
+                                ifcRepresentationItem,
+                                true
+                            )
+            );
+    }
 
     //
     //  Add geometry for IfcHorizontalAlignment
@@ -223,20 +242,26 @@ static  inline  void    AlignmentGenerateGeometry(
                             model
                         )
         );
-    sdaiPutAttrBN(
-            ___GetAlignmentHorizontal(
-                    model,
-                    ifcAlignmentInstance,
-                    nullptr
-                ),
-            "Representation",
-            sdaiINSTANCE,
-            (void*) ___CreateProductDefinitionShapeInstance(
-                            model,
-                            ifcRepresentationItem_compositeCurveInstance,
-                            false
-                        )
-        );
+
+    if (ifcRepresentationItem != ifcRepresentationItem_compositeCurveInstance) {
+        assert(___GetAlignmentHorizontal(model, ifcAlignmentInstance, nullptr));
+        sdaiPutAttrBN(
+                ___GetAlignmentHorizontal(
+                        model,
+                        ifcAlignmentInstance,
+                        nullptr
+                    ),
+                "Representation",
+                sdaiINSTANCE,
+                (void*) ___CreateProductDefinitionShapeInstance(
+                                model,
+                                ifcRepresentationItem_compositeCurveInstance,
+                                false
+                            )
+            );
+    }
+
+    return  ifcRepresentationItem_gradientCurveInstance ? ifcRepresentationItem_gradientCurveInstance : ifcRepresentationItem_compositeCurveInstance;
 }
 
 static  inline  int_t    AlignmentGenerateSweep(
@@ -275,6 +300,8 @@ static  inline  int_t    AlignmentGenerateSweep(
                             model
                         )
         );
+		
+    assert(ifcFixedReferenceSweptAreaSolidInstance && ifcProductInstance);
     sdaiPutAttrBN(
             ifcProductInstance,
             "Representation",
