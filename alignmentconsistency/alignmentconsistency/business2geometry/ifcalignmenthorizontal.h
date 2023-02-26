@@ -375,6 +375,10 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
         ___VECTOR2  mostRecentLocation = { 0., 0. };
 #endif // _DEBUG
 
+#ifdef _DEBUG
+        ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+#endif // _DEBUG
+
         double  compositeCurveLength = 0.;
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
@@ -477,10 +481,10 @@ segmentLength = std::fabs(segmentLength);
 
                     ___MATRIX   myMatrix;
                     ___MatrixIdentity(&myMatrix);
-                    myMatrix._11 = refDirection.y * radiusOfCurvature / std::fabs(radiusOfCurvature);
-                    myMatrix._12 = -refDirection.x * radiusOfCurvature / std::fabs(radiusOfCurvature);
-                    myMatrix._21 = -myMatrix._12;
-                    myMatrix._22 = myMatrix._11;
+                    myMatrix._11 =   refDirection.y * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._12 = - refDirection.x * radiusOfCurvature / std::fabs(radiusOfCurvature);
+                    myMatrix._21 = - myMatrix._12;
+                    myMatrix._22 =   myMatrix._11;
 
                     ___VECTOR3  myOffset = { - std::fabs(radiusOfCurvature), 0., 0. };
                     ___Vec3Transform(&myOffset, &myOffset, &myMatrix);
@@ -501,7 +505,7 @@ segmentLength = std::fabs(segmentLength);
 #endif // _DEBUG
 
                     if (radiusOfCurvature < 0) {
-                        segmentLength = -segmentLength;
+                        segmentLength = - segmentLength;
                     }
 
                     //
@@ -1174,6 +1178,49 @@ assert(segmentLength > 0. && factor * sign > 0.);
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                 }
 
+#ifdef _DEBUG
+if (i == 2) {
+    int uu = 0;
+}
+
+                ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
+                            endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+                ___GetBorderPoints(
+                        ifcCurveSegmentInstance,
+                        sdaiGetEntity(model, "IFCCOMPOSITECURVE"),
+                        &startPnt,
+                        &endPnt
+                    );
+
+double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
+
+                assert(startPnt.point.x == location.x &&
+                       startPnt.point.y == location.y &&
+                       startPnt.point.z == 0.);
+
+                ___VECTOR3  tangent = {
+                                    refDirection.x,
+                                    refDirection.y,
+                                    0.
+                                };
+
+                assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.0000000001 &&
+                       std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
+                       startPnt.tangent.z == 0.);
+
+                if (i) {
+                    assert(std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.000001) &&
+                           std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.000001) &&
+                           startPnt.point.z == previousEndPnt.point.z);
+
+                    assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.00001) &&
+                           std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.00001) &&
+                           startPnt.tangent.z == previousEndPnt.tangent.z); //  */
+                }
+
+                previousEndPnt = endPnt;
+#endif // _DEBUG
+
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
                 compositeCurveLength += segmentLength;
 
@@ -1201,7 +1248,7 @@ assert(segmentLength > 0. && factor * sign > 0.);
                     &mostRecentLocation,
 #endif // _DEBUG
                     mostRecentCurveSegmentInstance,
-                    ifcCompositeCurveInstance
+                    sdaiGetInstanceType(ifcCompositeCurveInstance)
                 );
 
             int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");

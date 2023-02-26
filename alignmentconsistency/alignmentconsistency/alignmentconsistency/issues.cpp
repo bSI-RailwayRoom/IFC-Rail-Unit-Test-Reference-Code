@@ -47,7 +47,7 @@ char	* CreateInstanceText(
 {
 	if (ifcInstance) {
 		char	* entityName = nullptr;
-		engiGetEntityName(sdaiGetInstanceType(ifcInstance), sdaiSTRING, &entityName);
+		engiGetEntityName(sdaiGetInstanceType(ifcInstance), sdaiSTRING, (const char**) &entityName);
 
 		char	* txt = new char[256];
 		txt[0] = '#';

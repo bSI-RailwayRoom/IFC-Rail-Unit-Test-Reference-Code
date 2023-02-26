@@ -60,6 +60,9 @@ enum class enum_error : unsigned char
 	HORIZONTAL_SEGMENT_DISTANCE,								//		2	0
 	VERTICAL_SEGMENT_DISTANCE,									//		2	1
 	CANT_SEGMENT_DISTANCE,										//		2	2
+	HORIZONTAL_SEGMENT_TANGENT_DEVIATION,						//		2	3
+	VERTICAL_SEGMENT_TANGENT_DEVIATION,							//		2	4
+	CANT_SEGMENT_TANGENT_DEVIATION,								//		2	5
 	ALIGNMENT_MISSING_GEOMETRY,									//		3	0
 	ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,						//		3	0
 	HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY,						//		3	1
@@ -75,7 +78,8 @@ enum class enum_error : unsigned char
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_HA,						//		3	4
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_VA,						//		3	4
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_CA,						//		3	4
-	MODEL_ZERO													//		A   A
+	MODEL_ZERO,													//		A   A
+	LIBRARY_OUTDATED											//		A   A
 };
 
 //
@@ -96,6 +100,7 @@ enum class enum_error : unsigned char
 //		"Cant Alignment distances / deviations"
 //		"Horizontal Alignment Angle differences"
 //		"Vertical Alignment Angle differences"
+//		"Cant Alignment Angle differences"
 //
 //	"Geometrical Content Issue"
 //		"Alignment Issues"
@@ -131,6 +136,28 @@ void	assert__error(
 			AddIssue(3, 2, (char*) "IFC File not Loaded");
 			AddIssue(3, 3, (char*) "IFC File not Loaded");
 			AddIssue(3, 4, (char*) "IFC File not Loaded");
+			break;
+		case  enum_error::LIBRARY_OUTDATED:
+			AddIssue(0, 0, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(0, 1, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(0, 2, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(0, 3, (char*) "IFC Engine outdated, use a more recent version");
+
+			AddIssue(1, 0, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(1, 1, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(1, 2, (char*) "IFC Engine outdated, use a more recent version");
+
+			AddIssue(2, 0, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(2, 1, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(2, 2, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(2, 3, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(2, 4, (char*) "IFC Engine outdated, use a more recent version");
+
+			AddIssue(3, 0, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(3, 1, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(3, 2, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(3, 3, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(3, 4, (char*) "IFC Engine outdated, use a more recent version");
 			break;
 		default:
 			assert(false);
@@ -299,18 +326,27 @@ void	assert__error(
 				enum_error	myError,
 				int_t		ifcInstanceSegmentI,
 				int_t		ifcInstanceSegmentII,
-				double		distance
+				double		deviation
 			)
 {
 	switch (myError) {
 		case  enum_error::CANT_SEGMENT_DISTANCE:
-			AddIssue(2, 2, (char*) "Distance between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, distance);
+			AddIssue(2, 2, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::HORIZONTAL_SEGMENT_DISTANCE:
-			AddIssue(2, 0, (char*) "Distance between end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, distance);
+			AddIssue(2, 0, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::VERTICAL_SEGMENT_DISTANCE:
-			AddIssue(2, 1, (char*) "Distance between end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, distance);
+			AddIssue(2, 1, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+			break;
+		case  enum_error::CANT_SEGMENT_TANGENT_DEVIATION:
+			AddIssue(2, 5, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+			break;
+		case  enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION:
+			AddIssue(2, 3, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+			break;
+		case  enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION:
+			AddIssue(2, 4, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		default:
 			assert(false);
@@ -442,15 +478,16 @@ void	CopyPositiveLengthMeasure(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	double	content = 123456789.98765;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
-	if (content != 123456789.98765) {
+	void	* rValue = sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
+	if (rValue) {
 		if (content <= 0.) {
 			assert__error(enum_error::REAL_BOUNDARY_ISSUE, ifcInstance, attributeName);
 		}
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiREAL, &content);
 	}
 	else {
-		assert(content);
+		assert(content == 0.);
+		assert__error(enum_error::REAL_BOUNDARY_ISSUE, ifcInstance, attributeName);
 	}
 }
 
@@ -461,13 +498,20 @@ void	CopyPositiveLengthMeasureOPTIONAL(
 			)
 {
 	assert(ifcInstance && mirrorIfcInstance);
-	double	content = 123456789.98765;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
-	if (content != 123456789.98765) {
+	double	content = 0.;
+	void	* rValue = sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
+	if (rValue) {
 		if (content <= 0.) {
 			assert__error(enum_error::REAL_BOUNDARY_ISSUE, ifcInstance, attributeName);
 		}
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiREAL, &content);
+	}
+	else {
+		assert(content == 0.);
+		int_t	attrType = engiGetInstanceAttrTypeBN(ifcInstance, attributeName);
+		if (attrType != 0) {
+			assert__error(enum_error::REAL_BOUNDARY_ISSUE, ifcInstance, attributeName);
+		}
 	}
 }
 
@@ -497,9 +541,13 @@ void	CopyStringOPTIONAL(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	char	* content = nullptr;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiSTRING, &content);
-	if (content) {
+	void	* rValue = sdaiGetAttrBN(ifcInstance, attributeName, sdaiSTRING, &content);
+	if (rValue) {
+		assert(content);
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiSTRING, content);
+	}
+	else {
+		assert(content == nullptr);
 	}
 }
 
@@ -2026,10 +2074,232 @@ void	CompareMirror(
 		assert(ifcCantAlignmentInstance == 0 && mirrorIfcCantAlignmentInstance == 0);
 	}
 }
+/*
+bool	GetGeometryFromGK__point4D__SEMANTICS(
+				OwlModel	owlModel,
+				OwlInstance	owlInstancePoint4D,
+				___POINT4D	* point4D
+			)
+{
+#ifdef _DEBUG
+	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
+#endif // _DEBUG
 
-int_t	GetGeometryFromGK(
-				int64_t		owlModel,
-				int64_t		owlInstance,
+	
+	bool	asExpected = true;
+
+	OwlClass myClass = GetInstanceClass(owlInstancePoint4D);
+	if (myClass == GetClassByName(owlModel, "Point4D")) {
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "point"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Point3D"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.z = 0.;
+					}
+				}
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "tangent"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Vector3"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.z = 0.;
+					}
+				}
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "normal"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Vector3"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.z = 0.;
+					}
+				}
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+	}
+	else {
+		assert(false);
+		asExpected = false;
+	}
+
+	return	asExpected;
+}
+
+bool	GetGeometryFromGK__SEMANTICS(
+				OwlModel	owlModel,
+				OwlInstance	owlInstance,
+				___POINT4D	* startPoint,
+				___POINT4D	* endPoint
+			)
+{
+	bool	asExpected = true;
+
+	OwlClass myClass = GetInstanceClass(owlInstance);
+	if (myClass == GetClassByName(owlModel, "PolyLine3D")) {
+		OwlClass	* values = nullptr;
+		int64_t		card = 0;
+		GetObjectProperty(owlInstance, GetPropertyByName(owlModel, "pointReferences"), &values, &card);
+		if (card && values[0] && values[card - 1]) {
+			if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, values[0], startPoint) == false)
+				asExpected = false;
+			if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, values[card - 1], endPoint) == false)
+				asExpected = false;
+		}
+		else {
+			assert(false);
+			asExpected = false;
+		}
+	}
+	else if (myClass == GetClassByName(owlModel, "Point4D")) {
+		if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, owlInstance, startPoint) == false)
+			asExpected = false;
+		if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, owlInstance, endPoint) == false)
+			asExpected = false;
+	}
+	else {
+		assert(false);
+		asExpected = false;
+	}
+
+	return	asExpected;
+}	//	*/
+
+#ifdef _DEBUG
+int_t	GetGeometryFromGK__GEOMETRY(
+				OwlModel	owlModel,
+				OwlInstance	owlInstance,
 				___VECTOR3	* startVec,
 				___VECTOR3	* endVec
 			)
@@ -2045,7 +2315,7 @@ int_t	GetGeometryFromGK(
 
     setting += 0 * flagbit8;        //    OFF / ON TRIANGLES
     setting += 1 * flagbit9;        //    OFF / ON LINES
-    setting += 0 * flagbit10;       //    OFF / ON POINTS
+    setting += 1 * flagbit10;       //    OFF / ON POINTS
 
     setting += 0 * flagbit12;       //    OFF / ON WIREFRAME FACES
     setting += 0 * flagbit13;       //    OFF / ON WIREFRAME CONCEPTUAL FACES
@@ -2064,12 +2334,10 @@ int_t	GetGeometryFromGK(
 		int64_t	cnt = GetConceptualFaceCnt(owlInstance), lineCnt = 0;
 		for (int64_t i = 0; i < cnt; i++) {
 			int64_t	startIndexLines = 0, noIndicesLines = 0;
-			GetConceptualFaceEx(
+			GetConceptualFace(
 					owlInstance, i,
 					nullptr, nullptr,
 					&startIndexLines, &noIndicesLines,
-					nullptr, nullptr,
-					nullptr, nullptr,
 					nullptr, nullptr
 				);
 
@@ -2082,6 +2350,14 @@ int_t	GetGeometryFromGK(
 			}
 		}
 
+		if (vertexBufferSize == 1 && indexBufferSize == 1) {
+			assert(lineCnt == 0);
+			startVec->x = endVec->x = vertices[0];
+			startVec->y = endVec->y = vertices[1];
+			startVec->z = endVec->z = vertices[2];
+			lineCnt = 1;
+		}
+
 		delete[] vertices;
 		delete[] indices;
 		return	(int_t) lineCnt;
@@ -2089,19 +2365,18 @@ int_t	GetGeometryFromGK(
 
 	return	0;
 }
+#endif // _DEBUG
 
-int_t	GetGeometryFromIFC(
+bool	GetGeometryFromIFC(
 				int_t		model,
 				int_t		ifcAlignmentSegmentInstance,
 				int_t		ifcAlignmentInstance,
-				___VECTOR3	* startVec,
-				___VECTOR3	* endVec
+				___POINT4D	* startPoint,
+				___POINT4D	* endPoint
 			)
 {
 	int64_t	owlModel = 0, owlInstance = 0;
 	owlGetModel(model, &owlModel);
-//	owlBuildInstance(model, ifcAlignmentSegmentInstance, &owlInstance);
-//	owlBuildInstanceInContext(ifcAlignmentSegmentInstance, ifcAlignmentInstance, &owlInstance);
 	owlBuildInstanceInContext(ifcAlignmentSegmentInstance, sdaiGetInstanceType(ifcAlignmentInstance), &owlInstance);
 
 #ifdef _DEBUG
@@ -2112,14 +2387,29 @@ int_t	GetGeometryFromIFC(
 	sdaiSaveModelBN(model, "C:\\IFCRAIL\\acca2__.ifc");
 #endif // _DEBUG
 
-
-
-	return	(int_t) GetGeometryFromGK(
+#ifdef _DEBUG
+	___VECTOR3	_sVec, _eVec;
+	int_t	lineCnt =
+				GetGeometryFromGK__GEOMETRY(
 							owlModel,
 							owlInstance,
-							startVec,
-							endVec
+							&_sVec,
+							&_eVec
 						);
+#endif // _DEBUG
+
+	bool	asExpected =
+				___GetBorderPoints__SEMANTICS(
+						owlInstance,
+						startPoint,
+						endPoint
+					);
+
+	assert(___Vec3Distance(&_sVec, &startPoint->point) == 0.);
+	assert(___Vec3Distance(&_eVec, &endPoint->point) == 0.);
+
+//	return	lineCnt;
+	return	asExpected;
 }
 
 void	CheckGeometrySegments(
@@ -2147,52 +2437,91 @@ void	CheckGeometrySegments(
 			int u = 0;
 		}
 
-		___VECTOR3	previousEndVec = { 0., 0., 0. };
+		___POINT4D	previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
 		for (int_t i = 0; i < noSegmentInstances; i++) {
-			___VECTOR3	startVec = { 0., 0., 0. }, endVec = { 0., 0., 0. };
-			int_t cnt = GetGeometryFromIFC(model, segmentInstances[i], ifcAlignmentNestedInstance, &startVec, &endVec);
+			___POINT4D	startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
+						endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+			int_t cnt = GetGeometryFromIFC(model, segmentInstances[i], ifcAlignmentNestedInstance, &startPnt, &endPnt);
 			if (cnt) {
 				if (i) {
-					double	distance = ___Vec3Distance(&previousEndVec, &startVec);
+					{
+						double	distance = ___Vec3Distance(&previousEndPnt.point, &startPnt.point);
 
-					switch (enumAlignment) {
-						case  enum_alignment::HORIZONTAL:
-							assert__error(
-									enum_error::HORIZONTAL_SEGMENT_DISTANCE,
-									myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-									myMapExpressID[internalGetP21Line(segmentInstances[i])],
-									distance
-								);
-							break;
-						case  enum_alignment::VERTICAL:
-							assert__error(
-									enum_error::VERTICAL_SEGMENT_DISTANCE,
-									myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-									myMapExpressID[internalGetP21Line(segmentInstances[i])],
-									distance
-								);
-							break;
-						case  enum_alignment::CANT:
-							assert__error(
-									enum_error::CANT_SEGMENT_DISTANCE,
-									myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-									myMapExpressID[internalGetP21Line(segmentInstances[i])],
-									distance
-								);
-							break;
+						switch (enumAlignment) {
+							case  enum_alignment::HORIZONTAL:
+								assert__error(
+										enum_error::HORIZONTAL_SEGMENT_DISTANCE,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										distance
+									);
+								break;
+							case  enum_alignment::VERTICAL:
+								assert__error(
+										enum_error::VERTICAL_SEGMENT_DISTANCE,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										distance
+									);
+								break;
+							case  enum_alignment::CANT:
+								assert__error(
+										enum_error::CANT_SEGMENT_DISTANCE,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										distance
+									);
+								break;
+						}
 					}
-					int u = 0;
+
+					{
+						double	anglePreviousEndPoint = std::atan2(previousEndPnt.tangent.y, previousEndPnt.tangent.x),
+								angleStartPnt = std::atan2(startPnt.tangent.y, startPnt.tangent.x),
+								angleDifference = angleStartPnt - anglePreviousEndPoint;
+
+						if (angleDifference > Pi) { angleDifference -= 2. * Pi; }
+						if (angleDifference < - Pi) { angleDifference += 2. * Pi; }
+
+						double	angleDifferenceInDegrees = 360. * angleDifference / (2. * Pi);
+
+						switch (enumAlignment) {
+							case  enum_alignment::HORIZONTAL:
+								assert__error(
+										enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										std::fabs(angleDifferenceInDegrees)
+									);
+								break;
+							case  enum_alignment::VERTICAL:
+								assert__error(
+										enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										std::fabs(angleDifferenceInDegrees)
+									);
+								break;
+							case  enum_alignment::CANT:
+								assert__error(
+										enum_error::CANT_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										std::fabs(angleDifferenceInDegrees)
+									);
+								break;
+						}
+					}
 				}
-				previousEndVec.x = endVec.x;
-				previousEndVec.y = endVec.y;
-				previousEndVec.z = endVec.z;
+				previousEndPnt = endPnt;
 			}
 			else {
-				assert(i + 1 == noSegmentInstances);
+				assert(false);
+//				assert(i + 1 == noSegmentInstances);
 			}
 
 			if (enumAlignment == enum_alignment::HORIZONTAL || enumAlignment == enum_alignment::VERTICAL) {
-				assert(startVec.z == 0. && endVec.z == 0.);
+				assert(startPnt.point.z == 0. && endPnt.point.z == 0.);
 			}
 			else {
 				assert(enumAlignment == enum_alignment::CANT);
@@ -2382,6 +2711,13 @@ int_t	CheckConsistencyAlignment__internal(
                 double  relativeEpsilon
 			)
 {
+	int_t	revision = GetRevision();
+
+	if (revision < 1650) {
+		assert__error(enum_error::LIBRARY_OUTDATED);
+		return  0;
+	}
+
 	if (model == 0) {
 		assert__error(enum_error::MODEL_ZERO);
 		return  0;
@@ -2389,8 +2725,8 @@ int_t	CheckConsistencyAlignment__internal(
 
 	char	* schemaName = nullptr;
 	GetSPFFHeaderItem(model, 9, 0, sdaiSTRING, &schemaName);
-	if (!equals(schemaName, (char*) "IFC4X3_ADD1") &&
-		!equals(schemaName, (char*) "IFC4x3_ADD1")) {
+	if (!equals(schemaName, (char*) "IFC4x3_ADD1") &&
+		!equals(schemaName, (char*) "IFC4X3_ADD1")) {
 		assert__error(enum_error::UNKNOWN_SCHEMA, schemaName);
 	}
 
@@ -2402,7 +2738,7 @@ int_t	CheckConsistencyAlignment__internal(
             int_t   ifcAlignmentInstance = 0;
             engiGetAggrElement(ifcAlignmentInstances, i, sdaiINSTANCE, &ifcAlignmentInstance);
 
-            int_t   myMirrorModel = sdaiCreateModelBN(0, "IFC4X3");
+            int_t   myMirrorModel = sdaiCreateModelBN(0, nullptr, "IFC4X3");
             setFilter(myMirrorModel, 2, 1 + 2 + 4);
 
             if (myMirrorModel) {
@@ -2412,7 +2748,7 @@ int_t	CheckConsistencyAlignment__internal(
 
 
 
-                SetSPFFHeaderItem(myMirrorModel, 9, 0, sdaiSTRING, (char*) "IFC4x3");
+                SetSPFFHeaderItem(myMirrorModel, 9, 0, sdaiSTRING, "IFC4x3");
 
                 //sdaiSaveModelBN(myMirrorModel, (char*) "tmp001.ifc");
 				int_t	size = 0;
@@ -2428,7 +2764,7 @@ int_t	CheckConsistencyAlignment__internal(
                 setFilter(myMirrorModel, 2, 1 + 2 + 4);
 
                 mirrorIfcAlignmentInstance = 0;
-                engiGetAggrElement(sdaiGetEntityExtentBN(myMirrorModel, (char*) "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
+                engiGetAggrElement(sdaiGetEntityExtentBN(myMirrorModel, "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
 
                 EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance);
 

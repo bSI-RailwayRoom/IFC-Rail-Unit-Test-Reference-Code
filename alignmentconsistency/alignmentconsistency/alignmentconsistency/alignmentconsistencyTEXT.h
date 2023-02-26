@@ -110,6 +110,10 @@ static	inline	char	* GetGroupText(
 					return  isName ?
 								(char*) "Alignment vertical tangential continuity" :
 								(char*) "Check if an alignment vertical segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
+				case  5:
+					return  isName ?
+								(char*) "Alignment cant tangential continuity" :
+								(char*) "Check if an alignment cant segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				default:
 					break;
 			}

@@ -138,6 +138,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
         ___VECTOR2  mostRecentLocation = { 0., 0. };
 #endif // _DEBUG
 
+#ifdef _DEBUG
+        ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0.} };
+#endif // _DEBUG
+
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
@@ -682,6 +686,44 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     }
                 }
 
+#ifdef _DEBUG
+                ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
+                            endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+                ___GetBorderPoints(
+                        ifcCurveSegmentInstance,
+                        sdaiGetEntity(model, "IFCGRADIENTCURVE"),
+                        &startPnt,
+                        &endPnt
+                    );
+
+                assert(startPnt.point.x == startDistAlong &&
+                       startPnt.point.y == startHeight &&
+                       startPnt.point.z == 0.);
+
+                ___VECTOR3  tangent = {
+                                    1.,
+                                    startGradient__,
+                                    0.
+                                };
+                ___Vec3Normalize(&tangent);
+
+                assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.0000000001 &&
+                       std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
+                       startPnt.tangent.z == 0.);
+
+                if (i) {
+    //                assert(std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.0000000001) &&
+    //                       std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.0000000001) &&
+    //                       startPnt.point.z == previousEndPnt.point.z);
+
+    //                assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.00001) &&
+    //                       std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.00001) &&
+    //                       startPnt.tangent.z == previousEndPnt.tangent.z); //  */
+                }
+
+                previousEndPnt = endPnt;
+#endif // _DEBUG
+
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
                 if (i == noSegmentInstances - 1) {
@@ -727,7 +769,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     &mostRecentLocation,
 #endif // _DEBUG
                     mostRecentCurveSegmentInstance,
-                    ifcGradientCurveInstance
+                    sdaiGetInstanceType(ifcGradientCurveInstance)
                 );
 
             ___VECTOR2  refDirection = {
@@ -739,6 +781,11 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 endPoint.y
                             };
             assert((mostRecentStartDistAlong + mostRecentHorizontalLength) - startDistAlongHorizontalAlignment == endPoint.x);
+
+            if (mostRecentHorizontalLength == 0.) {
+                assert(mostRecentLocation.x == endPoint.x &&
+                       mostRecentLocation.y == endPoint.y);
+            }
 
             ___Vec2Normalize(&refDirection);
             sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));

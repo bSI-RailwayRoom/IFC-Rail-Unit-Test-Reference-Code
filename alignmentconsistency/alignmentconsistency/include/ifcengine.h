@@ -182,6 +182,7 @@ enum class enum_validation_status : unsigned char
 //
 SdaiModel		DECL STDC	sdaiCreateModelBN(
 									int_t					repository,
+									const char				* fileName,
 									const char				* schemaName
 								);
 
@@ -198,6 +199,7 @@ SdaiModel		DECL STDC	sdaiCreateModelBN(
 //
 SdaiModel		DECL STDC	sdaiCreateModelBNUnicode(
 									int_t					repository,
+									const wchar_t			* fileName,
 									const wchar_t			* schemaName
 								);
 
