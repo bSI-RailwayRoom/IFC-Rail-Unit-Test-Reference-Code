@@ -742,7 +742,7 @@ int_t	CopyInstanceIfcAlignmentVerticalSegment(
 	CopyStringOPTIONAL(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
 
 	CopyLengthMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartDistAlong");
-	CopyPositiveLengthMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "HorizontalLength");
+	CopyNonNegativeLengthMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "HorizontalLength");
 	CopyLengthMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartHeight");
 	CopyRatioMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartGradient");
 	CopyRatioMeasure(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndGradient");
@@ -764,7 +764,7 @@ int_t	CopyInstanceIfcAlignmentCantSegment(
 	CopyStringOPTIONAL(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
 
 	CopyLengthMeasure(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartDistAlong");
-	CopyPositiveLengthMeasure(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "HorizontalLength");
+	CopyNonNegativeLengthMeasure(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "HorizontalLength");
 	CopyLengthMeasure(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartCantLeft");
 	CopyLengthMeasureOPTIONAL(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndCantLeft");
 	CopyLengthMeasure(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartCantRight");
@@ -1971,7 +1971,21 @@ void	CompareMirror(
 				FindRepresentation(mirrorModel, mirrorIfcAlignmentSegmentInstance, &mirrorReprAlignmentSegmentInstanceI, &mirrorReprAlignmentSegmentInstanceII);
 
 				if (reprAlignmentSegmentInstanceI == 0) {
-					assert__error(enum_error::ALIGNMENT_SEGMENT_MISSES_GEOMETRY_VA, ifcAlignmentSegmentInstance);
+					bool	isLastItemThatCanBeIgnored = false;
+					if (i == noSegmentInstances - 1) {
+						SdaiInstance	ifcAlignmentVerticalSegmentInstance = 0;
+						sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, &ifcAlignmentVerticalSegmentInstance);
+						if (ifcAlignmentVerticalSegmentInstance && sdaiGetInstanceType(ifcAlignmentVerticalSegmentInstance) == sdaiGetEntity(model, "IfcAlignmentVerticalSegment")) {
+							double	horizontalLength = 0.;
+							if (sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength) && horizontalLength == 0.) {
+								isLastItemThatCanBeIgnored = true;
+							}
+						}
+					}
+
+					if (!isLastItemThatCanBeIgnored) {
+						assert__error(enum_error::ALIGNMENT_SEGMENT_MISSES_GEOMETRY_VA, ifcAlignmentSegmentInstance);
+					}
 				}
 				else {
 					int_t	index = GetIndex(model, reprV, reprAlignmentSegmentInstanceI),
