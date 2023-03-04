@@ -121,6 +121,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 mostRecentendCantLeft    = 0.,
                 mostRecentendCantRight   = 0.;
 
+        ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+
         for (int_t i = 0; i < noSegmentInstances; i++) {
             int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
@@ -234,9 +236,9 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 matrix._43 = 0.;
 
                 if (horizontalLength) {
-                    matrix._11 = horizontalLength;
+                    matrix._11 =  horizontalLength;
                     matrix._12 = (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.;
-                    matrix._13 = 0.;
+                    matrix._13 =  0.;
                     ___Vec3Normalize((___VECTOR3*) &matrix._11);
                 }
                 else {
@@ -245,10 +247,10 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                     matrix._13 = 0.;
                 }
 
-                matrix._21 = -matrix._12;
-                matrix._22 = matrix._11;
+                matrix._21 = - matrix._12;
+                matrix._22 =   matrix._11;
 
-                double  _factor = -(startCantLeft - startCantRight);
+                double  _factor = - (startCantLeft - startCantRight);
                 matrix._31 = - _factor * matrix._12;
                 matrix._32 = _factor * matrix._11;
                 matrix._33 = railHeadDistance;
@@ -733,6 +735,46 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
                 }
 
                 sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+
+#ifdef _DEBUG
+                ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
+                            endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+                ___GetBorderPoints(
+                        ifcCurveSegmentInstance,
+                        sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE"),
+                        &startPnt,
+                        &endPnt
+                    );
+//                ...
+double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
+
+                assert(startPnt.point.x == matrix._41 &&
+                       startPnt.point.y == matrix._42 &&
+                       startPnt.point.z == matrix._43);
+
+                ___VECTOR3  tangent = {
+                                    matrix._11,
+                                    matrix._12,
+                                    0.
+                                };
+                assert(matrix._13 == 0.);
+
+                assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.0000000001 &&
+                       std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
+                       startPnt.tangent.z == 0.);
+
+                if (i) {
+                    assert((std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.001) &&
+                            std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.001) &&
+                            startPnt.point.z == previousEndPnt.point.z));
+
+/*                    assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.0005) &&
+                           std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.0005) &&
+                           startPnt.tangent.z == previousEndPnt.tangent.z); //  */
+                }
+
+                previousEndPnt = endPnt;
+#endif // _DEBUG
             }
         }
 
@@ -761,8 +803,8 @@ static  inline  int_t   ___CreateSegmentedReferenceCurve__alignmentCant(
 
             double  _factor = -(startCantLeft - startCantRight);
             matrix._31 = - _factor * matrix._12;
-            matrix._32 = _factor * matrix._11;
-            matrix._33 = railHeadDistance;
+            matrix._32 =   _factor * matrix._11;
+            matrix._33 =   railHeadDistance;
             ___Vec3Normalize((___VECTOR3*) &matrix._31);
 
             ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);

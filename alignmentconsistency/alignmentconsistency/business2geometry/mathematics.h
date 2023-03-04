@@ -38,6 +38,7 @@ struct	___POINT4D {
 	___VECTOR3		point;
 	___VECTOR3		tangent;
 	___VECTOR3		normal;
+	double			direction__DERIVED;
 };
 
 static	inline	bool	___LinesIntersect(

@@ -123,7 +123,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 							)
 {
 #ifdef _DEBUG
-	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
+//	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
 #endif // _DEBUG
 
 	
@@ -230,6 +230,8 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 						point4D->tangent.z = 0.;
 					}
 				}
+
+				point4D->direction__DERIVED = atan2(point4D->tangent.y, point4D->tangent.x);
 			}
 			else {
 				assert(false);

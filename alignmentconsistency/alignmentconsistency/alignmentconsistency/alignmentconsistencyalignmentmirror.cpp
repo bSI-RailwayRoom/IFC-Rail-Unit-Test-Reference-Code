@@ -330,23 +330,23 @@ void	assert__error(
 			)
 {
 	switch (myError) {
-		case  enum_error::CANT_SEGMENT_DISTANCE:
-			AddIssue(2, 2, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
-			break;
 		case  enum_error::HORIZONTAL_SEGMENT_DISTANCE:
 			AddIssue(2, 0, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::VERTICAL_SEGMENT_DISTANCE:
 			AddIssue(2, 1, (char*) "Distance between (continues 0th order) end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
-		case  enum_error::CANT_SEGMENT_TANGENT_DEVIATION:
-			AddIssue(2, 5, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+		case  enum_error::CANT_SEGMENT_DISTANCE:
+			AddIssue(2, 2, (char*)"Distance between (continues 0th order) end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION:
 			AddIssue(2, 3, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION:
 			AddIssue(2, 4, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+			break;
+		case  enum_error::CANT_SEGMENT_TANGENT_DEVIATION:
+			AddIssue(2, 5, (char*)"Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		default:
 			assert(false);

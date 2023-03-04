@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+#include <string.h>
 
 #include "generic.h"
 #include "spiral.h"
@@ -21,6 +23,16 @@ static	const	double		___Pi = 3.14159265358979323846;
 extern  int_t   horizontalAlignmentParentCurveI, horizontalAlignmentParentCurveII;
 #endif // _DEBUG
 
+
+inline  static  char    * copystr(
+                                char    * in
+                            )
+{
+    size_t  len = strlen(in);
+    char    * out = new char[len + 1];
+    memcpy(out, in, len + 1);
+    return  out;
+}
 
 inline  static  int_t   ___GetAlignmentCant(
                                 int_t   model,
@@ -95,7 +107,7 @@ static  inline  double   GetCantStart(
         delete[] segmentInstances;
     }
 
-    assert(false);
+ ///   assert(false);
     return  0.;
 }
 
@@ -227,7 +239,7 @@ static  inline  double   GetCantEnd(
         delete[] segmentInstances;
     }
 
-    assert(false);
+///    assert(false);
     return  0.;
 }
 
@@ -377,6 +389,8 @@ static  inline  int_t   ___CreateCompositeCurve__alignmentHorizontal(
 
 #ifdef _DEBUG
         ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+
+        char    * previousPredefinedType = nullptr;
 #endif // _DEBUG
 
         double  compositeCurveLength = 0.;
@@ -493,6 +507,7 @@ segmentLength = std::fabs(segmentLength);
                     myMatrix._42 = myOffset.y;
                     assert(myOffset.z == 0.);
 
+//radiusOfCurvature = - radiusOfCurvature;
                     int_t   ifcCircularArcParentCurve =
                                 ___CreateCircleInstance(
                                         model,
@@ -520,6 +535,8 @@ segmentLength = std::fabs(segmentLength);
                         segmentLength = segmentLength / std::fabs(radiusOfCurvature);
                     }
 
+//segmentLength = -segmentLength;
+
                     //
                     //  SegmentLength
                     //
@@ -531,6 +548,16 @@ segmentLength = std::fabs(segmentLength);
                     double  startRadiusOfCurvature = 0., endRadiusOfCurvature = 0.;
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartRadiusOfCurvature", sdaiREAL, &startRadiusOfCurvature);
                     sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "EndRadiusOfCurvature", sdaiREAL, &endRadiusOfCurvature);
+
+                    if (std::fabs(startRadiusOfCurvature) + std::fabs(endRadiusOfCurvature) > 500 && std::fabs(startRadiusOfCurvature - endRadiusOfCurvature) < 0.5)
+                        predefinedType = (char*) "VIENNESEBEND";
+
+//double  tmp = startRadiusOfCurvature;
+//startRadiusOfCurvature = endRadiusOfCurvature;
+//endRadiusOfCurvature = tmp;
+//segmentLength = - segmentLength;
+//startRadiusOfCurvature = - startRadiusOfCurvature;
+//endRadiusOfCurvature = - endRadiusOfCurvature;
 
                     double  factor = 
                                   (endRadiusOfCurvature ? segmentLength / endRadiusOfCurvature : 0.)
@@ -592,6 +619,7 @@ assert(segmentLength > 0. && factor * sign > 0.);
                                 ___CreateClothoidInstance(
                                         model,
                                         linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+//                                        nullptr //   &myMatrix
                                         &myMatrix
                                     );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
@@ -1209,15 +1237,21 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                        startPnt.tangent.z == 0.);
 
                 if (i) {
-                    assert(std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.000001) &&
-                           std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.000001) &&
-                           startPnt.point.z == previousEndPnt.point.z);
+                    assert(___equals(predefinedType,         "VIENNESEBEND") ||
+                           ___equals(previousPredefinedType, "VIENNESEBEND") ||
+                           (std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.001) &&
+                            std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.001) &&
+                            startPnt.point.z == previousEndPnt.point.z));
 
-                    assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.00001) &&
-                           std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.00001) &&
-                           startPnt.tangent.z == previousEndPnt.tangent.z); //  */
+                    assert(___equals(predefinedType,         "VIENNESEBEND") || 
+                           ___equals(previousPredefinedType, "VIENNESEBEND") ||
+                           (___equals(predefinedType, "LINE") && ___equals(previousPredefinedType, "LINE")) ||
+                           (std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.0005) &&
+                            std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.0005) &&
+                            startPnt.tangent.z == previousEndPnt.tangent.z)); //  */
                 }
 
+                previousPredefinedType = copystr(predefinedType);
                 previousEndPnt = endPnt;
 #endif // _DEBUG
 

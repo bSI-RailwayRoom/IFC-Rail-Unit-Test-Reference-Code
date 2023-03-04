@@ -582,7 +582,8 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
                     heightDeviation = refDirection.x ? refDirection.y * horizontalLength / refDirection.x : 0.;
 
-                    if (horizontalLength) {
+//                    if (horizontalLength) {
+                    if (true) {
                         int_t   ifcLineParentCurve =
                                     ___CreateLineInstance(
                                             model,
@@ -599,7 +600,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         double  segmentLength = horizontalLength * std::sqrt(1. + startGradient__ * startGradient__);
-                        assert(segmentLength > 0.);
+                        assert(segmentLength >= 0.);
 
                         //
                         //  SegmentLength
