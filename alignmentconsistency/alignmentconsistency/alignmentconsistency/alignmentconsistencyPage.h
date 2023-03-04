@@ -360,13 +360,15 @@ size_t	WriteFooter(char * fpc)
 }
 
 static	inline	char	* GetPage(
-								int_t	model
+								int_t	model,
+								double	absoluteEpsilon,
+								double	relativeEpsilon
 							)
 {
 	size_t	len;
 
-double	absoluteEpsilon = 0.0001,
-		relativeEpsilon = 0.0001;
+//double	absoluteEpsilon = 0.0001,
+//		relativeEpsilon = 0.0001;
 char	ifcFileName[19] = "test-file-name.ifc";
 
 	int		issueCnt = CheckConsistencyAlignment((void*) model, relativeEpsilon);

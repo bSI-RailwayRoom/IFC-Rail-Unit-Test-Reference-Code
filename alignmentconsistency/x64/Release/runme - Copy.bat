@@ -1,4 +1,4 @@
-CheckAlignmentCMD.exe "out.ifc" "testout.html" 0.0001 0.0001
+CheckAlignmentCMD.exe "out.ifc" "testout.html" 0.001 0.001
 
 
 

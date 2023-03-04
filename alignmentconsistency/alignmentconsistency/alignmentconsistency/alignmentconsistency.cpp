@@ -187,15 +187,19 @@ wchar_t	DECL * STDC	GetGroupDescriptionW(
 }
 
 char	DECL * STDC	GetPageC(
+							double	absoluteEpsilon,
+							double	relativeEpsilon
 						)
 {
-	return	GetPage(AC_MODEL);
+	return	GetPage(AC_MODEL, absoluteEpsilon, relativeEpsilon);
 }
 
 wchar_t	DECL * STDC	GetPageW(
+							double	absoluteEpsilon,
+							double	relativeEpsilon
 						)
 {
-	char	* rValue = GetPageC();
+	char	* rValue = GetPageC(absoluteEpsilon, relativeEpsilon);
 	if (rValue) {
 		size_t	len = strlen(rValue);
 		wchar_t	* rValueW = new wchar_t[len + 1];

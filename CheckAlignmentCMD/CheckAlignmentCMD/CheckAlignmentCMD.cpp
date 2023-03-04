@@ -247,7 +247,7 @@ int main(int argc, char* argv[])
 			FILE	* fp = nullptr;
 			fopen_s(&fp, argv[2], "w");
 			if (fp) {
-				fprintf(fp, GetPageC());
+				fprintf(fp, GetPageC(absoluteEpsilon, relativeEpsilon));
 //				WriteHeader(fp, argv[1], issueCnt, absoluteEpsilon, relativeEpsilon);
 
 //				WriteBody(fp, argv[1], issueCnt, absoluteEpsilon, relativeEpsilon);

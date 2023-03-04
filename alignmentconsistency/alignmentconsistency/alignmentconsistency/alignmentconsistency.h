@@ -82,9 +82,13 @@ wchar_t	DECL * STDC	GetGroupDescriptionW(
 						);
 
 char	DECL * STDC	GetPageC(
+							double	absoluteEpsilon,
+							double	relativeEpsilon
 						);
 
 wchar_t	DECL * STDC	GetPageW(
+							double	absoluteEpsilon,
+							double	relativeEpsilon
 						);
 
 
