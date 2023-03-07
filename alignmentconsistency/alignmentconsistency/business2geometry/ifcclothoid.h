@@ -18,9 +18,7 @@ static	inline	int_t   ___CreateClothoidInstance(
 {
     int_t	ifcClothoidInstance = sdaiCreateInstanceBN(model, "IFCCLOTHOID");
 
-    if (matrix) {
-        sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
-    }
+    sdaiPutAttrBN(ifcClothoidInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 
     sdaiPutAttrBN(ifcClothoidInstance, "ClothoidConstant", sdaiREAL, &linearTerm);
 

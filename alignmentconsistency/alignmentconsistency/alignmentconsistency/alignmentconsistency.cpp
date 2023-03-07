@@ -28,6 +28,8 @@
 #endif
 
 
+double	absEpsilon = 0.001;
+
 extern	int_t	myIssueCnt;
 extern	char	** myIssues;
 extern	int		* myIssuesGroup;
@@ -191,6 +193,8 @@ char	DECL * STDC	GetPageC(
 							double	relativeEpsilon
 						)
 {
+	absEpsilon = absoluteEpsilon;
+
 	return	GetPage(AC_MODEL, absoluteEpsilon, relativeEpsilon);
 }
 
@@ -199,6 +203,8 @@ wchar_t	DECL * STDC	GetPageW(
 							double	relativeEpsilon
 						)
 {
+	absEpsilon = absoluteEpsilon;
+
 	char	* rValue = GetPageC(absoluteEpsilon, relativeEpsilon);
 	if (rValue) {
 		size_t	len = strlen(rValue);

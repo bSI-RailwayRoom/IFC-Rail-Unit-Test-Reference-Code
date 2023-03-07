@@ -12,6 +12,7 @@ static	inline	char	* GetGroupText(
 	//	"IFC Schema Validation Issues (inconsistency against the latest IFC4x3 schema)"
 	//		"Mandatory Attribute Missing"
 	//		"REAL value boundary issues"
+	//		"REAL value derived issues"
 	//		"Incorrect ENUMERATION values"
 	// 	    "File schema definition"
 	//
@@ -48,13 +49,17 @@ static	inline	char	* GetGroupText(
 								(char*) "Check if the model misses mandatory attributes according to the IFC schema";
 				case  1:
 					return  isName ?
+								(char*) "REAL value derived issues" :
+								(char*) "Check if the model has real value that is calculated incorrectly";
+				case  2:
+					return  isName ?
 								(char*) "REAL value boundary issues" :
 								(char*) "Check if the model has real value attributes exceeds the boundary defined in the schema";
-				case  2:
+				case  3:
 					return  isName ?
 								(char*) "Incorrect ENUMERATION values" :
 								(char*) "Check if the model has incorrect ENUMERATION values according to the IFC schema";
-				case  3:
+				case  4:
 					return  isName ?
 								(char*) "File schema definition" :
 								(char*) "Check if the file schema is not defined correctly";

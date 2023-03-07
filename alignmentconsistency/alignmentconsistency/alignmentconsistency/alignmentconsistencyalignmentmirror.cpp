@@ -48,8 +48,9 @@ enum class enum_error : unsigned char
 {
 	MANDATORY_ATTRIBUTE,										//		0	0
 	REAL_BOUNDARY_ISSUE,										//		0	1
-	UNKNOWN_ENUM_VALUE,											//		0	2
-	UNKNOWN_SCHEMA,												//		0	3
+	REAL_DERIVED_ISSUE,											//		0	2
+	UNKNOWN_ENUM_VALUE,											//		0	3
+	UNKNOWN_SCHEMA,												//		0	4
 	HORIZONTAL_ALIGNMENT_CONNECTION,							//		1	0
 	ALIGNMENT_HORIZONTAL_MISSING,								//		1	0
 	VERTICAL_ALIGNMENT_CONNECTION,								//		1	1
@@ -86,6 +87,7 @@ enum class enum_error : unsigned char
 //	"IFC Schema Validation Issues (inconsistency against the latest IFC4x3 schema)"
 //		"Mandatory Attribute Missing"
 //		"REAL value boundary issues"
+//		"REAL value derived issues"
 //		"Incorrect ENUMERATION values"
 // 		"File schema definition"
 //
@@ -120,6 +122,7 @@ void	assert__error(
 			AddIssue(0, 1, (char*) "IFC File not Loaded");
 			AddIssue(0, 2, (char*) "IFC File not Loaded");
 			AddIssue(0, 3, (char*) "IFC File not Loaded");
+			AddIssue(0, 4, (char*) "IFC File not Loaded");
 
 			AddIssue(1, 0, (char*) "IFC File not Loaded");
 			AddIssue(1, 1, (char*) "IFC File not Loaded");
@@ -142,6 +145,7 @@ void	assert__error(
 			AddIssue(0, 1, (char*) "IFC Engine outdated, use a more recent version");
 			AddIssue(0, 2, (char*) "IFC Engine outdated, use a more recent version");
 			AddIssue(0, 3, (char*) "IFC Engine outdated, use a more recent version");
+			AddIssue(0, 4, (char*) "IFC Engine outdated, use a more recent version");
 
 			AddIssue(1, 0, (char*) "IFC Engine outdated, use a more recent version");
 			AddIssue(1, 1, (char*) "IFC Engine outdated, use a more recent version");
@@ -172,7 +176,7 @@ void	assert__error(
 {
 	switch (myError) {
 		case  enum_error::UNKNOWN_SCHEMA:
-			AddIssue(0, 3, (char*) "Schema expected to be defined as 'IFC4x3_ADD1', currently defined as ", argument);
+			AddIssue(0, 4, (char*) "Schema expected to be defined as 'IFC4x3_ADD1', currently defined as ", argument);
 			break;
 		default:
 			assert(false);
@@ -297,13 +301,28 @@ void	assert__error(
 		case  enum_error::REAL_BOUNDARY_ISSUE:
 			AddIssue(0, 1, (char*) "Value of real value out of scope, attribute: ", ifcInstance, attributeName);
 			break;
+		case  enum_error::REAL_DERIVED_ISSUE:
+			AddIssue(0, 2, (char*) "Derived value of real value incorrect, attribute: ", ifcInstance, attributeName);
+			break;
 		case  enum_error::UNKNOWN_ENUM_VALUE:
-			AddIssue(0, 2, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName);
+			AddIssue(0, 3, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName);
 			break;
 		default:
 			assert(false);
 			break;
 	}
+}
+
+void	assert__error__DERIVED_ISSUE(
+				int_t		ifcInstance,
+				char		* attributeName
+			)
+{
+	assert__error(
+			enum_error::REAL_DERIVED_ISSUE,
+			ifcInstance,
+			attributeName
+		);
 }
 
 void	assert__error(

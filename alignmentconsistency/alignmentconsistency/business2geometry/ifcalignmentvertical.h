@@ -6,6 +6,17 @@
 #include "ifcpolynomialcurve.h"
 #include "ifcproductdefinitionshape.h"
 
+#include "../alignmentconsistency/alignmentconsistencyalignmentmirror.h"
+
+
+extern  double	absEpsilon;
+
+
+void	assert__error__DERIVED_ISSUE(
+				int_t		ifcInstance,
+				char		* attributeName
+			);
+
 
 enum class enum_segment_type : unsigned char
 {
@@ -282,10 +293,15 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                             endAngle = std::atan(endGradient__);
                     assert(startAngle > -___Pi && startAngle < ___Pi && endAngle > -___Pi && endAngle < ___Pi);
 
-                    double  radius;
-                    ___VECTOR2 origin;
+                    if (radiusOfCurvature &&
+                        std::fabs(radiusOfCurvature - pRadiusOfCurvature[i]) > absEpsilon) {
+                        assert__error__DERIVED_ISSUE(ifcCurveSegmentInstance, "RadiusOfCurvature");
+                    }
+
+                    double      radius;
+                    ___VECTOR2  origin;
                     if (startAngle < endAngle) {
- ///                       assert(radiusOfCurvature > 0.);
+ ///                       assert(radiusOfCurvature < 0.);
                         //
                         //  Ox = -sin( startAngle ) * radius         Ox = horizontalLength - sin( endAngle ) * radius
                         //  Oy = cos( startAngle ) * radius          Oy = offsetY + cos( endAngle ) * radius
@@ -315,7 +331,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     }
                     else {
                         assert(startAngle > endAngle);
- ///                       assert(radiusOfCurvature < 0.);
+///                        assert(radiusOfCurvature > 0.);
                         //
                         //  Ox = sin( startAngle ) * radius         Ox = horizontalLength + sin( endAngle ) * radius
                         //  Oy = -cos( startAngle ) * radius        Oy = offsetY - cos( endAngle ) * radius
