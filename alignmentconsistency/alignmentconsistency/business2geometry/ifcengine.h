@@ -947,6 +947,16 @@ int_t			DECL STDC	engiGetAttrInverseBN(
 									const char				* attributeName
 								);
 
+int_t			DECL STDC	engiGetAttrDerived(
+									SdaiEntity				entity,
+									SdaiAttr				attribute
+								);
+
+int_t			DECL STDC	engiGetAttrDerivedBN(
+									SdaiEntity				entity,
+									const char				* attributeName
+								);
+
 //
 //		engiGetAttrDomain                                       (http://rdf.bg/ifcdoc/CP64/engiGetAttrDomain.html)
 //				SdaiAttr				attribute							IN

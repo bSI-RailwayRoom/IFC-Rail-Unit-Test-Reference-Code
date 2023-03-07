@@ -1,0 +1,22 @@
+CheckAlignmentCMD.exe "out.ifc" "testout.html" 0.001 0.001
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
