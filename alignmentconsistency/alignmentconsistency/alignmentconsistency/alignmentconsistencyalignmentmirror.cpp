@@ -66,12 +66,16 @@ enum class enum_error : unsigned char
 	CANT_SEGMENT_TANGENT_DEVIATION,								//		2	5
 	ALIGNMENT_MISSING_GEOMETRY,									//		3	0
 	ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,						//		3	0
+	ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,							//		3	0
 	HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY,						//		3	1
 	HORIZONTAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,				//		3	1
+	HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,				//		3	1
 	VERTICAL_ALIGNMENT_MISSING_GEOMETRY,						//		3	2
 	VERTICAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,				//		3	2
+	VERTICAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,				//		3	2
 	CANT_ALIGNMENT_MISSING_GEOMETRY,							//		3	3
 	CANT_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,					//		3	3
+	CANT_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,					//		3	3
 	ALIGNMENT_SEGMENT_INCORRECT_ORDER_BOUNDED_CURVE,			//		3	4
 	ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE,	//		3	4
 	ALIGNMENT_SEGMENT_INCONSISTENT_ATTRIBUTE,					//		3	4
@@ -205,14 +209,26 @@ void	assert__error(
 		case  enum_error::ALIGNMENT_MISSING_GEOMETRY:
 			AddIssue(3, 0, (char*) "Cannot find expected geometry for Alignment (GradientCurve)", ifcInstance);
 			break;
+		case  enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY:
+			AddIssue(3, 0, (char*) "Found unexpected geometry for Alignment (expected to be empty)", ifcInstance);
+			break;
 		case  enum_error::HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY:
 			AddIssue(3, 1, (char*) "Cannot find expected geometry for Horizontal Alignment (IfcCompositeCurve expected)", ifcInstance);
+			break;
+		case  enum_error::HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY:
+			AddIssue(3, 1, (char*) "Found unexpected geometry for Horizontal Alignment (expected to be empty)", ifcInstance);
 			break;
 		case  enum_error::VERTICAL_ALIGNMENT_MISSING_GEOMETRY:
 			AddIssue(3, 2, (char*) "Cannot find expected geometry for Vertical Alignment (IfcGradientCurve expected)", ifcInstance);
 			break;
+		case  enum_error::VERTICAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY:
+			AddIssue(3, 2, (char*) "Found unexpected geometry for Vertical Alignment (expected to be empty)", ifcInstance);
+			break;
 		case  enum_error::CANT_ALIGNMENT_MISSING_GEOMETRY:
 			AddIssue(3, 3, (char*) "Cannot find expected geometry for Cant Alignment (IfcSegmentedReferenceCurve expected)", ifcInstance);
+			break;
+		case  enum_error::CANT_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY:
+			AddIssue(3, 3, (char*) "Found unexpected geometry for Cant Alignment (expected to be empty)", ifcInstance);
 			break;
 		case  enum_error::ALIGNMENT_SEGMENT_MISSES_GEOMETRY_HA:
 			AddIssue(3, 4, (char*) "Cannot find expected geometry for Alignment Segment [Horizontal Alignment] (IfcCurveSegment expected)", ifcInstance);
@@ -304,9 +320,9 @@ void	assert__error(
 		case  enum_error::REAL_DERIVED_ISSUE:
 			AddIssue(0, 2, (char*) "Derived value of real value incorrect, attribute: ", ifcInstance, attributeName);
 			break;
-		case  enum_error::UNKNOWN_ENUM_VALUE:
-			AddIssue(0, 3, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName);
-			break;
+//		case  enum_error::UNKNOWN_ENUM_VALUE:
+//			AddIssue(0, 3, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName);
+//			break;
 		default:
 			assert(false);
 			break;
@@ -315,14 +331,12 @@ void	assert__error(
 
 void	assert__error__DERIVED_ISSUE(
 				int_t		ifcInstance,
-				char		* attributeName
+				char		* attributeName,
+                double      foundValue,
+                double      expectedValue
 			)
 {
-	assert__error(
-			enum_error::REAL_DERIVED_ISSUE,
-			ifcInstance,
-			attributeName
-		);
+	AddIssue(0, 3, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName, foundValue, expectedValue);
 }
 
 void	assert__error(
@@ -1242,10 +1256,11 @@ int_t	CreateMirror(
 
 void	EnrichMirror(
 				int_t	mirrorModel,
+				int_t	mirrorIfcAlignmentInstance,
 				int_t	ifcAlignmentInstance
 			)
 {
-	AlignmentGenerateGeometry(mirrorModel, ifcAlignmentInstance);
+	AlignmentGenerateGeometry(mirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 }
 
 
@@ -1785,6 +1800,26 @@ void	CompareMirror(
 			mirrorReprH = FindRepresentation(mirrorModel, mirrorIfcHorizontalAlignmentInstance),
 			mirrorReprV = FindRepresentation(mirrorModel, mirrorIfcVerticalAlignmentInstance),
 			mirrorReprC = FindRepresentation(mirrorModel, mirrorIfcCantAlignmentInstance);
+
+	if (reprA && mirrorReprA == 0) {
+		assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcAlignmentInstance);
+		reprA = 0;
+	}
+
+	if (reprH && mirrorReprH == 0) {
+		assert__error(enum_error::HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcHorizontalAlignmentInstance);
+		reprH = 0;
+	}
+
+	if (reprV && mirrorReprV == 0) {
+		assert__error(enum_error::VERTICAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcVerticalAlignmentInstance);
+		reprV = 0;
+	}
+
+	if (reprC && mirrorReprC == 0) {
+		assert__error(enum_error::CANT_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcCantAlignmentInstance);
+		reprC = 0;
+	}
 
 	if (ifcVerticalAlignmentInstance) {
 		if (reprV == 0 && mirrorReprV == 0) {
@@ -2569,7 +2604,8 @@ void	CheckGeometrySegments(
 void	CheckGeometry(
 				int_t	model,
 				int_t	ifcAlignmentInstance,
-				bool	isMirror
+				bool	isMirror,
+				int_t	originalIfcAlignmentInstance = 0
 			)
 {
 	{
@@ -2617,13 +2653,15 @@ void	CheckGeometry(
 
 void	CheckMirrorGeometry(
 				int_t	mirrorModel,
-				int_t	mirrorIfcAlignmentInstance
+				int_t	mirrorIfcAlignmentInstance,
+				int_t	originalIfcAlignmentInstance
 			)
 {
 	CheckGeometry(
 			mirrorModel,
 			mirrorIfcAlignmentInstance,
-			true
+			true,
+			originalIfcAlignmentInstance
 		);
 }
 
@@ -2799,9 +2837,9 @@ int_t	CheckConsistencyAlignment__internal(
                 mirrorIfcAlignmentInstance = 0;
                 engiGetAggrElement(sdaiGetEntityExtentBN(myMirrorModel, "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
 
-                EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance);
+                EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 
-                CheckMirrorGeometry(myMirrorModel, mirrorIfcAlignmentInstance);
+                CheckMirrorGeometry(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 
 //#ifdef _DEBUG
 //sdaiSaveModelBN(myMirrorModel, (char*) "tmp002.ifc");

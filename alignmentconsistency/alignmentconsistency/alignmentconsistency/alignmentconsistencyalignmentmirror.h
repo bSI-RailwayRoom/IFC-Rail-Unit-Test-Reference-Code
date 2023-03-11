@@ -14,6 +14,7 @@ int_t	CreateMirror(
 
 void	EnrichMirror(
 				int_t	mirrorModel,
+				int_t	mirrorIfcAlignmentInstance,
 				int_t	ifcAlignmentInstance
 			);
 
@@ -27,5 +28,6 @@ void	CompareMirror(
 
 void	CheckMirrorGeometry(
 				int_t	mirrorModel,
-				int_t	mirrorIfcAlignmentInstance
+				int_t	mirrorIfcAlignmentInstance,
+				int_t	ifcAlignmentInstance
 			);

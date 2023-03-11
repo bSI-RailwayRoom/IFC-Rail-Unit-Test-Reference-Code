@@ -46,6 +46,16 @@ void	AddIssue(
 				int		group,
 				int		subGroup,
 				char	* issueText,
+				int_t	ifcInstance,
+				char	* itemText,
+				double	givenValue,
+				double	expectedValue
+			);
+
+void	AddIssue(
+				int		group,
+				int		subGroup,
+				char	* issueText,
 				int_t	ifcInstanceI,
 				int_t	ifcInstanceII,
 				char	* itemText

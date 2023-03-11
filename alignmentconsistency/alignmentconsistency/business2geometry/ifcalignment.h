@@ -14,7 +14,8 @@ extern  int_t   reusedIfcGeometricRepresentationContextInstance;
 
 static  inline  int_t    AlignmentGenerateGeometry(
                                 int_t   model,
-                                int_t   ifcAlignmentInstance
+                                int_t   mirrorIfcAlignmentInstance,
+                                int_t   originalIfcAlignmentInstance
                             )
 {
     int_t   * ifcGeometricRepresentationContextInstances = sdaiGetEntityExtentBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT"),
@@ -26,19 +27,19 @@ static  inline  int_t    AlignmentGenerateGeometry(
     bool    hasAlignmentHorizontal =
                 (___GetAlignmentHorizontal(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         nullptr
                     )) ? true : false,
             hasAlignmentVertical =
                 (___GetAlignmentVertical(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         nullptr
                     )) ? true : false,
             hasAlignmentCant =
                 (___GetAlignmentCant(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         nullptr
                     )) ? true : false;
 
@@ -47,10 +48,10 @@ static  inline  int_t    AlignmentGenerateGeometry(
     int_t   ifcRepresentationItem_compositeCurveInstance =
                 ___CreateCompositeCurve__alignmentHorizontal(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         ___GetAlignmentHorizontal(
                                 model,
-                                ifcAlignmentInstance,
+                                mirrorIfcAlignmentInstance,
                                 nullptr
                             ),
                         ___GetPlaneAngleUnitConversionFactor(
@@ -66,7 +67,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
         sdaiGetAttrBN(
                 ___GetAlignmentHorizontal(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         nullptr
                     ),
                 "StartDistAlong",
@@ -79,10 +80,17 @@ static  inline  int_t    AlignmentGenerateGeometry(
                             model,
                             ___GetAlignmentVertical(
                                     model,
-                                    ifcAlignmentInstance,
+                                    mirrorIfcAlignmentInstance,
                                     nullptr
                                 ),
-                            startDistAlongHorizontalAlignment
+                            startDistAlongHorizontalAlignment,
+                            originalIfcAlignmentInstance ?
+                                ___GetAlignmentVertical(
+                                        engiGetEntityModel(sdaiGetInstanceType(originalIfcAlignmentInstance)),
+                                        originalIfcAlignmentInstance,
+                                        nullptr
+                                    ) :
+                                0
                         );
 
         if (ifcRepresentationItem_gradientCurveInstance) {
@@ -99,7 +107,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
             sdaiPutAttrBN(
                     ___GetAlignmentVertical(
                             model,
-                            ifcAlignmentInstance,
+                            mirrorIfcAlignmentInstance,
                             nullptr
                         ),
                     "ObjectPlacement",
@@ -133,7 +141,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                 model,
                                 ___GetAlignmentCant(
                                         model,
-                                        ifcAlignmentInstance,
+                                        mirrorIfcAlignmentInstance,
                                         nullptr
                                     ),
                                 startDistAlongHorizontalAlignment
@@ -155,7 +163,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
             sdaiPutAttrBN(
                     ___GetAlignmentCant(
                             model,
-                            ifcAlignmentInstance,
+                            mirrorIfcAlignmentInstance,
                             nullptr
                         ),
                     "ObjectPlacement",
@@ -166,11 +174,11 @@ static  inline  int_t    AlignmentGenerateGeometry(
                 );
 
             if (ifcRepresentationItem_segmentedReferenceCurveInstance) {
-                assert(___GetAlignmentCant(model, ifcAlignmentInstance, nullptr));
+                assert(___GetAlignmentCant(model, mirrorIfcAlignmentInstance, nullptr));
                 sdaiPutAttrBN(
                         ___GetAlignmentCant(
                                 model,
-                                ifcAlignmentInstance,
+                                mirrorIfcAlignmentInstance,
                                 nullptr
                             ),
                         "Representation",
@@ -206,7 +214,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
     //  Add geometry for IfcAlignment
     //
     sdaiPutAttrBN(
-            ifcAlignmentInstance,
+            mirrorIfcAlignmentInstance,
             "ObjectPlacement",
             sdaiINSTANCE,
             (void*) ___CreateObjectPlacement(
@@ -214,9 +222,9 @@ static  inline  int_t    AlignmentGenerateGeometry(
                         )
         );
     if (ifcRepresentationItem) {
-        assert(ifcAlignmentInstance);
+        assert(mirrorIfcAlignmentInstance);
         sdaiPutAttrBN(
-                ifcAlignmentInstance,
+                mirrorIfcAlignmentInstance,
                 "Representation",
                 sdaiINSTANCE,
                 (void*) ___CreateProductDefinitionShapeInstance(
@@ -233,7 +241,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
     sdaiPutAttrBN(
             ___GetAlignmentHorizontal(
                     model,
-                    ifcAlignmentInstance,
+                    mirrorIfcAlignmentInstance,
                     nullptr
                 ),
             "ObjectPlacement",
@@ -244,11 +252,11 @@ static  inline  int_t    AlignmentGenerateGeometry(
         );
 
     if (ifcRepresentationItem != ifcRepresentationItem_compositeCurveInstance) {
-        assert(___GetAlignmentHorizontal(model, ifcAlignmentInstance, nullptr));
+        assert(___GetAlignmentHorizontal(model, mirrorIfcAlignmentInstance, nullptr));
         sdaiPutAttrBN(
                 ___GetAlignmentHorizontal(
                         model,
-                        ifcAlignmentInstance,
+                        mirrorIfcAlignmentInstance,
                         nullptr
                     ),
                 "Representation",

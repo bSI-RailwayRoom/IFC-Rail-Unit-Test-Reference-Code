@@ -1,0 +1,435 @@
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Roundcube Webmail :: </title>
+<!-- meta ignored -->
+
+    <!-- meta ignored -->
+	
+    <link href="./?_task=utils&amp;_action=modcss&amp;_u=tmp-4c587b2867b0b915aa383cab9f390143.css" rel="stylesheet">
+    <style type="text/css">body { font-family: 'Arial', sans-serif; padding: 10px 40px; }
+        span.time { color: #999; font-style: italic; float: right; }
+        span.step-time { float: right; color: #555; font-size: 0.8em; font-style: italic; }
+        span.success { background-color: #97cc64; padding: 5px; border-radius: 5px; color: #FFF; font-weight: bold; }
+        span.failure { background-color: #fb5a3e; padding: 5px; border-radius: 5px; color: #FFF; font-weight: bold; }
+        p.failure { background-color: #fb5a3e; padding: 5px; border-radius: 5px; color: #fff; }
+        p.unspecified { background-color: #994f00; padding: 5px; border-radius: 5px; color: #fff; }
+        p.skipped { background-color: #8b8d8f; padding: 5px; border-radius: 5px; color: #fff; }
+        p.description { background-color: #eee; border-radius: 5px; padding: 20px; margin-left: auto; margin-right: auto; display: inline-block; font-weight: bold;}
+        li { padding: 10px; font-family: monospace; }
+        li.success { background-color: #b6cca1; color: #333; }
+        li.failure { background-color: #fbb4a8; color: #900; }
+        li.unspecified { background-color: #ffd37f; color: #a30; }
+        li.skipped { background-color: #f5f5f5; color: #333; }
+        li p { margin-bottom: 0px; }
+        footer { color: #999; font-size: 0.8em; }
+        header { text-align: center; }
+        hr { margin: 20px; margin-left: 0px; margin-right: 0px;  border: none; border-top: 1px solid #ccc; }</style>
+
+<link rel="stylesheet" type="text/css" href="skins/elastic/styles/embed.css?s = 1612812581">
+<script type="text/javascript">
+/* <![CDATA[ */
+rcmail.set_env({"orig_task":null});
+/* ]]> */
+</script>
+
+
+</head>
+<body>
+    <!-- header ignored --><!-- meta ignored -->
+        <h1>test-file-name.ifc</h1>
+        <p><strong>2023-03-11 09:45:35 </strong></p>
+        <hr />
+        <span class="failure">Failure</span>
+        Tests passed: <strong>2 / 4</strong> (50%)
+        <br />
+        <p class="description">
+            This checker checks geometry that is defined by alignment segments.<br />
+        </p>
+        <hr />
+    <!-- section ignored -->
+        <h2>IFC schema validation issues</h2>
+        <p> 
+            <span class="failure">Failure</span>
+            Tests passed: <strong>4 / 5</strong> (80%)
+            <span class="time"> 
+            Duration: 0.01s
+            </span> 
+        </p> 
+        <ol> 
+            <li class="success">
+                Mandatory attributes missing
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                REAL value derived issues
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                REAL value boundary issues
+                <span class="step - time">0.01s</span>
+            </li> 
+			<li class="failure">
+                Incorrect ENUMERATION values
+                <span class="step - time">0.01s</span>
+				<p class="failure"> 
+					Assertion Failed: Enumeration value unknow - schema incompatibility, attribute: RadiusOfCurvature given value -5000.0000000000000000, expected value -5000.0833287517762074 - #1905 = IfcAlignmentVerticalSegment( .. ) <br />
+                </p>
+				<p class="failure"> 
+					Assertion Failed: Enumeration value unknow - schema incompatibility, attribute: RadiusOfCurvature given value 5000.0000000000000000, expected value 5000.0833287518107682 - #1917 = IfcAlignmentVerticalSegment( .. ) <br />
+                </p>
+				<p class="failure"> 
+					Assertion Failed: Enumeration value unknow - schema incompatibility, attribute: RadiusOfCurvature given value -5000.0000000000000000, expected value -5000.0833287517762074 - #1905 = IfcAlignmentVerticalSegment( .. ) <br />
+                </p>
+				<p class="failure"> 
+					Assertion Failed: Enumeration value unknow - schema incompatibility, attribute: RadiusOfCurvature given value 5000.0000000000000000, expected value 5000.0833287518107682 - #1917 = IfcAlignmentVerticalSegment( .. ) <br />
+                </p>
+            </li> 
+            <li class="success">
+                File schema definition
+                <span class="step - time">0.01s</span>
+            </li> 
+        </ol> 
+    <!-- section ignored -->
+        <h2>Alignment strucutre issues</h2>
+        <p> 
+            <span class="success">Success</span>
+            Tests passed: <strong>3 / 3</strong> (100%)
+            <span class="time"> 
+            Duration: 0.01s
+            </span> 
+        </p> 
+        <ol> 
+            <li class="success">
+                Alignment horizontal issues
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                Alignment vertical issues
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                Alignment cant inconsistencies
+                <span class="step - time">0.01s</span>
+            </li> 
+        </ol> 
+    <!-- section ignored -->
+        <h2>Alignment continuity issues</h2>
+        <p> 
+            <span class="success">Success</span>
+            Tests passed: <strong>6 / 6</strong> (100%)
+            <span class="time"> 
+            Duration: 0.01s
+            </span> 
+        </p> 
+        <ol> 
+            <li class="success">
+                Alignment horizontal continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000086060770 *** #1825 = IfcAlignmentSegment( .. ) - #1832 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000056073044 *** #1832 = IfcAlignmentSegment( .. ) - #1839 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000037271088 *** #1839 = IfcAlignmentSegment( .. ) - #1846 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000055882386 *** #1846 = IfcAlignmentSegment( .. ) - #1853 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000002910383 *** #1853 = IfcAlignmentSegment( .. ) - #1860 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000039585489 *** #1860 = IfcAlignmentSegment( .. ) - #1867 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000046569767 *** #1867 = IfcAlignmentSegment( .. ) - #1874 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000090803951 *** #1874 = IfcAlignmentSegment( .. ) - #1881 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000086060770 *** #1825 = IfcAlignmentSegment( .. ) - #1832 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000056073044 *** #1832 = IfcAlignmentSegment( .. ) - #1839 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000037271088 *** #1839 = IfcAlignmentSegment( .. ) - #1846 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000055882386 *** #1846 = IfcAlignmentSegment( .. ) - #1853 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000002910383 *** #1853 = IfcAlignmentSegment( .. ) - #1860 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000039585489 *** #1860 = IfcAlignmentSegment( .. ) - #1867 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000046569767 *** #1867 = IfcAlignmentSegment( .. ) - #1874 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (horizontal segments),  *** 0.0000000090803951 *** #1874 = IfcAlignmentSegment( .. ) - #1881 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+            <li class="success">
+                Alignment vertical continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000000000000027 *** #1894 = IfcAlignmentSegment( .. ) - #1900 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000062494790676 *** #1900 = IfcAlignmentSegment( .. ) - #1906 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000000000001141 *** #1906 = IfcAlignmentSegment( .. ) - #1912 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000062494790671 *** #1912 = IfcAlignmentSegment( .. ) - #1918 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000000000000027 *** #1894 = IfcAlignmentSegment( .. ) - #1900 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000062494790676 *** #1900 = IfcAlignmentSegment( .. ) - #1906 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000000000001141 *** #1906 = IfcAlignmentSegment( .. ) - #1912 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (vertical segments),  *** 0.0000062494790671 *** #1912 = IfcAlignmentSegment( .. ) - #1918 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+            <li class="success">
+                Alignment cant continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1930 = IfcAlignmentSegment( .. ) - #1936 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000006253 *** #1936 = IfcAlignmentSegment( .. ) - #1942 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1942 = IfcAlignmentSegment( .. ) - #1948 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000004548 *** #1948 = IfcAlignmentSegment( .. ) - #1954 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000005684 *** #1954 = IfcAlignmentSegment( .. ) - #1960 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000002274 *** #1960 = IfcAlignmentSegment( .. ) - #1966 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1966 = IfcAlignmentSegment( .. ) - #1972 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000003411 *** #1972 = IfcAlignmentSegment( .. ) - #1978 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1930 = IfcAlignmentSegment( .. ) - #1936 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000006253 *** #1936 = IfcAlignmentSegment( .. ) - #1942 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1942 = IfcAlignmentSegment( .. ) - #1948 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000004548 *** #1948 = IfcAlignmentSegment( .. ) - #1954 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000005684 *** #1954 = IfcAlignmentSegment( .. ) - #1960 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000002274 *** #1960 = IfcAlignmentSegment( .. ) - #1966 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1966 = IfcAlignmentSegment( .. ) - #1972 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Distance between (continues 0th order) end of segment I and start of segment II (cant segments),  *** 0.0000000000003411 *** #1972 = IfcAlignmentSegment( .. ) - #1978 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+            <li class="success">
+                Alignment horizontal tangential continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000010646175 *** #1825 = IfcAlignmentSegment( .. ) - #1832 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000011019986 *** #1832 = IfcAlignmentSegment( .. ) - #1839 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000001522468 *** #1839 = IfcAlignmentSegment( .. ) - #1846 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000005779768 *** #1846 = IfcAlignmentSegment( .. ) - #1853 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000005873403 *** #1853 = IfcAlignmentSegment( .. ) - #1860 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000008640231 *** #1860 = IfcAlignmentSegment( .. ) - #1867 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000036094843 *** #1867 = IfcAlignmentSegment( .. ) - #1874 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000034442163 *** #1874 = IfcAlignmentSegment( .. ) - #1881 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000010646175 *** #1825 = IfcAlignmentSegment( .. ) - #1832 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000011019986 *** #1832 = IfcAlignmentSegment( .. ) - #1839 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000001522468 *** #1839 = IfcAlignmentSegment( .. ) - #1846 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000005779768 *** #1846 = IfcAlignmentSegment( .. ) - #1853 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000005873403 *** #1853 = IfcAlignmentSegment( .. ) - #1860 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000008640231 *** #1860 = IfcAlignmentSegment( .. ) - #1867 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000036094843 *** #1867 = IfcAlignmentSegment( .. ) - #1874 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments),  *** 0.0000000034442163 *** #1874 = IfcAlignmentSegment( .. ) - #1881 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+            <li class="success">
+                Alignment vertical tangential continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000121 *** #1894 = IfcAlignmentSegment( .. ) - #1900 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000153 *** #1900 = IfcAlignmentSegment( .. ) - #1906 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000224 *** #1906 = IfcAlignmentSegment( .. ) - #1912 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000025 *** #1912 = IfcAlignmentSegment( .. ) - #1918 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000121 *** #1894 = IfcAlignmentSegment( .. ) - #1900 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000153 *** #1900 = IfcAlignmentSegment( .. ) - #1906 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000224 *** #1906 = IfcAlignmentSegment( .. ) - #1912 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments),  *** 0.0000000000000025 *** #1912 = IfcAlignmentSegment( .. ) - #1918 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+            <li class="success">
+                Alignment cant tangential continuity
+                <span class="step - time">0.01s</span>
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000013 *** #1930 = IfcAlignmentSegment( .. ) - #1936 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1936 = IfcAlignmentSegment( .. ) - #1942 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000050 *** #1942 = IfcAlignmentSegment( .. ) - #1948 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000114 *** #1948 = IfcAlignmentSegment( .. ) - #1954 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000013 *** #1954 = IfcAlignmentSegment( .. ) - #1960 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1960 = IfcAlignmentSegment( .. ) - #1966 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000047 *** #1966 = IfcAlignmentSegment( .. ) - #1972 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000057 *** #1972 = IfcAlignmentSegment( .. ) - #1978 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000013 *** #1930 = IfcAlignmentSegment( .. ) - #1936 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1936 = IfcAlignmentSegment( .. ) - #1942 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000050 *** #1942 = IfcAlignmentSegment( .. ) - #1948 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000114 *** #1948 = IfcAlignmentSegment( .. ) - #1954 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000013 *** #1954 = IfcAlignmentSegment( .. ) - #1960 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000000 *** #1960 = IfcAlignmentSegment( .. ) - #1966 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000047 *** #1966 = IfcAlignmentSegment( .. ) - #1972 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+				<p class="success">
+                    For info: Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments),  *** 0.0000000000000057 *** #1972 = IfcAlignmentSegment( .. ) - #1978 = IfcAlignmentSegment( .. ) <br />
+				</p> 
+            </li> 
+        </ol> 
+    <!-- section ignored -->
+        <h2>Geometrical Content Issue</h2>
+        <p> 
+            <span class="failure">Failure</span>
+            Tests passed: <strong>4 / 5</strong> (80%)
+            <span class="time"> 
+            Duration: 0.01s
+            </span> 
+        </p> 
+        <ol> 
+            <li class="success">
+                Alignment Issues
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                Horizontal Alignment Issues
+                <span class="step - time">0.01s</span>
+            </li> 
+			<li class="failure">
+                Vertical Alignment Issues
+                <span class="step - time">0.01s</span>
+				<p class="failure"> 
+					Assertion Failed: Found unexpected geometry for Vertical Alignment (expected to be empty) - #1889 = IfcAlignmentVertical( .. ) <br />
+                </p>
+				<p class="failure"> 
+					Assertion Failed: Found unexpected geometry for Vertical Alignment (expected to be empty) - #1889 = IfcAlignmentVertical( .. ) <br />
+                </p>
+            </li> 
+            <li class="success">
+                Cant Alignment Issues
+                <span class="step - time">0.01s</span>
+            </li> 
+            <li class="success">
+                Curve Segment Issues
+                <span class="step - time">0.01s</span>
+            </li> 
+        </ol> 
+    <hr/>
+    <!-- footer ignored -->
+        <p>
+            The checker is developed based on <a href="http://rdf.bg/product-list/ifc-engine/" target="_blank" rel="noreferrer">IfcEngine</a>.
+        </p>
+		
+</body>
+</html>
+Íýýýýˆ]…wf

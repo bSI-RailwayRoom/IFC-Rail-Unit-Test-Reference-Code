@@ -54,7 +54,7 @@ char	* CreateInstanceText(
 #ifndef __EMSCRIPTEN__
 		_itoa_s((int) internalGetP21Line(ifcInstance), &txt[1], 255, 10);
 #else
-		sprintf(&txt[1], (char*) "%d", (int)internalGetP21Line(ifcInstance));
+		sprintf(&txt[1], (char*) "%d", (int) internalGetP21Line(ifcInstance));
 #endif
 		size_t i = strlen(txt);
 		txt[i++] = ' ';
@@ -205,6 +205,34 @@ void	AddIssue(
 	char	* ifcInstanceText = CreateInstanceText(ifcInstance);
 	
 	AddIssue__internal(group, subGroup, MergeText(issueText, itemText, (char*) " - ", ifcInstanceText));
+}
+
+void	AddIssue(
+				int		group,
+				int		subGroup,
+				char	* issueText,
+				int_t	ifcInstance,
+				char	* itemText,
+				double	givenValue,
+				double	expectedValue
+			)
+{
+	char	* ifcInstanceText = CreateInstanceText(ifcInstance);
+
+	char	g_buffer[256], * g_cp = &g_buffer[0];
+#ifndef __EMSCRIPTEN__
+	sprintf_s(g_cp, 256, (char*) "%.16f", givenValue);
+#else
+	sprintf(g_cp, (char*) "%.16f", givenValue);
+#endif
+
+	char	e_buffer[256], * e_cp = &e_buffer[0];
+#ifndef __EMSCRIPTEN__
+	sprintf_s(e_cp, 256, (char*) "%.16f", expectedValue);
+#else
+	sprintf(e_cp, (char*) "%.16f", expectedValue);
+#endif
+	AddIssue__internal(group, subGroup, MergeText(issueText, MergeText(itemText, " given value ", g_cp, ", expected value ", e_cp), (char*)" - ", ifcInstanceText));
 }
 
 void	AddIssue(

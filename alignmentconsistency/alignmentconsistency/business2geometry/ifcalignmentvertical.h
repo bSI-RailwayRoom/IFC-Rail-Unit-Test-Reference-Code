@@ -12,9 +12,30 @@
 extern  double	absEpsilon;
 
 
+static  inline  int_t   GetAlignmentSegmentFromVerticalAlignment(int_t ifcVerticalAlignmentInstance, int_t index)
+{
+    SdaiModel   ifcModel = engiGetEntityModel(sdaiGetInstanceType(ifcVerticalAlignmentInstance));
+
+    SdaiAggr ifcRelNestsAGGR = nullptr;
+    sdaiGetAttrBN(ifcVerticalAlignmentInstance, "IsNestedBy", sdaiAGGR, &ifcRelNestsAGGR);
+
+    SdaiInstance    ifcRelNestsInstance = 0;
+    engiGetAggrElement(ifcRelNestsAGGR, 0, sdaiINSTANCE, &ifcRelNestsInstance);
+
+    SdaiAggr ifcAlignmentSegmentAGGR = nullptr;
+    sdaiGetAttrBN(ifcRelNestsInstance, "RelatedObjects", sdaiAGGR, &ifcAlignmentSegmentAGGR);
+
+    SdaiInstance    ifcAlignmentSegmentInstance = 0;
+    engiGetAggrElement(ifcAlignmentSegmentAGGR, index, sdaiINSTANCE, &ifcAlignmentSegmentInstance);
+
+    return ifcAlignmentSegmentInstance;
+}
+
 void	assert__error__DERIVED_ISSUE(
 				int_t		ifcInstance,
-				char		* attributeName
+				char		* attributeName,  
+                double      foundValue,
+                double      expectedValue
 			);
 
 
@@ -40,7 +61,8 @@ static  inline  int_t   ___SegmentCount__alignmentVertical(
 static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 int_t   model,
                                 int_t   ifcVerticalAlignmentInstance,
-                                double  startDistAlongHorizontalAlignment
+                                double  startDistAlongHorizontalAlignment,
+                                int_t   originalIfcVerticalAlignmentInstance = 0
                             )
 {
 #ifdef _DEBUG
@@ -295,7 +317,13 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
                     if (radiusOfCurvature &&
                         std::fabs(radiusOfCurvature - pRadiusOfCurvature[i]) > absEpsilon) {
-                        assert__error__DERIVED_ISSUE(ifcCurveSegmentInstance, "RadiusOfCurvature");
+
+                        int_t   ifcAlignmentSegmentInstance = GetAlignmentSegmentFromVerticalAlignment(originalIfcVerticalAlignmentInstance, i),
+                                ifcAlignmentVerticalSegmentInstance = 0;
+
+                        sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, &ifcAlignmentVerticalSegmentInstance);
+
+                        assert__error__DERIVED_ISSUE(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", radiusOfCurvature, pRadiusOfCurvature[i]);
                     }
 
                     double      radius;
