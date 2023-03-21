@@ -2505,6 +2505,29 @@ void	CheckGeometrySegments(
 			int u = 0;
 		}
 
+		for (int_t i = 0; i < noSegmentInstances; i++) {
+			int_t	ifcCurveSegmentInstance = segmentInstances[i];
+
+			int_t entity = sdaiGetInstanceType(ifcCurveSegmentInstance);
+			char	* entityName = nullptr;
+			engiGetEntityName(entity, sdaiSTRING, (const char**) &entityName);
+
+			assert(sdaiGetInstanceType(ifcCurveSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
+//			...
+
+			char	* transitionCode = nullptr;
+			sdaiGetAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, &transitionCode);
+			
+
+			//	CONTINUOUS
+			//	CONTSAMEGRADIENT
+			//	CONTSAMEGRADIENTSAMECURVATURE
+			//	DISCONTINUOUS
+
+//			....
+				int uu = 0;
+		}
+
 		___POINT4D	previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
 		for (int_t i = 0; i < noSegmentInstances; i++) {
 			___POINT4D	startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
@@ -2571,12 +2594,12 @@ void	CheckGeometrySegments(
 									);
 								break;
 							case  enum_alignment::CANT:
-								assert__error(
+/*								assert__error(
 										enum_error::CANT_SEGMENT_TANGENT_DEVIATION,
 										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
 										myMapExpressID[internalGetP21Line(segmentInstances[i])],
 										std::fabs(angleDifferenceInDegrees)
-									);
+									);	//	*/
 								break;
 						}
 					}
