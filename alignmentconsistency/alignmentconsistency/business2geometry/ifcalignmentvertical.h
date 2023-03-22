@@ -205,7 +205,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
-                                        false
+                                        "Segment"
                                     )
                     );
 

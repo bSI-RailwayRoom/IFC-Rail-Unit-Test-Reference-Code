@@ -45,11 +45,16 @@ static	inline	SdaiInstance    ___CreateGeometricRepresentationContext(
     return	ifcGeometricRepresentationContextInstance;
 }
 
+//
+//  "Curve2D"
+//  "Curve3D"
+//  "Segment"
+//
 static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
                                         SdaiModel       model,
                                         SdaiInstance    ifcRepresentationItemInstance,
                                         SdaiAggr        * pAggrItems,
-                                        bool            is3DCurve
+                                        const char      * representationType
                                     )
 {
     SdaiInstance    ifcShapeRepresentationInstance = sdaiCreateInstanceBN(model, "IFCSHAPEREPRESENTATION");
@@ -59,14 +64,7 @@ static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
     char    representationIdentifier[5] = "Axis";
     sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationIdentifier", sdaiSTRING, representationIdentifier);
 
-    if (is3DCurve) {
-        char    representationType[8] = "Curve3D";
-        sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationType", sdaiSTRING, representationType);
-    }
-    else {
-        char    representationType[8] = "Curve2D";
-        sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationType", sdaiSTRING, representationType);
-    }
+    sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationType", sdaiSTRING, representationType);
 
 	SdaiAggr    aggrItems = sdaiCreateAggrBN(ifcShapeRepresentationInstance, "Items");
 	sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcRepresentationItemInstance);
@@ -81,16 +79,21 @@ static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
 	return	ifcShapeRepresentationInstance;
 }
 
+//
+//  "Curve2D"
+//  "Curve3D"
+//  "Segment"
+//
 static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
                                         SdaiModel       model,
                                         SdaiInstance    ifcRepresentationItemInstance,
-                                        bool            is3DCurve
+                                        const char      * representationType
                                     )
 {
     return  ___CreateShapeRepresentationInstance(
                     model,
                     ifcRepresentationItemInstance,
                     nullptr,
-                    is3DCurve
+                    representationType
                 );
 }

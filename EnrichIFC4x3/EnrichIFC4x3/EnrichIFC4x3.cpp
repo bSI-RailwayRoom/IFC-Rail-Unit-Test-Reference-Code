@@ -79,7 +79,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 ___CreateEdgeInstance(model, { 0., -150., 0. }, { 0. , 150., 0. }),
-                                                true    
+                                                "Curve3D"
                                             )
                             );
                     }
@@ -94,7 +94,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 ___CreateEdgeInstance(model, { -150., 0., 0. }, { 150. , 0., 0. }),
-                                                true    
+                                                "Curve3D"
                                             )
                             );
                     }
@@ -109,7 +109,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 horizontalAlignmentParentCurveI,
-                                                true    
+                                                "Curve3D"
                                             )
                             );
 
@@ -126,7 +126,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                                     (void*) ___CreateProductDefinitionShapeInstance(
                                                     model,
                                                     horizontalAlignmentParentCurveII,
-                                                    true    
+                                                    "Curve3D"
                                                 )
                                 );
                         }

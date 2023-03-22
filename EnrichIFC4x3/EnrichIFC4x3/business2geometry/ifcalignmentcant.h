@@ -154,7 +154,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
-                                        false
+                                        "Segment"
                                     )
                     );
 
@@ -216,7 +216,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
                 }
                 else {
-                    char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
+                    char    transitionCode[11] = "CONTINUOUS";
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
                 }
 
@@ -677,7 +677,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 ifcCurveSegmentInstance,
-                                                false
+                                                "Segment"
                                             )
                             );
                     }
@@ -764,8 +764,8 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                        startPnt.tangent.z == 0.);
 
                 if (i) {
-                    assert((std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.001) &&
-                            std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.001) &&
+                    assert((std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
+                            std::fabs(startPnt.point.y - previousEndPnt.point.y) < 0.001 &&
                             startPnt.point.z == previousEndPnt.point.z));
 
 /*                    assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.0005) &&

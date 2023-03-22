@@ -416,7 +416,7 @@ static  inline  SdaiInstance    ___CreateCompositeCurve__alignmentHorizontal(
                                         model,
                                         ifcCurveSegmentInstance,
                                         &aggrItems,
-                                        false
+                                        "Segment"
                                     )
                     );
 
@@ -433,14 +433,14 @@ segmentLength = std::fabs(segmentLength);
                 //
                 //  Transition
                 //
-                if (i == noSegmentInstances - 1) {
-                    char    transitionCode[14] = "DISCONTINUOUS";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-                else {
+//                if (i == noSegmentInstances - 1) {
+//                    char    transitionCode[14] = "DISCONTINUOUS";
+//                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+//                }
+//                else {
                     char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
+//                }
 
                 //
                 //  Placement
@@ -838,7 +838,7 @@ assert(segmentLength > 0. && factor * sign > 0.);
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
                                                 ifcCurveSegmentInstance,
-                                                false
+                                                "Segment"
                                             )
                             );
                         char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
@@ -1217,16 +1217,16 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                 if (i) {
                     assert(___equals(predefinedType,         "VIENNESEBEND") ||
                            ___equals(previousPredefinedType, "VIENNESEBEND") ||
-                           (std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.001) &&
-                            std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.001) &&
+                           (std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
+                            std::fabs(startPnt.point.y - previousEndPnt.point.y) < 0.001 &&
                             startPnt.point.z == previousEndPnt.point.z));
 
                     assert(___equals(predefinedType,         "VIENNESEBEND") || 
                            ___equals(previousPredefinedType, "VIENNESEBEND") ||
                            (___equals(predefinedType, "LINE") && ___equals(previousPredefinedType, "LINE")) ||
-                           (std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.0005) &&
-                            std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.0005) &&
-                            startPnt.tangent.z == previousEndPnt.tangent.z)); //  */
+                           (std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x) < 0.0005 &&
+                            std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y) < 0.0005 &&
+                            startPnt.tangent.z == previousEndPnt.tangent.z));
                 }
 
                 previousPredefinedType = predefinedType;
@@ -1312,6 +1312,17 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
             sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
 
             sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+        }
+        else {
+            if (mostRecentCurveSegmentInstance) {
+                int_t   ifcCurveSegmentInstance = mostRecentCurveSegmentInstance;
+
+                //
+                //  Transition
+                //
+                char    transitionCode[14] = "DISCONTINUOUS";
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*)transitionCode);
+            }
         }
 
         delete[] pStartDirection;

@@ -173,7 +173,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
-                                        false
+                                        "Segment"
                                     )
                     );
 
@@ -282,8 +282,8 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                             endAngle = std::atan(endGradient__);
                     assert(startAngle > -___Pi && startAngle < ___Pi && endAngle > -___Pi && endAngle < ___Pi);
 
-                    double  radius;
-                    ___VECTOR2 origin;
+                    double      radius;
+                    ___VECTOR2  origin;
                     if (startAngle < endAngle) {
  ///                       assert(radiusOfCurvature < 0.);
                         //

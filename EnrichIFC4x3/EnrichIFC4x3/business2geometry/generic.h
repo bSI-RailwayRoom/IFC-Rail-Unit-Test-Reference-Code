@@ -116,7 +116,6 @@ static  inline  int_t   ___GetAlignmentSegments(
     return  alignmentSegmentCnt;
 }
 
-#ifdef _DEBUG
 static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 								OwlModel	owlModel,
 								OwlInstance	owlInstancePoint4D,
@@ -357,7 +356,6 @@ static  inline  bool    ___GetBorderPoints(
                     endPoint
 				);
 }
-#endif // _DEBUG
 
 static  inline  void    ___GetEndPoint(
                                 int_t           model,

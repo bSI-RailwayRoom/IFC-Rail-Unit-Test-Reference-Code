@@ -165,7 +165,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcRepresentationItem_segmentedReferenceCurveInstance,
-                                        true
+                                        "Curve3D"
                                     )
                     );
             }
@@ -209,7 +209,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
                 (void*) ___CreateProductDefinitionShapeInstance(
                                 model,
                                 ifcRepresentationItem,
-                                true
+                                "Curve3D"
                             )
             );
     }
@@ -243,7 +243,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
                 (void*) ___CreateProductDefinitionShapeInstance(
                                 model,
                                 ifcRepresentationItem_compositeCurveInstance,
-                                false
+                                "Curve2D"
                             )
             );
     }
@@ -296,7 +296,7 @@ static  inline  SdaiInstance    AlignmentGenerateSweep(
             (void*) ___CreateProductDefinitionShapeInstance(
                             model,
                             ifcFixedReferenceSweptAreaSolidInstance,
-                            true    
+                            "Curve3D"
                         )
         );
 
