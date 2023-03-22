@@ -7,18 +7,18 @@
 #include "ifcpolynomialcurve.h"
 
 
-static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
-                                int_t       model,
-                                double      septicTerm,
-                                double      sexticTerm,
-                                double      quinticTerm,
-                                double      quarticTerm,
-                                double      cubicTerm,
-                                double      quadraticTerm,
-                                double      linearTerm,
-                                double      constantTerm,
-                                ___MATRIX   * matrix
-                            )
+static	inline	SdaiInstance    ___CreateSeventhOrderPolynomialSpiralInstance(
+                                        SdaiModel   model,
+                                        double      septicTerm,
+                                        double      sexticTerm,
+                                        double      quinticTerm,
+                                        double      quarticTerm,
+                                        double      cubicTerm,
+                                        double      quadraticTerm,
+                                        double      linearTerm,
+                                        double      constantTerm,
+                                        ___MATRIX   * matrix
+                                    )
 {
     //		SepticTerm
     //		SexticTerm
@@ -29,11 +29,9 @@ static	inline	int_t   ___CreateSeventhOrderPolynomialSpiralInstance(
     //		LinearTerm
     //		ConstantTerm
 
-    int_t	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
+    SdaiInstance	ifcSeventhOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCSEVENTHORDERPOLYNOMIALSPIRAL");
 
-    if (matrix) {
-        sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
-    }
+    sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 
     sdaiPutAttrBN(ifcSeventhOrderPolynomialSpiralInstance, "SepticTerm", sdaiREAL, &septicTerm);
 

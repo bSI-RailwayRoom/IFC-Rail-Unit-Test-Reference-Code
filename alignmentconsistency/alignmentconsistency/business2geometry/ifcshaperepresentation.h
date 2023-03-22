@@ -4,14 +4,14 @@
 #include "ifcaxis2placement3d.h"
 
 
-extern  int_t   reusedIfcGeometricRepresentationContextInstance;
+extern  SdaiInstance   reusedIfcGeometricRepresentationContextInstance;
 
 
-static	inline	int_t   ___CreateObjectPlacement(
-                                int_t   model
-                            )
+static	inline	SdaiInstance    ___CreateObjectPlacement(
+                                        SdaiModel       model
+                                    )
 {
-    int_t   ifcObjectPlacementInstance = sdaiCreateInstanceBN(model, "IFCLOCALPLACEMENT");
+    SdaiInstance   ifcObjectPlacementInstance = sdaiCreateInstanceBN(model, "IFCLOCALPLACEMENT");
 
     sdaiPutAttrBN(ifcObjectPlacementInstance, "RelativePlacement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model));
 
@@ -19,15 +19,15 @@ static	inline	int_t   ___CreateObjectPlacement(
     return	ifcObjectPlacementInstance;
 }
 
-static	inline	int_t   ___CreateGeometricRepresentationContext(
-                                int_t   model
-                            )
+static	inline	SdaiInstance    ___CreateGeometricRepresentationContext(
+                                        SdaiModel       model
+                                    )
 {
     if (reusedIfcGeometricRepresentationContextInstance) {
         return  reusedIfcGeometricRepresentationContextInstance;
     }
 
-    int_t	ifcGeometricRepresentationContextInstance = sdaiCreateInstanceBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT");
+    SdaiInstance    ifcGeometricRepresentationContextInstance = sdaiCreateInstanceBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT");
 
     char    contextType[6] = "Model";
     sdaiPutAttrBN(ifcGeometricRepresentationContextInstance, "ContextType", sdaiSTRING, contextType);
@@ -45,16 +45,14 @@ static	inline	int_t   ___CreateGeometricRepresentationContext(
     return	ifcGeometricRepresentationContextInstance;
 }
 
-static	inline	int_t   ___CreateShapeRepresentationInstance(
-                                int_t   model,
-                                int_t   ifcRepresentationItemInstance,
-                                int_t   ** pAggrItems,
-                                bool    is3DCurve
-                            )
+static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcRepresentationItemInstance,
+                                        SdaiAggr        * pAggrItems,
+                                        bool            is3DCurve
+                                    )
 {
-	int_t	ifcShapeRepresentationInstance, * aggrItems;
-
-    ifcShapeRepresentationInstance = sdaiCreateInstanceBN(model, "IFCSHAPEREPRESENTATION");
+    SdaiInstance    ifcShapeRepresentationInstance = sdaiCreateInstanceBN(model, "IFCSHAPEREPRESENTATION");
 
 /////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!????????????????????    sdaiPutAttrBN(ifcShapeRepresentationInstance, "ContextOfItems", sdaiINSTANCE, (void*) ___CreateGeometricRepresentationContext(model));
 
@@ -70,8 +68,8 @@ static	inline	int_t   ___CreateShapeRepresentationInstance(
         sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationType", sdaiSTRING, representationType);
     }
 
-	aggrItems = sdaiCreateAggrBN(ifcShapeRepresentationInstance, "Items");
-	sdaiAppend((int_t) aggrItems, sdaiINSTANCE, (void*) ifcRepresentationItemInstance);
+	SdaiAggr    aggrItems = sdaiCreateAggrBN(ifcShapeRepresentationInstance, "Items");
+	sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcRepresentationItemInstance);
 
 //    assert(ifcRepresentationItemInstance);
 
@@ -83,11 +81,11 @@ static	inline	int_t   ___CreateShapeRepresentationInstance(
 	return	ifcShapeRepresentationInstance;
 }
 
-static	inline	int_t   ___CreateShapeRepresentationInstance(
-                                int_t   model,
-                                int_t   ifcRepresentationItemInstance,
-                                bool    is3DCurve
-                            )
+static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcRepresentationItemInstance,
+                                        bool            is3DCurve
+                                    )
 {
     return  ___CreateShapeRepresentationInstance(
                     model,

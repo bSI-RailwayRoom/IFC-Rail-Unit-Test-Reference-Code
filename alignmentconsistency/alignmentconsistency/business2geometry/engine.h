@@ -3320,7 +3320,7 @@ int64_t			DECL STDC	SetObjectPropertyEx(
 //		GetObjectProperty                                       (http://rdf.bg/gkdoc/CP64/GetObjectProperty.html)
 //				OwlInstance				owlInstance							IN
 //				OwlObjectProperty		owlObjectProperty					IN
-//				int64_t					** values							IN / OUT
+//				OwlInstance				** values							IN / OUT
 //				int64_t					* card								IN / OUT
 //
 //				int64_t					returns								OUT
@@ -3335,16 +3335,47 @@ int64_t			DECL STDC	SetObjectPropertyEx(
 int64_t			DECL STDC	GetObjectProperty(
 									OwlInstance				owlInstance,
 									OwlObjectProperty		owlObjectProperty,
-									int64_t					** values,
+									OwlInstance				** values,
 									int64_t					* card
 								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	OwlInstance	GetObjectProperty(
+									OwlInstance				owlInstance,
+									OwlObjectProperty		owlObjectProperty
+								)
+{
+	OwlInstance	* values = nullptr;
+	int64_t		card = 0;
+
+	GetObjectProperty(
+			owlInstance,
+			owlObjectProperty,
+			&values,
+			&card
+		);
+
+	if (card == 1)
+		return	values[0];
+	else
+		return	0;
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
 
 //
 //		GetObjectPropertyEx                                     (http://rdf.bg/gkdoc/CP64/GetObjectPropertyEx.html)
 //				OwlModel				model								IN
 //				OwlInstance				owlInstance							IN
 //				OwlObjectProperty		owlObjectProperty					IN
-//				int64_t					** values							IN / OUT
+//				OwlInstance				** values							IN / OUT
 //				int64_t					* card								IN / OUT
 //
 //				int64_t					returns								OUT
@@ -3363,7 +3394,7 @@ int64_t			DECL STDC	GetObjectPropertyEx(
 									OwlModel				model,
 									OwlInstance				owlInstance,
 									OwlObjectProperty		owlObjectProperty,
-									int64_t					** values,
+									OwlInstance				** values,
 									int64_t					* card
 								);
 
@@ -5148,7 +5179,9 @@ static	inline	void	GetMaterialColor(
 {
 	assert(IsInstanceOfClass(owlInstanceMaterial, "Material"));
 
-	int64_t	* values = nullptr, card = 0;
+	OwlInstance	* values = nullptr;
+	int64_t		card = 0;
+
 	GetObjectProperty(
 			owlInstanceMaterial,
 			GetPropertyByName(

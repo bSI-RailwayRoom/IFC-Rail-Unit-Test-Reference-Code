@@ -4,13 +4,13 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateCircleInstance(
-                                int_t       model,
-                                double      radiusOfCurvature,
-                                ___MATRIX   * matrix
-                            )
+static	inline	SdaiInstance    ___CreateCircleInstance(
+                                        SdaiModel   model,
+                                        double      radiusOfCurvature,
+                                        ___MATRIX   * matrix
+                                    )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
+    SdaiInstance	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 
@@ -22,11 +22,11 @@ static	inline	int_t   ___CreateCircleInstance(
 }
 
 static	inline	int_t   ___CreateCircleInstance(
-                                int_t       model,
+                                SdaiModel   model,
                                 double      radiusOfCurvature
                             )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
+    SdaiInstance	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);
@@ -52,13 +52,13 @@ static	inline	int_t   ___CreateCircleInstance(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircleInstance(
-                                int_t       model,
-                                ___VECTOR2  * origin,
-                                double      radius
-                            )
+static	inline	SdaiInstance    ___CreateCircleInstance(
+                                        SdaiModel   model,
+                                        ___VECTOR2  * origin,
+                                        double      radius
+                                    )
 {
-    int_t	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
+    SdaiInstance	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);

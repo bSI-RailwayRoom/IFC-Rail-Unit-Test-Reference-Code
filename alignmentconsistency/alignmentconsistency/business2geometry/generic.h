@@ -66,14 +66,14 @@ static  inline  int_t   ___GetAlignmentSegments(
         noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
         for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
             int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
     	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
             noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
             for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
                 int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
                     if (pAlignmentSegment) {
@@ -91,14 +91,14 @@ static  inline  int_t   ___GetAlignmentSegments(
         noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
         for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
             int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
     	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
             noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
             for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
                 int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
                     if (pAlignmentSegment) {
@@ -122,9 +122,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 								___POINT4D	* point4D
 							)
 {
-#ifdef _DEBUG
 //	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
-#endif // _DEBUG
 
 	
 	bool	asExpected = true;
@@ -380,7 +378,7 @@ static  inline  void    ___GetEndPoint(
 
 			    + 0 * __flagbit8         //    OFF / ON TRIANGLES
 			    + 1 * __flagbit9         //    OFF / ON LINES
-			    + 1 * __flagbit10        //    OFF / ON POINTS
+			    + 0 * __flagbit10        //    OFF / ON POINTS
 
 			    + 0 * __flagbit12        //    OFF / ON WIREFRAME FACES
 			    + 0 * __flagbit13;       //    OFF / ON WIREFRAME CONCEPTUAL FACES

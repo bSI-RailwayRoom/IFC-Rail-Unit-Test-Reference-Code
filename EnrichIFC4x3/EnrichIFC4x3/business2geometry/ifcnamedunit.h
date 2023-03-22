@@ -5,8 +5,8 @@
 
 
 static	inline	double  ___GetConversionFactor(
-                                int_t   model,
-                                int_t   ifcMeasureWithUnitInstance
+                                SdaiModel       model,
+                                SdaiInstance    ifcMeasureWithUnitInstance
                             )
 {
     if (sdaiGetInstanceType(ifcMeasureWithUnitInstance) == sdaiGetEntity(model, "IFCMEASUREWITHUNIT")) {
@@ -26,8 +26,8 @@ static	inline	double  ___GetConversionFactor(
 }
 
 static	inline	double  ___GetUnitConversionFactor(
-                                int_t   model,
-                                int_t   ifcNamedUnitInstance
+                                SdaiModel       model,
+                                SdaiInstance    ifcNamedUnitInstance
                             )
 {
     if (sdaiGetInstanceType(ifcNamedUnitInstance) == sdaiGetEntity(model, "IFCSIUNIT")) {

@@ -71,7 +71,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 #ifdef _DEBUG
                     {
                         int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
                         sdaiPutAttrBN(
                                 myInstance,
                                 "Representation",
@@ -86,7 +86,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
                     {
                         int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
                         sdaiPutAttrBN(
                                 myInstance,
                                 "Representation",
@@ -101,7 +101,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
                     {
                         int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                        sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                        sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*) myInstance);
                         sdaiPutAttrBN(
                                 myInstance,
                                 "Representation",
@@ -118,7 +118,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                     {
                         if (horizontalAlignmentParentCurveII) {
                             int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                            sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                            sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
                             sdaiPutAttrBN(
                                     myInstance,
                                     "Representation",
@@ -134,7 +134,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
 
                     int_t   ifcProductInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                    sdaiAppend((int_t)aggrRelatedElements, sdaiINSTANCE, (void*)ifcProductInstance);
+                    sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)ifcProductInstance);
                     int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(model, "IFCCIRCLEPROFILEDEF");
 //                    int_t   ifcCircleHollowProfileDefInstance = sdaiCreateInstanceBN(ifcModel, "IFCCIRCLEHOLLOWPROFILEDEF");
 

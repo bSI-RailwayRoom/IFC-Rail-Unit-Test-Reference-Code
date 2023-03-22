@@ -6,16 +6,16 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateThirdOrderPolynomialSpiralInstance(
-                                int_t       model,
-                                double      cubicTerm,
-                                double      quadraticTerm,
-                                double      linearTerm,
-                                double      constantTerm,
-                                ___MATRIX   * matrix
-                            )
+static	inline	SdaiInstance    ___CreateThirdOrderPolynomialSpiralInstance(
+                                        SdaiModel   model,
+                                        double      cubicTerm,
+                                        double      quadraticTerm,
+                                        double      linearTerm,
+                                        double      constantTerm,
+                                        ___MATRIX   * matrix
+                                    )
 {
-    int_t	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCTHIRDORDERPOLYNOMIALSPIRAL");
+    SdaiInstance	ifcThirdOrderPolynomialSpiralInstance = sdaiCreateInstanceBN(model, "IFCTHIRDORDERPOLYNOMIALSPIRAL");
 
     sdaiPutAttrBN(ifcThirdOrderPolynomialSpiralInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, matrix));
 

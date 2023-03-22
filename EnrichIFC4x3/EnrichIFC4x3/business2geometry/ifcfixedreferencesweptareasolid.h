@@ -8,17 +8,17 @@
 #include "ifcproductdefinitionshape.h"
 
 
-static  inline  int_t   ___CreateFixedReferenceSweptAreaSolidInstance(
-                                int_t   model,
-                                int_t   ifcAlignmentCurve,
-                                int_t   ifcProfileDef
-                            )
+static  inline  SdaiInstance    ___CreateFixedReferenceSweptAreaSolidInstance(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcAlignmentCurve,
+                                        SdaiInstance    ifcProfileDef
+                                    )
 {
     assert(sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCCOMPOSITECURVE") ||
            sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCGRADIENTCURVE")  ||
            sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE"));
 
-    int_t   ifcFixedReferenceSweptAreaSolidInstance = sdaiCreateInstanceBN(model, "IFCFIXEDREFERENCESWEPTAREASOLID");
+    SdaiInstance    ifcFixedReferenceSweptAreaSolidInstance = sdaiCreateInstanceBN(model, "IFCFIXEDREFERENCESWEPTAREASOLID");
 
     ___VECTOR3  fixedReference = { 0., 0., 1. };
     sdaiPutAttrBN(ifcFixedReferenceSweptAreaSolidInstance, "SweptArea", sdaiINSTANCE, (void*) ifcProfileDef);
@@ -28,17 +28,17 @@ static  inline  int_t   ___CreateFixedReferenceSweptAreaSolidInstance(
     return  ifcFixedReferenceSweptAreaSolidInstance;
 }
 
-static  inline  int_t   ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
-                                int_t   model,
-                                int_t   ifcAlignmentCurve,
-                                int_t   ifcProfileDef
-                            )
+static  inline  SdaiInstance    ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcAlignmentCurve,
+                                        SdaiInstance    ifcProfileDef
+                                    )
 {
     assert(sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCCOMPOSITECURVE") ||
            sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCGRADIENTCURVE")  ||
            sdaiGetInstanceType(ifcAlignmentCurve) == sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE"));
 
-    int_t   ifcDirectrixDerivedReferenceSweptAreaSolidInstance = sdaiCreateInstanceBN(model, "IFCDIRECTRIXDERIVEDREFERENCESWEPTAREASOLID");
+    SdaiInstance    ifcDirectrixDerivedReferenceSweptAreaSolidInstance = sdaiCreateInstanceBN(model, "IFCDIRECTRIXDERIVEDREFERENCESWEPTAREASOLID");
 
     ___VECTOR3  fixedReference = { 0., 0., 1. };
     sdaiPutAttrBN(ifcDirectrixDerivedReferenceSweptAreaSolidInstance, "SweptArea", sdaiINSTANCE, (void*) ifcProfileDef);

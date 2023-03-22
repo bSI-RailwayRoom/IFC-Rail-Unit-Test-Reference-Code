@@ -6,11 +6,11 @@
 #include "ifcaxis2placement2d.h"
 
 
-static	inline	int_t   ___CreateLineInstance(
-                                int_t       model
-                            )
+static	inline	SdaiInstance    ___CreateLineInstance(
+                                        SdaiModel   model
+                                    )
 {
-    int_t	ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
+    SdaiInstance    ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
 
     sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance_2D(model));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model));
@@ -20,12 +20,12 @@ static	inline	int_t   ___CreateLineInstance(
     return	ifcLineInstance;
 }
 
-static	inline	int_t   ___CreateLineInstance(
-                                int_t       model,
-                                ___VECTOR2  * dir
-                            )
+static	inline	SdaiInstance    ___CreateLineInstance(
+                                        SdaiModel   model,
+                                        ___VECTOR2  * dir
+                                    )
 {
-    int_t	ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
+    SdaiInstance	ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
 
     sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance_2D(model));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model, dir));
@@ -35,13 +35,13 @@ static	inline	int_t   ___CreateLineInstance(
     return	ifcLineInstance;
 }
 
-static	inline	int_t   ___CreateLineInstance(
-                                int_t       model,
-                                ___VECTOR2  * pnt,
-                                ___VECTOR2  * dir
-                            )
+static	inline	SdaiInstance    ___CreateLineInstance(
+                                        SdaiModel   model,
+                                        ___VECTOR2  * pnt,
+                                        ___VECTOR2  * dir
+                                    )
 {
-    int_t	ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
+    SdaiInstance	ifcLineInstance = sdaiCreateInstanceBN(model, "IFCLINE");
 
     sdaiPutAttrBN(ifcLineInstance, "Pnt", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, pnt));
     sdaiPutAttrBN(ifcLineInstance, "Dir", sdaiINSTANCE, (void*) ___CreateVector(model, dir));
@@ -51,12 +51,12 @@ static	inline	int_t   ___CreateLineInstance(
     return	ifcLineInstance;
 }
 
-static	inline	int_t   ___CreateVertexInstance(
-                                int_t       model,
-                                ___VECTOR3  edge
-                            )
+static	inline	SdaiInstance    ___CreateVertexInstance(
+                                        SdaiModel   model,
+                                        ___VECTOR3  edge
+                                    )
 {
-    int_t	ifcVertexPointInstance = sdaiCreateInstanceBN(model, "IFCVERTEXPOINT");
+    SdaiInstance	ifcVertexPointInstance = sdaiCreateInstanceBN(model, "IFCVERTEXPOINT");
 
     sdaiPutAttrBN(ifcVertexPointInstance, "VertexGeometry", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, &edge));
 
@@ -65,13 +65,13 @@ static	inline	int_t   ___CreateVertexInstance(
     return	ifcVertexPointInstance;
 }
 
-static	inline	int_t   ___CreateEdgeInstance(
-                                int_t       model,
-                                ___VECTOR3  edgeStart,
-                                ___VECTOR3  edgeEnd
-                            )
+static	inline	SdaiInstance    ___CreateEdgeInstance(
+                                        SdaiModel   model,
+                                        ___VECTOR3  edgeStart,
+                                        ___VECTOR3  edgeEnd
+                                    )
 {
-    int_t	ifcEdgeInstance = sdaiCreateInstanceBN(model, "IFCEDGE");
+    SdaiInstance	ifcEdgeInstance = sdaiCreateInstanceBN(model, "IFCEDGE");
 
     sdaiPutAttrBN(ifcEdgeInstance, "EdgeStart", sdaiINSTANCE, (void*) ___CreateVertexInstance(model, edgeStart));
     sdaiPutAttrBN(ifcEdgeInstance, "EdgeEnd", sdaiINSTANCE, (void*) ___CreateVertexInstance(model, edgeEnd));

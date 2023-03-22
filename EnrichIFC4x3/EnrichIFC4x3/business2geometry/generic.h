@@ -66,14 +66,14 @@ static  inline  int_t   ___GetAlignmentSegments(
         noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
         for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
             int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
     	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
             noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
             for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
                 int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
                     if (pAlignmentSegment) {
@@ -91,14 +91,14 @@ static  inline  int_t   ___GetAlignmentSegments(
         noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
         for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
             int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
     	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
             noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
             for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
                 int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
                     if (pAlignmentSegment) {
@@ -116,14 +116,257 @@ static  inline  int_t   ___GetAlignmentSegments(
     return  alignmentSegmentCnt;
 }
 
-static  inline  void    ___GetEndPoint(
-                                int_t        model,
-                                ___VECTOR2  * endPoint,
 #ifdef _DEBUG
-                                ___VECTOR2  * startPoint,
+static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
+								OwlModel	owlModel,
+								OwlInstance	owlInstancePoint4D,
+								___POINT4D	* point4D
+							)
+{
+//	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
+
+	
+	bool	asExpected = true;
+
+	OwlClass myClass = GetInstanceClass(owlInstancePoint4D);
+	if (myClass == GetClassByName(owlModel, "Point4D")) {
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "point"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Point3D"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->point.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->point.z = 0.;
+					}
+				}
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "tangent"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Vector3"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->tangent.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->tangent.z = 0.;
+					}
+				}
+
+				point4D->direction__DERIVED = atan2(point4D->tangent.y, point4D->tangent.x);
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+
+		{
+			OwlClass	* values = nullptr;
+			int64_t		card = 0;
+			GetObjectProperty(owlInstancePoint4D, GetPropertyByName(owlModel, "normal"), &values, &card);
+			if (card == 1 && values[0]) {
+				OwlInstance	owlInstancePoint3D = values[0];
+				assert(GetInstanceClass(owlInstancePoint3D) == GetClassByName(owlModel, "Vector3"));
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.x = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.x = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.y = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.y = 0.;
+					}
+				}
+
+				{
+					double	* pValues = nullptr;
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					if (card == 1) {
+						point4D->normal.z = pValues[0];
+					}
+					else {
+						assert(false);
+						asExpected = false;
+						point4D->normal.z = 0.;
+					}
+				}
+			}
+			else {
+				assert(false);
+				asExpected = false;
+			}
+		}
+	}
+	else {
+		assert(false);
+		asExpected = false;
+	}
+
+	return	asExpected;
+}
+
+static  inline  bool	___GetBorderPoints__SEMANTICS(
+								OwlInstance		owlInstance,
+								___POINT4D		* startPoint,
+								___POINT4D		* endPoint
+							)
+{
+	bool	asExpected = true;
+
+	OwlModel	owlModel = GetModel(owlInstance);
+	OwlClass	myClass = GetInstanceClass(owlInstance);
+
+	if (myClass == GetClassByName(owlModel, "PolyLine3D")) {
+		OwlClass	* values = nullptr;
+		int64_t		card = 0;
+		GetObjectProperty(owlInstance, GetPropertyByName(owlModel, "pointReferences"), &values, &card);
+		if (card && values[0] && values[card - 1]) {
+			if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, values[0], startPoint) == false)
+				asExpected = false;
+			if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, values[card - 1], endPoint) == false)
+				asExpected = false;
+		}
+		else {
+			assert(false);
+			asExpected = false;
+		}
+	}
+	else if (myClass == GetClassByName(owlModel, "Point4D")) {
+		if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, owlInstance, startPoint) == false)
+			asExpected = false;
+		if (GetGeometryFromGK__point4D__SEMANTICS(owlModel, owlInstance, endPoint) == false)
+			asExpected = false;
+	}
+	else {
+		assert(false);
+		asExpected = false;
+	}
+
+	return	asExpected;
+}
+
+static  inline  bool    ___GetBorderPoints(
+                                SdaiInstance    ifcCurveSegmentInstance,
+                                SdaiEntity      ifcBoundedCurveEntity,
+                                ___POINT4D      * startPoint,
+                                ___POINT4D      * endPoint
+                            )
+{
+	assert(GetRevision() >= 1650);
+
+	OwlInstance	owlInstance = 0;
+    owlBuildInstanceInContext(ifcCurveSegmentInstance, ifcBoundedCurveEntity, &owlInstance);
+
+	return	___GetBorderPoints__SEMANTICS(
+					owlInstance,
+                    startPoint,
+                    endPoint
+				);
+}
 #endif // _DEBUG
-                                int_t       ifcCurveSegmentInstance,
-                                int_t       ifcBoundedCurveInstance
+
+static  inline  void    ___GetEndPoint(
+                                int_t           model,
+                                ___VECTOR2      * endPoint,
+#ifdef _DEBUG
+                                ___VECTOR2      * startPoint,
+#endif // _DEBUG
+                                SdaiInstance    ifcCurveSegmentInstance,
+                                SdaiEntity      ifcBoundedCurveEntity
                             )
 {
     setFilter(model, 1 + 2, 1 + 2 + 4);	//	we need to recognize line representations
@@ -149,7 +392,7 @@ static  inline  void    ___GetEndPoint(
     assert(elementSize == 3 * 8);
 
     int64_t owlInstance = 0;
-    owlBuildInstanceInContext(ifcCurveSegmentInstance, ifcBoundedCurveInstance, &owlInstance);
+    owlBuildInstanceInContext(ifcCurveSegmentInstance, ifcBoundedCurveEntity, &owlInstance);
 
     int64_t vertexBufferSize = 0, indexBufferSize = 0;
     CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
@@ -160,8 +403,16 @@ static  inline  void    ___GetEndPoint(
         int32_t * indices = new int32_t[(int_t) indexBufferSize];
         UpdateInstanceIndexBuffer(owlInstance, indices);
 
-        ___VECTOR3  startVec = { vertices[3 * 0 + 0], vertices[3 * 0 + 1], vertices[3 * 0 + 2] },
-                    endVec = { vertices[3 * (vertexBufferSize - 1) + 0], vertices[3 * (vertexBufferSize - 1) + 1], vertices[3 * (vertexBufferSize - 1) + 2] };
+        ___VECTOR3  startVec = {
+                            vertices[3 * 0 + 0],
+                            vertices[3 * 0 + 1],
+                            vertices[3 * 0 + 2]
+                        },
+                    endVec = {
+                            vertices[3 * (vertexBufferSize - 1) + 0],
+                            vertices[3 * (vertexBufferSize - 1) + 1],
+                            vertices[3 * (vertexBufferSize - 1) + 2]
+                        };
         assert(startVec.x == startPoint->x &&
                startVec.y == startPoint->y &&
                startVec.z == 0.);

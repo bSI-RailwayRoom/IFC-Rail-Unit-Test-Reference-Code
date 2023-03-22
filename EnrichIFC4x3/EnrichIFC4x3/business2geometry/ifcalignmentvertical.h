@@ -16,21 +16,21 @@ enum class enum_segment_type : unsigned char
 };
 
 static  inline  int_t   ___SegmentCount__alignmentVertical(
-                                int_t   ifcVerticalAlignmentInstance
+                                SdaiInstance    ifcVerticalAlignmentInstance
                             )
 {
-	int_t	* aggrSegments = nullptr;
+	SdaiAggr	aggrSegments = nullptr;
 
     sdaiGetAttrBN(ifcVerticalAlignmentInstance, "Segments", sdaiAGGR, &aggrSegments);
 
     return  sdaiGetMemberCount(aggrSegments);
 }
 
-static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
-                                int_t   model,
-                                int_t   ifcVerticalAlignmentInstance,
-                                double  startDistAlongHorizontalAlignment
-                            )
+static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcVerticalAlignmentInstance,
+                                        double          startDistAlongHorizontalAlignment
+                                    )
 {
 #ifdef _DEBUG
     double  epsilon = 0.0000001;
@@ -44,12 +44,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     );
 
     if (noSegmentInstances) {
-		int_t	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE"),
-	            * aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
+        SdaiInstance	ifcGradientCurveInstance = sdaiCreateInstanceBN(model, "IFCGRADIENTCURVE");
+	    SdaiAggr        aggrCurveSegment = sdaiCreateAggrBN(ifcGradientCurveInstance, "Segments");
 	    char    selfIntersect[2] = "F";
 	    sdaiPutAttrBN(ifcGradientCurveInstance, "SelfIntersect", sdaiENUM, (void*) selfIntersect);
 
-        int_t   * segmentInstances = new int_t[noSegmentInstances];
+        SdaiInstance    * segmentInstances = new SdaiInstance[noSegmentInstances];
 
         ___GetAlignmentSegments(
                 model,
@@ -64,10 +64,10 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
         enum_segment_type    * pSegmentType = new enum_segment_type[noSegmentInstances];
 
         for (int_t i = 0; i < noSegmentInstances; i++) {
-            int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
+            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[i];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
-            int_t   ifcAlignmentVerticalSegmentInstance = 0;
+            SdaiInstance    ifcAlignmentVerticalSegmentInstance = 0;
             sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentVerticalSegmentInstance);
 
             //
@@ -130,24 +130,28 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
             }
         }
         
-        double  mostRecentStartDistAlong   = 0.,
-                mostRecentHorizontalLength = 0.,
-                mostRecentEndGradient      = 0.;
-        int_t   mostRecentCurveSegmentInstance = 0;
+        double          mostRecentStartDistAlong       = 0.,
+                        mostRecentHorizontalLength     = 0.,
+                        mostRecentEndGradient          = 0.;
+        SdaiInstance    mostRecentCurveSegmentInstance = 0;
 #ifdef _DEBUG
         ___VECTOR2  mostRecentLocation = { 0., 0. };
 #endif // _DEBUG
 
+#ifdef _DEBUG
+        ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0.} };
+#endif // _DEBUG
+
         for (int_t i = 0; i < noSegmentInstances; i++) {
-            int_t   ifcAlignmentSegmentInstance = segmentInstances[i];
+            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[i];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
-            int_t   ifcAlignmentVerticalSegmentInstance = 0;
+            SdaiInstance    ifcAlignmentVerticalSegmentInstance = 0;
             sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentVerticalSegmentInstance);
             assert(sdaiGetInstanceType(ifcAlignmentVerticalSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICALSEGMENT"));
 
             {
-                int_t   ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+                SdaiInstance    ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
 
                 //
                 //  Add geometry for Ifc...Alignment...
@@ -281,7 +285,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     double  radius;
                     ___VECTOR2 origin;
                     if (startAngle < endAngle) {
- ///                       assert(radiusOfCurvature > 0.);
+ ///                       assert(radiusOfCurvature < 0.);
                         //
                         //  Ox = -sin( startAngle ) * radius         Ox = horizontalLength - sin( endAngle ) * radius
                         //  Oy = cos( startAngle ) * radius          Oy = offsetY + cos( endAngle ) * radius
@@ -311,7 +315,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     }
                     else {
                         assert(startAngle > endAngle);
- ///                       assert(radiusOfCurvature < 0.);
+///                        assert(radiusOfCurvature > 0.);
                         //
                         //  Ox = sin( startAngle ) * radius         Ox = horizontalLength + sin( endAngle ) * radius
                         //  Oy = -cos( startAngle ) * radius        Oy = offsetY - cos( endAngle ) * radius
@@ -345,12 +349,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     myMatrix._41 = origin.x;
                     myMatrix._42 = origin.y;
 
-                    int_t   ifcCircularArcParentCurve =
-                                ___CreateCircleInstance(
-                                        model,
-                                        radius,
-                                        &myMatrix
-                                    );
+                    SdaiInstance    ifcCircularArcParentCurve =
+                                        ___CreateCircleInstance(
+                                                model,
+                                                radius,
+                                                &myMatrix
+                                            );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
 
                     //
@@ -544,12 +548,12 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                                 assert(std::fabs(correctedStartAngle - angle1) < 0.000001);
                                 assert(std::fabs(correctedEndAngle - angle2) < 0.000001);
 
-                                int_t   ifcClothoidParentCurve =
-                                            ___CreateClothoidInstance(
-                                                    model,
-                                                    linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                    nullptr
-                                                );
+                                SdaiInstance    ifcClothoidParentCurve =
+                                                    ___CreateClothoidInstance(
+                                                            model,
+                                                            linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                            nullptr
+                                                        );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 
                                 //
@@ -578,29 +582,38 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
                     heightDeviation = refDirection.x ? refDirection.y * horizontalLength / refDirection.x : 0.;
 
-                    int_t   ifcLineParentCurve =
-                                ___CreateLineInstance(
-                                        model,
-                                        &dir
-                                    );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurve);
+//                    if (horizontalLength) {
+                    if (true) {
+                        SdaiInstance    ifcLineParentCurve =
+                                            ___CreateLineInstance(
+                                                    model,
+                                                    &dir
+                                                );
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurve);
 
-                    //
-                    //  SegmentStart
-                    //
-                    double  offset = 0.;
-                    void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
-                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        //
+                        //  SegmentStart
+                        //
+                        double  offset = 0.;
+                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &offset);
+                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
-                    double  segmentLength = horizontalLength * std::sqrt(1. + startGradient__ * startGradient__);
+                        double  segmentLength = horizontalLength * std::sqrt(1. + startGradient__ * startGradient__);
+                        assert(segmentLength >= 0.);
 
-                    //
-                    //  SegmentLength
-                    //
-                    void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        //
+                        //  SegmentLength
+                        //
+                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                    }
+                    else {
+                        assert(i == noSegmentInstances - 1);
+                        sdaiDeleteInstance(ifcCurveSegmentInstance);
+                        ifcCurveSegmentInstance = 0;
+                    }
                 }
                 else {
                     assert(___equals(predefinedType, "PARABOLICARC"));
@@ -646,13 +659,13 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
                     double  pCoefficientsX[] = { 0., 1. },
                             pCoefficientsY[] = { c, b, a };
-                    int_t   ifcParabolicArcParentCurve =
-                                ___CreatePolynomialCurveInstance(
-                                        model,
-                                        pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
-                                        pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
-                                        nullptr, 0
-                                    );
+                    SdaiInstance    ifcParabolicArcParentCurve =
+                                        ___CreatePolynomialCurveInstance(
+                                                model,
+                                                pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
+                                                pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
+                                                nullptr, 0
+                                            );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcParabolicArcParentCurve);
 
                     //
@@ -682,7 +695,48 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     }
                 }
 
-                sdaiAppend((int_t) aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+#ifdef _DEBUG
+                if (ifcCurveSegmentInstance) {
+                    ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
+                                endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
+                    ___GetBorderPoints(
+                            ifcCurveSegmentInstance,
+                            sdaiGetEntity(model, "IFCGRADIENTCURVE"),
+                            &startPnt,
+                            &endPnt
+                        );
+
+                    assert(startPnt.point.x == startDistAlong &&
+                           startPnt.point.y == startHeight &&
+                           startPnt.point.z == 0.);
+
+                    ___VECTOR3  tangent = {
+                                        1.,
+                                        startGradient__,
+                                        0.
+                                    };
+                    ___Vec3Normalize(&tangent);
+
+                    assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.0000000001 &&
+                           std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
+                           startPnt.tangent.z == 0.);
+
+                    if (i) {
+        //                assert(std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.0000000001) &&
+        //                       std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.0000000001) &&
+        //                       startPnt.point.z == previousEndPnt.point.z);
+
+        //                assert(std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x < 0.00001) &&
+        //                       std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y < 0.00001) &&
+        //                       startPnt.tangent.z == previousEndPnt.tangent.z); //  */
+                    }
+
+                    previousEndPnt = endPnt;
+                }
+#endif // _DEBUG
+
+                if (ifcCurveSegmentInstance)
+                    sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
                 if (i == noSegmentInstances - 1) {
                     if (horizontalLength == 0.) {
@@ -717,7 +771,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
 
         delete[] segmentInstances;
 
-        {
+        if (mostRecentCurveSegmentInstance) {
             ___VECTOR2  endPoint = { 0., 0. };
 
             ___GetEndPoint(
@@ -727,7 +781,7 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                     &mostRecentLocation,
 #endif // _DEBUG
                     mostRecentCurveSegmentInstance,
-                    ifcGradientCurveInstance
+                    sdaiGetInstanceType(ifcGradientCurveInstance)
                 );
 
             ___VECTOR2  refDirection = {
@@ -740,6 +794,11 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
                             };
             assert((mostRecentStartDistAlong + mostRecentHorizontalLength) - startDistAlongHorizontalAlignment == endPoint.x);
 
+            if (mostRecentHorizontalLength == 0.) {
+                assert(mostRecentLocation.x == endPoint.x &&
+                       mostRecentLocation.y == endPoint.y);
+            }
+
             ___Vec2Normalize(&refDirection);
             sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
         }
@@ -750,33 +809,32 @@ static  inline  int_t   ___CreateGradientCurve__alignmentVertical(
     return  0;
 }
 
-static  inline  int_t   ___GetAlignmentVertical(
-                                int_t   model,
-                                int_t   ifcAlignmentInstance,
-                                bool    * hasIssue
-                            )
+static  inline  SdaiInstance    ___GetAlignmentVertical(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcAlignmentInstance,
+                                        bool            * hasIssue
+                                    )
 {
-    int_t   ifcAlignmentVerticalInstance = 0;
+    SdaiInstance    ifcAlignmentVerticalInstance = 0;
 
     {
-	    int_t	* aggrIfcRelAggregates = nullptr, noAggrIfcRelAggregates;
+	    SdaiAggr	aggrIfcRelAggregates = nullptr;
         sdaiGetAttrBN(ifcAlignmentInstance, "IsNestedBy", sdaiAGGR, &aggrIfcRelAggregates);
-        noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
-        for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
-            int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+        SdaiInteger noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
+        for (SdaiInteger i = 0; i < noAggrIfcRelAggregates; i++) {
+            SdaiInstance    ifcRelAggregatesInstance = 0;
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
-    	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
+            SdaiAggr    aggrIfcObjectDefinition = nullptr;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
-            noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
-            for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
-                int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+            SdaiInteger noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
+            for (SdaiInteger j = 0; j < noAggrIfcObjectDefinition; j++) {
+                SdaiInstance    ifcObjectDefinitionInstance = 0;
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICAL")) {
-                    if (ifcAlignmentVerticalInstance && hasIssue) {
+                    if (ifcAlignmentVerticalInstance && hasIssue)
                         (*hasIssue) = true;
-                    }
 
                     assert(ifcAlignmentVerticalInstance == 0);
                     ifcAlignmentVerticalInstance = ifcObjectDefinitionInstance;
@@ -786,27 +844,26 @@ static  inline  int_t   ___GetAlignmentVertical(
     }
 
     if (ifcAlignmentVerticalInstance == 0) {
-	    int_t	* aggrIfcRelAggregates = nullptr, noAggrIfcRelAggregates;
+        SdaiAggr    aggrIfcRelAggregates = nullptr;
         sdaiGetAttrBN(ifcAlignmentInstance, "IsDecomposedBy", sdaiAGGR, &aggrIfcRelAggregates);
-        noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
-        for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
-            int_t   ifcRelAggregatesInstance = 0;
-            engiGetAggrElement(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
+        SdaiInteger noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
+        for (SdaiInteger i = 0; i < noAggrIfcRelAggregates; i++) {
+            SdaiInstance    ifcRelAggregatesInstance = 0;
+            sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
-    	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
+            SdaiAggr    aggrIfcObjectDefinition = nullptr;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
-            noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
-            for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
-                int_t   ifcObjectDefinitionInstance = 0;
-                engiGetAggrElement(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
+            SdaiInteger noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
+            for (SdaiInteger j = 0; j < noAggrIfcObjectDefinition; j++) {
+                SdaiInstance    ifcObjectDefinitionInstance = 0;
+                sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTVERTICAL")) {
                     assert(ifcAlignmentVerticalInstance == 0);
                     ifcAlignmentVerticalInstance = ifcObjectDefinitionInstance;
 
-                    if (hasIssue) {
+                    if (hasIssue)
                         (*hasIssue) = true;
-                    }
                 }
             }
         }

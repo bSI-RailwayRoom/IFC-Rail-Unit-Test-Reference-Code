@@ -9,19 +9,19 @@
 #include "ifcproject.h"
 
 
-extern  int_t   reusedIfcGeometricRepresentationContextInstance;
+extern  SdaiInstance   reusedIfcGeometricRepresentationContextInstance;
 
 
-static  inline  int_t    AlignmentGenerateGeometry(
-                                int_t   model,
-                                int_t   mirrorIfcAlignmentInstance,
-                                int_t   originalIfcAlignmentInstance
-                            )
+static  inline  SdaiInstance    AlignmentGenerateGeometry(
+                                        SdaiModel       model,
+                                        SdaiInstance    mirrorIfcAlignmentInstance,
+                                        SdaiInstance    originalIfcAlignmentInstance
+                                    )
 {
-    int_t   * ifcGeometricRepresentationContextInstances = sdaiGetEntityExtentBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT"),
-            noIfcGeometricRepresentationContextInstances = sdaiGetMemberCount(ifcGeometricRepresentationContextInstances);
+    SdaiAggr        ifcGeometricRepresentationContextInstances = sdaiGetEntityExtentBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT");
+    SdaiInstance    noIfcGeometricRepresentationContextInstances = sdaiGetMemberCount(ifcGeometricRepresentationContextInstances);
     if (noIfcGeometricRepresentationContextInstances) {
-        engiGetAggrElement(ifcGeometricRepresentationContextInstances, 0, sdaiINSTANCE, &reusedIfcGeometricRepresentationContextInstance);
+        sdaiGetAggrByIndex(ifcGeometricRepresentationContextInstances, 0, sdaiINSTANCE, &reusedIfcGeometricRepresentationContextInstance);
     }
 
     bool    hasAlignmentHorizontal =
@@ -45,22 +45,22 @@ static  inline  int_t    AlignmentGenerateGeometry(
 
     assert(hasAlignmentHorizontal);
 
-    int_t   ifcRepresentationItem_compositeCurveInstance =
-                ___CreateCompositeCurve__alignmentHorizontal(
-                        model,
-                        mirrorIfcAlignmentInstance,
-                        ___GetAlignmentHorizontal(
+    SdaiInstance    ifcRepresentationItem_compositeCurveInstance =
+                        ___CreateCompositeCurve__alignmentHorizontal(
                                 model,
                                 mirrorIfcAlignmentInstance,
-                                nullptr
+                                ___GetAlignmentHorizontal(
+                                        model,
+                                        mirrorIfcAlignmentInstance,
+                                        nullptr
+                                    ),
+                                ___GetPlaneAngleUnitConversionFactor(
+                                        model
+                                    )
                             ),
-                        ___GetPlaneAngleUnitConversionFactor(
-                                model
-                            )
-                    ),
-            ifcRepresentationItem;
+                    ifcRepresentationItem,
+                    ifcRepresentationItem_gradientCurveInstance = 0;
 
-    int_t   ifcRepresentationItem_gradientCurveInstance = 0;
     if (hasAlignmentVertical || hasAlignmentCant) {
         double  startDistAlongHorizontalAlignment = 0.;
         
@@ -83,14 +83,7 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                     mirrorIfcAlignmentInstance,
                                     nullptr
                                 ),
-                            startDistAlongHorizontalAlignment,
-                            originalIfcAlignmentInstance ?
-                                ___GetAlignmentVertical(
-                                        engiGetEntityModel(sdaiGetInstanceType(originalIfcAlignmentInstance)),
-                                        originalIfcAlignmentInstance,
-                                        nullptr
-                                    ) :
-                                0
+                            startDistAlongHorizontalAlignment
                         );
 
         if (ifcRepresentationItem_gradientCurveInstance) {
@@ -116,20 +109,6 @@ static  inline  int_t    AlignmentGenerateGeometry(
                                     model
                                 )
                 );
-/*            sdaiPutAttrBN(
-                    ___GetAlignmentVertical(
-                            model,
-                            ifcAlignmentInstance,
-                            nullptr
-                        ),
-                    "Representation",
-                    sdaiINSTANCE,
-                    (void*) ___CreateProductDefinitionShapeInstance(
-                                    model,
-                                    ifcRepresentationItem_gradientCurveInstance,
-                                    true
-                                )
-                );  //  */
         }
         else
             ifcRepresentationItem_gradientCurveInstance = ifcRepresentationItem_compositeCurveInstance;
@@ -272,33 +251,33 @@ static  inline  int_t    AlignmentGenerateGeometry(
     return  ifcRepresentationItem_gradientCurveInstance ? ifcRepresentationItem_gradientCurveInstance : ifcRepresentationItem_compositeCurveInstance;
 }
 
-static  inline  int_t    AlignmentGenerateSweep(
-                                int_t   model,
-                                int_t   ifcAlignmentInstance,
-                                int_t   ifcProfileInstance,
-                                int_t   ifcProductInstance
-                            )
+static  inline  SdaiInstance    AlignmentGenerateSweep(
+		                                SdaiModel       model,
+		                                SdaiInstance    ifcAlignmentInstance,
+		                                SdaiInstance    ifcProfileInstance,
+		                                SdaiInstance    ifcProductInstance
+		                            )
 {
-    int_t   ifcFixedReferenceSweptAreaSolidInstance =
-                (___GetAlignmentCant(
-                        model,
-                        ifcAlignmentInstance,
-                        nullptr
-                    )) ?
-                    ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
-                            model,
-                            ___GetProductRepresentationItem(
-                                    ifcAlignmentInstance
-                                ),
-                            ifcProfileInstance
-                        ) :
-                    ___CreateFixedReferenceSweptAreaSolidInstance(
-                            model,
-                            ___GetProductRepresentationItem(
-                                    ifcAlignmentInstance
-                                ),
-                            ifcProfileInstance
-                        );
+    SdaiInstance    ifcFixedReferenceSweptAreaSolidInstance =
+                        (___GetAlignmentCant(
+                                model,
+                                ifcAlignmentInstance,
+                                nullptr
+                            )) ?
+                            ___CreateDirectrixDerivedReferenceSweptAreaSolidInstance(
+                                    model,
+                                    ___GetProductRepresentationItem(
+                                            ifcAlignmentInstance
+                                        ),
+                                    ifcProfileInstance
+                                ) :
+                            ___CreateFixedReferenceSweptAreaSolidInstance(
+                                    model,
+                                    ___GetProductRepresentationItem(
+                                            ifcAlignmentInstance
+                                        ),
+                                    ifcProfileInstance
+                                );
 
     sdaiPutAttrBN(
             ifcProductInstance,
@@ -324,22 +303,23 @@ static  inline  int_t    AlignmentGenerateSweep(
     return  ifcFixedReferenceSweptAreaSolidInstance;
 }
 
-static  inline  int_t    AlignmentGenerateSweep(
-                                int_t   model,
-                                int_t   ifcAlignmentInstance,
-                                int_t   ifcProfileInstance,
-                                int_t   ifcProductInstance,
-                                double  gauge
-                            )
+static  inline  SdaiInstance    AlignmentGenerateSweep(
+                                        SdaiModel       model,
+                                        SdaiInstance    ifcAlignmentInstance,
+                                        SdaiInstance    ifcProfileInstance,
+                                        SdaiInstance    ifcProductInstance,
+                                        double          gauge
+                                    )
 {
-    int_t   ifcCompositeProfileDefInstance, * aggrProfiles;
+    SdaiInstance    ifcCompositeProfileDefInstance;
+    SdaiAggr        aggrProfiles;
         
     ifcCompositeProfileDefInstance = sdaiCreateInstanceBN(model, "IFCCOMPOSITEPROFILEDEF");
  
     aggrProfiles = sdaiCreateAggrBN(ifcCompositeProfileDefInstance, "Profiles");
 
-    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, -(gauge / 2.)));
-    sdaiAppend((int_t) aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, gauge / 2.));
+    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, -(gauge / 2.)));
+    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance,   gauge / 2.));
 
     return  AlignmentGenerateSweep(
                     model,

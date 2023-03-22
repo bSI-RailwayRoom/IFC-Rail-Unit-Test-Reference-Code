@@ -4,14 +4,12 @@
 #include "mathematics.h"
 
 
-static	inline	int_t	___CreateCartesianTransformationOperator2DInstance(
-							    int_t   model,
-                                double  offset
-							)
+static	inline	SdaiInstance	___CreateCartesianTransformationOperator2DInstance(
+										SdaiModel   model,
+										double		offset
+									)
 {
-	int_t	ifcCartesianTransformationOperator2DInstance;
-
-    ifcCartesianTransformationOperator2DInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANTRANSFORMATIONOPERATOR2D");
+	SdaiInstance	ifcCartesianTransformationOperator2DInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANTRANSFORMATIONOPERATOR2D");
 
 	___VECTOR2	localOrigin = { 0., offset };
     sdaiPutAttrBN(ifcCartesianTransformationOperator2DInstance, "LocalOrigin", sdaiINSTANCE, (void*) ___CreateCartesianPointInstance(model, &localOrigin));

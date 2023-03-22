@@ -715,14 +715,14 @@ void	CopyAlignmentCantSegmentTypeEnum(
 	}
 }
 
-int_t	CopyCartesianPoint2D(
-				int_t	mirrorModel,
-				int_t	ifcCartesianPointInstance
-			)
+SdaiInstance	CopyCartesianPoint2D(
+						SdaiModel		mirrorModel,
+						SdaiInstance	ifcCartesianPointInstance
+					)
 {
-	int_t	mirrorIfcCartesianPointInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCCARTESIANPOINT"),
-			* aggrCoordinates = nullptr;
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcCartesianPointInstance), ifcCartesianPointInstance));
+	SdaiInstance	mirrorIfcCartesianPointInstance = sdaiCreateInstanceBN(mirrorModel, "IFCCARTESIANPOINT");
+	SdaiAggr		aggrCoordinates = nullptr;
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcCartesianPointInstance), ifcCartesianPointInstance));
 
 //int_t epxressID = internalGetP21Line(ifcCartesianPointInstance);
 	sdaiGetAttrBN(ifcCartesianPointInstance, (char*) "Coordinates", sdaiAGGR, &aggrCoordinates);
@@ -730,29 +730,29 @@ int_t	CopyCartesianPoint2D(
 //	assert(cnt == 2);
 	if (cnt >= 2) {
 		double	x = 0., y = 0.;
-		engiGetAggrElement(aggrCoordinates, 0, sdaiREAL, &x);
-		engiGetAggrElement(aggrCoordinates, 1, sdaiREAL, &y);
-		int_t	* mirrorAggrCoordinates = sdaiCreateAggrBN(mirrorIfcCartesianPointInstance, (char*) "Coordinates");
-		sdaiAppend((int_t) mirrorAggrCoordinates, sdaiREAL, &x);
-		sdaiAppend((int_t) mirrorAggrCoordinates, sdaiREAL, &y);
+		sdaiGetAggrByIndex(aggrCoordinates, 0, sdaiREAL, &x);
+		sdaiGetAggrByIndex(aggrCoordinates, 1, sdaiREAL, &y);
+		SdaiAggr	mirrorAggrCoordinates = sdaiCreateAggrBN(mirrorIfcCartesianPointInstance, "Coordinates");
+		sdaiAppend(mirrorAggrCoordinates, sdaiREAL, &x);
+		sdaiAppend(mirrorAggrCoordinates, sdaiREAL, &y);
 	}
 	return	mirrorIfcCartesianPointInstance;
 }
 
-int_t	CopyInstanceIfcAlignmentHorizontalSegment(
-				int_t	mirrorModel,
-				int_t	ifcAlignmentParameterSegmentInstance
-			)
+SdaiInstance	CopyInstanceIfcAlignmentHorizontalSegment(
+						SdaiModel		mirrorModel,
+						SdaiInstance	ifcAlignmentParameterSegmentInstance
+					)
 {
-	int_t	mirrorIfcAlignmentHorizontalSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTHORIZONTALSEGMENT");
+	SdaiInstance	mirrorIfcAlignmentHorizontalSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTHORIZONTALSEGMENT");
 	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentHorizontalSegmentInstance), ifcAlignmentParameterSegmentInstance));
 
 	CopyStringOPTIONAL(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartTag");
 	CopyStringOPTIONAL(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
 
-	int_t	ifcCartesianPointInstance = 0;
-	sdaiGetAttrBN(ifcAlignmentParameterSegmentInstance, (char*) "StartPoint", sdaiINSTANCE, &ifcCartesianPointInstance);
-	sdaiPutAttrBN(mirrorIfcAlignmentHorizontalSegmentInstance, (char*) "StartPoint", sdaiINSTANCE, (void*) CopyCartesianPoint2D(mirrorModel, ifcCartesianPointInstance));
+	SdaiInstance	ifcCartesianPointInstance = 0;
+	sdaiGetAttrBN(ifcAlignmentParameterSegmentInstance, "StartPoint", sdaiINSTANCE, &ifcCartesianPointInstance);
+	sdaiPutAttrBN(mirrorIfcAlignmentHorizontalSegmentInstance, "StartPoint", sdaiINSTANCE, (void*) CopyCartesianPoint2D(mirrorModel, ifcCartesianPointInstance));
 	CopyPlaneAngleMeasure(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartDirection");
 	CopyLengthMeasure(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartRadiusOfCurvature");
 	CopyLengthMeasure(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndRadiusOfCurvature");
@@ -890,7 +890,7 @@ int_t	CopyInstanceIfcAlignmentHorizontal(
 
 		for (int_t i = 0; i < noSegmentInstances; i++) {
 			int_t	mirrorIfcAlignmentSegment = CopyInstanceIfcAlignmentSegment(mirrorModel, model, segmentInstances[i], enum_alignment::HORIZONTAL);
-			sdaiAppend((int_t) mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
+			sdaiAppend(mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
 		}
 	}
 	else {
@@ -941,7 +941,7 @@ int_t	CopyInstanceIfcAlignmentVertical(
 
 		for (int_t i = 0; i < noSegmentInstances; i++) {
 			int_t	mirrorIfcAlignmentSegment = CopyInstanceIfcAlignmentSegment(mirrorModel, model, segmentInstances[i], enum_alignment::VERTICAL);
-			sdaiAppend((int_t) mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
+			sdaiAppend(mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
 		}
 	}
 	else {
@@ -951,23 +951,23 @@ int_t	CopyInstanceIfcAlignmentVertical(
 	return	mirrorIfcAlignmentVerticalInstance;
 }
 
-int_t	CopyInstanceIfcAlignmentCant(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcAlignmentCantInstance
-			)
+SdaiInstance	CopyInstanceIfcAlignmentCant(
+						SdaiModel	mirrorModel,
+						SdaiModel	model,
+						int_t	ifcAlignmentCantInstance
+					)
 {
-	int_t	mirrorIfcAlignmentCantInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTCANT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentCantInstance), ifcAlignmentCantInstance));
+	SdaiInstance	mirrorIfcAlignmentCantInstance = sdaiCreateInstanceBN(mirrorModel, "IFCALIGNMENTCANT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentCantInstance), ifcAlignmentCantInstance));
 
-	CopyString(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, (char*) "GlobalId");
+	CopyString(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "GlobalId");
 	//	OwnerHistory
-	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, (char*) "Name");
-	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, (char*) "Description");
+	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "Name");
+	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "Description");
 
-	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, (char*) "ObjectType");
+	CopyStringOPTIONAL(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "ObjectType");
 
-	CopyPositiveLengthMeasure(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, (char*) "RailHeadDistance");
+	CopyPositiveLengthMeasure(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "RailHeadDistance");
 
 	//
 	//	Get Segments
@@ -981,9 +981,9 @@ int_t	CopyInstanceIfcAlignmentCant(
                     );
 
     if (noSegmentInstances) {
-		int_t	mirrorIfcRelNestsInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCRELNESTS"),
-				* mirrorAggrRelatedObjects = sdaiCreateAggrBN(mirrorIfcRelNestsInstance, (char*) "RelatedObjects");
-		sdaiPutAttrBN(mirrorIfcRelNestsInstance, (char*) "RelatingObject", sdaiINSTANCE, (void*) mirrorIfcAlignmentCantInstance);
+		SdaiInstance	mirrorIfcRelNestsInstance = sdaiCreateInstanceBN(mirrorModel, "IFCRELNESTS");
+		SdaiAggr		mirrorAggrRelatedObjects = sdaiCreateAggrBN(mirrorIfcRelNestsInstance, "RelatedObjects");
+		sdaiPutAttrBN(mirrorIfcRelNestsInstance, "RelatingObject", sdaiINSTANCE, (void*) mirrorIfcAlignmentCantInstance);
 
         int_t   * segmentInstances = new int_t[noSegmentInstances];
         ___GetAlignmentSegments(
@@ -994,7 +994,7 @@ int_t	CopyInstanceIfcAlignmentCant(
 
 		for (int_t i = 0; i < noSegmentInstances; i++) {
 			int_t	mirrorIfcAlignmentSegment = CopyInstanceIfcAlignmentSegment(mirrorModel, model, segmentInstances[i], enum_alignment::CANT);
-			sdaiAppend((int_t) mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
+			sdaiAppend(mirrorAggrRelatedObjects, sdaiINSTANCE, (void*) mirrorIfcAlignmentSegment);
 		}
 	}
 	else {
@@ -1005,80 +1005,80 @@ int_t	CopyInstanceIfcAlignmentCant(
 }
 
 void	AddIfcRelNests(
-				int_t	model,
-				int_t	ifcInstanceParent,
-				int_t	ifcInstanceChild
+				SdaiModel		model,
+				SdaiInstance	ifcInstanceParent,
+				SdaiInstance	ifcInstanceChild
 			)
 {
-	int_t	ifcRelNestsInstance = sdaiCreateInstanceBN(model, (char*) "IFCRELNESTS"),
-			* aggrRelatedObjects = sdaiCreateAggrBN(ifcRelNestsInstance, (char*) "RelatedObjects");
-	sdaiPutAttrBN(ifcRelNestsInstance, (char*) "RelatingObject", sdaiINSTANCE, (void*) ifcInstanceParent);
-	sdaiAppend((int_t) aggrRelatedObjects, sdaiINSTANCE, (void*) ifcInstanceChild);
+	SdaiInstance	ifcRelNestsInstance = sdaiCreateInstanceBN(model, "IFCRELNESTS");
+	SdaiAggr		aggrRelatedObjects = sdaiCreateAggrBN(ifcRelNestsInstance, "RelatedObjects");
+	sdaiPutAttrBN(ifcRelNestsInstance, "RelatingObject", sdaiINSTANCE, (void*) ifcInstanceParent);
+	sdaiAppend(aggrRelatedObjects, sdaiINSTANCE, (void*) ifcInstanceChild);
 }
 
-int_t	CopyInstanceIfcAlignment(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcAlignmentInstance
-			)
+SdaiInstance	CopyInstanceIfcAlignment(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcAlignmentInstance
+					)
 {
-	int_t	mirrorIfcAlignmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentInstance), ifcAlignmentInstance));
+	SdaiInstance	mirrorIfcAlignmentInstance = sdaiCreateInstanceBN(mirrorModel, "IFCALIGNMENT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentInstance), ifcAlignmentInstance));
 
-	CopyString(mirrorIfcAlignmentInstance, ifcAlignmentInstance, (char*) "GlobalId");
+	CopyString(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "GlobalId");
 	//	OwnerHistory
-	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, (char*) "Name");
-	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, (char*) "Description");
-	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, (char*) "ObjectType");
+	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "Name");
+	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "Description");
+	CopyStringOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "ObjectType");
 	//	ObjectPlacement
 	//	Representation
-	CopyAlignmentTypeEnumOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, (char*) "PredefinedType");
+	CopyAlignmentTypeEnumOPTIONAL(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "PredefinedType");
 
 	{
-		int_t	ifcAlignmentHorizontalInstance =
-					___GetAlignmentHorizontal(
-							model,
-							ifcAlignmentInstance,
-							nullptr
-						);
+		SdaiInstance	ifcAlignmentHorizontalInstance =
+							___GetAlignmentHorizontal(
+									model,
+									ifcAlignmentInstance,
+									nullptr
+								);
 		if (ifcAlignmentHorizontalInstance == 0) {
 			assert__error(enum_error::HORIZONTAL_ALIGNMENT_CONNECTION, ifcAlignmentInstance);
 		}
 		else {
-			int_t	mirrorIfcAlignmentHorizontalInstance =
-						CopyInstanceIfcAlignmentHorizontal(mirrorModel, model, ifcAlignmentHorizontalInstance);
+			SdaiInstance	mirrorIfcAlignmentHorizontalInstance =
+								CopyInstanceIfcAlignmentHorizontal(mirrorModel, model, ifcAlignmentHorizontalInstance);
 			AddIfcRelNests(mirrorModel, mirrorIfcAlignmentInstance, mirrorIfcAlignmentHorizontalInstance);
 		}
 	}
 
 	{
-		int_t	ifcAlignmentVerticalInstance =
-					___GetAlignmentVertical(
-							model,
-							ifcAlignmentInstance,
-							nullptr
-						);
+		SdaiInstance	ifcAlignmentVerticalInstance =
+							___GetAlignmentVertical(
+									model,
+									ifcAlignmentInstance,
+									nullptr
+								);
 		if (ifcAlignmentVerticalInstance == 0) {
 			assert__error(enum_error::VERTICAL_ALIGNMENT_CONNECTION, ifcAlignmentInstance);
 		}
 		else {
-			int_t	mirrorIfcAlignmentVerticalInstance =
-						CopyInstanceIfcAlignmentVertical(mirrorModel, model, ifcAlignmentVerticalInstance);
+			SdaiInstance	mirrorIfcAlignmentVerticalInstance =
+								CopyInstanceIfcAlignmentVertical(mirrorModel, model, ifcAlignmentVerticalInstance);
 			AddIfcRelNests(mirrorModel, mirrorIfcAlignmentInstance, mirrorIfcAlignmentVerticalInstance);
 		}
 	}
 
 	{
-		int_t	ifcAlignmentCantInstance =
-					___GetAlignmentCant(
-							model,
-							ifcAlignmentInstance,
-							nullptr
-						);
+		SdaiInstance	ifcAlignmentCantInstance =
+							___GetAlignmentCant(
+									model,
+									ifcAlignmentInstance,
+									nullptr
+								);
 
 		if (ifcAlignmentCantInstance) {
-			int_t	mirrorIfcAlignmentCantInstance =
-						CopyInstanceIfcAlignmentCant(mirrorModel, model, ifcAlignmentCantInstance);
+			SdaiInstance	mirrorIfcAlignmentCantInstance =
+								CopyInstanceIfcAlignmentCant(mirrorModel, model, ifcAlignmentCantInstance);
 			AddIfcRelNests(mirrorModel, mirrorIfcAlignmentInstance, mirrorIfcAlignmentCantInstance);
 		}
 	}
@@ -1087,48 +1087,48 @@ int_t	CopyInstanceIfcAlignment(
 }
 
 bool	IsRelevantNamedUnit(
-				int_t	model,
-				int_t	ifcNamedUnitInstance
+				SdaiModel		model,
+				SdaiInstance	ifcNamedUnitInstance
 			)
 {
 	char	* unitType = 0;
-	sdaiGetAttrBN(ifcNamedUnitInstance, (char*) "UnitType", sdaiENUM, &unitType);
+	sdaiGetAttrBN(ifcNamedUnitInstance, "UnitType", sdaiENUM, &unitType);
 	assert(unitType);
-	if (equals(unitType, (char*) "LENGTHUNIT") ||
-		equals(unitType, (char*) "PLANEANGLEUNIT")) {
+	if (equals(unitType, "LENGTHUNIT") ||
+		equals(unitType, "PLANEANGLEUNIT")) {
 		return	true;
 	}
 	return	false;
 }
 
-int_t	CopyInstanceSIUnit(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcSIUnitInstance
-			)
+SdaiInstance	CopyInstanceSIUnit(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcSIUnitInstance
+					)
 {
-	assert(sdaiGetInstanceType(ifcSIUnitInstance) == sdaiGetEntity(model, (char*) "IFCSIUNIT"));
+	assert(sdaiGetInstanceType(ifcSIUnitInstance) == sdaiGetEntity(model, "IFCSIUNIT"));
 
-	int_t	mirrorIfcSIUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCSIUNIT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcSIUnitInstance), ifcSIUnitInstance));
+	SdaiInstance	mirrorIfcSIUnitInstance = sdaiCreateInstanceBN(mirrorModel, "IFCSIUNIT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcSIUnitInstance), ifcSIUnitInstance));
 
-	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, (char*) "UnitType");
-	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, (char*) "Prefix");
-	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, (char*) "Name");
+	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, "UnitType");
+	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, "Prefix");
+	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, "Name");
 
 	return	mirrorIfcSIUnitInstance;
 }
 
-int_t	CopyInstanceDimensionalExponents(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcDimensionalExponentsInstance
-			)
+SdaiInstance	CopyInstanceDimensionalExponents(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcDimensionalExponentsInstance
+					)
 {
-	assert(sdaiGetInstanceType(ifcDimensionalExponentsInstance) == sdaiGetEntity(model, (char*) "IFCDIMENSIONALEXPONENTS"));
+	assert(sdaiGetInstanceType(ifcDimensionalExponentsInstance) == sdaiGetEntity(model, "IFCDIMENSIONALEXPONENTS"));
 
-	int_t	mirrorIfcDimensionalExponentsInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCDIMENSIONALEXPONENTS");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcDimensionalExponentsInstance), ifcDimensionalExponentsInstance));
+	SdaiInstance	mirrorIfcDimensionalExponentsInstance = sdaiCreateInstanceBN(mirrorModel, "IFCDIMENSIONALEXPONENTS");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcDimensionalExponentsInstance), ifcDimensionalExponentsInstance));
 
 	CopyInteger(mirrorIfcDimensionalExponentsInstance, ifcDimensionalExponentsInstance, (char*) "LengthExponent");
 	CopyInteger(mirrorIfcDimensionalExponentsInstance, ifcDimensionalExponentsInstance, (char*) "MassExponent");
@@ -1141,74 +1141,74 @@ int_t	CopyInstanceDimensionalExponents(
 	return	mirrorIfcDimensionalExponentsInstance;
 }
 
-int_t	CopyInstanceMeasureWithUnit(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcMeasureWithUnitInstance
-			)
+SdaiInstance	CopyInstanceMeasureWithUnit(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcMeasureWithUnitInstance
+					)
 {
 	assert(sdaiGetInstanceType(ifcMeasureWithUnitInstance) == sdaiGetEntity(model, (char*) "IFCMEASUREWITHUNIT"));
 
-	int_t	mirrorIfcMeasureWithUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCMEASUREWITHUNIT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcMeasureWithUnitInstance), ifcMeasureWithUnitInstance));
+	SdaiInstance	mirrorIfcMeasureWithUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCMEASUREWITHUNIT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcMeasureWithUnitInstance), ifcMeasureWithUnitInstance));
 
 	CopyADB(mirrorIfcMeasureWithUnitInstance, ifcMeasureWithUnitInstance, (char*) "ValueComponent");
 
-	int_t	ifcUnitInstance = 0;
+	SdaiInstance	ifcUnitInstance = 0;
 	sdaiGetAttrBN(ifcMeasureWithUnitInstance, (char*) "UnitComponent", sdaiINSTANCE, &ifcUnitInstance);
 	sdaiPutAttrBN(mirrorIfcMeasureWithUnitInstance, (char*) "UnitComponent", sdaiINSTANCE, (void*) CopyInstanceSIUnit(mirrorModel, model, ifcUnitInstance));
 
 	return	mirrorIfcMeasureWithUnitInstance;
 }
 
-int_t	CopyInstanceConversionBasedUnit(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcConversionBasedUnitInstance
-			)
+SdaiInstance	CopyInstanceConversionBasedUnit(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcConversionBasedUnitInstance
+					)
 {
 	assert(sdaiGetInstanceType(ifcConversionBasedUnitInstance) == sdaiGetEntity(model, (char*) "IFCCONVERSIONBASEDUNIT"));
 
-	int_t	mirrorIfcConversionBasedUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCCONVERSIONBASEDUNIT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcConversionBasedUnitInstance), ifcConversionBasedUnitInstance));
+	SdaiInstance	mirrorIfcConversionBasedUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCCONVERSIONBASEDUNIT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcConversionBasedUnitInstance), ifcConversionBasedUnitInstance));
 
-	int_t	ifcDimensionalExponentsInstance = 0;
+	SdaiInstance	ifcDimensionalExponentsInstance = 0;
 	sdaiGetAttrBN(ifcConversionBasedUnitInstance, (char*) "Dimensions", sdaiINSTANCE, &ifcDimensionalExponentsInstance);
 	sdaiPutAttrBN(mirrorIfcConversionBasedUnitInstance, (char*) "Dimensions", sdaiINSTANCE, (void*) CopyInstanceDimensionalExponents(mirrorModel, model, ifcDimensionalExponentsInstance));
 
 	CopyEnum(mirrorIfcConversionBasedUnitInstance, ifcConversionBasedUnitInstance, (char*) "UnitType");
 	CopyString(mirrorIfcConversionBasedUnitInstance, ifcConversionBasedUnitInstance, (char*) "Name");
 
-	int_t	ifcMeasureWithUnitInstance = 0;
+	SdaiInstance	ifcMeasureWithUnitInstance = 0;
 	sdaiGetAttrBN(ifcConversionBasedUnitInstance, (char*) "ConversionFactor", sdaiINSTANCE, &ifcMeasureWithUnitInstance);
 	sdaiPutAttrBN(mirrorIfcConversionBasedUnitInstance, (char*) "ConversionFactor", sdaiINSTANCE, (void*) CopyInstanceMeasureWithUnit(mirrorModel, model, ifcMeasureWithUnitInstance));
 
 	return	mirrorIfcConversionBasedUnitInstance;
 }
 
-int_t	CopyInstanceUnitAssignment(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcUnitAssignmentInstance
-			)
+SdaiInstance	CopyInstanceUnitAssignment(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcUnitAssignmentInstance
+					)
 {
-	int_t	mirrorIfcUnitAssignmenInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCUNITASSIGNMENT"),
-			* mirrorAggrUnits = sdaiCreateAggrBN(mirrorIfcUnitAssignmenInstance, (char*) "Units");
+	SdaiInstance	mirrorIfcUnitAssignmenInstance = sdaiCreateInstanceBN(mirrorModel, (char*)"IFCUNITASSIGNMENT");
+	SdaiAggr		mirrorAggrUnits = sdaiCreateAggrBN(mirrorIfcUnitAssignmenInstance, (char*) "Units");
 	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcUnitAssignmenInstance), ifcUnitAssignmentInstance));
 
-	int_t	* aggrUnits = nullptr;
-	sdaiGetAttrBN(ifcUnitAssignmentInstance, (char*) "Units", sdaiAGGR, &aggrUnits);
-	int_t	aggrUnitsCnt = sdaiGetMemberCount(aggrUnits);
-	for (int_t i = 0; i < aggrUnitsCnt; i++) {
-		int_t	ifcUnitInstance = 0;
-		engiGetAggrElement(aggrUnits, i, sdaiINSTANCE, &ifcUnitInstance);
-		if (sdaiGetInstanceType(ifcUnitInstance) == sdaiGetEntity(model, (char*) "IFCSIUNIT")) {
+	SdaiAggr	aggrUnits = nullptr;
+	sdaiGetAttrBN(ifcUnitAssignmentInstance, "Units", sdaiAGGR, &aggrUnits);
+	SdaiInteger	aggrUnitsCnt = sdaiGetMemberCount(aggrUnits);
+	for (SdaiInteger i = 0; i < aggrUnitsCnt; i++) {
+		SdaiInstance	ifcUnitInstance = 0;
+		sdaiGetAggrByIndex(aggrUnits, i, sdaiINSTANCE, &ifcUnitInstance);
+		if (sdaiGetInstanceType(ifcUnitInstance) == sdaiGetEntity(model, "IFCSIUNIT")) {
 			if (IsRelevantNamedUnit(model, ifcUnitInstance)) {
-				sdaiAppend((int_t) mirrorAggrUnits, sdaiINSTANCE, (void*) CopyInstanceSIUnit(mirrorModel, model, ifcUnitInstance));
+				sdaiAppend(mirrorAggrUnits, sdaiINSTANCE, (void*) CopyInstanceSIUnit(mirrorModel, model, ifcUnitInstance));
 			}
 		}
-		else if (sdaiGetInstanceType(ifcUnitInstance) == sdaiGetEntity(model, (char*) "IFCCONVERSIONBASEDUNIT")) {
-			sdaiAppend((int_t) mirrorAggrUnits, sdaiINSTANCE, (void*) CopyInstanceConversionBasedUnit(mirrorModel, model, ifcUnitInstance));
+		else if (sdaiGetInstanceType(ifcUnitInstance) == sdaiGetEntity(model, "IFCCONVERSIONBASEDUNIT")) {
+			sdaiAppend(mirrorAggrUnits, sdaiINSTANCE, (void*) CopyInstanceConversionBasedUnit(mirrorModel, model, ifcUnitInstance));
 		}
 		else {
 			assert(false);
@@ -1218,33 +1218,33 @@ int_t	CopyInstanceUnitAssignment(
 	return	mirrorIfcUnitAssignmenInstance;
 }
 
-int_t	CopyInstanceIfcProject(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcProjectInstance
-			)
+SdaiInstance	CopyInstanceIfcProject(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcProjectInstance
+					)
 {
-	int_t	mirrorIfcProjectInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCPROJECT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcProjectInstance), ifcProjectInstance));
+	SdaiInstance	mirrorIfcProjectInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCPROJECT");
+	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcProjectInstance), ifcProjectInstance));
 
-	int_t	ifcUnitAssignmenInstance = 0;
-	sdaiGetAttrBN(ifcProjectInstance, (char*) "UnitsInContext", sdaiINSTANCE, &ifcUnitAssignmenInstance);
-	sdaiPutAttrBN(mirrorIfcProjectInstance, (char*) "UnitsInContext", sdaiINSTANCE, (void*) CopyInstanceUnitAssignment(mirrorModel, model, ifcUnitAssignmenInstance));
+	SdaiInstance	ifcUnitAssignmenInstance = 0;
+	sdaiGetAttrBN(ifcProjectInstance, "UnitsInContext", sdaiINSTANCE, &ifcUnitAssignmenInstance);
+	sdaiPutAttrBN(mirrorIfcProjectInstance,  "UnitsInContext", sdaiINSTANCE, (void*) CopyInstanceUnitAssignment(mirrorModel, model, ifcUnitAssignmenInstance));
 
 	return	mirrorIfcProjectInstance;
 }
 
-int_t	CreateMirror(
-				int_t	mirrorModel,
-				int_t	model,
-				int_t	ifcAlignmentInstance
-			)
+SdaiInstance	CreateMirror(
+						SdaiModel		mirrorModel,
+						SdaiModel		model,
+						SdaiInstance	ifcAlignmentInstance
+					)
 {
-	int_t	* ifcProjectInstances = sdaiGetEntityExtentBN(model, (char*) "IFCPROJECT"),
-			noIfcProjectInstances = sdaiGetMemberCount(ifcProjectInstances);
+	SdaiAggr		ifcProjectInstances = sdaiGetEntityExtentBN(model, "IFCPROJECT");
+	SdaiInteger		noIfcProjectInstances = sdaiGetMemberCount(ifcProjectInstances);
     if (noIfcProjectInstances == 1) {
-		int_t	ifcProjectInstance = 0;
-		engiGetAggrElement(ifcProjectInstances, 0, sdaiINSTANCE, &ifcProjectInstance);
+		SdaiInstance	ifcProjectInstance = 0;
+		sdaiGetAggrByIndex(ifcProjectInstances, 0, sdaiINSTANCE, &ifcProjectInstance);
 
 		CopyInstanceIfcProject(mirrorModel, model, ifcProjectInstance);
 
@@ -1285,14 +1285,14 @@ int_t	FindRepresentation(
 		int_t	aggrRepresentationsCnt = sdaiGetMemberCount(aggrRepresentations);
 		for (int_t i = 0; i < aggrRepresentationsCnt; i++) {
 			int_t	ifcRepresentationInstance = 0;
-			engiGetAggrElement(aggrRepresentations, i, sdaiINSTANCE, &ifcRepresentationInstance);
+			sdaiGetAggrByIndex(aggrRepresentations, i, sdaiINSTANCE, &ifcRepresentationInstance);
 
 			int_t	* aggrItems = nullptr;
 			sdaiGetAttrBN(ifcRepresentationInstance, (char*) "Items", sdaiAGGR, &aggrItems);
 			int_t	aggrItemsCnt = sdaiGetMemberCount(aggrItems);
 			for (int_t j = 0; j < aggrItemsCnt; j++) {
 				int_t	ifcRepresentationItemInstance = 0;
-				engiGetAggrElement(aggrItems, i, sdaiINSTANCE, &ifcRepresentationItemInstance);
+				sdaiGetAggrByIndex(aggrItems, i, sdaiINSTANCE, &ifcRepresentationItemInstance);
 
 				if (sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE") ||
 					sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE") ||
@@ -1323,14 +1323,14 @@ void	FindRepresentation(
 		int_t	aggrRepresentationsCnt = sdaiGetMemberCount(aggrRepresentations);
 		for (int_t i = 0; i < aggrRepresentationsCnt; i++) {
 			int_t	ifcRepresentationInstance = 0;
-			engiGetAggrElement(aggrRepresentations, i, sdaiINSTANCE, &ifcRepresentationInstance);
+			sdaiGetAggrByIndex(aggrRepresentations, i, sdaiINSTANCE, &ifcRepresentationInstance);
 
 			int_t	* aggrItems = nullptr;
 			sdaiGetAttrBN(ifcRepresentationInstance, (char*) "Items", sdaiAGGR, &aggrItems);
 			int_t	aggrItemsCnt = sdaiGetMemberCount(aggrItems);
 			for (int_t j = 0; j < aggrItemsCnt; j++) {
 				int_t	ifcRepresentationItemInstance = 0;
-				engiGetAggrElement(aggrItems, i, sdaiINSTANCE, &ifcRepresentationItemInstance);
+				sdaiGetAggrByIndex(aggrItems, i, sdaiINSTANCE, &ifcRepresentationItemInstance);
 
 				if (sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCCURVESEGMENT")) {
 					if ((*representationItemI)) {
@@ -1368,7 +1368,7 @@ int_t	GetIndex(
 	int_t	aggrSegmentsCnt = sdaiGetMemberCount(aggrSegments);
 	for (int_t i = 0; i < aggrSegmentsCnt; i++) {
 		int_t	ifcSegmentInstance = 0;
-		engiGetAggrElement(aggrSegments, i, sdaiINSTANCE, &ifcSegmentInstance);
+		sdaiGetAggrByIndex(aggrSegments, i, sdaiINSTANCE, &ifcSegmentInstance);
 		if (ifcSegmentInstance == ifcSegmentCurveInstance) {
 			return	i;
 		}
@@ -1471,8 +1471,8 @@ void	CompareREAL_SET(
 	if (mirrorAggrValueCnt == aggrValueCnt) {
 		for (int_t i = 0; i < aggrValueCnt; i++) {
 			double	mirrorValue = 0., value = 0.;
-			engiGetAggrElement(mirrorAggrValue, i, sdaiREAL, &mirrorValue);
-			engiGetAggrElement(aggrValue, i, sdaiREAL, &value);
+			sdaiGetAggrByIndex(mirrorAggrValue, i, sdaiREAL, &mirrorValue);
+			sdaiGetAggrByIndex(aggrValue, i, sdaiREAL, &value);
 
 			if (std::fabs(mirrorValue - value) > relativeEpsilon) {
 				assert__error(enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_ATTRIBUTE, ifcCurveSegmentInstance, ifcContextInstance, attributeName);
@@ -1875,7 +1875,7 @@ void	CompareMirror(
 					noIfcGradientCurveInstances = sdaiGetMemberCount(ifcGradientCurveInstances);
 			for (int_t i = 0; i < noIfcGradientCurveInstances; i++) {
 				int_t	ifcGradientCurveInstance = 0;
-				engiGetAggrElement(ifcGradientCurveInstances, i, sdaiINSTANCE, &ifcGradientCurveInstance);
+				sdaiGetAggrByIndex(ifcGradientCurveInstances, i, sdaiINSTANCE, &ifcGradientCurveInstance);
 
 				int_t	myBaseCurveInstance = 0;
 				sdaiGetAttrBN(ifcGradientCurveInstance, (char*) "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
@@ -1895,7 +1895,7 @@ void	CompareMirror(
 					noIfcSegmentedReferenceCurveInstances = sdaiGetMemberCount(ifcSegmentedReferenceCurveInstances);
 			for (int_t i = 0; i < noIfcSegmentedReferenceCurveInstances; i++) {
 				int_t	ifcSegmentedReferenceCurveInstance = 0;
-				engiGetAggrElement(ifcSegmentedReferenceCurveInstances, i, sdaiINSTANCE, &ifcSegmentedReferenceCurveInstance);
+				sdaiGetAggrByIndex(ifcSegmentedReferenceCurveInstances, i, sdaiINSTANCE, &ifcSegmentedReferenceCurveInstance);
 
 				int_t	myBaseCurveInstance = 0;
 				sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, (char*) "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
@@ -2830,7 +2830,7 @@ int_t	CheckConsistencyAlignment__internal(
         int_t   issues = 0;
         for (int_t i = 0; i < noIfcAlignmentInstances; i++) {
             int_t   ifcAlignmentInstance = 0;
-            engiGetAggrElement(ifcAlignmentInstances, i, sdaiINSTANCE, &ifcAlignmentInstance);
+            sdaiGetAggrByIndex(ifcAlignmentInstances, i, sdaiINSTANCE, &ifcAlignmentInstance);
 
             int_t   myMirrorModel = sdaiCreateModelBN(0, nullptr, "IFC4X3");
             setFilter(myMirrorModel, 2, 1 + 2 + 4);
@@ -2858,7 +2858,7 @@ int_t	CheckConsistencyAlignment__internal(
                 setFilter(myMirrorModel, 2, 1 + 2 + 4);
 
                 mirrorIfcAlignmentInstance = 0;
-                engiGetAggrElement(sdaiGetEntityExtentBN(myMirrorModel, "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
+                sdaiGetAggrByIndex(sdaiGetEntityExtentBN(myMirrorModel, "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
 
                 EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 
