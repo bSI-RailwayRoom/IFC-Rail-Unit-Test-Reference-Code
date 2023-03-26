@@ -318,8 +318,8 @@ static  inline  SdaiInstance    AlignmentGenerateSweep(
  
     aggrProfiles = sdaiCreateAggrBN(ifcCompositeProfileDefInstance, "Profiles");
 
-    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, -(gauge / 2.)));
-    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance,   gauge / 2.));
+    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance, - (gauge / 2.)));
+    sdaiAppend(aggrProfiles, sdaiINSTANCE, (void*) ___CreateDerivedProfileDefInstance(model, ifcProfileInstance,    gauge / 2.));
 
     return  AlignmentGenerateSweep(
                     model,

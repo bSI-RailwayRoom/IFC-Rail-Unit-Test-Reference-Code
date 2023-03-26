@@ -10,7 +10,7 @@ static	inline	double  ___GetConversionFactor(
                             )
 {
     if (sdaiGetInstanceType(ifcMeasureWithUnitInstance) == sdaiGetEntity(model, "IFCMEASUREWITHUNIT")) {
-        int_t   * valueComponentADB = nullptr;
+        SdaiADB	valueComponentADB = nullptr;
         sdaiGetAttrBN(ifcMeasureWithUnitInstance, "ValueComponent", sdaiADB, &valueComponentADB);
 
         double  valueComponent = 0.;

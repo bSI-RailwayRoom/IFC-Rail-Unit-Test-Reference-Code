@@ -21,10 +21,10 @@ static	inline	SdaiInstance    ___CreateCircleInstance(
     return	ifcCircleInstance;
 }
 
-static	inline	int_t   ___CreateCircleInstance(
-                                SdaiModel   model,
-                                double      radiusOfCurvature
-                            )
+static	inline	SdaiInteger ___CreateCircleInstance(
+                                    SdaiModel   model,
+                                    double      radiusOfCurvature
+                                )
 {
     SdaiInstance	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 

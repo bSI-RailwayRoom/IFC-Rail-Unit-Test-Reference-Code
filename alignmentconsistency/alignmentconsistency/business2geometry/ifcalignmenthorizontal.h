@@ -544,62 +544,22 @@ segmentLength = std::fabs(segmentLength);
                             constantTerm  =   0. * factor + (startRadiusOfCurvature ? segmentLength / startRadiusOfCurvature : 0.),
                             linearTerm    =   1. * factor;
 
-
-double __offset = constantTerm ? segmentLength * pow(std::fabs(constantTerm),    -1. / 1.) * constantTerm / std::fabs(constantTerm)    : 0.;
-
-double   LT = segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm);
-
-                    double sign = (startRadiusOfCurvature + endRadiusOfCurvature) / std::fabs(startRadiusOfCurvature + endRadiusOfCurvature);
-                    double  offset, __linearTernm;
+                    double  offset;
                     if ((std::fabs(startRadiusOfCurvature) < std::fabs(endRadiusOfCurvature) && startRadiusOfCurvature) || endRadiusOfCurvature == 0.) {
-                        double  factor = segmentLength * (1. / startRadiusOfCurvature + (endRadiusOfCurvature ? 1. / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.));
-assert(segmentLength > 0. && factor * sign > 0.);
-                        __linearTernm = - startRadiusOfCurvature * std::sqrt(std::fabs(factor));
                         offset = - segmentLength - (endRadiusOfCurvature ? segmentLength * startRadiusOfCurvature / (endRadiusOfCurvature - startRadiusOfCurvature) : 0.);
-
-
-__offset *= - factor;
-assert(std::fabs(offset - __offset) < 0.000000001);
-                        double  O = - startRadiusOfCurvature * factor;
-                        assert(std::fabs(O - offset) < 0.0000001);
                     }
                     else {
                         assert(std::fabs(startRadiusOfCurvature) > std::fabs(endRadiusOfCurvature) || startRadiusOfCurvature == 0.);
-                        double  factor = segmentLength * (1. / endRadiusOfCurvature + (startRadiusOfCurvature ? 1. / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.));
-assert(segmentLength > 0. && factor * sign > 0.);
-                        __linearTernm = endRadiusOfCurvature * std::sqrt(std::fabs(factor));
                         offset = startRadiusOfCurvature ? segmentLength * endRadiusOfCurvature / (startRadiusOfCurvature - endRadiusOfCurvature) : 0.;
                     }
 
- assert(std::fabs(__linearTernm - LT) < 0.00001);
+                    SdaiInstance   ifcClothoidParentCurve =
+		                                ___CreateClothoidInstance(
+		                                        model,
+		                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+		                                        nullptr
+		                                    );
 
-                    ___MATRIX   myMatrix;
-                    ___MatrixIdentity(&myMatrix);
-
-                    ___VECTOR3  myVec = {
-                                        ___XclothoidByConstant(__linearTernm, offset),
-                                        ___YclothoidByConstant(__linearTernm, offset),
-                                        0.
-                                    };
-
-                    double  angleDir = atan2(refDirection.y, refDirection.x);
-                    double  angle = ___AngleClothoidByConstant(__linearTernm, offset);
-                    myMatrix._11 = cos(-(angle - angleDir));
-                    myMatrix._12 = sin(-(angle - angleDir));
-                    myMatrix._21 = - myMatrix._12;
-                    myMatrix._22 =   myMatrix._11;
-
-                    ___Vec3Transform(&myVec, &myVec, &myMatrix);
-                    myMatrix._41 = - myVec.x;
-                    myMatrix._42 = - myVec.y;
-                    assert(myVec.z == 0.);
-
-                    SdaiInstance    ifcClothoidParentCurve =
-                                        ___CreateClothoidInstance(
-                                                model,
-                                                linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                &myMatrix
-                                            );
                     sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcClothoidParentCurve;

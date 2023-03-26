@@ -53,26 +53,26 @@ static	inline	bool    ___equals(
 }
 
 static  inline  int_t   ___GetAlignmentSegments(
-                                int_t   model,
-                                int_t   ifcAlignmentXyzInstance,
-                                int_t   * pAlignmentSegment
+                                SdaiModel		model,
+                                SdaiInstance	ifcAlignmentXyzInstance,
+                                int_t			* pAlignmentSegment
                             )
 {
     int_t   alignmentSegmentCnt = 0;
 
     {
-	    int_t	* aggrIfcRelAggregates = nullptr, noAggrIfcRelAggregates;
+	    SdaiAggr	aggrIfcRelAggregates = nullptr;
         sdaiGetAttrBN(ifcAlignmentXyzInstance, "IsNestedBy", sdaiAGGR, &aggrIfcRelAggregates);
-        noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
-        for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
-            int_t   ifcRelAggregatesInstance = 0;
+        SdaiInteger	noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
+        for (SdaiInteger i = 0; i < noAggrIfcRelAggregates; i++) {
+			SdaiInstance   ifcRelAggregatesInstance = 0;
             sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
-    	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
+			SdaiAggr	aggrIfcObjectDefinition = nullptr;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
-            noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
-            for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
-                int_t   ifcObjectDefinitionInstance = 0;
+			SdaiInteger	noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
+            for (SdaiInteger j = 0; j < noAggrIfcObjectDefinition; j++) {
+				SdaiInstance   ifcObjectDefinitionInstance = 0;
                 sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
@@ -86,18 +86,18 @@ static  inline  int_t   ___GetAlignmentSegments(
     }
 
     {
-	    int_t	* aggrIfcRelAggregates = nullptr, noAggrIfcRelAggregates;
+		SdaiAggr	aggrIfcRelAggregates = nullptr;
         sdaiGetAttrBN(ifcAlignmentXyzInstance, "IsDecomposedBy", sdaiAGGR, &aggrIfcRelAggregates);
-        noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
-        for (int_t i = 0; i < noAggrIfcRelAggregates; i++) {
-            int_t   ifcRelAggregatesInstance = 0;
+		SdaiInteger	noAggrIfcRelAggregates = sdaiGetMemberCount(aggrIfcRelAggregates);
+        for (SdaiInteger i = 0; i < noAggrIfcRelAggregates; i++) {
+			SdaiInstance   ifcRelAggregatesInstance = 0;
             sdaiGetAggrByIndex(aggrIfcRelAggregates, i, sdaiINSTANCE, &ifcRelAggregatesInstance);
 
-    	    int_t	* aggrIfcObjectDefinition = nullptr, noAggrIfcObjectDefinition;
+			SdaiAggr	aggrIfcObjectDefinition = nullptr;
             sdaiGetAttrBN(ifcRelAggregatesInstance, "RelatedObjects", sdaiAGGR, &aggrIfcObjectDefinition);
-            noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
-            for (int_t j = 0; j < noAggrIfcObjectDefinition; j++) {
-                int_t   ifcObjectDefinitionInstance = 0;
+			SdaiInteger	noAggrIfcObjectDefinition = sdaiGetMemberCount(aggrIfcObjectDefinition);
+            for (SdaiInteger j = 0; j < noAggrIfcObjectDefinition; j++) {
+				SdaiInstance   ifcObjectDefinitionInstance = 0;
                 sdaiGetAggrByIndex(aggrIfcObjectDefinition, j, sdaiINSTANCE, &ifcObjectDefinitionInstance);
 
                 if (sdaiGetInstanceType(ifcObjectDefinitionInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT")) {
@@ -122,9 +122,6 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 								___POINT4D	* point4D
 							)
 {
-//	SaveInstanceTree(owlInstancePoint4D, "c:\\0\\poinbt4d.bin");
-
-	
 	bool	asExpected = true;
 
 	OwlClass myClass = GetInstanceClass(owlInstancePoint4D);
@@ -378,7 +375,7 @@ static  inline  void    ___GetEndPoint(
 
 			    + 0 * __flagbit8         //    OFF / ON TRIANGLES
 			    + 1 * __flagbit9         //    OFF / ON LINES
-			    + 0 * __flagbit10        //    OFF / ON POINTS
+			    + 1 * __flagbit10        //    OFF / ON POINTS
 
 			    + 0 * __flagbit12        //    OFF / ON WIREFRAME FACES
 			    + 0 * __flagbit13;       //    OFF / ON WIREFRAME CONCEPTUAL FACES
