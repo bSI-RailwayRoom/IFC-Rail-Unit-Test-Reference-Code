@@ -37,3 +37,15 @@ static	inline	SdaiInstance    ___CreateThirdOrderPolynomialSpiralInstance(
 
     return	ifcThirdOrderPolynomialSpiralInstance;
 }
+
+static	inline	double  ___ThirdOrderPolynomialSpiralLengthMeasureToParameterValue(
+                                double      cubicTerm,
+                                double      quadraticTerm,
+                                double      linearTerm,
+                                double      constantTerm,
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;	// / (std::fabs(constantTerm) * pow(Pi, 1. / 1.) + lengthMeasure / std::fabs(linearTerm) * pow(Pi, 1. / 2.) + lengthMeasure / std::fabs(quadraticTerm) * pow(Pi, 1. / 3.) + lengthMeasure / std::fabs(cubicTerm) * pow(Pi, 1. / 4.));
+}

@@ -38,10 +38,11 @@
 #endif
 
 
-typedef		int64_t								OwlModel;
-typedef		int64_t								OwlClass;
-typedef		int64_t								OwlInstance;
-typedef		int64_t								RdfProperty;
+typedef		int64_t								RdfsResource;
+typedef		RdfsResource						OwlModel;
+typedef		RdfsResource						OwlClass;
+typedef		RdfsResource						OwlInstance;
+typedef		RdfsResource						RdfProperty;
 typedef		RdfProperty							OwlDatatypeProperty;
 typedef		RdfProperty							OwlObjectProperty;
 typedef		int64_t								RdfPropertyType;
@@ -584,13 +585,14 @@ void			DECL STDC	AddState(
 
 //
 //		GetModel                                                (http://rdf.bg/gkdoc/CP64/GetModel.html)
-//				OwlInstance				owlInstance							IN
+//				RdfsResource			rdfsResource						IN
 //
 //				OwlModel				returns								OUT
 //
+//	Returns model for any resource, i.e. class, property, instance
 //
 OwlModel		DECL STDC	GetModel(
-									OwlInstance				owlInstance
+									RdfsResource			rdfsResource
 								);
 
 //
@@ -768,6 +770,69 @@ void			DECL STDC	CleanMemory(
 //
 void			DECL STDC	ClearCache(
 									OwlModel				model
+								);
+
+//
+//		AllocModelMemory                                        (http://rdf.bg/gkdoc/CP64/AllocModelMemory.html)
+//				OwlModel				model								IN
+//				int64_t					size								IN
+//
+//				int64_t					returns								OUT
+//
+//	Allocates model associated memory.
+//	Memory is disposed when model is closed
+//
+int64_t			DECL STDC	AllocModelMemory(
+									OwlModel				model,
+									int64_t					size
+								);
+
+//
+//		SetExternalReferenceData                                (http://rdf.bg/gkdoc/CP64/SetExternalReferenceData.html)
+//				RdfsResource			rdfsResource						IN
+//				int64_t					identifier							IN
+//				void					* data								IN / OUT
+//
+//				int64_t					returns								OUT
+//
+//	Sets application data on model, class, property, instance
+//	Returns 0 on error, 1 on success
+//
+int64_t			DECL STDC	SetExternalReferenceData(
+									RdfsResource			rdfsResource,
+									int64_t					identifier,
+									void					* data
+								);
+
+//
+//		GetExternalReferenceData                                (http://rdf.bg/gkdoc/CP64/GetExternalReferenceData.html)
+//				RdfsResource			rdfsResource						IN
+//				int64_t					identifier							IN
+//
+//				int64_t					returns								OUT
+//
+//	Gets application data from model, class, property, instance that were previosly set by SetExternalReferenceData
+//	Returns 0 on error, 1 on success
+//
+int64_t			DECL STDC	GetExternalReferenceData(
+									RdfsResource			rdfsResource,
+									int64_t					identifier
+								);
+
+//
+//		GetExternalReferenceDataId                              (http://rdf.bg/gkdoc/CP64/GetExternalReferenceDataId.html)
+//				OwlModel				model								IN
+//				const char				* uniqueAppName						IN
+//
+//				int64_t					returns								OUT
+//
+//	Returns a key id can be used in calls to Get/SetExternalReferenceData to keep application data on GK entities
+//	During model lifetime the id is the same for given string and different for different strings
+//	Returns 0 on error
+//
+int64_t			DECL STDC	GetExternalReferenceDataId(
+									OwlModel				model,
+									const char				* uniqueAppName
 								);
 
 //
@@ -1281,6 +1346,20 @@ int64_t			DECL STDC	CloseModel(
 								);
 
 //
+//		IsModel                                                 (http://rdf.bg/gkdoc/CP64/IsModel.html)
+//				RdfsResource			rdfsResource						IN
+//
+//				OwlModel				returns								OUT
+//
+//	Returns OwlModel if the argument rdfsResource is an actual active model. It returns 0 in all other cases,
+//	i.e. this could mean the model is already closed or the session is closed.
+//	It could also mean it represents a handle to another resource, for example a property, instance or class.
+//
+OwlModel		DECL STDC	IsModel(
+									RdfsResource			rdfsResource
+								);
+
+//
 //  Design Tree Classes API Calls
 //
 
@@ -1372,13 +1451,20 @@ OwlClass		DECL STDC	GetClassesByIterator(
 //				OwlClass				parentOwlClass						IN
 //				int64_t					setting								IN
 //
-//				void					returns
+//				int64_t					returns								OUT
 //
 //	Defines (set/unset) the parent class of a given class. Multiple-inheritence is supported and behavior
 //	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
 //	object properties (relations).
 //
-void			DECL STDC	SetClassParent(
+//	When set: it adds parentOwlClass as immediate parent of owlClass if and only if 
+//	parentOwlClass is not ancestor of owlClass and owlClass is not ancestor of parentOwlClass.
+//	Returns the same value as IsClassAncestor after the call.
+//
+//	When unset: it removes parentOwlClass from immediate parents and returns 1, 
+//	or retunrs 0 if parentOwlClass is not immediate parent
+//
+int64_t			DECL STDC	SetClassParent(
 									OwlClass				owlClass,
 									OwlClass				parentOwlClass,
 									int64_t					setting
@@ -1391,7 +1477,7 @@ void			DECL STDC	SetClassParent(
 //				OwlClass				parentOwlClass						IN
 //				int64_t					setting								IN
 //
-//				void					returns
+//				int64_t					returns								OUT
 //
 //	Defines (set/unset) the parent class of a given class. Multiple-inheritence is supported and behavior
 //	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
@@ -1400,11 +1486,26 @@ void			DECL STDC	SetClassParent(
 //	This call has the same behavior as SetClassParent, however needs to be
 //	used in case classes are exchanged as a successive series of integers.
 //
-void			DECL STDC	SetClassParentEx(
+int64_t			DECL STDC	SetClassParentEx(
 									OwlModel				model,
 									OwlClass				owlClass,
 									OwlClass				parentOwlClass,
 									int64_t					setting
+								);
+
+//
+//		IsClassAncestor                                         (http://rdf.bg/gkdoc/CP64/IsClassAncestor.html)
+//				OwlClass				owlClass							IN
+//				OwlClass				ancestorOwlClass					IN
+//
+//				int64_t					returns								OUT
+//
+//	Checks if the class has given ancestor
+//	Returns 0 if not or minimal generation number (1 for direct parent)
+//
+int64_t			DECL STDC	IsClassAncestor(
+									OwlClass				owlClass,
+									OwlClass				ancestorOwlClass
 								);
 
 //
@@ -1845,16 +1946,16 @@ OwlClass		DECL STDC	GetGeometryClassEx(
 
 //
 //		IsClass                                                 (http://rdf.bg/gkdoc/CP64/IsClass.html)
-//				OwlClass				owlClass							IN
+//				RdfsResource			rdfsResource						IN
 //
-//				bool					returns								OUT
+//				OwlClass				returns								OUT
 //
-//	Returns true if the argument owlClass is an actual active class in an active model. It returns false in all other cases,
+//	Returns OwlClass if the argument rdfsResource is an actual active class in an active model. It returns 0 in all other cases,
 //	i.e. this could mean the model is already closed, the class is inactive or removed or the session is closed.
-//	It could also mean it represents a handle to another Thing, for example a property, instance or model.
+//	It could also mean it represents a handle to another resource, for example a property, instance or model.
 //
-bool			DECL STDC	IsClass(
-									OwlClass				owlClass
+OwlClass		DECL STDC	IsClass(
+									RdfsResource			rdfsResource
 								);
 
 //
@@ -2413,16 +2514,16 @@ int64_t			DECL STDC	RemovePropertyEx(
 
 //
 //		IsProperty                                              (http://rdf.bg/gkdoc/CP64/IsProperty.html)
-//				RdfProperty				rdfProperty							IN
+//				RdfsResource			rdfsResource						IN
 //
-//				bool					returns								OUT
+//				RdfProperty				returns								OUT
 //
-//	Returns true if the argument rdfProperty is an actual active property in an active model. It returns false in all other cases,
+//	Returns RdfProperty if the argument rdfsResource is an actual active property in an active model. It returns 0 in all other cases,
 //	i.e. this could mean the model is already closed, the property is inactive or removed or the session is closed.
-//	It could also mean it represents a handle to another Thing, for example a class, instance or model.
+//	It could also mean it represents a handle to another resource, for example a class, instance or model.
 //
-bool			DECL STDC	IsProperty(
-									RdfProperty				rdfProperty
+RdfProperty		DECL STDC	IsProperty(
+									RdfsResource			rdfsResource
 								);
 
 //
@@ -3508,16 +3609,16 @@ int64_t			DECL STDC	RemoveInstances(
 
 //
 //		IsInstance                                              (http://rdf.bg/gkdoc/CP64/IsInstance.html)
-//				OwlInstance				owlInstance							IN
+//				RdfsResource			rdfsResource						IN
 //
-//				bool					returns								OUT
+//				OwlInstance				returns								OUT
 //
-//	Returns true if the argument owlInstance is an actual active property in an active model. It returns false in all other cases,
+//	Returns OwlInstance if the argument rdfsResource is an actual active instance in an active model. It returns 0 in all other cases,
 //	i.e. this could mean the model is already closed, the instance is inactive or removed or the session is closed.
-//	It could also mean it represents a handle to another Thing, for example a class, property or model.
+//	It could also mean it represents a handle to another resource, for example a class, property or model.
 //
-bool			DECL STDC	IsInstance(
-									OwlInstance				owlInstance
+OwlInstance		DECL STDC	IsInstance(
+									RdfsResource			rdfsResource
 								);
 
 #ifdef __cplusplus

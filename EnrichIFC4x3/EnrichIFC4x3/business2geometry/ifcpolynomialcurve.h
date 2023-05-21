@@ -46,3 +46,17 @@ static	inline	SdaiInstance    ___CreatePolynomialCurveInstance(
 
     return	ifcPolynomialCurveInstance;
 }
+
+static	inline	double  ___PolynomialCurveLengthMeasureToParameterValue(
+                                double      * pCoefficientsX,
+                                int_t       coefficientsXCard,
+                                double      * pCoefficientsY,
+                                int_t       coefficientsYCard,
+                                double      * pCoefficientsZ,
+                                int_t       coefficientsZCard,
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;
+}

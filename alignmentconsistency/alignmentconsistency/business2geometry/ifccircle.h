@@ -72,3 +72,24 @@ static	inline	SdaiInstance    ___CreateCircleInstance(
     assert(ifcCircleInstance);
     return	ifcCircleInstance;
 }
+
+static	inline	double  ___CircularArcLengthMeasureToParameterValue(
+                                double      radiusOfCurvature,
+                                double      lengthMeasure
+                            )
+{
+    if (radiusOfCurvature)
+        return  lengthMeasure / std::fabs(radiusOfCurvature);
+
+    assert(false);
+    return  lengthMeasure;
+}
+
+static	inline	double  ___CircularArcParameterValueToLengthMeasure(
+                                double      radiusOfCurvature,
+                                double      parameterValue
+                            )
+{
+    assert(radiusOfCurvature);
+    return  parameterValue * std::fabs(radiusOfCurvature);
+}

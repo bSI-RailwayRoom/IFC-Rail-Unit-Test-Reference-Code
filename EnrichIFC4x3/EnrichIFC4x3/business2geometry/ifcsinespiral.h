@@ -32,3 +32,14 @@ static	inline	SdaiInstance    ___CreateSineSpiralInstance(
 
     return	ifcSineSpiralInstance;
 }
+
+static	inline	double  ___SineSpiralLengthMeasureToParameterValue(
+                                double      linearTerm,
+                                double      constantTerm,
+                                double      sineTerm,
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;
+}

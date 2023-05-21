@@ -79,15 +79,24 @@ typedef void(*LOGCB)(const char *);
 
 typedef	int_t			* SdaiAggr;
 typedef	void			* SdaiAttr;
+typedef	int_t			SdaiBoolean;
 typedef	int_t			SdaiEntity;
 typedef	int_t			SdaiInstance;
 typedef	int_t			SdaiInteger;
 typedef	int_t			SdaiModel;
+typedef	int_t			SdaiRep;
 typedef	int_t			SdaiPrimitiveType;
 typedef	int_t			* SdaiSet;
 typedef	char			* SdaiString;
 typedef	void			* SdaiADB;
 typedef	int_t			SdaiNPL;
+typedef	int_t			SdaiIterator;
+
+typedef	int64_t			ExpressID;
+
+typedef	int_t			SchemaDeclIterator;
+typedef	int_t			SchemaDecl;
+typedef	int_t			* SchemaAggr;
 
 
 enum class enum_express_declaration : unsigned char
@@ -171,7 +180,7 @@ enum class enum_validation_status : unsigned char
 
 //
 //		sdaiCreateModelBN                                       (http://rdf.bg/ifcdoc/CP64/sdaiCreateModelBN.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const char				* fileName							IN
 //				const char				* schemaName						IN
 //
@@ -182,14 +191,14 @@ enum class enum_validation_status : unsigned char
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	sdaiCreateModelBN(
-									int_t					repository,
+									SdaiRep					repository,
 									const char				* fileName,
 									const char				* schemaName
 								);
 
 //
 //		sdaiCreateModelBNUnicode                                (http://rdf.bg/ifcdoc/CP64/sdaiCreateModelBNUnicode.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const wchar_t			* fileName							IN
 //				const wchar_t			* schemaName						IN
 //
@@ -200,14 +209,14 @@ SdaiModel		DECL STDC	sdaiCreateModelBN(
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	sdaiCreateModelBNUnicode(
-									int_t					repository,
+									SdaiRep					repository,
 									const wchar_t			* fileName,
 									const wchar_t			* schemaName
 								);
 
 //
 //		sdaiOpenModelBN                                         (http://rdf.bg/ifcdoc/CP64/sdaiOpenModelBN.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const char				* fileName							IN
 //				const char				* schemaName						IN
 //
@@ -218,14 +227,14 @@ SdaiModel		DECL STDC	sdaiCreateModelBNUnicode(
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	sdaiOpenModelBN(
-									int_t					repository,
+									SdaiRep					repository,
 									const char				* fileName,
 									const char				* schemaName
 								);
 
 //
 //		sdaiOpenModelBNUnicode                                  (http://rdf.bg/ifcdoc/CP64/sdaiOpenModelBNUnicode.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const wchar_t			* fileName							IN
 //				const wchar_t			* schemaName						IN
 //
@@ -236,14 +245,14 @@ SdaiModel		DECL STDC	sdaiOpenModelBN(
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	sdaiOpenModelBNUnicode(
-									int_t					repository,
+									SdaiRep					repository,
 									const wchar_t			* fileName,
 									const wchar_t			* schemaName
 								);
 
 //
 //		engiOpenModelByStream                                   (http://rdf.bg/ifcdoc/CP64/engiOpenModelByStream.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const void				* callback							IN
 //				const char				* schemaName						IN
 //
@@ -254,14 +263,14 @@ SdaiModel		DECL STDC	sdaiOpenModelBNUnicode(
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	engiOpenModelByStream(
-									int_t					repository,
+									SdaiRep					repository,
 									const void				* callback,
 									const char				* schemaName
 								);
 
 //
 //		engiOpenModelByArray                                    (http://rdf.bg/ifcdoc/CP64/engiOpenModelByArray.html)
-//				int_t					repository							IN
+//				SdaiRep					repository							IN
 //				const unsigned char		* content							IN
 //				int_t					size								IN
 //				const char				* schemaName						IN
@@ -273,7 +282,7 @@ SdaiModel		DECL STDC	engiOpenModelByStream(
 //	A handle to the model will be returned, or 0 in case something went wrong.
 //
 SdaiModel		DECL STDC	engiOpenModelByArray(
-									int_t					repository,
+									SdaiRep					repository,
 									const unsigned char		* content,
 									int_t					size,
 									const char				* schemaName
@@ -491,51 +500,51 @@ void			DECL STDC	setPrecisionDoubleExport(
 //
 //		engiGetNextDeclarationIterator                          (http://rdf.bg/ifcdoc/CP64/engiGetNextDeclarationIterator.html)
 //				SdaiModel				model								IN
-//				int_t					iterator							IN
+//				SchemaDeclIterator		iterator							IN
 //
-//				int_t					returns								OUT
+//				SchemaDeclIterator		returns								OUT
 //
 //	This call returns next iterator of EXPRESS schema declarations.
 //	If the input iterator is NULL it returns first iterator.
 //	If the input iterator is last it returns NULL.
 //	Use engiGetDeclarationFromIterator to access EXPRESS declaration data. 
 //
-int_t			DECL STDC	engiGetNextDeclarationIterator(
+SchemaDeclIterator	DECL STDC	engiGetNextDeclarationIterator(
 									SdaiModel				model,
-									int_t					iterator
+									SchemaDeclIterator		iterator
 								);
 
 //
 //		engiGetDeclarationFromIterator                          (http://rdf.bg/ifcdoc/CP64/engiGetDeclarationFromIterator.html)
 //				SdaiModel				model								IN
-//				int_t					iterator							IN
+//				SchemaDeclIterator		iterator							IN
 //
-//				int_t					returns								OUT
+//				SchemaDecl				returns								OUT
 //
 //	This call returns handle to the EXPRESS schema declarations from iterator.
 //	It may be a handle to entity, or enumeration, select or type definition, use engiGetDeclarationType to recognize
 //	Use engiGetNextDeclarationIterator to get iterator.
 //
-int_t			DECL STDC	engiGetDeclarationFromIterator(
+SchemaDecl		DECL STDC	engiGetDeclarationFromIterator(
 									SdaiModel				model,
-									int_t					iterator
+									SchemaDeclIterator		iterator
 								);
 
 //
 //		engiGetDeclarationType                                  (http://rdf.bg/ifcdoc/CP64/engiGetDeclarationType.html)
-//				int_t					declaration							IN
+//				SchemaDecl				declaration							IN
 //
 //				enum_express_declaration	returns								OUT
 //
 //	This call returns a type of the EXPRESS schema declarations from its handle.
 //
 enum_express_declaration	DECL STDC	engiGetDeclarationType(
-									int_t					declaration
+									SchemaDecl				declaration
 								);
 
 //
 //		engiGetEnumerationElement                               (http://rdf.bg/ifcdoc/CP64/engiGetEnumerationElement.html)
-//				int_t					enumeration							IN
+//				SchemaDecl				enumeration							IN
 //				SdaiInteger				index								IN
 //
 //				char					* returns							OUT
@@ -544,39 +553,39 @@ enum_express_declaration	DECL STDC	engiGetDeclarationType(
 //	It returns NULL if the index out of range
 //
 const char		DECL * STDC	engiGetEnumerationElement(
-									int_t					enumeration,
+									SchemaDecl				enumeration,
 									SdaiInteger				index
 								);
 
 //
 //		engiGetSelectElement                                    (http://rdf.bg/ifcdoc/CP64/engiGetSelectElement.html)
-//				int_t					select								IN
+//				SchemaDecl				select								IN
 //				SdaiInteger				index								IN
 //
-//				int_t					returns								OUT
+//				SchemaDecl				returns								OUT
 //
 //	This call returns a declaration handle of the select element with the given index (zero based)
 //	It returns 0 if the index out of range
 //
-int_t			DECL STDC	engiGetSelectElement(
-									int_t					select,
+SchemaDecl		DECL STDC	engiGetSelectElement(
+									SchemaDecl				select,
 									SdaiInteger				index
 								);
 
 //
 //		engiGetDefinedType                                      (http://rdf.bg/ifcdoc/CP64/engiGetDefinedType.html)
-//				int_t					definedType							IN
-//				int_t					* referencedDeclaration				IN / OUT
-//				int_t					* aggregationDescriptor				IN / OUT
+//				SchemaDecl				definedType							IN
+//				SchemaDecl				* referencedDeclaration				IN / OUT
+//				SchemaAggr				* aggregationDescriptor				IN / OUT
 //
 //				enum_express_attr_type	returns								OUT
 //
 //	This call returns a simple type for defined type handle and can inquire referenced type, if any
 //
 enum_express_attr_type	DECL STDC	engiGetDefinedType(
-									int_t					definedType,
-									int_t					* referencedDeclaration,
-									int_t					* aggregationDescriptor
+									SchemaDecl				definedType,
+									SchemaDecl				* referencedDeclaration,
+									SchemaAggr				* aggregationDescriptor
 								);
 
 //
@@ -669,7 +678,7 @@ int_t			DECL STDC	engiGetEntityArgumentIndex(
 //		engiGetEntityArgumentName                               (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgumentName.html)
 //				SdaiEntity				entity								IN
 //				SdaiInteger				index								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const char				** argumentName						IN / OUT
 //
 //				void					returns
@@ -679,7 +688,7 @@ int_t			DECL STDC	engiGetEntityArgumentIndex(
 void			DECL STDC	engiGetEntityArgumentName(
 									SdaiEntity				entity,
 									SdaiInteger				index,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const char				** argumentName
 								);
 
@@ -687,7 +696,7 @@ void			DECL STDC	engiGetEntityArgumentName(
 //		engiGetEntityArgumentType                               (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgumentType.html)
 //				SdaiEntity				entity								IN
 //				SdaiInteger				index								IN
-//				int_t					* argumentType						IN / OUT
+//				SdaiPrimitiveType		* argumentType						IN / OUT
 //
 //				void					returns
 //
@@ -696,7 +705,7 @@ void			DECL STDC	engiGetEntityArgumentName(
 void			DECL STDC	engiGetEntityArgumentType(
 									SdaiEntity				entity,
 									SdaiInteger				index,
-									int_t					* argumentType
+									SdaiPrimitiveType		* argumentType
 								);
 
 //
@@ -756,7 +765,7 @@ SdaiAggr		DECL STDC	sdaiGetEntityExtentBN(
 //
 //		engiGetEntityName                                       (http://rdf.bg/ifcdoc/CP64/engiGetEntityName.html)
 //				SdaiEntity				entity								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const char				** entityName						IN / OUT
 //
 //				void					returns
@@ -765,7 +774,7 @@ SdaiAggr		DECL STDC	sdaiGetEntityExtentBN(
 //
 void			DECL STDC	engiGetEntityName(
 									SdaiEntity				entity,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const char				** entityName
 								);
 
@@ -813,11 +822,11 @@ int_t			DECL STDC	engiGetEntityNoArguments(
 //		engiGetAttributeType                                    (http://rdf.bg/ifcdoc/CP64/engiGetAttributeType.html)
 //				const SdaiAttr			attribute							IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	DEPRECATED use engiGetAttrType
 //
-int_t			DECL STDC	engiGetAttributeType(
+SdaiPrimitiveType	DECL STDC	engiGetAttributeType(
 									const SdaiAttr			attribute
 								);
 
@@ -825,11 +834,11 @@ int_t			DECL STDC	engiGetAttributeType(
 //		engiGetArgumentType                                     (http://rdf.bg/ifcdoc/CP64/engiGetArgumentType.html)
 //				const SdaiAttr			attribute							IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	DEPR4ECATED use engiGetAttributeType
 //
-int_t			DECL STDC	engiGetArgumentType(
+SdaiPrimitiveType	DECL STDC	engiGetArgumentType(
 									const SdaiAttr			attribute
 								);
 
@@ -1011,7 +1020,7 @@ int_t			DECL STDC	engiGetEntityIsAbstractBN(
 //		engiGetEnumerationValue                                 (http://rdf.bg/ifcdoc/CP64/engiGetEnumerationValue.html)
 //				const SdaiAttr			attribute							IN
 //				SdaiInteger				index								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				char					** enumerationValue					IN / OUT
 //
 //				void					returns
@@ -1021,7 +1030,7 @@ int_t			DECL STDC	engiGetEntityIsAbstractBN(
 void			DECL STDC	engiGetEnumerationValue(
 									const SdaiAttr			attribute,
 									SdaiInteger				index,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									char					** enumerationValue
 								);
 
@@ -1051,7 +1060,7 @@ SdaiAttr		DECL STDC	engiGetEntityAttributeByIndex(
 //				bool					* inverse							IN / OUT
 //				enum_express_attr_type	* attrType							IN / OUT
 //				SdaiEntity				* domainEntity						IN / OUT
-//				int_t					* aggregationDescriptor				IN / OUT
+//				SchemaAggr				* aggregationDescriptor				IN / OUT
 //				bool					* optional							IN / OUT
 //				bool					* unique							IN / OUT
 //
@@ -1066,29 +1075,29 @@ void			DECL STDC	engiGetAttributeTraits(
 									bool					* inverse,
 									enum_express_attr_type	* attrType,
 									SdaiEntity				* domainEntity,
-									int_t					* aggregationDescriptor,
+									SchemaAggr				* aggregationDescriptor,
 									bool					* optional,
 									bool					* unique
 								);
 
 //
 //		engiGetAggregation                                      (http://rdf.bg/ifcdoc/CP64/engiGetAggregation.html)
-//				int_t					aggregationDescriptor				IN
+//				SchemaAggr				aggregationDescriptor				IN
 //				enum_express_aggr		* aggrType							IN / OUT
 //				int_t					* cardinalityMin					IN / OUT
 //				int_t					* cardinalityMax					IN / OUT
-//				int_t					* nextAggregationLevelDescriptor	IN / OUT
+//				SchemaAggr				* nextAggregationLevelDescriptor	IN / OUT
 //
 //				void					returns
 //
 //	...
 //
 void			DECL STDC	engiGetAggregation(
-									int_t					aggregationDescriptor,
+									SchemaAggr				aggregationDescriptor,
 									enum_express_aggr		* aggrType,
 									int_t					* cardinalityMin,
 									int_t					* cardinalityMax,
-									int_t					* nextAggregationLevelDescriptor
+									SchemaAggr				* nextAggregationLevelDescriptor
 								);
 
 //
@@ -1132,7 +1141,7 @@ void			DECL STDC	SetSPFFHeader(
 //				SdaiModel				model								IN
 //				int_t					itemIndex							IN
 //				int_t					itemSubIndex						IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const char				* value								IN
 //
 //				int_t					returns								OUT
@@ -1143,7 +1152,7 @@ int_t			DECL STDC	SetSPFFHeaderItem(
 									SdaiModel				model,
 									int_t					itemIndex,
 									int_t					itemSubIndex,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const char				* value
 								);
 
@@ -1152,7 +1161,7 @@ int_t			DECL STDC	SetSPFFHeaderItem(
 //				SdaiModel				model								IN
 //				int_t					itemIndex							IN
 //				int_t					itemSubIndex						IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				char					** value							IN / OUT
 //
 //				int_t					returns								OUT
@@ -1163,7 +1172,7 @@ int_t			DECL STDC	GetSPFFHeaderItem(
 									SdaiModel				model,
 									int_t					itemIndex,
 									int_t					itemSubIndex,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									char					** value
 								);
 
@@ -1195,11 +1204,11 @@ int_t			DECL STDC	GetSPFFHeaderItemUnicode(
 //		sdaiGetADBType                                          (http://rdf.bg/ifcdoc/CP64/sdaiGetADBType.html)
 //				const SdaiADB			ADB									IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	This call can be used to get the used type within this ADB type.
 //
-int_t			DECL STDC	sdaiGetADBType(
+SdaiPrimitiveType	DECL STDC	sdaiGetADBType(
 									const SdaiADB			ADB
 								);
 
@@ -1236,7 +1245,7 @@ void			DECL STDC	sdaiGetADBTypePathx(
 //
 //		sdaiGetADBValue                                         (http://rdf.bg/ifcdoc/CP64/sdaiGetADBValue.html)
 //				const SdaiADB			ADB									IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -1325,7 +1334,7 @@ void			DECL STDC	sdaiGetADBTypePathx(
 //
 void			DECL * STDC	sdaiGetADBValue(
 									const SdaiADB			ADB,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
@@ -1354,7 +1363,7 @@ void			DECL STDC	sdaiDeleteADB(
 //		sdaiGetAggrByIndex                                      (http://rdf.bg/ifcdoc/CP64/sdaiGetAggrByIndex.html)
 //				const SdaiAggr			aggregate							IN
 //				int_t					index								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -1444,14 +1453,14 @@ void			DECL STDC	sdaiDeleteADB(
 void			DECL * STDC	sdaiGetAggrByIndex(
 									const SdaiAggr			aggregate,
 									int_t					index,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
 //
 //		engiGetAggrType                                         (http://rdf.bg/ifcdoc/CP64/engiGetAggrType.html)
 //				const SdaiAggr			aggregate							IN
-//				int_t					* aggregateType						IN / OUT
+//				SdaiPrimitiveType		* aggregateType						IN / OUT
 //
 //				void					returns
 //
@@ -1459,13 +1468,13 @@ void			DECL * STDC	sdaiGetAggrByIndex(
 //
 void			DECL STDC	engiGetAggrType(
 									const SdaiAggr			aggregate,
-									int_t					* aggregateType
+									SdaiPrimitiveType		* aggregateType
 								);
 
 //
 //		engiGetAggrTypex                                        (http://rdf.bg/ifcdoc/CP64/engiGetAggrTypex.html)
 //				const SdaiAggr			aggregate							IN
-//				int_t					* aggregateType						IN / OUT
+//				SdaiPrimitiveType		* aggregateType						IN / OUT
 //
 //				void					returns
 //
@@ -1473,14 +1482,14 @@ void			DECL STDC	engiGetAggrType(
 //
 void			DECL STDC	engiGetAggrTypex(
 									const SdaiAggr			aggregate,
-									int_t					* aggregateType
+									SdaiPrimitiveType		* aggregateType
 								);
 
 //
 //		sdaiGetAttr                                             (http://rdf.bg/ifcdoc/CP64/sdaiGetAttr.html)
 //				SdaiInstance			instance							IN
 //				const SdaiAttr			attribute							IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -1570,7 +1579,7 @@ void			DECL STDC	engiGetAggrTypex(
 void			DECL * STDC	sdaiGetAttr(
 									SdaiInstance			instance,
 									const SdaiAttr			attribute,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
@@ -1578,7 +1587,7 @@ void			DECL * STDC	sdaiGetAttr(
 //		sdaiGetAttrBN                                           (http://rdf.bg/ifcdoc/CP64/sdaiGetAttrBN.html)
 //				SdaiInstance			instance							IN
 //				const char				* attributeName						IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -1668,7 +1677,7 @@ void			DECL * STDC	sdaiGetAttr(
 void			DECL * STDC	sdaiGetAttrBN(
 									SdaiInstance			instance,
 									const char				* attributeName,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
@@ -1808,7 +1817,7 @@ int_t			DECL STDC	sdaiIsKindOfBN(
 //		engiGetAttrType                                         (http://rdf.bg/ifcdoc/CP64/engiGetAttrType.html)
 //				const SdaiAttr			attribute							IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	Returns primitive SDAI data type for the attribute according to schema, e.g. sdaiINTEGER
 //
@@ -1820,7 +1829,7 @@ int_t			DECL STDC	sdaiIsKindOfBN(
 //
 //	It works for direct and inverse attributes
 //
-int_t			DECL STDC	engiGetAttrType(
+SdaiPrimitiveType	DECL STDC	engiGetAttrType(
 									const SdaiAttr			attribute
 								);
 
@@ -1829,11 +1838,11 @@ int_t			DECL STDC	engiGetAttrType(
 //				SdaiEntity				entity								IN
 //				const char				* attributeName						IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	Combines sdaiGetAttrDefinition and engiGetAttrType
 //
-int_t			DECL STDC	engiGetAttrTypeBN(
+SdaiPrimitiveType	DECL STDC	engiGetAttrTypeBN(
 									SdaiEntity				entity,
 									const char				* attributeName
 								);
@@ -1843,13 +1852,13 @@ int_t			DECL STDC	engiGetAttrTypeBN(
 //				SdaiInstance			instance							IN
 //				const SdaiAttr			attribute							IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	Returns SDAI type for actual data stored in the instance for the attribute
 //	It may be primitive type, sdaiAGGR or sdaiADB
 //	Returns 0 for $ and * 
 //
-int_t			DECL STDC	engiGetInstanceAttrType(
+SdaiPrimitiveType	DECL STDC	engiGetInstanceAttrType(
 									SdaiInstance			instance,
 									const SdaiAttr			attribute
 								);
@@ -1859,11 +1868,11 @@ int_t			DECL STDC	engiGetInstanceAttrType(
 //				SdaiInstance			instance							IN
 //				const char				* attributeName						IN
 //
-//				int_t					returns								OUT
+//				SdaiPrimitiveType		returns								OUT
 //
 //	Combines sdaiGetAttrDefinition and engiGetInstanceAttrType
 //
-int_t			DECL STDC	engiGetInstanceAttrTypeBN(
+SdaiPrimitiveType	DECL STDC	engiGetInstanceAttrTypeBN(
 									SdaiInstance			instance,
 									const char				* attributeName
 								);
@@ -2021,7 +2030,7 @@ int_t			DECL STDC	sdaiFindInstanceUsedInBN(
 //
 //		sdaiPrepend                                             (http://rdf.bg/ifcdoc/CP64/sdaiPrepend.html)
 //				const SdaiAggr			aggregate							IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2030,14 +2039,14 @@ int_t			DECL STDC	sdaiFindInstanceUsedInBN(
 //
 void			DECL STDC	sdaiPrepend(
 									const SdaiAggr			aggregate,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
 //
 //		sdaiAppend                                              (http://rdf.bg/ifcdoc/CP64/sdaiAppend.html)
 //				const SdaiAggr			aggregate							IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2046,14 +2055,14 @@ void			DECL STDC	sdaiPrepend(
 //
 void			DECL STDC	sdaiAppend(
 									const SdaiAggr			aggregate,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
 //
 //		sdaiAdd                                                 (http://rdf.bg/ifcdoc/CP64/sdaiAdd.html)
 //				const SdaiAggr			aggregate							IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2062,7 +2071,7 @@ void			DECL STDC	sdaiAppend(
 //
 void			DECL STDC	sdaiAdd(
 									const SdaiAggr			aggregate,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
@@ -2070,7 +2079,7 @@ void			DECL STDC	sdaiAdd(
 //		sdaiInsertByIndex                                       (http://rdf.bg/ifcdoc/CP64/sdaiInsertByIndex.html)
 //				const SdaiAggr			aggregate							IN
 //				SdaiInteger				index								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2080,13 +2089,13 @@ void			DECL STDC	sdaiAdd(
 void			DECL STDC	sdaiInsertByIndex(
 									const SdaiAggr			aggregate,
 									SdaiInteger				index,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
 //
 //		sdaiCreateADB                                           (http://rdf.bg/ifcdoc/CP64/sdaiCreateADB.html)
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				SdaiADB					returns								OUT
@@ -2094,7 +2103,7 @@ void			DECL STDC	sdaiInsertByIndex(
 //	...
 //
 SdaiADB			DECL STDC	sdaiCreateADB(
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
@@ -2219,7 +2228,7 @@ void			DECL STDC	sdaiPutADBTypePath(
 //		sdaiPutAttr                                             (http://rdf.bg/ifcdoc/CP64/sdaiPutAttr.html)
 //				SdaiInstance			instance							IN
 //				const SdaiAttr			attribute							IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2229,7 +2238,7 @@ void			DECL STDC	sdaiPutADBTypePath(
 void			DECL STDC	sdaiPutAttr(
 									SdaiInstance			instance,
 									const SdaiAttr			attribute,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
@@ -2237,7 +2246,7 @@ void			DECL STDC	sdaiPutAttr(
 //		sdaiPutAttrBN                                           (http://rdf.bg/ifcdoc/CP64/sdaiPutAttrBN.html)
 //				SdaiInstance			instance							IN
 //				const char				* attributeName						IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2247,7 +2256,7 @@ void			DECL STDC	sdaiPutAttr(
 void			DECL STDC	sdaiPutAttrBN(
 									SdaiInstance			instance,
 									const char				* attributeName,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
@@ -2297,11 +2306,11 @@ void			DECL STDC	engiSetComment(
 //		engiGetInstanceLocalId                                  (http://rdf.bg/ifcdoc/CP64/engiGetInstanceLocalId.html)
 //				SdaiInstance			instance							IN
 //
-//				int_t					returns								OUT
+//				ExpressID				returns								OUT
 //
 //	...
 //
-int_t			DECL STDC	engiGetInstanceLocalId(
+ExpressID		DECL STDC	engiGetInstanceLocalId(
 									SdaiInstance			instance
 								);
 
@@ -2337,7 +2346,7 @@ int_t			DECL STDC	sdaiTestAttrBN(
 //		sdaiCreateInstanceEI                                    (http://rdf.bg/ifcdoc/CP64/sdaiCreateInstanceEI.html)
 //				SdaiModel				model								IN
 //				SdaiEntity				entity								IN
-//				int_t					express_id							IN
+//				ExpressID				expressID							IN
 //
 //				SdaiInstance			returns								OUT
 //
@@ -2346,14 +2355,14 @@ int_t			DECL STDC	sdaiTestAttrBN(
 SdaiInstance	DECL STDC	sdaiCreateInstanceEI(
 									SdaiModel				model,
 									SdaiEntity				entity,
-									int_t					express_id
+									ExpressID				expressID
 								);
 
 //
 //		sdaiCreateInstanceBNEI                                  (http://rdf.bg/ifcdoc/CP64/sdaiCreateInstanceBNEI.html)
 //				SdaiModel				model								IN
 //				const char				* entityName						IN
-//				int_t					express_id							IN
+//				ExpressID				expressID							IN
 //
 //				SdaiInstance			returns								OUT
 //
@@ -2362,7 +2371,7 @@ SdaiInstance	DECL STDC	sdaiCreateInstanceEI(
 SdaiInstance	DECL STDC	sdaiCreateInstanceBNEI(
 									SdaiModel				model,
 									const char				* entityName,
-									int_t					express_id
+									ExpressID				expressID
 								);
 
 //
@@ -2523,18 +2532,18 @@ void			DECL STDC	cleanMemory(
 //		internalGetP21Line                                      (http://rdf.bg/ifcdoc/CP64/internalGetP21Line.html)
 //				SdaiInstance			instance							IN
 //
-//				int_t					returns								OUT
+//				ExpressID				returns								OUT
 //
 //	...
 //
-int_t			DECL STDC	internalGetP21Line(
+ExpressID		DECL STDC	internalGetP21Line(
 									SdaiInstance			instance
 								);
 
 //
 //		internalForceInstanceFromP21Line                        (http://rdf.bg/ifcdoc/CP64/internalForceInstanceFromP21Line.html)
 //				SdaiModel				model								IN
-//				int_t					P21Line								IN
+//				ExpressID				P21Line								IN
 //
 //				SdaiInstance			returns								OUT
 //
@@ -2542,13 +2551,13 @@ int_t			DECL STDC	internalGetP21Line(
 //
 SdaiInstance	DECL STDC	internalForceInstanceFromP21Line(
 									SdaiModel				model,
-									int_t					P21Line
+									ExpressID				P21Line
 								);
 
 //
 //		internalGetInstanceFromP21Line                          (http://rdf.bg/ifcdoc/CP64/internalGetInstanceFromP21Line.html)
 //				SdaiModel				model								IN
-//				int_t					P21Line								IN
+//				ExpressID				P21Line								IN
 //
 //				SdaiInstance			returns								OUT
 //
@@ -2556,7 +2565,7 @@ SdaiInstance	DECL STDC	internalForceInstanceFromP21Line(
 //
 SdaiInstance	DECL STDC	internalGetInstanceFromP21Line(
 									SdaiModel				model,
-									int_t					P21Line
+									ExpressID				P21Line
 								);
 
 //
@@ -2762,8 +2771,8 @@ int_t			DECL STDC	iterateOverProperties(
 
 //
 //		sdaiGetAggrByIterator                                   (http://rdf.bg/ifcdoc/CP64/sdaiGetAggrByIterator.html)
-//				int_t					iterator							IN
-//				int_t					valueType							IN
+//				SdaiIterator			iterator							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -2771,15 +2780,15 @@ int_t			DECL STDC	iterateOverProperties(
 //	...
 //
 void			DECL * STDC	sdaiGetAggrByIterator(
-									int_t					iterator,
-									int_t					valueType,
+									SdaiIterator			iterator,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
 //
 //		sdaiPutAggrByIterator                                   (http://rdf.bg/ifcdoc/CP64/sdaiPutAggrByIterator.html)
-//				int_t					iterator							IN
-//				int_t					valueType							IN
+//				SdaiIterator			iterator							IN
+//				SdaiPrimitiveType		valueType							IN
 //				const void				* value								IN
 //
 //				void					returns
@@ -2787,8 +2796,8 @@ void			DECL * STDC	sdaiGetAggrByIterator(
 //	...
 //
 void			DECL STDC	sdaiPutAggrByIterator(
-									int_t					iterator,
-									int_t					valueType,
+									SdaiIterator			iterator,
+									SdaiPrimitiveType		valueType,
 									const void				* value
 								);
 
@@ -2854,7 +2863,7 @@ void			DECL STDC	engiGetAttributeAggr(
 //		engiGetAggrUnknownElement                               (http://rdf.bg/ifcdoc/CP64/engiGetAggrUnknownElement.html)
 //				const SdaiAggr			aggregate							IN
 //				int_t					elementIndex						IN
-//				int_t					* valueType							IN / OUT
+//				SdaiPrimitiveType		* valueType							IN / OUT
 //				void					* value								IN / OUT
 //
 //				void					returns
@@ -2864,7 +2873,7 @@ void			DECL STDC	engiGetAttributeAggr(
 void			DECL STDC	engiGetAggrUnknownElement(
 									const SdaiAggr			aggregate,
 									int_t					elementIndex,
-									int_t					* valueType,
+									SdaiPrimitiveType		* valueType,
 									void					* value
 								);
 
@@ -3176,6 +3185,20 @@ void			DECL * STDC	internalGetCenter(
 								);
 
 //
+//		getRootAxis2Placement                                   (http://rdf.bg/ifcdoc/CP64/getRootAxis2Placement.html)
+//				SdaiModel				model								IN
+//				bool					exclusiveIfHasGeometry				IN
+//
+//				int_t					returns								OUT
+//
+//	...
+//
+int_t			DECL STDC	getRootAxis2Placement(
+									SdaiModel				model,
+									bool					exclusiveIfHasGeometry
+								);
+
+//
 //		getGlobalPlacement                                      (http://rdf.bg/ifcdoc/CP64/getGlobalPlacement.html)
 //				SdaiModel				model								IN
 //				double					* origin							IN / OUT
@@ -3275,7 +3298,7 @@ int_t			DECL STDC	sdaiValidateSchemaInstance(
 //		engiGetAggrElement                                      (http://rdf.bg/ifcdoc/CP64/engiGetAggrElement.html)
 //				const SdaiAggr			aggregate							IN
 //				SdaiInteger				index								IN
-//				int_t					valueType							IN
+//				SdaiPrimitiveType		valueType							IN
 //				void					* value								IN / OUT
 //
 //				void					* returns							OUT
@@ -3285,7 +3308,7 @@ int_t			DECL STDC	sdaiValidateSchemaInstance(
 void			DECL * STDC	engiGetAggrElement(
 									const SdaiAggr			aggregate,
 									SdaiInteger				index,
-									int_t					valueType,
+									SdaiPrimitiveType		valueType,
 									void					* value
 								);
 
@@ -3321,72 +3344,72 @@ int_t			DECL STDC	xxxxOpenModelByStream(
 //		sdaiCreateIterator                                      (http://rdf.bg/ifcdoc/CP64/sdaiCreateIterator.html)
 //				const SdaiAggr			aggregate							IN
 //
-//				void					* returns							OUT
+//				SdaiIterator			returns								OUT
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
-void			DECL * STDC	sdaiCreateIterator(
+SdaiIterator	DECL STDC	sdaiCreateIterator(
 									const SdaiAggr			aggregate
 								);
 
 //
 //		sdaiDeleteIterator                                      (http://rdf.bg/ifcdoc/CP64/sdaiDeleteIterator.html)
-//				int_t					iterator							IN
+//				SdaiIterator			iterator							IN
 //
 //				void					returns
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
 void			DECL STDC	sdaiDeleteIterator(
-									int_t					iterator
+									SdaiIterator			iterator
 								);
 
 //
 //		sdaiBeginning                                           (http://rdf.bg/ifcdoc/CP64/sdaiBeginning.html)
-//				int_t					iterator							IN
+//				SdaiIterator			iterator							IN
 //
 //				void					returns
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
 void			DECL STDC	sdaiBeginning(
-									int_t					iterator
+									SdaiIterator			iterator
 								);
 
 //
 //		sdaiNext                                                (http://rdf.bg/ifcdoc/CP64/sdaiNext.html)
-//				int_t					iterator							IN
+//				SdaiIterator			iterator							IN
 //
-//				int_t					returns								OUT
+//				SdaiBoolean				returns								OUT
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
-int_t			DECL STDC	sdaiNext(
-									int_t					iterator
+SdaiBoolean		DECL STDC	sdaiNext(
+									SdaiIterator			iterator
 								);
 
 //
 //		sdaiPrevious                                            (http://rdf.bg/ifcdoc/CP64/sdaiPrevious.html)
-//				int_t					iterator							IN
+//				SdaiIterator			iterator							IN
 //
 //				int_t					returns								OUT
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
 int_t			DECL STDC	sdaiPrevious(
-									int_t					iterator
+									SdaiIterator			iterator
 								);
 
 //
 //		sdaiEnd                                                 (http://rdf.bg/ifcdoc/CP64/sdaiEnd.html)
-//				int_t					iterator							IN
+//				SdaiIterator			iterator							IN
 //
 //				void					returns
 //
 //	This call is deprecated, please use calls sdaiGetMemberCount(..) and engiGetEntityElement(..) instead.
 //
 void			DECL STDC	sdaiEnd(
-									int_t					iterator
+									SdaiIterator			iterator
 								);
 
 //

@@ -18,6 +18,8 @@ extern  int_t   horizontalAlignmentParentCurveI = 0, horizontalAlignmentParentCu
 
 int_t	reusedIfcGeometricRepresentationContextInstance = 0;
 
+bool	forceUseParameterValue = false;
+
 
 void	___RecursiveMultiplication(
 				double	value,

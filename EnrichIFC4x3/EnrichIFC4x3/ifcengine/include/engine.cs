@@ -497,9 +497,10 @@ namespace RDF
 		/// <summary>
 		///		GetModel                                                (http://rdf.bg/gkdoc/CS64/GetModel.html)
 		///
+		///	Returns model for any resource, i.e. class, property, instance
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "GetModel")]
-		public static extern Int64 GetModel(Int64 owlInstance);
+		public static extern Int64 GetModel(Int64 rdfsResource);
 
 		/// <summary>
 		///		OrderedHandles                                          (http://rdf.bg/gkdoc/CS64/OrderedHandles.html)
@@ -632,6 +633,46 @@ namespace RDF
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "ClearCache")]
 		public static extern void ClearCache(Int64 model);
+
+		/// <summary>
+		///		AllocModelMemory                                        (http://rdf.bg/gkdoc/CS64/AllocModelMemory.html)
+		///
+		///	Allocates model associated memory.
+		///	Memory is disposed when model is closed
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "AllocModelMemory")]
+		public static extern Int64 AllocModelMemory(Int64 model, Int64 size);
+
+		/// <summary>
+		///		SetExternalReferenceData                                (http://rdf.bg/gkdoc/CS64/SetExternalReferenceData.html)
+		///
+		///	Sets application data on model, class, property, instance
+		///	Returns 0 on error, 1 on success
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "SetExternalReferenceData")]
+		public static extern Int64 SetExternalReferenceData(Int64 rdfsResource, Int64 identifier, out IntPtr data);
+
+		/// <summary>
+		///		GetExternalReferenceData                                (http://rdf.bg/gkdoc/CS64/GetExternalReferenceData.html)
+		///
+		///	Gets application data from model, class, property, instance that were previosly set by SetExternalReferenceData
+		///	Returns 0 on error, 1 on success
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetExternalReferenceData")]
+		public static extern Int64 GetExternalReferenceData(Int64 rdfsResource, Int64 identifier);
+
+		/// <summary>
+		///		GetExternalReferenceDataId                              (http://rdf.bg/gkdoc/CS64/GetExternalReferenceDataId.html)
+		///
+		///	Returns a key id can be used in calls to Get/SetExternalReferenceData to keep application data on GK entities
+		///	During model lifetime the id is the same for given string and different for different strings
+		///	Returns 0 on error
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "GetExternalReferenceDataId")]
+		public static extern Int64 GetExternalReferenceDataId(Int64 model, string uniqueAppName);
+
+		[DllImport(enginedll, EntryPoint = "GetExternalReferenceDataId")]
+		public static extern Int64 GetExternalReferenceDataId(Int64 model, byte[] uniqueAppName);
 
         //
         //  File IO / Stream / Copy API Calls
@@ -1000,6 +1041,16 @@ namespace RDF
 		[DllImport(enginedll, EntryPoint = "CloseModel")]
 		public static extern Int64 CloseModel(Int64 model);
 
+		/// <summary>
+		///		IsModel                                                 (http://rdf.bg/gkdoc/CS64/IsModel.html)
+		///
+		///	Returns OwlModel if the argument rdfsResource is an actual active model. It returns 0 in all other cases,
+		///	i.e. this could mean the model is already closed or the session is closed.
+		///	It could also mean it represents a handle to another resource, for example a property, instance or class.
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "IsModel")]
+		public static extern Int64 IsModel(Int64 rdfsResource);
+
         //
         //  Design Tree Classes API Calls
         //
@@ -1074,9 +1125,16 @@ namespace RDF
 		///	Defines (set/unset) the parent class of a given class. Multiple-inheritence is supported and behavior
 		///	of parent classes is also inherited as well as cardinality restrictions on datatype properties and
 		///	object properties (relations).
+		///
+		///	When set: it adds parentOwlClass as immediate parent of owlClass if and only if 
+		///	parentOwlClass is not ancestor of owlClass and owlClass is not ancestor of parentOwlClass.
+		///	Returns the same value as IsClassAncestor after the call.
+		///
+		///	When unset: it removes parentOwlClass from immediate parents and returns 1, 
+		///	or retunrs 0 if parentOwlClass is not immediate parent
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetClassParent")]
-		public static extern void SetClassParent(Int64 owlClass, Int64 parentOwlClass, Int64 setting);
+		public static extern Int64 SetClassParent(Int64 owlClass, Int64 parentOwlClass, Int64 setting);
 
 		/// <summary>
 		///		SetClassParentEx                                        (http://rdf.bg/gkdoc/CS64/SetClassParentEx.html)
@@ -1089,7 +1147,16 @@ namespace RDF
 		///	used in case classes are exchanged as a successive series of integers.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "SetClassParentEx")]
-		public static extern void SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass, Int64 setting);
+		public static extern Int64 SetClassParentEx(Int64 model, Int64 owlClass, Int64 parentOwlClass, Int64 setting);
+
+		/// <summary>
+		///		IsClassAncestor                                         (http://rdf.bg/gkdoc/CS64/IsClassAncestor.html)
+		///
+		///	Checks if the class has given ancestor
+		///	Returns 0 if not or minimal generation number (1 for direct parent)
+		/// </summary>
+		[DllImport(enginedll, EntryPoint = "IsClassAncestor")]
+		public static extern Int64 IsClassAncestor(Int64 owlClass, Int64 ancestorOwlClass);
 
 		/// <summary>
 		///		GetClassParentsByIterator                               (http://rdf.bg/gkdoc/CS64/GetClassParentsByIterator.html)
@@ -1340,12 +1407,12 @@ namespace RDF
 		/// <summary>
 		///		IsClass                                                 (http://rdf.bg/gkdoc/CS64/IsClass.html)
 		///
-		///	Returns true if the argument owlClass is an actual active class in an active model. It returns false in all other cases,
+		///	Returns OwlClass if the argument rdfsResource is an actual active class in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the class is inactive or removed or the session is closed.
-		///	It could also mean it represents a handle to another Thing, for example a property, instance or model.
+		///	It could also mean it represents a handle to another resource, for example a property, instance or model.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "IsClass")]
-		public static extern byte IsClass(Int64 owlClass);
+		public static extern Int64 IsClass(Int64 rdfsResource);
 
         //
         //  Design Tree Properties API Calls
@@ -1702,12 +1769,12 @@ namespace RDF
 		/// <summary>
 		///		IsProperty                                              (http://rdf.bg/gkdoc/CS64/IsProperty.html)
 		///
-		///	Returns true if the argument rdfProperty is an actual active property in an active model. It returns false in all other cases,
+		///	Returns RdfProperty if the argument rdfsResource is an actual active property in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the property is inactive or removed or the session is closed.
-		///	It could also mean it represents a handle to another Thing, for example a class, instance or model.
+		///	It could also mean it represents a handle to another resource, for example a class, instance or model.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "IsProperty")]
-		public static extern byte IsProperty(Int64 rdfProperty);
+		public static extern Int64 IsProperty(Int64 rdfsResource);
 
         //
         //  Design Tree Instances API Calls
@@ -2495,12 +2562,12 @@ namespace RDF
 		/// <summary>
 		///		IsInstance                                              (http://rdf.bg/gkdoc/CS64/IsInstance.html)
 		///
-		///	Returns true if the argument owlInstance is an actual active property in an active model. It returns false in all other cases,
+		///	Returns OwlInstance if the argument rdfsResource is an actual active instance in an active model. It returns 0 in all other cases,
 		///	i.e. this could mean the model is already closed, the instance is inactive or removed or the session is closed.
-		///	It could also mean it represents a handle to another Thing, for example a class, property or model.
+		///	It could also mean it represents a handle to another resource, for example a class, property or model.
 		/// </summary>
 		[DllImport(enginedll, EntryPoint = "IsInstance")]
-		public static extern byte IsInstance(Int64 owlInstance);
+		public static extern Int64 IsInstance(Int64 rdfsResource);
 
 		/// <summary>
 		///		IsKindOfClass                                           (http://rdf.bg/gkdoc/CS64/IsKindOfClass.html)

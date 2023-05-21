@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommandArguments>"01.ifc"   "01-1.ifc"   "01-C.txt"   100 "2CV"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerWorkingDirectory>C:\IFCRAIL\EnrichIFC4x3\x64\Debug</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>C:\IFCRAIL\IFC-Rail-Unit-Test-Reference-Code\EnrichIFC4x3\x64\Debug</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 </Project>

@@ -80,3 +80,15 @@ static	inline	SdaiInstance    ___CreateEdgeInstance(
 
     return	ifcEdgeInstance;
 }
+
+static	inline	double  ___LineLengthMeasureToParameterValue(
+                                double      segmentLength,
+                                double      lengthMeasure
+                            )
+{
+    if (segmentLength)
+        return  lengthMeasure / segmentLength;
+
+    assert(false);
+    return  lengthMeasure;
+}

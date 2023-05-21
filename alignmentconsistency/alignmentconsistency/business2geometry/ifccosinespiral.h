@@ -27,3 +27,13 @@ static	inline	SdaiInstance    ___CreateCosineSpiralInstance(
 
     return	ifcCosineSpiralInstance;
 }
+
+static	inline	double  ___CosineSpiralLengthMeasureToParameterValue(
+                                double      constantTerm,
+                                double      cosineTerm,
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;
+}

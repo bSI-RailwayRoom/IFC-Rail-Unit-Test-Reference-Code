@@ -26,3 +26,15 @@ static	inline	SdaiInstance    ___CreateClothoidInstance(
 
     return	ifcClothoidInstance;
 }
+
+static	inline	double  ___ClothoidLengthMeasureToParameterValue(
+                                double      linearTerm,
+                                double      lengthMeasure
+                            )
+{
+    if (linearTerm)
+        return  lengthMeasure / (linearTerm * sqrt(Pi));
+
+    assert(false);
+    return  lengthMeasure;
+}

@@ -67,3 +67,19 @@ static	inline	SdaiInstance    ___CreateSeventhOrderPolynomialSpiralInstance(
 
     return	ifcSeventhOrderPolynomialSpiralInstance;
 }
+
+static	inline	double  ___SeventhOrderPolynomialSpiralLengthMeasureToParameterValue(
+                                double      septicTerm,
+                                double      sexticTerm,
+                                double      quinticTerm,
+                                double      quarticTerm,
+                                double      cubicTerm,
+                                double      quadraticTerm,
+                                double      linearTerm,
+                                double      constantTerm,
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;
+}

@@ -114,16 +114,16 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
 
 
         if (hasAlignmentCant) {
-            int_t   ifcRepresentationItem_segmentedReferenceCurveInstance =
-                        ___CreateSegmentedReferenceCurve__alignmentCant(
-                                model,
-                                ___GetAlignmentCant(
+            SdaiInstance	ifcRepresentationItem_segmentedReferenceCurveInstance =
+                                ___CreateSegmentedReferenceCurve__alignmentCant(
                                         model,
-                                        ifcAlignmentInstance,
-                                        nullptr
-                                    ),
-                                startDistAlongHorizontalAlignment
-                            );
+                                        ___GetAlignmentCant(
+                                                model,
+                                                ifcAlignmentInstance,
+                                                nullptr
+                                            ),
+                                        startDistAlongHorizontalAlignment
+                                    );
 
             assert(ifcRepresentationItem_segmentedReferenceCurveInstance);
 

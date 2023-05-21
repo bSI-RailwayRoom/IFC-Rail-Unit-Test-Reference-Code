@@ -422,3 +422,11 @@ static  inline  void    ___GetEndPoint(
         assert(false);
     }
 }
+
+static	inline	double  ___LengthMeasureToParameterValue(
+                                double      lengthMeasure
+                            )
+{
+    assert(false);  //  parameter conversion not clear yet, currently assume 1 : 1 conversion with length
+    return  lengthMeasure;
+}
