@@ -205,6 +205,8 @@ static  inline  double   GetCantEnd(
                             ifcAlignmentCantSegmentInstance = 0;
             sdaiGetAttrBN(ifcAlignmentSegmentInstance, "DesignParameters", sdaiINSTANCE, (void*) &ifcAlignmentCantSegmentInstance);
 
+int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
+
             double  startDistAlong = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartDistAlong", sdaiREAL, (void*) &startDistAlong);
 
@@ -212,8 +214,12 @@ static  inline  double   GetCantEnd(
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
             if (startDistAlong == offset && horizontalLength == length) {
                 double  endCantLeft = 0., endCantRight = 0.;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft) == nullptr) {
+                    sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &endCantLeft);
+                }
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight) == nullptr) {
+                    sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &endCantRight);
+                }
 
                 double  railHeadDistance = 0.;
                 sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
@@ -276,8 +282,12 @@ static  inline  double   GetCantAngleEnd(
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
             if (startDistAlong == offset && horizontalLength == length) {
                 double  endCantLeft = 0., endCantRight = 0.;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft);
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight);
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft) == nullptr) {
+                    sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &endCantLeft);
+                }
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, (void*) &endCantRight) == nullptr) {
+                    sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &endCantRight);
+                }
 
                 double  railHeadDistance = 0.;
                 sdaiGetAttrBN(ifcCantAlignmentInstance, "RailHeadDistance", sdaiREAL, (void*) &railHeadDistance);
@@ -1528,7 +1538,8 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                        startPnt.tangent.z == 0.);
 
                 if (i) {
-                    assert(___equals(predefinedType,         "VIENNESEBEND") ||
+ /*         ////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    assert(___equals(predefinedType, "VIENNESEBEND") ||
                            ___equals(previousPredefinedType, "VIENNESEBEND") ||
                            (std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
                             std::fabs(startPnt.point.y - previousEndPnt.point.y) < 0.001 &&
@@ -1539,7 +1550,7 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                            (___equals(predefinedType, "LINE") && ___equals(previousPredefinedType, "LINE")) ||
                            (std::fabs(startPnt.tangent.x - previousEndPnt.tangent.x) < 0.0005 &&
                             std::fabs(startPnt.tangent.y - previousEndPnt.tangent.y) < 0.0005 &&
-                            startPnt.tangent.z == previousEndPnt.tangent.z));
+                            startPnt.tangent.z == previousEndPnt.tangent.z));   //  */
                 }
 
                 previousPredefinedType = predefinedType;

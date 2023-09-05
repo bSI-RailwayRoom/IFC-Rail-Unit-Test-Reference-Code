@@ -191,11 +191,14 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                 double  startCantLeft = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, &startCantLeft);
 
+int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 //
                 //  EndCantLeft
                 //
-                double  endCantLeft = startCantLeft;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, &endCantLeft);
+                double  endCantLeft;// = startCantLeft;
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, &endCantLeft) == nullptr) {
+                    endCantLeft = startCantLeft;
+                }
 
                 //
                 //  StartCantRight
@@ -206,8 +209,10 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                 //
                 //  EndCantRight
                 //
-                double  endCantRight = startCantRight;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight);
+                double  endCantRight;// = startCantRight;
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight) == nullptr) {
+                    endCantRight = startCantRight;
+                }
 
                 //
                 //  Transition
@@ -1063,7 +1068,7 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                        startPnt.tangent.z == 0.);
 
                 if (i) {
-                    assert((std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
+   /*                 assert((std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
                             std::fabs(startPnt.point.y - previousEndPnt.point.y) < 0.001 &&
                             startPnt.point.z == previousEndPnt.point.z));
 

@@ -11,9 +11,13 @@ char	** myIssues = new char*[10000];
 int		* myIssuesGroup = new int[10000];
 int		* myIssuesSubGroup = new int[10000];
 double	* myIssuesDeviation = new double[10000];
+int		* myIssuesExpID_1 = new int[10000];
+int		* myIssuesExpID_2 = new int[10000];
 
 
-void	AddIssue__internal(
+void	AddIssue__internal_(
+				int_t	ifcInstanceI,
+				int_t	ifcInstanceII,
 				int		group,
 				int		subGroup,
 				char	* issueText,
@@ -21,19 +25,25 @@ void	AddIssue__internal(
 			)
 {
 	myIssuesDeviation[myIssueCnt] = deviation;
-	myIssuesGroup[myIssueCnt] = group;
-	myIssuesSubGroup[myIssueCnt] = subGroup;
-	myIssues[myIssueCnt] = issueText;
+	myIssuesGroup[myIssueCnt]	  = group;
+	myIssuesSubGroup[myIssueCnt]  = subGroup;
+	myIssues[myIssueCnt]		  = issueText;
+	myIssuesExpID_1[myIssueCnt]	  = (int) internalGetP21Line(ifcInstanceI);
+	myIssuesExpID_2[myIssueCnt]	  = (int) internalGetP21Line(ifcInstanceII);
 	myIssueCnt++;
 }
 
-void	AddIssue__internal(
+void	AddIssue__internal_(
+				int_t	ifcInstanceI,
+				int_t	ifcInstanceII,
 				int		group,
 				int		subGroup,
 				char	* issueText
 			)
 {
-	AddIssue__internal(
+	AddIssue__internal_(
+			ifcInstanceI,
+			ifcInstanceII,
 			group,
 			subGroup,
 			issueText,
@@ -88,10 +98,16 @@ char	* MergeText(
 				char	* txtII
 			)
 {
-	char	* txt = new char[strlen(txtI) + strlen(txtII) + 1];
-	memcpy(txt, txtI, strlen(txtI));
-	memcpy(&txt[strlen(txtI)], txtII, strlen(txtII) + 1);
-	return	txt;
+	if (txtI && txtII) {
+		char	* txt = new char[strlen(txtI) + strlen(txtII) + 1];
+		memcpy(txt, txtI, strlen(txtI));
+		memcpy(&txt[strlen(txtI)], txtII, strlen(txtII) + 1);
+		return	txt;
+	}
+
+	if (txtI)
+		return txtI;
+	return txtII;
 }
 
 char	* MergeText(
@@ -156,7 +172,7 @@ void	AddIssue(
 				char	* issueTextADD
 			)
 {
-	AddIssue__internal(group, subGroup, MergeText(issueText, (char*) "'", issueTextADD, (char*) "'"));
+	AddIssue__internal_(0, 0, group, subGroup, MergeText(issueText, (char*) "'", issueTextADD, (char*) "'"));
 }
 
 void	AddIssue(
@@ -165,7 +181,7 @@ void	AddIssue(
 				char	* issueText
 			)
 {
-	AddIssue__internal(group, subGroup, issueText);
+	AddIssue__internal_(0, 0, group, subGroup, issueText);
 }
 
 void	AddIssue(
@@ -177,7 +193,7 @@ void	AddIssue(
 {
 	char	* ifcInstanceText = CreateInstanceText(ifcInstance);
 	
-	AddIssue__internal(group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceText));
+	AddIssue__internal_(ifcInstance, 0, group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceText));
 }
 
 void	AddIssue(
@@ -191,7 +207,14 @@ void	AddIssue(
 	char	* ifcInstanceTextI = CreateInstanceText(ifcInstanceI),
 			* ifcInstanceTextII = CreateInstanceText(ifcInstanceII);
 	
-	AddIssue__internal(group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceTextI, (char*) ", ", ifcInstanceTextII));
+	if (group == 4 - 1 && subGroup == 5 - 1) {
+		if (internalGetP21Line(ifcInstanceI) == 238 &&
+			internalGetP21Line(ifcInstanceII) == 449295) {
+			int u = 0;
+		}
+	}
+
+	AddIssue__internal_(ifcInstanceI, ifcInstanceII, group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceTextI, (char*) ", ", ifcInstanceTextII));
 }
 
 void	AddIssue(
@@ -204,7 +227,7 @@ void	AddIssue(
 {
 	char	* ifcInstanceText = CreateInstanceText(ifcInstance);
 	
-	AddIssue__internal(group, subGroup, MergeText(issueText, itemText, (char*) " - ", ifcInstanceText));
+	AddIssue__internal_(ifcInstance, 0, group, subGroup, MergeText(issueText, itemText, (char*) " - ", ifcInstanceText));
 }
 
 void	AddIssue(
@@ -232,7 +255,7 @@ void	AddIssue(
 #else
 	sprintf(e_cp, (char*) "%.16f", expectedValue);
 #endif
-	AddIssue__internal(group, subGroup, MergeText(issueText, MergeText(itemText, " given value ", g_cp, ", expected value ", e_cp), (char*)" - ", ifcInstanceText));
+	AddIssue__internal_(ifcInstance, 0, group, subGroup, MergeText(issueText, MergeText(itemText, " given value ", g_cp, ", expected value ", e_cp), (char*)" - ", ifcInstanceText));
 }
 
 void	AddIssue(
@@ -247,7 +270,13 @@ void	AddIssue(
 	char	* ifcInstanceTextI = CreateInstanceText(ifcInstanceI),
 			* ifcInstanceTextII = CreateInstanceText(ifcInstanceII);
 	
-	AddIssue__internal(group, subGroup, MergeText(issueText, itemText, (char*) " - ", ifcInstanceTextI, (char*) ", ", ifcInstanceTextII));
+	if (group == 4 - 1 && subGroup == 5 - 1) {
+		if (internalGetP21Line(ifcInstanceII) == 449295) {
+			int u = 0;
+		}
+	}
+
+	AddIssue__internal_(ifcInstanceI, ifcInstanceII, group, subGroup, MergeText(issueText, itemText, (char*) " - ", ifcInstanceTextI, (char*) ", ", ifcInstanceTextII));
 }
 
 void	AddIssue(
@@ -262,6 +291,12 @@ void	AddIssue(
 	char	* ifcInstanceTextI = CreateInstanceText(ifcInstanceI),
 			* ifcInstanceTextII = CreateInstanceText(ifcInstanceII);
 	
+	if (group == 4 - 1 && subGroup == 5 - 1) {
+		if (internalGetP21Line(ifcInstanceII) == 449295) {
+			int u = 0;
+		}
+	}
+
 	char	buffer[256], *cp = &buffer[0];
 #ifndef __EMSCRIPTEN__
 	sprintf_s(cp, 256, (char*) "%.16f", value);
@@ -269,5 +304,5 @@ void	AddIssue(
 	sprintf(cp, (char*) "%.16f", value);
 #endif
 
-	AddIssue__internal(group, subGroup, MergeText(issueText, (char*) " *** ", buffer, (char*) " *** ", ifcInstanceTextI, (char*) " - ", ifcInstanceTextII), value);
+	AddIssue__internal_(ifcInstanceI, ifcInstanceII, group, subGroup, MergeText(issueText, (char*) " *** ", buffer, (char*) " *** ", ifcInstanceTextI, (char*) " - ", ifcInstanceTextII), value);
 }

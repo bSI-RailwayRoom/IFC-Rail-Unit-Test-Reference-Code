@@ -20,76 +20,85 @@
 #endif
 
 
-void	DECL * STDC	OpenModelC(
-							char	* filename,
-							bool	parseGeometry
-						);
+void			DECL * STDC	OpenModelC(
+									const char		* filename,
+									bool			parseGeometry
+								);
 
-void	DECL * STDC	OpenModelW(
-							wchar_t	* filename,
-							bool	parseGeometry
-						);
+void			DECL * STDC	OpenModelW(
+									const wchar_t	* filename,
+									bool			parseGeometry
+								);
 
-void	DECL STDC	CloseModel(
-							void	* model
-						);
+void			DECL STDC	CloseModel(
+									void			* model
+								);
 
-int		DECL STDC	CheckConsistencyFile(
-							void	* model
-						);
+int				DECL STDC	CheckConsistencyFile(
+									void			* model
+								);
 
-int		DECL STDC	CheckConsistencyAlignment(
-							void	* model,
-							bool	relativeEpsilon
-						);
+int				DECL STDC	CheckConsistencyAlignment(
+									void			* model,
+									double			relativeEpsilon
+								);
 
-char	DECL * STDC	GetIssueC(
-							int		index,
-							int		group,
-							int		subgroup,
-							double	absoluteEpsilon,
-							double	relativeEpsilon,
-							bool	* isError
-						);
+const char		DECL * STDC	GetIssueC(
+									int				index,
+									int				group,
+									int				subgroup,
+									double			absoluteEpsilon,
+									double			relativeEpsilon,
+									bool			* isError,
+									int				* expressID_1		= nullptr,
+									int				* expressID_2		= nullptr
+								);
 
-wchar_t	DECL * STDC	GetIssueW(
-							int		index,
-							int		group,
-							int		subgroup,
-							double	absoluteEpsilon,
-							double	relativeEpsilon,
-							bool	* isError
-						);
+const wchar_t	DECL * STDC	GetIssueW(
+									int				index,
+									int				group,
+									int				subgroup,
+									double			absoluteEpsilon,
+									double			relativeEpsilon,
+									bool			* isError
+								);
 
-char	DECL * STDC	GetGroupNameC(
-							int		group,
-							int		subGroup
-						);
+const char		DECL * STDC	GetGroupNameC(
+									int				group,
+									int				subGroup
+								);
 
-wchar_t	DECL * STDC	GetGroupNameW(
-							int		group,
-							int		subGroup
-						);
+const wchar_t	DECL * STDC	GetGroupNameW(
+									int				group,
+									int				subGroup
+								);
 
-char	DECL * STDC	GetGroupDescriptionC(
-							int		group,
-							int		subGroup
-						);
+const char		DECL * STDC	GetGroupDescriptionC(
+									int				group,
+									int				subGroup
+								);
 
-wchar_t	DECL * STDC	GetGroupDescriptionW(
-							int		group,
-							int		subGroup
-						);
+const wchar_t	DECL * STDC	GetGroupDescriptionW(
+									int				group,
+									int				subGroup
+								);
 
-char	DECL * STDC	GetPageC(
-							double	absoluteEpsilon,
-							double	relativeEpsilon
-						);
+const char		DECL * STDC	GetPageC(
+									double			absoluteEpsilon,
+									double			relativeEpsilon
+								);
 
-wchar_t	DECL * STDC	GetPageW(
-							double	absoluteEpsilon,
-							double	relativeEpsilon
-						);
+const wchar_t	DECL * STDC	GetPageW(
+									double			absoluteEpsilon,
+									double			relativeEpsilon
+								);
+
+const char		DECL * STDC	GetPageJSON(
+									const char		* fileName,
+									double			absoluteEpsilon,
+									double			relativeEpsilon
+								);
+
 
 
 #undef DECL

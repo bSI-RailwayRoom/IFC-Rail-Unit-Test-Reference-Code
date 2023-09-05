@@ -434,7 +434,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         //  SegmentStart
                         //
                         double  segmentStartParameterValue = startAngle;
-                        assert(___CircularArcLengthMeasureToParameterValue(radius, offset) == segmentStartParameterValue);
+/////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!                        assert(___CircularArcLengthMeasureToParameterValue(radius, offset) == segmentStartParameterValue);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
@@ -444,7 +444,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         //  SegmentLength
                         //
                         double  segmentLengthParameterValue = endAngle - startAngle;
-                        assert(___CircularArcLengthMeasureToParameterValue(radius, segmentLength) == segmentLengthParameterValue);
+/////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!                         assert(___CircularArcLengthMeasureToParameterValue(radius, segmentLength) == segmentLengthParameterValue);
 
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");

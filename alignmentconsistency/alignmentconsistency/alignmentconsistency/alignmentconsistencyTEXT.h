@@ -1,12 +1,12 @@
 #pragma once
 
 
-static	inline	char	* GetGroupText(
-								int		group,
-								int		subGroup,
-								bool	isName,
-								bool	has_PARSE_GEOMETRY
-							)
+static	inline	const char	* GetGroupText(
+									int		group,
+									int		subGroup,
+									bool	isName,
+									bool	has_PARSE_GEOMETRY
+								)
 {
 	//
 	//	"IFC Schema Validation Issues (inconsistency against the latest IFC4x3 schema)"
@@ -35,34 +35,37 @@ static	inline	char	* GetGroupText(
 	//		"Cant Alignment Issues"
 	//		"Curve Segment Issues"
 	//
+	//	"Schema validation through IFC Engine"
+	//		"Schema validation through IFC Engine"
+	//
 
 	switch (group) {
 		case  0:
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "IFC schema validation issues" :
-								(char*) "Check if the model has issues against the IFC schema";
+								"IFC schema validation issues" :
+								"Check if the model has issues against the IFC schema";
 				case  0:
 					return  isName ?
-								(char*) "Mandatory attributes missing" :
-								(char*) "Check if the model misses mandatory attributes according to the IFC schema";
+								"Mandatory attributes missing" :
+								"Check if the model misses mandatory attributes according to the IFC schema";
 				case  1:
 					return  isName ?
-								(char*) "REAL value derived issues" :
-								(char*) "Check if the model has real value that is calculated incorrectly";
+								"REAL value derived issues" :
+								"Check if the model has real value that is calculated incorrectly";
 				case  2:
 					return  isName ?
-								(char*) "REAL value boundary issues" :
-								(char*) "Check if the model has real value attributes exceeds the boundary defined in the schema";
+								"REAL value boundary issues" :
+								"Check if the model has real value attributes exceeds the boundary defined in the schema";
 				case  3:
 					return  isName ?
-								(char*) "Incorrect ENUMERATION values" :
-								(char*) "Check if the model has incorrect ENUMERATION values according to the IFC schema";
+								"Incorrect ENUMERATION values" :
+								"Check if the model has incorrect ENUMERATION values according to the IFC schema";
 				case  4:
 					return  isName ?
-								(char*) "File schema definition" :
-								(char*) "Check if the file schema is not defined correctly";
+								"File schema definition" :
+								"Check if the file schema is not defined correctly";
 				default:
 					break;
 			}
@@ -71,20 +74,20 @@ static	inline	char	* GetGroupText(
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "Alignment strucutre issues" :
-								(char*) "Check if alignment layouts are structured correctly";
+								"Alignment strucutre issues" :
+								"Check if alignment layouts are structured correctly";
 				case  0:
 					return  isName ?
-								(char*) "Alignment horizontal issues" :
-								(char*) "Check if a horizontal alignment has segments other than alignment horizontal segments nested";
+								"Alignment horizontal issues" :
+								"Check if a horizontal alignment has segments other than alignment horizontal segments nested";
 				case  1:
 					return  isName ?
-								(char*) "Alignment vertical issues" :
-								(char*) "Check if a vertical alignment has segments other than alignment vertical segments nested";
+								"Alignment vertical issues" :
+								"Check if a vertical alignment has segments other than alignment vertical segments nested";
 				case  2:
 					return  isName ?
-								(char*) "Alignment cant inconsistencies" :
-								(char*) "Check if a cant alignment has segments other than alignment cant segments nested";
+								"Alignment cant inconsistencies" :
+								"Check if a cant alignment has segments other than alignment cant segments nested";
 				default:
 					break;
 			}
@@ -93,32 +96,32 @@ static	inline	char	* GetGroupText(
 			switch (subGroup) {
 				case  -1:
 					return  isName ?
-								(char*) "Alignment continuity issues" :
-								(char*) "Check if an alignment is continous based on the parameters of alignment segments";
+								"Alignment continuity issues" :
+								"Check if an alignment is continous based on the parameters of alignment segments";
 				case  0:
 					return  isName ?
-								(char*) "Alignment horizontal continuity" :
-								(char*) "Check if the deviation between an alignment horizontal segment and the subsequent segment exceeds the defined epsilon";
+								"Alignment horizontal continuity" :
+								"Check if the deviation between an alignment horizontal segment and the subsequent segment exceeds the defined epsilon";
 				case  1:
 					return  isName ?
-								(char*) "Alignment vertical continuity" :
-								(char*) "Check if the deviation between an alignment vertical segment and the subsequent segment exceeds the defined epsilon";
+								"Alignment vertical continuity" :
+								"Check if the deviation between an alignment vertical segment and the subsequent segment exceeds the defined epsilon";
 				case  2:
 					return  isName ?
-								(char*) "Alignment cant continuity" :
-								(char*) "Check if the deviation between an alignment cant segment and the subsequent segment exceeds the defined epsilon";
+								"Alignment cant continuity" :
+								"Check if the deviation between an alignment cant segment and the subsequent segment exceeds the defined epsilon";
 				case  3:
 					return  isName ?
-								(char*) "Alignment horizontal tangential continuity" :
-								(char*) "Check if an alignment horizontal segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
+								"Alignment horizontal tangential continuity" :
+								"Check if an alignment horizontal segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				case  4:
 					return  isName ?
-								(char*) "Alignment vertical tangential continuity" :
-								(char*) "Check if an alignment vertical segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
+								"Alignment vertical tangential continuity" :
+								"Check if an alignment vertical segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				case  5:
 					return  isName ?
-								(char*) "Alignment cant tangential continuity" :
-								(char*) "Check if an alignment cant segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
+								"Alignment cant tangential continuity" :
+								"Check if an alignment cant segment is not tangentially continous (exceeds defined epsilon) towards the subsequent segment";
 				default:
 					break;
 			}
@@ -128,31 +131,43 @@ static	inline	char	* GetGroupText(
 				switch (subGroup) {
 					case  -1:
 						return  isName ?
-									(char*) "Geometrical Content Issue" :
-									(char*) "Description of Geometrical Content Issue";
+									"Geometrical Content Issue" :
+									"Description of Geometrical Content Issue";
 					case  0:
 						return  isName ?
-									(char*) "Alignment Issues" :
-									(char*) "Description of Alignment Issues";
+									"Alignment Issues" :
+									"Description of Alignment Issues";
 					case  1:
 						return  isName ?
-									(char*) "Horizontal Alignment Issues" :
-									(char*) "Description of Horizontal Alignment Issues";
+									"Horizontal Alignment Issues" :
+									"Description of Horizontal Alignment Issues";
 					case  2:
 						return  isName ?
-									(char*) "Vertical Alignment Issues" :
-									(char*) "Description of Vertical Alignment Issues";
+									"Vertical Alignment Issues" :
+									"Description of Vertical Alignment Issues";
 					case  3:
 						return  isName ?
-									(char*) "Cant Alignment Issues" :
-									(char*) "Description of Cant Alignment Issues";
+									"Cant Alignment Issues" :
+									"Description of Cant Alignment Issues";
 					case  4:
 						return  isName ?
-									(char*) "Curve Segment Issues" :
-									(char*) "Description of Curve Segment Issues";
+									"Curve Segment Issues" :
+									"Description of Curve Segment Issues";
 					default:
 						break;
 				}
+			}
+			break;
+		case  4:
+			switch (subGroup) {
+				case  -1:
+					return  isName ?
+								"Schema validation issues" :
+								"Schema validation through IFC Engine";
+				case  0:
+					return  isName ?
+								"Schema validation issues" :
+								"Schema validation through IFC Engine";
 			}
 			break;
 		default:

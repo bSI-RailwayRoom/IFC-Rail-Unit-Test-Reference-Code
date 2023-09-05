@@ -38,7 +38,7 @@ char	* _itoa_int(
 	return result;
 }
 
-size_t	printInternal(char * fpc, char * str)
+size_t	printInternal(char * fpc, const char * str)
 {
 	size_t	size = strlen(str);
 
@@ -208,6 +208,123 @@ size_t	WriteHeader(char * fpc, char * ifcFileName, int issueCnt, double absolute
 	return	size;
 }
 
+size_t	WriteHeaderJSON(char * fpc, const char * ifcFileName, int issueCnt, double absoluteEpsilon, double relativeEpsilon)
+{
+	size_t	size = 0;
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, "{\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, "  \"type\": \"AlignmentConsistencyJSON\",\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, "  \"version\": \"1.0\",\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, "  \"meta\": {\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, "    \"name\": \"");
+	size += printInternal(fpc ? &fpc[size] : nullptr, ifcFileName);
+	size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, "    \"time\": \"");
+	char		timeStamp[512];
+	time_t		t;
+//	struct tm	tInfo;
+
+	time(&t);
+
+	struct tm	* timeInfo =
+#ifdef SAFE
+					new tm();
+	localtime_s(timeInfo, &t);
+#else 
+					localtime(&t);
+#endif // SAFE
+
+
+//	localtime_s(&tInfo, &t);
+
+//	_itoa_s(1900 + tInfo.tm_year, &timeStamp[0], 512, 10);
+//	_itoa_s(100 + 1 + tInfo.tm_mon, &timeStamp[4], 512 - 4, 10);
+//	_itoa_s(100 + tInfo.tm_mday, &timeStamp[7], 512 - 7, 10);
+	_itoa_int(1900 + timeInfo->tm_year, &timeStamp[0], 10);
+	_itoa_int(100 + 1 + timeInfo->tm_mon, &timeStamp[4], 10);
+	_itoa_int(100 + timeInfo->tm_mday, &timeStamp[7], 10);
+	timeStamp[4] = '-';
+	timeStamp[7] = '-';
+//	_itoa_s(100 + tInfo.tm_hour, &timeStamp[10], 512 - 10, 10);
+//	_itoa_s(100 + tInfo.tm_min, &timeStamp[13], 512 - 13, 10);
+//	_itoa_s(100 + tInfo.tm_sec, &timeStamp[16], 512 - 16, 10);
+	_itoa_int(100 + timeInfo->tm_hour, &timeStamp[10], 10);
+	_itoa_int(100 + timeInfo->tm_min, &timeStamp[13], 10);
+	_itoa_int(100 + timeInfo->tm_sec, &timeStamp[16], 10);
+	timeStamp[10] = ' ';
+	timeStamp[13] = ':';
+	timeStamp[16] = ':';
+	timeStamp[19] = 0;
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, timeStamp);
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "\"\n");
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*)"  },\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*)"  \"aggregatedData\": {\n");
+
+
+
+	int	group = 0, checkTypeCnt = 0, checkTypeErrorCnt = 0;
+	while (group >= 0) {
+		if (GetGroupNameC(group, -1)) {
+			bool	subgroupHasError = false;
+
+			int	subGroup = 0;
+			while (subGroup >= 0) {
+				if (GetGroupNameC(group, subGroup)) {
+					for (int i = 0; i < issueCnt; i++) {
+						bool	isError = false;
+						GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError);
+						if (isError) {
+							subgroupHasError = true;
+						}
+					}
+					subGroup++;
+				}
+				else {
+					subGroup = -1;
+				}
+			}
+
+			if (subgroupHasError) {
+				checkTypeErrorCnt++;
+			}
+			checkTypeCnt++;
+
+			group++;
+		}
+		else {
+			group = -1;
+		}
+	}	//	*/
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "    \"status\": \"");
+	if (checkTypeErrorCnt) {
+		size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "failure");
+	}
+	else {
+		size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "success");
+	}
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "\",\n");
+
+	int percetage = (int) (100. * (double) (checkTypeCnt - checkTypeErrorCnt) / (double) checkTypeCnt);
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*)"    \"passed\": \"");
+	size += printInternal(fpc ? &fpc[size] : nullptr, checkTypeCnt - checkTypeErrorCnt);
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " of ");
+	size += printInternal(fpc ? &fpc[size] : nullptr, checkTypeCnt);
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " (");
+	size += printInternal(fpc ? &fpc[size] : nullptr, percetage);
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "%%)");
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "\"\n");
+
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "  },\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "  \"data\": {\n");
+
+	return	size;
+}
+
 size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativeEpsilon)
 {
 	size_t	size = 0;
@@ -297,8 +414,8 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 						size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                <span class=\"step - time\">0.01s</span>\n");
 
 						for (int i = 0; i < issueCnt; i++) {
-							bool	isError = false;
-							char	* myIssue = GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError);
+							bool		isError = false;
+							const char	* myIssue = GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError);
 							if (myIssue) {
 								if (isError) {
 									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				<p class=\"failure\"> \n");
@@ -343,6 +460,203 @@ size_t	WriteBody(char* fpc, int issueCnt, double absoluteEpsilon, double relativ
 	return	size;
 }
 
+size_t	WriteBodyJSON(char* fpc, int issueCnt, double absoluteEpsilon, double relativeEpsilon)
+{
+	size_t	size = 0;
+
+	int	group = 0;
+	while (group >= 0) {
+		if (GetGroupNameC(group, -1)) {
+			if (group)
+				size += printInternal(fpc ? &fpc[size] : nullptr, ",\n");
+
+			int	checkCnt = 0, checkErrorCnt = 0;
+			{
+				int	subGroup = 0;
+				while (subGroup >= 0) {
+					if (GetGroupNameC(group, subGroup)) {
+						bool	subgroupHasError = false;
+						for (int i = 0; i < issueCnt; i++) {
+							bool	isError = false;
+							GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError);
+							if (isError) {
+								subgroupHasError = true;
+							}
+						}
+
+						if (subgroupHasError) checkErrorCnt++;
+						checkCnt++;
+						subGroup++;
+					}
+					else {
+						subGroup = -1;
+					}
+				}
+			}
+
+			
+			size += printInternal(fpc ? &fpc[size] : nullptr, "    \"group_");
+			size += printInternal(fpc ? &fpc[size] : nullptr, group + 1);
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\": {\n");
+
+			size += printInternal(fpc ? &fpc[size] : nullptr, "      \"name\": \"");
+			size += printInternal(fpc ? &fpc[size] : nullptr, GetGroupNameC(group, -1));
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+			size += printInternal(fpc ? &fpc[size] : nullptr, "      \"status\": \"");
+			if (checkErrorCnt) {
+				size += printInternal(fpc ? &fpc[size] : nullptr, "failure");
+			}
+			else {
+				size += printInternal(fpc ? &fpc[size] : nullptr, "success");
+			}
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+			int percetage = (int) (100. * (double) (checkCnt - checkErrorCnt) / (double) checkCnt);
+			size += printInternal(fpc ? &fpc[size] : nullptr, "      \"passed\": \"");
+			size += printInternal(fpc ? &fpc[size] : nullptr, checkCnt - checkErrorCnt);
+			size += printInternal(fpc ? &fpc[size] : nullptr, " of ");
+			size += printInternal(fpc ? &fpc[size] : nullptr, checkCnt);
+			size += printInternal(fpc ? &fpc[size] : nullptr, " (");
+			size += printInternal(fpc ? &fpc[size] : nullptr, percetage);
+			size += printInternal(fpc ? &fpc[size] : nullptr, "%%)");
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+
+			size += printInternal(fpc ? &fpc[size] : nullptr, "      \"timeInMilliSeconds\": \"");
+			size += printInternal(fpc ? &fpc[size] : nullptr, "10");
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+			{
+				int	subGroup = 0;
+				while (subGroup >= 0) {
+					if (GetGroupNameC(group, subGroup)) {
+						if (subGroup) {
+							size += printInternal(fpc ? &fpc[size] : nullptr, ",\n");
+						}
+						size += printInternal(fpc ? &fpc[size] : nullptr, "      \"subGroup_");
+						size += printInternal(fpc ? &fpc[size] : nullptr, group + 1);
+						size += printInternal(fpc ? &fpc[size] : nullptr, "_");
+						size += printInternal(fpc ? &fpc[size] : nullptr, subGroup + 1);
+						size += printInternal(fpc ? &fpc[size] : nullptr, "\": {\n");
+
+						bool	subgroupHasError = false;
+						for (int i = 0; i < issueCnt; i++) {
+							bool	isError = false;
+							GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError);
+							if (isError) {
+								subgroupHasError = true;
+							}
+						}
+
+						size += printInternal(fpc ? &fpc[size] : nullptr, "        \"status\": \"");
+						if (subgroupHasError) {
+							size += printInternal(fpc ? &fpc[size] : nullptr, "failure");
+						}
+						else {
+							size += printInternal(fpc ? &fpc[size] : nullptr, "success");
+						}
+						size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+						size += printInternal(fpc ? &fpc[size] : nullptr, "        \"name\": \"");
+						size += printInternal(fpc ? &fpc[size] : nullptr, GetGroupNameC(group, subGroup));
+						size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+
+						size += printInternal(fpc ? &fpc[size] : nullptr, "        \"values\": [");
+						bool	started = false;
+						for (int i = 0; i < issueCnt; i++) {
+							bool		isError = false;
+							int			expressID_1 = 0, expressID_2 = 0;
+							const char	* myIssue = GetIssueC(i, group, subGroup, absoluteEpsilon, relativeEpsilon, &isError, &expressID_1, &expressID_2);
+							if (myIssue) {
+								if (started) {
+									size += printInternal(fpc ? &fpc[size] : nullptr, ",\n");
+								}
+								else {
+									size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+									started = true;
+								}
+								size += printInternal(fpc ? &fpc[size] : nullptr, "          [\n");
+
+								if (isError) {
+									size += printInternal(fpc ? &fpc[size] : nullptr, "            \"failure\",\n");
+								}
+								else {
+									size += printInternal(fpc ? &fpc[size] : nullptr, "            \"success\",\n");
+								}
+
+								size += printInternal(fpc ? &fpc[size] : nullptr, "            \"");
+								size += printInternal(fpc ? &fpc[size] : nullptr, myIssue);
+/*								if (isError) {
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				<p class=\"failure\"> \n");
+
+//									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "					Assertion Failed: %s <br />\n", myIssue);
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "					Assertion Failed: ");
+									size += printInternal(fpc ? &fpc[size] : nullptr, myIssue);
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " <br />\n");
+
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                </p>\n");
+								}
+								else {
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				<p class=\"success\">\n");
+
+//									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                    For info: %s <br />\n", myIssue);
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "                    For info: ");
+									size += printInternal(fpc ? &fpc[size] : nullptr, myIssue);
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) " <br />\n");
+
+									size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "				</p> \n");
+								}	//	*/
+								size += printInternal(fpc ? &fpc[size] : nullptr, "\",\n");
+								size += printInternal(fpc ? &fpc[size] : nullptr, "            [\n");
+								if (expressID_1 || expressID_2) {
+									if (expressID_1 && expressID_2) {
+										size += printInternal(fpc ? &fpc[size] : nullptr, "              ");
+										size += printInternal(fpc ? &fpc[size] : nullptr, expressID_1);
+										size += printInternal(fpc ? &fpc[size] : nullptr, ",\n");
+										size += printInternal(fpc ? &fpc[size] : nullptr, "              ");
+										size += printInternal(fpc ? &fpc[size] : nullptr, expressID_2);
+										size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+									}
+									else {
+										size += printInternal(fpc ? &fpc[size] : nullptr, "              ");
+										size += printInternal(fpc ? &fpc[size] : nullptr, expressID_1 + expressID_2);
+										size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+									}
+								}
+								size += printInternal(fpc ? &fpc[size] : nullptr, "            ]\n");
+								size += printInternal(fpc ? &fpc[size] : nullptr, "          ]");
+							}
+							else {
+//								size += printInternal(fpc ? &fpc[size] : nullptr, "??????");
+//								assert(false);
+							}
+						}
+						size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+						size += printInternal(fpc ? &fpc[size] : nullptr, "        ]\n");
+
+						size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "      }");
+						subGroup++;
+					}
+					else {
+						subGroup = -1;
+					}
+				}
+			}
+			size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+			size += printInternal(fpc ? &fpc[size] : nullptr, "    }");
+
+			group++;
+		}
+		else {
+			group = -1;
+		}
+	}
+	size += printInternal(fpc ? &fpc[size] : nullptr, "\n");
+
+	return	size;
+}
+
 size_t	WriteFooter(char * fpc)
 {
 	size_t	size = 0;
@@ -359,6 +673,16 @@ size_t	WriteFooter(char * fpc)
 	return	size;
 }
 
+size_t	WriteFooterJSON(char * fpc)
+{
+	size_t	size = 0;
+	
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "  }\n");
+	size += printInternal(fpc ? &fpc[size] : nullptr, (char*) "}\n");
+
+	return	size;
+}
+
 static	inline	char	* GetPage(
 								int_t	model,
 								double	absoluteEpsilon,
@@ -367,9 +691,7 @@ static	inline	char	* GetPage(
 {
 	size_t	len;
 
-//double	absoluteEpsilon = 0.0001,
-//		relativeEpsilon = 0.0001;
-char	ifcFileName[19] = "test-file-name.ifc";
+	char	ifcFileName[19] = "test-file-name.ifc";
 
 	int		issueCnt = CheckConsistencyAlignment((void*) model, relativeEpsilon);
 
@@ -395,6 +717,47 @@ char	ifcFileName[19] = "test-file-name.ifc";
 		size += WriteBody(&fpc[size], issueCnt, absoluteEpsilon, relativeEpsilon);
 
 		size += WriteFooter(&fpc[size]);
+
+		assert(len == size);
+	}
+
+	return	fpc;
+}
+
+static	inline	char	* GetPageJSON(
+								int_t		model,
+								const char	* ifcFileName,
+								double		absoluteEpsilon,
+								double		relativeEpsilon
+							)
+{
+	size_t	len;
+
+
+	int		issueCnt = CheckConsistencyAlignment((void*) model, relativeEpsilon);
+
+	{
+		size_t	size = 0;
+
+		size += WriteHeaderJSON(nullptr, ifcFileName, issueCnt, absoluteEpsilon, relativeEpsilon);
+
+		size += WriteBodyJSON(nullptr, issueCnt, absoluteEpsilon, relativeEpsilon);
+
+		size += WriteFooterJSON(nullptr);
+
+		len = size;
+	}
+
+	char * fpc = new char[len + 1];
+
+	{
+		size_t	size = 0;
+
+		size += WriteHeaderJSON(&fpc[size], ifcFileName, issueCnt, absoluteEpsilon, relativeEpsilon);
+
+		size += WriteBodyJSON(&fpc[size], issueCnt, absoluteEpsilon, relativeEpsilon);
+
+		size += WriteFooterJSON(&fpc[size]);
 
 		assert(len == size);
 	}

@@ -67,6 +67,8 @@ enum class enum_error : unsigned char
 	ALIGNMENT_MISSING_GEOMETRY,									//		3	0
 	ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,						//		3	0
 	ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,							//		3	0
+	ALIGNMENT_SHOULD_NOT_HAVE_2P_GEOMETRY,						//		3	0
+	ALIGNMENT_SHOULD_HAVE_H_GEOMETRY,							//		3	0
 	HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY,						//		3	1
 	HORIZONTAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY,				//		3	1
 	HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY,				//		3	1
@@ -83,6 +85,7 @@ enum class enum_error : unsigned char
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_HA,						//		3	4
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_VA,						//		3	4
 	ALIGNMENT_SEGMENT_MISSES_GEOMETRY_CA,						//		3	4
+	SCHEMA_VALIDATION,											//		4	0
 	MODEL_ZERO,													//		A   A
 	LIBRARY_OUTDATED											//		A   A
 };
@@ -212,6 +215,12 @@ void	assert__error(
 		case  enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY:
 			AddIssue(3, 0, (char*) "Found unexpected geometry for Alignment (expected to be empty)", ifcInstance);
 			break;
+		case  enum_error::ALIGNMENT_SHOULD_NOT_HAVE_2P_GEOMETRY:
+			AddIssue(3, 0, (char*) "Found unexpected geometry for IfcAlignment (by maximum two geometry items expected for IfcAlignment)", ifcInstance);
+			break;
+		case  enum_error::ALIGNMENT_SHOULD_HAVE_H_GEOMETRY:
+			AddIssue(3, 0, (char*) "Found unexpected geometry for IfcAlignment there should be at least an IfcCompositeCurve reference", ifcInstance);
+			break;
 		case  enum_error::HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY:
 			AddIssue(3, 1, (char*) "Cannot find expected geometry for Horizontal Alignment (IfcCompositeCurve expected)", ifcInstance);
 			break;
@@ -280,7 +289,32 @@ void	assert__error(
 			AddIssue(3, 4, (char*) "Found unexpected segment count referenced by bounded curve", ifcInstanceI, ifcInstanceII);
 			break;
 		case  enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_PARENT_CURVE:
+assert(false);
 			AddIssue(3, 4, (char*) "Unexpected parent curve for the geometry", ifcInstanceI, ifcInstanceII);
+			break;
+		default:
+			assert(false);
+			break;
+	}
+}
+
+char	* MergeText(
+				char	* txtI,
+				char	* txtII,
+				char	* txtIII
+			);
+
+void	assert__error__(
+				enum_error	myError,
+				int_t		ifcInstanceI,
+				int_t		ifcInstanceII,
+				char		* entityName
+			)
+{
+	switch (myError) {
+		case  enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_PARENT_CURVE:
+			AddIssue(3, 4, MergeText((char*) "Unexpected parent curve for the geometry (expected entity ", entityName, (char*) ")"), ifcInstanceI, ifcInstanceII);
+//			AddIssue(3, 4, (char*) "Unexpected parent curve for the geometry (expected entity ...)", ifcInstanceI, ifcInstanceII);
 			break;
 		default:
 			assert(false);
@@ -314,7 +348,7 @@ void	assert__error(
 			)
 {
 	switch (myError) {
-		case  enum_error::REAL_BOUNDARY_ISSUE:
+		case  enum_error::SCHEMA_VALIDATION:
 			AddIssue(0, 1, (char*) "Value of real value out of scope, attribute: ", ifcInstance, attributeName);
 			break;
 		case  enum_error::REAL_DERIVED_ISSUE:
@@ -323,6 +357,22 @@ void	assert__error(
 //		case  enum_error::UNKNOWN_ENUM_VALUE:
 //			AddIssue(0, 3, (char*) "Enumeration value unknow - schema incompatibility, attribute: ", ifcInstance, attributeName);
 //			break;
+		default:
+			assert(false);
+			break;
+	}
+}
+
+void	assert__error(
+				enum_error	myError,
+				char		* text,
+				int_t		ifcInstance
+			)
+{
+	switch (myError) {
+		case  enum_error::REAL_BOUNDARY_ISSUE:
+			AddIssue(4, 0, text, ifcInstance, "");
+			break;
 		default:
 			assert(false);
 			break;
@@ -399,7 +449,7 @@ void	CopyADB(
 	sdaiGetAttrBN(ifcInstance, attributeName, sdaiADB, &ADBValue);
 	int_t	sdaiTYPE = sdaiGetADBType(ADBValue);
 
-	char	* path = sdaiGetADBTypePath(ADBValue, sdaiSTRING);
+	const char	* path = sdaiGetADBTypePath(ADBValue, sdaiSTRING);
 
 	void	* value = nullptr;
 	sdaiGetADBValue(ADBValue, sdaiTYPE, &value);
@@ -464,8 +514,7 @@ void	CopyLengthMeasureOPTIONAL(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	double	content = 123456789.98765;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
-	if (content != 123456789.98765) {
+	if (sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content)) {
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiREAL, &content);
 	}
 }
@@ -496,8 +545,7 @@ void	CopyNonNegativeLengthMeasureOPTIONAL(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	double	content = 123456789.98765;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content);
-	if (content != 123456789.98765) {
+	if (sdaiGetAttrBN(ifcInstance, attributeName, sdaiREAL, &content)) {
 		assert(content >= 0.);
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiREAL, &content);
 	}
@@ -584,12 +632,13 @@ void	CopyStringOPTIONAL(
 	}
 }
 
-bool	equals(char * txtI, char * txtII)
+bool	equals(const char * txtI, const char * txtII)
 {
-	assert(txtI && txtII);
-	int_t	i = 0;
-	while (txtI[i] && txtI[i] == txtII[i]) i++;
-	if (txtI[i] == 0 && txtII[i] == 0) return true;
+	if (txtI && txtII) {
+		int_t	i = 0;
+		while (txtI[i] && txtI[i] == txtII[i]) i++;
+		if (txtI[i] == 0 && txtII[i] == 0) return true;
+	}
 	return	false;
 }
 
@@ -618,8 +667,7 @@ void	CopyEnumOPTIONAL(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	char	* content = nullptr;
-	sdaiGetAttrBN(ifcInstance, attributeName, sdaiENUM, &content);
-	if (content) {
+	if (sdaiGetAttrBN(ifcInstance, attributeName, sdaiENUM, &content)) {
 		sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiENUM, content);
 	}
 }
@@ -1271,9 +1319,10 @@ void	EnrichMirror(
 
 
 
-int_t	FindRepresentation(
+int_t	FindRepresentation__(
 				int_t	model,
-				int_t	ifcProductInstance
+				int_t	ifcProductInstance,
+				int_t	index
 			)
 {
 	int_t	ifcProductRepresentationInstance = 0;
@@ -1290,14 +1339,23 @@ int_t	FindRepresentation(
 			int_t	* aggrItems = nullptr;
 			sdaiGetAttrBN(ifcRepresentationInstance, (char*) "Items", sdaiAGGR, &aggrItems);
 			int_t	aggrItemsCnt = sdaiGetMemberCount(aggrItems);
+
 			for (int_t j = 0; j < aggrItemsCnt; j++) {
 				int_t	ifcRepresentationItemInstance = 0;
-				sdaiGetAggrByIndex(aggrItems, i, sdaiINSTANCE, &ifcRepresentationItemInstance);
+				sdaiGetAggrByIndex(aggrItems, j, sdaiINSTANCE, &ifcRepresentationItemInstance);
 
 				if (sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE") ||
 					sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE") ||
 					sdaiGetInstanceType(ifcRepresentationItemInstance) == sdaiGetEntity(model, (char*) "IFCSEGMENTEDREFERENCECURVE")) {
-					return	ifcRepresentationItemInstance;
+					if (index) {
+						index--;
+					}
+					else {
+						return	ifcRepresentationItemInstance;
+					}
+				}
+				else {
+					assert(false);
 				}
 			}
 		}
@@ -1373,7 +1431,7 @@ int_t	GetIndex(
 			return	i;
 		}
 	}
-	assert(false);
+////////////////	assert(false);
 	return	-1;
 }
 
@@ -1421,17 +1479,20 @@ void	CompareADB(
 	sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, attributeName, sdaiADB, &mirrorADBValue);
 	sdaiGetAttrBN(ifcCurveSegmentInstance, attributeName, sdaiADB, &ADBValue);
 
+	int_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
+			expressID_mirror = internalGetP21Line(mirrorIfcCurveSegmentInstance);
+
 	if (mirrorADBValue && ADBValue) {
-		char	* mirrorPath = sdaiGetADBTypePath(mirrorADBValue, sdaiSTRING),
-				* path = sdaiGetADBTypePath(ADBValue, sdaiSTRING);
+		const char	* mirrorPath = sdaiGetADBTypePath(mirrorADBValue, sdaiSTRING),
+					* path = sdaiGetADBTypePath(ADBValue, sdaiSTRING);
 
 		double	factor;
-		if (equals(mirrorPath, (char*) "IFCPARAMETERVALUE") &&
-			equals(path, (char*) "IFCNONNEGATIVELENGTHMEASURE")) {
+		if (equals(mirrorPath, "IFCPARAMETERVALUE") &&
+			equals(path, "IFCNONNEGATIVELENGTHMEASURE")) {
 			factor = factor__P2L;
 		}
-		else if (equals(mirrorPath, (char*) "IFCNONNEGATIVELENGTHMEASURE") &&
-				 equals(path, (char*) "IFCPARAMETERVALUE")) {
+		else if (equals(mirrorPath, "IFCNONNEGATIVELENGTHMEASURE") &&
+				 equals(path, "IFCPARAMETERVALUE")) {
 			factor = 1. / factor__P2L;
 		}
 		else {
@@ -1462,9 +1523,14 @@ void	CompareREAL_SET(
 				double	relativeEpsilon
 			)
 {
+	assert(relativeEpsilon);
+
 	int_t	* mirrorAggrValue = nullptr, * aggrValue = nullptr;
 	sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, attributeName, sdaiAGGR, &mirrorAggrValue);
 	sdaiGetAttrBN(ifcCurveSegmentInstance, attributeName, sdaiAGGR, &aggrValue);
+
+	int_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
+			expressID_mirror = internalGetP21Line(mirrorIfcCurveSegmentInstance);
 
 	int_t	mirrorAggrValueCnt = sdaiGetMemberCount(mirrorAggrValue),
 			aggrValueCnt = sdaiGetMemberCount(aggrValue);
@@ -1698,7 +1764,18 @@ void	CompareParentCurve(
 	else {
 		int_t	mirrorExpressID = internalGetP21Line(mirrorIfcCurveInstance),
 				expressID = internalGetP21Line(ifcCurveInstance);
-		assert__error(enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_PARENT_CURVE, ifcCurveInstance, ifcContentInstance);
+
+		int_t	mirrorInstanceEntity = sdaiGetInstanceType(mirrorIfcCurveInstance);
+		char	* mirrorEntityName = nullptr;
+		engiGetEntityName(mirrorInstanceEntity, sdaiSTRING, &mirrorEntityName);
+
+		int_t	instanceEntity = sdaiGetInstanceType(ifcCurveInstance);
+		char	* entityName = nullptr;
+		engiGetEntityName(instanceEntity, sdaiSTRING, &entityName);
+
+		assert__error__(enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_PARENT_CURVE, ifcCurveInstance, ifcContentInstance, mirrorEntityName);
+
+		int u = 0;
 	}
 }
 
@@ -1735,18 +1812,26 @@ void	CompareSegmentCurve(
 	}
 
 	bool	isCircle = false,
+			isClothoid = false,
 			isLine = false;
 	double	factor__P2L = 1.;
 	
 	{
 		int_t	mirrorIfcCurveInstance = 0;
-		sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, (char*) "ParentCurve", sdaiINSTANCE, &mirrorIfcCurveInstance);
+		sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, &mirrorIfcCurveInstance);
 
-		if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCCIRCLE")) {
+		if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, "IFCCIRCLE")) {
 			isCircle = true;
 			double	radius = 123456789.98765;
-			sdaiGetAttrBN(mirrorIfcCurveInstance, (char*) "Radius", sdaiREAL, &radius);
+			sdaiGetAttrBN(mirrorIfcCurveInstance, "Radius", sdaiREAL, &radius);
 			factor__P2L = radius;
+		}
+
+		if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, "IFCCLOTHOID")) {
+			isClothoid = true;
+			double	clothoidConstant = 123456789.98765;
+			sdaiGetAttrBN(mirrorIfcCurveInstance, "ClothoidConstant", sdaiREAL, &clothoidConstant);
+			factor__P2L = clothoidConstant * sqrt(Pi);
 		}
 	}
 
@@ -1791,86 +1876,164 @@ void	CompareMirror(
 	//
 	//	complete alignment curves
 	//
-	int_t	reprA = FindRepresentation(model, ifcAlignmentInstance),
-			reprH = FindRepresentation(model, ifcHorizontalAlignmentInstance),
-			reprV = FindRepresentation(model, ifcVerticalAlignmentInstance),
-			reprC = FindRepresentation(model, ifcCantAlignmentInstance);
+	int_t	reprA___ = FindRepresentation__(model, ifcAlignmentInstance, 0),
+			reprH_ = FindRepresentation__(model, ifcHorizontalAlignmentInstance, 0),
+			reprV_ = FindRepresentation__(model, ifcVerticalAlignmentInstance, 0),
+			reprC_ = FindRepresentation__(model, ifcCantAlignmentInstance, 0);
 
-	int_t	mirrorReprA = FindRepresentation(mirrorModel, mirrorIfcAlignmentInstance),
-			mirrorReprH = FindRepresentation(mirrorModel, mirrorIfcHorizontalAlignmentInstance),
-			mirrorReprV = FindRepresentation(mirrorModel, mirrorIfcVerticalAlignmentInstance),
-			mirrorReprC = FindRepresentation(mirrorModel, mirrorIfcCantAlignmentInstance);
+	{
+		int_t	reprA_0 = FindRepresentation__(model, ifcAlignmentInstance, 0),
+				reprA_1 = FindRepresentation__(model, ifcAlignmentInstance, 1),
+				reprA_2 = FindRepresentation__(model, ifcAlignmentInstance, 2);
 
-	if (reprA && mirrorReprA == 0) {
-		assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcAlignmentInstance);
-		reprA = 0;
+		if (reprA_2) {
+			assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_2P_GEOMETRY, ifcAlignmentInstance);
+		}
+
+		if (sdaiGetInstanceType(reprA_0) == sdaiGetEntity(model, "IFCCOMPOSITECURVE")) {
+			reprH_ = reprA_0;
+			if (sdaiGetInstanceType(reprA_1) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
+				reprV_ = reprA_1;
+				reprC_ = 0;
+			}
+			else if (sdaiGetInstanceType(reprA_1) == sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE")) {
+				reprC_ = reprA_1;
+				int_t	ifcBoundedCurveInstance = 0;
+				sdaiGetAttrBN(reprA_1, "BaseCurve", sdaiINSTANCE, &ifcBoundedCurveInstance);
+				if (sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
+					reprV_ = ifcBoundedCurveInstance;
+				}
+				else {
+					assert(sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(model, "IFCCOMPOSITECURVE"));
+					reprV_ = 0;
+				}
+			}
+			else {
+				assert(reprA_1 == 0);
+				reprV_ = 0;
+				reprC_ = 0;
+			}
+		}
+		else if (sdaiGetInstanceType(reprA_1) == sdaiGetEntity(model, "IFCCOMPOSITECURVE")) {
+			reprH_ = reprA_1;
+			if (sdaiGetInstanceType(reprA_0) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
+				reprV_ = reprA_1;
+				reprC_ = 0;
+			}
+			else if (sdaiGetInstanceType(reprA_0) == sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE")) {
+				reprC_ = reprA_1;
+				int_t	ifcBoundedCurveInstance = 0;
+				sdaiGetAttrBN(reprA_0, "BaseCurve", sdaiINSTANCE, &ifcBoundedCurveInstance);
+				if (sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
+					reprV_ = ifcBoundedCurveInstance;
+				}
+				else {
+					assert(sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(model, "IFCCOMPOSITECURVE"));
+					reprV_ = 0;
+				}
+			}
+			else {
+				assert(reprA_1 == 0);
+				reprV_ = 0;
+				reprC_ = 0;
+			}
+		}
+		else {
+			assert__error(enum_error::ALIGNMENT_SHOULD_HAVE_H_GEOMETRY, ifcAlignmentInstance);
+		}
+
+		if (FindRepresentation__(model, ifcHorizontalAlignmentInstance, 0)) {
+			assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcHorizontalAlignmentInstance);
+//			assert(false);
+		}
+
+		if (FindRepresentation__(model, ifcVerticalAlignmentInstance, 0)) {
+			assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcVerticalAlignmentInstance);
+//			assert(false);
+		}
+
+		if (FindRepresentation__(model, ifcCantAlignmentInstance, 0)) {
+			assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcCantAlignmentInstance);
+//			assert(false);
+		}
 	}
 
-	if (reprH && mirrorReprH == 0) {
-		assert__error(enum_error::HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcHorizontalAlignmentInstance);
-		reprH = 0;
-	}
+	int_t	mirrorReprA = FindRepresentation__(mirrorModel, mirrorIfcAlignmentInstance, 0),
+			mirrorReprH = FindRepresentation__(mirrorModel, mirrorIfcHorizontalAlignmentInstance, 0),
+			mirrorReprV = FindRepresentation__(mirrorModel, mirrorIfcVerticalAlignmentInstance, 0),
+			mirrorReprC = FindRepresentation__(mirrorModel, mirrorIfcCantAlignmentInstance, 0);
 
-	if (reprV && mirrorReprV == 0) {
-		assert__error(enum_error::VERTICAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcVerticalAlignmentInstance);
-		reprV = 0;
-	}
+//	if (reprA && mirrorReprA == 0) {
+//		assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcAlignmentInstance);
+//		reprA = 0;
+//	}
 
-	if (reprC && mirrorReprC == 0) {
-		assert__error(enum_error::CANT_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcCantAlignmentInstance);
-		reprC = 0;
-	}
+//	if (reprH && mirrorReprH == 0) {
+//		assert__error(enum_error::HORIZONTAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcHorizontalAlignmentInstance);
+//		reprH = 0;
+//	}
+
+//	if (reprV && mirrorReprV == 0) {
+//		assert__error(enum_error::VERTICAL_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcVerticalAlignmentInstance);
+//		reprV = 0;
+//	}
+
+//	if (reprC && mirrorReprC == 0) {
+//		assert__error(enum_error::CANT_ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcCantAlignmentInstance);
+//		reprC = 0;
+//	}
 
 	if (ifcVerticalAlignmentInstance) {
-		if (reprV == 0 && mirrorReprV == 0) {
-			reprV = reprA;
+		if (mirrorReprV == 0) {
 			mirrorReprV = mirrorReprA;
 		}
 	}
 
 	assert(mirrorReprA && mirrorReprH && (mirrorReprV || ifcVerticalAlignmentInstance == 0));
 
-	if (reprA == 0) {
-		assert__error(enum_error::ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
-	}
-	else if (sdaiGetInstanceType(reprA) != sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE")) {
-		assert__error(enum_error::ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprA);
-	}
+//	if (reprA == 0) {
+//		assert__error(enum_error::ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
+//	}
+//	else if (sdaiGetInstanceType(reprA) != sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE")) {
+//		assert__error(enum_error::ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprA);
+//	}
 
 //////////////////////////	assert(mirrorReprA == mirrorReprV);
-	if (reprA != reprV) {
-		assert__error(enum_error::ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, ifcVerticalAlignmentInstance);
-	}
+//	if (reprA != reprV) {
+//		assert__error(enum_error::ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, ifcVerticalAlignmentInstance);
+//	}
 
-	if (reprH == 0) {
+	if (reprH_ == 0) {
 		assert__error(enum_error::HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
 	}
-	else if (sdaiGetInstanceType(reprH) != sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE")) {
-		assert__error(enum_error::HORIZONTAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprH);
+	else if (sdaiGetInstanceType(reprH_) != sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE")) {
+		assert__error(enum_error::HORIZONTAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprH_);
 	}
 
-	if (reprV == 0) {
-		assert__error(enum_error::VERTICAL_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
-	}
-	else if (sdaiGetInstanceType(reprV) != sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE")) {
-		assert__error(enum_error::VERTICAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprV);
+	if (mirrorReprV) {
+		if (reprV_ == 0) {
+			assert__error(enum_error::VERTICAL_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
+		}
+		else if (sdaiGetInstanceType(reprV_) != sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE")) {
+			assert__error(enum_error::VERTICAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprV_);
+		}
 	}
 
 	if (mirrorReprC) {
-		if (reprC == 0) {
+		if (reprC_ == 0) {
 			assert__error(enum_error::CANT_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
 		}
-		else if (sdaiGetInstanceType(reprC) != sdaiGetEntity(model, (char*) "IFCSEGMENTEDREFERENCECURVE")) {
-			assert__error(enum_error::CANT_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprC);
+		else if (sdaiGetInstanceType(reprC_) != sdaiGetEntity(model, (char*) "IFCSEGMENTEDREFERENCECURVE")) {
+			assert__error(enum_error::CANT_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprC_);
 		}
 	}
 	else {
 		assert(___GetAlignmentCant(mirrorModel, mirrorIfcAlignmentInstance, nullptr) == 0);
 	}
 
-	if (reprV == 0) {
-		if (reprH) {
-			assert(sdaiGetInstanceType(reprH) == sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE"));
+	if (reprV_ == 0) {
+		if (reprH_) {
+			assert(sdaiGetInstanceType(reprH_) == sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE"));
 			int_t	* ifcGradientCurveInstances = sdaiGetEntityExtentBN(model, (char*) "IFCGRADIENTCURVE"),
 					noIfcGradientCurveInstances = sdaiGetMemberCount(ifcGradientCurveInstances);
 			for (int_t i = 0; i < noIfcGradientCurveInstances; i++) {
@@ -1879,18 +2042,18 @@ void	CompareMirror(
 
 				int_t	myBaseCurveInstance = 0;
 				sdaiGetAttrBN(ifcGradientCurveInstance, (char*) "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
-				if (myBaseCurveInstance == reprH) {
-					assert(reprV == 0);
-					reprV = ifcGradientCurveInstance;
+				if (myBaseCurveInstance == reprH_) {
+					assert(reprV_ == 0);
+					reprV_ = ifcGradientCurveInstance;
 				}
 			}
-			assert(reprV || ifcVerticalAlignmentInstance == 0);
+			assert(reprV_ || ifcVerticalAlignmentInstance == 0);
 		}
 	}
 
-	if (reprC == 0 && mirrorReprC) {
-		if (reprV) {
-			assert(sdaiGetInstanceType(reprV) == sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE"));
+	if (reprC_ == 0 && mirrorReprC) {
+		if (reprV_) {
+			assert(sdaiGetInstanceType(reprV_) == sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE"));
 			int_t	* ifcSegmentedReferenceCurveInstances = sdaiGetEntityExtentBN(model, (char*) "IFCSEGMENTEDREFERENCECURVE"),
 					noIfcSegmentedReferenceCurveInstances = sdaiGetMemberCount(ifcSegmentedReferenceCurveInstances);
 			for (int_t i = 0; i < noIfcSegmentedReferenceCurveInstances; i++) {
@@ -1899,12 +2062,12 @@ void	CompareMirror(
 
 				int_t	myBaseCurveInstance = 0;
 				sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, (char*) "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
-				if (myBaseCurveInstance == reprV) {
-					assert(reprC == 0);
-					reprC = ifcSegmentedReferenceCurveInstance;
+				if (myBaseCurveInstance == reprV_) {
+					assert(reprC_ == 0);
+					reprC_ = ifcSegmentedReferenceCurveInstance;
 				}
 			}
-			assert(reprC);
+			assert(reprC_);
 		}
 	}
 
@@ -1956,7 +2119,7 @@ void	CompareMirror(
 					assert__error(enum_error::ALIGNMENT_SEGMENT_MISSES_GEOMETRY_HA, ifcAlignmentSegmentInstance);
 				}
 				else {
-					int_t	index = GetIndex(model, reprH, reprAlignmentSegmentInstanceI),
+					int_t	index = GetIndex(model, reprH_, reprAlignmentSegmentInstanceI),
 							mirrorIndex = GetIndex(mirrorModel, mirrorReprH, mirrorReprAlignmentSegmentInstanceI);
 					if (index >= 0 && index == mirrorIndex && currentIndexCnt == index) {
 						CompareSegmentCurve(mirrorModel, mirrorReprAlignmentSegmentInstanceI, model, reprAlignmentSegmentInstanceI, segmentInstances[i], relativeEpsilon);
@@ -1977,7 +2140,7 @@ void	CompareMirror(
 			}
 		}
 		else {
-			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcHorizontalAlignmentInstance, reprH);
+			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcHorizontalAlignmentInstance, reprH_);
 		}
 	}
 	else {
@@ -2042,7 +2205,7 @@ void	CompareMirror(
 					}
 				}
 				else {
-					int_t	index = GetIndex(model, reprV, reprAlignmentSegmentInstanceI),
+					int_t	index = GetIndex(model, reprV_, reprAlignmentSegmentInstanceI),
 							mirrorIndex = GetIndex(mirrorModel, mirrorReprV, mirrorReprAlignmentSegmentInstanceI);
 					if (index >= 0 && index == mirrorIndex && currentIndexCnt == index) {
 						CompareSegmentCurve(mirrorModel, mirrorReprAlignmentSegmentInstanceI, model, reprAlignmentSegmentInstanceI, segmentInstances[i], relativeEpsilon);
@@ -2063,7 +2226,7 @@ void	CompareMirror(
 			}
 		}
 		else {
-			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcVerticalAlignmentInstance, reprH);
+			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcVerticalAlignmentInstance, reprH_);
 		}
 	}
 	else {
@@ -2114,7 +2277,7 @@ void	CompareMirror(
 					assert__error(enum_error::ALIGNMENT_SEGMENT_MISSES_GEOMETRY_CA, ifcAlignmentSegmentInstance);
 				}
 				else {
-					int_t	index = GetIndex(model, reprC, reprAlignmentSegmentInstanceI),
+					int_t	index = GetIndex(model, reprC_, reprAlignmentSegmentInstanceI),
 							mirrorIndex = GetIndex(mirrorModel, mirrorReprC, mirrorReprAlignmentSegmentInstanceI);
 					if (index >= 0 && index == mirrorIndex && currentIndexCnt == index) {
 						CompareSegmentCurve(mirrorModel, mirrorReprAlignmentSegmentInstanceI, model, reprAlignmentSegmentInstanceI, segmentInstances[i], relativeEpsilon);
@@ -2135,7 +2298,7 @@ void	CompareMirror(
 			}
 		}
 		else {
-			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcCantAlignmentInstance, reprH);
+			assert__error(enum_error::ALIGNMENT_SEGMENT_INCORRECT_SEGMENT_COUNT_BOUNDED_CURVE, ifcCantAlignmentInstance, reprH_);
 		}
 	}
 	else {
@@ -2556,6 +2719,9 @@ void	CheckGeometrySegments(
 									);
 								break;
 							case  enum_alignment::CANT:
+if (distance > 0.01) {
+	int uu = 0;
+}
 								assert__error(
 										enum_error::CANT_SEGMENT_DISTANCE,
 										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
@@ -2860,12 +3026,14 @@ int_t	CheckConsistencyAlignment__internal(
                 mirrorIfcAlignmentInstance = 0;
                 sdaiGetAggrByIndex(sdaiGetEntityExtentBN(myMirrorModel, "IFCALIGNMENT"), 0, sdaiINSTANCE, &mirrorIfcAlignmentInstance);
 
+sdaiSaveModelBN(myMirrorModel, "mirrorWithoutGeometry.ifc");
+
                 EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 
                 CheckMirrorGeometry(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 
 //#ifdef _DEBUG
-//sdaiSaveModelBN(myMirrorModel, (char*) "tmp002.ifc");
+sdaiSaveModelBN(myMirrorModel, "mirrorWithGeometry.ifc");
 //#endif // _DEBUG
 
 				if (PARSE_GEOMETRY) {
@@ -2881,8 +3049,35 @@ int_t	CheckConsistencyAlignment__internal(
 
             issues += CheckConsistencyAlignment__internal(model, ifcAlignmentInstance);
         }
-        return  issues;
+
+		{
+			//...
+			ValidationResults   results = validateModel(model);
+
+			for (ValidationIssue issue = validateGetFirstIssue(results); issue; issue = validateGetNextIssue(issue)) {
+				SdaiInstance    inst = validateGetInstance(issue);
+				const char      * desc = validateGetDescription(issue);
+				AddIssue(4, 0, (char*) desc, (int_t) inst);
+			}
+
+			validateFreeResults(results);
+		}
+
+		return  issues;
     }
+
+	{
+		//...
+		ValidationResults   results = validateModel(model);
+
+		for (ValidationIssue issue = validateGetFirstIssue(results); issue; issue = validateGetNextIssue(issue)) {
+			SdaiInstance    inst = validateGetInstance(issue);
+			const char      * desc = validateGetDescription(issue);
+			AddIssue(4, 0, (char*) desc, (int_t) inst);
+		}
+
+		validateFreeResults(results);
+	}
 
 	return	0;
 }

@@ -35,25 +35,28 @@ extern	char	** myIssues;
 extern	int		* myIssuesGroup;
 extern	int		* myIssuesSubGroup;
 extern	double	* myIssuesDeviation;
+extern	int		* myIssuesExpID_1;
+extern	int		* myIssuesExpID_2;
+
 
 bool	PARSE_GEOMETRY = true;
 
-int_t		AC_MODEL = 0;
+int_t	AC_MODEL = 0;
 
 void	DECL * STDC	OpenModelC(
-							char	* filename,
-							bool	parseGeometry
+							const char		* filename,
+							bool			parseGeometry
 						)
 {
 	PARSE_GEOMETRY = parseGeometry;
 
 	myIssueCnt = 0;
-	return	(void*) sdaiOpenModelBN(0, (const char*) filename, (const char*) "");
+	return	(void*) sdaiOpenModelBN(0, filename, "");
 }
 
 void	DECL * STDC	OpenModelW(
-							wchar_t	* filename,
-							bool	parseGeometry
+							const wchar_t	* filename,
+							bool			parseGeometry
 						)
 {
 	PARSE_GEOMETRY = parseGeometry;
@@ -82,7 +85,7 @@ int		DECL STDC	CheckConsistencyFile(
 
 int		DECL STDC	CheckConsistencyAlignment(
 							void	* model,
-							bool	relativeEpsilon
+							double	relativeEpsilon
 						)
 {
 	AC_MODEL = (int_t) model;
@@ -92,14 +95,16 @@ int		DECL STDC	CheckConsistencyAlignment(
 	return	(int) myIssueCnt;
 }
 
-char	DECL * STDC	GetIssueC(
-							int		index,
-							int		group,
-							int		subGroup,
-							double	absoluteEpsilon,
-							double	relativeEpsilon,
-							bool	* isError
-						)
+const char	DECL * STDC	GetIssueC(
+								int			index,
+								int			group,
+								int			subGroup,
+								double		absoluteEpsilon,
+								double		relativeEpsilon,
+								bool		* isError,
+								int			* expressID_1,
+								int			* expressID_2
+							)
 {
 	if (myIssuesGroup[index] == group &&
 		myIssuesSubGroup[index] == subGroup) {
@@ -109,21 +114,25 @@ char	DECL * STDC	GetIssueC(
 		else {
 			(*isError) = false;
 		}
+		if (expressID_1)
+			(*expressID_1) = myIssuesExpID_1[index];
+		if (expressID_2)
+			(*expressID_2) = myIssuesExpID_2[index];
 		return	myIssues[index];
 	}
 	return	nullptr;
 }
 
-wchar_t	DECL * STDC	GetIssueW(
-							int		index,
-							int		group,
-							int		subGroup,
-							double	absoluteEpsilon,
-							double	relativeEpsilon,
-							bool	* isError
-						)
+const wchar_t	DECL * STDC	GetIssueW(
+								int		index,
+								int		group,
+								int		subGroup,
+								double	absoluteEpsilon,
+								double	relativeEpsilon,
+								bool	* isError
+							)
 {
-	char	* rValue = GetIssueC(index, group, subGroup, absoluteEpsilon, relativeEpsilon, isError);
+	const char	* rValue = GetIssueC(index, group, subGroup, absoluteEpsilon, relativeEpsilon, isError);
 	if (rValue) {
 		size_t	len = strlen(rValue);
 		wchar_t	* rValueW = new wchar_t[len + 1];
@@ -136,20 +145,20 @@ wchar_t	DECL * STDC	GetIssueW(
 	return	nullptr;
 }
 
-char	DECL * STDC	GetGroupNameC(
-							int		group,
-							int		subGroup
-						)
+const char	DECL * STDC	GetGroupNameC(
+								int		group,
+								int		subGroup
+							)
 {
 	return	GetGroupText(group, subGroup, /*isName*/ true, PARSE_GEOMETRY);
 }
 
-wchar_t	DECL * STDC	GetGroupNameW(
-							int		group,
-							int		subGroup
-						)
+const wchar_t	DECL * STDC	GetGroupNameW(
+									int		group,
+									int		subGroup
+								)
 {
-	char	* rValue = GetGroupNameC(group, subGroup);
+	const char	* rValue = GetGroupNameC(group, subGroup);
 	if (rValue) {
 		size_t	len = strlen(rValue);
 		wchar_t	* rValueW = new wchar_t[len + 1];
@@ -162,20 +171,20 @@ wchar_t	DECL * STDC	GetGroupNameW(
 	return	nullptr;
 }
 
-char	DECL * STDC	GetGroupDescriptionC(
-							int		group,
-							int		subGroup
-						)
+const char	DECL * STDC	GetGroupDescriptionC(
+								int		group,
+								int		subGroup
+							)
 {
 	return	GetGroupText(group, subGroup, /*isName*/ false, PARSE_GEOMETRY);
 }
 
-wchar_t	DECL * STDC	GetGroupDescriptionW(
-							int		group,
-							int		subGroup
-						)
+const wchar_t	DECL * STDC	GetGroupDescriptionW(
+									int		group,
+									int		subGroup
+								)
 {
-	char	* rValue = GetGroupDescriptionC(group, subGroup);
+	const char	* rValue = GetGroupDescriptionC(group, subGroup);
 	if (rValue) {
 		size_t	len = strlen(rValue);
 		wchar_t	* rValueW = new wchar_t[len + 1];
@@ -188,34 +197,45 @@ wchar_t	DECL * STDC	GetGroupDescriptionW(
 	return	nullptr;
 }
 
-char	DECL * STDC	GetPageC(
-							double	absoluteEpsilon,
-							double	relativeEpsilon
-						)
+const char	DECL * STDC	GetPageC(
+								double	absoluteEpsilon,
+								double	relativeEpsilon
+							)
 {
 	absEpsilon = absoluteEpsilon;
 
 	return	GetPage(AC_MODEL, absoluteEpsilon, relativeEpsilon);
 }
 
-wchar_t	DECL * STDC	GetPageW(
-							double	absoluteEpsilon,
-							double	relativeEpsilon
-						)
+const wchar_t	DECL * STDC	GetPageW(
+									double	absoluteEpsilon,
+									double	relativeEpsilon
+								)
 {
 	absEpsilon = absoluteEpsilon;
 
-	char	* rValue = GetPageC(absoluteEpsilon, relativeEpsilon);
+	const char	* rValue = GetPageC(absoluteEpsilon, relativeEpsilon);
 	if (rValue) {
 		size_t	len = strlen(rValue);
 		wchar_t	* rValueW = new wchar_t[len + 1];
 		for (size_t i = 0; i < len; i++) {
-			rValueW[i] = (wchar_t)rValue[i];
+			rValueW[i] = (wchar_t) rValue[i];
 		}
 		rValueW[len] = 0;
 		return	rValueW;
 	}
 	return	nullptr;
+}
+
+const char	DECL * STDC	GetPageJSON(
+								const char	* fileName,
+								double		absoluteEpsilon,
+								double		relativeEpsilon
+							)
+{
+	absEpsilon = absoluteEpsilon;
+
+	return	GetPageJSON(AC_MODEL, fileName, absoluteEpsilon, relativeEpsilon);
 }
 
 
