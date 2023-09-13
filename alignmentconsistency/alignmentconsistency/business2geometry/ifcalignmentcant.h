@@ -76,6 +76,28 @@ static  inline  SdaiInteger ___SegmentCount__alignmentCant(
     return  sdaiGetMemberCount(aggrSegments);
 }
 
+static	inline		double	MatrixDeterminant(
+										___MATRIX						* pM
+									)
+{
+	double	a, b, c, d, e, f, determinant;
+	a = pM->_11 * pM->_22;
+	b = pM->_12 * pM->_23;
+	c = pM->_13 * pM->_21;
+	d = pM->_22 * pM->_31;
+	e = pM->_21 * pM->_33;
+	f = pM->_23 * pM->_32;
+
+	determinant = a * pM->_33 +
+				  b * pM->_31 +
+				  c * pM->_32 -
+				  pM->_13 * d -
+				  pM->_12 * e -
+				  pM->_11 * f;
+
+	return determinant;
+}
+
 static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                                         SdaiModel       model,
                                         SdaiInstance    ifcCantAlignmentInstance,
@@ -231,6 +253,9 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 mostRecentendCantLeft    = endCantLeft;
                 mostRecentendCantRight   = endCantRight;
 
+                char    * predefinedType = nullptr;
+                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
+
                 //
                 //  Placement
                 //
@@ -241,10 +266,10 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 matrix._42 = (startCantLeft + startCantRight) / 2.;
                 matrix._43 = 0.;
 
-                if (horizontalLength) {
+                if (horizontalLength && ___equals(predefinedType, "LINEARTRANSITION")) {
                     matrix._11 =  horizontalLength;
-                    matrix._12 = (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.;
-                    matrix._13 =  0.;
+                    matrix._13 = (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.;
+                    matrix._12 =  0.;
                     ___Vec3Normalize((___VECTOR3*) &matrix._11);
                 }
                 else {
@@ -253,16 +278,16 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                     matrix._13 = 0.;
                 }
 
-                matrix._21 = - matrix._12;
-                matrix._22 =   matrix._11;
-
                 double  _factor = - (startCantLeft - startCantRight);
                 matrix._31 = - _factor * matrix._12;
-                matrix._32 =   _factor * matrix._11;
-                matrix._33 =   railHeadDistance;
+                matrix._33 =   _factor * matrix._11;
+                matrix._32 =   railHeadDistance;
                 ___Vec3Normalize((___VECTOR3*) &matrix._31);
 
                 ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
+
+                double det = MatrixDeterminant(&matrix);
+                assert(det == 1.);
 
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
@@ -285,8 +310,6 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 //      VIENNESEBEND
                 //
 
-                char    * predefinedType = nullptr;
-                sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
                 if (___equals(predefinedType, "CONSTANTCANT")) {
                     ___VECTOR2  pnt = { 0., (startCantLeft + startCantRight) / 2. },
 								dir = { 1., 0. };

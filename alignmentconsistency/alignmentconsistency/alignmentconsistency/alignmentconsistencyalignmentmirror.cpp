@@ -1488,15 +1488,15 @@ void	CompareADB(
 
 		double	factor;
 		if (equals(mirrorPath, "IFCPARAMETERVALUE") &&
-			equals(path, "IFCNONNEGATIVELENGTHMEASURE")) {
+			(equals(path, "IFCNONNEGATIVELENGTHMEASURE") || equals(path, "IFCLENGTHMEASURE"))) {
 			factor = factor__P2L;
 		}
-		else if (equals(mirrorPath, "IFCNONNEGATIVELENGTHMEASURE") &&
-				 equals(path, "IFCPARAMETERVALUE")) {
+		else if ((equals(mirrorPath, "IFCNONNEGATIVELENGTHMEASURE") || equals(mirrorPath, "IFCLENGTHMEASURE")) &&
+			equals(path, "IFCPARAMETERVALUE")) {
 			factor = 1. / factor__P2L;
 		}
 		else {
-			assert(equals(mirrorPath, path));
+			assert(equals(mirrorPath, path) || (equals(mirrorPath, "IFCLENGTHMEASURE") || equals(mirrorPath, "IFCNONNEGATIVELENGTHMEASURE")));
 			factor = 1.;
 		}
 			
@@ -1917,11 +1917,11 @@ void	CompareMirror(
 		else if (sdaiGetInstanceType(reprA_1) == sdaiGetEntity(model, "IFCCOMPOSITECURVE")) {
 			reprH_ = reprA_1;
 			if (sdaiGetInstanceType(reprA_0) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
-				reprV_ = reprA_1;
+				reprV_ = reprA_0;
 				reprC_ = 0;
 			}
 			else if (sdaiGetInstanceType(reprA_0) == sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE")) {
-				reprC_ = reprA_1;
+				reprC_ = reprA_0;
 				int_t	ifcBoundedCurveInstance = 0;
 				sdaiGetAttrBN(reprA_0, "BaseCurve", sdaiINSTANCE, &ifcBoundedCurveInstance);
 				if (sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
@@ -2006,7 +2006,7 @@ void	CompareMirror(
 	if (reprH_ == 0) {
 		assert__error(enum_error::HORIZONTAL_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
 	}
-	else if (sdaiGetInstanceType(reprH_) != sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE")) {
+	else if (sdaiGetInstanceType(reprH_) != sdaiGetEntity(model, "IFCCOMPOSITECURVE")) {
 		assert__error(enum_error::HORIZONTAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprH_);
 	}
 
@@ -2014,7 +2014,7 @@ void	CompareMirror(
 		if (reprV_ == 0) {
 			assert__error(enum_error::VERTICAL_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
 		}
-		else if (sdaiGetInstanceType(reprV_) != sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE")) {
+		else if (sdaiGetInstanceType(reprV_) != sdaiGetEntity(model, "IFCGRADIENTCURVE")) {
 			assert__error(enum_error::VERTICAL_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprV_);
 		}
 	}
@@ -2023,7 +2023,7 @@ void	CompareMirror(
 		if (reprC_ == 0) {
 			assert__error(enum_error::CANT_ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
 		}
-		else if (sdaiGetInstanceType(reprC_) != sdaiGetEntity(model, (char*) "IFCSEGMENTEDREFERENCECURVE")) {
+		else if (sdaiGetInstanceType(reprC_) != sdaiGetEntity(model, "IFCSEGMENTEDREFERENCECURVE")) {
 			assert__error(enum_error::CANT_ALIGNMENT_INCORRECT_GEOMETRY_ENTITY, ifcAlignmentInstance, reprC_);
 		}
 	}
@@ -2985,8 +2985,8 @@ int_t	CheckConsistencyAlignment__internal(
 
 	char	* schemaName = nullptr;
 	GetSPFFHeaderItem(model, 9, 0, sdaiSTRING, &schemaName);
-	if (!equals(schemaName, (char*) "IFC4x3_ADD1") &&
-		!equals(schemaName, (char*) "IFC4X3_ADD1")) {
+	if (!equals(schemaName, (char*) "IFC4X3_ADD2") &&
+		!equals(schemaName, (char*) "IFC4X3_ADD2")) {
 		assert__error(enum_error::UNKNOWN_SCHEMA, schemaName);
 	}
 

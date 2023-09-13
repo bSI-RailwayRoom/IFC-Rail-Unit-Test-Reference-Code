@@ -28,8 +28,8 @@ void	AddIssue__internal_(
 	myIssuesGroup[myIssueCnt]	  = group;
 	myIssuesSubGroup[myIssueCnt]  = subGroup;
 	myIssues[myIssueCnt]		  = issueText;
-	myIssuesExpID_1[myIssueCnt]	  = (int) internalGetP21Line(ifcInstanceI);
-	myIssuesExpID_2[myIssueCnt]	  = (int) internalGetP21Line(ifcInstanceII);
+	myIssuesExpID_1[myIssueCnt]	  = ifcInstanceI ? (int) internalGetP21Line(ifcInstanceI) : 0;
+	myIssuesExpID_2[myIssueCnt]	  = ifcInstanceII ? (int) internalGetP21Line(ifcInstanceII) : 0;
 	myIssueCnt++;
 }
 
