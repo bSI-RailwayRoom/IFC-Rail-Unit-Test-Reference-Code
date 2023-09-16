@@ -183,7 +183,7 @@ void	assert__error(
 {
 	switch (myError) {
 		case  enum_error::UNKNOWN_SCHEMA:
-			AddIssue(0, 4, (char*) "Schema expected to be defined as 'IFC4x3_ADD1', currently defined as ", argument);
+			AddIssue(0, 4, (char*) "Schema expected to be defined as 'IFC4x3_ADD2', currently defined as ", argument);
 			break;
 		default:
 			assert(false);
