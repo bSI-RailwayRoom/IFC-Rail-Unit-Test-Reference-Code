@@ -26,12 +26,56 @@ static  inline  int_t   ___SegmentCount__alignmentVertical(
     return  sdaiGetMemberCount(aggrSegments);
 }
 
+static  inline  void    SetCurveSegmentTransition4Vertical(
+                                SdaiInstance        ifcCurveSegmentInstance,
+                                const char          * predefinedTypeCurrentSegment,
+                                const char          * predefinedTypePreviousSegment,
+                                double              startRadiusCurrentSegment,
+                                double              endRadiusPreviousSegment,
+                                double              startGradientCurrentSegment,
+                                double              endGradientPreviousSegment
+                            )
+{
+    assert(predefinedTypeCurrentSegment);
+
+    //
+    //  IfcTransitionCode
+    //      CONTINUOUS
+    //      CONTSAMEGRADIENT
+    //      CONTSAMEGRADIENTSAMECURVATURE
+    //      DISCONTINUOUS
+    //
+    if (predefinedTypePreviousSegment == nullptr) {
+///        char    transitionCode[] = "DISCONTINUOUS";
+        char    transitionCode[] = "CONTINUOUS";
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+    }
+    else {
+        if (___equals(predefinedTypeCurrentSegment, "CONSTANTGRADIENT") && ___equals(predefinedTypePreviousSegment, "CONSTANTGRADIENT") &&
+            (startGradientCurrentSegment != endGradientPreviousSegment)) {
+            char    transitionCode[] = "CONTINUOUS";
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+        }
+        else {
+            if (startRadiusCurrentSegment == endRadiusPreviousSegment) {
+                char    transitionCode[] = "CONTSAMEGRADIENTSAMECURVATURE";
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+            }
+            else {
+                char    transitionCode[] = "CONTSAMEGRADIENT";
+                sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+            }
+        }
+    }
+}
+
 static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                                         SdaiModel       model,
                                         SdaiInstance    ifcVerticalAlignmentInstance,
                                         double          startDistAlongHorizontalAlignment
                                     )
 {
+    bool    isIFC4X3_ADD1 = false;
 #ifdef _DEBUG
     double  epsilon = 0.0000001;
 #endif // _DEBUG
@@ -63,8 +107,8 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                              * pRadiusOfCurvature = new double[noSegmentInstances];
         enum_segment_type    * pSegmentType = new enum_segment_type[noSegmentInstances];
 
-        for (int_t i = 0; i < noSegmentInstances; i++) {
-            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[i];
+        for (int_t index = 0; index < noSegmentInstances; index++) {
+            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[index];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
             SdaiInstance    ifcAlignmentVerticalSegmentInstance = 0;
@@ -75,7 +119,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
             //
             double  startHeight = 0.;
             sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartHeight", sdaiREAL, &startHeight);
-            pStartHeight[i] = startHeight;
+            pStartHeight[index] = startHeight;
 
             char    * predefinedType = nullptr;
             sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
@@ -86,7 +130,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 double  startGradient__ = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartGradient", sdaiREAL, &startGradient__);
                 double  startAngle = std::atan(startGradient__);
-                pStartGradient[i] = startGradient__;
+                pStartGradient[index] = startGradient__;
 
                 //
                 //  EndGradient
@@ -94,39 +138,39 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 double  endGradient__ = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "EndGradient", sdaiREAL, &endGradient__);
                 double  endAngle = std::atan(endGradient__);
-                pEndGradient[i] = endGradient__;
+                pEndGradient[index] = endGradient__;
 
                 double  horizontalLength = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "HorizontalLength", sdaiREAL, &horizontalLength);
 
-                pRadiusOfCurvature[i] = horizontalLength / (sin(endAngle) - sin(startAngle));
-                pSegmentType[i] = enum_segment_type::CIRCULARARC;
+                pRadiusOfCurvature[index] = horizontalLength / (sin(endAngle) - sin(startAngle));
+                pSegmentType[index] = enum_segment_type::CIRCULARARC;
             }
             else if (___equals(predefinedType, "CLOTHOID")) {
-                pStartGradient[i] = 0.;
-                pEndGradient[i] = 0.;
+                pStartGradient[index]	  = 0.;
+                pEndGradient[index] 	  = 0.;
 
-                pRadiusOfCurvature[i] = 0.;
-                pSegmentType[i] = enum_segment_type::CLOTHOID;
+                pRadiusOfCurvature[index] = 0.;
+                pSegmentType[index]       = enum_segment_type::CLOTHOID;
             }
             else if (___equals(predefinedType, "CONSTANTGRADIENT")) {
                 double  startGradient__ = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "StartGradient", sdaiREAL, &startGradient__);
 //                double  angle = std::atan(startGradient__);
-                pStartGradient[i] = startGradient__;
-                pEndGradient[i] = startGradient__;
+                pStartGradient[index]	  = startGradient__;
+                pEndGradient[index] 	  = startGradient__;
 
-                pRadiusOfCurvature[i] = 0.;
-                pSegmentType[i] = enum_segment_type::CONSTANTGRADIENT;
+                pRadiusOfCurvature[index] = 0.;
+                pSegmentType[index]       = enum_segment_type::CONSTANTGRADIENT;
             }
             else {
                 assert(___equals(predefinedType, "PARABOLICARC"));
 
-                pStartGradient[i] = 0.;
-                pEndGradient[i] = 0.;
+                pStartGradient[index]	  = 0.;
+                pEndGradient[index]  	  = 0.;
 
-                pRadiusOfCurvature[i] = 0.;
-                pSegmentType[i] = enum_segment_type::PARABOLICARC;
+                pRadiusOfCurvature[index] = 0.;
+                pSegmentType[index]       = enum_segment_type::PARABOLICARC;
             }
         }
         
@@ -142,8 +186,12 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
         ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0.} };
 #endif // _DEBUG
 
-        for (int_t i = 0; i < noSegmentInstances; i++) {
-            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[i];
+        const char  * predefinedTypePreviousSegment = nullptr;
+        double      endGradientPreviousSegment		= 0.,
+                    endRadiusPreviousSegment		= 0.;
+
+        for (int_t index = 0; index < noSegmentInstances; index++) {
+            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[index];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
             SdaiInstance    ifcAlignmentVerticalSegmentInstance = 0;
@@ -219,15 +267,15 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 double  endGradient__ = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "EndGradient", sdaiREAL, &endGradient__);
 
-                char    * predefinedType = nullptr;
+                const char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
 
                 if (___equals(predefinedType, "PARABOLICARC")) {
-                    if (startGradient__ == 0. && i) {
-                        startGradient__ = pEndGradient[i - 1];
+                    if (startGradient__ == 0. && index) {
+                        startGradient__ = pEndGradient[index - 1];
                     }
-                    if (endGradient__ == 0. && i < noSegmentInstances - 1) {
-                        endGradient__ = pStartGradient[i + 1];
+                    if (endGradient__ == 0. && index < noSegmentInstances - 1) {
+                        endGradient__ = pStartGradient[index + 1];
                     }
                 }
 
@@ -241,18 +289,6 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 double  radiusOfCurvature = 0.;
                 sdaiGetAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature);
 
-                //
-                //  Transition
-                //
-                if (i == noSegmentInstances - 1) {
-                    char    transitionCode[14] = "DISCONTINUOUS";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-                else {
-                    char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-
                 ___VECTOR2  refDirection = {
                                     1.,
                                     startGradient__
@@ -264,11 +300,14 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 ___Vec2Normalize(&refDirection);
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
 #ifdef _DEBUG
-                mostRecentLocation.x = location.x;
-                mostRecentLocation.y = location.y;
+                mostRecentLocation.u = location.u;
+                mostRecentLocation.v = location.v;
 #endif // _DEBUG
 
                 double  heightDeviation = 0.;
+
+                double  ___startRadius = 0.,
+                        ___endRadius = 0.;
 
                 //
                 //  Parse the individual segments
@@ -281,6 +320,8 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                     double  startAngle = std::atan(startGradient__),
                             endAngle = std::atan(endGradient__);
                     assert(startAngle > -___Pi && startAngle < ___Pi && endAngle > -___Pi && endAngle < ___Pi);
+
+                    ___startRadius = ___endRadius = radiusOfCurvature;
 
                     double      radius;
                     ___VECTOR2  origin;
@@ -301,11 +342,11 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         //
                         heightDeviation = (cos(startAngle) - cos(endAngle)) * radius;
 
-                        origin.x = -sin(startAngle) * radius;
-                        origin.y = cos(startAngle) * radius;
+                        origin.u = - sin(startAngle) * radius;
+                        origin.v =   cos(startAngle) * radius;
 
-                        assert(std::fabs(origin.x - (horizontalLength - sin(endAngle) * radius)) < epsilon);
-                        assert(std::fabs(origin.y - (heightDeviation + cos(endAngle) * radius)) < epsilon);
+                        assert(std::fabs(origin.u - (horizontalLength - sin(endAngle) * radius)) < epsilon);
+                        assert(std::fabs(origin.v - (heightDeviation  + cos(endAngle) * radius)) < epsilon);
 
                         startAngle += 3. * ___Pi / 2.;
                         endAngle += 3. * ___Pi / 2.;
@@ -331,23 +372,23 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         //
                         heightDeviation = (cos(endAngle) - cos(startAngle)) * radius;
 
-                        origin.x = sin(startAngle) * radius;
-                        origin.y = -cos(startAngle) * radius;
+                        origin.u =   sin(startAngle) * radius;
+                        origin.v = - cos(startAngle) * radius;
 
-                        assert(std::fabs(origin.x - (horizontalLength + sin(endAngle) * radius)) < epsilon);
-                        assert(std::fabs(origin.y - (heightDeviation - cos(endAngle) * radius)) < epsilon);
+                        assert(std::fabs(origin.u - (horizontalLength + sin(endAngle) * radius)) < epsilon);
+                        assert(std::fabs(origin.v - (heightDeviation  - cos(endAngle) * radius)) < epsilon);
 
                         startAngle += ___Pi / 2.;
                         endAngle += ___Pi / 2.;
 
-                        origin.x = -cos(startAngle) * radius;
-                        origin.y = -sin(startAngle) * radius;
+                        origin.u = - cos(startAngle) * radius;
+                        origin.v = - sin(startAngle) * radius;
                     }
 
                     ___MATRIX   myMatrix;
                     ___MatrixIdentity(&myMatrix);
-                    myMatrix._41 = origin.x;
-                    myMatrix._42 = origin.y;
+                    myMatrix._41 = origin.u;
+                    myMatrix._42 = origin.v;
 
                     SdaiInstance    ifcCircularArcParentCurve =
                                         ___CreateCircleInstance(
@@ -367,44 +408,62 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                                         radius,
                                         endAngle - startAngle
                                     );
-                    if (offset >= 0. && segmentLength >= 0. &&
-                        forceUseParameterValue == false) {
+                    if (isIFC4X3_ADD1) {
+                        if (offset >= 0. && segmentLength >= 0. &&
+                            forceUseParameterValue == false) {
+                            //
+                            //  SegmentStart
+                            //
+                            double  segmentStart = offset;
+
+                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
+                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                            //
+                            //  SegmentLength
+                            //
+                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        }
+                        else {
+                            //
+                            //  SegmentStart
+                            //
+                            double  segmentStartParameterValue = startAngle;
+                          	assert(___CircularArcLengthMeasureToParameterValue(radius, offset) == segmentStartParameterValue);
+
+                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
+                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                            //
+                            //  SegmentLength
+                            //
+                            double  segmentLengthParameterValue = endAngle - startAngle;
+	                        assert(___CircularArcLengthMeasureToParameterValue(radius, segmentLength) == segmentLengthParameterValue);
+
+                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
+                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        }
+                    }
+                    else {
                         //
                         //  SegmentStart
                         //
                         double  segmentStart = offset;
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
-                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
-
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                    }
-                    else {
-                        //
-                        //  SegmentStart
-                        //
-                        double  segmentStartParameterValue = startAngle;
-                        assert(___CircularArcLengthMeasureToParameterValue(radius, offset) == segmentStartParameterValue);
-
-                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
-                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                        //
-                        //  SegmentLength
-                        //
-                        double  segmentLengthParameterValue = endAngle - startAngle;
-                        assert(___CircularArcLengthMeasureToParameterValue(radius, segmentLength) == segmentLengthParameterValue);
-
-                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
 
@@ -424,10 +483,13 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         //
                         //  new definition where the context defines the radius
                         //
-                        double  startRadiusOfCurvature = i ? pRadiusOfCurvature[i - 1] : pRadiusOfCurvature[i];
+                        double  startRadiusOfCurvature = index ? pRadiusOfCurvature[index - 1] : pRadiusOfCurvature[index];
 #ifdef _DEBUG
-                        double  endRadiusOfCurvature = (i + 1 < noSegmentInstances) ? pRadiusOfCurvature[i + 1] : pRadiusOfCurvature[i];;
+                        double  endRadiusOfCurvature = (index + 1 < noSegmentInstances) ? pRadiusOfCurvature[index + 1] : pRadiusOfCurvature[index];
 #endif // _DEBUG
+
+                        ___startRadius = startRadiusOfCurvature;
+                        ___endRadius   = (index + 1 < noSegmentInstances) ? pRadiusOfCurvature[index + 1] : pRadiusOfCurvature[index];
 
                         //
                         //  HorizontalLength
@@ -444,7 +506,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
 
 #ifdef _DEBUG
                             ___VECTOR3		refDirectionSpiral = { 1., startGradient__, 0. },
-                                    		endPoint = { horizontalLength, pStartHeight[i + 1] - pStartHeight[i], 0. };
+                                    		endPoint = { horizontalLength, pStartHeight[index + 1] - pStartHeight[index], 0. };
                             double	D = ___PointLineDistance(&correctedEndPoint, &endPoint, &originSpiral, &refDirectionSpiral);
 #endif // _DEBUG
 
@@ -500,49 +562,68 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                                                );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidInstance);
 
-                                if (offset >= 0. && segmentLength >= 0. &&
-                                    forceUseParameterValue == false) {
+                                if (isIFC4X3_ADD1) {
+                                    if (offset >= 0. && segmentLength >= 0. &&
+                                        forceUseParameterValue == false) {
+                                        //
+                                        //  SegmentStart
+                                        //
+                                        double  segmentStart = offset;
+
+                                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
+                                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                        //
+                                        //  SegmentLength
+                                        //
+                                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                                    }
+                                    else {
+                                        //
+                                        //  SegmentStart
+                                        //
+                                        double  segmentStartParameterValue =
+                                                    ___ClothoidLengthMeasureToParameterValue(
+                                                            linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                            offset
+                                                        );
+
+                                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
+                                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                        //
+                                        //  SegmentLength
+                                        //
+                                        double  segmentLengthParameterValue =
+                                                    ___ClothoidLengthMeasureToParameterValue(
+                                                            linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                            segmentLength
+                                                        );
+
+                                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
+                                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                                    }
+                                }
+                                else {
                                     //
                                     //  SegmentStart
                                     //
                                     double  segmentStart = offset;
 
                                     void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
-                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
                                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                                     //
                                     //  SegmentLength
                                     //
                                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                                }
-                                else {
-                                    //
-                                    //  SegmentStart
-                                    //
-                                    double  segmentStartParameterValue =
-                                                ___ClothoidLengthMeasureToParameterValue(
-                                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                        offset
-                                                    );
-
-                                    void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
-                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                                    //
-                                    //  SegmentLength
-                                    //
-                                    double  segmentLengthParameterValue =
-                                                ___ClothoidLengthMeasureToParameterValue(
-                                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                        segmentLength
-                                                    );
-
-                                    void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
-                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
                                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                                 }
                             }
@@ -550,15 +631,15 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         else {
                             assert(endRadiusOfCurvature == 0.);
 #ifdef _DEBUG
-                            double  gradientSpiral = pStartGradient[i + 1];
+                            double  gradientSpiral = pStartGradient[index + 1];
 #endif // _DEBUG
 
                             ___VECTOR3 	originSpiral = { horizontalLength, 0., 0. },
 #ifdef _DEBUG
-                                    refDirectionSpiral = { 1., gradientSpiral, 0. },
-                                    endPoint = { 0., pStartHeight[i] - pStartHeight[i + 1], 0. },
+                                        refDirectionSpiral = { 1., gradientSpiral, 0. },
+                                        endPoint = { 0., pStartHeight[index] - pStartHeight[index + 1], 0. },
 #endif // _DEBUG
-                                    correctedEndPoint;
+                                        correctedEndPoint;
 
 #ifdef _DEBUG
                             ___VECTOR3 	secondPointSpiral = {
@@ -620,49 +701,68 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                                                         );
                                 sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 
-                                if (offset >= 0. && segmentLength >= 0. &&
-                                    forceUseParameterValue == false) {
+                                if (isIFC4X3_ADD1) {
+                                    if (offset >= 0. && segmentLength >= 0. &&
+                                        forceUseParameterValue == false) {
+                                        //
+                                        //  SegmentStart
+                                        //
+                                        double  segmentStart = offset;
+
+                                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
+                                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                        //
+                                        //  SegmentLength
+                                        //
+                                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                                    }
+                                    else {
+                                        //
+                                        //  SegmentStart
+                                        //
+                                        double  segmentStartParameterValue =
+                                                    ___ClothoidLengthMeasureToParameterValue(
+                                                            linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                            offset
+                                                        );
+
+                                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
+                                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                        //
+                                        //  SegmentLength
+                                        //
+                                        double  segmentLengthParameterValue =
+                                                    ___ClothoidLengthMeasureToParameterValue(
+                                                            linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
+                                                            segmentLength
+                                                        );
+
+                                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
+                                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                                    }
+                                }
+                                else {
                                     //
                                     //  SegmentStart
                                     //
                                     double  segmentStart = offset;
 
                                     void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
-                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
                                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                                     //
                                     //  SegmentLength
                                     //
                                     void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                                }
-                                else {
-                                    //
-                                    //  SegmentStart
-                                    //
-                                    double  segmentStartParameterValue =
-                                                ___ClothoidLengthMeasureToParameterValue(
-                                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                        offset
-                                                    );
-
-                                    void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
-                                    sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                                    sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                                    //
-                                    //  SegmentLength
-                                    //
-                                    double  segmentLengthParameterValue =
-                                                ___ClothoidLengthMeasureToParameterValue(
-                                                        linearTerm ? segmentLength * pow(std::fabs(linearTerm), -1. / 2.) * linearTerm / std::fabs(linearTerm) : 0.,
-                                                        segmentLength
-                                                    );
-
-                                    void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
-                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                                    sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
                                     sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                                 }
                             }
@@ -671,11 +771,13 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 }
                 else if (___equals(predefinedType, "CONSTANTGRADIENT")) {
                     ___VECTOR2  dir = {
-                                        refDirection.x,
-                                        refDirection.y
+                                        refDirection.u,
+                                        refDirection.v
                                     };
 
-                    heightDeviation = refDirection.x ? refDirection.y * horizontalLength / refDirection.x : 0.;
+                    heightDeviation = refDirection.u ? refDirection.v * horizontalLength / refDirection.u : 0.;
+
+                    ___startRadius = ___endRadius = 0.;
 
 //                    if (horizontalLength) {
                     if (true) {
@@ -689,54 +791,73 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         double  offset = 0.,
                                 segmentLength = horizontalLength * std::sqrt(1. + startGradient__ * startGradient__);
                         assert(segmentLength >= 0.);
-                        if (offset >= 0. && segmentLength >= 0. &&
-                            forceUseParameterValue == false) {
+                        if (isIFC4X3_ADD1) {
+                            if (offset >= 0. && segmentLength >= 0. &&
+                                forceUseParameterValue == false) {
+                                //
+                                //  SegmentStart
+                                //
+                                double  segmentStart = offset;
+
+                                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
+                                sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                //
+                                //  SegmentLength
+                                //
+                                void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                                sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            }
+                            else {
+                                //
+                                //  SegmentStart
+                                //
+                                double  segmentStartParameterValue =
+                                            ___LineLengthMeasureToParameterValue(
+                                                    segmentLength,
+                                                    offset
+                                                );
+
+                                void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
+                                sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                                //
+                                //  SegmentLength
+                                //
+                                double  segmentLengthParameterValue =
+                                            ___LineLengthMeasureToParameterValue(
+                                                    segmentLength,
+                                                    segmentLength
+                                                );
+
+                                void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
+                                sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                                sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            }
+                        }
+                        else {
                             //
                             //  SegmentStart
                             //
                             double  segmentStart = offset;
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
-                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
                             sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                        }
-                        else {
-                            //
-                            //  SegmentStart
-                            //
-                            double  segmentStartParameterValue =
-                                        ___LineLengthMeasureToParameterValue(
-                                                segmentLength,
-                                                offset
-                                            );
-
-                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
-                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                            //
-                            //  SegmentLength
-                            //
-                            double  segmentLengthParameterValue =
-                                        ___LineLengthMeasureToParameterValue(
-                                                segmentLength,
-                                                segmentLength
-                                            );
-
-                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
-                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
                             sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
-                        assert(i == noSegmentInstances - 1);
+                        assert(index == noSegmentInstances - 1);
                         sdaiDeleteInstance(ifcCurveSegmentInstance);
                         ifcCurveSegmentInstance = 0;
                     }
@@ -744,13 +865,15 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 else {
                     assert(___equals(predefinedType, "PARABOLICARC"));
 
-                    if (startGradient__ == 0. && i) {
-                        startGradient__ = pEndGradient[i - 1];
+                    if (startGradient__ == 0. && index) {
+                        startGradient__ = pEndGradient[index - 1];
                     }
                     
-                    if (endGradient__ == 0. && i < noSegmentInstances - 1) {
-                        endGradient__ = pStartGradient[i + 1];
+                    if (endGradient__ == 0. && index < noSegmentInstances - 1) {
+                        endGradient__ = pStartGradient[index + 1];
                     }
+
+                    ___startRadius = ___endRadius = 0.;
 
 //                    double  startAngle = std::atan(startGradient__),
 //                            endAngle = std::atan(endGradient__);
@@ -796,53 +919,72 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
 
                     double  offset = 0.,
                             segmentLength = horizontalLength;
-                    if (offset >= 0. && segmentLength >= 0. &&
-                        forceUseParameterValue == false) {
+                    if (isIFC4X3_ADD1) {
+                        if (offset >= 0. && segmentLength >= 0. &&
+                            forceUseParameterValue == false) {
+                            //
+                            //  SegmentStart
+                            //
+                            double  segmentStart = offset;
+
+                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
+                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                            //
+                            //  SegmentLength
+                            //
+                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
+                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        }
+                        else {
+                            //
+                            //  SegmentStart
+                            //
+                            double  segmentStartParameterValue =
+                                        ___PolynomialCurveLengthMeasureToParameterValue(
+                                                pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
+                                                pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
+                                                nullptr, 0,
+                                                offset
+                                            );
+
+                            void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
+                            sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+
+                            //
+                            //  SegmentLength
+                            //
+                            double  segmentLengthParameterValue =
+                                        ___PolynomialCurveLengthMeasureToParameterValue(
+                                                pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
+                                                pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
+                                                nullptr, 0,
+                                                segmentLength
+                                            );
+
+                            void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
+                            sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        }
+                    }
+                    else {
                         //
                         //  SegmentStart
                         //
                         double  segmentStart = offset;
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
-                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
+                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
-                    }
-                    else {
-                        //
-                        //  SegmentStart
-                        //
-                        double  segmentStartParameterValue =
-                                    ___PolynomialCurveLengthMeasureToParameterValue(
-                                            pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
-                                            pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
-                                            nullptr, 0,
-                                            offset
-                                        );
-
-                        void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
-                        sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
-
-                        //
-                        //  SegmentLength
-                        //
-                        double  segmentLengthParameterValue =
-                                    ___PolynomialCurveLengthMeasureToParameterValue(
-                                            pCoefficientsX, sizeof(pCoefficientsX) / sizeof(double),
-                                            pCoefficientsY, sizeof(pCoefficientsY) / sizeof(double),
-                                            nullptr, 0,
-                                            segmentLength
-                                        );
-
-                        void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
-                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
+                        sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
                         sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
 
@@ -854,6 +996,19 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                         sdaiPutAttrBN(ifcAlignmentVerticalSegmentInstance, "RadiusOfCurvature", sdaiREAL, &radiusOfCurvature);
                     }
                 }
+
+                //
+                //  Transition
+                //
+                SetCurveSegmentTransition4Vertical(
+                        ifcCurveSegmentInstance,
+                        predefinedType,
+                        predefinedTypePreviousSegment,
+                        ___startRadius,
+                        endRadiusPreviousSegment,
+                        startGradient__,
+                        endGradientPreviousSegment
+                    );
 
 #ifdef _DEBUG
                 if (ifcCurveSegmentInstance) {
@@ -881,7 +1036,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                            std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
                            startPnt.tangent.z == 0.);
 
-                    if (i) {
+                    if (index) {
         //                assert(std::fabs(startPnt.point.x - previousEndPnt.point.x < 0.0000000001) &&
         //                       std::fabs(startPnt.point.y - previousEndPnt.point.y < 0.0000000001) &&
         //                       startPnt.point.z == previousEndPnt.point.z);
@@ -898,20 +1053,20 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 if (ifcCurveSegmentInstance)
                     sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
-                if (i == noSegmentInstances - 1) {
+                if (index == noSegmentInstances - 1) {
                     if (horizontalLength == 0.) {
                         assert(startGradient__ == endGradient__ && heightDeviation == 0.);
-                        location.x = startDistAlong - startDistAlongHorizontalAlignment;
-                        location.y = startHeight;
-                        refDirection.x = 1.;
-                        refDirection.y = startGradient__;
+                        location.u = startDistAlong - startDistAlongHorizontalAlignment;
+                        location.v = startHeight;
+                        refDirection.u = 1.;
+                        refDirection.v = startGradient__;
                         sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
                     }
                     else {
-                        location.x = startDistAlong - startDistAlongHorizontalAlignment + horizontalLength;
-                        location.y = startHeight + heightDeviation;
-                        refDirection.x = 1.;
-                        refDirection.y = endGradient__;
+                        location.u = startDistAlong - startDistAlongHorizontalAlignment + horizontalLength;
+                        location.v = startHeight + heightDeviation;
+                        refDirection.u = 1.;
+                        refDirection.v = endGradient__;
                         sdaiPutAttrBN(ifcGradientCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
                     }
                 }
@@ -920,6 +1075,10 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                 }
 
                 mostRecentCurveSegmentInstance = ifcCurveSegmentInstance;
+
+                predefinedTypePreviousSegment = predefinedType;
+                endGradientPreviousSegment    = endGradient__;
+                endRadiusPreviousSegment      = ___endRadius;
             }
         }
 
@@ -949,14 +1108,14 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
                                 mostRecentEndGradient
                             },
                         location = {
-                                endPoint.x,
-                                endPoint.y
+                                endPoint.u,
+                                endPoint.v
                             };
-            assert((mostRecentStartDistAlong + mostRecentHorizontalLength) - startDistAlongHorizontalAlignment == endPoint.x);
+            assert((mostRecentStartDistAlong + mostRecentHorizontalLength) - startDistAlongHorizontalAlignment == endPoint.u);
 
             if (mostRecentHorizontalLength == 0.) {
-                assert(mostRecentLocation.x == endPoint.x &&
-                       mostRecentLocation.y == endPoint.y);
+                assert(mostRecentLocation.u == endPoint.u &&
+                       mostRecentLocation.v == endPoint.v);
             }
 
             ___Vec2Normalize(&refDirection);
@@ -972,7 +1131,7 @@ static  inline  SdaiInstance    ___CreateGradientCurve__alignmentVertical(
 static  inline  SdaiInstance    ___GetAlignmentVertical(
                                         SdaiModel       model,
                                         SdaiInstance    ifcAlignmentInstance,
-                                        bool            * hasIssue
+                                        bool            * hasIssue              = nullptr
                                     )
 {
     SdaiInstance    ifcAlignmentVerticalInstance = 0;

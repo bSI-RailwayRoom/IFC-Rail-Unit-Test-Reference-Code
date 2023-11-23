@@ -14,7 +14,6 @@ int_t	CreateMirror(
 
 void	EnrichMirror(
 				int_t	mirrorModel,
-				int_t	mirrorIfcAlignmentInstance,
 				int_t	ifcAlignmentInstance
 			);
 

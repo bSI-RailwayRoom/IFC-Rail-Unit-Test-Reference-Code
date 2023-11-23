@@ -20,9 +20,9 @@ static	inline	SdaiInstance	___CreateAxis2Placement2DInstance(
 }
 
 static	inline	SdaiInstance	___CreateAxis2Placement2DInstance(
-										SdaiModel	model,
-										___VECTOR2	* location,
-										___VECTOR2	* refDirection
+										SdaiModel			model,
+										const ___VECTOR2	* location,
+										const ___VECTOR2	* refDirection
 									)
 {
 	SdaiInstance	ifcAxis2Placement2DInstance = sdaiCreateInstanceBN(model, "IFCAXIS2PLACEMENT2D");
@@ -36,12 +36,12 @@ static	inline	SdaiInstance	___CreateAxis2Placement2DInstance(
 }
 
 static	inline	SdaiInstance	___CreateAxis2Placement2DInstance(
-										SdaiModel	model,
-										___MATRIX  * matrix
+										SdaiModel		model,
+										const ___MATRIX * matrix
 									)
 {
 	if (matrix) {
-		return	___CreateAxis2Placement2DInstance(model, (___VECTOR2*) &matrix->_41, (___VECTOR2*) &matrix->_11);
+		return	___CreateAxis2Placement2DInstance(model, (const ___VECTOR2*) &matrix->_41, (const ___VECTOR2*) &matrix->_11);
 	}
 	else {
 		return	___CreateAxis2Placement2DInstance(model);

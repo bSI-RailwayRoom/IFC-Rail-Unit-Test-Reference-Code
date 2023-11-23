@@ -26,6 +26,14 @@ void	AddIssue(
 				char	* issueTextADD
 			);
 
+void	AddIssue__OK(
+				int		group,
+				int		subGroup,
+				char	* issueText,
+				int_t	ifcInstanceI,
+				int_t	ifcInstanceII
+			);
+
 void	AddIssue(
 				int		group,
 				int		subGroup,

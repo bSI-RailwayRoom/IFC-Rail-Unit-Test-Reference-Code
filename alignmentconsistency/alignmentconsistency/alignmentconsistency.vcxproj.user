@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommand>C:\IFCRAIL\IFC-Rail-Unit-Test-Reference-Code\alignmentconsistency\x64\Debug\CheckAlignmentCMD.exe</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments>"d:\0000\0\STN01_FromLandXML (2).ifc" "d:\0000\test.html" 0.0001 0.0001</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"d:\0000\out.ifc" "d:\0000\test.html" 0.0001 0.0001</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\IFCRAIL\IFC-Rail-Unit-Test-Reference-Code\alignmentconsistency\x64\Debug</LocalDebuggerWorkingDirectory>
   </PropertyGroup>

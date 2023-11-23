@@ -12,7 +12,7 @@
 #include <iterator>
 #include <map>
 
-extern	std::map<int_t, int_t> myMapExpressID;
+extern	std::map<int64_t, int_t> myMapExpressID;
 
 extern	bool	PARSE_GEOMETRY;
 
@@ -405,6 +405,29 @@ void	assert__error(
 			break;
 	}
 }
+
+void	assert__error__(
+				enum_error	myError,
+				int_t		ifcInstanceSegmentI,
+				int_t		ifcInstanceSegmentII
+			)
+{
+	switch (myError) {
+		case  enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION:
+			AddIssue__OK(2, 3, (char*) "IGNORED CHECK, Transition attribute allows deviation. Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (horizontal segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII);
+			break;
+		case  enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION:
+			AddIssue__OK(2, 4, (char*) "IGNORED CHECK, Transition attribute allows deviation. Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII);
+			break;
+		case  enum_error::CANT_SEGMENT_TANGENT_DEVIATION:
+			AddIssue__OK(2, 5, (char*) "IGNORED CHECK, Transition attribute allows deviation. Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII);
+			break;
+		default:
+			assert(false);
+			break;
+	}
+}
+
 void	assert__error(
 				enum_error	myError,
 				int_t		ifcInstanceSegmentI,
@@ -429,7 +452,7 @@ void	assert__error(
 			AddIssue(2, 4, (char*) "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (vertical segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		case  enum_error::CANT_SEGMENT_TANGENT_DEVIATION:
-			AddIssue(2, 5, (char*)"Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
+			AddIssue(2, 5, "Angle difference in degrees (continues 1st order) between end of segment I and start of segment II (cant segments), ", ifcInstanceSegmentI, ifcInstanceSegmentII, deviation);
 			break;
 		default:
 			assert(false);
@@ -698,7 +721,7 @@ void	CopyAlignmentHorizontalSegmentTypeEnum(
 {
 	assert(ifcInstance && mirrorIfcInstance);
 	char	* content = nullptr;
-int_t expressID = internalGetP21Line(ifcInstance);
+int64_t expressID = internalGetP21Line(ifcInstance);
 	sdaiGetAttrBN(ifcInstance, attributeName, sdaiENUM, &content);
 	sdaiPutAttrBN(mirrorIfcInstance, attributeName, sdaiENUM, content);
 	assert__error(content, enum_error::MANDATORY_ATTRIBUTE, ifcInstance, attributeName);
@@ -770,7 +793,7 @@ SdaiInstance	CopyCartesianPoint2D(
 {
 	SdaiInstance	mirrorIfcCartesianPointInstance = sdaiCreateInstanceBN(mirrorModel, "IFCCARTESIANPOINT");
 	SdaiAggr		aggrCoordinates = nullptr;
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcCartesianPointInstance), ifcCartesianPointInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcCartesianPointInstance), ifcCartesianPointInstance));
 
 //int_t epxressID = internalGetP21Line(ifcCartesianPointInstance);
 	sdaiGetAttrBN(ifcCartesianPointInstance, (char*) "Coordinates", sdaiAGGR, &aggrCoordinates);
@@ -793,7 +816,7 @@ SdaiInstance	CopyInstanceIfcAlignmentHorizontalSegment(
 					)
 {
 	SdaiInstance	mirrorIfcAlignmentHorizontalSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTHORIZONTALSEGMENT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentHorizontalSegmentInstance), ifcAlignmentParameterSegmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentHorizontalSegmentInstance), ifcAlignmentParameterSegmentInstance));
 
 	CopyStringOPTIONAL(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartTag");
 	CopyStringOPTIONAL(mirrorIfcAlignmentHorizontalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
@@ -817,7 +840,7 @@ int_t	CopyInstanceIfcAlignmentVerticalSegment(
 			)
 {
 	int_t	mirrorIfcAlignmentVerticalSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTVERTICALSEGMENT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentVerticalSegmentInstance), ifcAlignmentParameterSegmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentVerticalSegmentInstance), ifcAlignmentParameterSegmentInstance));
 
 	CopyStringOPTIONAL(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartTag");
 	CopyStringOPTIONAL(mirrorIfcAlignmentVerticalSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
@@ -839,7 +862,7 @@ int_t	CopyInstanceIfcAlignmentCantSegment(
 			)
 {
 	int_t	mirrorIfcAlignmentCantSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTCANTSEGMENT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentCantSegmentInstance), ifcAlignmentParameterSegmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentCantSegmentInstance), ifcAlignmentParameterSegmentInstance));
 
 	CopyStringOPTIONAL(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "StartTag");
 	CopyStringOPTIONAL(mirrorIfcAlignmentCantSegmentInstance, ifcAlignmentParameterSegmentInstance, (char*) "EndTag");
@@ -864,7 +887,7 @@ int_t	CopyInstanceIfcAlignmentSegment(
 			)
 {
 	int_t	mirrorIfcAlignmentSegmentInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTSEGMENT");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentSegmentInstance), ifcAlignmentSegmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentSegmentInstance), ifcAlignmentSegmentInstance));
 
 	CopyString(mirrorIfcAlignmentSegmentInstance, ifcAlignmentSegmentInstance, (char*) "GlobalId");
 	//	OwnerHistory
@@ -902,7 +925,7 @@ int_t	CopyInstanceIfcAlignmentHorizontal(
 			)
 {
 	int_t	mirrorIfcAlignmentHorizontalInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTHORIZONTAL");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentHorizontalInstance), ifcAlignmentHorizontalInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentHorizontalInstance), ifcAlignmentHorizontalInstance));
 
 	CopyString(mirrorIfcAlignmentHorizontalInstance, ifcAlignmentHorizontalInstance, (char*) "GlobalId");
 	//	OwnerHistory
@@ -955,7 +978,7 @@ int_t	CopyInstanceIfcAlignmentVertical(
 			)
 {
 	int_t	mirrorIfcAlignmentVerticalInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCALIGNMENTVERTICAL");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcAlignmentVerticalInstance), ifcAlignmentVerticalInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentVerticalInstance), ifcAlignmentVerticalInstance));
 
 	CopyString(mirrorIfcAlignmentVerticalInstance, ifcAlignmentVerticalInstance, (char*) "GlobalId");
 	//	OwnerHistory
@@ -1006,7 +1029,7 @@ SdaiInstance	CopyInstanceIfcAlignmentCant(
 					)
 {
 	SdaiInstance	mirrorIfcAlignmentCantInstance = sdaiCreateInstanceBN(mirrorModel, "IFCALIGNMENTCANT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentCantInstance), ifcAlignmentCantInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentCantInstance), ifcAlignmentCantInstance));
 
 	CopyString(mirrorIfcAlignmentCantInstance, ifcAlignmentCantInstance, "GlobalId");
 	//	OwnerHistory
@@ -1071,7 +1094,7 @@ SdaiInstance	CopyInstanceIfcAlignment(
 					)
 {
 	SdaiInstance	mirrorIfcAlignmentInstance = sdaiCreateInstanceBN(mirrorModel, "IFCALIGNMENT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentInstance), ifcAlignmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcAlignmentInstance), ifcAlignmentInstance));
 
 	CopyString(mirrorIfcAlignmentInstance, ifcAlignmentInstance, "GlobalId");
 	//	OwnerHistory
@@ -1158,7 +1181,7 @@ SdaiInstance	CopyInstanceSIUnit(
 	assert(sdaiGetInstanceType(ifcSIUnitInstance) == sdaiGetEntity(model, "IFCSIUNIT"));
 
 	SdaiInstance	mirrorIfcSIUnitInstance = sdaiCreateInstanceBN(mirrorModel, "IFCSIUNIT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcSIUnitInstance), ifcSIUnitInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcSIUnitInstance), ifcSIUnitInstance));
 
 	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, "UnitType");
 	CopyEnumOPTIONAL(mirrorIfcSIUnitInstance, ifcSIUnitInstance, "Prefix");
@@ -1176,7 +1199,7 @@ SdaiInstance	CopyInstanceDimensionalExponents(
 	assert(sdaiGetInstanceType(ifcDimensionalExponentsInstance) == sdaiGetEntity(model, "IFCDIMENSIONALEXPONENTS"));
 
 	SdaiInstance	mirrorIfcDimensionalExponentsInstance = sdaiCreateInstanceBN(mirrorModel, "IFCDIMENSIONALEXPONENTS");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcDimensionalExponentsInstance), ifcDimensionalExponentsInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcDimensionalExponentsInstance), ifcDimensionalExponentsInstance));
 
 	CopyInteger(mirrorIfcDimensionalExponentsInstance, ifcDimensionalExponentsInstance, (char*) "LengthExponent");
 	CopyInteger(mirrorIfcDimensionalExponentsInstance, ifcDimensionalExponentsInstance, (char*) "MassExponent");
@@ -1198,7 +1221,7 @@ SdaiInstance	CopyInstanceMeasureWithUnit(
 	assert(sdaiGetInstanceType(ifcMeasureWithUnitInstance) == sdaiGetEntity(model, (char*) "IFCMEASUREWITHUNIT"));
 
 	SdaiInstance	mirrorIfcMeasureWithUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCMEASUREWITHUNIT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcMeasureWithUnitInstance), ifcMeasureWithUnitInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcMeasureWithUnitInstance), ifcMeasureWithUnitInstance));
 
 	CopyADB(mirrorIfcMeasureWithUnitInstance, ifcMeasureWithUnitInstance, (char*) "ValueComponent");
 
@@ -1218,7 +1241,7 @@ SdaiInstance	CopyInstanceConversionBasedUnit(
 	assert(sdaiGetInstanceType(ifcConversionBasedUnitInstance) == sdaiGetEntity(model, (char*) "IFCCONVERSIONBASEDUNIT"));
 
 	SdaiInstance	mirrorIfcConversionBasedUnitInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCCONVERSIONBASEDUNIT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcConversionBasedUnitInstance), ifcConversionBasedUnitInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcConversionBasedUnitInstance), ifcConversionBasedUnitInstance));
 
 	SdaiInstance	ifcDimensionalExponentsInstance = 0;
 	sdaiGetAttrBN(ifcConversionBasedUnitInstance, (char*) "Dimensions", sdaiINSTANCE, &ifcDimensionalExponentsInstance);
@@ -1242,7 +1265,7 @@ SdaiInstance	CopyInstanceUnitAssignment(
 {
 	SdaiInstance	mirrorIfcUnitAssignmenInstance = sdaiCreateInstanceBN(mirrorModel, (char*)"IFCUNITASSIGNMENT");
 	SdaiAggr		mirrorAggrUnits = sdaiCreateAggrBN(mirrorIfcUnitAssignmenInstance, (char*) "Units");
-	myMapExpressID.insert(std::pair<int_t, int_t>(internalGetP21Line(mirrorIfcUnitAssignmenInstance), ifcUnitAssignmentInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcUnitAssignmenInstance), ifcUnitAssignmentInstance));
 
 	SdaiAggr	aggrUnits = nullptr;
 	sdaiGetAttrBN(ifcUnitAssignmentInstance, "Units", sdaiAGGR, &aggrUnits);
@@ -1273,7 +1296,7 @@ SdaiInstance	CopyInstanceIfcProject(
 					)
 {
 	SdaiInstance	mirrorIfcProjectInstance = sdaiCreateInstanceBN(mirrorModel, (char*) "IFCPROJECT");
-	myMapExpressID.insert(std::pair<int_t, SdaiInstance>(internalGetP21Line(mirrorIfcProjectInstance), ifcProjectInstance));
+	myMapExpressID.insert(std::pair<int64_t, SdaiInstance>(internalGetP21Line(mirrorIfcProjectInstance), ifcProjectInstance));
 
 	SdaiInstance	ifcUnitAssignmenInstance = 0;
 	sdaiGetAttrBN(ifcProjectInstance, "UnitsInContext", sdaiINSTANCE, &ifcUnitAssignmenInstance);
@@ -1304,11 +1327,10 @@ SdaiInstance	CreateMirror(
 
 void	EnrichMirror(
 				int_t	mirrorModel,
-				int_t	mirrorIfcAlignmentInstance,
 				int_t	ifcAlignmentInstance
 			)
 {
-	AlignmentGenerateGeometry(mirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
+	AlignmentGenerateGeometry(mirrorModel, ifcAlignmentInstance);
 }
 
 
@@ -1479,7 +1501,7 @@ void	CompareADB(
 	sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, attributeName, sdaiADB, &mirrorADBValue);
 	sdaiGetAttrBN(ifcCurveSegmentInstance, attributeName, sdaiADB, &ADBValue);
 
-	int_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
+	int64_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
 			expressID_mirror = internalGetP21Line(mirrorIfcCurveSegmentInstance);
 
 	if (mirrorADBValue && ADBValue) {
@@ -1529,7 +1551,7 @@ void	CompareREAL_SET(
 	sdaiGetAttrBN(mirrorIfcCurveSegmentInstance, attributeName, sdaiAGGR, &mirrorAggrValue);
 	sdaiGetAttrBN(ifcCurveSegmentInstance, attributeName, sdaiAGGR, &aggrValue);
 
-	int_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
+	int64_t	expressID_original = internalGetP21Line(ifcCurveSegmentInstance),
 			expressID_mirror = internalGetP21Line(mirrorIfcCurveSegmentInstance);
 
 	int_t	mirrorAggrValueCnt = sdaiGetMemberCount(mirrorAggrValue),
@@ -1609,7 +1631,7 @@ void	ComparePlacement(
 				CompareCartesianPoint(mirrorModel, mirrorIfcPointInstance, model, ifcPointInstance, ifcAlignmentParameterSegment, relativeEpsilon);
 			}
 			else {
-				int_t	mirrorExpressID = internalGetP21Line(mirrorIfcPointInstance),
+				int64_t	mirrorExpressID = internalGetP21Line(mirrorIfcPointInstance),
 						expressID = internalGetP21Line(ifcPointInstance);
 				assert__error(enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_ATTRIBUTE, ifcPlacementInstance, ifcAlignmentParameterSegment, (char*) "Location");
 			}
@@ -1713,8 +1735,8 @@ void	CompareParentCurve(
 		//	ConstantTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "ConstantTerm", ifcContentInstance, relativeEpsilon);
 	}
-	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCSECONDORDERPOLYGNOMIALSPIRAL") &&
-			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCSECONDORDERPOLYGNOMIALSPIRAL")) {
+	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCSECONDORDERPOLYNOMIALSPIRAL") &&
+			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCSECONDORDERPOLYNOMIALSPIRAL")) {
 		//	QuadraticTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "QuadraticTerm", ifcContentInstance, relativeEpsilon);
 		//	LinearTerm
@@ -1722,8 +1744,8 @@ void	CompareParentCurve(
 		//	ConstantTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "ConstantTerm", ifcContentInstance, relativeEpsilon);
 	}
-	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCTHIRDORDERPOLYGNOMIALSPIRAL") &&
-			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCTHIRDORDERPOLYGNOMIALSPIRAL")) {
+	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCTHIRDORDERPOLYNOMIALSPIRAL") &&
+			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCTHIRDORDERPOLYNOMIALSPIRAL")) {
 		//	QubicTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "QubicTerm", ifcContentInstance, relativeEpsilon);
 		//	QuadraticTerm
@@ -1733,8 +1755,8 @@ void	CompareParentCurve(
 		//	ConstantTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "ConstantTerm", ifcContentInstance, relativeEpsilon);
 	}
-	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCSEVENTHORDERPOLYGNOMIALSPIRAL") &&
-			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCSEVENTHORDERPOLYGNOMIALSPIRAL")) {
+	else if (sdaiGetInstanceType(mirrorIfcCurveInstance) == sdaiGetEntity(mirrorModel, (char*) "IFCSEVENTHORDERPOLYNOMIALSPIRAL") &&
+			 sdaiGetInstanceType(ifcCurveInstance) == sdaiGetEntity(model, (char*) "IFCSEVENTHORDERPOLYNOMIALSPIRAL")) {
 		//	SepticTerm
 		CompareREAL(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "SepticTerm", ifcContentInstance, relativeEpsilon);
 		//	SexticTerm
@@ -1762,7 +1784,7 @@ void	CompareParentCurve(
 		CompareREAL_SET(mirrorIfcCurveInstance, ifcCurveInstance, (char*) "CoefficientsZ", ifcContentInstance, relativeEpsilon);
 	}
 	else {
-		int_t	mirrorExpressID = internalGetP21Line(mirrorIfcCurveInstance),
+		int64_t	mirrorExpressID = internalGetP21Line(mirrorIfcCurveInstance),
 				expressID = internalGetP21Line(ifcCurveInstance);
 
 		int_t	mirrorInstanceEntity = sdaiGetInstanceType(mirrorIfcCurveInstance);
@@ -1805,7 +1827,7 @@ void	CompareSegmentCurve(
 			ComparePlacement(mirrorModel, mirrorIfcPlacementInstance, model, ifcPlacementInstance, ifcAlignmentParameterSegment, relativeEpsilon);
 		}
 		else {
-			int_t	mirrorExpressID = internalGetP21Line(mirrorIfcPlacementInstance),
+			int64_t	mirrorExpressID = internalGetP21Line(mirrorIfcPlacementInstance),
 					expressID = internalGetP21Line(ifcPlacementInstance);
 			assert__error(enum_error::ALIGNMENT_SEGMENT_INCONSISTENT_ATTRIBUTE, ifcCurveSegmentInstance, ifcAlignmentParameterSegment, (char*) "Placement");
 		}
@@ -1963,6 +1985,57 @@ void	CompareMirror(
 			mirrorReprV = FindRepresentation__(mirrorModel, mirrorIfcVerticalAlignmentInstance, 0),
 			mirrorReprC = FindRepresentation__(mirrorModel, mirrorIfcCantAlignmentInstance, 0);
 
+	assert(mirrorReprA && mirrorReprH == 0 && mirrorReprV == 0 && mirrorReprC == 0);
+
+	{
+		int_t	mirrorReprA_0 = FindRepresentation__(mirrorModel, mirrorIfcAlignmentInstance, 0),
+				mirrorReprA_1 = FindRepresentation__(mirrorModel, mirrorIfcAlignmentInstance, 1),
+				mirrorReprA_2 = FindRepresentation__(mirrorModel, mirrorIfcAlignmentInstance, 2);
+
+		assert(mirrorReprA_0 && mirrorReprA_2 == 0);
+
+		if (sdaiGetInstanceType(mirrorReprA_0) == sdaiGetEntity(mirrorModel, "IFCCOMPOSITECURVE")) {
+			mirrorReprH = mirrorReprA_0;
+			if (sdaiGetInstanceType(mirrorReprA_1) == sdaiGetEntity(mirrorModel, "IFCSEGMENTEDREFERENCECURVE")) {
+				mirrorReprC = mirrorReprA_1;
+
+				int_t	ifcBoundedCurveInstance = 0;
+				sdaiGetAttrBN(mirrorReprA_1, "BaseCurve", sdaiINSTANCE, &ifcBoundedCurveInstance);
+				if (sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(mirrorModel, "IFCGRADIENTCURVE")) {
+					mirrorReprV = ifcBoundedCurveInstance;
+				}
+				else {
+					assert(sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(mirrorModel, "IFCCOMPOSITECURVE"));
+				}
+			}
+			else if (sdaiGetInstanceType(mirrorReprA_1) == sdaiGetEntity(mirrorModel, "IFCGRADIENTCURVE")) {
+				mirrorReprV = mirrorReprA_1;
+			}
+			else {
+				assert(mirrorReprA_1 == 0);
+			}
+		}
+		else {
+			assert(sdaiGetInstanceType(mirrorReprA_1) == sdaiGetEntity(mirrorModel, "IFCCOMPOSITECURVE"));
+			mirrorReprH = mirrorReprA_1;
+			if (sdaiGetInstanceType(mirrorReprA_0) == sdaiGetEntity(mirrorModel, "IFCSEGMENTEDREFERENCECURVE")) {
+				mirrorReprC = mirrorReprA_0;
+
+				int_t	ifcBoundedCurveInstance = 0;
+				sdaiGetAttrBN(mirrorReprA_0, "BaseCurve", sdaiINSTANCE, &ifcBoundedCurveInstance);
+				if (sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(mirrorModel, "IFCGRADIENTCURVE")) {
+					mirrorReprV = ifcBoundedCurveInstance;
+				}
+				else {
+					assert(sdaiGetInstanceType(ifcBoundedCurveInstance) == sdaiGetEntity(mirrorModel, "IFCCOMPOSITECURVE"));
+				}
+			}
+			else {
+				assert(sdaiGetInstanceType(mirrorReprA_0) == sdaiGetEntity(mirrorModel, "IFCGRADIENTCURVE"));
+				mirrorReprV = mirrorReprA_0;
+			}
+		}
+	}
 //	if (reprA && mirrorReprA == 0) {
 //		assert__error(enum_error::ALIGNMENT_SHOULD_NOT_HAVE_GEOMETRY, ifcAlignmentInstance);
 //		reprA = 0;
@@ -1983,13 +2056,7 @@ void	CompareMirror(
 //		reprC = 0;
 //	}
 
-	if (ifcVerticalAlignmentInstance) {
-		if (mirrorReprV == 0) {
-			mirrorReprV = mirrorReprA;
-		}
-	}
-
-	assert(mirrorReprA && mirrorReprH && (mirrorReprV || ifcVerticalAlignmentInstance == 0));
+	assert(mirrorReprH && (mirrorReprV || ifcVerticalAlignmentInstance == 0) && (mirrorReprA || ifcCantAlignmentInstance == 0));
 
 //	if (reprA == 0) {
 //		assert__error(enum_error::ALIGNMENT_MISSING_GEOMETRY, ifcAlignmentInstance);
@@ -2033,8 +2100,8 @@ void	CompareMirror(
 
 	if (reprV_ == 0) {
 		if (reprH_) {
-			assert(sdaiGetInstanceType(reprH_) == sdaiGetEntity(model, (char*) "IFCCOMPOSITECURVE"));
-			int_t	* ifcGradientCurveInstances = sdaiGetEntityExtentBN(model, (char*) "IFCGRADIENTCURVE"),
+			assert(sdaiGetInstanceType(reprH_) == sdaiGetEntity(model, "IFCCOMPOSITECURVE"));
+			int_t	* ifcGradientCurveInstances = sdaiGetEntityExtentBN(model, "IFCGRADIENTCURVE"),
 					noIfcGradientCurveInstances = sdaiGetMemberCount(ifcGradientCurveInstances);
 			for (int_t i = 0; i < noIfcGradientCurveInstances; i++) {
 				int_t	ifcGradientCurveInstance = 0;
@@ -2053,15 +2120,15 @@ void	CompareMirror(
 
 	if (reprC_ == 0 && mirrorReprC) {
 		if (reprV_) {
-			assert(sdaiGetInstanceType(reprV_) == sdaiGetEntity(model, (char*) "IFCGRADIENTCURVE"));
-			int_t	* ifcSegmentedReferenceCurveInstances = sdaiGetEntityExtentBN(model, (char*) "IFCSEGMENTEDREFERENCECURVE"),
+			assert(sdaiGetInstanceType(reprV_) == sdaiGetEntity(model, "IFCGRADIENTCURVE"));
+			int_t	* ifcSegmentedReferenceCurveInstances = sdaiGetEntityExtentBN(model, "IFCSEGMENTEDREFERENCECURVE"),
 					noIfcSegmentedReferenceCurveInstances = sdaiGetMemberCount(ifcSegmentedReferenceCurveInstances);
 			for (int_t i = 0; i < noIfcSegmentedReferenceCurveInstances; i++) {
 				int_t	ifcSegmentedReferenceCurveInstance = 0;
 				sdaiGetAggrByIndex(ifcSegmentedReferenceCurveInstances, i, sdaiINSTANCE, &ifcSegmentedReferenceCurveInstance);
 
 				int_t	myBaseCurveInstance = 0;
-				sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, (char*) "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
+				sdaiGetAttrBN(ifcSegmentedReferenceCurveInstance, "BaseCurve", sdaiINSTANCE, &myBaseCurveInstance);
 				if (myBaseCurveInstance == reprV_) {
 					assert(reprC_ == 0);
 					reprC_ = ifcSegmentedReferenceCurveInstance;
@@ -2611,8 +2678,8 @@ bool	GetGeometryFromIFC(
 	owlBuildInstanceInContext(ifcAlignmentSegmentInstance, sdaiGetInstanceType(ifcAlignmentInstance), &owlInstance);
 
 #ifdef _DEBUG
-	int_t	expressID_segment = internalGetP21Line(ifcAlignmentSegmentInstance);
-	int_t	expressID_boundeccurve = internalGetP21Line(ifcAlignmentInstance);
+	int64_t	expressID_segment = internalGetP21Line(ifcAlignmentSegmentInstance),
+			expressID_boundeccurve = internalGetP21Line(ifcAlignmentInstance);
 
 
 	sdaiSaveModelBN(model, "C:\\IFCRAIL\\acca2__.ifc");
@@ -2692,12 +2759,66 @@ void	CheckGeometrySegments(
 		}
 
 		___POINT4D	previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
-		for (int_t i = 0; i < noSegmentInstances; i++) {
+		for (int_t index = 0; index < noSegmentInstances; index++) {
 			___POINT4D	startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
 						endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
-			int_t cnt = GetGeometryFromIFC(model, segmentInstances[i], ifcAlignmentNestedInstance, &startPnt, &endPnt);
+			int_t cnt = GetGeometryFromIFC(model, segmentInstances[index], ifcAlignmentNestedInstance, &startPnt, &endPnt);
+
+int_t myModel = engiGetEntityModel(sdaiGetInstanceType(segmentInstances[index]));
+assert(myModel == model);
+int_t myEntity = sdaiGetInstanceType(segmentInstances[index]);
+const char	* entityName = nullptr;
+engiGetEntityName(myEntity, sdaiSTRING, &entityName);
+
+int_t	continuosDegree = 99;
+			if (segmentInstances[index]											 &&
+				engiGetEntityModel(sdaiGetInstanceType(segmentInstances[index])) &&
+				sdaiGetInstanceType(segmentInstances[index]) == sdaiGetEntity(engiGetEntityModel(sdaiGetInstanceType(segmentInstances[index])), "IFCALIGNMENTSEGMENT")) {
+				SdaiInstance	ifcAlignmentSegmentInstance = segmentInstances[index],
+								ifcProductDefinitionShape = 0;
+				sdaiGetAttrBN(ifcAlignmentSegmentInstance, "Representation", sdaiINSTANCE, &ifcProductDefinitionShape);
+				SdaiAggr		representationsAGGR = nullptr;
+				sdaiGetAttrBN(ifcProductDefinitionShape, "Representations", sdaiAGGR, &representationsAGGR);
+				assert(sdaiGetMemberCount(representationsAGGR) == 1);
+				SdaiInstance	ifcShapeRepresentation = 0;
+				sdaiGetAggrByIndex(representationsAGGR, 0, sdaiINSTANCE, &ifcShapeRepresentation);
+				SdaiAggr		itemsAGGR = nullptr;
+				sdaiGetAttrBN(ifcShapeRepresentation, "Items", sdaiAGGR, &itemsAGGR);
+				assert(sdaiGetMemberCount(itemsAGGR) == 1);
+				SdaiInstance	ifcCurveSegment = 0;
+				sdaiGetAggrByIndex(itemsAGGR, 0, sdaiINSTANCE, &ifcCurveSegment);
+				assert(sdaiGetInstanceType(ifcCurveSegment) == sdaiGetEntity(model, "IFCCURVESEGMENT"));
+
+				const char	* transitionCode = nullptr;
+				sdaiGetAttrBN(ifcCurveSegment, "Transition", sdaiENUM, &transitionCode);
+
+				//      CONTINUOUS
+				//      CONTSAMEGRADIENT
+				//      CONTSAMEGRADIENTSAMECURVATURE
+				//      DISCONTINUOUS
+
+				if (___equals(transitionCode, "CONTINUOUS")) {
+					continuosDegree = 0;
+				}
+				else if (___equals(transitionCode, "CONTSAMEGRADIENT")) {
+					continuosDegree = 1;
+				}
+				else if (___equals(transitionCode, "CONTSAMEGRADIENTSAMECURVATURE")) {
+					continuosDegree = 2;
+				}
+				else {
+					assert(___equals(transitionCode, "DISCONTINUOUS"));
+					continuosDegree = 99;
+
+					assert(index == 0);
+				}
+			}
+			else {
+				assert(false);
+			}
+
 			if (cnt) {
-				if (i) {
+				if (index) {
 					{
 						double	distance = ___Vec3Distance(&previousEndPnt.point, &startPnt.point);
 
@@ -2705,16 +2826,16 @@ void	CheckGeometrySegments(
 							case  enum_alignment::HORIZONTAL:
 								assert__error(
 										enum_error::HORIZONTAL_SEGMENT_DISTANCE,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										distance
 									);
 								break;
 							case  enum_alignment::VERTICAL:
 								assert__error(
 										enum_error::VERTICAL_SEGMENT_DISTANCE,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										distance
 									);
 								break;
@@ -2724,20 +2845,20 @@ if (distance > 0.01) {
 }
 								assert__error(
 										enum_error::CANT_SEGMENT_DISTANCE,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										distance
 									);
 								break;
 						}
 					}
 
-					{
+					if (continuosDegree >= 1) {
 						double	anglePreviousEndPoint = std::atan2(previousEndPnt.tangent.y, previousEndPnt.tangent.x),
 								angleStartPnt = std::atan2(startPnt.tangent.y, startPnt.tangent.x),
 								angleDifference = angleStartPnt - anglePreviousEndPoint;
 
-						if (angleDifference > Pi) { angleDifference -= 2. * Pi; }
+						if (angleDifference >   Pi) { angleDifference -= 2. * Pi; }
 						if (angleDifference < - Pi) { angleDifference += 2. * Pi; }
 
 						double	angleDifferenceInDegrees = 360. * angleDifference / (2. * Pi);
@@ -2746,26 +2867,51 @@ if (distance > 0.01) {
 							case  enum_alignment::HORIZONTAL:
 								assert__error(
 										enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										std::fabs(angleDifferenceInDegrees)
 									);
 								break;
 							case  enum_alignment::VERTICAL:
 								assert__error(
 										enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										std::fabs(angleDifferenceInDegrees)
 									);
 								break;
 							case  enum_alignment::CANT:
-/*								assert__error(
+								assert__error(
 										enum_error::CANT_SEGMENT_TANGENT_DEVIATION,
-										myMapExpressID[internalGetP21Line(segmentInstances[i - 1])],
-										myMapExpressID[internalGetP21Line(segmentInstances[i])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])],
 										std::fabs(angleDifferenceInDegrees)
-									);	//	*/
+									);
+								break;
+						}
+					}
+					else {
+						switch (enumAlignment) {
+							case  enum_alignment::HORIZONTAL:
+								assert__error__(
+										enum_error::HORIZONTAL_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])]
+									);
+								break;
+							case  enum_alignment::VERTICAL:
+								assert__error__(
+										enum_error::VERTICAL_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])]
+									);
+								break;
+							case  enum_alignment::CANT:
+								assert__error__(
+										enum_error::CANT_SEGMENT_TANGENT_DEVIATION,
+										myMapExpressID[internalGetP21Line(segmentInstances[index - 1])],
+										myMapExpressID[internalGetP21Line(segmentInstances[index])]
+									);
 								break;
 						}
 					}
@@ -2971,7 +3117,7 @@ int_t	CheckConsistencyAlignment__internal(
                 double  relativeEpsilon
 			)
 {
-	int_t	revision = GetRevision();
+	int64_t	revision = GetRevision();
 
 	if (revision < 1650) {
 		assert__error(enum_error::LIBRARY_OUTDATED);
@@ -3028,7 +3174,20 @@ int_t	CheckConsistencyAlignment__internal(
 
 sdaiSaveModelBN(myMirrorModel, "mirrorWithoutGeometry.ifc");
 
-                EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
+{
+	int64_t	expressID = internalGetP21Line(mirrorIfcAlignmentInstance);
+
+	int_t	mySubModel = sdaiOpenModelBN(0, "mirrorWithoutGeometry.ifc", "");
+
+	int_t	mySubInstance = internalGetInstanceFromP21Line(mySubModel, expressID);
+
+	inferenceInstance(mySubInstance);
+
+	sdaiSaveModelBN(mySubModel, "mirrorWithoutGeometry__inference.ifc");
+	sdaiCloseModel(mySubModel);
+}
+
+                EnrichMirror(myMirrorModel, mirrorIfcAlignmentInstance);
 
                 CheckMirrorGeometry(myMirrorModel, mirrorIfcAlignmentInstance, ifcAlignmentInstance);
 

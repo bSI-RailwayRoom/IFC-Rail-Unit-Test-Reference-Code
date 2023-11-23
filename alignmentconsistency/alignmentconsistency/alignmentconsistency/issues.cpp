@@ -33,6 +33,24 @@ void	AddIssue__internal_(
 	myIssueCnt++;
 }
 
+void	AddIssue__internal___OK(
+				int_t	ifcInstanceI,
+				int_t	ifcInstanceII,
+				int		group,
+				int		subGroup,
+				char	* issueText
+			)
+{
+	AddIssue__internal_(
+			ifcInstanceI,
+			ifcInstanceII,
+			group,
+			subGroup,
+			issueText,
+			0.0			//	issueValue
+		);
+}
+
 void	AddIssue__internal_(
 				int_t	ifcInstanceI,
 				int_t	ifcInstanceII,
@@ -47,7 +65,7 @@ void	AddIssue__internal_(
 			group,
 			subGroup,
 			issueText,
-			1.0
+			1.0			//	issueValue
 		);
 }
 
@@ -194,6 +212,27 @@ void	AddIssue(
 	char	* ifcInstanceText = CreateInstanceText(ifcInstance);
 	
 	AddIssue__internal_(ifcInstance, 0, group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceText));
+}
+
+void	AddIssue__OK(
+				int		group,
+				int		subGroup,
+				char	* issueText,
+				int_t	ifcInstanceI,
+				int_t	ifcInstanceII
+			)
+{
+	char	* ifcInstanceTextI = CreateInstanceText(ifcInstanceI),
+			* ifcInstanceTextII = CreateInstanceText(ifcInstanceII);
+	
+	if (group == 4 - 1 && subGroup == 5 - 1) {
+		if (internalGetP21Line(ifcInstanceI) == 238 &&
+			internalGetP21Line(ifcInstanceII) == 449295) {
+			int u = 0;
+		}
+	}
+
+	AddIssue__internal___OK(ifcInstanceI, ifcInstanceII, group, subGroup, MergeText(issueText, (char*) " - ", ifcInstanceTextI, (char*) ", ", ifcInstanceTextII));
 }
 
 void	AddIssue(

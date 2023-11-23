@@ -5,16 +5,16 @@
 
 
 static	inline	SdaiInstance	___CreateDirectionInstance(
-										SdaiModel	model,
-										___VECTOR2	* vector
+										SdaiModel			model,
+										const ___VECTOR2	* vector
 									)
 {
 	SdaiInstance	ifcDirectionInstance = sdaiCreateInstanceBN(model, "IFCDIRECTION");
 
 	SdaiAggr		aggrDirectionRatios = sdaiCreateAggrBN(ifcDirectionInstance, "DirectionRatios");
 
-	sdaiAppend(aggrDirectionRatios, sdaiREAL, &vector->x);
-	sdaiAppend(aggrDirectionRatios, sdaiREAL, &vector->y);
+	sdaiAppend(aggrDirectionRatios, sdaiREAL, &vector->u);
+	sdaiAppend(aggrDirectionRatios, sdaiREAL, &vector->v);
 
 	assert(ifcDirectionInstance);
 
@@ -22,8 +22,8 @@ static	inline	SdaiInstance	___CreateDirectionInstance(
 }
 
 static	inline	SdaiInstance	___CreateDirectionInstance(
-										SdaiModel	model,
-										___VECTOR3	* vector
+										SdaiModel			model,
+										const ___VECTOR3	* vector
 									)
 {
 	SdaiInstance	ifcDirectionInstance = sdaiCreateInstanceBN(model, "IFCDIRECTION");

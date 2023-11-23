@@ -179,6 +179,14 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
         sdaiSaveModelBN(model, generatedFileName);
 
+        ValidationResults   results = validateModel(model);
+
+        for (ValidationIssue issue = validateGetFirstIssue(results); issue; issue = validateGetNextIssue(issue)) {
+            SdaiInstance    inst = validateGetInstance(issue);
+            const char      * desc = validateGetDescription(issue);
+            std::cout << desc << "\n";
+        }
+
         cleanMemory(model, 4);
         sdaiCloseModel(model);
     }
@@ -857,7 +865,7 @@ int     main(int argc, char *argv[], char *envp[])
         std::cout << "Ready!\n";
     }
     else {
-        std::cout << "Enrich - commandline IFC4.3 Alignment Business Logic Enrich Application [version 1.0." << GetRevision(nullptr) << "]\n\n";
+        std::cout << "Enrich - commandline IFC4.3 Alignment Business Logic Enrich Application [version 1.0." << GetRevision() << "]\n\n";
         std::cout << "Usage\n";
         std::cout << "    Enrich [input ifc file] [output ifc file]\n";
         std::cout << "    Enrich [input ifc file] [output ifc file] [point list of curve] [count of parts for each transition curve]\n";

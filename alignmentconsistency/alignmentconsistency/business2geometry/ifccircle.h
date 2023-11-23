@@ -53,17 +53,17 @@ static	inline	SdaiInteger ___CreateCircleInstance(
 }
 
 static	inline	SdaiInstance    ___CreateCircleInstance(
-                                        SdaiModel   model,
-                                        ___VECTOR2  * origin,
-                                        double      radius
+                                        SdaiModel           model,
+                                        const ___VECTOR2    * origin,
+                                        double              radius
                                     )
 {
     SdaiInstance	ifcCircleInstance = sdaiCreateInstanceBN(model, "IFCCIRCLE");
 
     ___MATRIX  matrix;
     ___MatrixIdentity(&matrix);
-    matrix._41 = origin->x;
-    matrix._42 = origin->y;
+    matrix._41 = origin->u;
+    matrix._42 = origin->v;
 
     sdaiPutAttrBN(ifcCircleInstance, "Position", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &matrix));
 

@@ -136,7 +136,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->point.x = pValues[0];
 					}
@@ -149,7 +149,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->point.y = pValues[0];
 					}
@@ -162,7 +162,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->point.z = pValues[0];
 					}
@@ -189,7 +189,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->tangent.x = pValues[0];
 					}
@@ -202,7 +202,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->tangent.y = pValues[0];
 					}
@@ -215,7 +215,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->tangent.z = pValues[0];
 					}
@@ -244,7 +244,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "x"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->normal.x = pValues[0];
 					}
@@ -257,7 +257,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "y"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->normal.y = pValues[0];
 					}
@@ -270,7 +270,7 @@ static  inline  bool	GetGeometryFromGK__point4D__SEMANTICS(
 
 				{
 					double	* pValues = nullptr;
-					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (void**) &pValues, &card);
+					GetDatatypeProperty(owlInstancePoint3D, GetPropertyByName(owlModel, "z"), (const void**) &pValues, &card);
 					if (card == 1) {
 						point4D->normal.z = pValues[0];
 					}
@@ -355,7 +355,7 @@ static  inline  bool    ___GetBorderPoints(
 }
 
 static  inline  void    ___GetEndPoint(
-                                int_t           model,
+                                SdaiModel       model,
                                 ___VECTOR2      * endPoint,
 #ifdef _DEBUG
                                 ___VECTOR2      * startPoint,
@@ -408,11 +408,11 @@ static  inline  void    ___GetEndPoint(
                             vertices[3 * (vertexBufferSize - 1) + 1],
                             vertices[3 * (vertexBufferSize - 1) + 2]
                         };
-        assert(startVec.x == startPoint->x &&
-               startVec.y == startPoint->y &&
+        assert(startVec.x == startPoint->u &&
+               startVec.y == startPoint->v &&
                startVec.z == 0.);
-        endPoint->x = endVec.x;
-        endPoint->y = endVec.y;
+        endPoint->u = endVec.x;
+        endPoint->v = endVec.y;
         assert(endVec.z == 0.);
 
         delete[] vertices;

@@ -122,7 +122,8 @@ enum class enum_express_attr_type : unsigned char
 	__NUMBER					= 7,
 	__REAL						= 8,
 	__SELECT					= 9,
-	__STRING					= 10
+	__STRING					= 10,
+	__GENERIC					= 11
 };
 
 
@@ -132,7 +133,8 @@ enum class enum_express_aggr : unsigned char
 	__ARRAY						= 1,
 	__BAG						= 2,
 	__LIST						= 3,
-	__SET						= 4
+	__SET						= 4,
+	__AGGREGATE					= 5			//	generic aggregate
 };
 
 typedef void		* ValidationResults;
@@ -2037,7 +2039,7 @@ static	inline	void	SetSPFFHeader(
 //				int_t					itemIndex							IN
 //				int_t					itemSubIndex						IN
 //				SdaiPrimitiveType		valueType							IN
-//				const char				* value								IN
+//				const void				* value								IN
 //
 //				int_t					returns								OUT
 //
@@ -2048,12 +2050,31 @@ int_t			DECL STDC	SetSPFFHeaderItem(
 									int_t					itemIndex,
 									int_t					itemSubIndex,
 									SdaiPrimitiveType		valueType,
-									const char				* value
+									const void				* value
 								);
 
 #ifdef __cplusplus
 	}
 #endif
+
+//
+//
+static	inline	int_t	SetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								const char				* value
+							)
+{
+	return	SetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void*) value
+				);
+}
 
 //
 //
@@ -2070,7 +2091,45 @@ static	inline	int_t	SetSPFFHeaderItem(
 					itemIndex,
 					itemSubIndex,
 					valueType,
-					(const char*) value
+					(const void*) value
+				);
+}
+
+//
+//
+static	inline	int_t	SetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								const wchar_t			* value
+							)
+{
+	return	SetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void*) value
+				);
+}
+
+//
+//
+static	inline	int_t	SetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								wchar_t					* value
+							)
+{
+	return	SetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void*) value
 				);
 }
 
@@ -2084,7 +2143,7 @@ static	inline	int_t	SetSPFFHeaderItem(
 //				int_t					itemIndex							IN
 //				int_t					itemSubIndex						IN
 //				SdaiPrimitiveType		valueType							IN
-//				const char				** value							IN / OUT
+//				const void				** value							IN / OUT
 //
 //				int_t					returns								OUT
 //
@@ -2095,12 +2154,31 @@ int_t			DECL STDC	GetSPFFHeaderItem(
 									int_t					itemIndex,
 									int_t					itemSubIndex,
 									SdaiPrimitiveType		valueType,
-									const char				** value
+									const void				** value
 								);
 
 #ifdef __cplusplus
 	}
 #endif
+
+//
+//
+static	inline	int_t	GetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								const char				** value
+							)
+{
+	return	GetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void**) value
+				);
+}
 
 //
 //
@@ -2117,37 +2195,55 @@ static	inline	int_t	GetSPFFHeaderItem(
 					itemIndex,
 					itemSubIndex,
 					valueType,
-					(const char**) value
+					(const void**) value
 				);
 }
 
-#ifdef __cplusplus
-	extern "C" {
-#endif
+//
+//
+static	inline	int_t	GetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								const wchar_t			** value
+							)
+{
+	return	GetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void**) value
+				);
+}
 
 //
-//		GetSPFFHeaderItemUnicode                                (http://rdf.bg/ifcdoc/CP64/GetSPFFHeaderItemUnicode.html)
-//				SdaiModel				model								IN
-//				int_t					itemIndex							IN
-//				int_t					itemSubIndex						IN
-//				unsigned char			* buffer							IN / OUT
-//				int_t					bufferLength						IN
 //
-//				int_t					returns								OUT
-//
-//	This call can be used to write a specific header item, the source code example is larger to show and explain how this call can be used.
-//
-int_t			DECL STDC	GetSPFFHeaderItemUnicode(
-									SdaiModel				model,
-									int_t					itemIndex,
-									int_t					itemSubIndex,
-									unsigned char			* buffer,
-									int_t					bufferLength
-								);
+static	inline	int_t	GetSPFFHeaderItem(
+								SdaiModel				model,
+								int_t					itemIndex,
+								int_t					itemSubIndex,
+								SdaiPrimitiveType		valueType,
+								wchar_t					** value
+							)
+{
+	return	GetSPFFHeaderItem(
+					model,
+					itemIndex,
+					itemSubIndex,
+					valueType,
+					(const void**) value
+				);
+}
 
 //
 //  Instance Reading API Calls
 //
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
 
 //
 //		sdaiGetADBType                                          (http://rdf.bg/ifcdoc/CP64/sdaiGetADBType.html)
@@ -6079,13 +6175,33 @@ static	inline	int_t	xxxxGetAttrTypeBN(
 				);
 }
 
-//
-//  Validation
-//
-
 #ifdef __cplusplus
 	extern "C" {
 #endif
+
+//
+//		GetSPFFHeaderItemUnicode                                (http://rdf.bg/ifcdoc/CP64/GetSPFFHeaderItemUnicode.html)
+//				SdaiModel				model								IN
+//				int_t					itemIndex							IN
+//				int_t					itemSubIndex						IN
+//				unsigned char			* buffer							IN / OUT
+//				int_t					bufferLength						IN
+//
+//				int_t					returns								OUT
+//
+//	This call is deprecated, please use call GetSPFFHeaderItem instead
+//
+int_t			DECL STDC	GetSPFFHeaderItemUnicode(
+									SdaiModel				model,
+									int_t					itemIndex,
+									int_t					itemSubIndex,
+									unsigned char			* buffer,
+									int_t					bufferLength
+								);
+
+//
+//  Validation
+//
 
 //
 //		validateSetOptions                                      (http://rdf.bg/ifcdoc/CP64/validateSetOptions.html)

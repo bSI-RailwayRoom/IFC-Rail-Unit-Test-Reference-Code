@@ -62,7 +62,7 @@ static	inline		double	GetPolynomialCurveAngle(
             &tangent
 		);
 
-    return   std::atan2(tangent.y, tangent.x);
+    return  std::atan2(tangent.v, tangent.u);
 }
 
 static  inline  SdaiInteger ___SegmentCount__alignmentCant(
@@ -96,6 +96,38 @@ static	inline		double	MatrixDeterminant(
 				  pM->_11 * f;
 
 	return determinant;
+}
+
+static  inline  void    SetCurveSegmentTransition4Cant(
+                                SdaiInstance        ifcCurveSegmentInstance,
+                                const char          * predefinedTypeCurrentSegment,
+                                const char          * predefinedTypePreviousSegment
+                            )
+{
+    assert(predefinedTypeCurrentSegment);
+
+    //
+    //  IfcTransitionCode
+    //      CONTINUOUS
+    //      CONTSAMEGRADIENT
+    //      CONTSAMEGRADIENTSAMECURVATURE
+    //      DISCONTINUOUS
+    //
+    if (predefinedTypePreviousSegment == nullptr) {
+///        char    transitionCode[] = "DISCONTINUOUS";
+        char    transitionCode[] = "CONTINUOUS";
+        sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+    }
+    else {
+        if (___equals(predefinedTypeCurrentSegment, "LINEARTRANSITION") || ___equals(predefinedTypePreviousSegment, "LINEARTRANSITION")) {
+            char    transitionCode[] = "CONTINUOUS";
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+        }
+        else {
+            char    transitionCode[] = "CONTSAMEGRADIENTSAMECURVATURE";
+            sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+        }
+    }
 }
 
 static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
@@ -147,8 +179,10 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
 
         ___POINT4D  previousEndPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
 
-        for (int_t i = 0; i < noSegmentInstances; i++) {
-            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[i];
+        const char  * predefinedTypePreviousSegment = nullptr;
+
+        for (int_t index = 0; index < noSegmentInstances; index++) {
+            SdaiInstance    ifcAlignmentSegmentInstance = segmentInstances[index];
             assert(sdaiGetInstanceType(ifcAlignmentSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTSEGMENT"));
 
             SdaiInstance    ifcAlignmentCantSegmentInstance = 0;
@@ -214,14 +248,12 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                 double  startCantLeft = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, &startCantLeft);
 
-int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 //
                 //  EndCantLeft
                 //
-                double  endCantLeft;// = startCantLeft;
-                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, &endCantLeft) == nullptr) {
+                double  endCantLeft;
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, &endCantLeft) == nullptr)
                     endCantLeft = startCantLeft;
-                }
 
                 //
                 //  StartCantRight
@@ -232,29 +264,16 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                 //
                 //  EndCantRight
                 //
-                double  endCantRight;// = startCantRight;
-                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight) == nullptr) {
+                double  endCantRight;
+                if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantRight", sdaiREAL, &endCantRight) == nullptr)
                     endCantRight = startCantRight;
-                }
-
-                //
-                //  Transition
-                //
-                if (i == noSegmentInstances - 1) {
-                    char    transitionCode[14] = "DISCONTINUOUS";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
-                else {
-                    char    transitionCode[11] = "CONTINUOUS";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
-                }
 
                 mostRecentStartDistAlong = startDistAlong;
                 mostRecentLength         = horizontalLength;
                 mostRecentendCantLeft    = endCantLeft;
                 mostRecentendCantRight   = endCantRight;
 
-                char    * predefinedType = nullptr;
+                const char    * predefinedType = nullptr;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "PredefinedType", sdaiENUM, &predefinedType);
 
                 //
@@ -269,8 +288,8 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
 
                 if (horizontalLength && ___equals(predefinedType, "LINEARTRANSITION")) {
                     matrix._11 =  horizontalLength;
-                    matrix._13 = (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.;
-                    matrix._12 =  0.;
+                    matrix._12 = (endCantLeft + endCantRight) / 2. - (startCantLeft + startCantRight) / 2.;
+                    matrix._13 =  0.;
                     ___Vec3Normalize((___VECTOR3*) &matrix._11);
                 }
                 else {
@@ -281,19 +300,19 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
 
                 double  _factor = - (startCantLeft - startCantRight);
                 matrix._31 = - _factor * matrix._12;
-                matrix._33 =   _factor * matrix._11;
-                matrix._32 =   railHeadDistance;
+                matrix._32 =   _factor * matrix._11;
+                matrix._33 =   railHeadDistance;
                 ___Vec3Normalize((___VECTOR3*) &matrix._31);
 
                 ___Vec3Cross((___VECTOR3*) &matrix._21, (___VECTOR3*) &matrix._31, (___VECTOR3*) &matrix._11);
 
                 double det = MatrixDeterminant(&matrix);
-                assert(det == 1.);
+                assert(std::fabs(det - 1.) < 0.0000000001);
 
                 sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
 
                 if ((horizontalLength == 0.) &&
-                    (i == noSegmentInstances - 1)) {
+                    (index == noSegmentInstances - 1)) {
                     sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
                 }
                 else {
@@ -1020,6 +1039,9 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                             sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
 
+                        char    transitionCode[] = "CONTSAMEGRADIENTSAMECURVATURE";
+                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+
                         sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
                     }
 
@@ -1207,6 +1229,15 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
 
                 sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
+                //
+                //  Transition
+                //
+                SetCurveSegmentTransition4Cant(
+                        ifcCurveSegmentInstance,
+                        predefinedType,
+                        predefinedTypePreviousSegment
+                    );
+
 #ifdef _DEBUG
                 ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
                             endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
@@ -1216,8 +1247,8 @@ int_t expressID = internalGetP21Line(ifcAlignmentCantSegmentInstance);
                         &startPnt,
                         &endPnt
                     );
-//                ...
-double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
+
+                double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
 
                 assert(startPnt.point.x == matrix._41 &&
                        startPnt.point.y == matrix._42 &&
@@ -1234,8 +1265,8 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
                        std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
                        startPnt.tangent.z == 0.);
 
-                if (i) {
-   /*                 assert((std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
+                if (index) {
+                    assert((std::fabs(startPnt.point.x - previousEndPnt.point.x) < 0.001 &&
                             std::fabs(startPnt.point.y - previousEndPnt.point.y) < 0.001 &&
                             startPnt.point.z == previousEndPnt.point.z));
 
@@ -1246,6 +1277,8 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
 
                 previousEndPnt = endPnt;
 #endif // _DEBUG
+
+                predefinedTypePreviousSegment = predefinedType;
             }
         }
 
@@ -1269,8 +1302,8 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
             matrix._12 = 0.;
             matrix._13 = 0.;
 
-            matrix._21 = -matrix._12;
-            matrix._22 = matrix._11;
+            matrix._21 = - matrix._12;
+            matrix._22 =   matrix._11;
 
             double  _factor = -(startCantLeft - startCantRight);
             matrix._31 = - _factor * matrix._12;
@@ -1292,7 +1325,7 @@ double  minDist = ___Vec3Distance(&startPnt.point, &endPnt.point);
 inline  static  SdaiInstance    ___GetAlignmentCant(
                                         SdaiModel       model,
                                         SdaiInstance    ifcAlignmentInstance,
-                                        bool            * hasIssue
+                                        bool            * hasIssue              = nullptr
                                     )
 {
     SdaiInstance    ifcAlignmentCantInstance = 0;

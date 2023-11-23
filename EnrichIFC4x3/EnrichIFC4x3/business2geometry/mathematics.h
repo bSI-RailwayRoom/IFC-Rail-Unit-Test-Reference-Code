@@ -24,8 +24,8 @@ struct	___MATRIX {
 };
 
 struct	___VECTOR2 {
-	double			x;
-	double			y;
+	double			u;
+	double			v;
 };
 
 struct	___VECTOR3 {
@@ -49,13 +49,13 @@ static	inline	bool	___LinesIntersect(
 								const ___VECTOR2	* lineII_pointII
 							)
 {
-	double	a1 = lineI_pointII->y - lineI_pointI->y,
-			b1 = lineI_pointI->x  - lineI_pointII->x,
-			c1 = lineI_pointII->x * lineI_pointI->y - lineI_pointI->x * lineI_pointII->y;
+	double	a1 = lineI_pointII->v - lineI_pointI->v,
+			b1 = lineI_pointI->u  - lineI_pointII->u,
+			c1 = lineI_pointII->u * lineI_pointI->v - lineI_pointI->u * lineI_pointII->v;
 
-	double	a2 = lineII_pointII->y - lineII_pointI->y,
-			b2 = lineII_pointI->x  - lineII_pointII->x,
-			c2 = lineII_pointII->x * lineII_pointI->y - lineII_pointI->x * lineII_pointII->y;
+	double	a2 = lineII_pointII->v - lineII_pointI->v,
+			b2 = lineII_pointI->u  - lineII_pointII->u,
+			c2 = lineII_pointII->u * lineII_pointI->v - lineII_pointI->u * lineII_pointII->v;
 
 	double	denom = a1 * b2 - a2 * b1;
 
@@ -63,8 +63,8 @@ static	inline	bool	___LinesIntersect(
 		return	false;
 	}
 
-	intersectionPoint->x = (b1 * c2 - b2 * c1) / denom;
-	intersectionPoint->y = (a2 * c1 - a1 * c2) / denom;
+	intersectionPoint->u = (b1 * c2 - b2 * c1) / denom;
+	intersectionPoint->v = (a2 * c1 - a1 * c2) / denom;
 	return	true;
 }
 
@@ -138,12 +138,12 @@ static	inline	double	___Vec2Normalize(
 								___VECTOR2				* pInOut
 							)
 {
-	double	size = pInOut->x * pInOut->x + pInOut->y * pInOut->y;
+	double	size = pInOut->u * pInOut->u + pInOut->v * pInOut->v;
 
 	double	sqrtSize = sqrt(size);
 
-	pInOut->x /= sqrtSize;
-	pInOut->y /= sqrtSize;
+	pInOut->u /= sqrtSize;
+	pInOut->v /= sqrtSize;
 
 	return	sqrtSize;
 }
@@ -156,8 +156,8 @@ static	inline	void	___Vec2Subtract(
 {
 	assert(pOut != pV1);
 
-	pOut->x = pV1->x - pV2->x;
-	pOut->y = pV1->y - pV2->y;
+	pOut->u = pV1->u - pV2->u;
+	pOut->v = pV1->v - pV2->v;
 }
 
 static	inline	void	___Vec3Subtract(
@@ -200,7 +200,7 @@ static	inline	double	___Vec2Length(
 								const ___VECTOR2		* pV
 							)
 {
-	return	sqrt((pV->x * pV->x) + (pV->y * pV->y));
+	return	sqrt(pV->u * pV->u + pV->v * pV->v);
 }
 
 static	inline	double	___Vec3Length(

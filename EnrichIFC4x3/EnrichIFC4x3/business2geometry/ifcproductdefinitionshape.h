@@ -6,6 +6,20 @@
 
 static	inline	SdaiInstance	___CreateProductDefinitionShapeInstance(
 										SdaiModel		model,
+                                		SdaiAggr		* pAggrRepresentations
+									)
+{
+	SdaiInstance	ifcProductDefinitionShapeInstance = sdaiCreateInstanceBN(model, "IFCPRODUCTDEFINITIONSHAPE");
+
+	assert(pAggrRepresentations && (*pAggrRepresentations) == nullptr);
+	(*pAggrRepresentations) = sdaiCreateAggrBN(ifcProductDefinitionShapeInstance, "Representations");
+
+	assert(ifcProductDefinitionShapeInstance);
+	return ifcProductDefinitionShapeInstance;
+}
+
+static	inline	SdaiInstance	___CreateProductDefinitionShapeInstance(
+										SdaiModel		model,
 										SdaiInstance	ifcRepresentationItemInstance,
 										const char		* representationType
 									)

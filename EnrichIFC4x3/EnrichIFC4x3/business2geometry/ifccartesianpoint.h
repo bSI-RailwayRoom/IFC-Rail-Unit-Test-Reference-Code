@@ -13,8 +13,8 @@ static	inline	SdaiInstance    ___CreateCartesianPointInstance_2D(
     SdaiAggr        aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, "Coordinates");
 
     ___VECTOR2  point = { 0., 0. };
-    sdaiAppend(aggrCoordinates, sdaiREAL, &point.x);
-	sdaiAppend(aggrCoordinates, sdaiREAL, &point.y);
+    sdaiAppend(aggrCoordinates, sdaiREAL, &point.u);
+	sdaiAppend(aggrCoordinates, sdaiREAL, &point.v);
 
 	assert(ifcCartesianPointInstance);
 
@@ -22,16 +22,16 @@ static	inline	SdaiInstance    ___CreateCartesianPointInstance_2D(
 }
 
 static	inline	SdaiInstance	___CreateCartesianPointInstance(
-                                        SdaiModel   model,
-                                        ___VECTOR2  * point
+                                        SdaiModel           model,
+                                        const ___VECTOR2    * point
                                     )
 {
     SdaiInstance    ifcCartesianPointInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANPOINT");
 
     SdaiAggr        aggrCoordinates = sdaiCreateAggrBN(ifcCartesianPointInstance, "Coordinates");
 
-	sdaiAppend(aggrCoordinates, sdaiREAL, &point->x);
-	sdaiAppend(aggrCoordinates, sdaiREAL, &point->y);
+	sdaiAppend(aggrCoordinates, sdaiREAL, &point->u);
+	sdaiAppend(aggrCoordinates, sdaiREAL, &point->v);
 
 	assert(ifcCartesianPointInstance);
 
@@ -39,8 +39,8 @@ static	inline	SdaiInstance	___CreateCartesianPointInstance(
 }
 
 static	inline	SdaiInstance    ___CreateCartesianPointInstance(
-                                        SdaiModel   model,
-                                        ___VECTOR3  * point
+                                        SdaiModel           model,
+                                        const ___VECTOR3    * point
                                     )
 {
     SdaiInstance    ifcCartesianPointInstance = sdaiCreateInstanceBN(model, "IFCCARTESIANPOINT");
