@@ -55,7 +55,7 @@ static	inline	bool    ___equals(
 static  inline  int_t   ___GetAlignmentSegments(
                                 SdaiModel		model,
                                 SdaiInstance	ifcAlignmentXyzInstance,
-                                int_t			* pAlignmentSegment
+                                int_t			* pAlignmentSegment			= nullptr
                             )
 {
     int_t   alignmentSegmentCnt = 0;

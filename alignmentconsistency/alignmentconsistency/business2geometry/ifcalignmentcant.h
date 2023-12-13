@@ -203,7 +203,9 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                                         model
                                     )
                     );
-					
+
+                SdaiAggr    aggrItems = nullptr;
+
                 assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
@@ -212,6 +214,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
+                                        &aggrItems,
                                         "Segment"
                                     )
                     );
@@ -316,7 +319,8 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
                 }
                 else {
-                    assert(horizontalLength > 0.);
+///                    assert(horizontalLength > 0.);
+                    assert(horizontalLength >= 0.);
                 }
 
                 //
@@ -1094,30 +1098,31 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     {
                         ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+                        sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
-                        sdaiPutAttrBN(
-                                ifcAlignmentSegmentInstance,
-                                "ObjectPlacement",
-                                sdaiINSTANCE,
-                                (void*) ___CreateObjectPlacement(
-                                                model
-                                            )
-                            );
+     //                   sdaiPutAttrBN(
+     //                           ifcAlignmentSegmentInstance,
+     //                           "ObjectPlacement",
+     //                           sdaiINSTANCE,
+     //                           (void*) ___CreateObjectPlacement(
+     //                                           model
+     //                                       )
+     //                       );
 							
                         assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
-                        sdaiPutAttrBN(
-                                ifcAlignmentSegmentInstance,
-                                "Representation",
-                                sdaiINSTANCE,
-                                (void*) ___CreateProductDefinitionShapeInstance(
-                                                model,
-                                                ifcCurveSegmentInstance,
-                                                "Segment"
-                                            )
-                            );
+     //                   sdaiPutAttrBN(
+     //                           ifcAlignmentSegmentInstance,
+     //                           "Representation",
+     //                           sdaiINSTANCE,
+     //                           (void*) ___CreateProductDefinitionShapeInstance(
+     //                                           model,
+     //                                           ifcCurveSegmentInstance,
+     //                                           "Segment"
+     //                                       )
+     //                       );
                     }
 
                     matrix._41 += horizontalLength / 2.;

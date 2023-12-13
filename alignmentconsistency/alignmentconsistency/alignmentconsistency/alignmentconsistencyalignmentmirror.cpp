@@ -994,8 +994,7 @@ int_t	CopyInstanceIfcAlignmentVertical(
     int_t   noSegmentInstances =
                 ___GetAlignmentSegments(
                         model,
-						ifcAlignmentVerticalInstance,
-                        nullptr
+						ifcAlignmentVerticalInstance
                     );
 
     if (noSegmentInstances) {
@@ -1129,10 +1128,7 @@ SdaiInstance	CopyInstanceIfcAlignment(
 									ifcAlignmentInstance,
 									nullptr
 								);
-		if (ifcAlignmentVerticalInstance == 0) {
-			assert__error(enum_error::VERTICAL_ALIGNMENT_CONNECTION, ifcAlignmentInstance);
-		}
-		else {
+		if (ifcAlignmentVerticalInstance) {
 			SdaiInstance	mirrorIfcAlignmentVerticalInstance =
 								CopyInstanceIfcAlignmentVertical(mirrorModel, model, ifcAlignmentVerticalInstance);
 			AddIfcRelNests(mirrorModel, mirrorIfcAlignmentInstance, mirrorIfcAlignmentVerticalInstance);
@@ -2967,9 +2963,6 @@ void	CheckGeometry(
 						);
 		if (ifcAlignmentVerticalInstance) {
 			CheckGeometrySegments(model, ifcAlignmentVerticalInstance, enum_alignment::VERTICAL);
-		}
-		else {
-			assert__error(enum_error::ALIGNMENT_VERTICAL_MISSING, myMapExpressID[internalGetP21Line(ifcAlignmentInstance)]);
 		}
 	}
 

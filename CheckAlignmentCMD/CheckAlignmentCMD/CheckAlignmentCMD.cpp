@@ -27,8 +27,8 @@ int main(int argc, char * argv[])
 			FILE	* fp = nullptr;
 			fopen_s(&fp, argv[2], "w");
 			if (fp) {
-				fprintf(fp, GetPageC(absoluteEpsilon, relativeEpsilon));
-//				fprintf(fp, GetPageJSON(argv[1], absoluteEpsilon, relativeEpsilon));
+//				fprintf(fp, GetPageC(absoluteEpsilon, relativeEpsilon));
+				fprintf(fp, GetPageJSON(argv[1], absoluteEpsilon, relativeEpsilon));
 				fclose(fp);
 			}
 
