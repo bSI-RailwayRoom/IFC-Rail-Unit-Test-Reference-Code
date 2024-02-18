@@ -28,9 +28,9 @@
 
 
 void	DECL STDC	AddChecks(
-							wchar_t	* fileNameIN,
-							wchar_t	* fileNameOUT,
-							int		segmentationParts
+							const wchar_t	* fileNameIN,
+							const wchar_t	* fileNameOUT,
+							int				segmentationParts
 						);
 
 

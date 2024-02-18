@@ -79,7 +79,8 @@ static  inline  double   GetCantStart(
 
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
-            if (startDistAlong == offset && horizontalLength == length) {
+            if (std::fabs(startDistAlong - offset) < 0.00000001 &&
+                std::fabs(horizontalLength - length) < 0.0000001) {
                 double  startCantLeft = 0., startCantRight = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
@@ -143,7 +144,8 @@ static  inline  double   GetCantAngleStart(
 
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
-            if (startDistAlong == offset && horizontalLength == length) {
+            if (std::fabs(startDistAlong - offset) < 0.00000001 &&
+                std::fabs(horizontalLength - length) < 0.0000001) {
                 double  startCantLeft = 0., startCantRight = 0.;
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &startCantLeft);
                 sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantRight", sdaiREAL, (void*) &startCantRight);
@@ -210,7 +212,8 @@ static  inline  double   GetCantEnd(
 
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
-            if (startDistAlong == offset && horizontalLength == length) {
+            if (std::fabs(startDistAlong - offset) < 0.00000001 &&
+                std::fabs(horizontalLength - length) < 0.0000001) {
                 double  endCantLeft = 0., endCantRight = 0.;
                 if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft) == nullptr)
                     sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &endCantLeft);
@@ -277,7 +280,8 @@ static  inline  double   GetCantAngleEnd(
 
             double  horizontalLength = 0.;
             sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "HorizontalLength", sdaiREAL, (void*) &horizontalLength);
-            if (startDistAlong == offset && horizontalLength == length) {
+            if (std::fabs(startDistAlong - offset) < 0.00000001 &&
+                std::fabs(horizontalLength - length) < 0.0000001) {
                 double  endCantLeft = 0., endCantRight = 0.;
                 if (sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "EndCantLeft", sdaiREAL, (void*) &endCantLeft) == nullptr)
                     sdaiGetAttrBN(ifcAlignmentCantSegmentInstance, "StartCantLeft", sdaiREAL, (void*) &endCantLeft);
@@ -446,7 +450,8 @@ static  inline  SdaiInstance    ___CreateCompositeCurve__alignmentHorizontal(
             assert(sdaiGetInstanceType(ifcAlignmentHorizontalSegmentInstance) == sdaiGetEntity(model, "IFCALIGNMENTHORIZONTALSEGMENT"));
 
             {
-                SdaiInstance    ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+                SdaiInstance    firstIfcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT"),
+                                secondIfcCurveSegmentInstance = 0;
 
                 //
                 //  Add geometry for Ifc...Alignment...
@@ -461,14 +466,14 @@ static  inline  SdaiInstance    ___CreateCompositeCurve__alignmentHorizontal(
                                     )
                     );
 					
-                assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
+                assert(firstIfcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
                         "Representation",
                         sdaiINSTANCE,
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
-                                        ifcCurveSegmentInstance,
+                                        firstIfcCurveSegmentInstance,
                                         &aggrItems,
                                         "Segment"
                                     )
@@ -497,7 +502,7 @@ segmentLength = std::fabs(segmentLength);
                                 };
                 assert(pStartPoint[index].z == 0.);
 
-                sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
+                sdaiPutAttrBN(firstIfcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location, &refDirection));
 #ifdef _DEBUG
                 mostRecentLocation.u = location.u;
                 mostRecentLocation.v = location.v;
@@ -547,7 +552,7 @@ segmentLength = std::fabs(segmentLength);
                                                 radiusOfCurvature,
                                                 &myMatrix
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCircularArcParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcCircularArcParentCurve;
 #endif // _DEBUG
@@ -563,14 +568,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -584,7 +589,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -597,7 +602,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -608,14 +613,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "CLOTHOID")) {
@@ -644,7 +649,7 @@ segmentLength = std::fabs(segmentLength);
 		                                        nullptr
 		                                    );
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcClothoidParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcClothoidParentCurve;
 #endif // _DEBUG
@@ -659,14 +664,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -680,7 +685,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -693,7 +698,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -704,14 +709,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "COSINECURVE")) {
@@ -734,7 +739,7 @@ segmentLength = std::fabs(segmentLength);
                                                 nullptr
                                             );
 
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCosineCurveParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcCosineCurveParentCurve;
 #endif // _DEBUG
@@ -750,14 +755,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -772,7 +777,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -786,7 +791,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -797,14 +802,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "SINECURVE")) {
@@ -824,7 +829,7 @@ segmentLength = std::fabs(segmentLength);
                                                 sineTerm     ? segmentLength * pow(std::fabs(sineTerm),     -1. / 1.) * sineTerm     / std::fabs(sineTerm)     : 0.,
                                                 nullptr
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcSineCurveParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcSineCurveParentCurve;
 #endif // _DEBUG
@@ -840,14 +845,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -863,7 +868,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -878,7 +883,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -889,14 +894,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "BLOSSCURVE")) {
@@ -918,7 +923,7 @@ segmentLength = std::fabs(segmentLength);
                                                 constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
                                                 nullptr
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcBlossCurveParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcBlossCurveParentCurve;
 #endif // _DEBUG
@@ -934,14 +939,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -958,7 +963,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -974,7 +979,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -985,14 +990,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "HELMERTCURVE")) {
@@ -1015,7 +1020,7 @@ segmentLength = std::fabs(segmentLength);
                                                 constantTermFirstHalf  ? segmentLength * pow(std::fabs(constantTermFirstHalf),  -1. / 1.) * constantTermFirstHalf  / std::fabs(constantTermFirstHalf)  : 0.,
                                                 nullptr
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcHelmertInstance;
 #endif // _DEBUG
@@ -1033,14 +1038,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthHalf);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1056,7 +1061,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1071,7 +1076,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1082,20 +1087,20 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthHalf);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
 
                     char    transitionCode[] = "CONTSAMEGRADIENTSAMECURVATURE";
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
 
-                    sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+                    sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) firstIfcCurveSegmentInstance);
 
                     ___VECTOR2  endPointFirstHalf = {
                                         segmentLength * ___XbyAngleDeviationPolynomial(0., quadraticTermFirstHalf, linearTermFirstHalf, constantTermFirstHalf, 0.5),
@@ -1115,26 +1120,26 @@ segmentLength = std::fabs(segmentLength);
                     //  SECOND INSTANCE
                     //
 
-                    ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
-                	sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+                    secondIfcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+                	sdaiAppend(aggrItems, sdaiINSTANCE, (void*) secondIfcCurveSegmentInstance);
 
                     {
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
-                        assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
+                        assert(secondIfcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                         sdaiPutAttrBN(								//									!!!!!!!!!!!!!!! IS CREATING ISSUE IN VALIDATION
                                 ifcAlignmentSegmentInstance,
                                 "Representation",
                                 sdaiINSTANCE,
                                 (void*) ___CreateProductDefinitionShapeInstance(
                                                 model,
-                                                ifcCurveSegmentInstance,
+                                                secondIfcCurveSegmentInstance,
                                                 "Segment"
                                             )
                             );
                         char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
+                        sdaiPutAttrBN(secondIfcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
 
                         double   startDirection = 0.;
                         sdaiGetAttrBN(ifcAlignmentHorizontalSegmentInstance, "StartDirection", sdaiREAL, &startDirection);
@@ -1151,7 +1156,7 @@ segmentLength = std::fabs(segmentLength);
 		                                    location.v + sin(startDirection) * endPointFirstHalf.u + cos(startDirection) * endPointFirstHalf.v
 		                                };
 
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location__2, &refDirection__2));
+                        sdaiPutAttrBN(secondIfcCurveSegmentInstance, "Placement", sdaiINSTANCE, (void*) ___CreateAxis2Placement2DInstance(model, &location__2, &refDirection__2));
                     }
 
                     {
@@ -1180,7 +1185,7 @@ segmentLength = std::fabs(segmentLength);
                                         &matrix
                                     );
                     }
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
+                    sdaiPutAttrBN(secondIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcHelmertInstance);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveII = ifcHelmertInstance;
 #endif // _DEBUG
@@ -1196,14 +1201,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthHalf);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1219,7 +1224,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1234,7 +1239,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1245,14 +1250,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthHalf);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(secondIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "LINE")) {
@@ -1261,7 +1266,7 @@ segmentLength = std::fabs(segmentLength);
                                                 model,
                                                 &refDirection
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcLineParentCurveInstance);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcLineParentCurveInstance;
 #endif // _DEBUG
@@ -1277,14 +1282,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1298,7 +1303,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1311,7 +1316,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1322,14 +1327,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "VIENNESEBEND")) {
@@ -1369,7 +1374,7 @@ segmentLength = std::fabs(segmentLength);
                                                 constantTerm  ? segmentLength * pow(std::fabs(constantTerm),  -1. / 1.) * constantTerm  / std::fabs(constantTerm)  : 0.,
                                                 nullptr
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcVienneseBendParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcVienneseBendParentCurve;
 #endif // _DEBUG
@@ -1385,14 +1390,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1413,7 +1418,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1433,7 +1438,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1444,14 +1449,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else if (___equals(predefinedType, "CUBIC")) {
@@ -1581,7 +1586,7 @@ segmentLength = std::fabs(segmentLength);
                                                 nullptr,
                                                 0
                                             );
-                    sdaiPutAttrBN(ifcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicParentCurve);
+                    sdaiPutAttrBN(firstIfcCurveSegmentInstance, "ParentCurve", sdaiINSTANCE, (void*) ifcCubicParentCurve);
 #ifdef _DEBUG
                     horizontalAlignmentParentCurveI = ifcCubicParentCurve;
 #endif // _DEBUG
@@ -1596,14 +1601,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1619,7 +1624,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1634,7 +1639,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1645,14 +1650,14 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
                 else {
@@ -1669,14 +1674,14 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
                             //
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCNONNEGATIVELENGTHMEASURE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                         else {
                             //
@@ -1689,7 +1694,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStartParameterValue);
                             sdaiPutADBTypePath(segmentStartADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                             //
                             //  SegmentLength
@@ -1701,7 +1706,7 @@ segmentLength = std::fabs(segmentLength);
 
                             void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLengthParameterValue);
                             sdaiPutADBTypePath(segmentLengthADB, 1, "IFCPARAMETERVALUE");
-                            sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                            sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                         }
                     }
                     else {
@@ -1712,19 +1717,19 @@ segmentLength = std::fabs(segmentLength);
 
                         void   * segmentStartADB = sdaiCreateADB(sdaiREAL, &segmentStart);
                         sdaiPutADBTypePath(segmentStartADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentStart", sdaiADB, (void*) segmentStartADB);
 
                         //
                         //  SegmentLength
                         //
                         void   * segmentLengthADB = sdaiCreateADB(sdaiREAL, &segmentLength);
                         sdaiPutADBTypePath(segmentLengthADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
+                        sdaiPutAttrBN(firstIfcCurveSegmentInstance, "SegmentLength", sdaiADB, (void*) segmentLengthADB);
                     }
                 }
 
                 SetCurveSegmentTransition4Horizontal(
-                        ifcCurveSegmentInstance,
+                        secondIfcCurveSegmentInstance ? secondIfcCurveSegmentInstance : firstIfcCurveSegmentInstance,
                         predefinedType,
                         predefinedTypePreviousSegment,
                         startRadiusOfCurvature,
@@ -1737,7 +1742,7 @@ segmentLength = std::fabs(segmentLength);
                 ___POINT4D  startPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } },
                             endPnt = { { 0., 0., 0. }, { 0., 0., 0. }, { 0., 0., 0. } };
                 ___GetBorderPoints(
-                        ifcCurveSegmentInstance,
+                        firstIfcCurveSegmentInstance,
                         sdaiGetEntity(model, "IFCCOMPOSITECURVE"),
                         &startPnt,
                         &endPnt
@@ -1777,10 +1782,10 @@ segmentLength = std::fabs(segmentLength);
                 previousEndPnt = endPnt;
 #endif // _DEBUG
 
-                sdaiAppend(aggrCurveSegment, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
+                sdaiAppend(aggrCurveSegment, sdaiINSTANCE, secondIfcCurveSegmentInstance ? (void*) secondIfcCurveSegmentInstance : (void*) firstIfcCurveSegmentInstance);
                 compositeCurveLength += segmentLength;
 
-                mostRecentCurveSegmentInstance = ifcCurveSegmentInstance;
+                mostRecentCurveSegmentInstance = secondIfcCurveSegmentInstance ? secondIfcCurveSegmentInstance : firstIfcCurveSegmentInstance;
 
                 predefinedTypePreviousSegment = predefinedType;
                 endRadiusOfCurvaturePreviousSegment = endRadiusOfCurvature;

@@ -40,7 +40,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
     if (model) {
 #ifdef _DEBUG
-        sdaiSaveModelBN(model, inputFileName);
+/////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!???????????????????????        sdaiSaveModelBN(model, inputFileName);
 #endif // _DEBUG
 
         int_t   * ifcAlignmentInstances = sdaiGetEntityExtentBN(model, "IFCALIGNMENT"),
@@ -69,7 +69,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                         );
 
 #ifdef _DEBUG
-                    {
+        /* {
                         int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
                         sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
                         sdaiPutAttrBN(
@@ -118,7 +118,7 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
                     {
                         if (horizontalAlignmentParentCurveII) {
                             int_t myInstance = sdaiCreateInstanceBN(model, "IFCBUILDINGELEMENTPROXY");
-                            sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*)myInstance);
+                            sdaiAppend(aggrRelatedElements, sdaiINSTANCE, (void*) myInstance);
                             sdaiPutAttrBN(
                                     myInstance,
                                     "Representation",
@@ -181,8 +181,16 @@ int_t    ConvertFile(char * inputFileName, char * generatedFileName)
 
         ValidationResults   results = validateModel(model);
 
+        std::cout << "\n";
         for (ValidationIssue issue = validateGetFirstIssue(results); issue; issue = validateGetNextIssue(issue)) {
+            assert(false);
+
             SdaiInstance    inst = validateGetInstance(issue);
+            if (inst)
+                std::cout << "#" << internalGetP21Line(inst) << " - ";
+            else
+                std::cout << "  - ";
+
             const char      * desc = validateGetDescription(issue);
             std::cout << desc << "\n";
         }

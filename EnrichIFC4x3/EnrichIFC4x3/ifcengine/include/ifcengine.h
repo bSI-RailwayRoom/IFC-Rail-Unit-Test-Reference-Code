@@ -112,7 +112,7 @@ enum class enum_express_declaration : unsigned char
 
 enum class enum_express_attr_type : unsigned char
 {
-	__NONE						= 0,		//	attribute type is unknown here but it may be defined by referenced domain entity
+	__NONE						= 0,					//	attribute type is unknown here but it may be defined by referenced domain entity
 	__BINARY					= 1,
 	__BINARY_32					= 2,
 	__BOOLEAN					= 3,
@@ -134,7 +134,7 @@ enum class enum_express_aggr : unsigned char
 	__BAG						= 2,
 	__LIST						= 3,
 	__SET						= 4,
-	__AGGREGATE					= 5			//	generic aggregate
+	__AGGREGATE					= 5						//	generic aggregate
 };
 
 typedef void		* ValidationResults;
@@ -144,31 +144,32 @@ typedef int_t		ValidationIssueLevel;
 enum class enum_validation_type : uint64_t
 {
 	__NONE						= 0,
-	__NO_OF_ARGUMENTS			= 1 << 0,	//	number of arguments
-	__ARGUMENT_EXPRESS_TYPE		= 1 << 1,	//	argument value is correct entity, defined type or enumeration value
-	__ARGUMENT_PRIM_TYPE		= 1 << 2,	//	argument value has correct primitive type
-	__REQUIRED_ARGUMENTS		= 1 << 3,	//	non-optional arguments values are provided
-	__ARRGEGATION_EXPECTED		= 1 << 4,	//	aggregation is provided when expected
-	__AGGREGATION_NOT_EXPECTED	= 1 << 5,   //	aggregation is not used when not expected
-	__AGGREGATION_SIZE			= 1 << 6,   //	aggregation size
-	__AGGREGATION_UNIQUE		= 1 << 7,	//	elements in aggregations are unique when required
-	__COMPLEX_INSTANCE			= 1 << 8,	//	complex instances contains full parent chains
-	__REFERENCE_EXISTS			= 1 << 9,	//	referenced instance exists
-	__ABSTRACT_ENTITY			= 1 << 10,  //	abstract entity should not instantiate
-	__WHERE_RULE				= 1 << 11,  //	where-rule check
-	__UNIQUE_RULE				= 1 << 12,	//	unique-rule check
-	__STAR_USAGE				= 1 << 13,  //	* is used only for derived arguments
-	__CALL_ARGUMENT				= 1 << 14,  //	validateModel/validateInstance function argument should be model/instance
-	__INTERNAL_ERROR			= 1 << 15   //	unspecified error
+	__KNOWN_ENTITY				= 1 << 0,				//  entity is defined in the schema
+	__NO_OF_ARGUMENTS			= 1 << 1,				//	number of arguments
+	__ARGUMENT_EXPRESS_TYPE		= 1 << 2,				//	argument value is correct entity, defined type or enumeration value
+	__ARGUMENT_PRIM_TYPE		= 1 << 3,				//	argument value has correct primitive type
+	__REQUIRED_ARGUMENTS		= 1 << 4,				//	non-optional arguments values are provided
+	__ARRGEGATION_EXPECTED		= 1 << 5,				//	aggregation is provided when expected
+	__AGGREGATION_NOT_EXPECTED	= 1 << 6,   			//	aggregation is not used when not expected
+	__AGGREGATION_SIZE			= 1 << 7,   			//	aggregation size
+	__AGGREGATION_UNIQUE		= 1 << 8,				//	elements in aggregations are unique when required
+	__COMPLEX_INSTANCE			= 1 << 9,				//	complex instances contains full parent chains
+	__REFERENCE_EXISTS			= 1 << 10,				//	referenced instance exists
+	__ABSTRACT_ENTITY			= 1 << 11,  			//	abstract entity should not instantiate
+	__WHERE_RULE				= 1 << 12,  			//	where-rule check
+	__UNIQUE_RULE				= 1 << 13,				//	unique-rule check
+	__STAR_USAGE				= 1 << 14,  			//	* is used only for derived arguments
+	__CALL_ARGUMENT				= 1 << 15,  			//	validateModel / validateInstance function argument should be model / instance
+	__INTERNAL_ERROR			= UINT64_C(1) << 63   	//	unspecified error
 };
 
 enum class enum_validation_status : unsigned char
 {
 	__NONE						= 0,
-	__COMPLETE_ALL				= 1,		//	all issues proceed
-	__COMPLETE_NOT_ALL			= 2,		//	completed but some issues were excluded by option settings
-	__TIME_EXCEED				= 3,		//	validation was finished because of reach time limit
-	__COUNT_EXCEED				= 4			//	validation was finished because of reach of issue's numbers limit
+	__COMPLETE_ALL				= 1,					//	all issues proceed
+	__COMPLETE_NOT_ALL			= 2,					//	completed but some issues were excluded by option settings
+	__TIME_EXCEED				= 3,					//	validation was finished because of reach time limit
+	__COUNT_EXCEED				= 4						//	validation was finished because of reach of issue's numbers limit
 };
 
 
@@ -1005,41 +1006,6 @@ SdaiModel		DECL STDC	engiGetEntityModel(
 								);
 
 //
-//		engiGetEntityArgument                                   (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgument.html)
-//				SdaiEntity				entity								IN
-//				const char				* argumentName						IN
-//
-//				SdaiAttr				returns								OUT
-//
-//	...
-//
-SdaiAttr		DECL STDC	engiGetEntityArgument(
-									SdaiEntity				entity,
-									const char				* argumentName
-								);
-
-#ifdef __cplusplus
-	}
-#endif
-
-//
-//
-static	inline	SdaiAttr	engiGetEntityArgument(
-									SdaiEntity				entity,
-									char					* argumentName
-								)
-{
-	return	engiGetEntityArgument(
-					entity,
-					(const char*) argumentName
-				);
-}
-
-#ifdef __cplusplus
-	extern "C" {
-#endif
-
-//
 //		engiGetEntityAttributeIndex                             (http://rdf.bg/ifcdoc/CP64/engiGetEntityAttributeIndex.html)
 //				SdaiEntity				entity								IN
 //				const char				* attributeName						IN
@@ -1110,41 +1076,6 @@ static	inline	int_t	engiGetEntityAttributeIndexEx(
 					(const char*) attributeName,
 					countedWithParents,
 					countedWithInverse
-				);
-}
-
-#ifdef __cplusplus
-	extern "C" {
-#endif
-
-//
-//		engiGetEntityArgumentIndex                              (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgumentIndex.html)
-//				SdaiEntity				entity								IN
-//				const char				* argumentName						IN
-//
-//				int_t					returns								OUT
-//
-//	DEPRECATED use engiGetEntityAttributeIndex
-//
-int_t			DECL STDC	engiGetEntityArgumentIndex(
-									SdaiEntity				entity,
-									const char				* argumentName
-								);
-
-#ifdef __cplusplus
-	}
-#endif
-
-//
-//
-static	inline	int_t	engiGetEntityArgumentIndex(
-								SdaiEntity				entity,
-								char					* argumentName
-							)
-{
-	return	engiGetEntityArgumentIndex(
-					entity,
-					(const char*) argumentName
 				);
 }
 
@@ -1390,30 +1321,6 @@ int_t			DECL STDC	engiGetEntityNoAttributesEx(
 									SdaiEntity				entity,
 									bool					includeParent,
 									bool					includeInverse
-								);
-
-//
-//		engiGetEntityNoArguments                                (http://rdf.bg/ifcdoc/CP64/engiGetEntityNoArguments.html)
-//				SdaiEntity				entity								IN
-//
-//				int_t					returns								OUT
-//
-//	DEPRECATED use engiGetEntityNoAttributes
-//
-int_t			DECL STDC	engiGetEntityNoArguments(
-									SdaiEntity				entity
-								);
-
-//
-//		engiGetAttributeType                                    (http://rdf.bg/ifcdoc/CP64/engiGetAttributeType.html)
-//				const SdaiAttr			attribute							IN
-//
-//				SdaiPrimitiveType		returns								OUT
-//
-//	DEPRECATED use engiGetAttrType
-//
-SdaiPrimitiveType	DECL STDC	engiGetAttributeType(
-									const SdaiAttr			attribute
 								);
 
 //
@@ -2272,59 +2179,6 @@ const char		DECL * STDC	sdaiGetADBTypePath(
 								);
 
 //
-//		sdaiGetADBTypePathx                                     (http://rdf.bg/ifcdoc/CP64/sdaiGetADBTypePathx.html)
-//				const SdaiADB			ADB									IN
-//				int_t					typeNameNumber						IN
-//				const char				** path								IN / OUT
-//
-//				const char				* returns							OUT
-//
-//	This call is the same as sdaiGetADBTypePath, however can be used by porting to languages that have issues with returned char arrays.
-//
-const char		DECL * STDC	sdaiGetADBTypePathx(
-									const SdaiADB			ADB,
-									int_t					typeNameNumber,
-									const char				** path
-								);
-
-#ifdef __cplusplus
-	}
-#endif
-
-//
-//
-static	inline	const char	* sdaiGetADBTypePathx(
-									const SdaiADB			ADB,
-									int_t					typeNameNumber,
-									char					** path
-								)
-{
-	return	sdaiGetADBTypePathx(
-					ADB,
-					typeNameNumber,
-					(const char**) path
-				);
-}
-
-//
-//
-static	inline	const char	* sdaiGetADBTypePathx(
-									const SdaiADB			ADB,
-									int_t					typeNameNumber
-								)
-{
-	return	sdaiGetADBTypePathx(
-					ADB,
-					typeNameNumber,
-					(const char**) nullptr				//	path
-				);
-}
-
-#ifdef __cplusplus
-	extern "C" {
-#endif
-
-//
 //		sdaiGetADBValue                                         (http://rdf.bg/ifcdoc/CP64/sdaiGetADBValue.html)
 //				const SdaiADB			ADB									IN
 //				SdaiPrimitiveType		valueType							IN
@@ -3036,12 +2890,24 @@ static	inline	SdaiAttr	sdaiGetAttrDefinition(
 #endif
 
 //
+//		sdaiGetInstanceModel                                    (http://rdf.bg/ifcdoc/CP64/sdaiGetInstanceModel.html)
+//				SdaiInstance			instance							IN
+//
+//				SdaiModel				returns								OUT
+//
+//	Returns the model based on an instance.
+//
+SdaiModel		DECL STDC	sdaiGetInstanceModel(
+									SdaiInstance			instance
+								);
+
+//
 //		sdaiGetInstanceType                                     (http://rdf.bg/ifcdoc/CP64/sdaiGetInstanceType.html)
 //				SdaiInstance			instance							IN
 //
 //				SdaiEntity				returns								OUT
 //
-//	...
+//	Returns the entity based on an instance.
 //
 SdaiEntity		DECL STDC	sdaiGetInstanceType(
 									SdaiInstance			instance
@@ -3563,7 +3429,7 @@ static	inline	int_t	sdaiFindInstanceUsedInBN(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiPrepend (aggr, sdaiADB, val);							ifcengine.sdaiPrepend (aggr, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -3673,7 +3539,7 @@ static	inline	void	sdaiPrepend(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiAppend (aggr, sdaiADB, val);							ifcengine.sdaiAppend (aggr, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -3783,7 +3649,7 @@ static	inline	void	sdaiAppend(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiAdd (aggr, sdaiADB, val);								ifcengine.sdaiAdd (aggr, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -3894,7 +3760,7 @@ static	inline	void	sdaiAdd(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiInsertByIndex (aggr, sdaiADB, val);						ifcengine.sdaiInsertByIndex (aggr, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -4004,11 +3870,7 @@ static	inline	void	sdaiInsertByIndex(
 //							sdaiAppend (val, sdaiINSTANCE, inst);						ifcengine.sdaiAppend (val, ifcengine.sdaiINSTANCE, inst);
 //							SdaiADB adb = sdaiCreateADB (sdaiAGGR, val);				int_t adb = ifcengine.sdaiCreateADB (ifcengine.sdaiAGGR, val);
 //
-//	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
-//							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
-//							SdaiADB adb = sdaiCreateADB (sdaiADB, val);					int_t adb = ifcengine.sdaiCreateADB (ifcengine.sdaiADB, val);	
-//							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
+//	sdaiADB					not applicable
 //
 //	TCHAR is “char” or “wchar_t” depending on setStringUnicode.
 //	(Non-standard behavior) sdaiLOGICAL behaves differently from ISO 10303-24-2001: it expects char* while standard declares int_t
@@ -4031,7 +3893,7 @@ static	inline	void	sdaiInsertByIndex(
 //	sdaiEXPRESSSTRING	 .			 .			 .			 .			 .			 .			Yes			 .			 .			 .
 //	sdaiINSTANCE		 .			 .			 .			 .			 .			 .			 .			Yes			 .			 .
 //	sdaiAGGR			 .			 .			 .			 .			 .			 .			 .			 .			Yes			 .
-//	sdaiADB				Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			Yes			 .
+//	sdaiADB				 .			 .			 .			 .			 .			 .			 .			 .			 .			 .
 //
 SdaiADB			DECL STDC	sdaiCreateADB(
 									SdaiPrimitiveType		valueType,
@@ -4327,7 +4189,7 @@ static	inline	void	sdaiPutADBTypePath(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiPutAttr (inst, attr, sdaiADB, val);						ifcengine.sdaiPutAttr (inst, attr, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -4441,7 +4303,7 @@ static	inline	void	sdaiPutAttr(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiPutAttrBN (inst, "attrName", sdaiADB, val);				ifcengine.sdaiPutAttrBN (inst, "attrName", ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -4755,7 +4617,14 @@ static	inline	SdaiInstance	sdaiCreateInstanceBNEI(
 //
 //				void					returns
 //
-//	...
+//	This call sets the segmentation for any curved part of an object in case it is defined by a circle, ellipse, nurbs etc.
+//
+//	If segmentationParts is set to 0 it will fallback on the default setting (i.e. 36),
+//	it makes sense to change the segmentation depending on the entity type that is visualized.
+//
+//	in case segmentationLength is non-zero, this is the maximum length (in file length unit definition) of a segment
+//	For example a slightly curved wall with large size will get much more precise segmentation as the segmentLength
+//	will force the segmentation for the wall to increase.
 //
 void			DECL STDC	setSegmentation(
 									SdaiModel				model,
@@ -4771,7 +4640,11 @@ void			DECL STDC	setSegmentation(
 //
 //				void					returns
 //
-//	...
+//	This returns the set values for segmentationParts and segmentationLength. Both attributes are optional.
+//	The values can be changed through the API call setSegmentation().
+//	The default values are
+//		segmentationParts  = 36
+//		segmentationLength = 0.
 //
 void			DECL STDC	getSegmentation(
 									SdaiModel				model,
@@ -4826,7 +4699,12 @@ int_t			DECL STDC	getEpsilon(
 //
 //				void					returns
 //
-//	...
+//	Please use the setSegmentation call, note it is now a call that is model dependent.
+//
+//	The circleSegments(circles, smallCircles) can be replaced with
+//		double	segmentationLength = 0.;
+//		getSegmentation(model, nullptr, &segmentationLength);
+//		setSegmentation(model, circles, segmentationLength);
 //
 void			DECL STDC	circleSegments(
 									int_t					circles,
@@ -4840,7 +4718,12 @@ void			DECL STDC	circleSegments(
 //
 //				void					returns
 //
-//	...
+//	Please use setSegmentation call
+//
+//	The callsetMaximumSegmentationLength(model, length) can be replaced with
+//		int_t segmentationParts = 0;
+//		getSegmentation(model, &segmentationParts, nullptr);
+//		setSegmentation(model, segmentationParts, length);
 //
 void			DECL STDC	setMaximumSegmentationLength(
 									SdaiModel				model,
@@ -4848,7 +4731,7 @@ void			DECL STDC	setMaximumSegmentationLength(
 								);
 
 //
-//		getUnitConversionFactor                                 (http://rdf.bg/ifcdoc/CP64/getUnitConversionFactor.html)
+//		getProjectUnitConversionFactor                          (http://rdf.bg/ifcdoc/CP64/getProjectUnitConversionFactor.html)
 //				SdaiModel				model								IN
 //				const char				* unitType							IN
 //				const char				** unitPrefix						IN / OUT
@@ -4859,7 +4742,7 @@ void			DECL STDC	setMaximumSegmentationLength(
 //
 //	...
 //
-double			DECL STDC	getUnitConversionFactor(
+double			DECL STDC	getProjectUnitConversionFactor(
 									SdaiModel				model,
 									const char				* unitType,
 									const char				** unitPrefix,
@@ -4873,7 +4756,7 @@ double			DECL STDC	getUnitConversionFactor(
 
 //
 //
-static	inline	double	getUnitConversionFactor(
+static	inline	double	getProjectUnitConversionFactor(
 								SdaiModel				model,
 								char					* unitType,
 								char					** unitPrefix,
@@ -4881,9 +4764,52 @@ static	inline	double	getUnitConversionFactor(
 								char					** SIUnitName
 							)
 {
-	return	getUnitConversionFactor(
+	return	getProjectUnitConversionFactor(
 					model,
 					(const char*) unitType,
+					(const char**) unitPrefix,
+					(const char**) unitName,
+					(const char**) SIUnitName
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		getUnitInstanceConversionFactor                         (http://rdf.bg/ifcdoc/CP64/getUnitInstanceConversionFactor.html)
+//				SdaiInstance			unitInstance						IN
+//				const char				** unitPrefix						IN / OUT
+//				const char				** unitName							IN / OUT
+//				const char				** SIUnitName						IN / OUT
+//
+//				double					returns								OUT
+//
+//	...
+//
+double			DECL STDC	getUnitInstanceConversionFactor(
+									SdaiInstance			unitInstance,
+									const char				** unitPrefix,
+									const char				** unitName,
+									const char				** SIUnitName
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	double	getUnitInstanceConversionFactor(
+								SdaiInstance			unitInstance,
+								char					** unitPrefix,
+								char					** unitName,
+								char					** SIUnitName
+							)
+{
+	return	getUnitInstanceConversionFactor(
+					unitInstance,
 					(const char**) unitPrefix,
 					(const char**) unitName,
 					(const char**) SIUnitName
@@ -4904,7 +4830,32 @@ static	inline	double	getUnitConversionFactor(
 //
 //				void					returns
 //
-//	...
+//	This call can be used to optimize Boundary Representation geometries
+//
+//		consistencyCheck
+//			bit0  (1)		merge elements in the vertex array are duplicated (epsilon used as distance)
+//			bit1  (2)		remove elements in the vertex array that are not referenced by elements in the index array (interpreted as SET if flags are defined)
+//			bit2  (4)		merge polygons placed in the same plane and sharing at least one edge
+//			bit3  (8)		merge polygons advanced (check of polygons have the opposite direction and are overlapping, but don't share points)
+//			bit4  (16)		check if faces are wrongly turned opposite from each other
+//			bit5  (32)		check if faces are inside-out
+//			bit6  (64)		check if faces result in solid, if not generate both sided faces
+//			bit7  (128)		invert direction of the faces / normals
+//			bit8  (256)		export all faces as one conceptual face
+//			bit9  (512)		remove irrelevant intermediate points on lines
+//			bit10 (1024)	check and repair faces that are not defined in a perfect plane
+//
+//		fraction
+//			To compare adjecent faces, they will be defined as being part of the same conceptual face if the fraction
+//			value is larger then the dot product of the normal vector's of the individual faces.
+//
+//		epsilon
+//			This value is used to compare vertex elements, if vertex elements should be merged and the distance is smaller than this epsilon value
+//			then it will be defined as equal
+//
+//		maxVerticesSize
+//			if 0 this setting is applied to BoundaryRepresentation based geometries
+//			if larger than 0 it is applied to all BoundaryRepresentation based geometries with vertices size smaller or equal to the given number
 //
 void			DECL STDC	setBRepProperties(
 									SdaiModel				model,
@@ -4921,7 +4872,12 @@ void			DECL STDC	setBRepProperties(
 //
 //				void					returns
 //
-//	...
+//	This call forces cleaning of memory allocated.
+//	The following mode values are effected:
+//		0	non-cached geometry tree structures
+//		1	cached and non-cached geometry tree structures + resetting buffers for internally used Geometry Kernel instance
+//		3	cached and non-cached geometry tree structures
+//		4	clean memory allocated within a session for ADB structures and string values (including enumerations requested as wide char).
 //
 void			DECL STDC	cleanMemory(
 									SdaiModel				model,
@@ -4934,7 +4890,7 @@ void			DECL STDC	cleanMemory(
 //
 //				ExpressID				returns								OUT
 //
-//	...
+//	Returns the line STEP / Express ID of an instance
 //
 ExpressID		DECL STDC	internalGetP21Line(
 									SdaiInstance			instance
@@ -4947,7 +4903,7 @@ ExpressID		DECL STDC	internalGetP21Line(
 //
 //				SdaiInstance			returns								OUT
 //
-//	...
+//	Returns an instance based on the model and STEP / Express ID (even when the instance itself might be non-existant)
 //
 SdaiInstance	DECL STDC	internalForceInstanceFromP21Line(
 									SdaiModel				model,
@@ -4961,7 +4917,7 @@ SdaiInstance	DECL STDC	internalForceInstanceFromP21Line(
 //
 //				SdaiInstance			returns								OUT
 //
-//	...
+//	Returns an instance based on the model and STEP / Express ID
 //
 SdaiInstance	DECL STDC	internalGetInstanceFromP21Line(
 									SdaiModel				model,
@@ -5132,7 +5088,7 @@ static	inline	SdaiAggr	xxxxGetEntityAndSubTypesExtentBN(
 //
 //				SdaiAggr				returns								OUT
 //
-//	...
+//	This call returns an aggregation containing all instances.
 //
 SdaiAggr		DECL STDC	xxxxGetAllInstances(
 									SdaiModel				model
@@ -5144,7 +5100,9 @@ SdaiAggr		DECL STDC	xxxxGetAllInstances(
 //
 //				SdaiAggr				returns								OUT
 //
-//	...
+//	This call returns an aggregation containing all instances referencing the given instance.
+//
+//	note: this is independent from if there are inverse relations defining such an aggregation or parts of it.
 //
 SdaiAggr		DECL STDC	xxxxGetInstancesUsing(
 									SdaiInstance			instance
@@ -5362,7 +5320,7 @@ void			DECL * STDC	sdaiGetAggrByIterator(
 //
 //	sdaiADB					int_t integerValue = 123;									int_t integerValue = 123;	
 //							SdaiADB val = sdaiCreateADB (sdaiINTEGER, &integerValue);	int_t val = ifcengine.sdaiCreateADB (ifcengine.sdaiINTEGER, ref integerValue);
-//							sdaiPutADBTypePath (val, 1, "INTEGER");						ifcengine.sdaiPutADBTypePath (val, 1, "INTEGER");
+//							sdaiPutADBTypePath (val, 1, "IFCINTEGER");					ifcengine.sdaiPutADBTypePath (val, 1, "IFCINTEGER");
 //							sdaiPutAggrByIterator (iter, sdaiADB, val);					ifcengine.sdaiPutAggrByIterator (iter, ifcengine.sdaiADB, val);	
 //							sdaiDeleteADB (val);										ifcengine.sdaiDeleteADB (val);
 //
@@ -5537,7 +5495,11 @@ int_t			DECL STDC	sdaiErrorQuery(
 //
 //				void					returns
 //
-//	...
+//	Returns a handle to the model within the Geometry Kernel.
+//
+//	Note: the STEP Engine uses one or more models within the Geometry Kernel to generate design trees
+//		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP model handle also,
+//		  however most correct would be to get and use the Geometry Kernel handle.
 //
 void			DECL STDC	owlGetModel(
 									SdaiModel				model,
@@ -5552,7 +5514,11 @@ void			DECL STDC	owlGetModel(
 //
 //				void					returns
 //
-//	...
+//	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
+//
+//	Note: the STEP Engine uses one or more models within the Geometry Kernel to generate design trees
+//		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
+//		  however most correct would be to get and use the Geometry Kernel handle.
 //
 void			DECL STDC	owlGetInstance(
 									SdaiModel				model,
@@ -5584,7 +5550,12 @@ void			DECL STDC	owlMaterialInstance(
 //
 //				void					returns
 //
-//	...
+//	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
+//	If no design tree is created yet it will be created on-the-fly.
+//
+//	Note: the STEP Engine uses one or more models within the Geometry Kernel to generate design trees
+//		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
+//		  however most correct would be to get and use the Geometry Kernel handle.
 //
 void			DECL STDC	owlBuildInstance(
 									SdaiModel				model,
@@ -5600,7 +5571,12 @@ void			DECL STDC	owlBuildInstance(
 //
 //				void					returns
 //
-//	...
+//	Returns a handle to the instance representing the head of design tree within the Geometry Kernel.
+//	If no design tree is created yet it will be created on-the-fly.
+//
+//	Note: the STEP Engine uses one or more models within the Geometry Kernel to generate design trees
+//		  within the Geometry Kernel. All Geometry Kernel calls can be called with the STEP instance handle also,
+//		  however most correct would be to get and use the Geometry Kernel handle.
 //
 void			DECL STDC	owlBuildInstanceInContext(
 									SdaiInstance			instanceBase,
@@ -5912,7 +5888,15 @@ int_t			DECL STDC	getInstanceReference(
 //
 //				int_t					returns								OUT
 //
-//	...
+//	This call allows certain constructs to complete implicitely already available data
+//	Specifically for IFC4.3 and higher calls using the instances of the following entities are supported:
+//		IfcAlignment	   => in case business logic is defined and not geometricaly representation is available yet
+//							  the geometrical representation will be constructed on the fly, i.e.
+//							  an IfcCompositeCurve with IfcCurveSegment instances for the horizontal alignment 
+//							  an IfcGradientCurve with IfcCurveSegment instances for the vertical alignment 
+//							  an IfcSegmentedReferenceCurve with IfcCurveSegment instances for the cant alignment
+//		IfcLinearPlacement => in case CartesianPosition is empty the internally calculated matrix will be
+//							  represented as an IfcAxis2Placement
 //
 int_t			DECL STDC	inferenceInstance(
 									SdaiInstance			instance
@@ -5935,6 +5919,77 @@ int_t			DECL STDC	sdaiValidateSchemaInstance(
 //
 
 //
+//		engiGetEntityNoArguments                                (http://rdf.bg/ifcdoc/CP64/engiGetEntityNoArguments.html)
+//				SdaiEntity				entity								IN
+//
+//				int_t					returns								OUT
+//
+//	DEPRECATED use engiGetEntityNoAttributes
+//
+int_t			DECL STDC	engiGetEntityNoArguments(
+									SdaiEntity				entity
+								);
+
+//
+//		engiGetAttributeType                                    (http://rdf.bg/ifcdoc/CP64/engiGetAttributeType.html)
+//				const SdaiAttr			attribute							IN
+//
+//				SdaiPrimitiveType		returns								OUT
+//
+//	DEPRECATED use engiGetAttrType
+//
+SdaiPrimitiveType	DECL STDC	engiGetAttributeType(
+									const SdaiAttr			attribute
+								);
+
+//
+//		engiGetEntityArgumentIndex                              (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgumentIndex.html)
+//				SdaiEntity				entity								IN
+//				const char				* argumentName						IN
+//
+//				int_t					returns								OUT
+//
+//	DEPRECATED use engiGetEntityAttributeIndex
+//
+int_t			DECL STDC	engiGetEntityArgumentIndex(
+									SdaiEntity				entity,
+									const char				* argumentName
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	int_t	engiGetEntityArgumentIndex(
+								SdaiEntity				entity,
+								char					* argumentName
+							)
+{
+	return	engiGetEntityArgumentIndex(
+					entity,
+					(const char*) argumentName
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		engiAttrIsInverse                                       (http://rdf.bg/ifcdoc/CP64/engiAttrIsInverse.html)
+//				const SdaiAttr			attribute							IN
+//
+//				int_t					returns								OUT
+//
+//	This call is deprecated, please use call engiAttrIsInverse instead.
+//
+int_t			DECL STDC	engiAttrIsInverse(
+									const SdaiAttr			attribute
+								);
+
+//
 //		engiGetAggrElement                                      (http://rdf.bg/ifcdoc/CP64/engiGetAggrElement.html)
 //				const SdaiAggr			aggregate							IN
 //				SdaiInteger				index								IN
@@ -5953,16 +6008,92 @@ void			DECL * STDC	engiGetAggrElement(
 								);
 
 //
-//		engiAttrIsInverse                                       (http://rdf.bg/ifcdoc/CP64/engiAttrIsInverse.html)
-//				const SdaiAttr			attribute							IN
+//		engiGetEntityArgument                                   (http://rdf.bg/ifcdoc/CP64/engiGetEntityArgument.html)
+//				SdaiEntity				entity								IN
+//				const char				* argumentName						IN
 //
-//				int_t					returns								OUT
+//				SdaiAttr				returns								OUT
 //
-//	This call is deprecated, please use call engiAttrIsInverse instead.
+//	Deprecated, please use the API call sdaiGetAttrDefinition() instead
 //
-int_t			DECL STDC	engiAttrIsInverse(
-									const SdaiAttr			attribute
+SdaiAttr		DECL STDC	engiGetEntityArgument(
+									SdaiEntity				entity,
+									const char				* argumentName
 								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	SdaiAttr	engiGetEntityArgument(
+									SdaiEntity				entity,
+									char					* argumentName
+								)
+{
+	return	engiGetEntityArgument(
+					entity,
+					(const char*) argumentName
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		sdaiGetADBTypePathx                                     (http://rdf.bg/ifcdoc/CP64/sdaiGetADBTypePathx.html)
+//				const SdaiADB			ADB									IN
+//				int_t					typeNameNumber						IN
+//				const char				** path								IN / OUT
+//
+//				const char				* returns							OUT
+//
+//	This call is deprecated, please use call sdaiGetADBTypePath instead.
+//
+const char		DECL * STDC	sdaiGetADBTypePathx(
+									const SdaiADB			ADB,
+									int_t					typeNameNumber,
+									const char				** path
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	const char	* sdaiGetADBTypePathx(
+									const SdaiADB			ADB,
+									int_t					typeNameNumber,
+									char					** path
+								)
+{
+	return	sdaiGetADBTypePathx(
+					ADB,
+					typeNameNumber,
+					(const char**) path
+				);
+}
+
+//
+//
+static	inline	const char	* sdaiGetADBTypePathx(
+									const SdaiADB			ADB,
+									int_t					typeNameNumber
+								)
+{
+	return	sdaiGetADBTypePathx(
+					ADB,
+					typeNameNumber,
+					(const char**) nullptr				//	path
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
 
 //
 //		xxxxOpenModelByStream                                   (http://rdf.bg/ifcdoc/CP64/xxxxOpenModelByStream.html)

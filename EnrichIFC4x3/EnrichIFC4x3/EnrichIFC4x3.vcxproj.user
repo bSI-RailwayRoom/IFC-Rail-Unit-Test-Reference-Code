@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>"01.ifc"   "01-1.ifc"   "01-C.txt"   100 "2CV"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\IFCRAIL\IFC-Rail-Unit-Test-Reference-Code\alignment_testset\IFC-OriginalFiles\VerticalAlignment\Clothoid_100.0_10.0_0.0_-0.5_1_Meter.ifc"   "01-1.ifc"   "01-C.txt"   100 "2CV"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\IFCRAIL\IFC-Rail-Unit-Test-Reference-Code\EnrichIFC4x3\x64\Debug</LocalDebuggerWorkingDirectory>
   </PropertyGroup>

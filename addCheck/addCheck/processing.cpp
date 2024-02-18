@@ -124,7 +124,7 @@ int_t	buildPropertySetInstance(int_t model, int_t ifcOwnerHistoryInstance, doubl
     sdaiPutAttrBN(ifcPropertySetInstance, (char*) "OwnerHistory", sdaiINSTANCE, (void*) ifcOwnerHistoryInstance);
 	sdaiPutAttrBN(ifcPropertySetInstance, (char*) "Name", sdaiSTRING, (char*) "ValidationPset");
     aggrHasProperties = sdaiCreateAggrBN(ifcPropertySetInstance, (char*) "HasProperties");
-    sdaiAppend((int_t) aggrHasProperties, sdaiINSTANCE, (void*) buildPropertySingleValueInstance(model, length));
+    sdaiAppend(aggrHasProperties, sdaiINSTANCE, (void*) buildPropertySingleValueInstance(model, length));
 
 	return	ifcPropertySetInstance;
 }
@@ -137,7 +137,7 @@ int_t   buildRelDefinedByPropertiesInstance(int_t model, int_t ifcObjectInstance
     sdaiPutAttrBN(ifcRelDefinedByPropertiesInstance, (char*) "GlobalId", engiGLOBALID, (void*) 0);
     sdaiPutAttrBN(ifcRelDefinedByPropertiesInstance, (char*) "OwnerHistory", sdaiINSTANCE, (void*) ifcOwnerHistoryInstance);
     aggrRelatedObjects = sdaiCreateAggrBN(ifcRelDefinedByPropertiesInstance, (char*) "RelatedObjects");
-    sdaiAppend((int_t) aggrRelatedObjects, sdaiINSTANCE, (void*) ifcObjectInstance);
+    sdaiAppend(aggrRelatedObjects, sdaiINSTANCE, (void*) ifcObjectInstance);
     sdaiPutAttrBN(ifcRelDefinedByPropertiesInstance, (char*) "RelatingPropertyDefinition", sdaiINSTANCE, (void*) buildPropertySetInstance(model, ifcOwnerHistoryInstance, length));
 
     return  ifcRelDefinedByPropertiesInstance;
@@ -170,11 +170,11 @@ int_t    AddInstancePointList(int_t model, double * vertexBuffer, int32_t * line
                     y = vertexBuffer[3 * lineVertexBuffer[i] + 1];
                     z = vertexBuffer[3 * lineVertexBuffer[i] + 2];
                     int_t   * aggrPoint = sdaiCreateAggr(ifcCartesianPointList3DInstance, nullptr);
-                    sdaiAppend((int_t) aggrPoint, sdaiREAL, &x);
-                    sdaiAppend((int_t) aggrPoint, sdaiREAL, &y);
-                    sdaiAppend((int_t) aggrPoint, sdaiREAL, &z);
+                    sdaiAppend(aggrPoint, sdaiREAL, &x);
+                    sdaiAppend(aggrPoint, sdaiREAL, &y);
+                    sdaiAppend(aggrPoint, sdaiREAL, &z);
 
-                    sdaiAppend((int_t) aggrCoordList, sdaiAGGR, (void*) aggrPoint);
+                    sdaiAppend(aggrCoordList, sdaiAGGR, (void*) aggrPoint);
                 }
             }
 
@@ -194,10 +194,10 @@ int_t    AddInstancePointList(int_t model, double * vertexBuffer, int32_t * line
                     x = vertexBuffer[3 * lineVertexBuffer[i] + 0];
                     y = vertexBuffer[3 * lineVertexBuffer[i] + 1];
                     int_t   * aggrPoint = sdaiCreateAggr(ifcCartesianPointList2DInstance, nullptr);
-                    sdaiAppend((int_t) aggrPoint, sdaiREAL, &x);
-                    sdaiAppend((int_t) aggrPoint, sdaiREAL, &y);
+                    sdaiAppend(aggrPoint, sdaiREAL, &x);
+                    sdaiAppend(aggrPoint, sdaiREAL, &y);
 
-                    sdaiAppend((int_t) aggrCoordList, sdaiAGGR, (void*) aggrPoint);
+                    sdaiAppend(aggrCoordList, sdaiAGGR, (void*) aggrPoint);
                 }
             }
 
@@ -233,7 +233,7 @@ int_t    AddInstancePointList(int_t model, double * vertexBuffer, int32_t * line
         char    representationType[6] = "Curve";
         sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationType", sdaiSTRING, (void*) representationType);
         int_t   * aggrItems = sdaiCreateAggrBN(ifcShapeRepresentationInstance, "Items");
-        sdaiAppend((int_t) aggrItems, sdaiINSTANCE, (void*) ifcIndexedPolyCurveInstance);
+        sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcIndexedPolyCurveInstance);
 
         return  ifcShapeRepresentationInstance;
     }
@@ -354,7 +354,7 @@ void	WalkEntityInstances(int_t model, char * entityName, int_t * pIfcOwnerHistor
                 int_t   * aggrRepresentations = nullptr;
                 sdaiGetAttrBN(ifcProductRepresentationInstance, "Representations", sdaiAGGR, (void*) &aggrRepresentations);
 
-                sdaiAppend((int_t) aggrRepresentations, sdaiINSTANCE, (void*) myInstance);
+                sdaiAppend(aggrRepresentations, sdaiINSTANCE, (void*) myInstance);
 
                 //
                 //  Add property

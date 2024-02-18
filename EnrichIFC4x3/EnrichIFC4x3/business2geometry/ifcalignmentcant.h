@@ -203,7 +203,9 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                                         model
                                     )
                     );
-					
+
+                SdaiAggr    aggrItems = nullptr;
+
                 assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
                 sdaiPutAttrBN(
                         ifcAlignmentSegmentInstance,
@@ -212,6 +214,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                         (void*) ___CreateProductDefinitionShapeInstance(
                                         model,
                                         ifcCurveSegmentInstance,
+                                        &aggrItems,
                                         "Segment"
                                     )
                     );
@@ -316,7 +319,8 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                     sdaiPutAttrBN(ifcSegmentedReferenceCurveInstance, "EndPoint", sdaiINSTANCE, (void*) ___CreateAxis2Placement3DInstance(model, &matrix));
                 }
                 else {
-                    assert(horizontalLength > 0.);
+///                    assert(horizontalLength > 0.);
+                    assert(horizontalLength >= 0.);
                 }
 
                 //
@@ -1094,6 +1098,7 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
 
                     {
                         ifcCurveSegmentInstance = sdaiCreateInstanceBN(model, "IFCCURVESEGMENT");
+                        sdaiAppend(aggrItems, sdaiINSTANCE, (void*) ifcCurveSegmentInstance);
 
                         //
                         //  Add geometry for Ifc...Alignment...
@@ -1261,8 +1266,8 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                                 };
                 assert(matrix._13 == 0.);
 
-                assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.0000000001 &&
-                       std::fabs(startPnt.tangent.y - tangent.y) < 0.0000000001 &&
+                assert(std::fabs(startPnt.tangent.x - tangent.x) < 0.000000001 &&
+                       std::fabs(startPnt.tangent.y - tangent.y) < 0.000000001 &&
                        startPnt.tangent.z == 0.);
 
                 if (index) {

@@ -1793,6 +1793,254 @@ OwlInstance		DECL STDC	CopyInstanceNetwork(
 								);
 
 //
+//		EncodeBase64                                            (http://rdf.bg/gkdoc/CP64/EncodeBase64.html)
+//				char					* output							IN / OUT
+//				const unsigned char		* input								IN
+//				int64_t					size								IN
+//				bool					terminator							IN
+//
+//				int64_t					returns								OUT
+//
+//	Function to encode any data input array into a BASE64 string.
+//
+//	The output string has to be allocated by the host. The return value defines the length of the string size in bytes.
+//
+//	Terminator adds a 0 element to the end of the BASE64 generated string, it will NOT increase the length.
+//
+//	If output is nullptr the length will be calculated but the string itself will not be generated.
+//
+int64_t			DECL STDC	EncodeBase64(
+									char					* output,
+									const unsigned char		* input,
+									int64_t					size,
+									bool					terminator
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	int64_t	EncodeBase64(
+								char					* output,
+								const unsigned char		* input,
+								int64_t					size
+							)
+{
+	return	EncodeBase64(
+					output,
+					input,
+					size,
+					false								//	terminator
+				);
+}
+
+//
+//
+static	inline	char	* EncodeBase64(
+								const unsigned char		* input,
+								int64_t					size
+							)
+{
+	char	* output = new char[(int_t) EncodeBase64(nullptr, input, size) / sizeof(char) + 1];
+
+	EncodeBase64(
+			output,
+			input,
+			size,
+			true								//	terminator
+		);
+
+	return  output;
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		EncodeBase64W                                           (http://rdf.bg/gkdoc/CP64/EncodeBase64W.html)
+//				wchar_t					* output							IN / OUT
+//				const unsigned char		* input								IN
+//				int64_t					size								IN
+//				bool					terminator							IN
+//
+//				int64_t					returns								OUT
+//
+//	Function to encode any data input array into a BASE64 string.
+//
+//	The output string has to be allocated by the host. The return value defines the length of the string size in bytes.
+//
+//	Terminator adds a 0 element to the end of the BASE64 generated string, it will NOT increase the length.
+//
+//	If output is nullptr the length will be calculated but the string itself will not be generated.
+//
+int64_t			DECL STDC	EncodeBase64W(
+									wchar_t					* output,
+									const unsigned char		* input,
+									int64_t					size,
+									bool					terminator
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	int64_t	EncodeBase64W(
+								wchar_t					* output,
+								const unsigned char		* input,
+								int64_t					size
+							)
+{
+	return	EncodeBase64W(
+					output,
+					input,
+					size,
+					false								//	terminator
+				);
+}
+
+//
+//
+static	inline	wchar_t	* EncodeBase64W(
+								const unsigned char		* input,
+								int64_t					size
+							)
+{
+	wchar_t * output = new wchar_t[(int_t) EncodeBase64(nullptr, input, size) / sizeof(wchar_t) + 1];
+
+	EncodeBase64W(
+			output,
+			input,
+			size,
+			true								//	terminator
+		);
+
+	return  output;
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		DecodeBase64                                            (http://rdf.bg/gkdoc/CP64/DecodeBase64.html)
+//				unsigned char			* output							IN / OUT
+//				const char				* input								IN
+//				int64_t					size								IN
+//
+//				int64_t					returns								OUT
+//
+//	Function to decode a BASE64 string into any data output array.
+//
+//	The BASE64 string is measured by the (non-zero) size given or by the terminator.
+//
+//	If output is nullptr the length will be calculated but the string itself will not be generated.
+//
+int64_t			DECL STDC	DecodeBase64(
+									unsigned char			* output,
+									const char				* input,
+									int64_t					size
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	int64_t	DecodeBase64(
+								unsigned char			* output,
+								char					* input,
+								int64_t					size
+							)
+{
+	return	DecodeBase64(
+					output,
+					(const char*) input,
+					size
+				);
+}
+
+//
+//
+static	inline	int64_t	DecodeBase64(
+								unsigned char			* output,
+								const char				* input
+							)
+{
+	return	DecodeBase64(
+					output,
+					input,
+					0									//	size
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
+//		DecodeBase64W                                           (http://rdf.bg/gkdoc/CP64/DecodeBase64W.html)
+//				unsigned char			* output							IN / OUT
+//				const wchar_t			* input								IN
+//				int64_t					size								IN
+//
+//				int64_t					returns								OUT
+//
+//	Function to decode a BASE64 string into any data output array.
+//
+//	The BASE64 string is measured by the (non-zero) size given or by the terminator.
+//
+//	If output is nullptr the length will be calculated but the string itself will not be generated.
+//
+int64_t			DECL STDC	DecodeBase64W(
+									unsigned char			* output,
+									const wchar_t			* input,
+									int64_t					size
+								);
+
+#ifdef __cplusplus
+	}
+#endif
+
+//
+//
+static	inline	int64_t	DecodeBase64W(
+								unsigned char			* output,
+								wchar_t					* input,
+								int64_t					size
+							)
+{
+	return	DecodeBase64W(
+					output,
+					(const wchar_t*) input,
+					size
+				);
+}
+
+//
+//
+static	inline	int64_t	DecodeBase64W(
+								unsigned char			* output,
+								const wchar_t			* input
+							)
+{
+	return	DecodeBase64W(
+					output,
+					input,
+					0									//	size
+				);
+}
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
+//
 //		CopyModel                                               (http://rdf.bg/gkdoc/CP64/CopyModel.html)
 //				OwlModel				sourceModel							IN
 //				OwlModel				targetModel							IN
@@ -5280,6 +5528,20 @@ static	inline	int64_t	CalculateInstance(
 					owlInstance,
 					vertexBufferSize,
 					indexBufferSize,
+					nullptr								//	transformationBufferSize
+				);
+}
+
+//
+//
+static	inline	int64_t	CalculateInstance(
+								OwlInstance				owlInstance
+							)
+{
+	return	CalculateInstance(
+					owlInstance,
+					nullptr,							//	vertexBufferSize
+					nullptr,							//	indexBufferSize
 					nullptr								//	transformationBufferSize
 				);
 }

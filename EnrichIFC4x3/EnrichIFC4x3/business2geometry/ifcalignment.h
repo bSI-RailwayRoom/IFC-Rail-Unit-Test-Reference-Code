@@ -46,8 +46,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
 		                        ifcAlignmentInstance,
 		                        ___GetAlignmentHorizontal(
 		                                model,
-		                                ifcAlignmentInstance,
-		                                nullptr
+		                                ifcAlignmentInstance
 		                            ),
 		                        ___GetPlaneAngleUnitConversionFactor(
 		                                model
@@ -77,8 +76,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
         sdaiGetAttrBN(
                 ___GetAlignmentHorizontal(
                         model,
-                        ifcAlignmentInstance,
-                        nullptr
+                        ifcAlignmentInstance
                     ),
                 "StartDistAlong",
                 sdaiREAL,
@@ -91,8 +89,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
 			                            model,
 			                            ___GetAlignmentVertical(
 			                                    model,
-			                                    ifcAlignmentInstance,
-			                                    nullptr
+			                                    ifcAlignmentInstance
 			                                ),
 			                            startDistAlongHorizontalAlignment
 			                        );
@@ -112,8 +109,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
             sdaiPutAttrBN(
                     ___GetAlignmentVertical(
                             model,
-                            ifcAlignmentInstance,
-                            nullptr
+                            ifcAlignmentInstance
                         ),
                     "ObjectPlacement",
                     sdaiINSTANCE,
@@ -131,8 +127,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
                                         model,
                                         ___GetAlignmentCant(
                                                 model,
-                                                ifcAlignmentInstance,
-                                                nullptr
+                                                ifcAlignmentInstance
                                             ),
                                         startDistAlongHorizontalAlignment
                                     );
@@ -153,8 +148,7 @@ static  inline  SdaiInstance    AlignmentGenerateGeometry(
             sdaiPutAttrBN(
                     ___GetAlignmentCant(
                             model,
-                            ifcAlignmentInstance,
-                            nullptr
+                            ifcAlignmentInstance
                         ),
                     "ObjectPlacement",
                     sdaiINSTANCE,

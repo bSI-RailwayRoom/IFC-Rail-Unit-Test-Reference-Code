@@ -45,6 +45,20 @@ static	inline	SdaiInstance    ___CreateGeometricRepresentationContext(
     return	ifcGeometricRepresentationContextInstance;
 }
 
+static	inline	SdaiInstance    ___FindGeometricRepresentationContext(
+                                        SdaiModel       model
+                                    )
+{
+    SdaiAggr    ifcGeometricRepresentationContextInstances = sdaiGetEntityExtentBN(model, "IFCGEOMETRICREPRESENTATIONCONTEXT");
+    if (sdaiGetMemberCount(ifcGeometricRepresentationContextInstances) == 1) {
+        SdaiInstance   ifcGeometricRepresentationContextInstance = 0;
+        sdaiGetAggrByIndex(ifcGeometricRepresentationContextInstances, 0, sdaiINSTANCE, &ifcGeometricRepresentationContextInstance);
+        return  ifcGeometricRepresentationContextInstance;
+    }
+
+    return  ___CreateGeometricRepresentationContext(model);
+}
+
 //
 //  "Curve2D"
 //  "Curve3D"
@@ -59,7 +73,7 @@ static	inline	SdaiInstance    ___CreateShapeRepresentationInstance(
 {
     SdaiInstance    ifcShapeRepresentationInstance = sdaiCreateInstanceBN(model, "IFCSHAPEREPRESENTATION");
 
-/////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!????????????????????    sdaiPutAttrBN(ifcShapeRepresentationInstance, "ContextOfItems", sdaiINSTANCE, (void*) ___CreateGeometricRepresentationContext(model));
+    sdaiPutAttrBN(ifcShapeRepresentationInstance, "ContextOfItems", sdaiINSTANCE, (void*) ___FindGeometricRepresentationContext(model));
 
     char    representationIdentifier[5] = "Axis";
     sdaiPutAttrBN(ifcShapeRepresentationInstance, "RepresentationIdentifier", sdaiSTRING, representationIdentifier);
