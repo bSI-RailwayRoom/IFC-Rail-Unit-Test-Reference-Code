@@ -1,0 +1,2 @@
+Horizontal Alignment Curve (each curve divided in 100 parts)
+[Curve Length]  [Y-Coordinate]  [X-Coordinate]

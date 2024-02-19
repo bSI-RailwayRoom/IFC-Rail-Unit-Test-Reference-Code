@@ -1,0 +1,4 @@
+Horizontal Alignment Curve (each curve divided in 100 parts)
+[Curve Length]  [X-Coordinate]  [Y-Coordinate]
+0	0.0000000000000000	0.0000000000000000	0.0000000000000000
+1	99.4532004125531017	-8.2692247669488506	0.0000000000000000

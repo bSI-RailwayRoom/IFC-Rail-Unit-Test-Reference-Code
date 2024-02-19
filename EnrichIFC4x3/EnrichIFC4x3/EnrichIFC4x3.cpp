@@ -572,7 +572,7 @@ void    CheckResults(char * fileName)
     }
 }
 
-void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFileName, int_t segmentationParts, char * entityNameCurve)
+void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFileName, int_t segmentationParts, const char * entityNameCurve)
 {
     int_t   ifcModel = sdaiOpenModelBN(0, generatedFileName, "");
 
@@ -619,78 +619,431 @@ void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFile
                     curveLength += segmentLength;
                 }
 
-                    int64_t owlInstance = 0;
-//                    owlBuildInstance(ifcModel, ifcSegmentInstance, &owlInstance);
- //                   owlBuildInstance(ifcModel, ifcCompositeCurveInstance, &owlInstance);
-                    owlBuildInstanceInContext(ifcCompositeCurveInstance, ifcCompositeCurveInstance, &owlInstance);
+                int64_t owlInstance = 0;
+                owlBuildInstanceInContext(ifcCompositeCurveInstance, ifcCompositeCurveInstance, &owlInstance);
 
-                    int64_t vertexBufferSize = 0, indexBufferSize = 0;
-                    CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
-                    if (vertexBufferSize && indexBufferSize) {
-                        double  * vertices = new double[3 * (int_t) vertexBufferSize];
-                        UpdateInstanceVertexBuffer(owlInstance, vertices);
+                int64_t vertexBufferSize = 0, indexBufferSize = 0;
+                CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
+                if (vertexBufferSize && indexBufferSize) {
+                    double  * vertices = new double[3 * (int_t) vertexBufferSize];
+                    UpdateInstanceVertexBuffer(owlInstance, vertices);
 
-                        int32_t * indices = new int32_t[(int_t) indexBufferSize];
-                        UpdateInstanceIndexBuffer(owlInstance, indices);
+                    int32_t * indices = new int32_t[(int_t) indexBufferSize];
+                    UpdateInstanceIndexBuffer(owlInstance, indices);
 
-                        ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
+                    ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
 
-                        int_t    offset = 0;
-                        int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
-                        for (int_t k = 0; k < conceptualFaceCnt; k++) {
-                            int64_t  startIndicesLines = 0, noIndicesLines = 0;
-                            GetConceptualFace(
-                                    owlInstance, k,
-                                    nullptr, nullptr,
-                                    &startIndicesLines, &noIndicesLines,
-                                    nullptr, nullptr
-                                );
-                            assert(noIndicesLines);
+                    int_t    offset = 0;
+                    int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
+                    for (int_t k = 0; k < conceptualFaceCnt; k++) {
+                        int64_t  startIndicesLines = 0, noIndicesLines = 0;
+                        GetConceptualFace(
+                                owlInstance, k,
+                                nullptr, nullptr,
+                                &startIndicesLines, &noIndicesLines,
+                                nullptr, nullptr
+                            );
+                        assert(noIndicesLines);
 
-                            bool    hasNonZeroZCoordinate = false;
-                            for (int_t m = 0; m < noIndicesLines; m++) {
-                                if (vertices[3 * indices[startIndicesLines + m] + 2]) {
-                                    hasNonZeroZCoordinate = true;
+                        bool    hasNonZeroZCoordinate = false;
+                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            if (vertices[3 * indices[startIndicesLines + m] + 2]) {
+                                hasNonZeroZCoordinate = true;
+                            }
+                        }
+                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            ___VECTOR3  vec = {
+                                                vertices[3 * indices[startIndicesLines + m] + 0],
+                                                vertices[3 * indices[startIndicesLines + m] + 1],
+                                                vertices[3 * indices[startIndicesLines + m] + 2]
+                                            };
+                            assert(vec.z == 0.);
+
+                            if (m == 0 && cnt) {
+                                if (std::fabs(vecLast.x - vec.x) > 0.0000000000001 ||
+                                    std::fabs(vecLast.y - vec.y) > 0.0000000000001 ||
+                                    std::fabs(vecLast.z - vec.z) > 0.0000000000001) {
+                                    assert(false);
+                                    fprintf(fp, "INTERNAL ISSUE\n");
                                 }
                             }
-                            for (int_t m = 0; m < noIndicesLines; m++) {
-                                ___VECTOR3  vec = {
-                                                    vertices[3 * indices[startIndicesLines + m] + 0],
-                                                    vertices[3 * indices[startIndicesLines + m] + 1],
-                                                    vertices[3 * indices[startIndicesLines + m] + 2]
-                                                };
-        //??????????????                        assert(vec.z == 0.);
-
-                                if (m == 0 && cnt) {
-//                                    if (vecLast.x != vec.x || vecLast.y != vec.y || vecLast.z != vec.z) {
-                                    if (std::fabs(vecLast.x - vec.x) > 0.0000000000001 ||
-                                        std::fabs(vecLast.y - vec.y) > 0.0000000000001 ||
-                                        std::fabs(vecLast.z - vec.z) > 0.0000000000001) {
-                                        assert(false);
-                                        fprintf(fp, "INTERNAL ISSUE\n");
-                                    }
+                            else {
+                                if (hasNonZeroZCoordinate) {
+                                    fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, vec.x, vec.y, vec.z);
                                 }
                                 else {
-                                    if (hasNonZeroZCoordinate) {
-                                        fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, vec.x, vec.y, vec.z);
-                                    }
-                                    else {
 
-                                        fprintf(fp, "%.9f\t%.16f\t%.16f\n", std::fabs(curveLength) * (double) (k + m) / (double) conceptualFaceCnt, vec.x, vec.y);
-                                    }
-                                    cnt++;
-                                    vecLast = vec;
+                                    fprintf(fp, "%.9f\t%.16f\t%.16f\n", std::fabs(curveLength) * (double) (k + m) / (double) conceptualFaceCnt, vec.x, vec.y);
                                 }
+                                cnt++;
+                                vecLast = vec;
                             }
                         }
                     }
-                    else {
-                        assert(false);
-                    }
-//                }
+                }
+                else {
+                    assert(false);
+                }
             }
 
             fclose(fp);
+        }
+
+        cleanMemory(ifcModel, 4);
+        sdaiCloseModel(ifcModel);
+    }
+}
+
+void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointListFileName, int_t segmentationParts)
+{
+    int_t   ifcModel = sdaiOpenModelBN(0, generatedFileName, "");
+
+    {
+        FILE    * fp = nullptr;
+        fopen_s(&fp, pointListFileName, "w");
+
+        if (fp) {
+            fprintf(fp, "Horizontal Alignment Curve (each curve divided in %i parts)\n", (int) segmentationParts);
+
+            const char  * entityNameCurve = "IFCSEGMENTEDREFERENCECURVE";
+            SdaiAggr    ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, entityNameCurve);
+
+            if (sdaiGetMemberCount(ifcCompositeCurveInstances) == 0) {
+                entityNameCurve = "IFCGRADIENTCURVE";
+                ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, entityNameCurve);
+
+                if (sdaiGetMemberCount(ifcCompositeCurveInstances) == 0) {
+                    entityNameCurve = "IFCCOMPOSITECURVE";
+                    ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, entityNameCurve);
+                }
+            }
+
+            int_t   noIfcCompositeCurveInstances = sdaiGetMemberCount(ifcCompositeCurveInstances);
+
+            fprintf(fp, "[Curve Length]  [X-Coordinate]  [Y-Coordinate]  [Z-Coordinate] (%s)\n", entityNameCurve);
+
+            setSegmentation(ifcModel, segmentationParts, 0.);
+
+            int64_t owlModel = 0;
+            owlGetModel(ifcModel, &owlModel);
+            int64_t mask = GetFormat(0, 0),
+                    setting = flagbit2 + flagbit4 + flagbit9;
+            SetFormat(owlModel, setting, mask);
+
+            for (int_t i = 0; i < noIfcCompositeCurveInstances; i++) {
+                int_t   ifcCompositeCurveInstance = 0;
+                engiGetAggrElement(ifcCompositeCurveInstances, i, sdaiINSTANCE, &ifcCompositeCurveInstance);
+            
+                ___VECTOR3  vecLast;
+                int        cnt = 0;
+
+                double  curveLength = 0.;
+
+                int_t   * ifcSegmentInstances = nullptr;
+                sdaiGetAttrBN(ifcCompositeCurveInstance, "Segments", sdaiAGGR, &ifcSegmentInstances);
+                int_t   noIfcSegmentInstances = sdaiGetMemberCount(ifcSegmentInstances);
+                for (int_t j = 0; j < noIfcSegmentInstances; j++) {
+                    int_t   ifcSegmentInstance = 0;
+                    engiGetAggrElement(ifcSegmentInstances, j, sdaiINSTANCE, &ifcSegmentInstance);
+
+                    double  segmentStart = 0.;
+                    sdaiGetAttrBN(ifcSegmentInstance, "SegmentStart", sdaiREAL, &segmentStart);
+
+                    double  segmentLength = 0.;
+                    sdaiGetAttrBN(ifcSegmentInstance, "SegmentLength", sdaiREAL, &segmentLength);
+
+                    curveLength += segmentLength;
+                }
+
+                int64_t owlInstance = 0;
+                owlBuildInstanceInContext(ifcCompositeCurveInstance, ifcCompositeCurveInstance, &owlInstance);
+
+                int64_t vertexBufferSize = 0, indexBufferSize = 0;
+                CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
+                if (vertexBufferSize && indexBufferSize) {
+                    double  * vertices = new double[3 * (int_t) vertexBufferSize];
+                    UpdateInstanceVertexBuffer(owlInstance, vertices);
+
+                    int32_t * indices = new int32_t[(int_t) indexBufferSize];
+                    UpdateInstanceIndexBuffer(owlInstance, indices);
+
+                    ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
+
+                    int_t    offset = 0;
+                    int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
+                    for (int_t k = 0; k < conceptualFaceCnt; k++) {
+                        int64_t  startIndicesLines = 0, noIndicesLines = 0;
+                        GetConceptualFace(
+                                owlInstance, k,
+                                nullptr, nullptr,
+                                &startIndicesLines, &noIndicesLines,
+                                nullptr, nullptr
+                            );
+                        assert(noIndicesLines);
+
+                        bool    hasNonZeroZCoordinate = false;
+                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            if (vertices[3 * indices[startIndicesLines + m] + 2]) {
+                                hasNonZeroZCoordinate = true;
+                            }
+                        }
+                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            ___VECTOR3  vec = {
+                                                vertices[3 * indices[startIndicesLines + m] + 0],
+                                                vertices[3 * indices[startIndicesLines + m] + 1],
+                                                vertices[3 * indices[startIndicesLines + m] + 2]
+                                            };
+                            assert(vec.z == 0.);
+
+                            if (m == 0 && cnt) {
+                                if (std::fabs(vecLast.x - vec.x) > 0.0000000000001 ||
+                                    std::fabs(vecLast.y - vec.y) > 0.0000000000001 ||
+                                    std::fabs(vecLast.z - vec.z) > 0.0000000000001) {
+                                    assert(false);
+                                    fprintf(fp, "INTERNAL ISSUE\n");
+                                }
+                            }
+                            else {
+//                                if (hasNonZeroZCoordinate) {
+                                    fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, vec.x, vec.y, vec.z);
+//                                }
+//                                else {
+//                                    fprintf(fp, "%.9f\t%.16f\t%.16f\n", std::fabs(curveLength) * (double) (k + m) / (double) conceptualFaceCnt, vec.x, vec.y);
+//                                }
+                                cnt++;
+                                vecLast = vec;
+                            }
+                        }
+                    }
+                }
+                else {
+                    assert(false);
+                }
+            }
+
+            fclose(fp);
+        }
+
+        cleanMemory(ifcModel, 4);
+        sdaiCloseModel(ifcModel);
+    }
+}
+
+bool    equals(const char * a, const char * b)
+{
+    if (a && b) {
+        size_t size = 0;
+        while (a[size] && a[size] == b[size]) size++;
+        if (a[size] == 0 && b[size] == 0)
+            return  true;
+    }
+
+    return  false;
+}
+
+void    GeneratePointList__DIRECT__LINEAR_PLACEMENT(char * generatedFileName, char * pointListFileName, int_t segmentationParts, const char * entityNameCurve)
+{
+    int_t   ifcModel = sdaiOpenModelBN(0, generatedFileName, "");
+
+    {
+        int_t   * ifcCompositeCurveInstances = sdaiGetEntityExtentBN(ifcModel, entityNameCurve),
+                noIfcCompositeCurveInstances = sdaiGetMemberCount(ifcCompositeCurveInstances);
+        if (noIfcCompositeCurveInstances) {
+            double  prevDistanceAlong = -999999999999.;
+
+            setSegmentation(ifcModel, segmentationParts, 0.);
+
+            int64_t owlModel = 0;
+            owlGetModel(ifcModel, &owlModel);
+            int64_t mask = GetFormat(0, 0),
+                    setting = flagbit2 + flagbit4 + flagbit9;
+            SetFormat(owlModel, setting, mask);
+
+            FILE    * fp = nullptr;
+            fopen_s(&fp, pointListFileName, "w");
+
+            if (fp) {
+                fprintf(fp, "Horizontal Alignment Curve (each curve divided in %i parts)\n", (int) segmentationParts);
+                fprintf(fp, "[Curve Length]  [X-Coordinate]  [Y-Coordinate]  [Z-Coordinate] (%s)\n", entityNameCurve);
+
+                for (int_t i = 0; i < noIfcCompositeCurveInstances; i++) {
+                    int_t   ifcCompositeCurveInstance = 0;
+                    engiGetAggrElement(ifcCompositeCurveInstances, i, sdaiINSTANCE, &ifcCompositeCurveInstance);
+
+
+
+
+
+
+
+                    int cnt = 0;
+
+
+
+
+
+
+
+                    int_t   * ifcSegmentInstances = nullptr;
+                    sdaiGetAttrBN(ifcCompositeCurveInstance, "Segments", sdaiAGGR, &ifcSegmentInstances);
+                    int_t   noIfcSegmentInstances = sdaiGetMemberCount(ifcSegmentInstances);
+                    for (int_t j = 0; j < noIfcSegmentInstances; j++) {
+                        int_t   ifcSegmentInstance = 0;
+                        engiGetAggrElement(ifcSegmentInstances, j, sdaiINSTANCE, &ifcSegmentInstance);
+
+                        int64_t owlInstance = 0;
+                        owlBuildInstanceInContext(ifcSegmentInstance, ifcCompositeCurveInstance, &owlInstance);
+
+double  cnt__ = 0.;
+                        int64_t vertexBufferSize = 0, indexBufferSize = 0;
+                        CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
+                        if (vertexBufferSize && indexBufferSize) {
+                            double  * vertices = new double[3 * (int_t) vertexBufferSize];
+                            UpdateInstanceVertexBuffer(owlInstance, vertices);
+
+                            int32_t * indices = new int32_t[(int_t) indexBufferSize];
+                            UpdateInstanceIndexBuffer(owlInstance, indices);
+
+                            ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
+
+                            int_t    offset = 0;
+                            int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
+                            for (int_t k = 0; k < conceptualFaceCnt; k++) {
+                                int64_t  startIndicesLines = 0, noIndicesLines = 0;
+                                GetConceptualFace(
+                                        owlInstance, k,
+                                        nullptr, nullptr,
+                                        &startIndicesLines, &noIndicesLines,
+                                        nullptr, nullptr
+                                    );
+                                assert(noIndicesLines);
+
+           //                     bool    hasNonZeroZCoordinate = false;
+           //                     for (int_t m = 0; m < noIndicesLines; m++) {
+           //                         if (vertices[3 * indices[startIndicesLines + m] + 2]) {
+           //                             hasNonZeroZCoordinate = true;
+           //                         }
+           //                     }
+
+                                for (int_t m = 0; m < noIndicesLines; m++) {
+                                    ___VECTOR3  vec = {
+                                                        vertices[3 * indices[startIndicesLines + m] + 0],
+                                                        vertices[3 * indices[startIndicesLines + m] + 1],
+                                                        vertices[3 * indices[startIndicesLines + m] + 2]
+                                                    };
+
+                        if (prevDistanceAlong != vec.x) {
+                        double  distanceAlong = vec.x;
+
+                        if (equals(entityNameCurve, "IFCCOMPOSITECURVE"))
+                            distanceAlong = cnt__;
+                        cnt__ += 1.;
+
+                        SdaiInstance    ifcPointByDistanceExpressionInstance = sdaiCreateInstanceBN(ifcModel, "IfcPointByDistanceExpression");
+                        void    * distanceAlongADB = sdaiCreateADB(sdaiREAL, &distanceAlong);
+                        sdaiPutADBTypePath(distanceAlongADB, 1, "IFCLENGTHMEASURE");
+                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "DistanceAlong", sdaiADB, (void*) distanceAlongADB);
+                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "BasisCurve", sdaiINSTANCE, ifcCompositeCurveInstance);
+
+                        SdaiInstance    ifcAxis2PlacementLinearInstance = sdaiCreateInstanceBN(ifcModel, "IfcAxis2PlacementLinear");
+                        sdaiPutAttrBN(ifcAxis2PlacementLinearInstance, "Location", sdaiINSTANCE, ifcPointByDistanceExpressionInstance);
+
+                        SdaiInstance    ifcLinearPlacementInstance = sdaiCreateInstanceBN(ifcModel, "IfcLinearPlacement");
+                        sdaiPutAttrBN(ifcLinearPlacementInstance, "RelativePlacement", sdaiINSTANCE, ifcAxis2PlacementLinearInstance);
+
+                        OwlInstance owlInstance = 0;
+                        owlBuildInstance(ifcModel, ifcPointByDistanceExpressionInstance, &owlInstance);
+
+                        const char  * className = GetNameOfClass(GetInstanceClass(owlInstance));
+                        if (GetInstanceClass(owlInstance) == GetClassByName(ifcModel, "Point4D")) {
+                            OwlInstance owlInstancePoint = GetObjectProperty(owlInstance, GetPropertyByName(ifcModel, "point"));
+                            if (GetInstanceClass(owlInstancePoint) == GetClassByName(ifcModel, "Point3D")) {
+                                int64_t card = 0;
+                                double  * values = nullptr;
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "x"), (void**) &values, &card);
+                                assert(card == 1);
+                                double  x = (card == 1) ? values[0] : 0.;
+
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "y"), (void**) &values, &card);
+                                assert(card == 1);
+                                double  y = (card == 1) ? values[0] : 0.;
+
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "z"), (void**)&values, &card);
+                                assert(card == 1);
+                                double  z = (card == 1) ? values[0] : 0.;
+
+                                fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\t(%.16f)\n", cnt, x, y, z, distanceAlong);
+                            }
+                            else {
+                                assert(false);
+                            }
+                        }
+                        else {
+                            assert(false);
+                        }
+
+                                    int U = 0;
+                                    cnt++;
+
+                            prevDistanceAlong = vec.x;
+                        }
+                                }
+                            }
+
+                            delete[] vertices;
+                            delete[] indices;
+                        }
+                    }
+/*                    for (int cnt = 0; cnt <= 100; cnt++) {
+                        double  distanceAlong = (double) cnt;
+
+                        SdaiInstance    ifcPointByDistanceExpressionInstance = sdaiCreateInstanceBN(ifcModel, "IfcPointByDistanceExpression");
+                        void    * distanceAlongADB = sdaiCreateADB(sdaiREAL, &distanceAlong);
+                        sdaiPutADBTypePath(distanceAlongADB, 1, "IFCLENGTHMEASURE");
+                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "DistanceAlong", sdaiADB, (void*) distanceAlongADB);
+                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "BasisCurve", sdaiINSTANCE, ifcCompositeCurveInstance);
+
+                        SdaiInstance    ifcAxis2PlacementLinearInstance = sdaiCreateInstanceBN(ifcModel, "IfcAxis2PlacementLinear");
+                        sdaiPutAttrBN(ifcAxis2PlacementLinearInstance, "Location", sdaiINSTANCE, ifcPointByDistanceExpressionInstance);
+
+                        SdaiInstance    ifcLinearPlacementInstance = sdaiCreateInstanceBN(ifcModel, "IfcLinearPlacement");
+                        sdaiPutAttrBN(ifcLinearPlacementInstance, "RelativePlacement", sdaiINSTANCE, ifcAxis2PlacementLinearInstance);
+
+                        OwlInstance owlInstance = 0;
+                        owlBuildInstance(ifcModel, ifcPointByDistanceExpressionInstance, &owlInstance);
+
+                        const char  * className = GetNameOfClass(GetInstanceClass(owlInstance));
+                        if (GetInstanceClass(owlInstance) == GetClassByName(ifcModel, "Point4D")) {
+                            OwlInstance owlInstancePoint = GetObjectProperty(owlInstance, GetPropertyByName(ifcModel, "point"));
+                            if (GetInstanceClass(owlInstancePoint) == GetClassByName(ifcModel, "Point3D")) {
+                                int64_t card = 0;
+                                double  * values = nullptr;
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "x"), (void**) &values, &card);
+                                assert(card == 1);
+                                double  x = (card == 1) ? values[0] : 0.;
+
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "y"), (void**) &values, &card);
+                                assert(card == 1);
+                                double  y = (card == 1) ? values[0] : 0.;
+
+                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "z"), (void**)&values, &card);
+                                assert(card == 1);
+                                double  z = (card == 1) ? values[0] : 0.;
+
+                                fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, x, y, z);
+                            }
+                            else {
+                                assert(false);
+                            }
+                        }
+                        else {
+                            assert(false);
+                        }
+                    }   //  */
+                }
+
+                fclose(fp);
+            }
         }
 
         cleanMemory(ifcModel, 4);
@@ -839,7 +1192,7 @@ int     main(int argc, char *argv[], char *envp[])
                         argv[2],
                         argv[3],
                         (argc >= 5) ? atoi(argv[4]) : 36,
-                        (char*)"IFCCOMPOSITECURVE"
+                        (char*) "IFCCOMPOSITECURVE"
                     );
                 }
                 else if ((argv[5])[0] == 'v' || (argv[5])[0] == 'V') {
@@ -847,7 +1200,7 @@ int     main(int argc, char *argv[], char *envp[])
                         argv[2],
                         argv[3],
                         (argc >= 5) ? atoi(argv[4]) : 36,
-                        (char*)"IFCGRADIENTCURVE"
+                        (char*) "IFCGRADIENTCURVE"
                     );
                 }
                 else {
@@ -855,18 +1208,78 @@ int     main(int argc, char *argv[], char *envp[])
                         argv[2],
                         argv[3],
                         (argc >= 5) ? atoi(argv[4]) : 36,
-                        (char*)"IFCSEGMENTEDREFERENCECURVE",
+                        (char*) "IFCSEGMENTEDREFERENCECURVE",
                         2.
                     );
                 }
             }
             else {
                 GeneratePointList__DIRECT(
-                    argv[2],
-                    argv[3],
-                    (argc >= 5) ? atoi(argv[4]) : 36,
-                    (char*)"IFCCOMPOSITECURVE"
-                );
+                        argv[2],
+                        argv[3],
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        "IFCCOMPOSITECURVE"
+                    );
+            }
+
+            //
+            //  .\ToolboxProcessed\
+            //
+            char    txt[512];
+            memcpy(txt, argv[3], strlen(argv[3]) + 1);
+            if (txt[ 0] == '.' &&
+                txt[ 1] == '\\' &&
+                txt[ 2] == 'T' &&
+                txt[ 3] == 'o' &&
+                txt[ 4] == 'o' &&
+                txt[ 5] == 'l' &&
+                txt[ 6] == 'b' &&
+                txt[ 7] == 'o' &&
+                txt[ 8] == 'x' &&
+                txt[ 9] == 'P' &&
+                txt[10] == 'r' &&
+                txt[11] == 'o' &&
+                txt[12] == 'c' &&
+                txt[13] == 'e' &&
+                txt[14] == 's' &&
+                txt[15] == 's' &&
+                txt[16] == 'e' &&
+                txt[17] == 'd' &&
+                txt[18] == '\\') {
+                txt[16] = '-';
+                txt[17] = 'B';
+                GeneratePointList__DIRECT__BASE(
+                        argv[2],
+                        txt,
+                        (argc >= 5) ? atoi(argv[4]) : 36
+                    );
+
+                txt[16] = '-';
+                txt[17] = 'H';
+                GeneratePointList__DIRECT__LINEAR_PLACEMENT(
+                        argv[2],
+                        txt,
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        "IFCCOMPOSITECURVE"
+                    );
+
+                txt[16] = '-';
+                txt[17] = 'V';
+                GeneratePointList__DIRECT__LINEAR_PLACEMENT(
+                        argv[2],
+                        txt,
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        "IFCGRADIENTCURVE"
+                    );
+
+                txt[16] = '-';
+                txt[17] = 'C';
+                GeneratePointList__DIRECT__LINEAR_PLACEMENT(
+                        argv[2],
+                        txt,
+                        (argc >= 5) ? atoi(argv[4]) : 36,
+                        "IFCSEGMENTEDREFERENCECURVE"
+                    );
             }
         }
 
