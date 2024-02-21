@@ -1128,16 +1128,16 @@ segmentLength = std::fabs(segmentLength);
                         //  Add geometry for Ifc...Alignment...
                         //
                         assert(secondIfcCurveSegmentInstance && ifcAlignmentSegmentInstance);
-                        sdaiPutAttrBN(								//									!!!!!!!!!!!!!!! IS CREATING ISSUE IN VALIDATION
-                                ifcAlignmentSegmentInstance,
-                                "Representation",
-                                sdaiINSTANCE,
-                                (void*) ___CreateProductDefinitionShapeInstance(
-                                                model,
-                                                secondIfcCurveSegmentInstance,
-                                                "Segment"
-                                            )
-                            );
+    //                    sdaiPutAttrBN(								//									!!!!!!!!!!!!!!! IS CREATING ISSUE IN VALIDATION
+    //                            ifcAlignmentSegmentInstance,
+    //                            "Representation",
+    //                            sdaiINSTANCE,
+    //                            (void*) ___CreateProductDefinitionShapeInstance(
+    //                                            model,
+    //                                            secondIfcCurveSegmentInstance,
+    //                                            "Segment"
+    //                                        )
+    //                        );
                         char    transitionCode[30] = "CONTSAMEGRADIENTSAMECURVATURE";
                         sdaiPutAttrBN(secondIfcCurveSegmentInstance, "Transition", sdaiENUM, (void*) transitionCode);
 
@@ -1461,107 +1461,32 @@ segmentLength = std::fabs(segmentLength);
                 }
                 else if (___equals(predefinedType, "CUBIC")) {
                     double  cubicConstant = 0.,
+//                                  (endRadiusOfCurvature   ? 1. / (6. * endRadiusOfCurvature   * segmentLength) : 0.)
+//                                - (startRadiusOfCurvature ? 1. / (6. * startRadiusOfCurvature * segmentLength) : 0.),
                             offset = 0.;
-                    if (startRadiusOfCurvature == 0. && index < noSegmentInstances - 1) {
-                        assert(endRadiusOfCurvature);
-                        ___VECTOR3  * inputStartPoint = &pStartPoint[index],
-                                    * inputEndPoint = &pStartPoint[index + 1];
-                        double  startDirection = pStartDirection[index];
-                        assert(inputStartPoint->z == 0. && inputEndPoint->z == 0.);
 
-                        ___VECTOR3  originCubic = { 0., 0., 0. },
-                                    refDirectionCubic = { cos(startDirection), sin(startDirection), 0. },
-                                    endPoint = { inputEndPoint->x - inputStartPoint->x, inputEndPoint->y - inputStartPoint->y, 0. },
-                                    correctedEndPoint;
+                    if (endRadiusOfCurvature && startRadiusOfCurvature && endRadiusOfCurvature != startRadiusOfCurvature) {
+                        double  factor = (startRadiusOfCurvature - endRadiusOfCurvature) / endRadiusOfCurvature;
 
-                        double  D = ___PointLineDistance(&correctedEndPoint, &endPoint, &originCubic, &refDirectionCubic);
-
-                        double  correctedHorizontalLength = ___Vec3Distance(&originCubic, &correctedEndPoint);
-
-                        ___MATRIX   mat;
-                        ___MatrixIdentity(&mat);
-                        ___Vec3Subtract((___VECTOR3*) &mat._11, &correctedEndPoint, &originCubic);
-                        ___Vec3Normalize((___VECTOR3*) &mat._11);
-                        ___Vec3Cross((___VECTOR3*) &mat._21, (___VECTOR3*) &mat._31, (___VECTOR3*) &mat._11);
-
-                        ___VECTOR3  axis;
-                        ___Vec3Subtract(&axis, &correctedEndPoint, &endPoint);
-                        ___Vec3Normalize(&axis);
-
-                        double  dotProduct = ___Vec3Dot((___VECTOR3*) &mat._21, &axis);
-                        assert(std::fabs(std::fabs(dotProduct) - 1.) < 0.00000001);
-
-
-                        //
-                        //  y = a * x^3 where
-                        //      0 = a * 0^3
-                        //      D = a * correctedHorizontalLength^3
-                        //
-                        cubicConstant = D / pow(correctedHorizontalLength, 3);
-                        if (dotProduct > 0.) {
-                            cubicConstant = -cubicConstant;
-                        }
-
-//                        double  L = CalculateCubicArcLength(correctedHorizontalLength, cubicConstant);
-                        segmentLength = correctedHorizontalLength;
+                        cubicConstant =   factor / (6. * startRadiusOfCurvature * segmentLength);
+                        offset        =   segmentLength / factor;
+                        segmentLength =   segmentLength;
                     }
-                    else if (endRadiusOfCurvature == 0. && index < noSegmentInstances - 1) {
-                        assert(startRadiusOfCurvature);
-                        ___VECTOR3  * inputStartPoint = &pStartPoint[index],
-                                    * inputEndPoint = &pStartPoint[index + 1];
-                        double  startDirection = pStartDirection[index + 1];
-                        assert(inputStartPoint->z == 0. && inputEndPoint->z == 0.);
+                    else if (endRadiusOfCurvature) {
+                        assert(startRadiusOfCurvature == 0);
 
-                        ___VECTOR3  originCubic = { 0., 0., 0. },
-                                    refDirectionCubic = { cos(startDirection), sin(startDirection), 0. },
-                                    endPoint = { -(inputEndPoint->x - inputStartPoint->x), -(inputEndPoint->y - inputStartPoint->y), 0. },
-                                    correctedEndPoint;
-
-                        ___VECTOR3  secondPointCubic = {
-                                            originCubic.x + 10. * refDirectionCubic.x,
-                                            originCubic.y + 10. * refDirectionCubic.y,
-                                            originCubic.z + 10. * refDirectionCubic.z
-                                        };
-
-                        double  D = ___PointLineDistance(&correctedEndPoint, &endPoint, &originCubic, &secondPointCubic);
-
-                        double  correctedHorizontalLength = ___Vec3Distance(&originCubic, &correctedEndPoint);
-
-                        ___MATRIX   mat;
-                        ___MatrixIdentity(&mat);
-                        ___Vec3Subtract((___VECTOR3*) &mat._11, &correctedEndPoint, &originCubic);
-                        ___Vec3Normalize((___VECTOR3*) &mat._11);
-                        ___Vec3Cross((___VECTOR3*) &mat._21, (___VECTOR3*) &mat._31, (___VECTOR3*) &mat._11);
-
-                        ___VECTOR3  axis;
-                        ___Vec3Subtract(&axis, &correctedEndPoint, &endPoint);
-                        ___Vec3Normalize(&axis);
-
-                        double  dotProduct = ___Vec3Dot((___VECTOR3*) &mat._21, &axis);
-                        assert(std::fabs(std::fabs(dotProduct) - 1.) < 0.00000001);
-
-
-                        //
-                        //  y = a * x^3 where
-                        //      0 = a * 0^3
-                        //      D = a * correctedHorizontalLength^3
-                        //
-                        cubicConstant = D / pow(correctedHorizontalLength, 3);
-                        if (dotProduct > 0.) {
-                            cubicConstant = -cubicConstant;
-                        }
-
-//                        double  L = CalculateCubicArcLength(correctedHorizontalLength, cubicConstant);
-                        segmentLength = correctedHorizontalLength;
-
-                        offset = -segmentLength;
+                        cubicConstant =   1. / (6. * endRadiusOfCurvature * segmentLength);
+                        offset        =   0.;
+                        segmentLength =   segmentLength;
                     }
-                    else if (std::fabs(startRadiusOfCurvature) > std::fabs(endRadiusOfCurvature)) {
-                        assert(startRadiusOfCurvature / std::fabs(startRadiusOfCurvature) == endRadiusOfCurvature / std::fabs(endRadiusOfCurvature));
-                        assert(false);
+                    else if (startRadiusOfCurvature) {
+                        assert(endRadiusOfCurvature == 0);
+
+                        cubicConstant = - 1. / (6. * startRadiusOfCurvature * segmentLength);
+                        offset        = - segmentLength;
+                        segmentLength =   segmentLength;
                     }
                     else {
-                        assert(startRadiusOfCurvature / std::fabs(startRadiusOfCurvature) == endRadiusOfCurvature / std::fabs(endRadiusOfCurvature));
                         assert(false);
                     }
 
@@ -1575,6 +1500,11 @@ segmentLength = std::fabs(segmentLength);
                                     0.,
                                     cubicConstant
                                 };
+
+    //                double  factor = 
+    //                              (endRadiusOfCurvature ? segmentLength / endRadiusOfCurvature : 0.)
+    //                            - (startRadiusOfCurvature ? segmentLength / startRadiusOfCurvature : 0.),
+    //                        constantTerm   =                         0. * factor + (startRadiusOfCurvature ? segmentLength / startRadiusOfCurvature : 0.),
 
                     SdaiInstance	ifcCubicParentCurve =
                                         ___CreatePolynomialCurveInstance(

@@ -694,6 +694,18 @@ void    GeneratePointList__DIRECT(char * generatedFileName, char * pointListFile
     }
 }
 
+bool    equals(const char * a, const char * b)
+{
+    if (a && b) {
+        size_t size = 0;
+        while (a[size] && a[size] == b[size]) size++;
+        if (a[size] == 0 && b[size] == 0)
+            return  true;
+    }
+
+    return  false;
+}
+
 void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointListFileName, int_t segmentationParts)
 {
     int_t   ifcModel = sdaiOpenModelBN(0, generatedFileName, "");
@@ -769,6 +781,8 @@ void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointLi
 
                     ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
 
+                    int aa = 2;
+                    int32_t prevIndex = -1;
                     int_t    offset = 0;
                     int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
                     for (int_t k = 0; k < conceptualFaceCnt; k++) {
@@ -781,29 +795,28 @@ void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointLi
                             );
                         assert(noIndicesLines);
 
-                        bool    hasNonZeroZCoordinate = false;
+        //                bool    hasNonZeroZCoordinate = false;
+        //                for (int_t m = 0; m < noIndicesLines; m++) {
+        //                    if (vertices[3 * indices[startIndicesLines + m] + 2]) {
+        //                        hasNonZeroZCoordinate = true;
+        //                    }
+        //                }
                         for (int_t m = 0; m < noIndicesLines; m++) {
-                            if (vertices[3 * indices[startIndicesLines + m] + 2]) {
-                                hasNonZeroZCoordinate = true;
-                            }
-                        }
-                        for (int_t m = 0; m < noIndicesLines; m++) {
+                            int32_t myIndex = indices[startIndicesLines + m];
                             ___VECTOR3  vec = {
                                                 vertices[3 * indices[startIndicesLines + m] + 0],
                                                 vertices[3 * indices[startIndicesLines + m] + 1],
                                                 vertices[3 * indices[startIndicesLines + m] + 2]
                                             };
-                            assert(vec.z == 0.);
+                            assert(vec.z == 0. || equals(entityNameCurve, "IFCGRADIENTCURVE") || equals(entityNameCurve, "IFCSEGMENTEDREFERENCECURVE"));
 
-                            if (m == 0 && cnt) {
-                                if (std::fabs(vecLast.x - vec.x) > 0.0000000000001 ||
-                                    std::fabs(vecLast.y - vec.y) > 0.0000000000001 ||
-                                    std::fabs(vecLast.z - vec.z) > 0.0000000000001) {
-                                    assert(false);
-                                    fprintf(fp, "INTERNAL ISSUE\n");
-                                }
+                            assert(myIndex >= 0);
+                            if (aa == 0) {
+///                                assert(prevIndex == myIndex);
+                                aa = 2;
                             }
                             else {
+                                assert(prevIndex != myIndex);
 //                                if (hasNonZeroZCoordinate) {
                                     fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\n", cnt, vec.x, vec.y, vec.z);
 //                                }
@@ -813,6 +826,8 @@ void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointLi
                                 cnt++;
                                 vecLast = vec;
                             }
+                            aa--;
+                            prevIndex = myIndex;
                         }
                     }
                 }
@@ -827,18 +842,6 @@ void    GeneratePointList__DIRECT__BASE(char * generatedFileName, char * pointLi
         cleanMemory(ifcModel, 4);
         sdaiCloseModel(ifcModel);
     }
-}
-
-bool    equals(const char * a, const char * b)
-{
-    if (a && b) {
-        size_t size = 0;
-        while (a[size] && a[size] == b[size]) size++;
-        if (a[size] == 0 && b[size] == 0)
-            return  true;
-    }
-
-    return  false;
 }
 
 void    GeneratePointList__DIRECT__LINEAR_PLACEMENT(char * generatedFileName, char * pointListFileName, int_t segmentationParts, const char * entityNameCurve)
@@ -877,6 +880,7 @@ void    GeneratePointList__DIRECT__LINEAR_PLACEMENT(char * generatedFileName, ch
 
 
                     int cnt = 0;
+                    double  cnt__ = 0.;
 
 
 
@@ -894,7 +898,6 @@ void    GeneratePointList__DIRECT__LINEAR_PLACEMENT(char * generatedFileName, ch
                         int64_t owlInstance = 0;
                         owlBuildInstanceInContext(ifcSegmentInstance, ifcCompositeCurveInstance, &owlInstance);
 
-double  cnt__ = 0.;
                         int64_t vertexBufferSize = 0, indexBufferSize = 0;
                         CalculateInstance(owlInstance, &vertexBufferSize, &indexBufferSize, nullptr);
                         if (vertexBufferSize && indexBufferSize) {
@@ -905,6 +908,9 @@ double  cnt__ = 0.;
                             UpdateInstanceIndexBuffer(owlInstance, indices);
 
                             ___VECTOR3  * pPnt = new ___VECTOR3[(int_t) indexBufferSize];
+
+                            int aa = 2;
+                            int32_t prevIndex = -1;
 
                             int_t    offset = 0;
                             int64_t  conceptualFaceCnt = GetConceptualFaceCnt(owlInstance);
@@ -926,67 +932,78 @@ double  cnt__ = 0.;
            //                     }
 
                                 for (int_t m = 0; m < noIndicesLines; m++) {
+                                    int32_t myIndex = indices[startIndicesLines + m];
                                     ___VECTOR3  vec = {
                                                         vertices[3 * indices[startIndicesLines + m] + 0],
                                                         vertices[3 * indices[startIndicesLines + m] + 1],
                                                         vertices[3 * indices[startIndicesLines + m] + 2]
                                                     };
 
-                        if (prevDistanceAlong != vec.x) {
-                        double  distanceAlong = vec.x;
+                                    assert(myIndex >= 0);
+                                    if (aa == 0) {
+///                                        assert(prevIndex == myIndex);
+                                        aa = 2;
+                                    }
+                                    else {
+                                        assert(prevIndex != myIndex);
+                                        if (prevDistanceAlong != vec.x) {
+                                                    double  distanceAlong = vec.x;
 
-                        if (equals(entityNameCurve, "IFCCOMPOSITECURVE"))
-                            distanceAlong = cnt__;
-                        cnt__ += 1.;
+                                                    if (equals(entityNameCurve, "IFCCOMPOSITECURVE"))
+                                                        distanceAlong = cnt__;
+                                                    cnt__ += 1.;
 
-                        SdaiInstance    ifcPointByDistanceExpressionInstance = sdaiCreateInstanceBN(ifcModel, "IfcPointByDistanceExpression");
-                        void    * distanceAlongADB = sdaiCreateADB(sdaiREAL, &distanceAlong);
-                        sdaiPutADBTypePath(distanceAlongADB, 1, "IFCLENGTHMEASURE");
-                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "DistanceAlong", sdaiADB, (void*) distanceAlongADB);
-                        sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "BasisCurve", sdaiINSTANCE, ifcCompositeCurveInstance);
+                                                    SdaiInstance    ifcPointByDistanceExpressionInstance = sdaiCreateInstanceBN(ifcModel, "IfcPointByDistanceExpression");
+                                                    void    * distanceAlongADB = sdaiCreateADB(sdaiREAL, &distanceAlong);
+                                                    sdaiPutADBTypePath(distanceAlongADB, 1, "IFCLENGTHMEASURE");
+                                                    sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "DistanceAlong", sdaiADB, (void*) distanceAlongADB);
+                                                    sdaiPutAttrBN(ifcPointByDistanceExpressionInstance, "BasisCurve", sdaiINSTANCE, ifcCompositeCurveInstance);
 
-                        SdaiInstance    ifcAxis2PlacementLinearInstance = sdaiCreateInstanceBN(ifcModel, "IfcAxis2PlacementLinear");
-                        sdaiPutAttrBN(ifcAxis2PlacementLinearInstance, "Location", sdaiINSTANCE, ifcPointByDistanceExpressionInstance);
+                                                    SdaiInstance    ifcAxis2PlacementLinearInstance = sdaiCreateInstanceBN(ifcModel, "IfcAxis2PlacementLinear");
+                                                    sdaiPutAttrBN(ifcAxis2PlacementLinearInstance, "Location", sdaiINSTANCE, ifcPointByDistanceExpressionInstance);
 
-                        SdaiInstance    ifcLinearPlacementInstance = sdaiCreateInstanceBN(ifcModel, "IfcLinearPlacement");
-                        sdaiPutAttrBN(ifcLinearPlacementInstance, "RelativePlacement", sdaiINSTANCE, ifcAxis2PlacementLinearInstance);
+                                                    SdaiInstance    ifcLinearPlacementInstance = sdaiCreateInstanceBN(ifcModel, "IfcLinearPlacement");
+                                                    sdaiPutAttrBN(ifcLinearPlacementInstance, "RelativePlacement", sdaiINSTANCE, ifcAxis2PlacementLinearInstance);
 
-                        OwlInstance owlInstance = 0;
-                        owlBuildInstance(ifcModel, ifcPointByDistanceExpressionInstance, &owlInstance);
+                                                    OwlInstance owlInstance = 0;
+                                                    owlBuildInstance(ifcModel, ifcPointByDistanceExpressionInstance, &owlInstance);
 
-                        const char  * className = GetNameOfClass(GetInstanceClass(owlInstance));
-                        if (GetInstanceClass(owlInstance) == GetClassByName(ifcModel, "Point4D")) {
-                            OwlInstance owlInstancePoint = GetObjectProperty(owlInstance, GetPropertyByName(ifcModel, "point"));
-                            if (GetInstanceClass(owlInstancePoint) == GetClassByName(ifcModel, "Point3D")) {
-                                int64_t card = 0;
-                                double  * values = nullptr;
-                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "x"), (void**) &values, &card);
-                                assert(card == 1);
-                                double  x = (card == 1) ? values[0] : 0.;
+                                                    const char  * className = GetNameOfClass(GetInstanceClass(owlInstance));
+                                                    if (GetInstanceClass(owlInstance) == GetClassByName(ifcModel, "Point4D")) {
+                                                        OwlInstance owlInstancePoint = GetObjectProperty(owlInstance, GetPropertyByName(ifcModel, "point"));
+                                                        if (GetInstanceClass(owlInstancePoint) == GetClassByName(ifcModel, "Point3D")) {
+                                                            int64_t card = 0;
+                                                            double  * values = nullptr;
+                                                            GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "x"), (void**) &values, &card);
+                                                            assert(card == 1);
+                                                            double  x = (card == 1) ? values[0] : 0.;
 
-                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "y"), (void**) &values, &card);
-                                assert(card == 1);
-                                double  y = (card == 1) ? values[0] : 0.;
+                                                            GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "y"), (void**) &values, &card);
+                                                            assert(card == 1);
+                                                            double  y = (card == 1) ? values[0] : 0.;
 
-                                GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "z"), (void**)&values, &card);
-                                assert(card == 1);
-                                double  z = (card == 1) ? values[0] : 0.;
+                                                            GetDatatypeProperty(owlInstancePoint, GetPropertyByName(ifcModel, "z"), (void**)&values, &card);
+                                                            assert(card == 1);
+                                                            double  z = (card == 1) ? values[0] : 0.;
 
-                                fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\t(%.16f)\n", cnt, x, y, z, distanceAlong);
-                            }
-                            else {
-                                assert(false);
-                            }
-                        }
-                        else {
-                            assert(false);
-                        }
+                                                            fprintf(fp, "%i\t%.16f\t%.16f\t%.16f\t(%.16f)\n", cnt, x, y, z, distanceAlong);
+                                                        }
+                                                        else {
+                                                            assert(false);
+                                                        }
+                                                    }
+                                                    else {
+                                                        assert(false);
+                                                    }
 
-                                    int U = 0;
-                                    cnt++;
+                                                    int U = 0;
+                                                    cnt++;
 
-                            prevDistanceAlong = vec.x;
-                        }
+                                                    prevDistanceAlong = vec.x;
+                                        }
+                                    }
+                                    aa--;
+                                    prevIndex = myIndex;
                                 }
                             }
 
@@ -1227,6 +1244,7 @@ int     main(int argc, char *argv[], char *envp[])
             //
             char    txt[512];
             memcpy(txt, argv[3], strlen(argv[3]) + 1);
+
             if (txt[ 0] == '.' &&
                 txt[ 1] == '\\' &&
                 txt[ 2] == 'T' &&
@@ -1280,6 +1298,15 @@ int     main(int argc, char *argv[], char *envp[])
                         (argc >= 5) ? atoi(argv[4]) : 36,
                         "IFCSEGMENTEDREFERENCECURVE"
                     );
+            }
+            else {
+#ifdef _DEBUG
+GeneratePointList__DIRECT__BASE(
+        argv[2],
+        txt,
+        (argc >= 5) ? atoi(argv[4]) : 36
+    );
+#endif // _DEBUG
             }
         }
 

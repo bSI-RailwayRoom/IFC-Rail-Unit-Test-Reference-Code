@@ -1103,26 +1103,26 @@ static  inline  SdaiInstance    ___CreateSegmentedReferenceCurve__alignmentCant(
                         //
                         //  Add geometry for Ifc...Alignment...
                         //
-                        sdaiPutAttrBN(
-                                ifcAlignmentSegmentInstance,
-                                "ObjectPlacement",
-                                sdaiINSTANCE,
-                                (void*) ___CreateObjectPlacement(
-                                                model
-                                            )
-                            );
+    //                    sdaiPutAttrBN(
+    //                            ifcAlignmentSegmentInstance,
+    //                            "ObjectPlacement",
+    //                            sdaiINSTANCE,
+    //                            (void*) ___CreateObjectPlacement(
+    //                                            model
+    //                                        )
+    //                        );
 							
-                        assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
-                        sdaiPutAttrBN(
-                                ifcAlignmentSegmentInstance,
-                                "Representation",
-                                sdaiINSTANCE,
-                                (void*) ___CreateProductDefinitionShapeInstance(
-                                                model,
-                                                ifcCurveSegmentInstance,
-                                                "Segment"
-                                            )
-                            );
+    //                    assert(ifcCurveSegmentInstance && ifcAlignmentSegmentInstance);
+    //                    sdaiPutAttrBN(
+    //                            ifcAlignmentSegmentInstance,
+    //                            "Representation",
+    //                            sdaiINSTANCE,
+    //                            (void*) ___CreateProductDefinitionShapeInstance(
+    //                                            model,
+    //                                            ifcCurveSegmentInstance,
+     //                                           "Segment"
+     //                                       )
+     //                       );
                     }
 
                     matrix._41 += horizontalLength / 2.;
